@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    /* Basic Options */
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "target": "ES2022",
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "isolatedModules": true,
+
+    /* Strictness */
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noFallthroughCasesInSwitch": true,
+
+    /* Default library settings */
+    "lib": ["ES2022"],
+
+    /* Vite specific settings */
+    "types": ["vitest/importMeta"],
+
+    /* We transpile with tsup */
+    "noEmit": true,
+    "module": "Preserve",
+    "moduleResolution": "Bundler"
+
+    /* If transpiling with TypeScript: */
+    //"moduleResolution": "NodeNext",
+    //"module": "NodeNext",
+    //"outDir": "dist",
+    //"sourceMap": true,
+    /* AND if you're building for a library: */
+    //"declaration": true,
+    /* AND if you're building for a library in a monorepo: */
+    //"composite": true,
+    //"declarationMap": true,
+  },
+  "include": ["*.*ts", "*.*js", "packages/**/*"]
+}

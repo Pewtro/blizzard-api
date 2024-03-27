@@ -1,0 +1,57 @@
+{
+  "name": "@blizzard/client",
+  "version": "0.0.0",
+  "license": "MIT",
+  "author": "Putro",
+  "description": "A node.js axios client to integrate with the blizzard battle.net api.",
+  "repository": "https://github.com/Pewtro/blizzard/packages/client",
+  "type": "module",
+  "engines": {
+    "node": ">=18 <19 || >=20"
+  },
+  "main": "./dist/index.js",
+  "exports": {
+    "import": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "require": {
+      "types": "./dist/index.d.cts",
+      "default": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "blizzard",
+    "battlenet",
+    "battle.net",
+    "bnet",
+    "api",
+    "world of warcraft",
+    "warcraft",
+    "wow",
+    "classic",
+    "retail",
+    "starcraft",
+    "sc2",
+    "diablo",
+    "d3",
+    "hs",
+    "hearthstone",
+    "ow",
+    "overwatch"
+  ],
+  "dependencies": {
+    "@blizzard/core": "^0.0.0",
+    "axios": "1.6.8"
+  },
+  "scripts": {
+    "build": "tsup",
+    "debv": "tsup --watch",
+    "test": "vitest run",
+    "test:coverage": "pnpm test -- --coverage",
+    "test:watch": "vitest watch"
+  }
+}

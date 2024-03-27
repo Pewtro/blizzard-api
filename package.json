@@ -1,0 +1,72 @@
+{
+  "name": "@blizzard/root",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "Putro",
+  "description": "A series of helpers to interact with the Blizzard Battle.net API",
+  "repository": "https://github.com/Pewtro/blizzard",
+  "type": "module",
+  "engines": {
+    "node": ">=18 <19 || >=20"
+  },
+  "keywords": [
+    "blizzard",
+    "battlenet",
+    "battle.net",
+    "bnet",
+    "api",
+    "world of warcraft",
+    "warcraft",
+    "wow",
+    "classic",
+    "retail",
+    "starcraft",
+    "sc2",
+    "diablo",
+    "d3",
+    "hs",
+    "hearthstone",
+    "ow",
+    "overwatch"
+  ],
+  "devDependencies": {
+    "@changesets/cli": "2.27.1",
+    "@putstack/eslint-config-typescript": "2.4.0",
+    "@putstack/prettier-config": "1.4.0",
+    "@types/node": "20.11.30",
+    "@vitest/coverage-v8": "1.4.0",
+    "@vitest/ui": "1.4.0",
+    "axios": "1.6.8",
+    "eslint": "8.57.0",
+    "husky": "9.0.11",
+    "lint-staged": "15.2.2",
+    "npm-run-all2": "6.1.2",
+    "prettier": "3.2.5",
+    "tsup": "8.0.2",
+    "typescript": "5.4.3",
+    "vitest": "1.4.0",
+    "zod": "3.22.4"
+  },
+  "scripts": {
+    "build": "pnpm -r build",
+    "lint": "eslint --format stylish --max-warnings 0 --cache .",
+    "lint:ci": "npm-run-all -p -l lint typecheck stylecheck",
+    "lint:fix": "pnpm lint --fix",
+    "prepare": "husky",
+    "release": "changeset publish",
+    "stylecheck": "prettier --check .",
+    "test": "vitest run",
+    "test:coverage": "pnpm run test --coverage",
+    "test:ui": "vitest --ui --coverage",
+    "test:watch": "vitest watch",
+    "typecheck": "tsc"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,cjs,mjs,md,mdx,yaml,yml,json}": [
+      "prettier --write"
+    ],
+    "*.{ts,tsx,js,jsx,cjs,mjs}": [
+      "pnpm --silent lint:fix"
+    ]
+  }
+}
