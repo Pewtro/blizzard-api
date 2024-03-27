@@ -1,5 +1,5 @@
 {
-  "name": "@blizzard/client",
+  "name": "@blizzard-api/client",
   "version": "0.0.1",
   "license": "MIT",
   "author": "Putro",
@@ -44,7 +44,7 @@
     "overwatch"
   ],
   "dependencies": {
-    "@blizzard/core": "^0.0.1",
+    "@blizzard-api/core": "^0.0.1",
     "axios": "1.6.8"
   },
   "scripts": {

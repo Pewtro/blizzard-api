@@ -61,7 +61,7 @@ importers:
 
   packages/client:
     dependencies:
-      '@blizzard/core':
+      '@blizzard-api/core':
         specifier: ^0.0.1
         version: link:../core
       axios:

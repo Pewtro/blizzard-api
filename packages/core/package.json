@@ -1,9 +1,9 @@
 {
-  "name": "@blizzard/core",
+  "name": "@blizzard-api/core",
   "version": "0.0.1",
   "license": "MIT",
   "author": "Putro",
-  "description": "The core helpers used by all @blizzard/* packages.",
+  "description": "The core helpers used by all @blizzard-api/* packages.",
   "repository": "https://github.com/Pewtro/blizzard/packages/core",
   "type": "module",
   "engines": {

@@ -1,6 +1,6 @@
 import { stringify } from 'node:querystring';
-import { getEndpoint } from '@blizzard/core';
-import type { Origins, Locales } from '@blizzard/core';
+import { getEndpoint } from '@blizzard-api/core';
+import type { Origins, Locales } from '@blizzard-api/core';
 import type { AxiosResponse } from 'axios';
 import axios from 'axios';
 
