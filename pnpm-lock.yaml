@@ -71,11 +71,7 @@ importers:
 
   packages/core: {}
 
-  packages/wow:
-    devDependencies:
-      '@blizzard-api/core':
-        specifier: workspace:*
-        version: link:../core
+  packages/wow: {}
 
 packages:
   /@aashutoshrathi/word-wrap@1.2.6:
