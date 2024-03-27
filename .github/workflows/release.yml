@@ -27,6 +27,9 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
+      - name: Turbo
+        run: pnpm turbo lint:ci
+
       - name: Lint, Prettier, and Typecheck
         run: pnpm lint:ci
 

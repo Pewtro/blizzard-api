@@ -44,7 +44,7 @@
     "overwatch"
   ],
   "dependencies": {
-    "@blizzard/core": "workspace:*",
+    "@blizzard/core": "^0.0.0",
     "axios": "1.6.8"
   },
   "scripts": {
