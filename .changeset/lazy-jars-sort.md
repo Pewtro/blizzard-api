@@ -2,4 +2,4 @@
 '@blizzard/core': patch
 ---
 
-Initial release of @blizzard/core so the other libraries can depend on it.
+Initial release of @blizzard/core so that other libraries can depend on it.
