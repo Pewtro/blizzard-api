@@ -35,7 +35,7 @@ interface Endpoints {
   tw: Endpoint<'tw'>;
 }
 
-const endpoints: Endpoints = {
+export const endpoints: Endpoints = {
   us: {
     hostname: 'https://us.api.blizzard.com',
     defaultLocale: 'en_US',
@@ -58,10 +58,16 @@ const endpoints: Endpoints = {
   },
 };
 
+export interface GetEndpoint<T extends Origins> {
+  origin: Origins;
+  locale: (typeof locales)[T][number];
+  hostname: Endpoint<Origins>['hostname'];
+}
+
 export function getEndpoint<T extends Origins>(
   origin: T,
   locale?: (typeof locales)[typeof origin][number],
-): { origin: Origins; locale: (typeof locales)[typeof origin][number]; hostname: Endpoint<Origins>['hostname'] } {
+): GetEndpoint<typeof origin> {
   const endpoint = endpoints[origin];
 
   return {
