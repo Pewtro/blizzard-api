@@ -1,6 +1,6 @@
 {
   "name": "@blizzard/client",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "author": "Putro",
   "description": "A node.js axios client to integrate with the blizzard battle.net api.",
@@ -44,7 +44,7 @@
     "overwatch"
   ],
   "dependencies": {
-    "@blizzard/core": "^0.0.0",
+    "@blizzard/core": "^0.0.1",
     "axios": "1.6.8"
   },
   "scripts": {
