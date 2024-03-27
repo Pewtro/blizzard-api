@@ -31,7 +31,7 @@ jobs:
         run: pnpm lint:ci
 
       - name: Build packages
-        run: pnpm -r build
+        run: pnpm build
 
       - name: Test packages
         run: pnpm test

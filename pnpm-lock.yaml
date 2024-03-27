@@ -59,7 +59,7 @@ importers:
   packages/client:
     dependencies:
       '@blizzard/core':
-        specifier: ^0.0.0
+        specifier: workspace:*
         version: link:../core
       axios:
         specifier: 1.6.8
