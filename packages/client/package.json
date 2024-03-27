@@ -44,8 +44,13 @@
     "overwatch"
   ],
   "dependencies": {
-    "@blizzard-api/core": "^0.0.2",
     "axios": "1.6.8"
+  },
+  "peerDependencies": {
+    "@blizzard-api/core": "0.0.2"
+  },
+  "devDependencies": {
+    "@blizzard-api/core": "workspace:*"
   },
   "scripts": {
     "build": "tsup",
