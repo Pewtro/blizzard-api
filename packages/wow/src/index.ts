@@ -1,1 +1,5 @@
-console.log('coool???');
+import { gameDataApi } from './game-data';
+
+export const wow = {
+  ...gameDataApi,
+};
