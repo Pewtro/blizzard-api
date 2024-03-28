@@ -1,5 +1,5 @@
-import { gameDataApi } from './game-data';
+import { achievements } from './achievements';
 
 export const wow = {
-  ...gameDataApi,
+  ...achievements,
 };
