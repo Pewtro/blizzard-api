@@ -1,6 +1,6 @@
 {
   "name": "@blizzard-api/core",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "license": "MIT",
   "author": "Putro",
   "description": "The core helpers used by all @blizzard-api/* packages.",

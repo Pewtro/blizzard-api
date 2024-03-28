@@ -1,5 +1,11 @@
 # @blizzard-api/core
 
+## 0.0.4
+
+### Patch Changes
+
+- 3d9b073: Update Resource type to better represent usage across the library
+
 ## 0.0.3
 
 ### Patch Changes
