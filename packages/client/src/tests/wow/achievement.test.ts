@@ -1,6 +1,6 @@
 import { wow } from '@blizzard-api/wow';
 import { describe, expect, it } from 'vitest';
-import { environment } from '~/environment';
+import { environment } from '../../../../../environment';
 import { BlizzardApiClient } from '../../client';
 
 describe('achievement', async () => {
