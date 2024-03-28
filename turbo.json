@@ -3,9 +3,6 @@
   "pipeline": {
     "build": {
       "dependsOn": ["^build"]
-    },
-    "lint:ci": {
-      "dependsOn": ["build"]
     }
   }
 }
