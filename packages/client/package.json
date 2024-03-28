@@ -50,7 +50,8 @@
     "@blizzard-api/core": "0.0.2"
   },
   "devDependencies": {
-    "@blizzard-api/core": "workspace:*"
+    "@blizzard-api/core": "workspace:*",
+    "@blizzard-api/wow": "workspace:*"
   },
   "scripts": {
     "build": "tsup",

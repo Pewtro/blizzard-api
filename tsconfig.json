@@ -19,6 +19,12 @@
     /* Vite specific settings */
     "types": ["vitest/importMeta"],
 
+    /* Advanced Options */
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./*"]
+    },
+
     /* We transpile with tsup */
     "noEmit": true,
     "module": "Preserve",

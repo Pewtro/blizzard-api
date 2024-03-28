@@ -1,50 +1,15 @@
 import { stringify } from 'node:querystring';
 import { getEndpoint } from '@blizzard-api/core';
-import type { Origins, Locales } from '@blizzard-api/core';
+import type { Origins, Locales, ClientOptions, ResourceResponse, Resource } from '@blizzard-api/core';
 import type { AxiosResponse } from 'axios';
 import axios from 'axios';
-
-export interface ClientOptions {
-  key: string;
-  secret: string;
-  origin: Origins;
-  locale?: Locales;
-  token?: string;
-}
-
-interface AccessToken {
-  access_token: string;
-  token_type: 'bearer';
-  expires_in: number;
-  sub?: string;
-}
-
-interface AccessTokenRequestArguments {
-  origin?: Origins;
-  key?: string;
-  secret?: string;
-}
-
-interface ValidateAccessTokenArguments {
-  origin?: Origins;
-  token?: string;
-}
-
-interface ValidateAccessTokenResponse {
-  scope: Array<string>;
-  account_authorities: Array<unknown>;
-  exp: number;
-  client_authorities: Array<unknown>;
-  authorities: Array<string>;
-  client_id: string;
-}
-
-interface IBlizzardApiClient {
-  getAccessToken: (options: AccessTokenRequestArguments) => Promise<AxiosResponse<AccessToken>>;
-  setAccessToken: (token: string) => void;
-  refreshAccessToken: (options: AccessTokenRequestArguments) => Promise<AxiosResponse<AccessToken>>;
-  validateAccessToken: (options: ValidateAccessTokenArguments) => Promise<AxiosResponse<ValidateAccessTokenResponse>>;
-}
+import type {
+  AccessToken,
+  AccessTokenRequestArguments,
+  IBlizzardApiClient,
+  ValidateAccessTokenArguments,
+  ValidateAccessTokenResponse,
+} from './types';
 
 export class BlizzardApiClient implements IBlizzardApiClient {
   public defaults: {
@@ -67,6 +32,52 @@ export class BlizzardApiClient implements IBlizzardApiClient {
   }
 
   public axios = axios.create();
+
+  public getRequestUrl<T = unknown>(resource: Resource<T>, options?: Partial<ClientOptions>) {
+    const config = { ...this.defaults, ...options };
+    const endpoint = getEndpoint(config.origin, config.locale);
+
+    const backslashSeparator = resource.path.startsWith('/') ? '' : '/';
+
+    return `${endpoint.hostname}${backslashSeparator}${resource.path}`;
+  }
+
+  public getRequestConfig<T = unknown>(
+    resource: Resource<T>,
+    options?: Partial<ClientOptions>,
+    headers?: Record<string, string>,
+  ) {
+    const config = { ...this.defaults, ...options };
+    const endpoint = getEndpoint(config.origin, config.locale);
+
+    const namespace = resource.namespace
+      ? { 'Battlenet-Namespace': `${resource.namespace}-${endpoint.origin}` }
+      : undefined;
+
+    return {
+      headers: {
+        ...headers,
+        ...namespace,
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${config.token}`,
+      },
+      params: {
+        ...resource.params,
+        locale: endpoint.locale,
+      },
+    };
+  }
+
+  public sendRequest<T = unknown>(
+    resource: Resource<T>,
+    options?: Partial<ClientOptions> & T,
+    headers?: Record<string, string>,
+  ): ResourceResponse<AxiosResponse<T>> {
+    const url = this.getRequestUrl(resource, options);
+    const config = this.getRequestConfig(resource, options, headers);
+
+    return this.axios.get<T>(url, config);
+  }
 
   public getAccessToken = async (options?: AccessTokenRequestArguments): Promise<AxiosResponse<AccessToken>> => {
     const { key, secret, origin } = { ...this.defaults, ...options };

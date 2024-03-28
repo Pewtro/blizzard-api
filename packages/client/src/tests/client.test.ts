@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { environment } from '../../../environment';
-import { BlizzardApiClient } from '../src';
+import { environment } from '../../../../environment';
+import { BlizzardApiClient } from '../client';
 
 describe('client', () => {
   const client = new BlizzardApiClient({

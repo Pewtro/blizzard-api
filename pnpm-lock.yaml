@@ -68,10 +68,17 @@ importers:
       '@blizzard-api/core':
         specifier: workspace:*
         version: link:../core
+      '@blizzard-api/wow':
+        specifier: workspace:*
+        version: link:../wow
 
   packages/core: {}
 
-  packages/wow: {}
+  packages/wow:
+    devDependencies:
+      '@blizzard-api/core':
+        specifier: workspace:*
+        version: link:../core
 
 packages:
   /@aashutoshrathi/word-wrap@1.2.6:
