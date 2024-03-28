@@ -1,5 +1,11 @@
 # @blizzard-api/core
 
+## 0.0.3
+
+### Patch Changes
+
+- 06dc41d: Update @blizzard-ap/core with better types and remove some unused ones
+
 ## 0.0.2
 
 ### Patch Changes
