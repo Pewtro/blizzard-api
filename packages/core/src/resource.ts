@@ -8,10 +8,6 @@ export interface Resource<T = never> {
 }
 export type ResourceResponse<T = unknown> = Promise<T>;
 
-export type ResourceOptions<T> = Partial<ClientOptions> & T;
-export type ResourceInterface<T = unknown, P = unknown> = (options: ResourceOptions<T>) => Resource<P>;
+export type ResourceOptions<T = unknown> = Partial<ClientOptions> & T;
 
-export type ProtectedResourceOptions<T> = Partial<ClientOptions> & { token: string } & T;
-export type ProtectedResourceInterface<T = unknown, P = unknown> = (
-  options: ProtectedResourceOptions<T>,
-) => Resource<P>;
+export type ProtectedResourceOptions<T = unknown> = Partial<ClientOptions> & { token: string } & T;

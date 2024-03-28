@@ -9,11 +9,4 @@ export type { BlizzardNamespaces } from './namespace.js';
 export type { ClientOptions } from './request.js';
 
 //Resource
-export type {
-  Resource,
-  ResourceResponse,
-  ResourceOptions,
-  ResourceInterface,
-  ProtectedResourceOptions,
-  ProtectedResourceInterface,
-} from './resource.js';
+export type { Resource, ResourceResponse, ResourceOptions, ProtectedResourceOptions } from './resource.js';
