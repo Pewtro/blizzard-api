@@ -1,10 +1,9 @@
 import type { BlizzardNamespaces } from './namespace';
 import type { ClientOptions } from './request';
 
-export interface Resource<T = never> {
+export interface Resource<_Response = void> {
   path: string;
   namespace?: BlizzardNamespaces;
-  params?: T;
 }
 export type ResourceResponse<T = unknown> = Promise<T>;
 
