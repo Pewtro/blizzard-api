@@ -13,7 +13,7 @@ describe('achievement', async () => {
   client.setAccessToken(access.data.access_token);
 
   it('should be able to fetch an achievement', async () => {
-    const response = await client.sendRequest<{ id: number }>(wow.achievement.achievement(16_542)).catch((error) => {
+    const response = await client.sendRequest(wow.achievements.achievementCategory(16_542)).catch((error) => {
       console.error('error', error);
       throw new Error('Failed to fetch achievement');
     });

@@ -62,15 +62,14 @@ export class BlizzardApiClient implements IBlizzardApiClient {
         Authorization: `Bearer ${config.token}`,
       },
       params: {
-        ...resource.params,
         locale: endpoint.locale,
       },
     };
   }
 
-  public sendRequest<T = unknown>(
+  public sendRequest<T = void>(
     resource: Resource<T>,
-    options?: Partial<ClientOptions> & T,
+    options?: Partial<ClientOptions>,
     headers?: Record<string, string>,
   ): ResourceResponse<AxiosResponse<T>> {
     const url = this.getRequestUrl(resource, options);
