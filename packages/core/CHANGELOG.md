@@ -1,5 +1,11 @@
 # @blizzard-api/core
 
+## 0.0.5
+
+### Patch Changes
+
+- 7388a3b: Cleanup types, remove unused types and enable marking a Resource as protected
+
 ## 0.0.4
 
 ### Patch Changes
