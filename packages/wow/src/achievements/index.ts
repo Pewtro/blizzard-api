@@ -12,25 +12,25 @@ export const achievements = {
       namespace: 'static',
     };
   },
-  achievementCategoryIndex: (): Resource => {
+  achievementCategoryIndex: (): Resource<void> => {
     return {
       path: `${achievementCategoryBase}/index`,
       namespace: 'static',
     };
   },
-  achievement: (achievementId: number): Resource => {
+  achievement: (achievementId: number): Resource<void> => {
     return {
       path: `${achievementBase}/${achievementId}`,
       namespace: 'static',
     };
   },
-  achievementIndex: (): Resource => {
+  achievementIndex: (): Resource<void> => {
     return {
       path: `${achievementBase}/index`,
       namespace: 'static',
     };
   },
-  media: (achievementId: number): Resource => {
+  media: (achievementId: number): Resource<void> => {
     return { path: `${mediaBase}/achievement/${achievementId}`, namespace: 'static' };
   },
 };
