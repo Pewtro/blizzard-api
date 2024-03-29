@@ -1,5 +1,13 @@
 # @blizzard-api/client
 
+## 0.0.5
+
+### Patch Changes
+
+- 3d23667: Update types in client after updates in core, and expose the types
+- Updated dependencies [7388a3b]
+  - @blizzard-api/core@0.0.5
+
 ## 0.0.4
 
 ### Patch Changes
