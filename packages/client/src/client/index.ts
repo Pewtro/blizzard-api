@@ -1,11 +1,12 @@
 import { stringify } from 'node:querystring';
 import { getEndpoint } from '@blizzard-api/core';
-import type { Origins, Locales, ClientOptions, ResourceResponse, Resource } from '@blizzard-api/core';
+import type { Origins, Locales, ResourceResponse, Resource } from '@blizzard-api/core';
 import type { AxiosResponse } from 'axios';
 import axios from 'axios';
 import type {
   AccessToken,
   AccessTokenRequestArguments,
+  ClientOptions,
   IBlizzardApiClient,
   ValidateAccessTokenArguments,
   ValidateAccessTokenResponse,
@@ -33,7 +34,10 @@ export class BlizzardApiClient implements IBlizzardApiClient {
 
   public axios = axios.create();
 
-  public getRequestUrl<T = unknown>(resource: Resource<T>, options?: Partial<ClientOptions>) {
+  public getRequestUrl<T, Protected extends boolean = false>(
+    resource: Resource<T, Protected>,
+    options?: Partial<ClientOptions>,
+  ) {
     const config = { ...this.defaults, ...options };
     const endpoint = getEndpoint(config.origin, config.locale);
 
@@ -42,8 +46,8 @@ export class BlizzardApiClient implements IBlizzardApiClient {
     return `${endpoint.hostname}${backslashSeparator}${resource.path}`;
   }
 
-  public getRequestConfig<T = unknown>(
-    resource: Resource<T>,
+  public getRequestConfig<T, Protected extends boolean = false>(
+    resource: Resource<T, Protected>,
     options?: Partial<ClientOptions>,
     headers?: Record<string, string>,
   ) {
@@ -67,8 +71,8 @@ export class BlizzardApiClient implements IBlizzardApiClient {
     };
   }
 
-  public sendRequest<T = void>(
-    resource: Resource<T>,
+  public sendRequest<T, Protected extends boolean = false>(
+    resource: Resource<T, Protected>,
     options?: Partial<ClientOptions>,
     headers?: Record<string, string>,
   ): ResourceResponse<AxiosResponse<T>> {

@@ -1,4 +1,4 @@
-import type { Origins } from '@blizzard-api/core';
+import type { Locales, Origins } from '@blizzard-api/core';
 import type { AxiosResponse } from 'axios';
 
 export interface AccessToken {
@@ -26,6 +26,14 @@ export interface ValidateAccessTokenResponse {
   client_authorities: Array<unknown>;
   authorities: Array<string>;
   client_id: string;
+}
+
+export interface ClientOptions {
+  key: string;
+  secret: string;
+  origin: Origins;
+  locale?: Locales;
+  token?: string;
 }
 
 export interface IBlizzardApiClient {
