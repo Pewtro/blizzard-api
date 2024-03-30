@@ -8,6 +8,7 @@ import type { BlizzardNamespaces } from './namespace';
 export type Resource<_Response, ProtectedResource extends boolean = false> = {
   path: string;
   namespace?: BlizzardNamespaces;
+  parameters?: Record<string, string | number>;
 } & (ProtectedResource extends true ? { token: string } : unknown);
 
 /**
