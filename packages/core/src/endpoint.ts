@@ -1,4 +1,4 @@
-export type Origins = 'us' | 'eu' | 'sea' | 'kr' | 'tw';
+export type Origins = 'us' | 'eu' | 'kr' | 'tw';
 export type Locales =
   | 'en_US'
   | 'es_MX'
@@ -17,7 +17,6 @@ export type Locales =
 const locales = {
   us: ['en_US', 'es_MX', 'pt_BR', 'multi'],
   eu: ['en_GB', 'es_ES', 'fr_FR', 'ru_RU', 'de_DE', 'pt_PT', 'it_IT', 'multi'],
-  sea: ['en_US', 'multi'],
   kr: ['ko_KR', 'en_GB', 'en_US', 'multi'],
   tw: ['zh_TW', 'en_GB', 'en_US', 'multi'],
 } as const satisfies Record<Origins, Array<Locales>>;
@@ -30,7 +29,6 @@ interface Endpoint<T extends Origins> {
 interface Endpoints {
   us: Endpoint<'us'>;
   eu: Endpoint<'eu'>;
-  sea: Endpoint<'sea'>;
   kr: Endpoint<'kr'>;
   tw: Endpoint<'tw'>;
 }
@@ -43,10 +41,6 @@ const endpoints: Endpoints = {
   eu: {
     hostname: 'https://eu.api.blizzard.com',
     defaultLocale: 'en_GB',
-  },
-  sea: {
-    hostname: 'https://sea.api.blizzard.com',
-    defaultLocale: 'en_US',
   },
   kr: {
     hostname: 'https://kr.api.blizzard.com',
