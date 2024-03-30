@@ -1,6 +1,12 @@
 import type { Resource } from '@blizzard-api/core';
 import { base, mediaBase } from '../base';
-import type { AchievementCategoryResponse } from './response';
+import type {
+  AchievementCategoryIndexResponse,
+  AchievementCategoryResponse,
+  AchievementIndexResponse,
+  AchievementMediaResponse,
+  AchievementResponse,
+} from './types';
 
 const achievementBase = `${base}/achievement`;
 const achievementCategoryBase = `${base}/achievement-category`;
@@ -12,25 +18,25 @@ export const achievements = {
       namespace: 'static',
     };
   },
-  achievementCategoryIndex: (): Resource<void> => {
+  achievementCategoryIndex: (): Resource<AchievementCategoryIndexResponse> => {
     return {
       path: `${achievementCategoryBase}/index`,
       namespace: 'static',
     };
   },
-  achievement: (achievementId: number): Resource<void> => {
+  achievement: (achievementId: number): Resource<AchievementResponse> => {
     return {
       path: `${achievementBase}/${achievementId}`,
       namespace: 'static',
     };
   },
-  achievementIndex: (): Resource<void> => {
+  achievementIndex: (): Resource<AchievementIndexResponse> => {
     return {
       path: `${achievementBase}/index`,
       namespace: 'static',
     };
   },
-  media: (achievementId: number): Resource<void> => {
+  achievementMedia: (achievementId: number): Resource<AchievementMediaResponse> => {
     return { path: `${mediaBase}/achievement/${achievementId}`, namespace: 'static' };
   },
 };
