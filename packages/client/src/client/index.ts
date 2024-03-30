@@ -67,6 +67,7 @@ export class BlizzardApiClient implements IBlizzardApiClient {
       },
       params: {
         locale: endpoint.locale,
+        ...resource.parameters,
       },
     };
   }
