@@ -1,5 +1,12 @@
 # @blizzard-api/core
 
+## 0.0.6
+
+### Patch Changes
+
+- 10b71a6: Add parameters type to Resource for use when defining optional parameters within each flavour
+- 0ddc74e: Remove sea origin as it is no longer present in the blizzard API
+
 ## 0.0.5
 
 ### Patch Changes
