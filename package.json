@@ -33,7 +33,7 @@
     "@changesets/cli": "2.27.1",
     "@putstack/eslint-config-typescript": "2.4.1",
     "@putstack/prettier-config": "1.4.0",
-    "@types/node": "20.11.30",
+    "@types/node": "20.12.2",
     "@vitest/coverage-v8": "1.4.0",
     "@vitest/ui": "1.4.0",
     "axios": "1.6.8",
