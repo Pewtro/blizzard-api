@@ -1,5 +1,11 @@
 # @blizzard-api/core
 
+## 0.0.7
+
+### Patch Changes
+
+- 9c3e6bf: Export more functions and types
+
 ## 0.0.6
 
 ### Patch Changes
