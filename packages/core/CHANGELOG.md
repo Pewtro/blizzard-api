@@ -1,5 +1,11 @@
 # @blizzard-api/core
 
+## 0.0.8
+
+### Patch Changes
+
+- 31485bc: Add \_responseType as an internal type used for inference
+
 ## 0.0.7
 
 ### Patch Changes
