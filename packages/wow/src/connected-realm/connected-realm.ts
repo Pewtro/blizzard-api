@@ -2,7 +2,7 @@ import type { Resource } from '@blizzard-api/core';
 import { base } from '../base';
 import type { ConnectedRealmIndexResponse, ConnectedRealmResponse } from './types';
 
-export const connectedRealm = {
+export const connectedRealmApi = {
   connectedRealmIndex: (): Resource<ConnectedRealmIndexResponse> => {
     return {
       path: `${base}/connected-realm/index`,

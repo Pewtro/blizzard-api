@@ -1,11 +1,17 @@
-import { achievements } from './achievements';
-import { auctionHouse } from './auction-house';
-import { connectedRealm } from './connected-realm';
+import { achievementApi } from './achievements/achievements';
+import { auctionHouseApi } from './auction-house/auction-house';
+import { azeriteEssenceApi } from './azerite-essence/azerite-essence';
+import { connectedRealmApi } from './connected-realm/connected-realm';
+import { covenantApi } from './covenant/covenant';
+import { creatureApi } from './creature/creature';
 
 export const wow = {
-  ...achievements,
-  ...auctionHouse,
-  ...connectedRealm,
+  ...achievementApi,
+  ...auctionHouseApi,
+  ...azeriteEssenceApi,
+  ...connectedRealmApi,
+  ...covenantApi,
+  ...creatureApi,
 };
 
 //Achievements

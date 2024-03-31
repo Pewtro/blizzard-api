@@ -11,7 +11,7 @@ import type {
 const achievementBase = `${base}/achievement`;
 const achievementCategoryBase = `${base}/achievement-category`;
 
-export const achievements = {
+export const achievementApi = {
   achievementCategory: (achievementCategoryId: number): Resource<AchievementCategoryResponse> => {
     return {
       path: `${achievementCategoryBase}/${achievementCategoryId}`,
