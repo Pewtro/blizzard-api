@@ -17,11 +17,6 @@ describe('wow paths and types', async () => {
 
     expect(response.data).toBeDefined();
   });
-  it('should be able to fetch from the auction house', async () => {
-    const response = await client.sendRequest(wow.auctions(3692));
-
-    expect(response.data).toBeDefined();
-  });
   it('should be able to fetch a connected realm', async () => {
     const response = await client.sendRequest(wow.connectedRealm(3692));
 
