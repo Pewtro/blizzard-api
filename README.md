@@ -8,7 +8,11 @@ I am still in very early stages of development and the API can and will break a 
 
 ## Installation
 
-If you already have a way of authenticating your application with battle.net, you only need to install `@blizzard-api/core` and the relevant game package you want.
+If you already have a way of authenticating your application with battle.net, you only need to install `@blizzard-api/core` and the relevant game package you want, e.g.:
+
+```sh
+npm i @blizzard-api/core @blizzard-api/wow
+```
 
 Currently available packages are:
 
@@ -34,6 +38,10 @@ const achievement = wow.achievement(123);
 ```
 
 If you additionally want to have a axios client with built in helpers, you can install `@blizzard-api/client` which will let you easily connect to the API and begin consuming it.
+
+```sh
+npm i @blizzard-api/client
+```
 
 ```ts
 import { BlizzardApiClient } from '@blizzard-api/client';
@@ -62,13 +70,19 @@ Please refer to the [battle.net documentation](https://develop.battle.net/docume
 
 ## TODO
 
+This list is generally prioritized but no promises that things will be addressed in this order.
+
+- Add a README to `@blizzard-api/core` and `@blizzard-api/client`
+- Finalize `@blizzard-api/wow` endpoints
+- Improve `@blizzard-api/client` with additional features, such as
+  - Add built-in token refresh functionality
+- Finalize `@blizzard-api/wow` response types.
+- Do a pass on better supporting the search endpoints across flavours, starting with `@blizzard-api/wow`
+  - https://develop.battle.net/documentation/world-of-warcraft/guides/search
+- Release 1.0.0 of `@blizzard-api/client`, `@blizzard-api/core`, and `@blizzard-api/wow`.
 - Add a package for the following games/flavours
   - World of Warcraft Classic
   - Diablo III
   - Hearthstone
   - Overwatch League
   - StarCraft II
-- Do a pass on better supporting the search endpoints across flavours
-  - https://develop.battle.net/documentation/world-of-warcraft/guides/search
-- Improve the client with features
-  - Add built-in token refresh functionality
