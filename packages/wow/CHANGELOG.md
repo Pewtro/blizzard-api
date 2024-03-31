@@ -1,5 +1,16 @@
 # @blizzard-api/wow
 
+## 0.0.4
+
+### Patch Changes
+
+- 18eb55e: Add typings for auction-house and connected-realm endpoints
+- b269122: Add responses for the achievement API
+- 6a65dd0: Add azerite-essence, creature, covenant endpoints (currently without return types)
+- Updated dependencies [10b71a6]
+- Updated dependencies [0ddc74e]
+  - @blizzard-api/core@0.0.6
+
 ## 0.0.3
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # @blizzard-api/client
 
+## 0.0.6
+
+### Patch Changes
+
+- 8340154: Add a few more tests to the client for newly added wow endpoints
+- e9742a6: Add resource parameters to the api call by default
+- Updated dependencies [10b71a6]
+- Updated dependencies [0ddc74e]
+  - @blizzard-api/core@0.0.6
+
 ## 0.0.5
 
 ### Patch Changes
