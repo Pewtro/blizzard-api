@@ -6,6 +6,7 @@ export interface ResponseBase {
   _links: {
     self: {
       href: string;
+      cool: string;
     };
   };
 }
