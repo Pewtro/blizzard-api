@@ -4,7 +4,7 @@
   "license": "MIT",
   "author": "Putro",
   "description": "The core helpers used by all @blizzard-api/* packages.",
-  "repository": "https://github.com/Pewtro/blizzard/packages/core",
+  "repository": "https://github.com/Pewtro/blizzard/tree/main/packages/core",
   "type": "module",
   "engines": {
     "node": ">=18 <19 || >=20"

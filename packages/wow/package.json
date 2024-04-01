@@ -4,7 +4,7 @@
   "license": "MIT",
   "author": "Putro",
   "description": "A series of helpers to interact with the World of Warcraft Blizzard API",
-  "repository": "https://github.com/Pewtro/blizzard/packages/wow",
+  "repository": "https://github.com/Pewtro/blizzard/tree/main/packages/wow",
   "type": "module",
   "engines": {
     "node": ">=18 <19 || >=20"
