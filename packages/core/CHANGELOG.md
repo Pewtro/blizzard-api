@@ -1,5 +1,11 @@
 # @blizzard-api/core
 
+## 0.0.9
+
+### Patch Changes
+
+- 83ce05c: Rename getEndpoint to getBlizzardApi to better indicate it's purpose
+
 ## 0.0.8
 
 ### Patch Changes
