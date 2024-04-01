@@ -27,6 +27,11 @@ import { questApi } from './quest/quest';
 import { realmApi } from './realm/realm';
 import { regionApi } from './region/region';
 import { reputationApi } from './reputations/reputations';
+import { spellApi } from './spell/spell';
+import { talentApi } from './talent/talent';
+import { techTalentApi } from './tech-talent/tech-talent';
+import { titleApi } from './title/title';
+import { toyApi } from './toy/toy';
 import { wowTokenApi } from './wow-token/wow-token';
 
 export const wow = {
@@ -59,6 +64,11 @@ export const wow = {
   ...realmApi,
   ...regionApi,
   ...reputationApi,
+  ...spellApi,
+  ...talentApi,
+  ...techTalentApi,
+  ...titleApi,
+  ...toyApi,
   ...wowTokenApi,
 };
 
