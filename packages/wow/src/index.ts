@@ -4,6 +4,18 @@ import { azeriteEssenceApi } from './azerite-essence/azerite-essence';
 import { connectedRealmApi } from './connected-realm/connected-realm';
 import { covenantApi } from './covenant/covenant';
 import { creatureApi } from './creature/creature';
+import { guildCrestApi } from './guild-crest/guild-crest';
+import { heirloomApi } from './heirloom/heirloom';
+import { itemApi } from './item/item';
+import { journalApi } from './journal/journal';
+import { mediaSearchApi } from './media-search/media-search';
+import { modifiedCraftingApi } from './modified-crafting/modified-crafting';
+import { mountApi } from './mount/mount';
+import { mythicKeystoneAffixApi } from './mythic-keystone-affix/mythic-keystone-affix';
+import { mythicKeystoneDungeonApi } from './mythic-keystone-dungeon/mythic-keystone-dungeon';
+import { mythicKeystoneLeaderboardApi } from './mythic-keystone-leaderboard/mythic-keystone-leaderboard';
+import { mythicRaidLeaderboardApi } from './mythic-raid-leaderboard/mythic-raid-leaderboard';
+import { wowTokenApi } from './wow-token/wow-token';
 
 export const wow = {
   ...achievementApi,
@@ -12,6 +24,18 @@ export const wow = {
   ...connectedRealmApi,
   ...covenantApi,
   ...creatureApi,
+  ...guildCrestApi,
+  ...heirloomApi,
+  ...itemApi,
+  ...journalApi,
+  ...mediaSearchApi,
+  ...modifiedCraftingApi,
+  ...mountApi,
+  ...mythicKeystoneAffixApi,
+  ...mythicKeystoneDungeonApi,
+  ...mythicKeystoneLeaderboardApi,
+  ...mythicRaidLeaderboardApi,
+  ...wowTokenApi,
 };
 
 //Achievements
