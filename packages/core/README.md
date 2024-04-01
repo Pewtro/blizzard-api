@@ -19,7 +19,7 @@ import type { BlizzardNamespaces, Locales, Origins } from '@blizzard-api/core';
 It also includes a helper function to get the origin, hostname and locale easily accessible based off a single origin.
 
 ```ts
-import type { getEndpoint } from '@blizzard-api/core';
+import type { getBlizzardApi } from '@blizzard-api/core';
 
-const { origin, hostname, locale } = getEndpoint('eu'); // "kr" | "tw" | "us"
+const { origin, hostname, locale } = getBlizzardApi('eu'); // "kr" | "tw" | "us"
 ```

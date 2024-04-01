@@ -21,19 +21,19 @@ const locales = {
   tw: ['zh_TW', 'en_GB', 'en_US', 'multi'],
 } as const satisfies Record<Origins, Array<Locales>>;
 
-interface Endpoint<T extends Origins> {
+interface BlizzardApiDefault<T extends Origins> {
   hostname: `https://${T}.api.blizzard.com`;
   defaultLocale: (typeof locales)[T][number];
 }
 
-interface Endpoints {
-  us: Endpoint<'us'>;
-  eu: Endpoint<'eu'>;
-  kr: Endpoint<'kr'>;
-  tw: Endpoint<'tw'>;
+interface BlizzardApiByRegion {
+  us: BlizzardApiDefault<'us'>;
+  eu: BlizzardApiDefault<'eu'>;
+  kr: BlizzardApiDefault<'kr'>;
+  tw: BlizzardApiDefault<'tw'>;
 }
 
-const endpoints: Endpoints = {
+const endpoints: BlizzardApiByRegion = {
   us: {
     hostname: 'https://us.api.blizzard.com',
     defaultLocale: 'en_US',
@@ -52,16 +52,16 @@ const endpoints: Endpoints = {
   },
 };
 
-interface GetEndpoint<T extends Origins> {
+interface BlizzardApi<T extends Origins> {
   origin: Origins;
   locale: (typeof locales)[T][number];
-  hostname: Endpoint<Origins>['hostname'];
+  hostname: BlizzardApiDefault<Origins>['hostname'];
 }
 
-export function getEndpoint<T extends Origins>(
+export function getBlizzardApi<T extends Origins>(
   origin: T,
   locale?: (typeof locales)[typeof origin][number],
-): GetEndpoint<typeof origin> {
+): BlizzardApi<typeof origin> {
   const endpoint = endpoints[origin];
 
   return {

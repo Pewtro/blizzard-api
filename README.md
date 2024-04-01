@@ -26,7 +26,7 @@ Planned packages are:
 - `@blizzard-api/sc2`
 - `@blizzard-api/wow-classic`
 
-The core package gives you access to helper functions such as `getEndpoint()` which will quickly get you the hostname and locales for a specific region.
+The core package gives you access to helper functions such as `getBlizzardApi` which will quickly get you the hostname and locales for a specific region.
 
 The game package will let you access paths, namespaces, parameters and more for each endpoint. This can imported like so:
 

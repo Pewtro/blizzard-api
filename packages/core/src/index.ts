@@ -1,5 +1,5 @@
-//Endpoint
-export * from './endpoint.js';
+//Blizzard API
+export * from './blizzard-api.js';
 
 //Namespace
 export * from './namespace.js';
