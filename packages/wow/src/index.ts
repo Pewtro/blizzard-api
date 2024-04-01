@@ -19,6 +19,14 @@ import { petApi } from './pet/pet';
 import { playableClassApi } from './playable-class/playable-class';
 import { playableRaceApi } from './playable-race/playable-race';
 import { playableSpecializationApi } from './playable-specialization/playable-specialization';
+import { powerTypeApi } from './power-type/power-type';
+import { professionApi } from './profession/profession';
+import { pvpSeasonApi } from './pvp-season/pvp-season';
+import { pvpTierApi } from './pvp-tier/pvp-tier';
+import { questApi } from './quest/quest';
+import { realmApi } from './realm/realm';
+import { regionApi } from './region/region';
+import { reputationApi } from './reputations/reputations';
 import { wowTokenApi } from './wow-token/wow-token';
 
 export const wow = {
@@ -43,6 +51,14 @@ export const wow = {
   ...playableClassApi,
   ...playableRaceApi,
   ...playableSpecializationApi,
+  ...powerTypeApi,
+  ...professionApi,
+  ...pvpSeasonApi,
+  ...pvpTierApi,
+  ...questApi,
+  ...realmApi,
+  ...regionApi,
+  ...reputationApi,
   ...wowTokenApi,
 };
 
