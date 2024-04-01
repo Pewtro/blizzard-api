@@ -73,7 +73,6 @@ Please refer to the [battle.net documentation](https://develop.battle.net/docume
 This list is generally prioritized but no promises that things will be addressed in this order.
 
 - Add a README to `@blizzard-api/core` and `@blizzard-api/client`
-- Finalize `@blizzard-api/wow` endpoints
 - Improve `@blizzard-api/client` with additional features, such as
   - Add built-in token refresh functionality
 - Finalize `@blizzard-api/wow` response types.
