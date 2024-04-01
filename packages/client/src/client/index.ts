@@ -1,5 +1,5 @@
 import { stringify } from 'node:querystring';
-import { getEndpoint } from '@blizzard-api/core';
+import { getBlizzardApi } from '@blizzard-api/core';
 import type { Origins, Locales, ResourceResponse, Resource } from '@blizzard-api/core';
 import type { AxiosResponse } from 'axios';
 import axios from 'axios';
@@ -22,7 +22,7 @@ export class BlizzardApiClient implements IBlizzardApiClient {
   };
 
   constructor(options: ClientOptions) {
-    const { origin, locale } = getEndpoint(options.origin, options.locale);
+    const { origin, locale } = getBlizzardApi(options.origin, options.locale);
     this.defaults = {
       key: options.key,
       secret: options.secret,
@@ -39,7 +39,7 @@ export class BlizzardApiClient implements IBlizzardApiClient {
     options?: Partial<ClientOptions>,
   ) {
     const config = { ...this.defaults, ...options };
-    const endpoint = getEndpoint(config.origin, config.locale);
+    const endpoint = getBlizzardApi(config.origin, config.locale);
 
     const backslashSeparator = resource.path.startsWith('/') ? '' : '/';
 
@@ -52,7 +52,7 @@ export class BlizzardApiClient implements IBlizzardApiClient {
     headers?: Record<string, string>,
   ) {
     const config = { ...this.defaults, ...options };
-    const endpoint = getEndpoint(config.origin, config.locale);
+    const endpoint = getBlizzardApi(config.origin, config.locale);
 
     const namespace = resource.namespace
       ? { 'Battlenet-Namespace': `${resource.namespace}-${endpoint.origin}` }
