@@ -15,6 +15,10 @@ import { mythicKeystoneAffixApi } from './mythic-keystone-affix/mythic-keystone-
 import { mythicKeystoneDungeonApi } from './mythic-keystone-dungeon/mythic-keystone-dungeon';
 import { mythicKeystoneLeaderboardApi } from './mythic-keystone-leaderboard/mythic-keystone-leaderboard';
 import { mythicRaidLeaderboardApi } from './mythic-raid-leaderboard/mythic-raid-leaderboard';
+import { petApi } from './pet/pet';
+import { playableClassApi } from './playable-class/playable-class';
+import { playableRaceApi } from './playable-race/playable-race';
+import { playableSpecializationApi } from './playable-specialization/playable-specialization';
 import { wowTokenApi } from './wow-token/wow-token';
 
 export const wow = {
@@ -35,6 +39,10 @@ export const wow = {
   ...mythicKeystoneDungeonApi,
   ...mythicKeystoneLeaderboardApi,
   ...mythicRaidLeaderboardApi,
+  ...petApi,
+  ...playableClassApi,
+  ...playableRaceApi,
+  ...playableSpecializationApi,
   ...wowTokenApi,
 };
 
