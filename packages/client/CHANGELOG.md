@@ -1,5 +1,13 @@
 # @blizzard-api/client
 
+## 0.0.9
+
+### Patch Changes
+
+- 3b8d33d: Rename getEndpoint to the new getBlizzardApi from core
+- Updated dependencies [83ce05c]
+  - @blizzard-api/core@0.0.9
+
 ## 0.0.8
 
 ### Patch Changes

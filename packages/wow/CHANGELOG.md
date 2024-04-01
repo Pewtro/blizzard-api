@@ -1,5 +1,16 @@
 # @blizzard-api/wow
 
+## 0.0.7
+
+### Patch Changes
+
+- 7bc02fc: Add APIs for power type, professions, pvp seasons, pvp tier, quests, realms, regions and reputations
+- 50774d5: Add APIs for spell, talent, tech talent, title and toy
+- c222b8f: Add APIs for guild crests, heirlooms, items, journals, media search, modified crafting, mounts, mythic keystone affixes, mythic keystone dungeons, mythic keystone leaderboards, mythic raid leaderboards and wow tokens.
+- 299c4e4: Add APIs for pet, playable classes, playable races, and playables specializations
+- Updated dependencies [83ce05c]
+  - @blizzard-api/core@0.0.9
+
 ## 0.0.6
 
 ### Patch Changes
