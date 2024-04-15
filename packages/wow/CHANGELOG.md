@@ -1,5 +1,11 @@
 # @blizzard-api/wow
 
+## 0.1.0
+
+### Minor Changes
+
+- 3025e0d: Implement response types for the remaining APIs
+
 ## 0.0.7
 
 ### Patch Changes
