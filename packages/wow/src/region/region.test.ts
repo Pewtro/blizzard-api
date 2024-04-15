@@ -8,13 +8,13 @@ describe('regionApi', () => {
     const resource = regionApi.region(regionId);
 
     expect(resource.path).toBe(`${base}/region/123`);
-    expect(resource.namespace).toBe('static');
+    expect(resource.namespace).toBe('dynamic');
   });
 
   it('regionIndex should return a resource object with the correct path and namespace', () => {
     const resource = regionApi.regionIndex();
 
     expect(resource.path).toBe(`${base}/region/index`);
-    expect(resource.namespace).toBe('static');
+    expect(resource.namespace).toBe('dynamic');
   });
 });

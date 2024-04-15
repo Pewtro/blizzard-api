@@ -1,17 +1,18 @@
 import type { Resource } from '@blizzard-api/core';
 import { base } from '../base';
+import type { RegionIndexResponse, RegionResponse } from './types';
 
 export const regionApi = {
-  region: (regionId: number): Resource<void> => {
+  region: (regionId: number): Resource<RegionResponse> => {
     return {
       path: `${base}/region/${regionId}`,
-      namespace: 'static',
+      namespace: 'dynamic',
     };
   },
-  regionIndex: (): Resource<void> => {
+  regionIndex: (): Resource<RegionIndexResponse> => {
     return {
       path: `${base}/region/index`,
-      namespace: 'static',
+      namespace: 'dynamic',
     };
   },
 };

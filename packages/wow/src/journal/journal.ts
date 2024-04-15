@@ -1,14 +1,23 @@
 import type { Resource } from '@blizzard-api/core';
 import { base, mediaBase } from '../base';
+import type {
+  JournalEncounterIndexResponse,
+  JournalEncounterResponse,
+  JournalExpansionIndexResponse,
+  JournalExpansionResponse,
+  JournalInstanceIndexResponse,
+  JournalInstanceMediaResponse,
+  JournalInstanceResponse,
+} from './types';
 
 export const journalApi = {
-  journalEncounter: (journalEncounterId: number): Resource<void> => {
+  journalEncounter: (journalEncounterId: number): Resource<JournalEncounterResponse> => {
     return {
       path: `${base}/journal-encounter/${journalEncounterId}`,
       namespace: 'static',
     };
   },
-  journalEncounterIndex: (): Resource<void> => {
+  journalEncounterIndex: (): Resource<JournalEncounterIndexResponse> => {
     return {
       path: `${base}/journal-encounter/index`,
       namespace: 'static',
@@ -21,31 +30,31 @@ export const journalApi = {
   //    namespace: 'static',
   //  };
   //},
-  journalExpansion: (journalExpansionId: number): Resource<void> => {
+  journalExpansion: (journalExpansionId: number): Resource<JournalExpansionResponse> => {
     return {
       path: `${base}/journal-expansion/${journalExpansionId}`,
       namespace: 'static',
     };
   },
-  journalExpansionIndex: (): Resource<void> => {
+  journalExpansionIndex: (): Resource<JournalExpansionIndexResponse> => {
     return {
       path: `${base}/journal-expansion/index`,
       namespace: 'static',
     };
   },
-  journalInstance: (journalInstanceId: number): Resource<void> => {
+  journalInstance: (journalInstanceId: number): Resource<JournalInstanceResponse> => {
     return {
       path: `${base}/journal-instance/${journalInstanceId}`,
       namespace: 'static',
     };
   },
-  journalInstanceIndex: (): Resource<void> => {
+  journalInstanceIndex: (): Resource<JournalInstanceIndexResponse> => {
     return {
       path: `${base}/journal-instance/index`,
       namespace: 'static',
     };
   },
-  journalInstanceMedia: (journalInstanceId: number): Resource<void> => {
+  journalInstanceMedia: (journalInstanceId: number): Resource<JournalInstanceMediaResponse> => {
     return {
       path: `${mediaBase}/journal-instance/${journalInstanceId}`,
       namespace: 'static',

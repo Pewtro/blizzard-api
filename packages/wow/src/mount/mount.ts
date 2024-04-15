@@ -1,14 +1,15 @@
 import type { Resource } from '@blizzard-api/core';
 import { base } from '../base';
+import type { MountIndexResponse, MountResponse } from './types';
 
 export const mountApi = {
-  mount: (mountId: number): Resource<void> => {
+  mount: (mountId: number): Resource<MountResponse> => {
     return {
       path: `${base}/mount/${mountId}`,
       namespace: 'static',
     };
   },
-  mountIndex: (): Resource<void> => {
+  mountIndex: (): Resource<MountIndexResponse> => {
     return {
       path: `${base}/mount/index`,
       namespace: 'static',

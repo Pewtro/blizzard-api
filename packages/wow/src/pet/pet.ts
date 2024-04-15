@@ -1,38 +1,46 @@
 import type { Resource } from '@blizzard-api/core';
 import { base, mediaBase } from '../base';
+import type {
+  PetAbilityIndexResponse,
+  PetAbilityMediaResponse,
+  PetAbilityResponse,
+  PetIndexResponse,
+  PetMediaResponse,
+  PetResponse,
+} from './types';
 
 export const petApi = {
-  pet: (petId: number): Resource<void> => {
+  pet: (petId: number): Resource<PetResponse> => {
     return {
       path: `${base}/pet/${petId}`,
       namespace: 'static',
     };
   },
-  petIndex: (): Resource<void> => {
+  petIndex: (): Resource<PetIndexResponse> => {
     return {
       path: `${base}/pet/index`,
       namespace: 'static',
     };
   },
-  petMedia: (petId: number): Resource<void> => {
+  petMedia: (petId: number): Resource<PetMediaResponse> => {
     return {
       path: `${mediaBase}/pet/${petId}`,
       namespace: 'static',
     };
   },
-  petAbility: (petAbilityId: number): Resource<void> => {
+  petAbility: (petAbilityId: number): Resource<PetAbilityResponse> => {
     return {
       path: `${base}/pet-ability/${petAbilityId}`,
       namespace: 'static',
     };
   },
-  petAbilityIndex: (): Resource<void> => {
+  petAbilityIndex: (): Resource<PetAbilityIndexResponse> => {
     return {
       path: `${base}/pet-ability/index`,
       namespace: 'static',
     };
   },
-  petAbilityMedia: (petAbilityId: number): Resource<void> => {
+  petAbilityMedia: (petAbilityId: number): Resource<PetAbilityMediaResponse> => {
     return {
       path: `${mediaBase}/pet-ability/${petAbilityId}`,
       namespace: 'static',

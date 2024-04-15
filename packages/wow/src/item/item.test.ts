@@ -10,12 +10,6 @@ describe('itemApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('should return the item index resource', () => {
-    const resource = itemApi.itemIndex();
-    expect(resource.path).toBe(`${base}/item/index`);
-    expect(resource.namespace).toBe('static');
-  });
-
   it('should return the item class resource for a given itemClassId', () => {
     const itemClassId = 456;
     const resource = itemApi.itemClass(itemClassId);

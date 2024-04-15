@@ -1,22 +1,27 @@
 import type { Resource } from '@blizzard-api/core';
 import { base, mediaBase } from '../base';
+import type {
+  MythicKeystoneAffixIndexResponse,
+  MythicKeystoneAffixMediaResponse,
+  MythicKeystoneAffixResponse,
+} from './types';
 
 export const mythicKeystoneAffixApi = {
-  mythicKeystoneAffix: (mythicKeystoneAffixId: number): Resource<void> => {
+  mythicKeystoneAffix: (mythicKeystoneAffixId: number): Resource<MythicKeystoneAffixResponse> => {
     return {
-      path: `${base}/mythic-keystone-affix/${mythicKeystoneAffixId}`,
+      path: `${base}/keystone-affix/${mythicKeystoneAffixId}`,
       namespace: 'static',
     };
   },
-  mythicKeystoneAffixIndex: (): Resource<void> => {
+  mythicKeystoneAffixIndex: (): Resource<MythicKeystoneAffixIndexResponse> => {
     return {
-      path: `${base}/mythic-keystone-affix/index`,
+      path: `${base}/keystone-affix/index`,
       namespace: 'static',
     };
   },
-  mythicKeystoneAffixMedia: (mythicKeystoneAffixId: number): Resource<void> => {
+  mythicKeystoneAffixMedia: (mythicKeystoneAffixId: number): Resource<MythicKeystoneAffixMediaResponse> => {
     return {
-      path: `${mediaBase}/mythic-keystone-affix/${mythicKeystoneAffixId}`,
+      path: `${mediaBase}/keystone-affix/${mythicKeystoneAffixId}`,
       namespace: 'static',
     };
   },

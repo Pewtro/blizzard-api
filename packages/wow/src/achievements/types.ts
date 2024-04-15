@@ -1,15 +1,8 @@
-import type { KeyBase, ResponseBase } from '../base';
+import type { KeyBase, NameId, NameIdKey, ResponseBase } from '../base';
 
-interface AchievementItem extends KeyBase {
-  name: string;
-  id: number;
-}
-
-export interface AchievementCategoryResponse extends ResponseBase {
-  id: number;
-  name: string;
-  achievements: Array<AchievementItem>;
-  parent_category: AchievementItem;
+export interface AchievementCategoryResponse extends ResponseBase, NameId {
+  achievements: Array<NameIdKey>;
+  parent_category: NameIdKey;
   isGuildCategory: boolean;
   aggregates_by_faction: {
     alliance: {
@@ -25,15 +18,13 @@ export interface AchievementCategoryResponse extends ResponseBase {
 }
 
 export interface AchievementCategoryIndexResponse extends ResponseBase {
-  categories: Array<AchievementItem>;
-  root_categories: Array<AchievementItem>;
-  guild_categories: Array<AchievementItem>;
+  categories: Array<NameIdKey>;
+  root_categories: Array<NameIdKey>;
+  guild_categories: Array<NameIdKey>;
 }
 
-export interface AchievementResponse extends ResponseBase {
-  id: number;
-  name: string;
-  category: AchievementItem;
+export interface AchievementResponse extends ResponseBase, NameId {
+  category: NameIdKey;
   description: string;
   points: number;
   is_account_wide: boolean;
@@ -47,7 +38,7 @@ export interface AchievementResponse extends ResponseBase {
 }
 
 export interface AchievementIndexResponse extends ResponseBase {
-  achievements: Array<AchievementItem>;
+  achievements: Array<NameIdKey>;
 }
 
 interface AchievementMediaItem {

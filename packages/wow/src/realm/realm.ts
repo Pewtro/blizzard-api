@@ -1,14 +1,15 @@
 import type { Resource } from '@blizzard-api/core';
 import { base } from '../base';
+import type { RealmIndexResponse, RealmResponse } from './types';
 
 export const realmApi = {
-  realm: (realmSlug: string): Resource<void> => {
+  realm: (realmSlug: string): Resource<RealmResponse> => {
     return {
       path: `${base}/realm/${realmSlug}`,
       namespace: 'dynamic',
     };
   },
-  realmIndex: (): Resource<void> => {
+  realmIndex: (): Resource<RealmIndexResponse> => {
     return {
       path: `${base}/realm/index`,
       namespace: 'dynamic',

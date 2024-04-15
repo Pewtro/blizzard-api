@@ -1,4 +1,4 @@
-import type { KeyBase, ResponseBase } from '../base';
+import type { NameIdKey, ResponseBase } from '../base';
 
 export interface ConnectedRealmIndexResponse extends ResponseBase {
   connected_realms: Array<{ href: string }>;
@@ -8,14 +8,9 @@ type RealmStatus = 'Up' | 'Down';
 type RealmPopulation = 'Low' | 'Medium' | 'High' | 'Full';
 type RealmType = 'Normal';
 
-interface RealmRegion extends KeyBase {
-  name: string;
-  id: number;
-}
-
 interface Realm {
   id: number;
-  region: RealmRegion;
+  region: NameIdKey;
   connected_realm: { href: string };
   name: string;
   category: string;
