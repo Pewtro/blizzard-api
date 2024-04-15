@@ -74,7 +74,6 @@ This list is generally prioritized but no promises that things will be addressed
 
 - Improve `@blizzard-api/client` with additional features, such as
   - Add built-in token refresh functionality
-- Finalize `@blizzard-api/wow` response types.
 - Do a pass on better supporting the search endpoints across flavours, starting with `@blizzard-api/wow`
   - https://develop.battle.net/documentation/world-of-warcraft/guides/search
 - Add JSDoc annotations to everything relevant in `@blizzard-api/client`, `@blizzard-api/core`, and `@blizzard-api/wow`.
