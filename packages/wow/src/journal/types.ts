@@ -36,19 +36,19 @@ interface Mode {
   name: string;
 }
 
-interface PurpleSection {
+interface JournalSection {
   id: number;
   title: string;
   body_text: string;
-  sections: Array<JournalEncounterResponseSection>;
-  creature_display: CreatureDisplay;
+  sections?: Array<JournalEncounterResponseSection>;
+  creature_display?: CreatureDisplay;
 }
 
 interface JournalEncounterResponseSection {
   id: number;
   title: string;
-  body_text: string;
-  sections?: Array<PurpleSection>;
+  body_text?: string;
+  sections?: Array<JournalSection>;
 }
 
 export interface JournalExpansionIndexResponse extends ResponseBase {
