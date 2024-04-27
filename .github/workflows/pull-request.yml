@@ -23,7 +23,7 @@ jobs:
           cache: 'pnpm'
 
       - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
 
       - name: Turbo build
         run: pnpm turbo build
