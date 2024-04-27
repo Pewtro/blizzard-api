@@ -40,10 +40,10 @@ type AchievementResponse = ExtractResourceType<typeof achievement>;
 While this package is made to function on it's own, it performs even better when combined with `@blizzard-api/client` where you can easily request data combining the two libraries.
 
 ```ts
-import { BlizzardApiClient } from '@blizzard-api/client';
+import { createBlizzardApiClient } from '@blizzard-api/client';
 import { wow } from '@blizzard-api/wow';
 
-const client = new BlizzardApiClient({
+const client = await createBlizzardApiClient({
   key: 'environment.blizzardClientId',
   secret: 'environment.blizzardClientSecret',
   origin: 'eu',

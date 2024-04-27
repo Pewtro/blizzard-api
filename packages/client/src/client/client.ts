@@ -32,7 +32,7 @@ export class BlizzardApiClient implements IBlizzardApiClient {
     };
   }
 
-  public axios = axios.create();
+  private axios = axios.create();
 
   public getRequestUrl<T, Protected extends boolean = false>(
     resource: Resource<T, Protected>,

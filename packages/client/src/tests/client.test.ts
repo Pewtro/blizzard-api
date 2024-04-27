@@ -1,12 +1,22 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vitest } from 'vitest';
 import { environment } from '../../../../environment';
-import { BlizzardApiClient } from '../client';
+import { createBlizzardApiClient } from '../client/create-client';
 
-describe('client', () => {
-  const client = new BlizzardApiClient({
+describe('client', async () => {
+  const client = await createBlizzardApiClient({
     key: environment.blizzardClientId,
     secret: environment.blizzardClientSecret,
     origin: 'eu',
+  });
+
+  it("should be able to fetch the client's default values", () => {
+    const { key, secret, origin, locale, token } = client.defaults;
+
+    expect(key).toBe(environment.blizzardClientId);
+    expect(secret).toBe(environment.blizzardClientSecret);
+    expect(origin).toBe('eu');
+    expect(locale).toBeDefined();
+    expect(token).toBeDefined();
   });
 
   it('should be able to authorize with the Blizzard API', async () => {
@@ -18,6 +28,7 @@ describe('client', () => {
     expect(expires_in).toBeGreaterThan(0);
     expect(sub).length.greaterThan(0);
   });
+
   it('should be able to validate the access token', async () => {
     const response = await client.getAccessToken();
 
@@ -29,5 +40,25 @@ describe('client', () => {
     expect(validateResponse.data.client_authorities).toBeInstanceOf(Array);
     expect(validateResponse.data.authorities).toBeInstanceOf(Array);
     expect(validateResponse.data.client_id).toBe(client.defaults.key);
+  });
+
+  it("should be able to provide a client's access token", () => {
+    client.setAccessToken('test_token');
+
+    expect(client.defaults.token).toBe('test_token');
+  });
+
+  it('should be able to provide a onTokenRefresh function as the second argument to createBlizzardApiClient', async () => {
+    const testFunction = vitest.fn();
+    await createBlizzardApiClient(
+      {
+        key: environment.blizzardClientId,
+        secret: environment.blizzardClientSecret,
+        origin: 'eu',
+      },
+      testFunction,
+    );
+
+    expect(testFunction).toHaveBeenCalledTimes(1);
   });
 });

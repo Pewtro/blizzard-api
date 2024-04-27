@@ -1,2 +1,2 @@
-export { BlizzardApiClient } from './client/index.js';
+export { createBlizzardApiClient } from './client/create-client';
 export * from './client/types';

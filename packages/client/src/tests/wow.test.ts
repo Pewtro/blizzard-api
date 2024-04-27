@@ -1,16 +1,14 @@
 import { wow } from '@blizzard-api/wow';
 import { describe, expect, it } from 'vitest';
 import { environment } from '../../../../environment';
-import { BlizzardApiClient } from '../client';
+import { createBlizzardApiClient } from '../client/create-client';
 
 describe('wow paths and types', async () => {
-  const client = new BlizzardApiClient({
+  const client = await createBlizzardApiClient({
     key: environment.blizzardClientId,
     secret: environment.blizzardClientSecret,
     origin: 'eu',
   });
-  const access = await client.getAccessToken();
-  client.setAccessToken(access.data.access_token);
 
   it('should be able to fetch an achievement', async () => {
     const response = await client.sendRequest(wow.achievement(16_542));

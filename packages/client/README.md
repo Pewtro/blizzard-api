@@ -23,18 +23,14 @@ npm i @blizzard-api/client
 ## Usage
 
 ```ts
-import { BlizzardApiClient } from '@blizzard-api/client';
+import { createBlizzardApiClient } from '@blizzard-api/client';
 import { wow } from '@blizzard-api/wow';
 
-const client = new BlizzardApiClient({
+const client = await createBlizzardApiClient({
   key: 'environment.blizzardClientId',
   secret: 'environment.blizzardClientSecret',
   origin: 'eu',
 });
-
-//For now, you will need to authenticate and set the token like so, but this will be changed in a future update to be handled implicitly in the client
-const access = await client.getAccessToken();
-client.setAccessToken(access.data.access_token);
 
 //Response will automatically be typed with the appropriate values
 const response = await client.sendRequest(wow.commodities());
