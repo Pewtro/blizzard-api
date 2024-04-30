@@ -1,5 +1,16 @@
 # @blizzard-api/client
 
+## 1.0.0
+
+### Minor Changes
+
+- af3ffd4: Upgrade client to consume new resource from core and add new tests for searchable endpoints
+
+### Patch Changes
+
+- Updated dependencies [884b180]
+  - @blizzard-api/core@0.1.0
+
 ## 0.1.0
 
 ### Minor Changes

@@ -1,5 +1,16 @@
 # @blizzard-api/wow
 
+## 1.0.0
+
+### Minor Changes
+
+- 08ab4d5: Add search parameters to all searchable wow endpoints
+
+### Patch Changes
+
+- Updated dependencies [884b180]
+  - @blizzard-api/core@0.1.0
+
 ## 0.1.1
 
 ### Patch Changes
