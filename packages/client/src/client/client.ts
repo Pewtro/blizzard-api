@@ -35,7 +35,7 @@ export class BlizzardApiClient implements IBlizzardApiClient {
   private axios = axios.create();
 
   public getRequestUrl<T, Protected extends boolean = false>(
-    resource: Resource<T, Protected>,
+    resource: Resource<T, object, Protected>,
     options?: Partial<ClientOptions>,
   ) {
     const config = { ...this.defaults, ...options };
@@ -47,7 +47,7 @@ export class BlizzardApiClient implements IBlizzardApiClient {
   }
 
   public getRequestConfig<T, Protected extends boolean = false>(
-    resource: Resource<T, Protected>,
+    resource: Resource<T, object, Protected>,
     options?: Partial<ClientOptions>,
     headers?: Record<string, string>,
   ) {
@@ -73,7 +73,7 @@ export class BlizzardApiClient implements IBlizzardApiClient {
   }
 
   public sendRequest<T, Protected extends boolean = false>(
-    resource: Resource<T, Protected>,
+    resource: Resource<T, object, Protected>,
     options?: Partial<ClientOptions>,
     headers?: Record<string, string>,
   ): ResourceResponse<AxiosResponse<T>> {
