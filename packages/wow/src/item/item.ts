@@ -1,10 +1,12 @@
-import type { Resource } from '@blizzard-api/core';
-import { base, mediaBase } from '../base';
+import type { Resource, SearchResponse } from '@blizzard-api/core';
+import { base, mediaBase, searchBase } from '../base';
 import type {
   ItemClassIndexResponse,
   ItemClassResponse,
   ItemMediaResponse,
   ItemResponse,
+  ItemSearchParameters,
+  ItemSearchResponseItem,
   ItemSetIndexResponse,
   ItemSetResponse,
   ItemSubclassResponse,
@@ -53,11 +55,17 @@ export const itemApi = {
       namespace: 'static',
     };
   },
-  // TODO Improve search endpoints
-  //itemSearch: (): Resource<void> => {
-  //  return {
-  //    path: `${base}/search/item`,
-  //    namespace: 'static',
-  //  };
-  //},
+  itemSearch: (
+    options: ItemSearchParameters,
+  ): Resource<SearchResponse<ItemSearchResponseItem>, Omit<ItemSearchParameters, 'name' | 'locale'>> => {
+    return {
+      namespace: 'static',
+      parameters: {
+        _page: options._page,
+        orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
+        [`name.${options.locale}`]: options.name,
+      },
+      path: `${searchBase}/item`,
+    };
+  },
 };

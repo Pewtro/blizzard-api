@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { base } from '../base';
+import { base, searchBase } from '../base';
 import { mountApi } from './mount';
 
 describe('mountApi', () => {
@@ -16,5 +16,22 @@ describe('mountApi', () => {
 
     expect(resource.path).toBe(`${base}/mount/index`);
     expect(resource.namespace).toBe('static');
+  });
+
+  it('mountSearch should return a resource object with the correct path and namespace', () => {
+    const resource = mountApi.mountSearch({
+      _page: 1,
+      orderby: 'name',
+      locale: 'en_US',
+      name: 'mount',
+    });
+
+    expect(resource.path).toBe(`${searchBase}/mount`);
+    expect(resource.namespace).toBe('static');
+    expect(resource.parameters).toEqual({
+      _page: 1,
+      orderby: 'name',
+      'name.en_US': 'mount',
+    });
   });
 });

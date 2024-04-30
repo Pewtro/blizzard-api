@@ -1,3 +1,4 @@
+import type { BaseSearchParameters, Locales } from '@blizzard-api/core';
 import type { KeyBase, MediaAsset, NameIdKey, ResponseBase } from '../base';
 
 export interface CreatureResponse extends ResponseBase {
@@ -50,4 +51,20 @@ export interface CreatureTypeIndexResponse extends ResponseBase {
 export interface CreatureTypeResponse extends ResponseBase {
   id: number;
   name: string;
+}
+
+export interface CreatureSearchParameters extends BaseSearchParameters {
+  name: string;
+  locale: Locales;
+}
+
+export interface CreatureSearchResponseItem extends KeyBase {
+  data: {
+    creature_displays: Array<{ id: number }>;
+    is_tameable: boolean;
+    name: Record<Locales, string | undefined>;
+    id: number;
+    type: { id: number; name: Record<Locales, string | undefined> };
+    family?: { id: number; name: Record<Locales, string | undefined> };
+  };
 }

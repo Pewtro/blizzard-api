@@ -1,6 +1,12 @@
-import type { Resource } from '@blizzard-api/core';
-import { base, mediaBase } from '../base';
-import type { AzeriteEssenceIndexResponse, AzeriteEssenceMediaResponse, AzeriteEssenceResponse } from './types';
+import type { Resource, SearchResponse } from '@blizzard-api/core';
+import { base, mediaBase, searchBase } from '../base';
+import type {
+  AzeriteEssenceIndexResponse,
+  AzeriteEssenceMediaResponse,
+  AzeriteEssenceResponse,
+  AzeriteEssenceSearchParameters,
+  AzeriteEssenceSearchResponseItem,
+} from './types';
 
 export const azeriteEssenceApi = {
   azeriteEssence: (azeriteEssenceId: number): Resource<AzeriteEssenceResponse> => {
@@ -18,13 +24,17 @@ export const azeriteEssenceApi = {
   azeriteEssenceMedia: (azeriteEssenceId: number): Resource<AzeriteEssenceMediaResponse> => {
     return { path: `${mediaBase}/azerite-essence/${azeriteEssenceId}`, namespace: 'static' };
   },
-  // TODO Improve search endpoints
-  /**
-   * azeriteEssenceSearch: (): Resource<void> => {
-   *  return {
-   *    path: `${base}/search/connected-realm`,
-   *    namespace: 'dynamic',
-   *  };
-   * },
-   */
+  azeriteEssenceSearch: (
+    options: AzeriteEssenceSearchParameters,
+  ): Resource<SearchResponse<AzeriteEssenceSearchResponseItem>, AzeriteEssenceSearchParameters> => {
+    return {
+      path: `${searchBase}/azerite-essence`,
+      namespace: 'static',
+      parameters: {
+        _page: options._page,
+        'allowed_specializations.id': options['allowed_specializations.id'],
+        orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
+      },
+    };
+  },
 };

@@ -18,4 +18,21 @@ describe('spellApi', () => {
     expect(resource.path).toBe(`${mediaBase}/spell/${spellId}`);
     expect(resource.namespace).toBe('static');
   });
+
+  it('spellSearch should return a resource object with the correct path, namespace and parameters', () => {
+    const resource = spellApi.spellSearch({
+      _page: 1,
+      orderby: 'name',
+      name: 'Fireball',
+      locale: 'en_US',
+    });
+
+    expect(resource.path).toBe(`${base}/search/spell`);
+    expect(resource.namespace).toBe('static');
+    expect(resource.parameters).toEqual({
+      _page: 1,
+      orderby: 'name',
+      'name.en_US': 'Fireball',
+    });
+  });
 });

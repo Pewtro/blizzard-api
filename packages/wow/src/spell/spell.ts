@@ -1,6 +1,6 @@
-import type { Resource } from '@blizzard-api/core';
-import { base, mediaBase } from '../base';
-import type { SpellMediaResponse, SpellResponse } from './types';
+import type { Resource, SearchResponse } from '@blizzard-api/core';
+import { base, mediaBase, searchBase } from '../base';
+import type { SpellMediaResponse, SpellResponse, SpellSearchParameters, SpellSearchResponseItem } from './types';
 
 export const spellApi = {
   spell: (spellId: number): Resource<SpellResponse> => {
@@ -15,11 +15,17 @@ export const spellApi = {
       namespace: 'static',
     };
   },
-  //TODO Improve search endpoints
-  //spellSearch: (): Resource<void> => {
-  //  return {
-  //    path: `${base}/spell/search`,
-  //    namespace: 'static',
-  //  };
-  //},
+  spellSearch: (
+    options: SpellSearchParameters,
+  ): Resource<SearchResponse<SpellSearchResponseItem>, Omit<SpellSearchParameters, 'name' | 'locale'>> => {
+    return {
+      namespace: 'static',
+      parameters: {
+        _page: options._page,
+        orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
+        [`name.${options.locale}`]: options.name,
+      },
+      path: `${searchBase}/spell`,
+    };
+  },
 };

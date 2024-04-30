@@ -1,11 +1,13 @@
-import type { Resource } from '@blizzard-api/core';
-import { base, mediaBase } from '../base';
+import type { Resource, SearchResponse } from '@blizzard-api/core';
+import { base, mediaBase, searchBase } from '../base';
 import type {
   CreatureDisplayMediaResponse,
   CreatureFamilyIndexResponse,
   CreatureFamilyMediaResponse,
   CreatureFamilyResponse,
   CreatureResponse,
+  CreatureSearchParameters,
+  CreatureSearchResponseItem,
   CreatureTypeIndexResponse,
   CreatureTypeResponse,
 } from './types';
@@ -53,12 +55,17 @@ export const creatureApi = {
       namespace: 'static',
     };
   },
-  //TODO Improve search
-  /*
-  creatureSearch: () => {
+  creatureSearch: (
+    options: CreatureSearchParameters,
+  ): Resource<SearchResponse<CreatureSearchResponseItem>, Omit<CreatureSearchParameters, 'name' | 'locale'>> => {
     return {
-      path: `${base}/creature/search`,
       namespace: 'static',
+      parameters: {
+        _page: options._page,
+        orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
+        [`name.${options.locale}`]: options.name,
+      },
+      path: `${searchBase}/creature`,
     };
-  },*/
+  },
 };

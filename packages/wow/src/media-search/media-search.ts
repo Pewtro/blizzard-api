@@ -1,12 +1,19 @@
-import type { Resource } from '@blizzard-api/core';
-import { base } from '../base';
+import type { Resource, SearchResponse } from '@blizzard-api/core';
+import { searchBase } from '../base';
+import type { MediaSearchParameters, MediaSearchResponseItem } from './types';
 
-//TODO Improve search endpoints
 export const mediaSearchApi = {
-  mediaSearch: (): Resource<void> => {
+  mediaSearch: (
+    options: MediaSearchParameters,
+  ): Resource<SearchResponse<MediaSearchResponseItem>, MediaSearchParameters> => {
     return {
-      path: `${base}/search/media`,
       namespace: 'static',
+      parameters: {
+        _page: options._page,
+        orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
+        tags: options.tags,
+      },
+      path: `${searchBase}/media`,
     };
   },
 };

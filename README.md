@@ -68,8 +68,6 @@ Please refer to the [battle.net documentation](https://develop.battle.net/docume
 
 This list is generally prioritized but no promises that things will be addressed in this order.
 
-- Do a pass on better supporting the search endpoints across flavours, starting with `@blizzard-api/wow`
-  - https://develop.battle.net/documentation/world-of-warcraft/guides/search
 - Add JSDoc annotations to everything relevant in `@blizzard-api/client`, `@blizzard-api/core`, and `@blizzard-api/wow`.
 - Release 1.0.0 of `@blizzard-api/client`, `@blizzard-api/core`, and `@blizzard-api/wow`.
 - Add a package for the following games/flavours

@@ -1,3 +1,4 @@
+import type { BaseSearchParameters, Locales } from '@blizzard-api/core';
 import type { KeyBase, MediaAsset, NameId, NameIdKey, ResponseBase } from '../base';
 
 export interface AzeriteEssenceIndexResponse extends ResponseBase {
@@ -24,4 +25,15 @@ interface Power {
 export interface AzeriteEssenceMediaResponse extends ResponseBase {
   assets: Array<MediaAsset>;
   id: number;
+}
+
+export interface AzeriteEssenceSearchParameters extends BaseSearchParameters {
+  'allowed_specializations.id'?: number;
+}
+
+export interface AzeriteEssenceSearchResponseItem extends KeyBase {
+  data: {
+    allowed_specializations: Array<NameId>;
+    name: Record<Locales, string>;
+  };
 }

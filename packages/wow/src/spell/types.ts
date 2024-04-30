@@ -1,3 +1,4 @@
+import type { BaseSearchParameters, Locales } from '@blizzard-api/core';
 import type { KeyBase, MediaAsset, NameId, ResponseBase } from '../base';
 
 export interface SpellResponse extends ResponseBase, NameId {
@@ -12,4 +13,17 @@ interface Media extends KeyBase {
 export interface SpellMediaResponse extends ResponseBase {
   assets: Array<MediaAsset>;
   id: number;
+}
+
+export interface SpellSearchParameters extends BaseSearchParameters {
+  name: string;
+  locale: Locales;
+}
+
+export interface SpellSearchResponseItem extends KeyBase {
+  data: {
+    name: Record<Locales, string | undefined>;
+    id: number;
+    media: { id: number };
+  };
 }

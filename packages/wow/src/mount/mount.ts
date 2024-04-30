@@ -1,6 +1,6 @@
-import type { Resource } from '@blizzard-api/core';
-import { base } from '../base';
-import type { MountIndexResponse, MountResponse } from './types';
+import type { Resource, SearchResponse } from '@blizzard-api/core';
+import { base, searchBase } from '../base';
+import type { MountIndexResponse, MountResponse, MountSearchParameters, MountSearchResponseItem } from './types';
 
 export const mountApi = {
   mount: (mountId: number): Resource<MountResponse> => {
@@ -15,11 +15,17 @@ export const mountApi = {
       namespace: 'static',
     };
   },
-  //TODO Improve search endpoints
-  //mountSearch: (): Resource<void> => {
-  //  return {
-  //    path: `${base}/mount/search`,
-  //    namespace: 'static',
-  //  };
-  //},
+  mountSearch: (
+    options: MountSearchParameters,
+  ): Resource<SearchResponse<MountSearchResponseItem>, Omit<MountSearchParameters, 'name' | 'locale'>> => {
+    return {
+      namespace: 'static',
+      parameters: {
+        _page: options._page,
+        orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
+        [`name.${options.locale}`]: options.name,
+      },
+      path: `${searchBase}/mount`,
+    };
+  },
 };

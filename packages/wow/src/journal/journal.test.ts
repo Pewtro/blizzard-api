@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { base, mediaBase } from '../base';
+import { base, mediaBase, searchBase } from '../base';
 import { journalApi } from './journal';
 
 describe('journalApi', () => {
@@ -47,5 +47,21 @@ describe('journalApi', () => {
     const resource = journalApi.journalInstanceMedia(journalInstanceId);
     expect(resource.path).toBe(`${mediaBase}/journal-instance/789`);
     expect(resource.namespace).toBe('static');
+  });
+
+  it('should return the journal encounter search resource with parameters', () => {
+    const resource = journalApi.journalEncounterSearch({
+      _page: 1,
+      orderby: ['name'],
+      instanceName: 'instanceName',
+      locale: 'en_US',
+    });
+    expect(resource.path).toBe(`${searchBase}/journal-encounter`);
+    expect(resource.namespace).toBe('static');
+    expect(resource.parameters).toEqual({
+      _page: 1,
+      orderby: 'name',
+      'instance.name.en_US': 'instanceName',
+    });
   });
 });

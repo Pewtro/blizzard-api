@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { base, mediaBase } from '../base';
+import { base, mediaBase, searchBase } from '../base';
 import { creatureApi } from './creature';
 
 describe('creatureApi', () => {
@@ -55,5 +55,20 @@ describe('creatureApi', () => {
 
     expect(resource.path).toBe(`${base}/creature-type/index`);
     expect(resource.namespace).toBe('static');
+  });
+
+  it('should return the correct path and namespace for creatureSearch', () => {
+    const resource = creatureApi.creatureSearch({
+      _page: 1,
+      locale: 'en_US',
+      name: 'test',
+    });
+
+    expect(resource.path).toBe(`${searchBase}/creature`);
+    expect(resource.namespace).toBe('static');
+    expect(resource.parameters).toEqual({
+      _page: 1,
+      'name.en_US': 'test',
+    });
   });
 });
