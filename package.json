@@ -34,9 +34,10 @@
     "@putstack/eslint-config-typescript": "2.6.0",
     "@putstack/prettier-config": "1.4.1",
     "@types/node": "20.12.7",
-    "@vitest/coverage-v8": "1.5.2",
-    "@vitest/ui": "1.5.2",
+    "@vitest/coverage-v8": "1.5.3",
+    "@vitest/ui": "1.5.3",
     "axios": "1.6.8",
+    "blizzard.js": "4.5.0",
     "eslint": "8.57.0",
     "husky": "9.0.11",
     "lint-staged": "15.2.2",
@@ -45,8 +46,8 @@
     "tsup": "8.0.2",
     "turbo": "1.13.3",
     "typescript": "5.4.5",
-    "vitest": "1.5.2",
-    "zod": "3.23.4"
+    "vitest": "1.5.3",
+    "zod": "3.23.5"
   },
   "scripts": {
     "build": "pnpm -r build",
