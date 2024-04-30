@@ -37,4 +37,5 @@ export type ResourceResponse<T = unknown> = Promise<T>;
  * @example
  * type extracted = ExtractResourceType<Resource<{ id: number }>>;
  */
-export type ExtractResourceType<Type> = Type extends Resource<infer R> ? R : never;
+export type ExtractResourceType<Type> =
+  Type extends Resource<infer R, infer _SearchOptions, infer _Protected> ? R : never;
