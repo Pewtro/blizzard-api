@@ -6,3 +6,6 @@ export * from './namespace.js';
 
 //Resource
 export * from './resource.js';
+
+//Search
+export * from './search.js';

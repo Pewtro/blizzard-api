@@ -5,10 +5,14 @@ import type { BlizzardNamespaces } from './namespace';
  * @param _Response The response type of the resource
  * @param ProtectedResource Whether the resource requires a token to be requested
  */
-export type Resource<Response, ProtectedResource extends boolean = false> = {
+export type Resource<
+  Response,
+  SearchOptions extends object = Record<string, never>,
+  ProtectedResource extends boolean = false,
+> = {
   path: string;
   namespace?: BlizzardNamespaces;
-  parameters?: Record<string, string | number>;
+  parameters?: SearchOptions;
   /**
    * The response type of the resource
    * @private @internal This is an internal property and should not be used as it will not be populated
