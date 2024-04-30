@@ -1,5 +1,11 @@
 # @blizzard-api/core
 
+## 0.1.0
+
+### Minor Changes
+
+- 884b180: Add search options to the core library
+
 ## 0.0.9
 
 ### Patch Changes
