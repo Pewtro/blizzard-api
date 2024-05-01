@@ -33,4 +33,34 @@ describe.concurrent('azeriteEssenceApi', () => {
     expect(resource.namespace).toBe('static');
     expect(resource.parameters).toEqual({ _page: 1 });
   });
+
+  it('should return the correct path and namespace for azeriteEssenceSearch with parameters', ({ expect }) => {
+    const resource = azeriteEssenceApi.azeriteEssenceSearch({
+      _page: 1,
+      orderby: 'name',
+    });
+
+    expect(resource.path).toBe(`${searchBase}/azerite-essence`);
+    expect(resource.namespace).toBe('static');
+    expect(resource.parameters).toEqual({
+      _page: 1,
+      orderby: 'name',
+    });
+  });
+
+  it('should return the correct path and namespace for azeriteEssenceSearch with multiple orderby values', ({
+    expect,
+  }) => {
+    const resource = azeriteEssenceApi.azeriteEssenceSearch({
+      _page: 1,
+      orderby: ['name', 'id'],
+    });
+
+    expect(resource.path).toBe(`${searchBase}/azerite-essence`);
+    expect(resource.namespace).toBe('static');
+    expect(resource.parameters).toEqual({
+      _page: 1,
+      orderby: 'name,id',
+    });
+  });
 });

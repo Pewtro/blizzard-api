@@ -1,5 +1,5 @@
 import { describe, it } from 'vitest';
-import { base, mediaBase } from '../base';
+import { base, mediaBase, searchBase } from '../base';
 import { spellApi } from './spell';
 
 describe.concurrent('spellApi', () => {
@@ -27,11 +27,28 @@ describe.concurrent('spellApi', () => {
       locale: 'en_US',
     });
 
-    expect(resource.path).toBe(`${base}/search/spell`);
+    expect(resource.path).toBe(`${searchBase}/spell`);
     expect(resource.namespace).toBe('static');
     expect(resource.parameters).toEqual({
       _page: 1,
       orderby: 'name',
+      'name.en_US': 'Fireball',
+    });
+  });
+
+  it('spellSearch should return correct resource object when orderby is an array', ({ expect }) => {
+    const resource = spellApi.spellSearch({
+      _page: 1,
+      orderby: ['name', 'id'],
+      name: 'Fireball',
+      locale: 'en_US',
+    });
+
+    expect(resource.path).toBe(`${searchBase}/spell`);
+    expect(resource.namespace).toBe('static');
+    expect(resource.parameters).toEqual({
+      _page: 1,
+      orderby: 'name,id',
       'name.en_US': 'Fireball',
     });
   });

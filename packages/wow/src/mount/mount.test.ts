@@ -34,4 +34,21 @@ describe.concurrent('mountApi', () => {
       'name.en_US': 'mount',
     });
   });
+
+  it('mountSearch should return correct resource object when orderby is an array', ({ expect }) => {
+    const resource = mountApi.mountSearch({
+      _page: 1,
+      orderby: ['name', 'id'],
+      locale: 'en_US',
+      name: 'mount',
+    });
+
+    expect(resource.path).toBe(`${searchBase}/mount`);
+    expect(resource.namespace).toBe('static');
+    expect(resource.parameters).toEqual({
+      _page: 1,
+      orderby: 'name,id',
+      'name.en_US': 'mount',
+    });
+  });
 });

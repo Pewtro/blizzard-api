@@ -25,4 +25,18 @@ describe.concurrent('connectedRealm', () => {
     expect(resource.namespace).toBe('dynamic');
     expect(resource.parameters).toEqual({ _page: 1 });
   });
+
+  it('connected realm search should return correct resource object when orderby is an array', ({ expect }) => {
+    const resource = connectedRealmApi.connectedRealmSearch({
+      _page: 1,
+      orderby: ['name', 'id'],
+    });
+
+    expect(resource.path).toBe(`${searchBase}/connected-realm`);
+    expect(resource.namespace).toBe('dynamic');
+    expect(resource.parameters).toEqual({
+      _page: 1,
+      orderby: 'name,id',
+    });
+  });
 });

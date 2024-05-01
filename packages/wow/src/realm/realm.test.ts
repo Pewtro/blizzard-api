@@ -33,4 +33,20 @@ describe.concurrent('realmApi', () => {
       timezone: 'Europe/Paris',
     });
   });
+
+  it('realmSearch should return correct resource object when orderby is an array', ({ expect }) => {
+    const resource = realmApi.realmSearch({
+      _page: 1,
+      orderby: ['name', 'id'],
+      timezone: 'America/Chicago',
+    });
+
+    expect(resource.path).toBe(`${searchBase}/realm`);
+    expect(resource.namespace).toBe('dynamic');
+    expect(resource.parameters).toEqual({
+      _page: 1,
+      orderby: 'name,id',
+      timezone: 'America/Chicago',
+    });
+  });
 });

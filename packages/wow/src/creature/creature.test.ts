@@ -71,4 +71,21 @@ describe.concurrent('creatureApi', () => {
       'name.en_US': 'test',
     });
   });
+
+  it('should return the correct path and namespace for creatureSearch when orderby is an array', ({ expect }) => {
+    const resource = creatureApi.creatureSearch({
+      _page: 1,
+      locale: 'en_US',
+      name: 'test',
+      orderby: ['name', 'id'],
+    });
+
+    expect(resource.path).toBe(`${searchBase}/creature`);
+    expect(resource.namespace).toBe('static');
+    expect(resource.parameters).toEqual({
+      _page: 1,
+      'name.en_US': 'test',
+      orderby: 'name,id',
+    });
+  });
 });

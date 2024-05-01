@@ -17,6 +17,14 @@ describe.concurrent('itemApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
+  it('should return the item sub class resource for a given itemClassId and itemSubClassId', ({ expect }) => {
+    const itemClassId = 456;
+    const itemSubClassId = 789;
+    const resource = itemApi.itemSubClass(itemClassId, itemSubClassId);
+    expect(resource.path).toBe(`${base}/item-class/${itemClassId}/item-subclass/${itemSubClassId}`);
+    expect(resource.namespace).toBe('static');
+  });
+
   it('should return the item class index resource', ({ expect }) => {
     const resource = itemApi.itemClassIndex();
     expect(resource.path).toBe(`${base}/item-class/index`);
@@ -43,11 +51,12 @@ describe.concurrent('itemApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('should return the correct path and namespace for creatureSearch', ({ expect }) => {
+  it('should return the correct path and namespace for itemSearch', ({ expect }) => {
     const resource = itemApi.itemSearch({
       _page: 1,
       locale: 'en_US',
       name: 'test',
+      orderby: 'name',
     });
 
     expect(resource.path).toBe(`${searchBase}/item`);
@@ -55,6 +64,24 @@ describe.concurrent('itemApi', () => {
     expect(resource.parameters).toEqual({
       _page: 1,
       'name.en_US': 'test',
+      orderby: 'name',
+    });
+  });
+
+  it('should return the correct path and namespace for itemSearch when orderby is an array', ({ expect }) => {
+    const resource = itemApi.itemSearch({
+      _page: 1,
+      locale: 'en_US',
+      name: 'test',
+      orderby: ['name', 'id'],
+    });
+
+    expect(resource.path).toBe(`${searchBase}/item`);
+    expect(resource.namespace).toBe('static');
+    expect(resource.parameters).toEqual({
+      _page: 1,
+      'name.en_US': 'test',
+      orderby: 'name,id',
     });
   });
 });

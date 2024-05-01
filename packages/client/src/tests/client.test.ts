@@ -1,3 +1,5 @@
+import type { Resource } from '@blizzard-api/core';
+import { wow } from '@blizzard-api/wow';
 import { describe, it, vitest } from 'vitest';
 import { environment } from '../../../../environment';
 import { createBlizzardApiClient } from '../client/create-client';
@@ -62,5 +64,105 @@ describe.concurrent('client', async () => {
     );
 
     expect(testFunction).toHaveBeenCalledTimes(1);
+  });
+
+  it('should be able to get an accurate url without prefixing the path with a backslash', ({ expect }) => {
+    const resource: Resource<{ name: 'test' }> = {
+      path: 'test',
+    };
+
+    const url = client.getRequestUrl(resource);
+
+    expect(url).toBe('https://eu.api.blizzard.com/test');
+  });
+
+  it('should be able to get an appropriate request config without passing a namespace', ({ expect }) => {
+    const resource: Resource<{ name: 'test' }> = {
+      path: 'test',
+    };
+
+    const config = client.getRequestConfig(resource);
+
+    expect(config.headers.Authorization).toBeDefined();
+    expect(config.headers['Battlenet-Namespace']).not.toBeDefined();
+    expect(config.headers['Content-Type']).toBeDefined();
+
+    expect(config.params.locale).toBeDefined();
+  });
+
+  it("validateAccessToken should throw an error if the access token isn't valid", ({ expect }) => {
+    void expect(() => client.validateAccessToken({ token: undefined })).rejects.toThrow();
+  });
+
+  it('should be able to manually refresh the token', async ({ expect }) => {
+    const response = await client.refreshAccessToken();
+
+    const { access_token, token_type, expires_in, sub } = response.data;
+    expect(access_token).length.greaterThan(0);
+    expect(token_type).toBe('bearer');
+    expect(expires_in).toBeGreaterThan(0);
+    expect(sub).length.greaterThan(0);
+  });
+
+  it("the client will throw an error when requesting resources that don't exist", ({ expect }) => {
+    void expect(() => client.sendRequest(wow.connectedRealm(9_999_999_999))).rejects.toThrow();
+  });
+
+  it('the client cannot be created without a client id and secret', ({ expect }) => {
+    void expect(() =>
+      //@ts-expect-error expect error when key is missing
+      createBlizzardApiClient({ secret: environment.blizzardClientSecret, origin: 'eu' }),
+    ).rejects.toThrow();
+
+    //@ts-expect-error expect error when secret is missing
+    void expect(() => createBlizzardApiClient({ key: environment.blizzardClientId, origin: 'eu' })).rejects.toThrow();
+  });
+
+  it("the client can be created without automatic token refresh by setting onTokenRefresh to 'false'", async ({
+    expect,
+  }) => {
+    const noRefreshClient = await createBlizzardApiClient(
+      {
+        key: environment.blizzardClientId,
+        secret: environment.blizzardClientSecret,
+        origin: 'eu',
+      },
+      false,
+    );
+
+    const response = await noRefreshClient.getAccessToken();
+
+    const { access_token, token_type, expires_in, sub } = response.data;
+    expect(access_token).length.greaterThan(0);
+    expect(token_type).toBe('bearer');
+    expect(expires_in).toBeGreaterThan(0);
+    expect(sub).length.greaterThan(0);
+  });
+
+  it('the client can be created with a pre-existing token', async ({ expect }) => {
+    const response = await client.getAccessToken();
+    const { access_token } = response.data;
+
+    const tokenClient = await createBlizzardApiClient({
+      key: environment.blizzardClientId,
+      secret: environment.blizzardClientSecret,
+      origin: 'eu',
+      token: access_token,
+    });
+
+    const tokenResponse = await tokenClient.getAccessToken();
+    expect(tokenResponse.data.access_token).toBe(access_token);
+  });
+
+  it('the client can be created with a pre-existing expired token', async ({ expect }) => {
+    const tokenClient = await createBlizzardApiClient({
+      key: environment.blizzardClientId,
+      secret: environment.blizzardClientSecret,
+      origin: 'eu',
+      token: 'some random token',
+    });
+
+    const tokenResponse = await tokenClient.getAccessToken();
+    expect(tokenResponse.data.access_token).toBeDefined();
   });
 });
