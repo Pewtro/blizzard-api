@@ -6,9 +6,28 @@ export type WithoutUnderscore<T extends string> = T extends `${infer Prefix}_${i
   ? `${Prefix}${Suffix}`
   : never;
 
-export type RealmCategory = 'English' | 'French' | 'German' | 'Italian' | 'PS' | 'Russian' | 'Spanish';
+export type RealmCategory =
+  | 'English'
+  | 'French'
+  | 'German'
+  | 'Italian'
+  | 'PS'
+  | 'Russian'
+  | 'Spanish'
+  | 'Brazil'
+  | 'Latin America'
+  | 'Oceanic'
+  | 'United States';
+
 //There are probably more timezone that should be added here
-export type RealmTimezone = 'America/New_York' | 'Europe/Paris';
+export type RealmTimezone =
+  | 'America/Chicago'
+  | 'America/Denver'
+  | 'America/Los_Angeles'
+  | 'America/New_York'
+  | 'America/Sao_Paulo'
+  | 'Australia/Melbourne'
+  | 'Europe/Paris';
 
 export type RealmTypeCapitalized = 'NORMAL' | 'RP';
 export type RealmType = 'Normal' | 'Roleplaying';
