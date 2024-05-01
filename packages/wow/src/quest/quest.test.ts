@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it } from 'vitest';
 import { base } from '../base';
 import { questApi } from './quest';
 
-describe('questApi', () => {
-  it('quest should return a resource object with the correct path and namespace', () => {
+describe.concurrent('questApi', () => {
+  it('quest should return a resource object with the correct path and namespace', ({ expect }) => {
     const questId = 123;
     const resource = questApi.quest(questId);
 
@@ -11,14 +11,14 @@ describe('questApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('questIndex should return a resource object with the correct path and namespace', () => {
+  it('questIndex should return a resource object with the correct path and namespace', ({ expect }) => {
     const resource = questApi.questIndex();
 
     expect(resource.path).toBe(`${base}/quest/index`);
     expect(resource.namespace).toBe('static');
   });
 
-  it('questArea should return a resource object with the correct path and namespace', () => {
+  it('questArea should return a resource object with the correct path and namespace', ({ expect }) => {
     const questAreaId = 456;
     const resource = questApi.questArea(questAreaId);
 
@@ -26,14 +26,14 @@ describe('questApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('questAreaIndex should return a resource object with the correct path and namespace', () => {
+  it('questAreaIndex should return a resource object with the correct path and namespace', ({ expect }) => {
     const resource = questApi.questAreaIndex();
 
     expect(resource.path).toBe(`${base}/quest/area/index`);
     expect(resource.namespace).toBe('static');
   });
 
-  it('questCategory should return a resource object with the correct path and namespace', () => {
+  it('questCategory should return a resource object with the correct path and namespace', ({ expect }) => {
     const questCategoryId = 789;
     const resource = questApi.questCategory(questCategoryId);
 
@@ -41,14 +41,14 @@ describe('questApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('questCategoryIndex should return a resource object with the correct path and namespace', () => {
+  it('questCategoryIndex should return a resource object with the correct path and namespace', ({ expect }) => {
     const resource = questApi.questCategoryIndex();
 
     expect(resource.path).toBe(`${base}/quest/category/index`);
     expect(resource.namespace).toBe('static');
   });
 
-  it('questType should return a resource object with the correct path and namespace', () => {
+  it('questType should return a resource object with the correct path and namespace', ({ expect }) => {
     const questTypeId = 987;
     const resource = questApi.questType(questTypeId);
 
@@ -56,7 +56,7 @@ describe('questApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('questTypeIndex should return a resource object with the correct path and namespace', () => {
+  it('questTypeIndex should return a resource object with the correct path and namespace', ({ expect }) => {
     const resource = questApi.questTypeIndex();
 
     expect(resource.path).toBe(`${base}/quest/type/index`);

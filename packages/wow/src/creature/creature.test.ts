@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it } from 'vitest';
 import { base, mediaBase, searchBase } from '../base';
 import { creatureApi } from './creature';
 
-describe('creatureApi', () => {
-  it('should return the correct path and namespace for creature', () => {
+describe.concurrent('creatureApi', () => {
+  it('should return the correct path and namespace for creature', ({ expect }) => {
     const creatureId = 123;
     const resource = creatureApi.creature(creatureId);
 
@@ -11,7 +11,7 @@ describe('creatureApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('should return the correct path and namespace for creatureDisplayMedia', () => {
+  it('should return the correct path and namespace for creatureDisplayMedia', ({ expect }) => {
     const creatureDisplayId = 123;
     const resource = creatureApi.creatureDisplayMedia(creatureDisplayId);
 
@@ -19,7 +19,7 @@ describe('creatureApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('should return the correct path and namespace for creatureFamily', () => {
+  it('should return the correct path and namespace for creatureFamily', ({ expect }) => {
     const creatureFamilyId = 123;
     const resource = creatureApi.creatureFamily(creatureFamilyId);
 
@@ -27,14 +27,14 @@ describe('creatureApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('should return the correct path and namespace for creatureFamilyIndex', () => {
+  it('should return the correct path and namespace for creatureFamilyIndex', ({ expect }) => {
     const resource = creatureApi.creatureFamilyIndex();
 
     expect(resource.path).toBe(`${base}/creature-family/index`);
     expect(resource.namespace).toBe('static');
   });
 
-  it('should return the correct path and namespace for creatureFamilyMedia', () => {
+  it('should return the correct path and namespace for creatureFamilyMedia', ({ expect }) => {
     const creatureFamilyId = 123;
     const resource = creatureApi.creatureFamilyMedia(creatureFamilyId);
 
@@ -42,7 +42,7 @@ describe('creatureApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('should return the correct path and namespace for creatureType', () => {
+  it('should return the correct path and namespace for creatureType', ({ expect }) => {
     const creatureTypeId = 123;
     const resource = creatureApi.creatureType(creatureTypeId);
 
@@ -50,14 +50,14 @@ describe('creatureApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('should return the correct path and namespace for creatureTypeIndex', () => {
+  it('should return the correct path and namespace for creatureTypeIndex', ({ expect }) => {
     const resource = creatureApi.creatureTypeIndex();
 
     expect(resource.path).toBe(`${base}/creature-type/index`);
     expect(resource.namespace).toBe('static');
   });
 
-  it('should return the correct path and namespace for creatureSearch', () => {
+  it('should return the correct path and namespace for creatureSearch', ({ expect }) => {
     const resource = creatureApi.creatureSearch({
       _page: 1,
       locale: 'en_US',

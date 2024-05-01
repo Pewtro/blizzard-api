@@ -1,16 +1,16 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it } from 'vitest';
 import { searchBase } from '../base';
 import { connectedRealmApi } from './connected-realm';
 
-describe('connectedRealm', () => {
-  it('should return the correct resource for connected realm index', () => {
+describe.concurrent('connectedRealm', () => {
+  it('should return the correct resource for connected realm index', ({ expect }) => {
     const resource = connectedRealmApi.connectedRealmIndex();
 
     expect(resource.path).toBe('/data/wow/connected-realm/index');
     expect(resource.namespace).toBe('dynamic');
   });
 
-  it('should return the correct resource for a specific connected realm', () => {
+  it('should return the correct resource for a specific connected realm', ({ expect }) => {
     const connectedRealmId = 123;
     const resource = connectedRealmApi.connectedRealm(connectedRealmId);
 
@@ -18,7 +18,7 @@ describe('connectedRealm', () => {
     expect(resource.namespace).toBe('dynamic');
   });
 
-  it('should return the correct resource for connected realm search', () => {
+  it('should return the correct resource for connected realm search', ({ expect }) => {
     const resource = connectedRealmApi.connectedRealmSearch({ _page: 1 });
 
     expect(resource.path).toBe(`${searchBase}/connected-realm`);

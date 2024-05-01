@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it } from 'vitest';
 import { base, mediaBase, searchBase } from '../base';
 import { azeriteEssenceApi } from './azerite-essence';
 
-describe('azeriteEssenceApi', () => {
-  it('should return the correct path and namespace for azeriteEssence', () => {
+describe.concurrent('azeriteEssenceApi', () => {
+  it('should return the correct path and namespace for azeriteEssence', ({ expect }) => {
     const azeriteEssenceId = 123;
     const resource = azeriteEssenceApi.azeriteEssence(azeriteEssenceId);
 
@@ -11,14 +11,14 @@ describe('azeriteEssenceApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('should return the correct path and namespace for azeriteEssenceIndex', () => {
+  it('should return the correct path and namespace for azeriteEssenceIndex', ({ expect }) => {
     const resource = azeriteEssenceApi.azeriteEssenceIndex();
 
     expect(resource.path).toBe(`${base}/azerite-essence/index`);
     expect(resource.namespace).toBe('static');
   });
 
-  it('should return the correct path and namespace for azeriteEssenceMedia', () => {
+  it('should return the correct path and namespace for azeriteEssenceMedia', ({ expect }) => {
     const azeriteEssenceId = 123;
     const resource = azeriteEssenceApi.azeriteEssenceMedia(azeriteEssenceId);
 
@@ -26,7 +26,7 @@ describe('azeriteEssenceApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('should return the correct path and namespace for azeriteEssenceSearch', () => {
+  it('should return the correct path and namespace for azeriteEssenceSearch', ({ expect }) => {
     const resource = azeriteEssenceApi.azeriteEssenceSearch({ _page: 1 });
 
     expect(resource.path).toBe(`${searchBase}/azerite-essence`);

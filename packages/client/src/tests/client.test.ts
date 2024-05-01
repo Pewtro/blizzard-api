@@ -1,15 +1,15 @@
-import { describe, expect, it, vitest } from 'vitest';
+import { describe, it, vitest } from 'vitest';
 import { environment } from '../../../../environment';
 import { createBlizzardApiClient } from '../client/create-client';
 
-describe('client', async () => {
+describe.concurrent('client', async () => {
   const client = await createBlizzardApiClient({
     key: environment.blizzardClientId,
     secret: environment.blizzardClientSecret,
     origin: 'eu',
   });
 
-  it("should be able to fetch the client's default values", () => {
+  it("should be able to fetch the client's default values", ({ expect }) => {
     const { key, secret, origin, locale, token } = client.defaults;
 
     expect(key).toBe(environment.blizzardClientId);
@@ -19,7 +19,7 @@ describe('client', async () => {
     expect(token).toBeDefined();
   });
 
-  it('should be able to authorize with the Blizzard API', async () => {
+  it('should be able to authorize with the Blizzard API', async ({ expect }) => {
     const response = await client.getAccessToken();
 
     const { access_token, token_type, expires_in, sub } = response.data;
@@ -29,7 +29,7 @@ describe('client', async () => {
     expect(sub).length.greaterThan(0);
   });
 
-  it('should be able to validate the access token', async () => {
+  it('should be able to validate the access token', async ({ expect }) => {
     const response = await client.getAccessToken();
 
     const { access_token } = response.data;
@@ -42,13 +42,15 @@ describe('client', async () => {
     expect(validateResponse.data.client_id).toBe(client.defaults.key);
   });
 
-  it("should be able to provide a client's access token", () => {
+  it("should be able to provide a client's access token", ({ expect }) => {
     client.setAccessToken('test_token');
 
     expect(client.defaults.token).toBe('test_token');
   });
 
-  it('should be able to provide a onTokenRefresh function as the second argument to createBlizzardApiClient', async () => {
+  it('should be able to provide a onTokenRefresh function as the second argument to createBlizzardApiClient', async ({
+    expect,
+  }) => {
     const testFunction = vitest.fn();
     await createBlizzardApiClient(
       {

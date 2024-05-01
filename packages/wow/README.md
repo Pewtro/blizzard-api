@@ -35,6 +35,10 @@ const achievement = wow.achievement(123);
 type AchievementResponse = ExtractResourceType<typeof achievement>;
 ```
 
+## Types
+
+The types are manually created from using the Blizzard API documentation, and are as accurate as possible with smoke testing each endpoint. However, no-one is perfect so there is likely be some discrepancies. If you encounter any issues with the types from this package, please open an issue or a pull request.
+
 ### Client
 
 While this package is made to function on it's own, it performs even better when combined with `@blizzard-api/client` where you can easily request data combining the two libraries.

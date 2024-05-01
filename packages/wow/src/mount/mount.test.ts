@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it } from 'vitest';
 import { base, searchBase } from '../base';
 import { mountApi } from './mount';
 
-describe('mountApi', () => {
-  it('mount should return a resource object with the correct path and namespace', () => {
+describe.concurrent('mountApi', () => {
+  it('mount should return a resource object with the correct path and namespace', ({ expect }) => {
     const mountId = 123;
     const resource = mountApi.mount(mountId);
 
@@ -11,14 +11,14 @@ describe('mountApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('mountIndex should return a resource object with the correct path and namespace', () => {
+  it('mountIndex should return a resource object with the correct path and namespace', ({ expect }) => {
     const resource = mountApi.mountIndex();
 
     expect(resource.path).toBe(`${base}/mount/index`);
     expect(resource.namespace).toBe('static');
   });
 
-  it('mountSearch should return a resource object with the correct path and namespace', () => {
+  it('mountSearch should return a resource object with the correct path and namespace', ({ expect }) => {
     const resource = mountApi.mountSearch({
       _page: 1,
       orderby: 'name',

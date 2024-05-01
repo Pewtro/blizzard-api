@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it } from 'vitest';
 import { base, mediaBase } from '../base';
 import { playableClassApi } from './playable-class';
 
-describe('playableClassApi', () => {
-  it('playableClass should return a resource object with the correct path and namespace', () => {
+describe.concurrent('playableClassApi', () => {
+  it('playableClass should return a resource object with the correct path and namespace', ({ expect }) => {
     const playableClassId = 123;
     const resource = playableClassApi.playableClass(playableClassId);
 
@@ -11,14 +11,14 @@ describe('playableClassApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('playableClassIndex should return a resource object with the correct path and namespace', () => {
+  it('playableClassIndex should return a resource object with the correct path and namespace', ({ expect }) => {
     const resource = playableClassApi.playableClassIndex();
 
     expect(resource.path).toBe(`${base}/playable-class/index`);
     expect(resource.namespace).toBe('static');
   });
 
-  it('playableClassMedia should return a resource object with the correct path and namespace', () => {
+  it('playableClassMedia should return a resource object with the correct path and namespace', ({ expect }) => {
     const playableClassId = 123;
     const resource = playableClassApi.playableClassMedia(playableClassId);
 
@@ -26,7 +26,7 @@ describe('playableClassApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('pvpTalentSlots should return a resource object with the correct path and namespace', () => {
+  it('pvpTalentSlots should return a resource object with the correct path and namespace', ({ expect }) => {
     const playableClassId = 123;
     const resource = playableClassApi.pvpTalentSlots(playableClassId);
 

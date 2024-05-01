@@ -1,8 +1,8 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it } from 'vitest';
 import { auctionHouseApi } from './auction-house';
 
-describe('auctionHouse', () => {
-  it('should return the correct resource for auctions', () => {
+describe.concurrent('auctionHouse', () => {
+  it('should return the correct resource for auctions', ({ expect }) => {
     const connectedRealmId = 123;
     const resource = auctionHouseApi.auctions(connectedRealmId);
 
@@ -10,7 +10,7 @@ describe('auctionHouse', () => {
     expect(resource.namespace).toBe('dynamic');
   });
 
-  it('should return the correct resource for commodities', () => {
+  it('should return the correct resource for commodities', ({ expect }) => {
     const resource = auctionHouseApi.commodities();
 
     expect(resource.path).toBe('/data/wow/auctions/commodities');

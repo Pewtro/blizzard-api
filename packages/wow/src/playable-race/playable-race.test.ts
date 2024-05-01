@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it } from 'vitest';
 import { base } from '../base';
 import { playableRaceApi } from './playable-race';
 
-describe('playableRaceApi', () => {
-  it('playableRace should return a resource object with the correct path and namespace', () => {
+describe.concurrent('playableRaceApi', () => {
+  it('playableRace should return a resource object with the correct path and namespace', ({ expect }) => {
     const playableRaceId = 456;
     const resource = playableRaceApi.playableRace(playableRaceId);
 
@@ -11,7 +11,7 @@ describe('playableRaceApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('playableRaceIndex should return a resource object with the correct path and namespace', () => {
+  it('playableRaceIndex should return a resource object with the correct path and namespace', ({ expect }) => {
     const resource = playableRaceApi.playableRaceIndex();
 
     expect(resource.path).toBe(`${base}/playable-race/index`);

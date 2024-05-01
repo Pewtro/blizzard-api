@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it } from 'vitest';
 import { base } from '../base';
 import { mythicRaidLeaderboardApi } from './mythic-raid-leaderboard';
 
-describe('mythicRaidLeaderboardApi', () => {
-  it('mythicRaidLeaderboard should return a resource object with the correct path and namespace', () => {
+describe.concurrent('mythicRaidLeaderboardApi', () => {
+  it('mythicRaidLeaderboard should return a resource object with the correct path and namespace', ({ expect }) => {
     const raid = 'castle-nathria';
     const faction = 'alliance';
     const resource = mythicRaidLeaderboardApi.mythicRaidLeaderboard(raid, faction);
@@ -12,7 +12,9 @@ describe('mythicRaidLeaderboardApi', () => {
     expect(resource.namespace).toBe('dynamic');
   });
 
-  it('mythicRaidLeaderboard should return a resource object with the correct path and namespace for horde faction', () => {
+  it('mythicRaidLeaderboard should return a resource object with the correct path and namespace for horde faction', ({
+    expect,
+  }) => {
     const raid = 'sanctum-of-domination';
     const faction = 'horde';
     const resource = mythicRaidLeaderboardApi.mythicRaidLeaderboard(raid, faction);

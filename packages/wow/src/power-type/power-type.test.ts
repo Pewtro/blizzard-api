@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it } from 'vitest';
 import { base } from '../base';
 import { powerTypeApi } from './power-type';
 
-describe('powerTypeApi', () => {
-  it('powerType should return a resource object with the correct path and namespace', () => {
+describe.concurrent('powerTypeApi', () => {
+  it('powerType should return a resource object with the correct path and namespace', ({ expect }) => {
     const powerTypeId = 123;
     const resource = powerTypeApi.powerType(powerTypeId);
 
@@ -11,7 +11,7 @@ describe('powerTypeApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('powerTypeIndex should return a resource object with the correct path and namespace', () => {
+  it('powerTypeIndex should return a resource object with the correct path and namespace', ({ expect }) => {
     const resource = powerTypeApi.powerTypeIndex();
 
     expect(resource.path).toBe(`${base}/power-type/index`);
