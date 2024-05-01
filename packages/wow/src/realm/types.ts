@@ -17,7 +17,8 @@ export type RealmCategory =
   | 'Brazil'
   | 'Latin America'
   | 'Oceanic'
-  | 'United States';
+  | 'United States'
+  | '한국';
 
 //There are probably more timezone that should be added here
 export type RealmTimezone =
@@ -26,6 +27,7 @@ export type RealmTimezone =
   | 'America/Los_Angeles'
   | 'America/New_York'
   | 'America/Sao_Paulo'
+  | 'Asia/Seoul'
   | 'Australia/Melbourne'
   | 'Europe/Paris';
 
