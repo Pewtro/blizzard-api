@@ -1,8 +1,8 @@
-import { describe, it, expect, expectTypeOf } from 'vitest';
+import { describe, it, expectTypeOf } from 'vitest';
 import type { Resource, ExtractResourceType } from './resource';
 
-describe('Resource', () => {
-  it('should have the correct properties without search options', () => {
+describe.concurrent('Resource', () => {
+  it('should have the correct properties without search options', ({ expect }) => {
     type MyResource = Resource<{ id: number }>;
     const resource: MyResource = {
       path: '/path',
@@ -18,7 +18,7 @@ describe('Resource', () => {
     });
   });
 
-  it('should have the correct properties with search options', () => {
+  it('should have the correct properties with search options', ({ expect }) => {
     type MyResource = Resource<{ id: number }, { name: string }>;
     const resource: MyResource = {
       path: '/path',
@@ -36,7 +36,7 @@ describe('Resource', () => {
     });
   });
 
-  it('should have the correct properties with token', () => {
+  it('should have the correct properties with token', ({ expect }) => {
     type MyResource = Resource<{ id: number }, object, true>;
     const resource: MyResource = {
       path: '/path',
@@ -54,7 +54,7 @@ describe('Resource', () => {
     });
   });
 
-  it('should have the correct properties with token and search', () => {
+  it('should have the correct properties with token and search', ({ expect }) => {
     type MyResource = Resource<{ id: number }, { name: string }, true>;
     const resource: MyResource = {
       path: '/path',

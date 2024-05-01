@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it } from 'vitest';
 import { base, mediaBase } from '../base';
 import { spellApi } from './spell';
 
-describe('spellApi', () => {
-  it('spell should return a resource object with the correct path and namespace', () => {
+describe.concurrent('spellApi', () => {
+  it('spell should return a resource object with the correct path and namespace', ({ expect }) => {
     const spellId = 456;
     const resource = spellApi.spell(spellId);
 
@@ -11,7 +11,7 @@ describe('spellApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('spellMedia should return a resource object with the correct path and namespace', () => {
+  it('spellMedia should return a resource object with the correct path and namespace', ({ expect }) => {
     const spellId = 789;
     const resource = spellApi.spellMedia(spellId);
 
@@ -19,7 +19,7 @@ describe('spellApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('spellSearch should return a resource object with the correct path, namespace and parameters', () => {
+  it('spellSearch should return a resource object with the correct path, namespace and parameters', ({ expect }) => {
     const resource = spellApi.spellSearch({
       _page: 1,
       orderby: 'name',

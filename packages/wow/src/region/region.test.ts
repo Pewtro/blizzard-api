@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it } from 'vitest';
 import { base } from '../base';
 import { regionApi } from './region';
 
-describe('regionApi', () => {
-  it('region should return a resource object with the correct path and namespace', () => {
+describe.concurrent('regionApi', () => {
+  it('region should return a resource object with the correct path and namespace', ({ expect }) => {
     const regionId = 123;
     const resource = regionApi.region(regionId);
 
@@ -11,7 +11,7 @@ describe('regionApi', () => {
     expect(resource.namespace).toBe('dynamic');
   });
 
-  it('regionIndex should return a resource object with the correct path and namespace', () => {
+  it('regionIndex should return a resource object with the correct path and namespace', ({ expect }) => {
     const resource = regionApi.regionIndex();
 
     expect(resource.path).toBe(`${base}/region/index`);

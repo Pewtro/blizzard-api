@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it } from 'vitest';
 import { base } from '../base';
 import { mythicKeystoneLeaderboardApi } from './mythic-keystone-leaderboard';
 
-describe('mythicKeystoneLeaderboardApi', () => {
-  it('mythicKeystoneLeaderboard should return a resource object with the correct path and namespace', () => {
+describe.concurrent('mythicKeystoneLeaderboardApi', () => {
+  it('mythicKeystoneLeaderboard should return a resource object with the correct path and namespace', ({ expect }) => {
     const connectedRealmId = 456;
     const dungeonId = 789;
     const period = 123;
@@ -15,7 +15,9 @@ describe('mythicKeystoneLeaderboardApi', () => {
     expect(resource.namespace).toBe('dynamic');
   });
 
-  it('mythicKeystoneLeaderboardIndex should return a resource object with the correct path and namespace', () => {
+  it('mythicKeystoneLeaderboardIndex should return a resource object with the correct path and namespace', ({
+    expect,
+  }) => {
     const connectedRealmId = 456;
     const resource = mythicKeystoneLeaderboardApi.mythicKeystoneLeaderboardIndex(connectedRealmId);
 

@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it } from 'vitest';
 import { base } from '../base';
 import { reputationApi } from './reputations';
 
-describe('reputationApi', () => {
-  it('reputationFaction should return a resource object with the correct path and namespace', () => {
+describe.concurrent('reputationApi', () => {
+  it('reputationFaction should return a resource object with the correct path and namespace', ({ expect }) => {
     const reputationFactionId = 123;
     const resource = reputationApi.reputationFaction(reputationFactionId);
 
@@ -11,14 +11,14 @@ describe('reputationApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('reputationFactionIndex should return a resource object with the correct path and namespace', () => {
+  it('reputationFactionIndex should return a resource object with the correct path and namespace', ({ expect }) => {
     const resource = reputationApi.reputationFactionIndex();
 
     expect(resource.path).toBe(`${base}/reputation-faction/index`);
     expect(resource.namespace).toBe('static');
   });
 
-  it('reputationTiers should return a resource object with the correct path and namespace', () => {
+  it('reputationTiers should return a resource object with the correct path and namespace', ({ expect }) => {
     const reputationTiersId = 456;
     const resource = reputationApi.reputationTiers(reputationTiersId);
 
@@ -26,7 +26,7 @@ describe('reputationApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('reputationTiersIndex should return a resource object with the correct path and namespace', () => {
+  it('reputationTiersIndex should return a resource object with the correct path and namespace', ({ expect }) => {
     const resource = reputationApi.reputationTiersIndex();
 
     expect(resource.path).toBe(`${base}/reputation-tiers/index`);

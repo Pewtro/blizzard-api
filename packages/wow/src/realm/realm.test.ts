@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it } from 'vitest';
 import { base, searchBase } from '../base';
 import { realmApi } from './realm';
 
-describe('realmApi', () => {
-  it('realm should return a resource object with the correct path and namespace', () => {
+describe.concurrent('realmApi', () => {
+  it('realm should return a resource object with the correct path and namespace', ({ expect }) => {
     const realmSlug = 'my-realm';
     const resource = realmApi.realm(realmSlug);
 
@@ -11,14 +11,14 @@ describe('realmApi', () => {
     expect(resource.namespace).toBe('dynamic');
   });
 
-  it('realmIndex should return a resource object with the correct path and namespace', () => {
+  it('realmIndex should return a resource object with the correct path and namespace', ({ expect }) => {
     const resource = realmApi.realmIndex();
 
     expect(resource.path).toBe(`${base}/realm/index`);
     expect(resource.namespace).toBe('dynamic');
   });
 
-  it('realmSearch should return a resource object with the correct path and namespace', () => {
+  it('realmSearch should return a resource object with the correct path and namespace', ({ expect }) => {
     const resource = realmApi.realmSearch({
       _page: 1,
       orderby: 'name',

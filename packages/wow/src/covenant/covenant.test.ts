@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it } from 'vitest';
 import { base, mediaBase } from '../base';
 import { covenantApi } from './covenant';
 
-describe('covenantApi', () => {
-  it('should return the correct path and namespace for conduit', () => {
+describe.concurrent('covenantApi', () => {
+  it('should return the correct path and namespace for conduit', ({ expect }) => {
     const conduitId = 123;
     const resource = covenantApi.conduit(conduitId);
 
@@ -11,14 +11,14 @@ describe('covenantApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('should return the correct path and namespace for conduitIndex', () => {
+  it('should return the correct path and namespace for conduitIndex', ({ expect }) => {
     const resource = covenantApi.conduitIndex();
 
     expect(resource.path).toBe(`${base}/covenant/conduit/index`);
     expect(resource.namespace).toBe('static');
   });
 
-  it('should return the correct path and namespace for covenant', () => {
+  it('should return the correct path and namespace for covenant', ({ expect }) => {
     const covenantId = 123;
     const resource = covenantApi.covenant(covenantId);
 
@@ -26,14 +26,14 @@ describe('covenantApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('should return the correct path and namespace for covenantIndex', () => {
+  it('should return the correct path and namespace for covenantIndex', ({ expect }) => {
     const resource = covenantApi.covenantIndex();
 
     expect(resource.path).toBe(`${base}/covenant/index`);
     expect(resource.namespace).toBe('static');
   });
 
-  it('should return the correct path and namespace for covenantMedia', () => {
+  it('should return the correct path and namespace for covenantMedia', ({ expect }) => {
     const covenantId = 123;
     const resource = covenantApi.covenantMedia(covenantId);
 
@@ -41,7 +41,7 @@ describe('covenantApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('should return the correct path and namespace for soulbind', () => {
+  it('should return the correct path and namespace for soulbind', ({ expect }) => {
     const soulbindId = 123;
     const resource = covenantApi.soulbind(soulbindId);
 
@@ -49,7 +49,7 @@ describe('covenantApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('should return the correct path and namespace for soulbindIndex', () => {
+  it('should return the correct path and namespace for soulbindIndex', ({ expect }) => {
     const resource = covenantApi.soulbindIndex();
 
     expect(resource.path).toBe(`${base}/covenant/soulbind/index`);
