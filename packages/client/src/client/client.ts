@@ -83,10 +83,10 @@ export class BlizzardApiClient implements IBlizzardApiClient {
     try {
       return await this.axios.get<T>(url, config);
     } catch (error) {
-      if (!isAxiosError(error)) {
-        throw error;
+      if (isAxiosError(error)) {
+        throw new AxiosError(error.message, error.code);
       }
-      throw new AxiosError(error.message, error.code);
+      throw error;
     }
   }
 
