@@ -1,5 +1,12 @@
 # @blizzard-api/wow
 
+## 0.2.1
+
+### Patch Changes
+
+- 8b84de5: Expand on realm timezones and categories to include us/oce servers
+- da19481: Add realm category and timezone for korean realms
+
 ## 0.2.0
 
 ### Minor Changes

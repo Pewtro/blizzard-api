@@ -1,5 +1,11 @@
 # @blizzard-api/client
 
+## 0.2.1
+
+### Patch Changes
+
+- cd9546b: Improve error handling of the sendRequest method of the client
+
 ## 0.2.0
 
 ### Minor Changes
