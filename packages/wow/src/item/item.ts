@@ -25,7 +25,7 @@ export const itemApi = {
       namespace: 'static',
     };
   },
-  itemSubclass: (itemClassId: number, itemSubclassId: number): Resource<ItemSubclassResponse> => {
+  itemSubClass: (itemClassId: number, itemSubclassId: number): Resource<ItemSubclassResponse> => {
     return {
       path: `${base}/item-class/${itemClassId}/item-subclass/${itemSubclassId}`,
       namespace: 'static',
