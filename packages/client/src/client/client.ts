@@ -2,7 +2,7 @@ import { stringify } from 'node:querystring';
 import { getBlizzardApi } from '@blizzard-api/core';
 import type { Origins, Locales, ResourceResponse, Resource } from '@blizzard-api/core';
 import type { AxiosResponse } from 'axios';
-import axios from 'axios';
+import axios, { AxiosError, isAxiosError } from 'axios';
 import type {
   AccessToken,
   AccessTokenRequestArguments,
@@ -72,7 +72,7 @@ export class BlizzardApiClient implements IBlizzardApiClient {
     };
   }
 
-  public sendRequest<T, Protected extends boolean = false>(
+  public async sendRequest<T, Protected extends boolean = false>(
     resource: Resource<T, object, Protected>,
     options?: Partial<ClientOptions>,
     headers?: Record<string, string>,
@@ -80,7 +80,14 @@ export class BlizzardApiClient implements IBlizzardApiClient {
     const url = this.getRequestUrl(resource, options);
     const config = this.getRequestConfig(resource, options, headers);
 
-    return this.axios.get<T>(url, config);
+    try {
+      return await this.axios.get<T>(url, config);
+    } catch (error) {
+      if (!isAxiosError(error)) {
+        throw error;
+      }
+      throw new AxiosError(error.message, error.code);
+    }
   }
 
   public getAccessToken = async (options?: AccessTokenRequestArguments): Promise<AxiosResponse<AccessToken>> => {
