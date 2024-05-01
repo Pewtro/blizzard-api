@@ -1,5 +1,11 @@
 # @blizzard-api/client
 
+## 0.2.2
+
+### Patch Changes
+
+- 738d078: Invert how the sendRequest function throws errors to make it a bit easier to read
+
 ## 0.2.1
 
 ### Patch Changes
