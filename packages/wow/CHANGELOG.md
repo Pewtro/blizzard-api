@@ -1,5 +1,11 @@
 # @blizzard-api/wow
 
+## 0.2.2
+
+### Patch Changes
+
+- 14585c0: Rename itemSubclass to itemSubClass to match pattern of other functions
+
 ## 0.2.1
 
 ### Patch Changes
