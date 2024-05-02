@@ -34,6 +34,10 @@ import { titleApi } from './title/title';
 import { toyApi } from './toy/toy';
 import { wowTokenApi } from './wow-token/wow-token';
 
+/**
+ * The Blizzard API for World of Warcraft.
+ * @see https://develop.battle.net/documentation/world-of-warcraft
+ */
 export const wow = {
   ...achievementApi,
   ...auctionHouseApi,
@@ -93,7 +97,7 @@ export * from './item/types.js';
 //Journal
 export * from './journal/types.js';
 //Media Search
-//TODO
+export * from './media-search/types.js';
 //Modified Crafting
 export * from './modified-crafting/types.js';
 //Mount
