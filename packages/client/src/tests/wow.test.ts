@@ -100,7 +100,7 @@ describe.concurrent('smoketest some wow api responses', async () => {
 
   it('can search for a journal encounter', async ({ expect }) => {
     const response = await client.sendRequest(
-      wow.journalEncounterSearch({ instanceName: '', locale: 'en_US', _page: 1 }),
+      wow.journalEncounterSearch({ instanceName: 'The Nighthold', locale: 'en_US', _page: 1 }),
     );
 
     expect(response.data).toBeDefined();

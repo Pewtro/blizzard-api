@@ -9,6 +9,9 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   release:
+    strategy:
+      matrix:
+        node: [18.x, 20.x, 21.x, 22.x]
     name: Release
     runs-on: ubuntu-latest
     steps:
@@ -40,7 +43,8 @@ jobs:
           VITE_BLIZZARD_CLIENT_ID: ${{ secrets.BLIZZARD_CLIENT_ID }}
           VITE_BLIZZARD_CLIENT_SECRET: ${{ secrets.BLIZZARD_CLIENT_SECRET }}
 
-      - name: Create Release Pull Request or Publish to npm
+      - if: ${{ matrix.node == '20.x' }}
+        name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
         with:
