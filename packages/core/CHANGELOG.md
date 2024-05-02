@@ -1,5 +1,12 @@
 # @blizzard-api/core
 
+## 0.1.1
+
+### Patch Changes
+
+- f81101e: Add JSDoc comments on types, interfaces and functions
+- 6210223: Update compatible node versions to include v22
+
 ## 0.1.0
 
 ### Minor Changes
