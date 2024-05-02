@@ -1,18 +1,26 @@
-name: Release
+name: CI
 
 on:
+  pull_request:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
+env:
+  # The node version to release with, generally the latest LTS
+  release_node: 20.x
+
 jobs:
-  release:
+  build:
     strategy:
       matrix:
+        # Test against multiple node versions
+        # Previous LTS, current LTS, current, and next LTS (if not same as current)
         node: [18.x, 20.x, 21.x, 22.x]
-    name: Release
+    name: Build, Test & Release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -43,7 +51,7 @@ jobs:
           VITE_BLIZZARD_CLIENT_ID: ${{ secrets.BLIZZARD_CLIENT_ID }}
           VITE_BLIZZARD_CLIENT_SECRET: ${{ secrets.BLIZZARD_CLIENT_SECRET }}
 
-      - if: ${{ matrix.node == '20.x' }}
+      - if: ${{ matrix.node == env.release_node && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
