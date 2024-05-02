@@ -3,22 +3,14 @@ import type { AccessToken, ClientOptions } from './types';
 
 const getTokenExpiration = (expiresIn: number) => expiresIn * 1000 - 60_000;
 
+/**
+ * Create a new Blizzard API client.
+ * @param options Client options, see {@link ClientOptions} & https://develop.battle.net/documentation/guides/getting-started
+ * @param onTokenRefresh Callback function to handle token refresh. If set to `true`, the client will automatically refresh the token. If set to `false`, the client will not refresh the token. If set to a function, the function will be called with the new token.
+ * @returns A new Blizzard API client.
+ */
 export const createBlizzardApiClient = async (
-  /**
-   * Client options.
-   * @see ClientOptions
-   * @see https://develop.battle.net/documentation/guides/getting-started
-   */
   options: ClientOptions,
-  /**
-   * Callback function to handle token refresh.
-   *
-   * If set to `true`, the client will automatically refresh the token.
-   *
-   * If set to `false`, the client will not refresh the token.
-   *
-   * If set to a function, the function will be called with the new token.
-   */
   onTokenRefresh: boolean | ((token: AccessToken) => void) = true,
 ): Promise<BlizzardApiClient> => {
   const { key, secret, token } = options;

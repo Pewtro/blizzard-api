@@ -12,6 +12,20 @@ import type {
   ValidateAccessTokenResponse,
 } from './types';
 
+/**
+ * A Blizzard API client.
+ * @implements IBlizzardApiClient
+ * @class
+ * @classdesc A client to interact with the Blizzard API.
+ * @example
+ * const client = new BlizzardApiClient({
+ *  key: 'client',
+ *  secret: 'secret',
+ *  origin: 'eu',
+ *  locale: 'en_GB',
+ *  token: 'access'
+ * });
+ */
 export class BlizzardApiClient implements IBlizzardApiClient {
   public defaults: {
     key: string;
@@ -34,6 +48,12 @@ export class BlizzardApiClient implements IBlizzardApiClient {
 
   private axios = axios.create();
 
+  /**
+   * Get the request URL.
+   * @param resource The resource to fetch. See {@link Resource}.
+   * @param options Client options. See {@link ClientOptions}.
+   * @returns The request URL.
+   */
   public getRequestUrl<T, Protected extends boolean = false>(
     resource: Resource<T, object, Protected>,
     options?: Partial<ClientOptions>,
@@ -46,6 +66,13 @@ export class BlizzardApiClient implements IBlizzardApiClient {
     return `${endpoint.hostname}${backslashSeparator}${resource.path}`;
   }
 
+  /**
+   * Get the request configuration.
+   * @param resource The resource to fetch. See {@link Resource}.
+   * @param options Client options. See {@link ClientOptions}.
+   * @param headers Additional headers to include in the request.
+   * @returns The request configuration.
+   */
   public getRequestConfig<T, Protected extends boolean = false>(
     resource: Resource<T, object, Protected>,
     options?: Partial<ClientOptions>,
@@ -72,6 +99,13 @@ export class BlizzardApiClient implements IBlizzardApiClient {
     };
   }
 
+  /**
+   * Send a request to the Blizzard API.
+   * @param resource The resource to fetch. See {@link Resource}.
+   * @param options Client options. See {@link ClientOptions}.
+   * @param headers Additional headers to include in the request.
+   * @returns The response from the Blizzard API. See {@link ResourceResponse}.
+   */
   public async sendRequest<T, Protected extends boolean = false>(
     resource: Resource<T, object, Protected>,
     options?: Partial<ClientOptions>,
@@ -90,6 +124,19 @@ export class BlizzardApiClient implements IBlizzardApiClient {
     }
   }
 
+  /**
+   * Get an access token.
+   * @param options The access token request arguments. See {@link AccessTokenRequestArguments}.
+   * @returns The access token. See {@link AccessToken}.
+   * @example
+   * const response = await client.getAccessToken();
+   * const { access_token, token_type, expires_in, sub } = response.data;
+   * console.log(access_token, token_type, expires_in, sub);
+   * // => 'access'
+   * // => 'bearer'
+   * // => 86399
+   * // => 'client-id'
+   */
   public getAccessToken = async (options?: AccessTokenRequestArguments): Promise<AxiosResponse<AccessToken>> => {
     const { key, secret, origin } = { ...this.defaults, ...options };
     return this.axios.post<AccessToken>(`https://${origin}.battle.net/oauth/token`, undefined, {
@@ -106,16 +153,42 @@ export class BlizzardApiClient implements IBlizzardApiClient {
     });
   };
 
+  /**
+   * Set the access token.
+   * @param token The access token.
+   */
   public setAccessToken = (token: string): void => {
     this.defaults.token = token;
   };
 
+  /**
+   * Refresh the access token.
+   * @param options The access token request arguments. See {@link AccessTokenRequestArguments}.
+   * @returns The access token. See {@link AccessToken}.
+   * @example
+   * const response = await client.refreshAccessToken();
+   * const { access_token, token_type, expires_in, sub } = response.data;
+   * console.log(access_token, token_type, expires_in, sub);
+   * // => 'access'
+   * // => 'bearer'
+   * // => 86399
+   * // => 'client-id'
+   */
   public refreshAccessToken = async (options?: AccessTokenRequestArguments): Promise<AxiosResponse<AccessToken>> => {
     const response = await this.getAccessToken(options);
     this.setAccessToken(response.data.access_token);
     return response;
   };
 
+  /**
+   * Validate an access token.
+   * @param options The validate access token arguments. See {@link ValidateAccessTokenArguments}.
+   * @returns The response from the Blizzard API. See {@link ValidateAccessTokenResponse}.
+   * @example
+   * const response = await client.validateAccessToken({ token: 'access' });
+   * console.log(response.data.client_id);
+   * // => 'client-id'
+   */
   public validateAccessToken = async (
     options?: ValidateAccessTokenArguments,
   ): Promise<AxiosResponse<ValidateAccessTokenResponse>> => {
