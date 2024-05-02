@@ -1,5 +1,17 @@
 # @blizzard-api/wow
 
+## 0.2.3
+
+### Patch Changes
+
+- ca4888f: Add JSDoc comments on types, interfaces and functions
+- c0d7647: Rename ItemSubclassResponse to ItemSubClassResponse and remove unintentional export of the `Effect` interface.
+- 6210223: Update compatible node versions to include v22
+- aaba86b: Properly export types from media search API
+- Updated dependencies [f81101e]
+- Updated dependencies [6210223]
+  - @blizzard-api/core@0.1.1
+
 ## 0.2.2
 
 ### Patch Changes

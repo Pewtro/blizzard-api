@@ -1,5 +1,15 @@
 # @blizzard-api/client
 
+## 0.2.3
+
+### Patch Changes
+
+- 40fc42f: Add JSDoc comments on types, interfaces, classes and functions
+- 6210223: Update compatible node versions to include v22
+- Updated dependencies [f81101e]
+- Updated dependencies [6210223]
+  - @blizzard-api/core@0.1.1
+
 ## 0.2.2
 
 ### Patch Changes
