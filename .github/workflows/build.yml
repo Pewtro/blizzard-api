@@ -19,7 +19,7 @@ jobs:
       matrix:
         # Test against multiple node versions
         # Previous LTS, current LTS, current, and next LTS (if not same as current)
-        node: [18.x, 20.x, 21.x, 22.x]
+        node: [16.x, 18.x, 20.x, 21.x, 22.x]
     name: Build, Test & Release
     runs-on: ubuntu-latest
     steps:
@@ -51,6 +51,7 @@ jobs:
           VITE_BLIZZARD_CLIENT_ID: ${{ secrets.BLIZZARD_CLIENT_ID }}
           VITE_BLIZZARD_CLIENT_SECRET: ${{ secrets.BLIZZARD_CLIENT_SECRET }}
 
+      # Only release with the version set in release_node and on a push to main
       - if: ${{ matrix.node == env.release_node && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         name: Create Release Pull Request or Publish to npm
         id: changesets
