@@ -4,4 +4,4 @@
 '@blizzard-api/wow': patch
 ---
 
-Update compatible node versions to include v16 and v22
+Update compatible node versions to include v22

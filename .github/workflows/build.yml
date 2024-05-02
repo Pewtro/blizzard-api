@@ -18,8 +18,8 @@ jobs:
     strategy:
       matrix:
         # Test against multiple node versions
-        # Last 2 LTS, current LTS, current, and next LTS (if not same as current)
-        node: [16.x, 18.x, 20.x, 21.x, 22.x]
+        # Last LTS, current LTS, current, and next LTS (if not same as current)
+        node: [18.x, 20.x, 21.x, 22.x]
     name: Build, Test & Release
     runs-on: ubuntu-latest
     steps:
