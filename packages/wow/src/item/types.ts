@@ -50,6 +50,10 @@ type StatType =
   | 'Mastery'
   | 'Versatility';
 
+/**
+ * The response for an item.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface ItemResponse extends ResponseBase, NameId {
   quality: ItemQuality;
   level: number;
@@ -187,32 +191,56 @@ interface RecipeItemDisplayStrings {
   copper: string;
 }
 
+/**
+ * The response for an item class index.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface ItemClassIndexResponse extends ResponseBase {
   item_classes: Array<NameIdKey>;
 }
 
+/**
+ * The response for an item class.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface ItemClassResponse extends ResponseBase {
   class_id: number;
   name: string;
   item_subclasses: Array<NameIdKey>;
 }
 
+/**
+ * The response for an item media.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface ItemMediaResponse extends ResponseBase {
   assets: Array<MediaAsset>;
   id: number;
 }
 
-export interface ItemSubclassResponse extends ResponseBase {
+/**
+ * The response for an item subclass.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
+export interface ItemSubClassResponse extends ResponseBase {
   class_id: number;
   subclass_id: number;
   display_name: string;
   verbose_name: string;
 }
 
+/**
+ * The response for an item set index.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface ItemSetIndexResponse extends ResponseBase {
   item_sets: Array<NameIdKey>;
 }
 
+/**
+ * The response for an item set.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface ItemSetResponse extends ResponseBase {
   id: number;
   name: string;
@@ -220,16 +248,26 @@ export interface ItemSetResponse extends ResponseBase {
   effects: Array<Effect>;
 }
 
-export interface Effect {
+interface Effect {
   display_string: string;
   required_count: number;
 }
 
+/**
+ * The parameters for an item search.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
+ */
 export interface ItemSearchParameters extends BaseSearchParameters {
   name: string;
   locale: Locales;
 }
 
+/**
+ * The response for an item search.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
+ */
 export interface ItemSearchResponseItem extends KeyBase {
   data: {
     level: number;
