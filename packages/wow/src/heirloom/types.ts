@@ -1,9 +1,17 @@
 import type { Color, KeyBase, NameIdKey, ResponseBase } from '../base';
 
+/**
+ * The response for the heirloom index.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface HeirloomIndexResponse extends ResponseBase {
   heirlooms: Array<NameIdKey>;
 }
 
+/**
+ * The response for a heirloom.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface HeirloomResponse extends ResponseBase {
   id: number;
   item: NameIdKey;

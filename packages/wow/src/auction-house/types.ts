@@ -16,6 +16,10 @@ interface AuctionHousePosting {
   time_left: AuctionHouseTimeLeft;
 }
 
+/**
+ * Interface for a response from the auction house endpoint.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface AuctionHouseResponse extends ResponseBase {
   connected_realm: {
     href: string;
@@ -34,6 +38,10 @@ interface AuctionHouseCommodity {
   time_left: AuctionHouseTimeLeft;
 }
 
+/**
+ * Interface for a response from the auction house commodities endpoint.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface AuctionHouseCommoditiesResponse extends ResponseBase {
   auctions: Array<AuctionHouseCommodity>;
 }

@@ -1,10 +1,18 @@
 import type { BaseSearchParameters, Locales } from '@blizzard-api/core';
 import type { Factions, KeyBase, NameIdKey, ResponseBase } from '../base';
 
+/**
+ * The response for a mount index.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface MountIndexResponse extends ResponseBase {
   mounts: Array<NameIdKey>;
 }
 
+/**
+ * The response for a mount.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface MountResponse extends ResponseBase {
   id: number;
   name: string;
@@ -23,11 +31,21 @@ interface Source {
   name: string;
 }
 
+/**
+ * The search parameters for mounts.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
+ */
 export interface MountSearchParameters extends BaseSearchParameters {
   name: string;
   locale: Locales;
 }
 
+/**
+ * The response for a mount search.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
+ */
 export interface MountSearchResponseItem extends KeyBase {
   data: {
     creature_displays: Array<{ id: number }>;

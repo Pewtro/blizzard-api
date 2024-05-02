@@ -10,36 +10,64 @@ import type {
 } from './types';
 
 export const petApi = {
+  /**
+   * Get a pet by ID.
+   * @param petId The pet ID.
+   * @returns The pet. See {@link PetResponse}.
+   */
   pet: (petId: number): Resource<PetResponse> => {
     return {
       path: `${base}/pet/${petId}`,
       namespace: 'static',
     };
   },
+  /**
+   * Get a pet index.
+   * @returns The pet index. See {@link PetIndexResponse}.
+   */
   petIndex: (): Resource<PetIndexResponse> => {
     return {
       path: `${base}/pet/index`,
       namespace: 'static',
     };
   },
+  /**
+   * Get a pet media by ID.
+   * @param petId The pet ID.
+   * @returns The pet media. See {@link PetMediaResponse}.
+   */
   petMedia: (petId: number): Resource<PetMediaResponse> => {
     return {
       path: `${mediaBase}/pet/${petId}`,
       namespace: 'static',
     };
   },
+  /**
+   * Get a pet ability by ID.
+   * @param petAbilityId The pet ability ID.
+   * @returns The pet ability. See {@link PetAbilityResponse}.
+   */
   petAbility: (petAbilityId: number): Resource<PetAbilityResponse> => {
     return {
       path: `${base}/pet-ability/${petAbilityId}`,
       namespace: 'static',
     };
   },
+  /**
+   * Get a pet ability index.
+   * @returns The pet ability index. See {@link PetAbilityIndexResponse}.
+   */
   petAbilityIndex: (): Resource<PetAbilityIndexResponse> => {
     return {
       path: `${base}/pet-ability/index`,
       namespace: 'static',
     };
   },
+  /**
+   * Get a pet ability media by ID.
+   * @param petAbilityId The pet ability ID.
+   * @returns The pet ability media. See {@link PetAbilityMediaResponse}.
+   */
   petAbilityMedia: (petAbilityId: number): Resource<PetAbilityMediaResponse> => {
     return {
       path: `${mediaBase}/pet-ability/${petAbilityId}`,

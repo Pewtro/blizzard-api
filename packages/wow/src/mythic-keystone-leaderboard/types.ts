@@ -1,9 +1,17 @@
 import type { Color, Factions, KeyBase, NameId, NameIdKey, ResponseBase } from '../base';
 
+/**
+ * The response for a Mythic Keystone leaderboard index.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface MythicKeystoneLeaderboardIndexResponse extends ResponseBase {
   current_leaderboards: Array<NameIdKey>;
 }
 
+/**
+ * The response for a Mythic Keystone leaderboard.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface MythicKeystoneLeaderboardResponse extends ResponseBase {
   map: NameId;
   period: number;

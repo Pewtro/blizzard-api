@@ -26,10 +26,18 @@ type ModeType =
   | 'LEGACY_10_MAN_HEROIC'
   | 'LEGACY_25_MAN_HEROIC';
 
+/**
+ * The response for a journal encounter index.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface JournalEncounterIndexResponse extends ResponseBase {
   encounters: Array<NameIdKey>;
 }
 
+/**
+ * The response for a journal encounter.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface JournalEncounterResponse extends ResponseBase, NameId {
   description: string;
   creatures: Array<Creature>;
@@ -73,19 +81,35 @@ interface JournalSection {
   spell?: NameIdKey;
 }
 
+/**
+ * The response for a journal expansion index.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface JournalExpansionIndexResponse extends ResponseBase {
   tiers: Array<NameIdKey>;
 }
 
+/**
+ * The response for a journal expansion.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface JournalExpansionResponse extends ResponseBase, NameId {
   dungeons: Array<NameIdKey>;
   raids: Array<NameIdKey>;
 }
 
+/**
+ * The response for a journal instance index.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface JournalInstanceIndexResponse extends ResponseBase {
   instances: Array<NameIdKey>;
 }
 
+/**
+ * The response for a journal instance.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface JournalInstanceResponse extends ResponseBase, NameId {
   map: NameId;
   area: NameId;
@@ -110,6 +134,10 @@ interface ModeElement {
   is_tracked: boolean;
 }
 
+/**
+ * The response for journal instance media.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface JournalInstanceMediaResponse extends ResponseBase {
   assets: Array<Asset>;
 }
@@ -119,11 +147,21 @@ interface Asset {
   value: string;
 }
 
+/**
+ * The parameters for a journal encounter search.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
+ */
 export interface JournalEncounterSearchParameters extends BaseSearchParameters {
   instanceName: string;
   locale: Locales;
 }
 
+/**
+ * The response for a journal encounter search.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
+ */
 export interface JournalEncounterSearchResponseItem extends KeyBase {
   data: {
     instance: { name: Record<Locales, string>; id: number };

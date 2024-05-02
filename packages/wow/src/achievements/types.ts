@@ -1,5 +1,9 @@
 import type { KeyBase, NameId, NameIdKey, ResponseBase } from '../base';
 
+/**
+ * Interface for a response from the achievement category endpoint.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface AchievementCategoryResponse extends ResponseBase, NameId {
   achievements: Array<NameIdKey>;
   parent_category: NameIdKey;
@@ -17,12 +21,20 @@ export interface AchievementCategoryResponse extends ResponseBase, NameId {
   display_order: number;
 }
 
+/**
+ * Interface for a response from the achievement category index endpoint.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface AchievementCategoryIndexResponse extends ResponseBase {
   categories: Array<NameIdKey>;
   root_categories: Array<NameIdKey>;
   guild_categories: Array<NameIdKey>;
 }
 
+/**
+ * Interface for a response from the achievement endpoint.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface AchievementResponse extends ResponseBase, NameId {
   category: NameIdKey;
   description: string;
@@ -37,6 +49,10 @@ export interface AchievementResponse extends ResponseBase, NameId {
   display_order: number;
 }
 
+/**
+ * Interface for a response from the achievement index endpoint.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface AchievementIndexResponse extends ResponseBase {
   achievements: Array<NameIdKey>;
 }
@@ -47,6 +63,10 @@ interface AchievementMediaItem {
   file_data_id: number;
 }
 
+/**
+ * Interface for a response from the achievement media endpoint.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface AchievementMediaResponse extends ResponseBase {
   id: number;
   assets: Array<AchievementMediaItem>;

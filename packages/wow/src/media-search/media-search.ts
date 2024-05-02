@@ -3,6 +3,11 @@ import { searchBase } from '../base';
 import type { MediaSearchParameters, MediaSearchResponseItem } from './types';
 
 export const mediaSearchApi = {
+  /**
+   * Search for media.
+   * @param options The search parameters. See {@link MediaSearchParameters}.
+   * @returns The search results. See {@link SearchResponse}.
+   */
   mediaSearch: (
     options: MediaSearchParameters,
   ): Resource<SearchResponse<MediaSearchResponseItem>, MediaSearchParameters> => {

@@ -6,6 +6,10 @@ type RealmPopulation = 'Low' | 'Medium' | 'High' | 'Full' | 'New Players';
 type RealmPopulationCapitalized = 'LOW' | 'MEDIUM' | 'HIGH' | 'FULL' | 'RECOMMENDED';
 type RealmStatus = 'Up' | 'Down';
 
+/**
+ * Connected Realm Index API response.
+ * @see https://develop.battle.net/documentation/world-of-warcraft/game-data-apis
+ */
 export interface ConnectedRealmIndexResponse extends ResponseBase {
   connected_realms: Array<{ href: string }>;
 }
@@ -28,6 +32,10 @@ interface RealmLockedStatus {
   is_locked_for_new_characters: boolean;
 }
 
+/**
+ * Connected Realm API response.
+ * @see https://develop.battle.net/documentation/world-of-warcraft/game-data-apis
+ */
 export interface ConnectedRealmResponse extends ResponseBase {
   id: number;
   has_queue: boolean;
@@ -39,6 +47,11 @@ export interface ConnectedRealmResponse extends ResponseBase {
   realm_locked_status?: RealmLockedStatus;
 }
 
+/**
+ * Connected Realm Search API parameters.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
+ */
 export interface ConnectedRealmSearchParameters extends BaseSearchParameters {
   'realms.timezone'?: RealmTimezone;
   'status.type'?: Uppercase<RealmStatus>;
@@ -65,6 +78,12 @@ interface SearchRealmPopulation {
   type: RealmPopulationCapitalized;
   name: Record<Locales, string>;
 }
+
+/**
+ * Connected Realm Search API response item.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
+ */
 export interface ConnectedRealmSearchResponseItem extends KeyBase {
   data: {
     id: number;

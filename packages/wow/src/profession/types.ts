@@ -1,9 +1,17 @@
 import type { KeyBase, MediaAsset, NameId, NameIdKey, ResponseBase } from '../base';
 
+/**
+ * The response for a profession index.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface ProfessionIndexResponse extends ResponseBase {
   professions: Array<NameIdKey>;
 }
 
+/**
+ * The response for a profession.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface ProfessionResponse extends ResponseBase, NameId {
   description: string;
   type: Type;
@@ -20,6 +28,10 @@ interface Type {
   name: string;
 }
 
+/**
+ * The response for a profession skill tier.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface ProfessionSkillTierResponse extends ResponseBase, NameId {
   minimum_skill_level: number;
   maximum_skill_level: number;
@@ -31,11 +43,19 @@ interface Category {
   recipes: Array<NameIdKey>;
 }
 
+/**
+ * The response for a profession media.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface ProfessionMediaResponse extends ResponseBase {
   assets: Array<MediaAsset>;
   id: number;
 }
 
+/**
+ * The response for a recipe.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface RecipeResponse extends ResponseBase, NameId {
   media: Media;
   crafted_item: NameIdKey;
@@ -52,6 +72,10 @@ interface Reagent {
   quantity: number;
 }
 
+/**
+ * The response for a recipe media.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface RecipeMediaResponse extends ResponseBase {
   assets: Array<MediaAsset>;
   id: number;

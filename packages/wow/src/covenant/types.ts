@@ -1,9 +1,17 @@
 import type { KeyBase, NameIdKey, ResponseBase } from '../base';
 
+/**
+ * Interface for a response from the conduit index endpoint.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface ConduitIndexResponse extends ResponseBase {
   conduits: Array<NameIdKey>;
 }
 
+/**
+ * Interface for a response from the conduit endpoint.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface ConduitResponse extends ResponseBase {
   id: number;
   name: string;
@@ -33,10 +41,18 @@ interface SocketType {
   name: string;
 }
 
+/**
+ * Interface for a response from the covenant index endpoint.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface CovenantIndexResponse extends ResponseBase {
   covenants: Array<NameIdKey>;
 }
 
+/**
+ * Interface for a response from the covenant endpoint.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface CovenantResponse extends ResponseBase {
   id: number;
   name: string;
@@ -49,6 +65,10 @@ interface RenownReward {
   reward: NameIdKey;
 }
 
+/**
+ * Interface for a response from the covenant media endpoint.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface CovenantMediaResponse extends ResponseBase {
   id: number;
   name: string;
@@ -91,6 +111,10 @@ interface SignatureAbilitySpellTooltip {
   cooldown: string;
 }
 
+/**
+ * Interface for a response from the soulbind endpoint.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface SoulbindResponse extends ResponseBase {
   id: number;
   name: string;
@@ -100,6 +124,10 @@ export interface SoulbindResponse extends ResponseBase {
   talent_tree: NameIdKey;
 }
 
+/**
+ * Interface for a response from the soulbind index endpoint.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface SoulbindIndexResponse extends ResponseBase {
   soulbinds: Array<NameIdKey>;
 }

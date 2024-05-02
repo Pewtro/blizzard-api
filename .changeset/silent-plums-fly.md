@@ -2,4 +2,4 @@
 '@blizzard-api/wow': patch
 ---
 
-Add JSDoc comments on types, interfaces and functions
+Rename ItemSubclassResponse to ItemSubClassResponse and remove unintentional export of the `Effect` interface.

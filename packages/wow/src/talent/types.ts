@@ -1,9 +1,17 @@
 import type { KeyBase, NameId, NameIdKey, ResponseBase } from '../base';
 
+/**
+ * The response for a pvp talent index.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface PvpTalentIndexResponse extends ResponseBase {
   pvp_talents: Array<NameIdKey>;
 }
 
+/**
+ * The response for a pvp talent.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface PvpTalentResponse extends ResponseBase {
   id: number;
   spell: NameIdKey;
@@ -13,10 +21,18 @@ export interface PvpTalentResponse extends ResponseBase {
   compatible_slots: Array<number>;
 }
 
+/**
+ * The response for a talent index.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface TalentIndexResponse extends ResponseBase {
   talents: Array<NameIdKey>;
 }
 
+/**
+ * The response for a talent.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface TalentResponse extends ResponseBase {
   id: number;
   rank_descriptions: Array<RankDescription>;
@@ -33,6 +49,10 @@ interface RankDescription {
   description: null;
 }
 
+/**
+ * The response for a talent tree index.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface TalentTreeIndexResponse extends ResponseBase {
   spec_talent_trees: Array<TalentTree>;
   class_talent_trees: Array<TalentTree>;
@@ -42,6 +62,10 @@ interface TalentTree extends KeyBase {
   name: string;
 }
 
+/**
+ * The response for a talent tree.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface TalentTreeResponse extends ResponseBase, NameId {
   playable_class: NameIdKey;
   playable_specialization: NameIdKey;
@@ -124,6 +148,10 @@ interface PurpleSpellTooltip {
   cast_time: string;
 }
 
+/**
+ * The response for a talent tree nodes.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
 export interface TalentTreeNodesResponse extends ResponseBase {
   id: number;
   spec_talent_trees: Array<SpecTalentTree>;
