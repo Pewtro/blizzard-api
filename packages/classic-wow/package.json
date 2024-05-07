@@ -1,10 +1,10 @@
 {
-  "name": "@blizzard-api/client",
-  "version": "0.2.3",
+  "name": "@blizzard-api/classic-wow",
+  "version": "0.0.0",
   "license": "MIT",
   "author": "Putro",
-  "description": "A node.js axios client to integrate with the blizzard battle.net api.",
-  "repository": "https://github.com/Pewtro/blizzard/tree/main/packages/client",
+  "description": "A series of helpers to interact with the World of Warcraft Classic Blizzard API",
+  "repository": "https://github.com/Pewtro/blizzard/tree/main/packages/classic-wow",
   "type": "module",
   "engines": {
     "node": "^18.18 || ^20.9 || ^21.1 || ^22"
@@ -32,27 +32,14 @@
     "world of warcraft",
     "warcraft",
     "wow",
-    "classic",
-    "retail",
-    "starcraft",
-    "sc2",
-    "diablo",
-    "d3",
-    "hs",
-    "hearthstone",
-    "ow",
-    "overwatch"
+    "classic"
   ],
-  "dependencies": {
-    "axios": "1.6.8"
-  },
+  "dependencies": {},
   "peerDependencies": {
     "@blizzard-api/core": "0.1.1"
   },
   "devDependencies": {
-    "@blizzard-api/classic-wow": "workspace:*",
-    "@blizzard-api/core": "workspace:*",
-    "@blizzard-api/wow": "workspace:*"
+    "@blizzard-api/core": "workspace:*"
   },
   "scripts": {
     "build": "tsup",

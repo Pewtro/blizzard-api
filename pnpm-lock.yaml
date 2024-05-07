@@ -57,12 +57,21 @@ importers:
         specifier: 3.23.7
         version: 3.23.7
 
+  packages/classic-wow:
+    devDependencies:
+      '@blizzard-api/core':
+        specifier: workspace:*
+        version: link:../core
+
   packages/client:
     dependencies:
       axios:
         specifier: 1.6.8
         version: 1.6.8
     devDependencies:
+      '@blizzard-api/classic-wow':
+        specifier: workspace:*
+        version: link:../classic-wow
       '@blizzard-api/core':
         specifier: workspace:*
         version: link:../core

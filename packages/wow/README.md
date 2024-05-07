@@ -35,6 +35,10 @@ const achievement = wow.achievement(123);
 type AchievementResponse = ExtractResourceType<typeof achievement>;
 ```
 
+## Differences to @blizzard-api/classic-wow
+
+This package is specifically for World of Warcraft (retail or modern), and as such, the endpoints and responses are different from the classic variants. If you are looking for the classic version of World of Warcraft, you should use `@blizzard-api/classic-wow` instead.
+
 ## Types
 
 The types are manually created from using the Blizzard API documentation, and are as accurate as possible with smoke testing each endpoint. However, no-one is perfect so there is likely be some discrepancies. If you encounter any issues with the types from this package, please open an issue or a pull request.

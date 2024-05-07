@@ -47,7 +47,7 @@
   "devDependencies": {},
   "scripts": {
     "build": "tsup",
-    "debv": "tsup --watch",
+    "dev": "tsup --watch",
     "test": "vitest run",
     "test:coverage": "pnpm test -- --coverage",
     "test:watch": "vitest watch"
