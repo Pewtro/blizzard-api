@@ -32,16 +32,7 @@
     "world of warcraft",
     "warcraft",
     "wow",
-    "classic",
-    "retail",
-    "starcraft",
-    "sc2",
-    "diablo",
-    "d3",
-    "hs",
-    "hearthstone",
-    "ow",
-    "overwatch"
+    "retail"
   ],
   "dependencies": {},
   "peerDependencies": {

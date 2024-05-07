@@ -45,7 +45,7 @@
     "turbo": "1.13.3",
     "typescript": "5.4.5",
     "vitest": "1.6.0",
-    "zod": "3.23.6"
+    "zod": "3.23.7"
   },
   "scripts": {
     "build": "pnpm -r build",
