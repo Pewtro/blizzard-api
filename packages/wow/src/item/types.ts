@@ -227,6 +227,7 @@ export interface ItemSubClassResponse extends ResponseBase {
   subclass_id: number;
   display_name: string;
   verbose_name: string;
+  hide_subclass_in_tooltips: boolean;
 }
 
 /**

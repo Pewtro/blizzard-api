@@ -91,7 +91,7 @@ export const creatureApi = {
   /**
    * Search for creatures.
    * @param options The creature search parameters. See {@link CreatureSearchParameters}.
-   * @returns The creature search results. See {@link SearchResponse}.
+   * @returns The creature search results. See {@link SearchResponse} & {@link CreatureSearchResponseItem}.
    */
   creatureSearch: (
     options: CreatureSearchParameters,
