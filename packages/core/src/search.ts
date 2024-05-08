@@ -36,5 +36,6 @@ export interface SearchResponse<T> {
   pageSize: number;
   maxPageSize: number;
   pageCount: number;
+  resultCountCapped?: boolean;
   results: Array<T>;
 }
