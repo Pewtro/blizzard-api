@@ -2,7 +2,7 @@ import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
 import { base } from '../../../wow/src/base';
 import type { AuctionHouseIndexResponse, AuctionsResponse } from './types';
 
-export const auctionHouseApi = {
+export const classicAuctionHouseApi = {
   /**
    * Returns an index of auction houses for a connected realm.
    * @param namespace The namespace to use. See {@link BlizzardNamespaces}.

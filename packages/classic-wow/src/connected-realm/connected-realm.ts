@@ -5,11 +5,11 @@ import type {
   ConnectedRealmResponse,
   ConnectedRealmSearchParameters,
   ConnectedRealmSearchResponseItem,
-} from '../../../wow/src/connected-realm/types';
+} from './types';
 
-export const connectedRealmApi = {
+export const classicConnectedRealmApi = {
   /**
-   * Get a connected realm index.
+   * Returns an index of connected realms.
    * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
    * @returns The connected realm index. See {@link ConnectedRealmIndexResponse}.
    */
@@ -22,7 +22,7 @@ export const connectedRealmApi = {
     };
   },
   /**
-   * Get a connected realm by ID.
+   * Returns a connected realm by ID.
    * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
    * @param connectedRealmId The connected realm ID.
    * @returns The connected realm. See {@link ConnectedRealmResponse}.
@@ -37,7 +37,7 @@ export const connectedRealmApi = {
     };
   },
   /**
-   * Search for connected realms.
+   * Performs a search of connected realms.
    * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
    * @param options The search parameters. See {@link ConnectedRealmSearchParameters}.
    * @returns The search results. See {@link SearchResponse} & {@link ConnectedRealmSearchResponseItem}.
