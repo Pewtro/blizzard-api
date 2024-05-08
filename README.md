@@ -17,6 +17,7 @@ npm i @blizzard-api/core @blizzard-api/wow
 Currently available packages are:
 
 - `@blizzard-api/wow`
+- `@blizzard-api/classic-wow`
 
 Planned packages are:
 
@@ -24,7 +25,6 @@ Planned packages are:
 - `@blizzard-api/hs`
 - `@blizzard-api/owl`
 - `@blizzard-api/sc2`
-- `@blizzard-api/wow-classic`
 
 The core package gives you access to helper functions such as `getBlizzardApi` which will quickly get you the hostname and locales for a specific region.
 

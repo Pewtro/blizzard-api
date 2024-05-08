@@ -5,6 +5,7 @@ This package provides a client that is meant to be used together with one or mor
 Currently available packages are:
 
 - `@blizzard-api/wow`
+- `@blizzard-api/classic-wow`
 
 Planned packages are:
 
@@ -12,7 +13,6 @@ Planned packages are:
 - `@blizzard-api/hs`
 - `@blizzard-api/owl`
 - `@blizzard-api/sc2`
-- `@blizzard-api/wow-classic`
 
 ## Installation
 
