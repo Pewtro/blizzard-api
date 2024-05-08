@@ -1,5 +1,13 @@
 # @blizzard-api/wow
 
+## 0.2.4
+
+### Patch Changes
+
+- 69fb010: Add hide_subclass_in_tooltips response value to ItemSubClassResponse, mark season_name as nullable in PvpSeasonResponse
+- Updated dependencies [4cfce23]
+  - @blizzard-api/core@0.1.2
+
 ## 0.2.3
 
 ### Patch Changes

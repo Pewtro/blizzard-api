@@ -1,5 +1,11 @@
 # @blizzard-api/core
 
+## 0.1.2
+
+### Patch Changes
+
+- 4cfce23: Add nullable boolean resultCountCapped to the base SearchResponse value which will reflect in all search resources
+
 ## 0.1.1
 
 ### Patch Changes
