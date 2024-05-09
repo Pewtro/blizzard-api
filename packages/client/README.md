@@ -11,7 +11,6 @@ Planned packages are:
 
 - `@blizzard-api/d3`
 - `@blizzard-api/hs`
-- `@blizzard-api/owl`
 - `@blizzard-api/sc2`
 
 ## Installation
