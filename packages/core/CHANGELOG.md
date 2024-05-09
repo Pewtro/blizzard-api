@@ -1,5 +1,11 @@
 # @blizzard-api/core
 
+## 1.0.0
+
+### Major Changes
+
+- a93793a: Release 1.0.0
+
 ## 0.1.2
 
 ### Patch Changes
