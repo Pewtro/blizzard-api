@@ -1,5 +1,16 @@
 # @blizzard-api/classic-wow
 
+## 1.0.0
+
+### Major Changes
+
+- a93793a: Release 1.0.0
+
+### Patch Changes
+
+- Updated dependencies [a93793a]
+  - @blizzard-api/core@1.0.0
+
 ## 0.1.0
 
 ### Minor Changes
