@@ -1,148 +1,427 @@
-import { achievementApi } from './achievements/achievements';
-import { auctionHouseApi } from './auction-house/auction-house';
-import { azeriteEssenceApi } from './azerite-essence/azerite-essence';
-import { connectedRealmApi } from './connected-realm/connected-realm';
-import { covenantApi } from './covenant/covenant';
-import { creatureApi } from './creature/creature';
-import { guildCrestApi } from './guild-crest/guild-crest';
-import { heirloomApi } from './heirloom/heirloom';
-import { itemApi } from './item/item';
-import { journalApi } from './journal/journal';
-import { mediaSearchApi } from './media-search/media-search';
-import { modifiedCraftingApi } from './modified-crafting/modified-crafting';
-import { mountApi } from './mount/mount';
-import { mythicKeystoneAffixApi } from './mythic-keystone-affix/mythic-keystone-affix';
-import { mythicKeystoneDungeonApi } from './mythic-keystone-dungeon/mythic-keystone-dungeon';
-import { mythicKeystoneLeaderboardApi } from './mythic-keystone-leaderboard/mythic-keystone-leaderboard';
-import { mythicRaidLeaderboardApi } from './mythic-raid-leaderboard/mythic-raid-leaderboard';
-import { petApi } from './pet/pet';
-import { playableClassApi } from './playable-class/playable-class';
-import { playableRaceApi } from './playable-race/playable-race';
-import { playableSpecializationApi } from './playable-specialization/playable-specialization';
-import { powerTypeApi } from './power-type/power-type';
-import { professionApi } from './profession/profession';
-import { pvpSeasonApi } from './pvp-season/pvp-season';
-import { pvpTierApi } from './pvp-tier/pvp-tier';
-import { questApi } from './quest/quest';
-import { realmApi } from './realm/realm';
-import { regionApi } from './region/region';
-import { reputationApi } from './reputations/reputations';
-import { spellApi } from './spell/spell';
-import { talentApi } from './talent/talent';
-import { techTalentApi } from './tech-talent/tech-talent';
-import { titleApi } from './title/title';
-import { toyApi } from './toy/toy';
-import { wowTokenApi } from './wow-token/wow-token';
+import {
+  achievement,
+  achievementCategory,
+  achievementCategoryIndex,
+  achievementIndex,
+  achievementMedia,
+} from './achievements/achievements';
+import { auctions, commodities } from './auction-house/auction-house';
+import {
+  azeriteEssence,
+  azeriteEssenceIndex,
+  azeriteEssenceMedia,
+  azeriteEssenceSearch,
+} from './azerite-essence/azerite-essence';
+import { connectedRealm, connectedRealmIndex, connectedRealmSearch } from './connected-realm/connected-realm';
+import {
+  conduit,
+  conduitIndex,
+  covenant,
+  covenantIndex,
+  covenantMedia,
+  soulbind,
+  soulbindIndex,
+} from './covenant/covenant';
+import {
+  creature,
+  creatureDisplayMedia,
+  creatureFamily,
+  creatureFamilyIndex,
+  creatureFamilyMedia,
+  creatureSearch,
+  creatureType,
+  creatureTypeIndex,
+} from './creature/creature';
+import { guildCrestBorder, guildCrestComponentsIndex, guildCrestEmblem } from './guild-crest/guild-crest';
+import { heirloom, heirloomIndex } from './heirloom/heirloom';
+import {
+  item,
+  itemClass,
+  itemClassIndex,
+  itemMedia,
+  itemSearch,
+  itemSet,
+  itemSetIndex,
+  itemSubClass,
+} from './item/item';
+import {
+  journalEncounter,
+  journalEncounterIndex,
+  journalEncounterSearch,
+  journalExpansion,
+  journalExpansionIndex,
+  journalInstance,
+  journalInstanceIndex,
+  journalInstanceMedia,
+} from './journal/journal';
+import { mediaSearch } from './media-search/media-search';
+import {
+  modifiedCraftingCategory,
+  modifiedCraftingCategoryIndex,
+  modifiedCraftingIndex,
+  modifiedCraftingReagentSlotType,
+  modifiedCraftingReagentSlotTypeIndex,
+} from './modified-crafting/modified-crafting';
+import { mount, mountIndex, mountSearch } from './mount/mount';
+import {
+  mythicKeystoneAffix,
+  mythicKeystoneAffixIndex,
+  mythicKeystoneAffixMedia,
+} from './mythic-keystone-affix/mythic-keystone-affix';
+import {
+  mythicKeystoneDungeon,
+  mythicKeystoneDungeonIndex,
+  mythicKeystoneIndex,
+  mythicKeystonePeriod,
+  mythicKeystonePeriodIndex,
+  mythicKeystoneSeason,
+  mythicKeystoneSeasonIndex,
+} from './mythic-keystone-dungeon/mythic-keystone-dungeon';
+import {
+  mythicKeystoneLeaderboard,
+  mythicKeystoneLeaderboardIndex,
+} from './mythic-keystone-leaderboard/mythic-keystone-leaderboard';
+import { mythicRaidLeaderboard } from './mythic-raid-leaderboard/mythic-raid-leaderboard';
+import { pet, petAbility, petAbilityIndex, petAbilityMedia, petIndex, petMedia } from './pet/pet';
+import { playableClass, playableClassIndex, playableClassMedia, pvpTalentSlots } from './playable-class/playable-class';
+import { playableRace, playableRaceIndex } from './playable-race/playable-race';
+import {
+  playableSpecialization,
+  playableSpecializationIndex,
+  playableSpecializationMedia,
+} from './playable-specialization/playable-specialization';
+import { powerType, powerTypeIndex } from './power-type/power-type';
+import {
+  profession,
+  professionIndex,
+  professionMedia,
+  professionSkillTier,
+  recipe,
+  recipeMedia,
+} from './profession/profession';
+import {
+  pvpLeaderboard,
+  pvpLeaderboardIndex,
+  pvpRewardsIndex,
+  pvpSeason,
+  pvpSeasonIndex,
+} from './pvp-season/pvp-season';
+import { pvpTier, pvpTierIndex, pvpTierMedia } from './pvp-tier/pvp-tier';
+import {
+  quest,
+  questArea,
+  questAreaIndex,
+  questCategory,
+  questCategoryIndex,
+  questIndex,
+  questType,
+  questTypeIndex,
+} from './quest/quest';
+import { realm, realmIndex, realmSearch } from './realm/realm';
+import { region, regionIndex } from './region/region';
+import {
+  reputationFaction,
+  reputationFactionIndex,
+  reputationTiers,
+  reputationTiersIndex,
+} from './reputations/reputations';
+import { spell, spellMedia, spellSearch } from './spell/spell';
+import { pvpTalent, pvpTalentIndex, talentIndex, talentTree, talentTreeIndex, talentTreeNodes } from './talent/talent';
+import {
+  techTalent,
+  techTalentIndex,
+  techTalentMedia,
+  techTalentTree,
+  techTalentTreeIndex,
+} from './tech-talent/tech-talent';
+import { title, titleIndex } from './title/title';
+import { toy, toyIndex } from './toy/toy';
+import { wowToken } from './wow-token/wow-token';
 
 /**
  * The Blizzard API for World of Warcraft.
  * @see https://develop.battle.net/documentation/world-of-warcraft
  */
+
 export const wow = {
-  ...achievementApi,
-  ...auctionHouseApi,
-  ...azeriteEssenceApi,
-  ...connectedRealmApi,
-  ...covenantApi,
-  ...creatureApi,
-  ...guildCrestApi,
-  ...heirloomApi,
-  ...itemApi,
-  ...journalApi,
-  ...mediaSearchApi,
-  ...modifiedCraftingApi,
-  ...mountApi,
-  ...mythicKeystoneAffixApi,
-  ...mythicKeystoneDungeonApi,
-  ...mythicKeystoneLeaderboardApi,
-  ...mythicRaidLeaderboardApi,
-  ...petApi,
-  ...playableClassApi,
-  ...playableRaceApi,
-  ...playableSpecializationApi,
-  ...powerTypeApi,
-  ...professionApi,
-  ...pvpSeasonApi,
-  ...pvpTierApi,
-  ...questApi,
-  ...realmApi,
-  ...regionApi,
-  ...reputationApi,
-  ...spellApi,
-  ...talentApi,
-  ...techTalentApi,
-  ...titleApi,
-  ...toyApi,
-  ...wowTokenApi,
+  //Achievements
+  achievement,
+  achievementCategory,
+  achievementCategoryIndex,
+  achievementIndex,
+  achievementMedia,
+  //Auction House
+  auctions,
+  commodities,
+  //Azerite Essence
+  azeriteEssence,
+  azeriteEssenceIndex,
+  azeriteEssenceMedia,
+  azeriteEssenceSearch,
+  //Connected Realm
+  connectedRealm,
+  connectedRealmIndex,
+  connectedRealmSearch,
+  //Covenant
+  conduit,
+  conduitIndex,
+  covenant,
+  covenantIndex,
+  covenantMedia,
+  soulbind,
+  soulbindIndex,
+  //Creature
+  creature,
+  creatureDisplayMedia,
+  creatureFamily,
+  creatureFamilyIndex,
+  creatureFamilyMedia,
+  creatureType,
+  creatureTypeIndex,
+  creatureSearch,
+  //Guild Crest
+  guildCrestComponentsIndex,
+  guildCrestBorder,
+  guildCrestEmblem,
+  //Heirloom
+  heirloom,
+  heirloomIndex,
+  //Item
+  item,
+  itemClass,
+  itemSubClass,
+  itemClassIndex,
+  itemMedia,
+  itemSet,
+  itemSetIndex,
+  itemSearch,
+  //Journal
+  journalEncounter,
+  journalEncounterIndex,
+  journalEncounterSearch,
+  journalExpansion,
+  journalExpansionIndex,
+  journalInstance,
+  journalInstanceIndex,
+  journalInstanceMedia,
+  //Media Search
+  mediaSearch,
+  //Modified Crafting
+  modifiedCraftingCategory,
+  modifiedCraftingCategoryIndex,
+  modifiedCraftingIndex,
+  modifiedCraftingReagentSlotType,
+  modifiedCraftingReagentSlotTypeIndex,
+  //Mount
+  mount,
+  mountIndex,
+  mountSearch,
+  //Mythic Keystone Affix
+  mythicKeystoneAffix,
+  mythicKeystoneAffixIndex,
+  mythicKeystoneAffixMedia,
+  //Mythic Keystone Dungeon
+  mythicKeystoneDungeon,
+  mythicKeystoneDungeonIndex,
+  mythicKeystoneIndex,
+  mythicKeystonePeriod,
+  mythicKeystonePeriodIndex,
+  mythicKeystoneSeason,
+  mythicKeystoneSeasonIndex,
+  //Mythic Keystone Leaderboard
+  mythicKeystoneLeaderboard,
+  mythicKeystoneLeaderboardIndex,
+  //Mythic Raid Leaderboard
+  mythicRaidLeaderboard,
+  //Pet
+  pet,
+  petIndex,
+  petMedia,
+  petAbility,
+  petAbilityIndex,
+  petAbilityMedia,
+  //Playable Class
+  playableClass,
+  playableClassIndex,
+  playableClassMedia,
+  pvpTalentSlots,
+  //Playable
+  playableRace,
+  playableRaceIndex,
+  //Playable Specialization
+  playableSpecialization,
+  playableSpecializationIndex,
+  playableSpecializationMedia,
+  //Power Type
+  powerType,
+  powerTypeIndex,
+  //Profession
+  profession,
+  professionIndex,
+  professionMedia,
+  professionSkillTier,
+  recipe,
+  recipeMedia,
+  //Pvp Season
+  pvpLeaderboard,
+  pvpLeaderboardIndex,
+  pvpRewardsIndex,
+  pvpSeason,
+  pvpSeasonIndex,
+  //Pvp Tier
+  pvpTier,
+  pvpTierIndex,
+  pvpTierMedia,
+  //Quest
+  quest,
+  questIndex,
+  questArea,
+  questAreaIndex,
+  questCategory,
+  questCategoryIndex,
+  questType,
+  questTypeIndex,
+  //Realm
+  realm,
+  realmIndex,
+  realmSearch,
+  //Region
+  region,
+  regionIndex,
+  //Reputations
+  reputationFaction,
+  reputationFactionIndex,
+  reputationTiers,
+  reputationTiersIndex,
+  //Spell
+  spell,
+  spellMedia,
+  spellSearch,
+  //Talent
+  pvpTalent,
+  pvpTalentIndex,
+  talentIndex,
+  talentTree,
+  talentTreeIndex,
+  talentTreeNodes,
+  //Tech Talent
+  techTalent,
+  techTalentIndex,
+  techTalentMedia,
+  techTalentTree,
+  techTalentTreeIndex,
+  //Title
+  title,
+  titleIndex,
+  //Toy
+  toy,
+  toyIndex,
+  //WoW Token
+  wowToken,
 };
 
 //Achievements
-export * from './achievements/types.js';
+export * from './achievements/achievements';
+export * from './achievements/types';
 //Auction House
-export * from './auction-house/types.js';
+export * from './auction-house/auction-house';
+export * from './auction-house/types';
 //Azerite Essence
-export * from './azerite-essence/types.js';
+export * from './azerite-essence/azerite-essence';
+export * from './azerite-essence/types';
 //Connected Realm
-export * from './connected-realm/types.js';
+export * from './connected-realm/connected-realm';
+export * from './connected-realm/types';
 //Covenant
-export * from './covenant/types.js';
+export * from './covenant/covenant';
+export * from './covenant/types';
 //Creature
-export * from './creature/types.js';
+export * from './creature/creature';
+export * from './creature/types';
 //Guild Crest
-export * from './guild-crest/types.js';
+export * from './guild-crest/guild-crest';
+export * from './guild-crest/types';
 //Heirloom
-export * from './heirloom/types.js';
+export * from './heirloom/heirloom';
+export * from './heirloom/types';
 //Item
-export * from './item/types.js';
+export * from './item/item';
+export * from './item/types';
 //Journal
-export * from './journal/types.js';
+export * from './journal/journal';
+export * from './journal/types';
 //Media Search
-export * from './media-search/types.js';
+export * from './media-search/media-search';
+export * from './media-search/types';
 //Modified Crafting
-export * from './modified-crafting/types.js';
+export * from './modified-crafting/modified-crafting';
+export * from './modified-crafting/types';
 //Mount
-export * from './mount/types.js';
+export * from './mount/mount';
+export * from './mount/types';
 //Mythic Keystone Affix
-export * from './mythic-keystone-affix/types.js';
+export * from './mythic-keystone-affix/mythic-keystone-affix';
+export * from './mythic-keystone-affix/types';
 //Mythic Keystone Dungeon
-export * from './mythic-keystone-dungeon/types.js';
+export * from './mythic-keystone-dungeon/mythic-keystone-dungeon';
+export * from './mythic-keystone-dungeon/types';
 //Mythic Keystone Leaderboard
-export * from './mythic-keystone-leaderboard/types.js';
+export * from './mythic-keystone-leaderboard/mythic-keystone-leaderboard';
+export * from './mythic-keystone-leaderboard/types';
 //Mythic Raid Leaderboard
-export * from './mythic-raid-leaderboard/types.js';
+export * from './mythic-raid-leaderboard/mythic-raid-leaderboard';
+export * from './mythic-raid-leaderboard/types';
 //Pet
-export * from './pet/types.js';
+export * from './pet/pet';
+export * from './pet/types';
 //Playable Class
-export * from './playable-class/types.js';
+export * from './playable-class/playable-class';
+export * from './playable-class/types';
 //Playable Race
-export * from './playable-race/types.js';
+export * from './playable-race/playable-race';
+export * from './playable-race/types';
 //Playable Specialization
-export * from './playable-specialization/types.js';
+export * from './playable-specialization/playable-specialization';
+export * from './playable-specialization/types';
 //Power Type
-export * from './power-type/types.js';
+export * from './power-type/power-type';
+export * from './power-type/types';
 //Profession
-export * from './profession/types.js';
+export * from './profession/profession';
+export * from './profession/types';
 //Pvp Season
-export * from './pvp-season/types.js';
+export * from './pvp-season/pvp-season';
+export * from './pvp-season/types';
 //Pvp Tier
-export * from './pvp-tier/types.js';
+export * from './pvp-tier/pvp-tier';
+export * from './pvp-tier/types';
 //Quest
-export * from './quest/types.js';
+export * from './quest/quest';
+export * from './quest/types';
 //Realm
-export * from './realm/types.js';
+export * from './realm/realm';
+export * from './realm/types';
 //Region
-export * from './region/types.js';
+export * from './region/region';
+export * from './region/types';
 //Reputations
-export * from './reputations/types.js';
+export * from './reputations/reputations';
+export * from './reputations/types';
 //Spell
-export * from './spell/types.js';
+export * from './spell/spell';
+export * from './spell/types';
 //Talent
-export * from './talent/types.js';
+export * from './talent/talent';
+export * from './talent/types';
 //Tech Talent
-export * from './tech-talent/types.js';
+export * from './tech-talent/tech-talent';
+export * from './tech-talent/types';
 //Title
-export * from './title/types.js';
+export * from './title/title';
+export * from './title/types';
 //Toy
-export * from './toy/types.js';
+export * from './toy/toy';
+export * from './toy/types';
 //WoW Token
-export * from './wow-token/types.js';
+export * from './wow-token/wow-token';
+export * from './wow-token/types';

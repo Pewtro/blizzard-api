@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { base, mediaBase } from '../base';
-import { petApi } from './pet';
+import * as petApi from './pet';
 
 describe.concurrent('petApi', () => {
   it('pet should return a resource object with the correct path and namespace', ({ expect }) => {

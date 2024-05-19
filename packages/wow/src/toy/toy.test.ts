@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { base } from '../base';
-import { toyApi } from './toy';
+import * as toyApi from './toy';
 
 describe.concurrent('toyApi', () => {
   it('should return the correct path for toy', ({ expect }) => {

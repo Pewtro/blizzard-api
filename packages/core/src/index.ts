@@ -1,11 +1,11 @@
 //Blizzard API
-export * from './blizzard-api.js';
+export * from './blizzard-api';
 
 //Namespace
-export * from './namespace.js';
+export * from './namespace';
 
 //Resource
-export * from './resource.js';
+export * from './resource';
 
 //Search
-export * from './search.js';
+export * from './search';

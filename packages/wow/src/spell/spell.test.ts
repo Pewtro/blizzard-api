@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { base, mediaBase, searchBase } from '../base';
-import { spellApi } from './spell';
+import * as spellApi from './spell';
 
 describe.concurrent('spellApi', () => {
   it('spell should return a resource object with the correct path and namespace', ({ expect }) => {

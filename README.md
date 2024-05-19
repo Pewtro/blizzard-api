@@ -1,10 +1,6 @@
 # @blizzard-api/\*
 
-The @blizzard-api collection aims to help you connect to the Blizzard Battle.net API as easily and painlessly as possible.
-
-## NOTE: STILL EARLY STAGES
-
-I am still in very early stages of development and the API can and will break a few times during development. Once a package is v1 or above, they will follow semantic versioning, but until then they should be considered experimental at best.
+The @blizzard-api collection aims to help you connect to the Blizzard Battle.net API as easily and painlessly as possible. The packages are split up by game, and will contain all the endpoints, parameters, and responses you need to get started.
 
 ## Installation
 
@@ -30,9 +26,12 @@ The core package gives you access to helper functions such as `getBlizzardApi` w
 The game package will let you access paths, namespaces, parameters and more for each endpoint. This can imported like so:
 
 ```ts
-import { wow } from "@blizzard-api/wow"
+import { achievement, wow } from "@blizzard-api/wow"
 
 const achievement = wow.achievement(123);
+        ^ { path: string, namespace: string }
+//OR LIKE SO
+const achievement = achievement(123);
         ^ { path: string, namespace: string }
 ```
 
@@ -67,10 +66,7 @@ Please refer to the [battle.net documentation](https://develop.battle.net/docume
 
 This list is generally prioritized but no promises that things will be addressed in this order.
 
-- Release 1.0.0 of `@blizzard-api/client`, `@blizzard-api/core`, and `@blizzard-api/wow`.
 - Add a package for the following games/flavours
-  - World of Warcraft Classic
   - Diablo III
   - Hearthstone
-  - Overwatch League
   - StarCraft II

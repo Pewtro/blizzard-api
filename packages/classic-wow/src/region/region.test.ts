@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { base } from '../../../wow/src/base';
-import { classicRegionApi } from './region';
+import * as classicRegionApi from './region';
 
 describe.concurrent('classicRegionApi', () => {
   it('should return the region resource', ({ expect }) => {

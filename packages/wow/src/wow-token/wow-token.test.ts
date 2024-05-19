@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { base } from '../base';
-import { wowTokenApi } from './wow-token';
+import * as wowTokenApi from './wow-token';
 
 describe.concurrent('wowTokenApi', () => {
   it('should return the wow token resource', ({ expect }) => {

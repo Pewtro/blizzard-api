@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { base, mediaBase } from '../base';
-import { guildCrestApi } from './guild-crest';
+import * as guildCrestApi from './guild-crest';
 
 describe.concurrent('guildCrestApi', () => {
   it('should return the guild crest components index resource', ({ expect }) => {

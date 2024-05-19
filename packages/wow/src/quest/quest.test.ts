@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { base } from '../base';
-import { questApi } from './quest';
+import * as questApi from './quest';
 
 describe.concurrent('questApi', () => {
   it('quest should return a resource object with the correct path and namespace', ({ expect }) => {

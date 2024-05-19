@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { base, mediaBase, searchBase } from '../../../wow/src/base';
-import { classicItemApi } from './item';
+import * as classicItemApi from './item';
 import type { ItemSearchParameters } from './types';
 
 const namespace = 'static-classic';

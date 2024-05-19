@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { base, mediaBase } from '../../../wow/src/base';
-import { classicPlayableClassApi } from './playable-class';
+import * as classicPlayableClassApi from './playable-class';
 
 const namespace = 'static-classic';
 

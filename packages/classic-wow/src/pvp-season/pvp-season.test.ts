@@ -1,7 +1,7 @@
 import type { BlizzardNamespaces } from '@blizzard-api/core';
 import { describe, it } from 'vitest';
 import { base } from '../../../wow/src/base';
-import { classicPvpSeasonApi } from './pvp-season';
+import * as classicPvpSeasonApi from './pvp-season';
 
 const namespace: BlizzardNamespaces = 'dynamic-classic';
 

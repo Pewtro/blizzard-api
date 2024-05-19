@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { base } from '../base';
-import { talentApi } from './talent';
+import * as talentApi from './talent';
 
 describe.concurrent('talentApi', () => {
   it('should return the correct path for pvpTalent', ({ expect }) => {

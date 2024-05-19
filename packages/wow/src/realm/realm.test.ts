@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { base, searchBase } from '../base';
-import { realmApi } from './realm';
+import * as realmApi from './realm';
 
 describe.concurrent('realmApi', () => {
   it('realm should return a resource object with the correct path and namespace', ({ expect }) => {

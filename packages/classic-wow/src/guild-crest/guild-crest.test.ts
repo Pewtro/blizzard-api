@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { base, mediaBase } from '../../../wow/src/base';
-import { classicGuildCrestApi } from './guild-crest';
+import * as classicGuildCrestApi from './guild-crest';
 
 const namespace = 'static-classic';
 describe.concurrent('classicGuildCrestApi', () => {

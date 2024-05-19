@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { base } from '../base';
-import { modifiedCraftingApi } from './modified-crafting';
+import * as modifiedCraftingApi from './modified-crafting';
 
 describe.concurrent('modifiedCraftingApi', () => {
   it('should return the correct path for modifiedCraftingCategory', ({ expect }) => {

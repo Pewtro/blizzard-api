@@ -11,55 +11,53 @@ import type {
 const achievementBase = `${base}/achievement`;
 const achievementCategoryBase = `${base}/achievement-category`;
 
-export const achievementApi = {
-  /**
-   * Get an achievement category by ID.
-   * @param achievementCategoryId The achievement category ID.
-   * @returns The achievement category. See {@link AchievementCategoryResponse}.
-   */
-  achievementCategory: (achievementCategoryId: number): Resource<AchievementCategoryResponse> => {
-    return {
-      path: `${achievementCategoryBase}/${achievementCategoryId}`,
-      namespace: 'static',
-    };
-  },
-  /**
-   * Get an achievement category index.
-   * @returns The achievement category index. See {@link AchievementCategoryIndexResponse}.
-   */
-  achievementCategoryIndex: (): Resource<AchievementCategoryIndexResponse> => {
-    return {
-      path: `${achievementCategoryBase}/index`,
-      namespace: 'static',
-    };
-  },
-  /**
-   * Get an achievement by ID.
-   * @param achievementId The achievement ID.
-   * @returns The achievement. See {@link AchievementResponse}.
-   */
-  achievement: (achievementId: number): Resource<AchievementResponse> => {
-    return {
-      path: `${achievementBase}/${achievementId}`,
-      namespace: 'static',
-    };
-  },
-  /**
-   * Get an achievement index.
-   * @returns The achievement index. See {@link AchievementIndexResponse}.
-   */
-  achievementIndex: (): Resource<AchievementIndexResponse> => {
-    return {
-      path: `${achievementBase}/index`,
-      namespace: 'static',
-    };
-  },
-  /**
-   * Get achievement media by ID.
-   * @param achievementId The achievement ID.
-   * @returns The achievement media. See {@link AchievementMediaResponse}.
-   */
-  achievementMedia: (achievementId: number): Resource<AchievementMediaResponse> => {
-    return { path: `${mediaBase}/achievement/${achievementId}`, namespace: 'static' };
-  },
-};
+/**
+ * Get an achievement category by ID.
+ * @param achievementCategoryId The achievement category ID.
+ * @returns The achievement category. See {@link AchievementCategoryResponse}.
+ */
+export function achievementCategory(achievementCategoryId: number): Resource<AchievementCategoryResponse> {
+  return {
+    path: `${achievementCategoryBase}/${achievementCategoryId}`,
+    namespace: 'static',
+  };
+}
+/**
+ * Get an achievement category index.
+ * @returns The achievement category index. See {@link AchievementCategoryIndexResponse}.
+ */
+export function achievementCategoryIndex(): Resource<AchievementCategoryIndexResponse> {
+  return {
+    path: `${achievementCategoryBase}/index`,
+    namespace: 'static',
+  };
+}
+/**
+ * Get an achievement by ID.
+ * @param achievementId The achievement ID.
+ * @returns The achievement. See {@link AchievementResponse}.
+ */
+export function achievement(achievementId: number): Resource<AchievementResponse> {
+  return {
+    path: `${achievementBase}/${achievementId}`,
+    namespace: 'static',
+  };
+}
+/**
+ * Get an achievement index.
+ * @returns The achievement index. See {@link AchievementIndexResponse}.
+ */
+export function achievementIndex(): Resource<AchievementIndexResponse> {
+  return {
+    path: `${achievementBase}/index`,
+    namespace: 'static',
+  };
+}
+/**
+ * Get achievement media by ID.
+ * @param achievementId The achievement ID.
+ * @returns The achievement media. See {@link AchievementMediaResponse}.
+ */
+export function achievementMedia(achievementId: number): Resource<AchievementMediaResponse> {
+  return { path: `${mediaBase}/achievement/${achievementId}`, namespace: 'static' };
+}

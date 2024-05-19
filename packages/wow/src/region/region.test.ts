@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { base } from '../base';
-import { regionApi } from './region';
+import * as regionApi from './region';
 
 describe.concurrent('regionApi', () => {
   it('region should return a resource object with the correct path and namespace', ({ expect }) => {

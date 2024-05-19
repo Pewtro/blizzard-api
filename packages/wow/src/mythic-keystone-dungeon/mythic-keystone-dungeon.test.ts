@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { base } from '../base';
-import { mythicKeystoneDungeonApi } from './mythic-keystone-dungeon';
+import * as mythicKeystoneDungeonApi from './mythic-keystone-dungeon';
 
 describe.concurrent('mythicKeystoneDungeonApi', () => {
   it('mythicKeystoneDungeon should return a resource object with the correct path and namespace', ({ expect }) => {

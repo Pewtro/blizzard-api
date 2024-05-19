@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { base, mediaBase } from '../base';
-import { covenantApi } from './covenant';
+import * as covenantApi from './covenant';
 
 describe.concurrent('covenantApi', () => {
   it('should return the correct path and namespace for conduit', ({ expect }) => {

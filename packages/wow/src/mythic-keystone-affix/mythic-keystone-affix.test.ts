@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { base, mediaBase } from '../base';
-import { mythicKeystoneAffixApi } from './mythic-keystone-affix';
+import * as mythicKeystoneAffixApi from './mythic-keystone-affix';
 
 describe.concurrent('mythicKeystoneAffixApi', () => {
   it('mythicKeystoneAffix should return a resource object with the correct path and namespace', ({ expect }) => {

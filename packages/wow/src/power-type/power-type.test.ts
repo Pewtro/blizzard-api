@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { base } from '../base';
-import { powerTypeApi } from './power-type';
+import * as powerTypeApi from './power-type';
 
 describe.concurrent('powerTypeApi', () => {
   it('powerType should return a resource object with the correct path and namespace', ({ expect }) => {

@@ -15,14 +15,14 @@ You can get paths, namespaces, parameters and more for a specific endpoint by ca
 ```ts
 import { classicWow } from "@blizzard-api/classic-wow"
 
-const achievement = classicWow.achievement(123);
+const powerType = classicWow.powerType("static-classic", 123);
         ^ { path: string, namespace: string }
 ```
 
 If you need the response types, they are also exported with "Response" appended, so to get the response type from the above code, you can import it like this:
 
 ```ts
-import type { AchievementResponse } from '@blizzard-api/classic-wow';
+import type { PowerTypeResponse } from '@blizzard-api/classic-wow';
 ```
 
 If you simply want to use the existing object, you can use the helper from `@blizzard-api/core` like so:
@@ -30,9 +30,19 @@ If you simply want to use the existing object, you can use the helper from `@bli
 ```ts
 import { classicWow } from "@blizzard-api/classic-wow"
 
-const achievement = classicWow.achievement(123);
+const powerType = classicWow.powerType("static-classic", 123);
         ^ { path: string, namespace: string }
-type AchievementResponse = ExtractResourceType<typeof achievement>;
+type PowerTypeResponse = ExtractResourceType<typeof powerType>;
+```
+
+If you don't want to use the exported classicWow object, you can also access the functions directly:
+
+```ts
+import { powerType } from "@blizzard-api/wow"
+
+const powerType = powerType("static-classic", 123);
+        ^ { path: string, namespace: string }
+type PowerTypeResponse = ExtractResourceType<typeof powerType>;
 ```
 
 ## Differences to @blizzard-api/wow

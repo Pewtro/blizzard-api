@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { base } from '../base';
-import { pvpSeasonApi } from './pvp-season';
+import * as pvpSeasonApi from './pvp-season';
 
 describe.concurrent('pvpSeasonApi', () => {
   const pvpSeasonId = 123;

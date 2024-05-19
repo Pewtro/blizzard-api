@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { base, mediaBase, searchBase } from '../base';
-import { journalApi } from './journal';
+import * as journalApi from './journal';
 
 describe.concurrent('journalApi', () => {
   it('should return the journal encounter resource for a given journalEncounterId', ({ expect }) => {

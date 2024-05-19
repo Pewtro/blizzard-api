@@ -1,5 +1,5 @@
 import { describe, it } from 'vitest';
-import { auctionHouseApi } from './auction-house';
+import * as auctionHouseApi from './auction-house';
 
 describe.concurrent('auctionHouse', () => {
   it('should return the correct resource for auctions', ({ expect }) => {

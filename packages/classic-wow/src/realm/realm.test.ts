@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { base, searchBase } from '../../../wow/src/base';
-import { classicRealmApi } from './realm';
+import * as classicRealmApi from './realm';
 import type { RealmSearchParameters } from './types';
 
 const namespace = 'dynamic-classic';

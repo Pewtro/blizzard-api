@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { base, mediaBase, searchBase } from '../../../wow/src/base';
-import { classicCreatureApi } from './creature';
+import * as classicCreatureApi from './creature';
 
 describe.concurrent('classicCreatureApi', () => {
   const namespace = 'static-classic';

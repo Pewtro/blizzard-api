@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { searchBase } from '../../../wow/src/base';
-import { classicMediaSearchApi } from './media-search';
+import * as classicMediaSearchApi from './media-search';
 
 const namespace = 'static-classic';
 

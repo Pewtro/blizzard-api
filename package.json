@@ -25,9 +25,7 @@
     "diablo",
     "d3",
     "hs",
-    "hearthstone",
-    "ow",
-    "overwatch"
+    "hearthstone"
   ],
   "devDependencies": {
     "@changesets/cli": "2.27.2",

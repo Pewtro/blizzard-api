@@ -35,6 +35,16 @@ const achievement = wow.achievement(123);
 type AchievementResponse = ExtractResourceType<typeof achievement>;
 ```
 
+If you don't want to use the exported wow object, you can also access the functions directly:
+
+```ts
+import { achievement } from "@blizzard-api/wow"
+
+const achievement = achievement(123);
+        ^ { path: string, namespace: string }
+type AchievementResponse = ExtractResourceType<typeof achievement>;
+```
+
 ## Differences to @blizzard-api/classic-wow
 
 This package is specifically for World of Warcraft (retail or modern), and as such, the endpoints and responses are different from the classic variants. If you are looking for the classic version of World of Warcraft, you should use `@blizzard-api/classic-wow` instead.

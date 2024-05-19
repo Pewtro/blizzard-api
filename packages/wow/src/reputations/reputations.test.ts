@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { base } from '../base';
-import { reputationApi } from './reputations';
+import * as reputationApi from './reputations';
 
 describe.concurrent('reputationApi', () => {
   it('reputationFaction should return a resource object with the correct path and namespace', ({ expect }) => {

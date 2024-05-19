@@ -1,7 +1,7 @@
 import type { BlizzardNamespaces } from '@blizzard-api/core';
 import { describe, it } from 'vitest';
 import { base } from '../../../wow/src/base';
-import { classicPowerTypeApi } from './power-type';
+import * as classicPowerTypeApi from './power-type';
 
 const namespace: BlizzardNamespaces = 'static-classic1x';
 

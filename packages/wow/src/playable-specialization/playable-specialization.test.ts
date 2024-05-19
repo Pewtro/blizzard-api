@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { base, mediaBase } from '../base';
-import { playableSpecializationApi } from './playable-specialization';
+import * as playableSpecializationApi from './playable-specialization';
 
 describe.concurrent('playableSpecializationApi', () => {
   it('playableSpecialization should return a resource object with the correct path and namespace', ({ expect }) => {

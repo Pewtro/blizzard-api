@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { base, mediaBase, searchBase } from '../base';
-import { itemApi } from './item';
+import * as itemApi from './item';
 
 describe.concurrent('itemApi', () => {
   it('should return the item resource for a given itemId', ({ expect }) => {

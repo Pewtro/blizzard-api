@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { base } from '../base';
-import { mythicRaidLeaderboardApi } from './mythic-raid-leaderboard';
+import * as mythicRaidLeaderboardApi from './mythic-raid-leaderboard';
 
 describe.concurrent('mythicRaidLeaderboardApi', () => {
   it('mythicRaidLeaderboard should return a resource object with the correct path and namespace', ({ expect }) => {

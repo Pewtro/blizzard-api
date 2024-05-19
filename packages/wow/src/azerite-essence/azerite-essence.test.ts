@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { base, mediaBase, searchBase } from '../base';
-import { azeriteEssenceApi } from './azerite-essence';
+import * as azeriteEssenceApi from './azerite-essence';
 
 describe.concurrent('azeriteEssenceApi', () => {
   it('should return the correct path and namespace for azeriteEssence', ({ expect }) => {

@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
-import { base, mediaBase } from '../base.js';
-import { achievementApi } from './achievements.js';
+import { base, mediaBase } from '../base';
+import * as achievementApi from './achievements';
 
 describe.concurrent('Achievements', () => {
   it('should return correct path and namespace for achievementCategory', ({ expect }) => {

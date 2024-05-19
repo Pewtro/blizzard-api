@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { base, mediaBase, searchBase } from '../base';
-import { creatureApi } from './creature';
+import * as creatureApi from './creature';
 
 describe.concurrent('creatureApi', () => {
   it('should return the correct path and namespace for creature', ({ expect }) => {

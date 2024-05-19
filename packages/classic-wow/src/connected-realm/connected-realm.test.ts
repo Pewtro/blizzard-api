@@ -1,6 +1,6 @@
 import type { BlizzardNamespaces } from '@blizzard-api/core';
 import { describe, it } from 'vitest';
-import { classicConnectedRealmApi } from '../connected-realm/connected-realm';
+import * as classicConnectedRealmApi from '../connected-realm/connected-realm';
 
 const namespace: BlizzardNamespaces = 'dynamic-classic';
 const namespace1x: BlizzardNamespaces = 'dynamic-classic1x';

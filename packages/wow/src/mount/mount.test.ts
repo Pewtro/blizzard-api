@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { base, searchBase } from '../base';
-import { mountApi } from './mount';
+import * as mountApi from './mount';
 
 describe.concurrent('mountApi', () => {
   it('mount should return a resource object with the correct path and namespace', ({ expect }) => {

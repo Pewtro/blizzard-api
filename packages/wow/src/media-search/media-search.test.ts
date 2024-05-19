@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { searchBase } from '../base';
-import { mediaSearchApi } from './media-search';
+import * as mediaSearchApi from './media-search';
 
 describe.concurrent('mediaSearchApi', () => {
   it('should return the media search resource', ({ expect }) => {

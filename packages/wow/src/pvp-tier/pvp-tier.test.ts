@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { base, mediaBase } from '../base';
-import { pvpTierApi } from './pvp-tier';
+import * as pvpTierApi from './pvp-tier';
 
 describe.concurrent('pvpTierApi', () => {
   it('pvpTier should return a resource object with the correct path and namespace', ({ expect }) => {

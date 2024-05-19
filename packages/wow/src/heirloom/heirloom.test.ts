@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { base } from '../base';
-import { heirloomApi } from './heirloom';
+import * as heirloomApi from './heirloom';
 
 describe.concurrent('heirloomApi', () => {
   it('should return the heirloom resource for a given heirloomId', ({ expect }) => {

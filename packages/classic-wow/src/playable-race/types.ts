@@ -1,1 +1,1 @@
-export type * from '../../../wow/src/playable-race/types.js';
+export type * from '../../../wow/src/playable-race/types';

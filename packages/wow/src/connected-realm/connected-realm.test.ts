@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { searchBase } from '../base';
-import { connectedRealmApi } from './connected-realm';
+import * as connectedRealmApi from './connected-realm';
 
 describe.concurrent('connectedRealm', () => {
   it('should return the correct resource for connected realm index', ({ expect }) => {
