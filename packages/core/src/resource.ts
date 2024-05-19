@@ -3,6 +3,7 @@ import type { BlizzardNamespaces } from './namespace';
 /**
  * Represents a resource that can be requested from the Blizzard API
  * @param _Response The response type of the resource
+ * @param SearchOptions The search options that can be passed to the resource
  * @param ProtectedResource Whether the resource requires a token to be requested
  */
 export type Resource<
