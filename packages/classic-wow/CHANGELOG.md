@@ -1,5 +1,11 @@
 # @blizzard-api/classic-wow
 
+## 1.1.0
+
+### Minor Changes
+
+- e4c8e16: Additionally export functionality from the root rather than only from the named wow/classicWow export
+
 ## 1.0.0
 
 ### Major Changes
