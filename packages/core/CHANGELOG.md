@@ -1,5 +1,11 @@
 # @blizzard-api/core
 
+## 1.1.0
+
+### Minor Changes
+
+- cfdc20b: Add support for chinese variant of the APIs
+
 ## 1.0.0
 
 ### Major Changes

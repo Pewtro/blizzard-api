@@ -1,5 +1,12 @@
 # @blizzard-api/client
 
+## 1.0.1
+
+### Patch Changes
+
+- Updated dependencies [cfdc20b]
+  - @blizzard-api/core@1.1.0
+
 ## 1.0.0
 
 ### Major Changes
