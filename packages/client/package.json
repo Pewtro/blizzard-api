@@ -39,9 +39,7 @@
     "diablo",
     "d3",
     "hs",
-    "hearthstone",
-    "ow",
-    "overwatch"
+    "hearthstone"
   ],
   "dependencies": {
     "axios": "1.6.8"

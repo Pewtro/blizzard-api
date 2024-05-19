@@ -33,7 +33,7 @@
     "@changesets/cli": "2.27.2",
     "@putstack/eslint-config-typescript": "2.6.0",
     "@putstack/prettier-config": "1.4.1",
-    "@types/node": "20.12.10",
+    "@types/node": "20.12.12",
     "@vitest/coverage-v8": "1.6.0",
     "@vitest/ui": "1.6.0",
     "eslint": "8.57.0",
