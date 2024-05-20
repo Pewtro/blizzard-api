@@ -12,12 +12,12 @@ npm i @blizzard-api/core @blizzard-api/wow
 
 Currently available packages are:
 
+- `@blizzard-api/d3`
 - `@blizzard-api/wow`
 - `@blizzard-api/classic-wow`
 
 Planned packages are:
 
-- `@blizzard-api/d3`
 - `@blizzard-api/hs`
 - `@blizzard-api/sc2`
 

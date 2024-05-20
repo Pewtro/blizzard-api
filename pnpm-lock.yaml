@@ -75,11 +75,20 @@ importers:
       '@blizzard-api/core':
         specifier: workspace:*
         version: link:../core
+      '@blizzard-api/d3':
+        specifier: workspace:*
+        version: link:../d3
       '@blizzard-api/wow':
         specifier: workspace:*
         version: link:../wow
 
   packages/core: {}
+
+  packages/d3:
+    devDependencies:
+      '@blizzard-api/core':
+        specifier: workspace:*
+        version: link:../core
 
   packages/wow:
     devDependencies:

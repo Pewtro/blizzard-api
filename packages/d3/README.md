@@ -1,53 +1,49 @@
-# @blizzard-api/wow
+# @blizzard-api/d3
 
-This package aims to make it easier for you to integrate with the Blizzard Battle.net API, specifically for World of Warcraft.
+This package aims to make it easier for you to integrate with the Blizzard Battle.net API, specifically for Diablo 3.
 
 ## Installation
 
 ```sh
-npm i @blizzard-api/core @blizzard-api/wow
+npm i @blizzard-api/core @blizzard-api/d3
 ```
 
 ## Usage
 
-You can get paths, namespaces, parameters and more for a specific endpoint by calling it from the `wow` export.
+You can get paths, namespaces, parameters and more for a specific endpoint by calling it from the `d3` export.
 
 ```ts
-import { wow } from "@blizzard-api/wow"
+import { d3 } from "@blizzard-api/d3"
 
-const achievement = wow.achievement(123);
+const achievement = d3.achievement(123);
         ^ { path: string, namespace: string }
 ```
 
 If you need the response types, they are also exported with "Response" appended, so to get the response type from the above code, you can import it like this:
 
 ```ts
-import type { AchievementResponse } from '@blizzard-api/wow';
+import type { AchievementResponse } from '@blizzard-api/d3';
 ```
 
 If you simply want to use the existing object, you can use the helper from `@blizzard-api/core` like so:
 
 ```ts
-import { wow } from "@blizzard-api/wow"
+import { d3 } from "@blizzard-api/d3"
 
-const achievement = wow.achievement(123);
+const achievement = d3.achievement(123);
         ^ { path: string, namespace: string }
 type AchievementResponse = ExtractResourceType<typeof achievement>;
 ```
 
-If you don't want to use the exported wow object, you can also access the functions directly:
+If you don't want to use the exported d3 object, you can also access the functions directly:
 
 ```ts
-import { achievement } from "@blizzard-api/wow"
+import { achievement } from "@blizzard-api/d3"
 
 const achi = achievement(123);
         ^ { path: string, namespace: string }
 type AchievementResponse = ExtractResourceType<typeof achi>;
 ```
-
-## Differences to @blizzard-api/classic-wow
-
-This package is specifically for World of Warcraft (retail or modern), and as such, the endpoints and responses are different from the classic variants. If you are looking for the classic version of World of Warcraft, you should use `@blizzard-api/classic-wow` instead.
 
 ## Types
 
@@ -59,7 +55,7 @@ While this package is made to function on it's own, it performs even better when
 
 ```ts
 import { createBlizzardApiClient } from '@blizzard-api/client';
-import { wow } from '@blizzard-api/wow';
+import { d3 } from '@blizzard-api/d3';
 
 const client = await createBlizzardApiClient({
   key: 'environment.blizzardClientId',
@@ -68,7 +64,7 @@ const client = await createBlizzardApiClient({
 });
 
 //Response will automatically be typed with the appropriate values
-const response = await client.sendRequest(wow.commodities());
+const response = await client.sendRequest(d3.commodities());
 
 console.log(response.data);
                       ^ typeof AuctionHouseCommoditiesResponse

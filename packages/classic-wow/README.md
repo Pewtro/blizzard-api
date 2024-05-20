@@ -40,9 +40,9 @@ If you don't want to use the exported classicWow object, you can also access the
 ```ts
 import { powerType } from "@blizzard-api/wow"
 
-const powerType = powerType("static-classic", 123);
+const powerTypeEndpoint = powerType("static-classic", 123);
         ^ { path: string, namespace: string }
-type PowerTypeResponse = ExtractResourceType<typeof powerType>;
+type PowerTypeResponse = ExtractResourceType<typeof powerTypeEndpoint>;
 ```
 
 ## Differences to @blizzard-api/wow
