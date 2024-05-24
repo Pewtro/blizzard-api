@@ -1,5 +1,11 @@
 # @blizzard-api/client
 
+## 1.0.2
+
+### Patch Changes
+
+- 3fd4327: Update axios to 1.7.2
+
 ## 1.0.1
 
 ### Patch Changes
