@@ -9,6 +9,7 @@
   "engines": {
     "node": "^18.18 || ^20.9 || ^21.1 || ^22"
   },
+  "packageManager": "pnpm@9.4.0",
   "keywords": [
     "blizzard",
     "battlenet",
@@ -40,7 +41,7 @@
     "npm-run-all2": "6.2.0",
     "prettier": "3.3.2",
     "tsup": "8.1.0",
-    "turbo": "1.13.3",
+    "turbo": "2.0.4",
     "typescript": "5.4.5",
     "vitest": "1.6.0",
     "zod": "3.23.8"
