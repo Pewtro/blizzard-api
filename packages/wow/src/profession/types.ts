@@ -14,9 +14,9 @@ export interface ProfessionIndexResponse extends ResponseBase {
  */
 export interface ProfessionResponse extends ResponseBase, NameId {
   description: string;
-  type: Type;
   media: Media;
   skill_tiers: Array<NameIdKey>;
+  type: Type;
 }
 
 interface Media extends KeyBase {
@@ -24,8 +24,8 @@ interface Media extends KeyBase {
 }
 
 interface Type {
-  type: string;
   name: string;
+  type: string;
 }
 
 /**
@@ -33,9 +33,9 @@ interface Type {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface ProfessionSkillTierResponse extends ResponseBase, NameId {
-  minimum_skill_level: number;
-  maximum_skill_level: number;
   categories: Array<Category>;
+  maximum_skill_level: number;
+  minimum_skill_level: number;
 }
 
 interface Category {
@@ -57,10 +57,10 @@ export interface ProfessionMediaResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface RecipeResponse extends ResponseBase, NameId {
-  media: Media;
   crafted_item: NameIdKey;
-  reagents: Array<Reagent>;
   crafted_quantity: CraftedQuantity;
+  media: Media;
+  reagents: Array<Reagent>;
 }
 
 interface CraftedQuantity {
@@ -68,8 +68,8 @@ interface CraftedQuantity {
 }
 
 interface Reagent {
-  reagent: NameIdKey;
   quantity: number;
+  reagent: NameIdKey;
 }
 
 /**

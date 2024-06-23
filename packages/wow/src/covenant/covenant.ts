@@ -17,8 +17,8 @@ import type {
  */
 export function conduit(conduitId: number): Resource<ConduitResponse> {
   return {
-    path: `${base}/covenant/conduit/${conduitId}`,
     namespace: 'static',
+    path: `${base}/covenant/conduit/${conduitId}`,
   };
 }
 /**
@@ -27,8 +27,8 @@ export function conduit(conduitId: number): Resource<ConduitResponse> {
  */
 export function conduitIndex(): Resource<ConduitIndexResponse> {
   return {
-    path: `${base}/covenant/conduit/index`,
     namespace: 'static',
+    path: `${base}/covenant/conduit/index`,
   };
 }
 /**
@@ -38,8 +38,8 @@ export function conduitIndex(): Resource<ConduitIndexResponse> {
  */
 export function covenant(covenantId: number): Resource<CovenantResponse> {
   return {
-    path: `${base}/covenant/${covenantId}`,
     namespace: 'static',
+    path: `${base}/covenant/${covenantId}`,
   };
 }
 /**
@@ -48,8 +48,8 @@ export function covenant(covenantId: number): Resource<CovenantResponse> {
  */
 export function covenantIndex(): Resource<CovenantIndexResponse> {
   return {
-    path: `${base}/covenant/index`,
     namespace: 'static',
+    path: `${base}/covenant/index`,
   };
 }
 /**
@@ -59,8 +59,8 @@ export function covenantIndex(): Resource<CovenantIndexResponse> {
  */
 export function covenantMedia(covenantId: number): Resource<CovenantMediaResponse> {
   return {
-    path: `${mediaBase}/covenant/${covenantId}`,
     namespace: 'static',
+    path: `${mediaBase}/covenant/${covenantId}`,
   };
 }
 /**
@@ -70,8 +70,8 @@ export function covenantMedia(covenantId: number): Resource<CovenantMediaRespons
  */
 export function soulbind(soulbindId: number): Resource<SoulbindResponse> {
   return {
-    path: `${base}/covenant/soulbind/${soulbindId}`,
     namespace: 'static',
+    path: `${base}/covenant/soulbind/${soulbindId}`,
   };
 }
 /**
@@ -80,7 +80,7 @@ export function soulbind(soulbindId: number): Resource<SoulbindResponse> {
  */
 export function soulbindIndex(): Resource<SoulbindIndexResponse> {
   return {
-    path: `${base}/covenant/soulbind/index`,
     namespace: 'static',
+    path: `${base}/covenant/soulbind/index`,
   };
 }

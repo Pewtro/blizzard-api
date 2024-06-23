@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { base } from '../base';
-import { itemTypeIndex, itemType } from './item-type';
+import { itemType, itemTypeIndex } from './item-type';
 
 describe.concurrent('itemTypeIndex', () => {
   it('should return the correct resource path', ({ expect }) => {

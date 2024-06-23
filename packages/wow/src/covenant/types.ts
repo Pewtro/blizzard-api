@@ -14,10 +14,10 @@ export interface ConduitIndexResponse extends ResponseBase {
  */
 export interface ConduitResponse extends ResponseBase {
   id: number;
-  name: string;
   item: Item;
-  socket_type: SocketType;
+  name: string;
   ranks: Array<Rank>;
+  socket_type: SocketType;
 }
 
 interface Item extends KeyBase {
@@ -26,19 +26,19 @@ interface Item extends KeyBase {
 
 interface Rank {
   id: number;
-  tier: number;
   spell_tooltip: SpellTooltip;
+  tier: number;
 }
 
 interface SpellTooltip {
-  spell: Item;
-  description: string;
   cast_time: string;
+  description: string;
+  spell: Item;
 }
 
 interface SocketType {
-  type: string;
   name: string;
+  type: string;
 }
 
 /**
@@ -54,9 +54,9 @@ export interface CovenantIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface CovenantResponse extends ResponseBase {
+  description: string;
   id: number;
   name: string;
-  description: string;
   renown_rewards: Array<RenownReward>;
 }
 
@@ -70,14 +70,14 @@ interface RenownReward {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface CovenantMediaResponse extends ResponseBase {
-  id: number;
-  name: string;
-  description: string;
-  signature_ability: SignatureAbility;
   class_abilities: Array<ClassAbility>;
-  soulbinds: Array<NameIdKey>;
-  renown_rewards: Array<RenownReward>;
+  description: string;
+  id: number;
   media: Media;
+  name: string;
+  renown_rewards: Array<RenownReward>;
+  signature_ability: SignatureAbility;
+  soulbinds: Array<NameIdKey>;
 }
 
 interface ClassAbility {
@@ -87,12 +87,12 @@ interface ClassAbility {
 }
 
 interface ClassAbilitySpellTooltip {
-  spell: NameIdKey;
-  description: string;
   cast_time: string;
-  range?: string;
   cooldown?: string;
+  description: string;
   power_cost?: null | string;
+  range?: string;
+  spell: NameIdKey;
 }
 
 interface Media extends KeyBase {
@@ -105,10 +105,10 @@ interface SignatureAbility {
 }
 
 interface SignatureAbilitySpellTooltip {
-  spell: NameIdKey;
-  description: string;
   cast_time: string;
   cooldown: string;
+  description: string;
+  spell: NameIdKey;
 }
 
 /**
@@ -116,11 +116,11 @@ interface SignatureAbilitySpellTooltip {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface SoulbindResponse extends ResponseBase {
-  id: number;
-  name: string;
   covenant: NameIdKey;
   creature: NameIdKey;
   follower: NameIdKey;
+  id: number;
+  name: string;
   talent_tree: NameIdKey;
 }
 

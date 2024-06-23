@@ -8,10 +8,10 @@ export type { PlayableClassIndexResponse, PlayableClassMediaResponse } from '../
  */
 export interface PlayableClassResponse extends ResponseBase, NameId {
   gender_name: Gender;
-  power_type: NameIdKey;
   media: Media;
-  pvp_talent_slots: { href: string };
   playable_races: Array<NameIdKey>;
+  power_type: NameIdKey;
+  pvp_talent_slots: { href: string };
 }
 
 interface Media extends KeyBase {

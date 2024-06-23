@@ -6,12 +6,12 @@ import type { KeyBase, MediaAsset, NameIdKey, ResponseBase } from '../base';
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface CreatureResponse extends ResponseBase {
+  creature_displays: Array<CreatureDisplay>;
+  family: NameIdKey;
   id: number;
+  is_tameable: boolean;
   name: string;
   type: NameIdKey;
-  family: NameIdKey;
-  creature_displays: Array<CreatureDisplay>;
-  is_tameable: boolean;
 }
 
 interface CreatureDisplay extends KeyBase {
@@ -46,9 +46,9 @@ export interface CreatureFamilyIndexResponse extends ResponseBase {
  */
 export interface CreatureFamilyResponse extends ResponseBase {
   id: number;
+  media: Media;
   name: string;
   specialization: NameIdKey;
-  media: Media;
 }
 
 interface Media extends KeyBase {
@@ -87,8 +87,8 @@ export interface CreatureTypeResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
  */
 export interface CreatureSearchParameters extends BaseSearchParameters {
-  name: string;
   locale: Locales;
+  name: string;
 }
 
 /**
@@ -99,10 +99,10 @@ export interface CreatureSearchParameters extends BaseSearchParameters {
 export interface CreatureSearchResponseItem extends KeyBase {
   data: {
     creature_displays: Array<{ id: number }>;
+    family?: { id: number; name: Record<Locales, string | undefined> };
+    id: number;
     is_tameable: boolean;
     name: Record<Locales, string | undefined>;
-    id: number;
     type: { id: number; name: Record<Locales, string | undefined> };
-    family?: { id: number; name: Record<Locales, string | undefined> };
   };
 }

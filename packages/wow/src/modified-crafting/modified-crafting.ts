@@ -17,8 +17,8 @@ export function modifiedCraftingCategory(
   modifiedCraftingCategoryId: number,
 ): Resource<ModifiedCraftingCategoryResponse> {
   return {
-    path: `${base}/modified-crafting/category/${modifiedCraftingCategoryId}`,
     namespace: 'static',
+    path: `${base}/modified-crafting/category/${modifiedCraftingCategoryId}`,
   };
 }
 /**
@@ -27,8 +27,8 @@ export function modifiedCraftingCategory(
  */
 export function modifiedCraftingCategoryIndex(): Resource<ModifiedCraftingCategoryIndexResponse> {
   return {
-    path: `${base}/modified-crafting/category/index`,
     namespace: 'static',
+    path: `${base}/modified-crafting/category/index`,
   };
 }
 /**
@@ -37,8 +37,8 @@ export function modifiedCraftingCategoryIndex(): Resource<ModifiedCraftingCatego
  */
 export function modifiedCraftingIndex(): Resource<ModifiedCraftingIndexResponse> {
   return {
-    path: `${base}/modified-crafting/index`,
     namespace: 'static',
+    path: `${base}/modified-crafting/index`,
   };
 }
 /**
@@ -50,8 +50,8 @@ export function modifiedCraftingReagentSlotType(
   modifiedCraftingReagentSlotTypeId: number,
 ): Resource<ModifiedCraftingReagentSlotTypeResponse> {
   return {
-    path: `${base}/modified-crafting/reagent-slot-type/${modifiedCraftingReagentSlotTypeId}`,
     namespace: 'static',
+    path: `${base}/modified-crafting/reagent-slot-type/${modifiedCraftingReagentSlotTypeId}`,
   };
 }
 /**
@@ -60,7 +60,7 @@ export function modifiedCraftingReagentSlotType(
  */
 export function modifiedCraftingReagentSlotTypeIndex(): Resource<ModifiedCraftingReagentSlotTypeIndexResponse> {
   return {
-    path: `${base}/modified-crafting/reagent-slot-type/index`,
     namespace: 'static',
+    path: `${base}/modified-crafting/reagent-slot-type/index`,
   };
 }

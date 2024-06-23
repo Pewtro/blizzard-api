@@ -7,12 +7,12 @@ import { createBlizzardApiClient } from '../client/create-client';
 describe.concurrent('client', async () => {
   const client = await createBlizzardApiClient({
     key: environment.blizzardClientId,
-    secret: environment.blizzardClientSecret,
     origin: 'eu',
+    secret: environment.blizzardClientSecret,
   });
 
   it("should be able to fetch the client's default values", ({ expect }) => {
-    const { key, secret, origin, locale, token } = client.defaults;
+    const { key, locale, origin, secret, token } = client.defaults;
 
     expect(key).toBe(environment.blizzardClientId);
     expect(secret).toBe(environment.blizzardClientSecret);
@@ -24,7 +24,7 @@ describe.concurrent('client', async () => {
   it('should be able to authorize with the Blizzard API', async ({ expect }) => {
     const response = await client.getAccessToken();
 
-    const { access_token, token_type, expires_in, sub } = response.data;
+    const { access_token, expires_in, sub, token_type } = response.data;
     expect(access_token).length.greaterThan(0);
     expect(token_type).toBe('bearer');
     expect(expires_in).toBeGreaterThan(0);
@@ -57,8 +57,8 @@ describe.concurrent('client', async () => {
     await createBlizzardApiClient(
       {
         key: environment.blizzardClientId,
-        secret: environment.blizzardClientSecret,
         origin: 'eu',
+        secret: environment.blizzardClientSecret,
       },
       testFunction,
     );
@@ -97,7 +97,7 @@ describe.concurrent('client', async () => {
   it('should be able to manually refresh the token', async ({ expect }) => {
     const response = await client.refreshAccessToken();
 
-    const { access_token, token_type, expires_in, sub } = response.data;
+    const { access_token, expires_in, sub, token_type } = response.data;
     expect(access_token).length.greaterThan(0);
     expect(token_type).toBe('bearer');
     expect(expires_in).toBeGreaterThan(0);
@@ -111,7 +111,7 @@ describe.concurrent('client', async () => {
   it('the client cannot be created without a client id and secret', ({ expect }) => {
     void expect(() =>
       //@ts-expect-error expect error when key is missing
-      createBlizzardApiClient({ secret: environment.blizzardClientSecret, origin: 'eu' }),
+      createBlizzardApiClient({ origin: 'eu', secret: environment.blizzardClientSecret }),
     ).rejects.toThrow();
 
     //@ts-expect-error expect error when secret is missing
@@ -124,15 +124,15 @@ describe.concurrent('client', async () => {
     const noRefreshClient = await createBlizzardApiClient(
       {
         key: environment.blizzardClientId,
-        secret: environment.blizzardClientSecret,
         origin: 'eu',
+        secret: environment.blizzardClientSecret,
       },
       false,
     );
 
     const response = await noRefreshClient.getAccessToken();
 
-    const { access_token, token_type, expires_in, sub } = response.data;
+    const { access_token, expires_in, sub, token_type } = response.data;
     expect(access_token).length.greaterThan(0);
     expect(token_type).toBe('bearer');
     expect(expires_in).toBeGreaterThan(0);
@@ -145,8 +145,8 @@ describe.concurrent('client', async () => {
 
     const tokenClient = await createBlizzardApiClient({
       key: environment.blizzardClientId,
-      secret: environment.blizzardClientSecret,
       origin: 'eu',
+      secret: environment.blizzardClientSecret,
       token: access_token,
     });
 
@@ -157,8 +157,8 @@ describe.concurrent('client', async () => {
   it('the client can be created with a pre-existing expired token', async ({ expect }) => {
     const tokenClient = await createBlizzardApiClient({
       key: environment.blizzardClientId,
-      secret: environment.blizzardClientSecret,
       origin: 'eu',
+      secret: environment.blizzardClientSecret,
       token: 'some random token',
     });
 

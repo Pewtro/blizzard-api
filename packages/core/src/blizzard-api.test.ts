@@ -1,5 +1,5 @@
 import { describe, it } from 'vitest';
-import type { Origins, Locales } from './blizzard-api';
+import type { Locales, Origins } from './blizzard-api';
 import { getBlizzardApi } from './blizzard-api';
 
 describe.concurrent('getBlizzardApi', () => {
@@ -10,9 +10,9 @@ describe.concurrent('getBlizzardApi', () => {
     const result = getBlizzardApi(origin, locale);
 
     expect(result).toMatchObject({
-      origin: 'us',
       hostname: 'https://us.api.blizzard.com',
       locale: 'es_MX',
+      origin: 'us',
     });
   });
 
@@ -22,9 +22,9 @@ describe.concurrent('getBlizzardApi', () => {
     const result = getBlizzardApi(origin);
 
     expect(result).toMatchObject({
-      origin: 'eu',
       hostname: 'https://eu.api.blizzard.com',
       locale: 'en_GB',
+      origin: 'eu',
     });
   });
 });

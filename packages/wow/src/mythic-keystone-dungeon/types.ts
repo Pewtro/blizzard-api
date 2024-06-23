@@ -13,16 +13,16 @@ export interface MythicKeystoneDungeonIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface MythicKeystoneDungeonResponse extends ResponseBase, NameId {
+  dungeon: NameIdKey;
+  is_tracked: boolean;
+  keystone_upgrades: Array<KeystoneUpgrade>;
   map: NameId;
   zone: Zone;
-  dungeon: NameIdKey;
-  keystone_upgrades: Array<KeystoneUpgrade>;
-  is_tracked: boolean;
 }
 
 interface KeystoneUpgrade {
-  upgrade_level: number;
   qualifying_duration: number;
+  upgrade_level: number;
 }
 
 interface Zone {
@@ -34,8 +34,8 @@ interface Zone {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface MythicKeystoneIndexResponse extends ResponseBase {
-  seasons: { href: string };
   dungeons: { href: string };
+  seasons: { href: string };
 }
 
 /**
@@ -43,8 +43,8 @@ export interface MythicKeystoneIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface MythicKeystonePeriodIndexResponse extends ResponseBase {
-  periods: Array<Period>;
   current_period: Period;
+  periods: Array<Period>;
 }
 
 interface Period extends KeyBase {
@@ -56,9 +56,9 @@ interface Period extends KeyBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface MythicKeystonePeriodResponse extends ResponseBase {
+  end_timestamp: number;
   id: number;
   start_timestamp: number;
-  end_timestamp: number;
 }
 
 /**
@@ -66,8 +66,8 @@ export interface MythicKeystonePeriodResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface MythicKeystoneSeasonIndexResponse extends ResponseBase {
-  seasons: Array<Period>;
   current_season: Period;
+  seasons: Array<Period>;
 }
 
 /**
@@ -75,9 +75,9 @@ export interface MythicKeystoneSeasonIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface MythicKeystoneSeasonResponse extends ResponseBase {
-  id: number;
-  start_timestamp: number;
   end_timestamp: number;
+  id: number;
   periods: Array<Period>;
-  season_name: string | null;
+  season_name: null | string;
+  start_timestamp: number;
 }

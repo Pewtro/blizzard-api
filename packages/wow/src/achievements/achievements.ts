@@ -18,8 +18,8 @@ const achievementCategoryBase = `${base}/achievement-category`;
  */
 export function achievementCategory(achievementCategoryId: number): Resource<AchievementCategoryResponse> {
   return {
-    path: `${achievementCategoryBase}/${achievementCategoryId}`,
     namespace: 'static',
+    path: `${achievementCategoryBase}/${achievementCategoryId}`,
   };
 }
 /**
@@ -28,8 +28,8 @@ export function achievementCategory(achievementCategoryId: number): Resource<Ach
  */
 export function achievementCategoryIndex(): Resource<AchievementCategoryIndexResponse> {
   return {
-    path: `${achievementCategoryBase}/index`,
     namespace: 'static',
+    path: `${achievementCategoryBase}/index`,
   };
 }
 /**
@@ -39,8 +39,8 @@ export function achievementCategoryIndex(): Resource<AchievementCategoryIndexRes
  */
 export function achievement(achievementId: number): Resource<AchievementResponse> {
   return {
-    path: `${achievementBase}/${achievementId}`,
     namespace: 'static',
+    path: `${achievementBase}/${achievementId}`,
   };
 }
 /**
@@ -49,8 +49,8 @@ export function achievement(achievementId: number): Resource<AchievementResponse
  */
 export function achievementIndex(): Resource<AchievementIndexResponse> {
   return {
-    path: `${achievementBase}/index`,
     namespace: 'static',
+    path: `${achievementBase}/index`,
   };
 }
 /**
@@ -59,5 +59,5 @@ export function achievementIndex(): Resource<AchievementIndexResponse> {
  * @returns The achievement media. See {@link AchievementMediaResponse}.
  */
 export function achievementMedia(achievementId: number): Resource<AchievementMediaResponse> {
-  return { path: `${mediaBase}/achievement/${achievementId}`, namespace: 'static' };
+  return { namespace: 'static', path: `${mediaBase}/achievement/${achievementId}` };
 }

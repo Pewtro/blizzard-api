@@ -6,19 +6,19 @@ import type { KeyBase, NameId, NameIdKey, ResponseBase } from '../base';
  */
 export interface AchievementCategoryResponse extends ResponseBase, NameId {
   achievements: Array<NameIdKey>;
-  parent_category: NameIdKey;
-  isGuildCategory: boolean;
   aggregates_by_faction: {
     alliance: {
-      quantity: number;
       points: number;
+      quantity: number;
     };
     horde: {
-      quantity: number;
       points: number;
+      quantity: number;
     };
   };
   display_order: number;
+  isGuildCategory: boolean;
+  parent_category: NameIdKey;
 }
 
 /**
@@ -27,8 +27,8 @@ export interface AchievementCategoryResponse extends ResponseBase, NameId {
  */
 export interface AchievementCategoryIndexResponse extends ResponseBase {
   categories: Array<NameIdKey>;
-  root_categories: Array<NameIdKey>;
   guild_categories: Array<NameIdKey>;
+  root_categories: Array<NameIdKey>;
 }
 
 /**
@@ -37,16 +37,16 @@ export interface AchievementCategoryIndexResponse extends ResponseBase {
  */
 export interface AchievementResponse extends ResponseBase, NameId {
   category: NameIdKey;
-  description: string;
-  points: number;
-  is_account_wide: boolean;
   criteria: {
-    id: number;
-    description: string;
     amount: number;
+    description: string;
+    id: number;
   };
-  media: KeyBase;
+  description: string;
   display_order: number;
+  is_account_wide: boolean;
+  media: KeyBase;
+  points: number;
 }
 
 /**
@@ -58,9 +58,9 @@ export interface AchievementIndexResponse extends ResponseBase {
 }
 
 interface AchievementMediaItem {
+  file_data_id: number;
   key: string;
   value: string;
-  file_data_id: number;
 }
 
 /**
@@ -68,6 +68,6 @@ interface AchievementMediaItem {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface AchievementMediaResponse extends ResponseBase {
-  id: number;
   assets: Array<AchievementMediaItem>;
+  id: number;
 }

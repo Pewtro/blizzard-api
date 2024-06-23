@@ -1,6 +1,6 @@
 import { stringify } from 'node:querystring';
 import { getBlizzardApi } from '@blizzard-api/core';
-import type { Origins, Locales, ResourceResponse, Resource } from '@blizzard-api/core';
+import type { Locales, Origins, Resource, ResourceResponse } from '@blizzard-api/core';
 import type { AxiosResponse } from 'axios';
 import axios, { AxiosError, isAxiosError } from 'axios';
 import type {
@@ -27,102 +27,15 @@ import type {
  * });
  */
 export class BlizzardApiClient implements IBlizzardApiClient {
-  public defaults: {
-    key: string;
-    secret: string;
-    origin: Origins;
-    locale: Locales;
-    token?: string;
-  };
-
-  constructor(options: ClientOptions) {
-    const { origin, locale } = getBlizzardApi(options.origin, options.locale);
-    this.defaults = {
-      key: options.key,
-      secret: options.secret,
-      token: options.token,
-      origin: origin,
-      locale: locale,
-    };
-  }
-
   private axios = axios.create();
 
-  /**
-   * Get the request URL.
-   * @param resource The resource to fetch. See {@link Resource}.
-   * @param options Client options. See {@link ClientOptions}.
-   * @returns The request URL.
-   */
-  public getRequestUrl<T, Protected extends boolean = false>(
-    resource: Resource<T, object, Protected>,
-    options?: Partial<ClientOptions>,
-  ) {
-    const config = { ...this.defaults, ...options };
-    const endpoint = getBlizzardApi(config.origin, config.locale);
-
-    const backslashSeparator = resource.path.startsWith('/') ? '' : '/';
-
-    return `${endpoint.hostname}${backslashSeparator}${resource.path}`;
-  }
-
-  /**
-   * Get the request configuration.
-   * @param resource The resource to fetch. See {@link Resource}.
-   * @param options Client options. See {@link ClientOptions}.
-   * @param headers Additional headers to include in the request.
-   * @returns The request configuration.
-   */
-  public getRequestConfig<T, Protected extends boolean = false>(
-    resource: Resource<T, object, Protected>,
-    options?: Partial<ClientOptions>,
-    headers?: Record<string, string>,
-  ) {
-    const config = { ...this.defaults, ...options };
-    const endpoint = getBlizzardApi(config.origin, config.locale);
-
-    const namespace = resource.namespace
-      ? { 'Battlenet-Namespace': `${resource.namespace}-${endpoint.origin}` }
-      : undefined;
-
-    return {
-      headers: {
-        ...headers,
-        ...namespace,
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${config.token}`,
-      },
-      params: {
-        locale: endpoint.locale,
-        ...resource.parameters,
-      },
-    };
-  }
-
-  /**
-   * Send a request to the Blizzard API.
-   * @param resource The resource to fetch. See {@link Resource}.
-   * @param options Client options. See {@link ClientOptions}.
-   * @param headers Additional headers to include in the request.
-   * @returns The response from the Blizzard API. See {@link ResourceResponse}.
-   */
-  public async sendRequest<T, Protected extends boolean = false>(
-    resource: Resource<T, object, Protected>,
-    options?: Partial<ClientOptions>,
-    headers?: Record<string, string>,
-  ): ResourceResponse<AxiosResponse<T>> {
-    const url = this.getRequestUrl(resource, options);
-    const config = this.getRequestConfig(resource, options, headers);
-
-    try {
-      return await this.axios.get<T>(url, config);
-    } catch (error) {
-      if (isAxiosError(error)) {
-        throw new AxiosError(error.message, error.code);
-      }
-      throw error;
-    }
-  }
+  public defaults: {
+    key: string;
+    locale: Locales;
+    origin: Origins;
+    secret: string;
+    token?: string;
+  };
 
   /**
    * Get an access token.
@@ -138,27 +51,19 @@ export class BlizzardApiClient implements IBlizzardApiClient {
    * // => 'client-id'
    */
   public getAccessToken = async (options?: AccessTokenRequestArguments): Promise<AxiosResponse<AccessToken>> => {
-    const { key, secret, origin } = { ...this.defaults, ...options };
+    const { key, origin, secret } = { ...this.defaults, ...options };
     return this.axios.post<AccessToken>(`https://${origin}.battle.net/oauth/token`, undefined, {
-      params: {
-        grant_type: 'client_credentials',
-      },
       auth: {
-        username: key,
         password: secret,
+        username: key,
       },
       headers: {
         'Content-Type': 'application/json',
       },
+      params: {
+        grant_type: 'client_credentials',
+      },
     });
-  };
-
-  /**
-   * Set the access token.
-   * @param token The access token.
-   */
-  public setAccessToken = (token: string): void => {
-    this.defaults.token = token;
   };
 
   /**
@@ -178,6 +83,14 @@ export class BlizzardApiClient implements IBlizzardApiClient {
     const response = await this.getAccessToken(options);
     this.setAccessToken(response.data.access_token);
     return response;
+  };
+
+  /**
+   * Set the access token.
+   * @param token The access token.
+   */
+  public setAccessToken = (token: string): void => {
+    this.defaults.token = token;
   };
 
   /**
@@ -208,4 +121,91 @@ export class BlizzardApiClient implements IBlizzardApiClient {
       },
     );
   };
+
+  constructor(options: ClientOptions) {
+    const { locale, origin } = getBlizzardApi(options.origin, options.locale);
+    this.defaults = {
+      key: options.key,
+      locale: locale,
+      origin: origin,
+      secret: options.secret,
+      token: options.token,
+    };
+  }
+
+  /**
+   * Get the request configuration.
+   * @param resource The resource to fetch. See {@link Resource}.
+   * @param options Client options. See {@link ClientOptions}.
+   * @param headers Additional headers to include in the request.
+   * @returns The request configuration.
+   */
+  public getRequestConfig<T, Protected extends boolean = false>(
+    resource: Resource<T, object, Protected>,
+    options?: Partial<ClientOptions>,
+    headers?: Record<string, string>,
+  ) {
+    const config = { ...this.defaults, ...options };
+    const endpoint = getBlizzardApi(config.origin, config.locale);
+
+    const namespace = resource.namespace
+      ? { 'Battlenet-Namespace': `${resource.namespace}-${endpoint.origin}` }
+      : undefined;
+
+    return {
+      headers: {
+        ...headers,
+        ...namespace,
+        Authorization: `Bearer ${config.token}`,
+        'Content-Type': 'application/json',
+      },
+      params: {
+        locale: endpoint.locale,
+        ...resource.parameters,
+      },
+    };
+  }
+
+  /**
+   * Get the request URL.
+   * @param resource The resource to fetch. See {@link Resource}.
+   * @param options Client options. See {@link ClientOptions}.
+   * @returns The request URL.
+   */
+  public getRequestUrl<T, Protected extends boolean = false>(
+    resource: Resource<T, object, Protected>,
+    options?: Partial<ClientOptions>,
+  ) {
+    const config = { ...this.defaults, ...options };
+    const endpoint = getBlizzardApi(config.origin, config.locale);
+
+    const backslashSeparator = resource.path.startsWith('/') ? '' : '/';
+
+    return `${endpoint.hostname}${backslashSeparator}${resource.path}`;
+  }
+
+  /**
+   * Send a request to the Blizzard API.
+   * @param resource The resource to fetch. See {@link Resource}.
+   * @param options Client options. See {@link ClientOptions}.
+   * @param headers Additional headers to include in the request.
+   * @returns The response from the Blizzard API. See {@link ResourceResponse}.
+   */
+  public async sendRequest<T, Protected extends boolean = false>(
+    resource: Resource<T, object, Protected>,
+    options?: Partial<ClientOptions>,
+    headers?: Record<string, string>,
+  ): ResourceResponse<AxiosResponse<T>> {
+    const url = this.getRequestUrl(resource, options);
+    const config = this.getRequestConfig(resource, options, headers);
+
+    try {
+      return await this.axios.get<T>(url, config);
+    } catch (error) {
+      if (isAxiosError(error)) {
+        throw new AxiosError(error.message, error.code);
+      }
+      throw error;
+    }
+  }
 }

@@ -13,8 +13,8 @@ export function auctionHouseIndex(
   connectedRealmId: number,
 ): Resource<AuctionHouseIndexResponse> {
   return {
-    path: `${base}/connected-realm/${connectedRealmId}/auctions/index`,
     namespace,
+    path: `${base}/connected-realm/${connectedRealmId}/auctions/index`,
   };
 }
 /**
@@ -34,7 +34,7 @@ export function auctions(
   auctionHouseId: number,
 ): Resource<AuctionsResponse> {
   return {
-    path: `${base}/connected-realm/${connectedRealmId}/auctions/${auctionHouseId}`,
     namespace,
+    path: `${base}/connected-realm/${connectedRealmId}/auctions/${auctionHouseId}`,
   };
 }

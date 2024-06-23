@@ -8,7 +8,7 @@ import type { WowTokenResponse } from './types';
  */
 export function wowToken(): Resource<WowTokenResponse> {
   return {
-    path: `${base}/token/index`,
     namespace: 'dynamic',
+    path: `${base}/token/index`,
   };
 }

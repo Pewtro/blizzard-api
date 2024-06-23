@@ -1,8 +1,8 @@
 export interface ActResponse {
-  slug: string;
-  number: number;
   name: string;
+  number: number;
   quests: Array<Quest>;
+  slug: string;
 }
 
 export interface ActIndexResponse {
@@ -10,10 +10,10 @@ export interface ActIndexResponse {
 }
 
 interface Act {
-  slug: string;
-  number: number;
   name: string;
+  number: number;
   quests: Array<Quest>;
+  slug: string;
 }
 
 interface Quest {

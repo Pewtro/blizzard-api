@@ -16,8 +16,8 @@ import type {
  */
 export function profession(professionId: number): Resource<ProfessionResponse> {
   return {
-    path: `${base}/profession/${professionId}`,
     namespace: 'static',
+    path: `${base}/profession/${professionId}`,
   };
 }
 /**
@@ -26,8 +26,8 @@ export function profession(professionId: number): Resource<ProfessionResponse> {
  */
 export function professionIndex(): Resource<ProfessionIndexResponse> {
   return {
-    path: `${base}/profession/index`,
     namespace: 'static',
+    path: `${base}/profession/index`,
   };
 }
 /**
@@ -37,8 +37,8 @@ export function professionIndex(): Resource<ProfessionIndexResponse> {
  */
 export function professionMedia(professionId: number): Resource<ProfessionMediaResponse> {
   return {
-    path: `${mediaBase}/profession/${professionId}`,
     namespace: 'static',
+    path: `${mediaBase}/profession/${professionId}`,
   };
 }
 /**
@@ -49,8 +49,8 @@ export function professionMedia(professionId: number): Resource<ProfessionMediaR
  */
 export function professionSkillTier(professionId: number, skillTierId: number): Resource<ProfessionSkillTierResponse> {
   return {
-    path: `${base}/profession/${professionId}/skill-tier/${skillTierId}`,
     namespace: 'static',
+    path: `${base}/profession/${professionId}/skill-tier/${skillTierId}`,
   };
 }
 /**
@@ -60,8 +60,8 @@ export function professionSkillTier(professionId: number, skillTierId: number): 
  */
 export function recipe(recipeId: number): Resource<RecipeResponse> {
   return {
-    path: `${base}/recipe/${recipeId}`,
     namespace: 'static',
+    path: `${base}/recipe/${recipeId}`,
   };
 }
 /**
@@ -71,7 +71,7 @@ export function recipe(recipeId: number): Resource<RecipeResponse> {
  */
 export function recipeMedia(recipeId: number): Resource<RecipeMediaResponse> {
   return {
-    path: `${mediaBase}/recipe/${recipeId}`,
     namespace: 'static',
+    path: `${mediaBase}/recipe/${recipeId}`,
   };
 }

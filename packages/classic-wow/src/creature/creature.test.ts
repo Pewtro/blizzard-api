@@ -12,92 +12,92 @@ describe.concurrent('classicCreatureApi', () => {
   it('creature should return the correct resource information', ({ expect }) => {
     const resource = classicCreatureApi.creature(namespace, creatureId);
     expect(resource).toEqual({
-      path: `${base}/creature/123`,
       namespace,
+      path: `${base}/creature/123`,
     });
   });
 
   it('creatureDisplayMedia should return the correct resource information', ({ expect }) => {
     const resource = classicCreatureApi.creatureDisplayMedia(namespace, creatureDisplayId);
     expect(resource).toEqual({
-      path: `${mediaBase}/creature-display/456`,
       namespace,
+      path: `${mediaBase}/creature-display/456`,
     });
   });
 
   it('creatureFamily should return the correct resource information', ({ expect }) => {
     const resource = classicCreatureApi.creatureFamily(namespace, creatureFamilyId);
     expect(resource).toEqual({
-      path: `${base}/creature-family/789`,
       namespace,
+      path: `${base}/creature-family/789`,
     });
   });
 
   it('creatureFamilyIndex should return the correct resource information', ({ expect }) => {
     const resource = classicCreatureApi.creatureFamilyIndex(namespace);
     expect(resource).toEqual({
-      path: `${base}/creature-family/index`,
       namespace,
+      path: `${base}/creature-family/index`,
     });
   });
 
   it('creatureFamilyMedia should return the correct resource information', ({ expect }) => {
     const resource = classicCreatureApi.creatureFamilyMedia(namespace, creatureFamilyId);
     expect(resource).toEqual({
-      path: `${mediaBase}/creature-family/789`,
       namespace,
+      path: `${mediaBase}/creature-family/789`,
     });
   });
 
   it('creatureType should return the correct resource information', ({ expect }) => {
     const resource = classicCreatureApi.creatureType(namespace, creatureTypeId);
     expect(resource).toEqual({
-      path: `${base}/creature-type/987`,
       namespace,
+      path: `${base}/creature-type/987`,
     });
   });
 
   it('creatureTypeIndex should return the correct resource information', ({ expect }) => {
     const resource = classicCreatureApi.creatureTypeIndex(namespace);
     expect(resource).toEqual({
-      path: `${base}/creature-type/index`,
       namespace,
+      path: `${base}/creature-type/index`,
     });
   });
 
   it('creatureSearch should return the correct resource information', ({ expect }) => {
     const resource = classicCreatureApi.creatureSearch(namespace, {
       _page: 1,
-      orderby: 'name',
       locale: 'en_US',
       name: 'creatureName',
+      orderby: 'name',
     });
     expect(resource).toEqual({
-      path: `${searchBase}/creature`,
       namespace,
       parameters: {
         _page: 1,
-        orderby: 'name',
         'name.en_US': 'creatureName',
+        orderby: 'name',
       },
+      path: `${searchBase}/creature`,
     });
   });
 
   it('creatureSearch should return the correct resource information when orderby is an array', ({ expect }) => {
     const resource = classicCreatureApi.creatureSearch(namespace, {
       _page: 1,
-      orderby: ['name', 'id'],
       locale: 'en_US',
       name: 'creatureName',
+      orderby: ['name', 'id'],
     });
     expect(resource).toEqual({
-      path: `${searchBase}/creature`,
       namespace,
       parameters: {
         _page: 1,
-        orderby: 'name,id',
         'name.en_US': 'creatureName',
+        orderby: 'name,id',
       },
+      path: `${searchBase}/creature`,
     });
   });
 });

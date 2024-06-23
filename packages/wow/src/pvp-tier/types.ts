@@ -13,10 +13,10 @@ export interface PvpTierIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface PvpTierResponse extends ResponseBase, NameId {
-  min_rating: number;
+  bracket: Bracket;
   max_rating: number;
   media: Media;
-  bracket: Bracket;
+  min_rating: number;
   rating_type: number;
 }
 

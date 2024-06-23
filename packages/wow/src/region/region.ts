@@ -9,8 +9,8 @@ import type { RegionIndexResponse, RegionResponse } from './types';
  */
 export function region(regionId: number): Resource<RegionResponse> {
   return {
-    path: `${base}/region/${regionId}`,
     namespace: 'dynamic',
+    path: `${base}/region/${regionId}`,
   };
 }
 /**
@@ -19,7 +19,7 @@ export function region(regionId: number): Resource<RegionResponse> {
  */
 export function regionIndex(): Resource<RegionIndexResponse> {
   return {
-    path: `${base}/region/index`,
     namespace: 'dynamic',
+    path: `${base}/region/index`,
   };
 }

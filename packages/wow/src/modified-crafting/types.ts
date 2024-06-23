@@ -32,8 +32,8 @@ export interface ModifiedCraftingReagentSlotTypeIndexResponse extends ResponseBa
 }
 
 interface SlotType extends KeyBase {
-  name?: string;
   id: number;
+  name?: string;
 }
 
 /**
@@ -41,7 +41,7 @@ interface SlotType extends KeyBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface ModifiedCraftingReagentSlotTypeResponse extends ResponseBase {
-  id: number;
-  description: string;
   compatible_categories: Array<NameIdKey>;
+  description: string;
+  id: number;
 }

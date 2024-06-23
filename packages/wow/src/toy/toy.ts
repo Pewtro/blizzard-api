@@ -9,8 +9,8 @@ import type { ToyIndexResponse, ToyResponse } from './types';
  */
 export function toy(toyId: number): Resource<ToyResponse> {
   return {
-    path: `${base}/toy/${toyId}`,
     namespace: 'static',
+    path: `${base}/toy/${toyId}`,
   };
 }
 /**
@@ -19,7 +19,7 @@ export function toy(toyId: number): Resource<ToyResponse> {
  */
 export function toyIndex(): Resource<ToyIndexResponse> {
   return {
-    path: `${base}/toy/index`,
     namespace: 'static',
+    path: `${base}/toy/index`,
   };
 }

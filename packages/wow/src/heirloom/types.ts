@@ -15,10 +15,10 @@ export interface HeirloomIndexResponse extends ResponseBase {
 export interface HeirloomResponse extends ResponseBase {
   id: number;
   item: NameIdKey;
+  media: Media;
   source: Source;
   source_description: string;
   upgrades: Array<Upgrade>;
-  media: Media;
 }
 
 interface Media extends KeyBase {
@@ -26,8 +26,8 @@ interface Media extends KeyBase {
 }
 
 interface Source {
-  type: string;
   name: string;
+  type: string;
 }
 
 interface Upgrade {
@@ -36,26 +36,26 @@ interface Upgrade {
 }
 
 interface UpgradeItem {
-  item: Media;
-  context: number;
+  binding: Source;
   bonus_list: Array<number>;
-  quality: Source;
-  name: string;
-  media: Media;
+  context: number;
+  inventory_type: Source;
+  item: Media;
   item_class: NameIdKey;
   item_subclass: NameIdKey;
-  inventory_type: Source;
-  binding: Source;
-  weapon: Weapon;
+  level: AttackSpeedClass;
+  media: Media;
+  name: string;
+  quality: Source;
+  requirements: Requirements;
   stats: Array<Stat>;
   upgrades: Upgrades;
-  requirements: Requirements;
-  level: AttackSpeedClass;
+  weapon: Weapon;
 }
 
 interface AttackSpeedClass {
-  value: number;
   display_string: string;
+  value: number;
 }
 
 interface Requirements {
@@ -67,32 +67,32 @@ interface RequirementsLevel {
 }
 
 interface Stat {
-  type: Source;
-  value: number;
   display: Display;
   is_equip_bonus?: boolean;
+  type: Source;
+  value: number;
 }
 
 interface Display {
-  display_string: string;
   color: Color;
+  display_string: string;
 }
 
 interface Upgrades {
-  value: number;
-  max_value: number;
   display_string: string;
+  max_value: number;
+  value: number;
 }
 
 interface Weapon {
-  damage: Damage;
   attack_speed: AttackSpeedClass;
+  damage: Damage;
   dps: AttackSpeedClass;
 }
 
 interface Damage {
-  min_value: number;
-  max_value: number;
-  display_string: string;
   damage_class: Source;
+  display_string: string;
+  max_value: number;
+  min_value: number;
 }

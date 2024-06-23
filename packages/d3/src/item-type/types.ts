@@ -5,9 +5,9 @@ export interface ItemTypeIndexResponse {
 }
 
 export interface ItemTypeResponse {
-  id: string;
-  slug: string;
-  name: string;
   icon: string;
+  id: string;
+  name: string;
   path: string;
+  slug: string;
 }

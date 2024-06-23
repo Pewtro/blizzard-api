@@ -29,8 +29,8 @@ export interface SpellMediaResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
  */
 export interface SpellSearchParameters extends BaseSearchParameters {
-  name: string;
   locale: Locales;
+  name: string;
 }
 
 /**
@@ -40,8 +40,8 @@ export interface SpellSearchParameters extends BaseSearchParameters {
  */
 export interface SpellSearchResponseItem extends KeyBase {
   data: {
-    name: Record<Locales, string | undefined>;
     id: number;
     media: { id: number };
+    name: Record<Locales, string | undefined>;
   };
 }

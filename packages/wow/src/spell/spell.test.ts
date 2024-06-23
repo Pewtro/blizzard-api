@@ -22,34 +22,34 @@ describe.concurrent('spellApi', () => {
   it('spellSearch should return a resource object with the correct path, namespace and parameters', ({ expect }) => {
     const resource = spellApi.spellSearch({
       _page: 1,
-      orderby: 'name',
-      name: 'Fireball',
       locale: 'en_US',
+      name: 'Fireball',
+      orderby: 'name',
     });
 
     expect(resource.path).toBe(`${searchBase}/spell`);
     expect(resource.namespace).toBe('static');
     expect(resource.parameters).toEqual({
       _page: 1,
-      orderby: 'name',
       'name.en_US': 'Fireball',
+      orderby: 'name',
     });
   });
 
   it('spellSearch should return correct resource object when orderby is an array', ({ expect }) => {
     const resource = spellApi.spellSearch({
       _page: 1,
-      orderby: ['name', 'id'],
-      name: 'Fireball',
       locale: 'en_US',
+      name: 'Fireball',
+      orderby: ['name', 'id'],
     });
 
     expect(resource.path).toBe(`${searchBase}/spell`);
     expect(resource.namespace).toBe('static');
     expect(resource.parameters).toEqual({
       _page: 1,
-      orderby: 'name,id',
       'name.en_US': 'Fireball',
+      orderby: 'name,id',
     });
   });
 });

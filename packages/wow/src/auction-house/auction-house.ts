@@ -9,8 +9,8 @@ import type { AuctionHouseCommoditiesResponse, AuctionHouseResponse } from './ty
  */
 export function auctions(connectedRealmId: number): Resource<AuctionHouseResponse> {
   return {
-    path: `${base}/connected-realm/${connectedRealmId}/auctions`,
     namespace: 'dynamic',
+    path: `${base}/connected-realm/${connectedRealmId}/auctions`,
   };
 }
 /**
@@ -19,7 +19,7 @@ export function auctions(connectedRealmId: number): Resource<AuctionHouseRespons
  */
 export function commodities(): Resource<AuctionHouseCommoditiesResponse> {
   return {
-    path: `${base}/auctions/commodities`,
     namespace: 'dynamic',
+    path: `${base}/auctions/commodities`,
   };
 }

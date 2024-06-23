@@ -9,8 +9,8 @@ import type { RealmIndexResponse, RealmResponse, RealmSearchParameters, RealmSea
  */
 export function realm(realmSlug: string): Resource<RealmResponse> {
   return {
-    path: `${base}/realm/${realmSlug}`,
     namespace: 'dynamic',
+    path: `${base}/realm/${realmSlug}`,
   };
 }
 /**
@@ -19,8 +19,8 @@ export function realm(realmSlug: string): Resource<RealmResponse> {
  */
 export function realmIndex(): Resource<RealmIndexResponse> {
   return {
-    path: `${base}/realm/index`,
     namespace: 'dynamic',
+    path: `${base}/realm/index`,
   };
 }
 /**

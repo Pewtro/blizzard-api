@@ -15,9 +15,9 @@ export interface ToyIndexResponse extends ResponseBase {
 export interface ToyResponse extends ResponseBase {
   id: number;
   item: NameIdKey;
+  media: Media;
   source: Source;
   source_description: string;
-  media: Media;
 }
 
 interface Media extends KeyBase {
@@ -25,6 +25,6 @@ interface Media extends KeyBase {
 }
 
 interface Source {
-  type: string;
   name: string;
+  type: string;
 }

@@ -17,8 +17,8 @@ import type {
  */
 export function pvpTalent(pvpTalentId: number): Resource<PvpTalentResponse> {
   return {
-    path: `${base}/pvp-talent/${pvpTalentId}`,
     namespace: 'static',
+    path: `${base}/pvp-talent/${pvpTalentId}`,
   };
 }
 /**
@@ -27,8 +27,8 @@ export function pvpTalent(pvpTalentId: number): Resource<PvpTalentResponse> {
  */
 export function pvpTalentIndex(): Resource<PvpTalentIndexResponse> {
   return {
-    path: `${base}/pvp-talent/index`,
     namespace: 'static',
+    path: `${base}/pvp-talent/index`,
   };
 }
 /**
@@ -38,8 +38,8 @@ export function pvpTalentIndex(): Resource<PvpTalentIndexResponse> {
  */
 export function talent(talentId: number): Resource<TalentResponse> {
   return {
-    path: `${base}/talent/${talentId}`,
     namespace: 'static',
+    path: `${base}/talent/${talentId}`,
   };
 }
 /**
@@ -48,8 +48,8 @@ export function talent(talentId: number): Resource<TalentResponse> {
  */
 export function talentIndex(): Resource<TalentIndexResponse> {
   return {
-    path: `${base}/talent/index`,
     namespace: 'static',
+    path: `${base}/talent/index`,
   };
 }
 /**
@@ -60,8 +60,8 @@ export function talentIndex(): Resource<TalentIndexResponse> {
  */
 export function talentTree(talentTreeId: number, specId: number): Resource<TalentTreeResponse> {
   return {
-    path: `${base}/talent-tree/${talentTreeId}/playable-specialization/${specId}`,
     namespace: 'static',
+    path: `${base}/talent-tree/${talentTreeId}/playable-specialization/${specId}`,
   };
 }
 /**
@@ -70,8 +70,8 @@ export function talentTree(talentTreeId: number, specId: number): Resource<Talen
  */
 export function talentTreeIndex(): Resource<TalentTreeIndexResponse> {
   return {
-    path: `${base}/talent-tree/index`,
     namespace: 'static',
+    path: `${base}/talent-tree/index`,
   };
 }
 /**
@@ -81,7 +81,7 @@ export function talentTreeIndex(): Resource<TalentTreeIndexResponse> {
  */
 export function talentTreeNodes(talentTreeId: number): Resource<TalentTreeNodesResponse> {
   return {
-    path: `${base}/talent-tree/${talentTreeId}`,
     namespace: 'static',
+    path: `${base}/talent-tree/${talentTreeId}`,
   };
 }

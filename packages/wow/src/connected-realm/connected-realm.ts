@@ -13,8 +13,8 @@ import type {
  */
 export function connectedRealmIndex(): Resource<ConnectedRealmIndexResponse> {
   return {
-    path: `${base}/connected-realm/index`,
     namespace: 'dynamic',
+    path: `${base}/connected-realm/index`,
   };
 }
 /**
@@ -24,8 +24,8 @@ export function connectedRealmIndex(): Resource<ConnectedRealmIndexResponse> {
  */
 export function connectedRealm(connectedRealmId: number): Resource<ConnectedRealmResponse> {
   return {
-    path: `${base}/connected-realm/${connectedRealmId}`,
     namespace: 'dynamic',
+    path: `${base}/connected-realm/${connectedRealmId}`,
   };
 }
 /**
@@ -41,8 +41,8 @@ export function connectedRealmSearch(
     parameters: {
       _page: options._page,
       orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
-      'status.type': options['status.type'],
       'realms.timezone': options['realms.timezone'],
+      'status.type': options['status.type'],
     },
     path: `${base}/search/connected-realm`,
   };

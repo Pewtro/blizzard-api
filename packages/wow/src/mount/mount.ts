@@ -9,8 +9,8 @@ import type { MountIndexResponse, MountResponse, MountSearchParameters, MountSea
  */
 export function mount(mountId: number): Resource<MountResponse> {
   return {
-    path: `${base}/mount/${mountId}`,
     namespace: 'static',
+    path: `${base}/mount/${mountId}`,
   };
 }
 /**
@@ -19,8 +19,8 @@ export function mount(mountId: number): Resource<MountResponse> {
  */
 export function mountIndex(): Resource<MountIndexResponse> {
   return {
-    path: `${base}/mount/index`,
     namespace: 'static',
+    path: `${base}/mount/index`,
   };
 }
 /**
@@ -30,13 +30,13 @@ export function mountIndex(): Resource<MountIndexResponse> {
  */
 export function mountSearch(
   options: MountSearchParameters,
-): Resource<SearchResponse<MountSearchResponseItem>, Omit<MountSearchParameters, 'name' | 'locale'>> {
+): Resource<SearchResponse<MountSearchResponseItem>, Omit<MountSearchParameters, 'locale' | 'name'>> {
   return {
     namespace: 'static',
     parameters: {
       _page: options._page,
-      orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
       [`name.${options.locale}`]: options.name,
+      orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
     },
     path: `${searchBase}/mount`,
   };

@@ -14,11 +14,11 @@ export interface PlayableClassIndexResponse extends ResponseBase {
  */
 export interface PlayableClassResponse extends ResponseBase, NameId {
   gender_name: Gender;
-  power_type: NameIdKey;
-  specializations: Array<NameIdKey>;
   media: Media;
-  pvp_talent_slots: { href: string };
   playable_races: Array<NameIdKey>;
+  power_type: NameIdKey;
+  pvp_talent_slots: { href: string };
+  specializations: Array<NameIdKey>;
 }
 
 interface Media extends KeyBase {

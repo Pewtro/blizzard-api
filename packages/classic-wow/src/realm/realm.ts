@@ -13,8 +13,8 @@ export function realm(
   realmSlug: string,
 ): Resource<RealmResponse> {
   return {
-    path: `${base}/realm/${realmSlug}`,
     namespace,
+    path: `${base}/realm/${realmSlug}`,
   };
 }
 /**
@@ -26,8 +26,8 @@ export function realmIndex(
   namespace: Extract<BlizzardNamespaces, 'dynamic-classic' | 'dynamic-classic1x'>,
 ): Resource<RealmIndexResponse> {
   return {
-    path: `${base}/realm/index`,
     namespace,
+    path: `${base}/realm/index`,
   };
 }
 /**

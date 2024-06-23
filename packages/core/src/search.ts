@@ -10,8 +10,8 @@
  * };
  */
 export interface BaseSearchParameters {
-  orderby?: string | Array<string>;
   _page?: number;
+  orderby?: Array<string> | string;
 }
 
 /**
@@ -32,10 +32,10 @@ export interface BaseSearchParameters {
  * };
  */
 export interface SearchResponse<T> {
-  page: number;
-  pageSize: number;
   maxPageSize: number;
+  page: number;
   pageCount: number;
+  pageSize: number;
   resultCountCapped?: boolean;
   results: Array<T>;
 }

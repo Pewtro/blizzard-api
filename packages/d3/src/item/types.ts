@@ -1,37 +1,37 @@
 export interface ItemResponse {
-  id: string;
-  slug: string;
-  name: string;
-  icon: string;
-  tooltipParams: string;
-  requiredLevel: number;
-  stackSizeMax: number;
   accountBound: boolean;
+  attributes: Attributes;
+  color: string;
+  damage: string;
+  damageHtml: string;
+  dps: string;
   flavorText: string;
   flavorTextHtml: string;
-  typeName: string;
-  type: Type;
-  damage: string;
-  dps: string;
-  damageHtml: string;
-  color: string;
+  icon: string;
+  id: string;
   isSeasonRequiredToDrop: boolean;
-  seasonRequiredToDrop: number;
-  slots: Array<string>;
-  attributes: Attributes;
+  name: string;
   randomAffixes: Array<RandomAffix>;
+  requiredLevel: number;
+  seasonRequiredToDrop: number;
   setItems: Array<unknown>;
+  slots: Array<string>;
+  slug: string;
+  stackSizeMax: number;
+  tooltipParams: string;
+  type: Type;
+  typeName: string;
 }
 
 export interface Attributes {
+  other: Array<unknown>;
   primary: Array<Primary>;
   secondary: Array<Primary>;
-  other: Array<unknown>;
 }
 
 export interface Primary {
-  textHtml: string;
   text: string;
+  textHtml: string;
 }
 
 export interface RandomAffix {
@@ -39,6 +39,6 @@ export interface RandomAffix {
 }
 
 export interface Type {
-  twoHanded: boolean;
   id: string;
+  twoHanded: boolean;
 }

@@ -9,8 +9,8 @@ import type { SpellMediaResponse, SpellResponse, SpellSearchParameters, SpellSea
  */
 export function spell(spellId: number): Resource<SpellResponse> {
   return {
-    path: `${base}/spell/${spellId}`,
     namespace: 'static',
+    path: `${base}/spell/${spellId}`,
   };
 }
 /**
@@ -20,8 +20,8 @@ export function spell(spellId: number): Resource<SpellResponse> {
  */
 export function spellMedia(spellId: number): Resource<SpellMediaResponse> {
   return {
-    path: `${mediaBase}/spell/${spellId}`,
     namespace: 'static',
+    path: `${mediaBase}/spell/${spellId}`,
   };
 }
 /**
@@ -31,13 +31,13 @@ export function spellMedia(spellId: number): Resource<SpellMediaResponse> {
  */
 export function spellSearch(
   options: SpellSearchParameters,
-): Resource<SearchResponse<SpellSearchResponseItem>, Omit<SpellSearchParameters, 'name' | 'locale'>> {
+): Resource<SearchResponse<SpellSearchResponseItem>, Omit<SpellSearchParameters, 'locale' | 'name'>> {
   return {
     namespace: 'static',
     parameters: {
       _page: options._page,
-      orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
       [`name.${options.locale}`]: options.name,
+      orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
     },
     path: `${searchBase}/spell`,
   };

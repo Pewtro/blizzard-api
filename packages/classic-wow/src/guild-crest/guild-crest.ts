@@ -11,8 +11,8 @@ export function guildCrestComponentsIndex(
   namespace: Extract<BlizzardNamespaces, 'static-classic' | 'static-classic1x'>,
 ): Resource<GuildCrestComponentsIndexResponse> {
   return {
-    path: `${base}/guild-crest/index`,
     namespace,
+    path: `${base}/guild-crest/index`,
   };
 }
 /**
@@ -26,8 +26,8 @@ export function guildCrestBorder(
   borderId: number,
 ): Resource<GuildCrestBorderEmblemResponse> {
   return {
-    path: `${mediaBase}/guild-crest/border/${borderId}`,
     namespace,
+    path: `${mediaBase}/guild-crest/border/${borderId}`,
   };
 }
 /**
@@ -41,7 +41,7 @@ export function guildCrestEmblem(
   emblemId: number,
 ): Resource<GuildCrestBorderEmblemResponse> {
   return {
-    path: `${mediaBase}/guild-crest/emblem/${emblemId}`,
     namespace,
+    path: `${mediaBase}/guild-crest/emblem/${emblemId}`,
   };
 }

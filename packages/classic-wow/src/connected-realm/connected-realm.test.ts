@@ -25,8 +25,8 @@ describe.concurrent('classicConnectedRealmApi', () => {
     const result = classicConnectedRealmApi.connectedRealmSearch(namespace1x, {
       _page: 1,
       orderby: 'name',
-      'status.type': 'UP',
       'realms.timezone': 'America/Chicago',
+      'status.type': 'UP',
     });
     expect(result).toBeDefined();
     expect(result.path).toBe('/data/wow/search/connected-realm');
@@ -34,8 +34,8 @@ describe.concurrent('classicConnectedRealmApi', () => {
     expect(result.parameters).toEqual({
       _page: 1,
       orderby: 'name',
-      'status.type': 'UP',
       'realms.timezone': 'America/Chicago',
+      'status.type': 'UP',
     });
   });
 
@@ -43,8 +43,8 @@ describe.concurrent('classicConnectedRealmApi', () => {
     const result = classicConnectedRealmApi.connectedRealmSearch(namespace, {
       _page: 1,
       orderby: ['name', 'id'],
-      'status.type': 'UP',
       'realms.timezone': 'America/New_York',
+      'status.type': 'UP',
     });
     expect(result).toBeDefined();
     expect(result.path).toBe('/data/wow/search/connected-realm');
@@ -52,8 +52,8 @@ describe.concurrent('classicConnectedRealmApi', () => {
     expect(result.parameters).toEqual({
       _page: 1,
       orderby: 'name,id',
-      'status.type': 'UP',
       'realms.timezone': 'America/New_York',
+      'status.type': 'UP',
     });
   });
 });

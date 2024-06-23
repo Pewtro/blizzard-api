@@ -19,8 +19,8 @@ export function itemClassIndex(
   namespace: Extract<BlizzardNamespaces, 'static-classic' | 'static-classic1x'>,
 ): Resource<ItemClassIndexResponse> {
   return {
-    path: `${base}/item-class/index`,
     namespace,
+    path: `${base}/item-class/index`,
   };
 }
 /**
@@ -94,13 +94,13 @@ export function itemMedia(
 export function itemSearch(
   namespace: Extract<BlizzardNamespaces, 'static-classic' | 'static-classic1x'>,
   options: ItemSearchParameters,
-): Resource<SearchResponse<ItemSearchResponseItem>, Omit<ItemSearchParameters, 'name' | 'locale'>> {
+): Resource<SearchResponse<ItemSearchResponseItem>, Omit<ItemSearchParameters, 'locale' | 'name'>> {
   return {
     namespace,
     parameters: {
       _page: options._page,
-      orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
       [`name.${options.locale}`]: options.name,
+      orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
     },
     path: `${searchBase}/item`,
   };

@@ -13,8 +13,8 @@ import type {
  */
 export function playableSpecialization(specializationId: number): Resource<PlayableSpecializationResponse> {
   return {
-    path: `${base}/playable-specialization/${specializationId}`,
     namespace: 'static',
+    path: `${base}/playable-specialization/${specializationId}`,
   };
 }
 /**
@@ -23,8 +23,8 @@ export function playableSpecialization(specializationId: number): Resource<Playa
  */
 export function playableSpecializationIndex(): Resource<PlayableSpecializationIndexResponse> {
   return {
-    path: `${base}/playable-specialization/index`,
     namespace: 'static',
+    path: `${base}/playable-specialization/index`,
   };
 }
 /**
@@ -34,7 +34,7 @@ export function playableSpecializationIndex(): Resource<PlayableSpecializationIn
  */
 export function playableSpecializationMedia(specializationId: number): Resource<PlayableSpecializationMediaResponse> {
   return {
-    path: `${mediaBase}/playable-specialization/${specializationId}`,
     namespace: 'static',
+    path: `${mediaBase}/playable-specialization/${specializationId}`,
   };
 }

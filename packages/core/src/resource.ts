@@ -11,14 +11,14 @@ export type Resource<
   SearchOptions extends object = Record<string, never>,
   ProtectedResource extends boolean = false,
 > = {
-  path: string;
-  namespace?: BlizzardNamespaces;
-  parameters?: SearchOptions;
   /**
    * The response type of the resource
    * @private @internal This is an internal property and should not be used as it will not be populated
    */
   _responseType?: Response;
+  namespace?: BlizzardNamespaces;
+  parameters?: SearchOptions;
+  path: string;
 } & (ProtectedResource extends true ? { token: string } : unknown);
 
 /**

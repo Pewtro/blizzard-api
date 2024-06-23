@@ -176,12 +176,12 @@ export const wow = {
   creatureFamily,
   creatureFamilyIndex,
   creatureFamilyMedia,
+  creatureSearch,
   creatureType,
   creatureTypeIndex,
-  creatureSearch,
   //Guild Crest
-  guildCrestComponentsIndex,
   guildCrestBorder,
+  guildCrestComponentsIndex,
   guildCrestEmblem,
   //Heirloom
   heirloom,
@@ -189,12 +189,12 @@ export const wow = {
   //Item
   item,
   itemClass,
-  itemSubClass,
   itemClassIndex,
   itemMedia,
+  itemSearch,
   itemSet,
   itemSetIndex,
-  itemSearch,
+  itemSubClass,
   //Journal
   journalEncounter,
   journalEncounterIndex,
@@ -235,11 +235,11 @@ export const wow = {
   mythicRaidLeaderboard,
   //Pet
   pet,
-  petIndex,
-  petMedia,
   petAbility,
   petAbilityIndex,
   petAbilityMedia,
+  petIndex,
+  petMedia,
   //Playable Class
   playableClass,
   playableClassIndex,
@@ -274,11 +274,11 @@ export const wow = {
   pvpTierMedia,
   //Quest
   quest,
-  questIndex,
   questArea,
   questAreaIndex,
   questCategory,
   questCategoryIndex,
+  questIndex,
   questType,
   questTypeIndex,
   //Realm
@@ -422,6 +422,6 @@ export * from './title/types';
 //Toy
 export * from './toy/toy';
 export * from './toy/types';
+export * from './wow-token/types';
 //WoW Token
 export * from './wow-token/wow-token';
-export * from './wow-token/types';

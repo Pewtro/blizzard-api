@@ -52,32 +52,32 @@ describe.concurrent('journalApi', () => {
   it('should return the journal encounter search resource with parameters', ({ expect }) => {
     const resource = journalApi.journalEncounterSearch({
       _page: 1,
-      orderby: 'name',
       instanceName: 'instanceName',
       locale: 'en_US',
+      orderby: 'name',
     });
     expect(resource.path).toBe(`${searchBase}/journal-encounter`);
     expect(resource.namespace).toBe('static');
     expect(resource.parameters).toEqual({
       _page: 1,
-      orderby: 'name',
       'instance.name.en_US': 'instanceName',
+      orderby: 'name',
     });
   });
 
   it('should return the journal encounter search resource when orderby is an array', ({ expect }) => {
     const resource = journalApi.journalEncounterSearch({
       _page: 1,
-      orderby: ['name', 'id'],
       instanceName: 'instanceName',
       locale: 'en_US',
+      orderby: ['name', 'id'],
     });
     expect(resource.path).toBe(`${searchBase}/journal-encounter`);
     expect(resource.namespace).toBe('static');
     expect(resource.parameters).toEqual({
       _page: 1,
-      orderby: 'name,id',
       'instance.name.en_US': 'instanceName',
+      orderby: 'name,id',
     });
   });
 });

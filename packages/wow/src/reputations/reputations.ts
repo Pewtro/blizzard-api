@@ -14,8 +14,8 @@ import type {
  */
 export function reputationFaction(reputationFactionId: number): Resource<ReputationFactionResponse> {
   return {
-    path: `${base}/reputation-faction/${reputationFactionId}`,
     namespace: 'static',
+    path: `${base}/reputation-faction/${reputationFactionId}`,
   };
 }
 /**
@@ -24,8 +24,8 @@ export function reputationFaction(reputationFactionId: number): Resource<Reputat
  */
 export function reputationFactionIndex(): Resource<ReputationFactionIndexResponse> {
   return {
-    path: `${base}/reputation-faction/index`,
     namespace: 'static',
+    path: `${base}/reputation-faction/index`,
   };
 }
 /**
@@ -35,8 +35,8 @@ export function reputationFactionIndex(): Resource<ReputationFactionIndexRespons
  */
 export function reputationTiers(reputationTiersId: number): Resource<ReputationTiersResponse> {
   return {
-    path: `${base}/reputation-tiers/${reputationTiersId}`,
     namespace: 'static',
+    path: `${base}/reputation-tiers/${reputationTiersId}`,
   };
 }
 /**
@@ -45,7 +45,7 @@ export function reputationTiers(reputationTiersId: number): Resource<ReputationT
  */
 export function reputationTiersIndex(): Resource<ReputationTiersIndexResponse> {
   return {
-    path: `${base}/reputation-tiers/index`,
     namespace: 'static',
+    path: `${base}/reputation-tiers/index`,
   };
 }

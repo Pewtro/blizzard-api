@@ -19,8 +19,8 @@ import type {
  */
 export function creature(creatureId: number): Resource<CreatureResponse> {
   return {
-    path: `${base}/creature/${creatureId}`,
     namespace: 'static',
+    path: `${base}/creature/${creatureId}`,
   };
 }
 /**
@@ -30,8 +30,8 @@ export function creature(creatureId: number): Resource<CreatureResponse> {
  */
 export function creatureDisplayMedia(creatureDisplayId: number): Resource<CreatureDisplayMediaResponse> {
   return {
-    path: `${mediaBase}/creature-display/${creatureDisplayId}`,
     namespace: 'static',
+    path: `${mediaBase}/creature-display/${creatureDisplayId}`,
   };
 }
 /**
@@ -41,8 +41,8 @@ export function creatureDisplayMedia(creatureDisplayId: number): Resource<Creatu
  */
 export function creatureFamily(creatureFamilyId: number): Resource<CreatureFamilyResponse> {
   return {
-    path: `${base}/creature-family/${creatureFamilyId}`,
     namespace: 'static',
+    path: `${base}/creature-family/${creatureFamilyId}`,
   };
 }
 /**
@@ -51,8 +51,8 @@ export function creatureFamily(creatureFamilyId: number): Resource<CreatureFamil
  */
 export function creatureFamilyIndex(): Resource<CreatureFamilyIndexResponse> {
   return {
-    path: `${base}/creature-family/index`,
     namespace: 'static',
+    path: `${base}/creature-family/index`,
   };
 }
 /**
@@ -62,8 +62,8 @@ export function creatureFamilyIndex(): Resource<CreatureFamilyIndexResponse> {
  */
 export function creatureFamilyMedia(creatureFamilyId: number): Resource<CreatureFamilyMediaResponse> {
   return {
-    path: `${mediaBase}/creature-family/${creatureFamilyId}`,
     namespace: 'static',
+    path: `${mediaBase}/creature-family/${creatureFamilyId}`,
   };
 }
 /**
@@ -73,8 +73,8 @@ export function creatureFamilyMedia(creatureFamilyId: number): Resource<Creature
  */
 export function creatureType(creatureTypeId: number): Resource<CreatureTypeResponse> {
   return {
-    path: `${base}/creature-type/${creatureTypeId}`,
     namespace: 'static',
+    path: `${base}/creature-type/${creatureTypeId}`,
   };
 }
 /**
@@ -83,8 +83,8 @@ export function creatureType(creatureTypeId: number): Resource<CreatureTypeRespo
  */
 export function creatureTypeIndex(): Resource<CreatureTypeIndexResponse> {
   return {
-    path: `${base}/creature-type/index`,
     namespace: 'static',
+    path: `${base}/creature-type/index`,
   };
 }
 /**
@@ -94,13 +94,13 @@ export function creatureTypeIndex(): Resource<CreatureTypeIndexResponse> {
  */
 export function creatureSearch(
   options: CreatureSearchParameters,
-): Resource<SearchResponse<CreatureSearchResponseItem>, Omit<CreatureSearchParameters, 'name' | 'locale'>> {
+): Resource<SearchResponse<CreatureSearchResponseItem>, Omit<CreatureSearchParameters, 'locale' | 'name'>> {
   return {
     namespace: 'static',
     parameters: {
       _page: options._page,
-      orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
       [`name.${options.locale}`]: options.name,
+      orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
     },
     path: `${searchBase}/creature`,
   };

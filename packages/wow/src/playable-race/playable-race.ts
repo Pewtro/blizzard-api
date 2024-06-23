@@ -9,8 +9,8 @@ import type { PlayableRaceIndexResponse, PlayableRaceResponse } from './types';
  */
 export function playableRace(playableRaceId: number): Resource<PlayableRaceResponse> {
   return {
-    path: `${base}/playable-race/${playableRaceId}`,
     namespace: 'static',
+    path: `${base}/playable-race/${playableRaceId}`,
   };
 }
 /**
@@ -19,7 +19,7 @@ export function playableRace(playableRaceId: number): Resource<PlayableRaceRespo
  */
 export function playableRaceIndex(): Resource<PlayableRaceIndexResponse> {
   return {
-    path: `${base}/playable-race/index`,
     namespace: 'static',
+    path: `${base}/playable-race/index`,
   };
 }

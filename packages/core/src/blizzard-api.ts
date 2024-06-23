@@ -1,76 +1,76 @@
 /**
  * Possible regions for use within the Blizzard API.
  */
-export type Origins = 'us' | 'eu' | 'kr' | 'tw' | 'cn';
+export type Origins = 'cn' | 'eu' | 'kr' | 'tw' | 'us';
 /**
  * Possible locales for use within the Blizzard API.
  */
 export type Locales =
-  | 'en_US'
-  | 'es_MX'
-  | 'pt_BR'
-  | 'en_GB'
-  | 'es_ES'
-  | 'fr_FR'
-  | 'ru_RU'
   | 'de_DE'
-  | 'pt_PT'
+  | 'en_GB'
+  | 'en_US'
+  | 'es_ES'
+  | 'es_MX'
+  | 'fr_FR'
   | 'it_IT'
   | 'ko_KR'
-  | 'zh_TW'
+  | 'multi'
+  | 'pt_BR'
+  | 'pt_PT'
+  | 'ru_RU'
   | 'zh_CN'
-  | 'multi';
+  | 'zh_TW';
 
 /**
  * A record of regions and their supported locales.
  */
 const locales = {
-  us: ['en_US', 'es_MX', 'pt_BR', 'multi'],
+  cn: ['zh_CN'],
   eu: ['en_GB', 'es_ES', 'fr_FR', 'ru_RU', 'de_DE', 'pt_PT', 'it_IT', 'multi'],
   kr: ['ko_KR', 'en_GB', 'en_US', 'multi'],
   tw: ['zh_TW', 'en_GB', 'en_US', 'multi'],
-  cn: ['zh_CN'],
+  us: ['en_US', 'es_MX', 'pt_BR', 'multi'],
 } as const satisfies Record<Origins, Array<Locales>>;
 
 /**
  * The default Blizzard API configuration for each region.
  */
 interface BlizzardApiDefault<T extends Origins> {
-  hostname: T extends 'cn' ? 'https://gateway.battlenet.com.cn' : `https://${T}.api.blizzard.com`;
   defaultLocale: (typeof locales)[T][number];
+  hostname: T extends 'cn' ? 'https://gateway.battlenet.com.cn' : `https://${T}.api.blizzard.com`;
 }
 
 /**
  * A record of Blizzard API configurations by region.
  */
 interface BlizzardApiByRegion {
-  us: BlizzardApiDefault<'us'>;
+  cn: BlizzardApiDefault<'cn'>;
   eu: BlizzardApiDefault<'eu'>;
   kr: BlizzardApiDefault<'kr'>;
   tw: BlizzardApiDefault<'tw'>;
-  cn: BlizzardApiDefault<'cn'>;
+  us: BlizzardApiDefault<'us'>;
 }
 
 const endpoints: BlizzardApiByRegion = {
-  us: {
-    hostname: 'https://us.api.blizzard.com',
-    defaultLocale: 'en_US',
+  cn: {
+    defaultLocale: 'zh_CN',
+    hostname: 'https://gateway.battlenet.com.cn',
   },
   eu: {
-    hostname: 'https://eu.api.blizzard.com',
     defaultLocale: 'en_GB',
+    hostname: 'https://eu.api.blizzard.com',
   },
   kr: {
-    hostname: 'https://kr.api.blizzard.com',
     defaultLocale: 'ko_KR',
+    hostname: 'https://kr.api.blizzard.com',
   },
   tw: {
-    hostname: 'https://tw.api.blizzard.com',
     defaultLocale: 'zh_TW',
+    hostname: 'https://tw.api.blizzard.com',
   },
-  cn: {
-    hostname: 'https://gateway.battlenet.com.cn',
-    defaultLocale: 'zh_CN',
+  us: {
+    defaultLocale: 'en_US',
+    hostname: 'https://us.api.blizzard.com',
   },
 };
 
@@ -82,9 +82,9 @@ const endpoints: BlizzardApiByRegion = {
  * @property hostname The hostname of the Blizzard API.
  */
 interface BlizzardApi<T extends Origins> {
-  origin: Origins;
-  locale: (typeof locales)[T][number];
   hostname: BlizzardApiDefault<Origins>['hostname'];
+  locale: (typeof locales)[T][number];
+  origin: Origins;
 }
 
 /**
@@ -106,8 +106,8 @@ export function getBlizzardApi<T extends Origins>(
   const endpoint = endpoints[origin];
 
   return {
-    origin,
     hostname: endpoint.hostname,
     locale: locale ?? endpoint.defaultLocale,
+    origin,
   };
 }

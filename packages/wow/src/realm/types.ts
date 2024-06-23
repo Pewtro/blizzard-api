@@ -11,16 +11,16 @@ export type WithoutUnderscore<T extends string> = T extends `${infer Prefix}_${i
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export type RealmCategory =
+  | 'Brazil'
   | 'English'
   | 'French'
   | 'German'
   | 'Italian'
+  | 'Latin America'
+  | 'Oceanic'
   | 'PS'
   | 'Russian'
   | 'Spanish'
-  | 'Brazil'
-  | 'Latin America'
-  | 'Oceanic'
   | 'United States'
   | '한국';
 
@@ -64,14 +64,14 @@ interface Realm extends NameIdKey {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface RealmResponse extends ResponseBase, NameId {
-  region: NameIdKey;
-  connected_realm: { href: string };
   category: RealmCategory;
-  locale: WithoutUnderscore<Locales>;
-  timezone: RealmTimezone;
-  type: { type: RealmTypeCapitalized; name: RealmType };
+  connected_realm: { href: string };
   is_tournament: boolean;
+  locale: WithoutUnderscore<Locales>;
+  region: NameIdKey;
   slug: string;
+  timezone: RealmTimezone;
+  type: { name: RealmType; type: RealmTypeCapitalized };
 }
 
 /**
@@ -90,14 +90,14 @@ export interface RealmSearchParameters extends BaseSearchParameters {
  */
 export interface RealmSearchResponseItem extends KeyBase {
   data: {
-    is_tournament: boolean;
-    timezone: RealmTimezone;
-    name: Record<Locales, string | undefined>;
-    id: number;
-    region: { name: Record<Locales, string | undefined>; id: number };
     category: Record<Locales, string | undefined>;
+    id: number;
+    is_tournament: boolean;
     locale: WithoutUnderscore<Locales>;
-    type: { type: RealmTypeCapitalized; name: Record<Locales, string | undefined> };
+    name: Record<Locales, string | undefined>;
+    region: { id: number; name: Record<Locales, string | undefined> };
     slug: string;
+    timezone: RealmTimezone;
+    type: { name: Record<Locales, string | undefined>; type: RealmTypeCapitalized };
   };
 }

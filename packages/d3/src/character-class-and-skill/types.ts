@@ -1,39 +1,39 @@
 export interface CharacterClassResponse {
-  slug: string;
-  name: string;
-  maleName: string;
   femaleName: string;
   icon: string;
+  maleName: string;
+  name: string;
   skillCategories: Array<SkillCategory>;
   skills: Record<'active' | 'passive', Array<Skill>>;
+  slug: string;
 }
 
 interface SkillCategory {
-  slug: string;
   name: string;
+  slug: string;
 }
 
 interface Skill {
-  slug: string;
-  name: string;
-  icon: string;
-  level: number;
-  tooltipUrl: string;
   description: string;
   descriptionHtml: string;
   flavorText?: string;
+  icon: string;
+  level: number;
+  name: string;
+  slug: string;
+  tooltipUrl: string;
 }
 
 export interface SkillResponse {
-  skill: Skill;
   runes: Array<Rune>;
+  skill: Skill;
 }
 
 interface Rune {
-  slug: string;
-  type: string;
-  name: string;
-  level: number;
   description: string;
   descriptionHtml: string;
+  level: number;
+  name: string;
+  slug: string;
+  type: string;
 }

@@ -1,17 +1,17 @@
 export interface FollowerResponse {
-  slug: string;
   name: string;
-  realName: string;
   portrait: string;
+  realName: string;
   skills: Array<Skill>;
+  slug: string;
 }
 
 interface Skill {
-  slug: string;
-  name: string;
-  icon: string;
-  level: number;
-  tooltipUrl: string;
   description: string;
   descriptionHtml: string;
+  icon: string;
+  level: number;
+  name: string;
+  slug: string;
+  tooltipUrl: string;
 }

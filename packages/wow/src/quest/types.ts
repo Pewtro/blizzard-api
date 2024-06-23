@@ -5,8 +5,8 @@ import type { Faction, NameIdKey, ResponseBase } from '../base';
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface QuestIndexResponse extends ResponseBase {
-  categories: { href: string };
   areas: { href: string };
+  categories: { href: string };
   types: { href: string };
 }
 
@@ -15,35 +15,35 @@ export interface QuestIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface QuestResponse extends ResponseBase {
-  id: number;
-  title: string;
   area: NameIdKey;
   description: string;
+  id: number;
   requirements: Requirements;
   rewards: Rewards;
+  title: string;
 }
 
 interface Requirements {
-  min_character_level: number;
-  max_character_level: number;
   faction: Faction;
+  max_character_level: number;
+  min_character_level: number;
 }
 
 interface Rewards {
   experience: number;
-  reputations: Array<Reputation>;
   money: Money;
+  reputations: Array<Reputation>;
 }
 
 interface Money {
-  value: number;
   units: Units;
+  value: number;
 }
 
 interface Units {
+  copper: number;
   gold: number;
   silver: number;
-  copper: number;
 }
 
 interface Reputation {
@@ -64,8 +64,8 @@ export interface QuestAreaIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface QuestAreaResponse extends ResponseBase {
-  id: number;
   area: string;
+  id: number;
   quests: Array<NameIdKey>;
 }
 
@@ -82,8 +82,8 @@ export interface QuestCategoryIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface QuestCategoryResponse extends ResponseBase {
-  id: number;
   category: string;
+  id: number;
   quests: Array<NameIdKey>;
 }
 
@@ -101,6 +101,6 @@ export interface QuestTypeIndexResponse extends ResponseBase {
  */
 export interface QuestTypeResponse extends ResponseBase {
   id: number;
-  type: string;
   quests: Array<NameIdKey>;
+  type: string;
 }

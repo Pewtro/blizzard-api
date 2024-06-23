@@ -20,9 +20,9 @@ import type { AxiosResponse } from 'axios';
  */
 export interface AccessToken {
   access_token: string;
-  token_type: 'bearer';
   expires_in: number;
   sub?: string;
+  token_type: 'bearer';
 }
 
 /**
@@ -40,8 +40,8 @@ export interface AccessToken {
  * };
  */
 export interface AccessTokenRequestArguments {
-  origin?: Origins;
   key?: string;
+  origin?: Origins;
   secret?: string;
 }
 
@@ -83,12 +83,12 @@ export interface ValidateAccessTokenArguments {
  * };
  */
 export interface ValidateAccessTokenResponse {
-  scope: Array<string>;
   account_authorities: Array<unknown>;
-  exp: number;
-  client_authorities: Array<unknown>;
   authorities: Array<string>;
+  client_authorities: Array<unknown>;
   client_id: string;
+  exp: number;
+  scope: Array<string>;
 }
 
 /**
@@ -110,9 +110,9 @@ export interface ValidateAccessTokenResponse {
  */
 export interface ClientOptions {
   key: string;
-  secret: string;
-  origin: Origins;
   locale?: Locales;
+  origin: Origins;
+  secret: string;
   token?: string;
 }
 
@@ -126,7 +126,7 @@ export interface ClientOptions {
  */
 export interface IBlizzardApiClient {
   getAccessToken: (options: AccessTokenRequestArguments) => Promise<AxiosResponse<AccessToken>>;
-  setAccessToken: (token: string) => void;
   refreshAccessToken: (options: AccessTokenRequestArguments) => Promise<AxiosResponse<AccessToken>>;
+  setAccessToken: (token: string) => void;
   validateAccessToken: (options: ValidateAccessTokenArguments) => Promise<AxiosResponse<ValidateAccessTokenResponse>>;
 }

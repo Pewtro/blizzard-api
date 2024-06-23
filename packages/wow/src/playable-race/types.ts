@@ -13,9 +13,9 @@ export interface PlayableRaceIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface PlayableRaceResponse extends ResponseBase, NameId {
-  gender_name: Gender;
   faction: Faction;
-  is_selectable: boolean;
+  gender_name: Gender;
   is_allied_race: boolean;
+  is_selectable: boolean;
   playable_classes: Array<NameIdKey>;
 }

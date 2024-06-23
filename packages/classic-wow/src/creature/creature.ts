@@ -23,8 +23,8 @@ export function creature(
   creatureId: number,
 ): Resource<CreatureResponse> {
   return {
-    path: `${base}/creature/${creatureId}`,
     namespace,
+    path: `${base}/creature/${creatureId}`,
   };
 }
 /**
@@ -38,8 +38,8 @@ export function creatureDisplayMedia(
   creatureDisplayId: number,
 ): Resource<CreatureDisplayMediaResponse> {
   return {
-    path: `${mediaBase}/creature-display/${creatureDisplayId}`,
     namespace,
+    path: `${mediaBase}/creature-display/${creatureDisplayId}`,
   };
 }
 /**
@@ -53,8 +53,8 @@ export function creatureFamily(
   creatureFamilyId: number,
 ): Resource<CreatureFamilyResponse> {
   return {
-    path: `${base}/creature-family/${creatureFamilyId}`,
     namespace,
+    path: `${base}/creature-family/${creatureFamilyId}`,
   };
 }
 /**
@@ -66,8 +66,8 @@ export function creatureFamilyIndex(
   namespace: Extract<BlizzardNamespaces, 'static-classic' | 'static-classic1x'>,
 ): Resource<CreatureFamilyIndexResponse> {
   return {
-    path: `${base}/creature-family/index`,
     namespace,
+    path: `${base}/creature-family/index`,
   };
 }
 /**
@@ -81,8 +81,8 @@ export function creatureFamilyMedia(
   creatureFamilyId: number,
 ): Resource<CreatureFamilyMediaResponse> {
   return {
-    path: `${mediaBase}/creature-family/${creatureFamilyId}`,
     namespace,
+    path: `${mediaBase}/creature-family/${creatureFamilyId}`,
   };
 }
 /**
@@ -96,8 +96,8 @@ export function creatureType(
   creatureTypeId: number,
 ): Resource<CreatureTypeResponse> {
   return {
-    path: `${base}/creature-type/${creatureTypeId}`,
     namespace,
+    path: `${base}/creature-type/${creatureTypeId}`,
   };
 }
 /**
@@ -109,8 +109,8 @@ export function creatureTypeIndex(
   namespace: Extract<BlizzardNamespaces, 'static-classic' | 'static-classic1x'>,
 ): Resource<CreatureTypeIndexResponse> {
   return {
-    path: `${base}/creature-type/index`,
     namespace,
+    path: `${base}/creature-type/index`,
   };
 }
 /**
@@ -122,13 +122,13 @@ export function creatureTypeIndex(
 export function creatureSearch(
   namespace: Extract<BlizzardNamespaces, 'static-classic' | 'static-classic1x'>,
   options: CreatureSearchParameters,
-): Resource<SearchResponse<CreatureSearchResponseItem>, Omit<CreatureSearchParameters, 'name' | 'locale'>> {
+): Resource<SearchResponse<CreatureSearchResponseItem>, Omit<CreatureSearchParameters, 'locale' | 'name'>> {
   return {
     namespace,
     parameters: {
       _page: options._page,
-      orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
       [`name.${options.locale}`]: options.name,
+      orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
     },
     path: `${searchBase}/creature`,
   };

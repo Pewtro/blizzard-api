@@ -14,7 +14,7 @@ export function mythicRaidLeaderboard(
   faction: Lowercase<keyof typeof Factions>,
 ): Resource<MythicRaidLeaderboardResponse> {
   return {
-    path: `${base}/leaderboard/hall-of-fame/${raid}/${faction}`,
     namespace: 'dynamic',
+    path: `${base}/leaderboard/hall-of-fame/${raid}/${faction}`,
   };
 }

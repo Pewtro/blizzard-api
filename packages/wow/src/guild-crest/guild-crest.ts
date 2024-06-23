@@ -8,8 +8,8 @@ import type { GuildCrestBorderEmblemResponse, GuildCrestComponentsIndexResponse 
  */
 export function guildCrestComponentsIndex(): Resource<GuildCrestComponentsIndexResponse> {
   return {
-    path: `${base}/guild-crest/index`,
     namespace: 'static',
+    path: `${base}/guild-crest/index`,
   };
 }
 /**
@@ -19,8 +19,8 @@ export function guildCrestComponentsIndex(): Resource<GuildCrestComponentsIndexR
  */
 export function guildCrestBorder(borderId: number): Resource<GuildCrestBorderEmblemResponse> {
   return {
-    path: `${mediaBase}/guild-crest/border/${borderId}`,
     namespace: 'static',
+    path: `${mediaBase}/guild-crest/border/${borderId}`,
   };
 }
 /**
@@ -30,7 +30,7 @@ export function guildCrestBorder(borderId: number): Resource<GuildCrestBorderEmb
  */
 export function guildCrestEmblem(emblemId: number): Resource<GuildCrestBorderEmblemResponse> {
   return {
-    path: `${mediaBase}/guild-crest/emblem/${emblemId}`,
     namespace: 'static',
+    path: `${mediaBase}/guild-crest/emblem/${emblemId}`,
   };
 }

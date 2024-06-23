@@ -13,10 +13,10 @@ export interface TechTalentIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface TechTalentResponse extends ResponseBase, NameId {
-  talent_tree: Media;
-  tier: number;
   display_order: number;
   media: Media;
+  talent_tree: Media;
+  tier: number;
 }
 
 interface Media extends KeyBase {
@@ -50,7 +50,7 @@ interface TalentTree extends KeyBase {
  */
 export interface TechTalentTreeResponse extends ResponseBase {
   id: number;
-  playable_class: NameIdKey;
   max_tiers: number;
+  playable_class: NameIdKey;
   talents: Array<NameIdKey>;
 }

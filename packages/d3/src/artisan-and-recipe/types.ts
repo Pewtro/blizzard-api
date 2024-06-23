@@ -1,7 +1,7 @@
 export interface ArtisanResponse {
-  slug: string;
   name: string;
   portrait: string;
+  slug: string;
   training: Training;
 }
 
@@ -10,38 +10,38 @@ interface Training {
 }
 
 interface Tier {
+  taughtRecipes: Array<Recipe>;
   tier: number;
   trainedRecipes: Array<Recipe>;
-  taughtRecipes: Array<Recipe>;
 }
 
 interface Recipe {
-  id: string;
-  slug: string;
-  name: string;
   cost: number;
-  reagents: Array<Reagent>;
+  id: string;
   itemProduced: Item;
+  name: string;
+  reagents: Array<Reagent>;
+  slug: string;
 }
 
 interface Item {
-  id: string;
-  slug: string;
-  name: string;
   icon: string;
+  id: string;
+  name: string;
   path: string;
+  slug: string;
 }
 
 interface Reagent {
-  quantity: number;
   item: Item;
+  quantity: number;
 }
 
 export interface RecipeResponse {
-  id: string;
-  slug: string;
-  name: string;
   cost: number;
-  reagents: Array<Reagent>;
+  id: string;
   itemProduced: Item;
+  name: string;
+  reagents: Array<Reagent>;
+  slug: string;
 }

@@ -13,15 +13,15 @@ export interface MythicKeystoneLeaderboardIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface MythicKeystoneLeaderboardResponse extends ResponseBase {
-  map: NameId;
-  period: number;
-  period_start_timestamp: number;
-  period_end_timestamp: number;
   connected_realm: { href: string };
-  leading_groups: Array<LeadingGroup>;
   keystone_affixes: Array<KeystoneAffixElement>;
+  leading_groups: Array<LeadingGroup>;
+  map: NameId;
   map_challenge_mode_id: number;
   name: string;
+  period: number;
+  period_end_timestamp: number;
+  period_start_timestamp: number;
 }
 
 interface KeystoneAffixElement {
@@ -30,17 +30,17 @@ interface KeystoneAffixElement {
 }
 
 interface LeadingGroup {
-  ranking: number;
-  duration: number;
   completed_timestamp: number;
+  duration: number;
   keystone_level: number;
   members: Array<Member>;
   mythic_rating: MythicRating;
+  ranking: number;
 }
 
 interface Member {
-  profile: Profile;
   faction: { type: keyof typeof Factions };
+  profile: Profile;
   specialization: Specialization;
 }
 

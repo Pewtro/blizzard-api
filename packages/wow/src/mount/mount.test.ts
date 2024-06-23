@@ -21,34 +21,34 @@ describe.concurrent('mountApi', () => {
   it('mountSearch should return a resource object with the correct path and namespace', ({ expect }) => {
     const resource = mountApi.mountSearch({
       _page: 1,
-      orderby: 'name',
       locale: 'en_US',
       name: 'mount',
+      orderby: 'name',
     });
 
     expect(resource.path).toBe(`${searchBase}/mount`);
     expect(resource.namespace).toBe('static');
     expect(resource.parameters).toEqual({
       _page: 1,
-      orderby: 'name',
       'name.en_US': 'mount',
+      orderby: 'name',
     });
   });
 
   it('mountSearch should return correct resource object when orderby is an array', ({ expect }) => {
     const resource = mountApi.mountSearch({
       _page: 1,
-      orderby: ['name', 'id'],
       locale: 'en_US',
       name: 'mount',
+      orderby: ['name', 'id'],
     });
 
     expect(resource.path).toBe(`${searchBase}/mount`);
     expect(resource.namespace).toBe('static');
     expect(resource.parameters).toEqual({
       _page: 1,
-      orderby: 'name,id',
       'name.en_US': 'mount',
+      orderby: 'name,id',
     });
   });
 });

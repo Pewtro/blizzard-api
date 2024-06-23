@@ -16,8 +16,8 @@ import type {
  */
 export function pet(petId: number): Resource<PetResponse> {
   return {
-    path: `${base}/pet/${petId}`,
     namespace: 'static',
+    path: `${base}/pet/${petId}`,
   };
 }
 /**
@@ -26,8 +26,8 @@ export function pet(petId: number): Resource<PetResponse> {
  */
 export function petIndex(): Resource<PetIndexResponse> {
   return {
-    path: `${base}/pet/index`,
     namespace: 'static',
+    path: `${base}/pet/index`,
   };
 }
 /**
@@ -37,8 +37,8 @@ export function petIndex(): Resource<PetIndexResponse> {
  */
 export function petMedia(petId: number): Resource<PetMediaResponse> {
   return {
-    path: `${mediaBase}/pet/${petId}`,
     namespace: 'static',
+    path: `${mediaBase}/pet/${petId}`,
   };
 }
 /**
@@ -48,8 +48,8 @@ export function petMedia(petId: number): Resource<PetMediaResponse> {
  */
 export function petAbility(petAbilityId: number): Resource<PetAbilityResponse> {
   return {
-    path: `${base}/pet-ability/${petAbilityId}`,
     namespace: 'static',
+    path: `${base}/pet-ability/${petAbilityId}`,
   };
 }
 /**
@@ -58,8 +58,8 @@ export function petAbility(petAbilityId: number): Resource<PetAbilityResponse> {
  */
 export function petAbilityIndex(): Resource<PetAbilityIndexResponse> {
   return {
-    path: `${base}/pet-ability/index`,
     namespace: 'static',
+    path: `${base}/pet-ability/index`,
   };
 }
 /**
@@ -69,7 +69,7 @@ export function petAbilityIndex(): Resource<PetAbilityIndexResponse> {
  */
 export function petAbilityMedia(petAbilityId: number): Resource<PetAbilityMediaResponse> {
   return {
-    path: `${mediaBase}/pet-ability/${petAbilityId}`,
     namespace: 'static',
+    path: `${mediaBase}/pet-ability/${petAbilityId}`,
   };
 }

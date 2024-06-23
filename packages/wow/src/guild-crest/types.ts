@@ -5,9 +5,9 @@ import type { KeyBase, ResponseBase } from '../base';
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface GuildCrestComponentsIndexResponse extends ResponseBase {
-  emblems: Array<Border>;
   borders: Array<Border>;
   colors: Colors;
+  emblems: Array<Border>;
 }
 
 interface Border {
@@ -20,9 +20,9 @@ interface Media extends KeyBase {
 }
 
 interface Colors {
-  emblems: Array<Background>;
-  borders: Array<Background>;
   backgrounds: Array<Background>;
+  borders: Array<Background>;
+  emblems: Array<Background>;
 }
 
 interface Background {
@@ -31,10 +31,10 @@ interface Background {
 }
 
 interface RGBA {
-  r: number;
-  g: number;
-  b: number;
   a: number;
+  b: number;
+  g: number;
+  r: number;
 }
 
 /**

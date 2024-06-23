@@ -11,7 +11,7 @@ const getTokenExpiration = (expiresIn: number) => expiresIn * 1000 - 60_000;
  */
 export const createBlizzardApiClient = async (
   options: ClientOptions,
-  onTokenRefresh: boolean | ((token: AccessToken) => void) = true,
+  onTokenRefresh: ((token: AccessToken) => void) | boolean = true,
 ): Promise<BlizzardApiClient> => {
   const { key, secret, token } = options;
   if (!key) {

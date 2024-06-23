@@ -14,9 +14,9 @@ export interface ReputationFactionIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface ReputationFactionResponse extends ResponseBase {
+  description: string;
   id: number;
   name: string;
-  description: string;
   reputation_tiers: ReputationTiers;
 }
 
@@ -42,14 +42,14 @@ interface ReputationTier extends KeyBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface ReputationTiersResponse extends ResponseBase {
+  faction?: NameIdKey;
   id: number;
   tiers: Array<Tier>;
-  faction?: NameIdKey;
 }
 
 interface Tier {
-  name: string;
-  min_value: number;
-  max_value: number;
   id: number;
+  max_value: number;
+  min_value: number;
+  name: string;
 }

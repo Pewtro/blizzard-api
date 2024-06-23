@@ -14,12 +14,12 @@ export interface MountIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface MountResponse extends ResponseBase {
-  id: number;
-  name: string;
   creature_displays: Array<CreatureDisplay>;
   description: string;
-  source: Source;
+  id: number;
+  name: string;
   should_exclude_if_uncollected: boolean;
+  source: Source;
 }
 
 interface CreatureDisplay extends KeyBase {
@@ -27,8 +27,8 @@ interface CreatureDisplay extends KeyBase {
 }
 
 interface Source {
-  type: string;
   name: string;
+  type: string;
 }
 
 /**
@@ -37,8 +37,8 @@ interface Source {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
  */
 export interface MountSearchParameters extends BaseSearchParameters {
-  name: string;
   locale: Locales;
+  name: string;
 }
 
 /**
@@ -49,9 +49,9 @@ export interface MountSearchParameters extends BaseSearchParameters {
 export interface MountSearchResponseItem extends KeyBase {
   data: {
     creature_displays: Array<{ id: number }>;
-    name: Record<Locales, string>;
-    id: number;
-    source: { name: Record<Locales, string>; type: string };
     faction?: { name: Record<Locales, string>; type: keyof typeof Factions };
+    id: number;
+    name: Record<Locales, string>;
+    source: { name: Record<Locales, string>; type: string };
   };
 }

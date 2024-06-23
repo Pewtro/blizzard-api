@@ -14,14 +14,14 @@ export interface PlayableSpecializationIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface PlayableSpecializationResponse extends ResponseBase, NameId {
-  playable_class: NameIdKey;
   gender_description: Gender;
   media: Media;
-  role: PrimaryStatType;
-  pvp_talents: Array<PvpTalent>;
-  spec_talent_tree: SpecTalentTree;
+  playable_class: NameIdKey;
   power_type: NameIdKey;
   primary_stat_type: PrimaryStatType;
+  pvp_talents: Array<PvpTalent>;
+  role: PrimaryStatType;
+  spec_talent_tree: SpecTalentTree;
 }
 
 interface Media extends KeyBase {
@@ -29,20 +29,20 @@ interface Media extends KeyBase {
 }
 
 interface PrimaryStatType {
-  type: string;
   name: string;
+  type: string;
 }
 
 interface PvpTalent {
-  talent: NameIdKey;
   spell_tooltip: SpellTooltip;
+  talent: NameIdKey;
 }
 
 interface SpellTooltip {
-  description: string;
   cast_time: string;
-  power_cost?: string;
   cooldown?: string;
+  description: string;
+  power_cost?: string;
   range?: string;
 }
 

@@ -5,10 +5,10 @@ import type { Faction, Factions, KeyBase, NameId, NameIdKey, ResponseBase } from
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface PvpLeaderboardResponse extends ResponseBase {
-  season: Season;
-  name: string;
   bracket: Bracket;
   entries: Array<Entry>;
+  name: string;
+  season: Season;
 }
 
 interface Entry {
@@ -30,9 +30,9 @@ interface Realm extends KeyBase {
 }
 
 interface SeasonMatchStatistics {
+  lost: number;
   played: number;
   won: number;
-  lost: number;
 }
 
 /**
@@ -40,8 +40,8 @@ interface SeasonMatchStatistics {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface PvpLeaderboardIndexResponse extends ResponseBase {
-  season: Season;
   leaderboards: Array<NameIdKey>;
+  season: Season;
 }
 
 /**
@@ -49,15 +49,15 @@ export interface PvpLeaderboardIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface PvpRewardsIndexResponse extends ResponseBase {
-  season: Season;
   rewards: Array<Reward>;
+  season: Season;
 }
 
 interface Reward {
-  bracket: Bracket;
   achievement: NameIdKey;
-  rating_cutoff: number;
+  bracket: Bracket;
   faction?: Faction;
+  rating_cutoff: number;
   specialization?: NameIdKey;
 }
 
@@ -71,8 +71,8 @@ interface Bracket {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface PvpSeasonIndexResponse extends ResponseBase {
-  seasons: Array<Season>;
   current_season: Season;
+  seasons: Array<Season>;
 }
 
 interface Season extends KeyBase {
@@ -87,6 +87,6 @@ export interface PvpSeasonResponse extends ResponseBase {
   id: number;
   leaderboards: { href: string };
   rewards: { href: string };
-  season_start_timestamp: number;
   season_name?: string;
+  season_start_timestamp: number;
 }

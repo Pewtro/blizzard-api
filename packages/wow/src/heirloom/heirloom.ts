@@ -9,8 +9,8 @@ import type { HeirloomIndexResponse, HeirloomResponse } from './types';
  */
 export function heirloom(heirloomId: number): Resource<HeirloomResponse> {
   return {
-    path: `${base}/heirloom/${heirloomId}`,
     namespace: 'static',
+    path: `${base}/heirloom/${heirloomId}`,
   };
 }
 /**
@@ -19,7 +19,7 @@ export function heirloom(heirloomId: number): Resource<HeirloomResponse> {
  */
 export function heirloomIndex(): Resource<HeirloomIndexResponse> {
   return {
-    path: `${base}/heirloom/index`,
     namespace: 'static',
+    path: `${base}/heirloom/index`,
   };
 }

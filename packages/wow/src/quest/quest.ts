@@ -18,8 +18,8 @@ import type {
  */
 export function quest(questId: number): Resource<QuestResponse> {
   return {
-    path: `${base}/quest/${questId}`,
     namespace: 'static',
+    path: `${base}/quest/${questId}`,
   };
 }
 /**
@@ -28,8 +28,8 @@ export function quest(questId: number): Resource<QuestResponse> {
  */
 export function questIndex(): Resource<QuestIndexResponse> {
   return {
-    path: `${base}/quest/index`,
     namespace: 'static',
+    path: `${base}/quest/index`,
   };
 }
 /**
@@ -39,8 +39,8 @@ export function questIndex(): Resource<QuestIndexResponse> {
  */
 export function questArea(questAreaId: number): Resource<QuestAreaResponse> {
   return {
-    path: `${base}/quest/area/${questAreaId}`,
     namespace: 'static',
+    path: `${base}/quest/area/${questAreaId}`,
   };
 }
 /**
@@ -49,8 +49,8 @@ export function questArea(questAreaId: number): Resource<QuestAreaResponse> {
  */
 export function questAreaIndex(): Resource<QuestAreaIndexResponse> {
   return {
-    path: `${base}/quest/area/index`,
     namespace: 'static',
+    path: `${base}/quest/area/index`,
   };
 }
 /**
@@ -60,8 +60,8 @@ export function questAreaIndex(): Resource<QuestAreaIndexResponse> {
  */
 export function questCategory(questCategoryId: number): Resource<QuestCategoryResponse> {
   return {
-    path: `${base}/quest/category/${questCategoryId}`,
     namespace: 'static',
+    path: `${base}/quest/category/${questCategoryId}`,
   };
 }
 /**
@@ -70,8 +70,8 @@ export function questCategory(questCategoryId: number): Resource<QuestCategoryRe
  */
 export function questCategoryIndex(): Resource<QuestCategoryIndexResponse> {
   return {
-    path: `${base}/quest/category/index`,
     namespace: 'static',
+    path: `${base}/quest/category/index`,
   };
 }
 /**
@@ -81,8 +81,8 @@ export function questCategoryIndex(): Resource<QuestCategoryIndexResponse> {
  */
 export function questType(questTypeId: number): Resource<QuestTypeResponse> {
   return {
-    path: `${base}/quest/type/${questTypeId}`,
     namespace: 'static',
+    path: `${base}/quest/type/${questTypeId}`,
   };
 }
 /**
@@ -91,7 +91,7 @@ export function questType(questTypeId: number): Resource<QuestTypeResponse> {
  */
 export function questTypeIndex(): Resource<QuestTypeIndexResponse> {
   return {
-    path: `${base}/quest/type/index`,
     namespace: 'static',
+    path: `${base}/quest/type/index`,
   };
 }

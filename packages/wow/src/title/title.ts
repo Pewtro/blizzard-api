@@ -9,8 +9,8 @@ import type { TitleIndexResponse, TitleResponse } from './types';
  */
 export function title(titleId: number): Resource<TitleResponse> {
   return {
-    path: `${base}/title/${titleId}`,
     namespace: 'static',
+    path: `${base}/title/${titleId}`,
   };
 }
 /**
@@ -19,7 +19,7 @@ export function title(titleId: number): Resource<TitleResponse> {
  */
 export function titleIndex(): Resource<TitleIndexResponse> {
   return {
-    path: `${base}/title/index`,
     namespace: 'static',
+    path: `${base}/title/index`,
   };
 }

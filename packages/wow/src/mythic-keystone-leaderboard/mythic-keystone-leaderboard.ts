@@ -15,8 +15,8 @@ export function mythicKeystoneLeaderboard(
   period: number,
 ): Resource<MythicKeystoneLeaderboardResponse> {
   return {
-    path: `${base}/connected-realm/${connectedRealmId}/mythic-leaderboard/${dungeonId}/period/${period}`,
     namespace: 'dynamic',
+    path: `${base}/connected-realm/${connectedRealmId}/mythic-leaderboard/${dungeonId}/period/${period}`,
   };
 }
 /**
@@ -28,7 +28,7 @@ export function mythicKeystoneLeaderboardIndex(
   connectedRealmId: number,
 ): Resource<MythicKeystoneLeaderboardIndexResponse> {
   return {
-    path: `${base}/connected-realm/${connectedRealmId}/mythic-leaderboard/index`,
     namespace: 'dynamic',
+    path: `${base}/connected-realm/${connectedRealmId}/mythic-leaderboard/index`,
   };
 }

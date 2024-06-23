@@ -2,9 +2,9 @@ import type { BaseSearchParameters, Locales } from '@blizzard-api/core';
 import type { KeyBase, NameIdKey, ResponseBase } from '../base';
 import type { RealmCategory, RealmTimezone, RealmType, RealmTypeCapitalized, WithoutUnderscore } from '../realm/types';
 
-type RealmPopulation = 'Low' | 'Medium' | 'High' | 'Full' | 'New Players';
-type RealmPopulationCapitalized = 'LOW' | 'MEDIUM' | 'HIGH' | 'FULL' | 'RECOMMENDED';
-type RealmStatus = 'Up' | 'Down';
+type RealmPopulation = 'Full' | 'High' | 'Low' | 'Medium' | 'New Players';
+type RealmPopulationCapitalized = 'FULL' | 'HIGH' | 'LOW' | 'MEDIUM' | 'RECOMMENDED';
+type RealmStatus = 'Down' | 'Up';
 
 /**
  * Connected Realm Index API response.
@@ -15,21 +15,21 @@ export interface ConnectedRealmIndexResponse extends ResponseBase {
 }
 
 interface Realm {
-  id: number;
-  region: NameIdKey;
-  connected_realm: { href: string };
-  name: string;
   category: RealmCategory;
-  locale: WithoutUnderscore<Locales>;
-  timezone: RealmTimezone;
-  type: { type: RealmTypeCapitalized; name: RealmType };
+  connected_realm: { href: string };
+  id: number;
   is_tournament: boolean;
+  locale: WithoutUnderscore<Locales>;
+  name: string;
+  region: NameIdKey;
   slug: string;
+  timezone: RealmTimezone;
+  type: { name: RealmType; type: RealmTypeCapitalized };
 }
 
 interface RealmLockedStatus {
-  is_locked_for_pct: boolean;
   is_locked_for_new_characters: boolean;
+  is_locked_for_pct: boolean;
 }
 
 /**
@@ -37,14 +37,14 @@ interface RealmLockedStatus {
  * @see https://develop.battle.net/documentation/world-of-warcraft/game-data-apis
  */
 export interface ConnectedRealmResponse extends ResponseBase {
-  id: number;
-  has_queue: boolean;
-  status: { type: Uppercase<RealmStatus>; name: RealmStatus };
-  population: { type: RealmPopulationCapitalized; name: RealmPopulation };
-  realms: Array<Realm>;
-  mythic_leaderboards: { href: string };
   auctions: { href: string };
+  has_queue: boolean;
+  id: number;
+  mythic_leaderboards: { href: string };
+  population: { name: RealmPopulation; type: RealmPopulationCapitalized };
   realm_locked_status?: RealmLockedStatus;
+  realms: Array<Realm>;
+  status: { name: RealmStatus; type: Uppercase<RealmStatus> };
 }
 
 /**
@@ -58,25 +58,25 @@ export interface ConnectedRealmSearchParameters extends BaseSearchParameters {
 }
 
 interface SearchRealm {
-  is_tournament: boolean;
-  timezone: RealmTimezone;
-  name: Record<Locales, string | undefined>;
-  id: number;
   category: Record<Locales, string | undefined>;
-  region: { name: Record<Locales, string | undefined>; id: number };
+  id: number;
+  is_tournament: boolean;
   locale: WithoutUnderscore<Locales>;
-  type: { type: RealmTypeCapitalized; name: Record<Locales, string | undefined> };
+  name: Record<Locales, string | undefined>;
+  region: { id: number; name: Record<Locales, string | undefined> };
   slug: string;
+  timezone: RealmTimezone;
+  type: { name: Record<Locales, string | undefined>; type: RealmTypeCapitalized };
 }
 
 interface SearchRealmStatus {
-  type: Uppercase<RealmStatus>;
   name: Record<Locales, string>;
+  type: Uppercase<RealmStatus>;
 }
 
 interface SearchRealmPopulation {
-  type: RealmPopulationCapitalized;
   name: Record<Locales, string>;
+  type: RealmPopulationCapitalized;
 }
 
 /**
@@ -86,10 +86,10 @@ interface SearchRealmPopulation {
  */
 export interface ConnectedRealmSearchResponseItem extends KeyBase {
   data: {
-    id: number;
     has_queue: boolean;
+    id: number;
+    population: SearchRealmPopulation;
     realms: Array<SearchRealm>;
     status: SearchRealmStatus;
-    population: SearchRealmPopulation;
   };
 }

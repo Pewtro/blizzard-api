@@ -6,8 +6,8 @@ import { createBlizzardApiClient } from '../client/create-client';
 describe.concurrent('smoketest some wow api responses', async () => {
   const client = await createBlizzardApiClient({
     key: environment.blizzardClientId,
-    secret: environment.blizzardClientSecret,
     origin: 'eu',
+    secret: environment.blizzardClientSecret,
   });
 
   it('should be able to fetch an achievement', async ({ expect }) => {
@@ -85,14 +85,14 @@ describe.concurrent('smoketest some wow api responses', async () => {
   });
 
   it('can search for a creature', async ({ expect }) => {
-    const response = await client.sendRequest(wow.creatureSearch({ name: 'Dragon', locale: 'en_US', _page: 1 }));
+    const response = await client.sendRequest(wow.creatureSearch({ _page: 1, locale: 'en_US', name: 'Dragon' }));
 
     expect(response.data).toBeDefined();
     expect(response.data.results.length).toBeGreaterThan(0);
   });
 
   it('can search for an item', async ({ expect }) => {
-    const response = await client.sendRequest(wow.itemSearch({ name: '', locale: 'en_US', _page: 1 }));
+    const response = await client.sendRequest(wow.itemSearch({ _page: 1, locale: 'en_US', name: '' }));
 
     expect(response.data).toBeDefined();
     expect(response.data.results.length).toBeGreaterThan(0);
@@ -100,7 +100,7 @@ describe.concurrent('smoketest some wow api responses', async () => {
 
   it('can search for a journal encounter', async ({ expect }) => {
     const response = await client.sendRequest(
-      wow.journalEncounterSearch({ instanceName: 'The Nighthold', locale: 'en_US', _page: 1 }),
+      wow.journalEncounterSearch({ _page: 1, instanceName: 'The Nighthold', locale: 'en_US' }),
     );
 
     expect(response.data).toBeDefined();
@@ -119,7 +119,7 @@ describe.concurrent('smoketest some wow api responses', async () => {
   });
 
   it('can search for a mount', async ({ expect }) => {
-    const response = await client.sendRequest(wow.mountSearch({ name: 'Turtle', locale: 'en_US', _page: 1 }));
+    const response = await client.sendRequest(wow.mountSearch({ _page: 1, locale: 'en_US', name: 'Turtle' }));
 
     expect(response.data).toBeDefined();
     expect(response.data.results.length).toBeGreaterThan(0);
@@ -133,7 +133,7 @@ describe.concurrent('smoketest some wow api responses', async () => {
   });
 
   it('can search for a spell', async ({ expect }) => {
-    const response = await client.sendRequest(wow.spellSearch({ name: 'Fireball', locale: 'en_US', _page: 1 }));
+    const response = await client.sendRequest(wow.spellSearch({ _page: 1, locale: 'en_US', name: 'Fireball' }));
 
     expect(response.data).toBeDefined();
     expect(response.data.results.length).toBeGreaterThan(0);

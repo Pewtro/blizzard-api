@@ -15,8 +15,8 @@ export interface AzeriteEssenceIndexResponse extends ResponseBase {
  */
 export interface AzeriteEssenceResponse extends ResponseBase, NameId {
   allowed_specializations: Array<NameIdKey>;
-  powers: Array<Power>;
   media: Media;
+  powers: Array<Power>;
 }
 
 interface Media extends KeyBase {
@@ -25,9 +25,9 @@ interface Media extends KeyBase {
 
 interface Power {
   id: number;
-  rank: number;
   main_power_spell: NameIdKey;
   passive_power_spell: NameIdKey;
+  rank: number;
 }
 
 /**

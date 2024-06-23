@@ -1,50 +1,50 @@
 export interface AccountResponse {
   battleTag: string;
+  blacksmith: Artisan;
+  blacksmithHardcore: Artisan;
+  blacksmithSeason: Artisan;
+  blacksmithSeasonHardcore: Artisan;
+  guildName: string;
+  heroes: Array<Hero>;
+  highestHardcoreLevel: number;
+  jeweler: Artisan;
+  jewelerHardcore: Artisan;
+  jewelerSeason: Artisan;
+  jewelerSeasonHardcore: Artisan;
+  kills: AccountResponseKills;
+  lastHeroPlayed: number;
+  lastUpdated: number;
+  mystic: Artisan;
+  mysticHardcore: Artisan;
+  mysticSeason: Artisan;
+  mysticSeasonHardcore: Artisan;
   paragonLevel: number;
   paragonLevelHardcore: number;
   paragonLevelSeason: number;
   paragonLevelSeasonHardcore: number;
-  guildName: string;
-  heroes: Array<Hero>;
-  lastHeroPlayed: number;
-  lastUpdated: number;
-  kills: AccountResponseKills;
-  highestHardcoreLevel: number;
-  timePlayed: TimePlayed;
   progression: Progression;
   seasonalProfiles: Record<`season${number}`, Season>;
-  blacksmithSeason: Artisan;
-  blacksmithHardcore: Artisan;
-  jewelerSeason: Artisan;
-  mysticSeason: Artisan;
-  jewelerHardcore: Artisan;
-  mysticHardcore: Artisan;
-  blacksmithSeasonHardcore: Artisan;
-  jewelerSeasonHardcore: Artisan;
-  mysticSeasonHardcore: Artisan;
-  blacksmith: Artisan;
-  jeweler: Artisan;
-  mystic: Artisan;
+  timePlayed: TimePlayed;
 }
 
 interface Artisan {
-  slug: 'blacksmith' | 'jeweler' | 'mystic';
   level: number;
+  slug: 'blacksmith' | 'jeweler' | 'mystic';
 }
 
 interface Hero {
-  id: number;
-  name: string;
   class: string;
   classSlug: string;
-  gender: number;
-  level: number;
-  kills: HeroKills;
-  paragonLevel: number;
-  hardcore: boolean;
-  seasonal: boolean;
   dead: boolean;
+  gender: number;
+  hardcore: boolean;
+  id: number;
+  kills: HeroKills;
   'last-updated': number;
+  level: number;
+  name: string;
+  paragonLevel: number;
+  seasonal: boolean;
 }
 
 interface HeroKills {
@@ -52,72 +52,72 @@ interface HeroKills {
 }
 
 interface AccountResponseKills {
-  monsters: number;
   elites: number;
   hardcoreMonsters: number;
+  monsters: number;
 }
 
 interface Progression {
   act1: boolean;
-  act3: boolean;
   act2: boolean;
-  act5: boolean;
+  act3: boolean;
   act4: boolean;
+  act5: boolean;
 }
 
 interface Season {
-  seasonId: number;
+  highestHardcoreLevel: number;
+  kills: AccountResponseKills;
   paragonLevel: number;
   paragonLevelHardcore: number;
-  kills: AccountResponseKills;
+  seasonId: number;
   timePlayed: TimePlayed;
-  highestHardcoreLevel: number;
 }
 
 interface TimePlayed {
-  'demon-hunter': number;
   barbarian: number;
-  'witch-doctor': number;
-  necromancer: number;
-  wizard: number;
-  monk: number;
   crusader: number;
+  'demon-hunter': number;
+  monk: number;
+  necromancer: number;
+  'witch-doctor': number;
+  wizard: number;
 }
 
 export interface AccountHeroResponse {
-  id: number;
-  name: string;
+  alive: boolean;
   class: string;
+  followers: Followers;
   gender: number;
-  level: number;
-  paragonLevel: number;
-  kills: Kills;
   hardcore: boolean;
+  highestSoloRiftCompleted: number;
+  id: number;
+  items: Record<string, Item>;
+  kills: Kills;
+  lastUpdated: number;
+  legendaryPowers: Array<Item>;
+  level: number;
+  name: string;
+  paragonLevel: number;
+  progression: HeroProgression;
   seasonal: boolean;
   seasonCreated: number;
   skills: Skills;
-  items: Record<string, Item>;
-  followers: Followers;
-  legendaryPowers: Array<Item>;
-  progression: HeroProgression;
-  alive: boolean;
-  lastUpdated: number;
-  highestSoloRiftCompleted: number;
   stats: Record<string, number>;
 }
 
 interface Followers {
-  templar: Templar;
-  scoundrel: Scoundrel;
   enchantress: Enchantress;
+  scoundrel: Scoundrel;
+  templar: Templar;
 }
 
 interface Enchantress {
-  slug: string;
-  level: number;
   items: EnchantressItems;
-  stats: Stats;
+  level: number;
   skills: Array<unknown>;
+  slug: string;
+  stats: Stats;
 }
 
 interface EnchantressItems {
@@ -125,57 +125,57 @@ interface EnchantressItems {
 }
 
 interface Item {
+  displayColor?: DisplayColor;
+  dyeColor?: Item;
+  icon: string;
   id: string;
   name: string;
-  icon: string;
-  displayColor?: DisplayColor;
   tooltipParams: string;
-  dyeColor?: Item;
 }
 
 interface Stats {
+  experienceBonus: number;
   goldFind: number;
   magicFind: number;
-  experienceBonus: number;
 }
 
 interface Scoundrel {
-  slug: string;
-  level: number;
   items: Record<string, Item>;
-  stats: Stats;
+  level: number;
   skills: Array<Skill>;
+  slug: string;
+  stats: Stats;
 }
 
 interface Skill {
-  slug: string;
-  name: string;
-  icon: string;
-  level: number;
-  tooltipUrl: string;
   description: string;
   descriptionHtml: string;
   flavorText?: string;
+  icon: string;
+  level: number;
+  name: string;
+  slug: string;
+  tooltipUrl: string;
 }
 
 interface Templar {
-  slug: string;
-  level: number;
   items: TemplarItems;
-  stats: Stats;
+  level: number;
   skills: Array<Skill>;
+  slug: string;
+  stats: Stats;
 }
 
 interface TemplarItems {
-  head: Item;
-  torso: Item;
-  shoulders: Item;
-  waist: Item;
-  hands: Item;
   bracers: Item;
   feet: Item;
+  hands: Item;
+  head: Item;
   mainHand: Item;
   offHand: Item;
+  shoulders: Item;
+  torso: Item;
+  waist: Item;
 }
 
 interface Kills {
@@ -196,8 +196,8 @@ interface Act {
 }
 
 interface CompletedQuest {
-  slug: string;
   name: string;
+  slug: string;
 }
 
 interface Skills {
@@ -206,17 +206,17 @@ interface Skills {
 }
 
 interface Active {
-  skill: Skill;
   rune: Rune;
+  skill: Skill;
 }
 
 interface Rune {
-  slug: string;
-  type: string;
-  name: string;
-  level: number;
   description: string;
   descriptionHtml: string;
+  level: number;
+  name: string;
+  slug: string;
+  type: string;
 }
 
 interface Passive {
@@ -226,34 +226,34 @@ interface Passive {
 type DisplayColor = 'blue' | 'green' | 'orange' | 'white' | 'yellow';
 
 export interface AccountHeroItemsResponse {
-  id: string;
-  name: string;
-  icon: string;
-  displayColor: DisplayColor;
-  tooltipParams: string;
-  requiredLevel: number;
-  itemLevel: number;
-  stackSizeMax: number;
   accountBound: boolean;
-  flavorText: string;
-  typeName: string;
-  type: Record<string, boolean | string>;
   armor: number;
   attacksPerSecond: number;
-  minDamage: number;
-  maxDamage: number;
-  elementalType?: string;
-  slots: string;
   attributes: Attributes;
   attributesHtml: Attributes;
-  openSockets: number;
-  seasonRequiredToDrop: number;
-  isSeasonRequiredToDrop: boolean;
-  set?: Set;
-  gems?: Array<Gem>;
   craftedBy?: CraftedBy;
   damage?: string;
+  displayColor: DisplayColor;
   dps?: string;
+  elementalType?: string;
+  flavorText: string;
+  gems?: Array<Gem>;
+  icon: string;
+  id: string;
+  isSeasonRequiredToDrop: boolean;
+  itemLevel: number;
+  maxDamage: number;
+  minDamage: number;
+  name: string;
+  openSockets: number;
+  requiredLevel: number;
+  seasonRequiredToDrop: number;
+  set?: Set;
+  slots: string;
+  stackSizeMax: number;
+  tooltipParams: string;
+  type: Record<string, boolean | string>;
+  typeName: string;
 }
 
 interface Attributes {
@@ -262,12 +262,12 @@ interface Attributes {
 }
 
 interface CraftedBy {
-  id: string;
-  slug: string;
-  name: string;
   cost: number;
-  reagents: Array<Reagent>;
+  id: string;
   itemProduced: ItemProduced;
+  name: string;
+  reagents: Array<Reagent>;
+  slug: string;
 }
 
 interface ItemProduced {
@@ -276,38 +276,38 @@ interface ItemProduced {
 }
 
 interface Reagent {
-  quantity: number;
   item: AccountHeroItem;
+  quantity: number;
 }
 
 interface AccountHeroItem {
-  id: string;
-  slug: string;
-  name: string;
   icon: string;
+  id: string;
+  name: string;
   path: string;
+  slug: string;
 }
 
 interface Gem {
-  item: AccountHeroItem;
   attributes: Array<string>;
   isGem: boolean;
   isJewel: boolean;
+  item: AccountHeroItem;
   jewelRank?: number;
   jewelSecondaryUnlockRank?: number;
 }
 
 interface Set {
-  name: string;
-  slug: string;
   description: string;
   descriptionHtml: string;
+  name: string;
+  slug: string;
 }
 
 export interface AccountHeroFollowerItemsResponse {
-  templar: Record<string, FollowerItem>;
-  scoundrel: Record<string, FollowerItem>;
   enchantress: Record<string, FollowerItem>;
+  scoundrel: Record<string, FollowerItem>;
+  templar: Record<string, FollowerItem>;
 }
 
 interface FollowerItem {
@@ -342,8 +342,8 @@ interface FollowerItem {
 }
 
 interface Dye {
+  icon: string;
   id: string;
   name: string;
-  icon: string;
   tooltipParams: string;
 }

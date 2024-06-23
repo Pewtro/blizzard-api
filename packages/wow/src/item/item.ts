@@ -19,8 +19,8 @@ import type {
  */
 export function item(itemId: number): Resource<ItemResponse> {
   return {
-    path: `${base}/item/${itemId}`,
     namespace: 'static',
+    path: `${base}/item/${itemId}`,
   };
 }
 /**
@@ -30,8 +30,8 @@ export function item(itemId: number): Resource<ItemResponse> {
  */
 export function itemClass(itemClassId: number): Resource<ItemClassResponse> {
   return {
-    path: `${base}/item-class/${itemClassId}`,
     namespace: 'static',
+    path: `${base}/item-class/${itemClassId}`,
   };
 }
 /**
@@ -42,8 +42,8 @@ export function itemClass(itemClassId: number): Resource<ItemClassResponse> {
  */
 export function itemSubClass(itemClassId: number, itemSubclassId: number): Resource<ItemSubClassResponse> {
   return {
-    path: `${base}/item-class/${itemClassId}/item-subclass/${itemSubclassId}`,
     namespace: 'static',
+    path: `${base}/item-class/${itemClassId}/item-subclass/${itemSubclassId}`,
   };
 }
 /**
@@ -52,8 +52,8 @@ export function itemSubClass(itemClassId: number, itemSubclassId: number): Resou
  */
 export function itemClassIndex(): Resource<ItemClassIndexResponse> {
   return {
-    path: `${base}/item-class/index`,
     namespace: 'static',
+    path: `${base}/item-class/index`,
   };
 }
 /**
@@ -63,8 +63,8 @@ export function itemClassIndex(): Resource<ItemClassIndexResponse> {
  */
 export function itemMedia(itemId: number): Resource<ItemMediaResponse> {
   return {
-    path: `${mediaBase}/item/${itemId}`,
     namespace: 'static',
+    path: `${mediaBase}/item/${itemId}`,
   };
 }
 /**
@@ -74,8 +74,8 @@ export function itemMedia(itemId: number): Resource<ItemMediaResponse> {
  */
 export function itemSet(itemSetId: number): Resource<ItemSetResponse> {
   return {
-    path: `${base}/item-set/${itemSetId}`,
     namespace: 'static',
+    path: `${base}/item-set/${itemSetId}`,
   };
 }
 /**
@@ -84,8 +84,8 @@ export function itemSet(itemSetId: number): Resource<ItemSetResponse> {
  */
 export function itemSetIndex(): Resource<ItemSetIndexResponse> {
   return {
-    path: `${base}/item-set/index`,
     namespace: 'static',
+    path: `${base}/item-set/index`,
   };
 }
 /**
@@ -95,13 +95,13 @@ export function itemSetIndex(): Resource<ItemSetIndexResponse> {
  */
 export function itemSearch(
   options: ItemSearchParameters,
-): Resource<SearchResponse<ItemSearchResponseItem>, Omit<ItemSearchParameters, 'name' | 'locale'>> {
+): Resource<SearchResponse<ItemSearchResponseItem>, Omit<ItemSearchParameters, 'locale' | 'name'>> {
   return {
     namespace: 'static',
     parameters: {
       _page: options._page,
-      orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
       [`name.${options.locale}`]: options.name,
+      orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
     },
     path: `${searchBase}/item`,
   };

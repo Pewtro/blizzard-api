@@ -12,8 +12,8 @@ describe.concurrent('classicRealmApi', () => {
     const result = classicRealmApi.realm(namespace, realmSlug);
 
     expect(result).toEqual({
-      path: `${base}/realm/test-realm`,
       namespace,
+      path: `${base}/realm/test-realm`,
     });
   });
 
@@ -21,8 +21,8 @@ describe.concurrent('classicRealmApi', () => {
     const result = classicRealmApi.realmIndex(namespace);
 
     expect(result).toEqual({
-      path: `${base}/realm/index`,
       namespace,
+      path: `${base}/realm/index`,
     });
   });
 

@@ -9,8 +9,8 @@ import type { PvpTierIndexResponse, PvpTierMediaResponse, PvpTierResponse } from
  */
 export function pvpTier(pvpTierId: number): Resource<PvpTierResponse> {
   return {
-    path: `${base}/pvp-tier/${pvpTierId}`,
     namespace: 'static',
+    path: `${base}/pvp-tier/${pvpTierId}`,
   };
 }
 /**
@@ -19,8 +19,8 @@ export function pvpTier(pvpTierId: number): Resource<PvpTierResponse> {
  */
 export function pvpTierIndex(): Resource<PvpTierIndexResponse> {
   return {
-    path: `${base}/pvp-tier/index`,
     namespace: 'static',
+    path: `${base}/pvp-tier/index`,
   };
 }
 /**
@@ -30,7 +30,7 @@ export function pvpTierIndex(): Resource<PvpTierIndexResponse> {
  */
 export function pvpTierMedia(pvpTierId: number): Resource<PvpTierMediaResponse> {
   return {
-    path: `${mediaBase}/pvp-tier/${pvpTierId}`,
     namespace: 'static',
+    path: `${mediaBase}/pvp-tier/${pvpTierId}`,
   };
 }

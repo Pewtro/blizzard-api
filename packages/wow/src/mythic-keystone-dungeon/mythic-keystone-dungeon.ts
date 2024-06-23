@@ -17,8 +17,8 @@ import type {
  */
 export function mythicKeystoneDungeon(mythicKeystoneDungeonId: number): Resource<MythicKeystoneDungeonResponse> {
   return {
-    path: `${base}/mythic-keystone/dungeon/${mythicKeystoneDungeonId}`,
     namespace: 'dynamic',
+    path: `${base}/mythic-keystone/dungeon/${mythicKeystoneDungeonId}`,
   };
 }
 /**
@@ -27,8 +27,8 @@ export function mythicKeystoneDungeon(mythicKeystoneDungeonId: number): Resource
  */
 export function mythicKeystoneDungeonIndex(): Resource<MythicKeystoneDungeonIndexResponse> {
   return {
-    path: `${base}/mythic-keystone/dungeon/index`,
     namespace: 'dynamic',
+    path: `${base}/mythic-keystone/dungeon/index`,
   };
 }
 /**
@@ -37,8 +37,8 @@ export function mythicKeystoneDungeonIndex(): Resource<MythicKeystoneDungeonInde
  */
 export function mythicKeystoneIndex(): Resource<MythicKeystoneIndexResponse> {
   return {
-    path: `${base}/mythic-keystone/index`,
     namespace: 'dynamic',
+    path: `${base}/mythic-keystone/index`,
   };
 }
 /**
@@ -48,8 +48,8 @@ export function mythicKeystoneIndex(): Resource<MythicKeystoneIndexResponse> {
  */
 export function mythicKeystonePeriod(mythicKeystonePeriodId: number): Resource<MythicKeystonePeriodResponse> {
   return {
-    path: `${base}/mythic-keystone/period/${mythicKeystonePeriodId}`,
     namespace: 'dynamic',
+    path: `${base}/mythic-keystone/period/${mythicKeystonePeriodId}`,
   };
 }
 /**
@@ -58,8 +58,8 @@ export function mythicKeystonePeriod(mythicKeystonePeriodId: number): Resource<M
  */
 export function mythicKeystonePeriodIndex(): Resource<MythicKeystonePeriodIndexResponse> {
   return {
-    path: `${base}/mythic-keystone/period/index`,
     namespace: 'dynamic',
+    path: `${base}/mythic-keystone/period/index`,
   };
 }
 /**
@@ -69,8 +69,8 @@ export function mythicKeystonePeriodIndex(): Resource<MythicKeystonePeriodIndexR
  */
 export function mythicKeystoneSeason(mythicKeystoneSeasonId: number): Resource<MythicKeystoneSeasonResponse> {
   return {
-    path: `${base}/mythic-keystone/season/${mythicKeystoneSeasonId}`,
     namespace: 'dynamic',
+    path: `${base}/mythic-keystone/season/${mythicKeystoneSeasonId}`,
   };
 }
 /**
@@ -79,7 +79,7 @@ export function mythicKeystoneSeason(mythicKeystoneSeasonId: number): Resource<M
  */
 export function mythicKeystoneSeasonIndex(): Resource<MythicKeystoneSeasonIndexResponse> {
   return {
-    path: `${base}/mythic-keystone/season/index`,
     namespace: 'dynamic',
+    path: `${base}/mythic-keystone/season/index`,
   };
 }

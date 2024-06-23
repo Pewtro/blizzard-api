@@ -3,51 +3,51 @@ import type { Color, KeyBase, MediaAsset, NameId, NameIdKey, ResponseBase } from
 
 interface ItemQuality {
   name: Record<Locales, string | undefined>;
-  type: 'POOR' | 'COMMON' | 'UNCOMMON' | 'RARE' | 'EPIC' | 'LEGENDARY' | 'ARTIFACT' | 'HEIRLOOM';
+  type: 'ARTIFACT' | 'COMMON' | 'EPIC' | 'HEIRLOOM' | 'LEGENDARY' | 'POOR' | 'RARE' | 'UNCOMMON';
 }
 
 interface InventoryType {
   name: Record<Locales, string | undefined>;
   type: //Armor
-  | 'HEAD'
-    | 'SHOULDER'
+  | 'BACK'
+    | 'BAG'
     | 'CHEST'
-    | 'WRIST'
-    | 'HANDS'
-    | 'WAIST'
-    | 'LEGS'
     | 'FEET'
-    | 'NECK'
-    | 'BACK'
     | 'FINGER'
-    | 'TRINKET'
-    | 'TABARD'
+    | 'HANDS'
+    | 'HEAD'
+    | 'LEGS'
+    | 'NECK'
+    | 'NON_EQUIP'
     | 'SHIRT'
+    | 'SHOULDER'
+    | 'TABARD'
+    | 'TRINKET'
     //Weapons
     | 'TWOHWEAPON'
     //Misc
-    | 'BAG'
-    | 'NON_EQUIP';
+    | 'WAIST'
+    | 'WRIST';
 }
 
 type StatTypeCapitalized =
-  | 'STRENGTH'
   | 'AGILITY'
-  | 'INTELLECT'
-  | 'STAMINA'
   | 'CRIT_RATING'
   | 'HASTE_RATING'
+  | 'INTELLECT'
   | 'MASTERY'
+  | 'STAMINA'
+  | 'STRENGTH'
   | 'VERSATILITY';
 
 type StatType =
-  | 'Strength'
   | 'Agility'
-  | 'Intellect'
-  | 'Stamina'
   | 'Critical Strike'
   | 'Haste'
+  | 'Intellect'
   | 'Mastery'
+  | 'Stamina'
+  | 'Strength'
   | 'Versatility';
 
 /**
@@ -55,21 +55,21 @@ type StatType =
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface ItemResponse extends ResponseBase, NameId {
-  quality: ItemQuality;
-  level: number;
-  required_level: number;
-  media: Media;
-  item_class: NameIdKey;
-  item_subclass: NameIdKey;
+  description?: string;
   inventory_type: InventoryType;
-  purchase_price: number;
-  sell_price: number;
-  max_count: number;
   is_equippable: boolean;
   is_stackable: boolean;
+  item_class: NameIdKey;
+  item_subclass: NameIdKey;
+  level: number;
+  max_count: number;
+  media: Media;
   preview_item: PreviewItem;
+  purchase_price: number;
   purchase_quantity: number;
-  description?: string;
+  quality: ItemQuality;
+  required_level: number;
+  sell_price: number;
 }
 
 interface Media extends KeyBase {
@@ -77,44 +77,44 @@ interface Media extends KeyBase {
 }
 
 interface PreviewItem {
+  armor?: Armor;
+  binding?: {
+    name: string;
+    type: string;
+  };
+  bonus_list?: Array<number>;
+  container_slots?: Durability;
+  context?: number;
+  crafting_reagent?: string;
+  description?: string;
+  durability?: Durability;
+  inventory_type: InventoryType;
+  is_subclass_hidden?: boolean;
   item: Media;
-  quality: ItemQuality;
-  name: string;
-  media: Media;
   item_class: NameIdKey;
   item_subclass: NameIdKey;
-  inventory_type: InventoryType;
-  binding?: {
-    type: string;
-    name: string;
-  };
-  armor?: Armor;
-  sell_price?: number;
-  requirements?: Requirements;
   level?: Durability;
-  is_subclass_hidden?: boolean;
-  spells?: Array<Spell>;
-  context?: number;
-  bonus_list?: Array<number>;
-  weapon?: Weapon;
-  durability?: Durability;
-  stats?: Array<Stat>;
-  description?: string;
+  media: Media;
+  name: string;
+  quality: ItemQuality;
   recipe?: Recipe;
+  requirements?: Requirements;
+  sell_price?: number;
   shield_block?: Armor;
+  spells?: Array<Spell>;
+  stats?: Array<Stat>;
   unique_equipped?: 'Unique';
-  crafting_reagent?: string;
-  container_slots?: Durability;
+  weapon?: Weapon;
 }
 
 interface Armor {
-  value: number;
   display: Display;
+  value: number;
 }
 
 interface Durability {
-  value: number;
   display_string: string;
+  value: number;
 }
 
 interface Requirements {
@@ -122,39 +122,39 @@ interface Requirements {
 }
 
 interface Spell {
-  spell: NameIdKey;
   description: string;
+  spell: NameIdKey;
 }
 
 interface Stat {
+  display: Display;
+  is_negated?: boolean;
   type: {
-    type: StatTypeCapitalized;
     name: StatType;
+    type: StatTypeCapitalized;
   };
   value: number;
-  is_negated?: boolean;
-  display: Display;
 }
 
 interface Display {
-  display_string: string;
   color: Color;
+  display_string: string;
 }
 
 interface Weapon {
-  damage: Damage;
   attack_speed: Durability;
+  damage: Damage;
   dps: Durability;
 }
 
 interface Damage {
-  min_value: number;
-  max_value: number;
-  display_string: string;
   damage_class: {
-    type: string;
     name: string;
+    type: string;
   };
+  display_string: string;
+  max_value: number;
+  min_value: number;
 }
 
 interface Recipe {
@@ -164,31 +164,31 @@ interface Recipe {
 }
 
 interface RecipeItem {
+  armor?: Armor;
+  binding: {
+    name: string;
+    type: string;
+  };
+  durability: Durability;
+  inventory_type: InventoryType;
   item: Media;
-  quality: ItemQuality;
-  name: string;
-  media: Media;
   item_class: NameIdKey;
   item_subclass: NameIdKey;
-  inventory_type: InventoryType;
-  binding: {
-    type: string;
-    name: string;
-  };
-  weapon?: Weapon;
-  stats: Array<Stat>;
-  sell_price: { value: number; display_strings: RecipeItemDisplayStrings };
-  requirements: Requirements;
   level: Durability;
-  durability: Durability;
-  armor?: Armor;
+  media: Media;
+  name: string;
+  quality: ItemQuality;
+  requirements: Requirements;
+  sell_price: { display_strings: RecipeItemDisplayStrings; value: number };
+  stats: Array<Stat>;
+  weapon?: Weapon;
 }
 
 interface RecipeItemDisplayStrings {
-  header: string;
-  gold: string;
-  silver: string;
   copper: string;
+  gold: string;
+  header: string;
+  silver: string;
 }
 
 /**
@@ -205,8 +205,8 @@ export interface ItemClassIndexResponse extends ResponseBase {
  */
 export interface ItemClassResponse extends ResponseBase {
   class_id: number;
-  name: string;
   item_subclasses: Array<NameIdKey>;
+  name: string;
 }
 
 /**
@@ -224,10 +224,10 @@ export interface ItemMediaResponse extends ResponseBase {
  */
 export interface ItemSubClassResponse extends ResponseBase {
   class_id: number;
-  subclass_id: number;
   display_name: string;
-  verbose_name: string;
   hide_subclass_in_tooltips: boolean;
+  subclass_id: number;
+  verbose_name: string;
 }
 
 /**
@@ -243,10 +243,10 @@ export interface ItemSetIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface ItemSetResponse extends ResponseBase {
-  id: number;
-  name: string;
-  items: Array<NameIdKey>;
   effects: Array<Effect>;
+  id: number;
+  items: Array<NameIdKey>;
+  name: string;
 }
 
 interface Effect {
@@ -260,8 +260,8 @@ interface Effect {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
  */
 export interface ItemSearchParameters extends BaseSearchParameters {
-  name: string;
   locale: Locales;
+  name: string;
 }
 
 /**
@@ -271,20 +271,20 @@ export interface ItemSearchParameters extends BaseSearchParameters {
  */
 export interface ItemSearchResponseItem extends KeyBase {
   data: {
-    level: number;
-    required_level: number;
-    sell_price: number;
-    item_subclass: { name: Record<Locales, string | undefined>; id: number };
-    is_equippable: boolean;
-    purchase_quantity: number;
-    media: { id: number };
-    item_class: { name: Record<Locales, string | undefined>; id: number };
-    quality: ItemQuality;
-    max_count: number;
-    is_stackable: boolean;
-    name: Record<Locales, string | undefined>;
-    purchase_price: number;
     id: number;
     inventory_type: InventoryType;
+    is_equippable: boolean;
+    is_stackable: boolean;
+    item_class: { id: number; name: Record<Locales, string | undefined> };
+    item_subclass: { id: number; name: Record<Locales, string | undefined> };
+    level: number;
+    max_count: number;
+    media: { id: number };
+    name: Record<Locales, string | undefined>;
+    purchase_price: number;
+    purchase_quantity: number;
+    quality: ItemQuality;
+    required_level: number;
+    sell_price: number;
   };
 }

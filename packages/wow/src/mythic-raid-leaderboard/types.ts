@@ -6,18 +6,18 @@ import type { Factions, KeyBase, NameId, ResponseBase } from '../base';
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface MythicRaidLeaderboardResponse extends ResponseBase {
-  slug: string;
   criteria_type: string;
   entries: Array<Entry>;
   journal_instance: JournalInstance;
+  slug: string;
 }
 
 interface Entry {
-  guild: Guild;
   faction: { type: keyof typeof Factions };
-  timestamp: number;
-  region: Origins | 'cn';
+  guild: Guild;
   rank: number;
+  region: 'cn' | Origins;
+  timestamp: number;
 }
 
 interface Guild extends NameId {
@@ -25,12 +25,12 @@ interface Guild extends NameId {
 }
 
 interface Realm {
-  name: null;
   id: number;
+  name: null;
   slug: string;
 }
 
 interface JournalInstance extends KeyBase {
-  name: null;
   id: number;
+  name: null;
 }

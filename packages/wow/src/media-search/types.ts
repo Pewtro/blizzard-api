@@ -17,8 +17,8 @@ export interface MediaSearchParameters extends BaseSearchParameters {
  */
 export interface MediaSearchResponseItem extends KeyBase {
   data: {
-    id: number;
     assets: Array<MediaAsset>;
+    id: number;
   };
 }
 

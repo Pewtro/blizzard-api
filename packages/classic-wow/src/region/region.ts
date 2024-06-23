@@ -13,8 +13,8 @@ export function region(
   regionId: number,
 ): Resource<RegionResponse> {
   return {
-    path: `${base}/region/${regionId}`,
     namespace,
+    path: `${base}/region/${regionId}`,
   };
 }
 /**
@@ -26,7 +26,7 @@ export function regionIndex(
   namespace: Extract<BlizzardNamespaces, 'dynamic-classic' | 'dynamic-classic1x'>,
 ): Resource<RegionIndexResponse> {
   return {
-    path: `${base}/region/index`,
     namespace,
+    path: `${base}/region/index`,
   };
 }

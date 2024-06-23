@@ -14,8 +14,8 @@ import type {
  */
 export function playableClass(playableClassId: number): Resource<PlayableClassResponse> {
   return {
-    path: `${base}/playable-class/${playableClassId}`,
     namespace: 'static',
+    path: `${base}/playable-class/${playableClassId}`,
   };
 }
 /**
@@ -24,8 +24,8 @@ export function playableClass(playableClassId: number): Resource<PlayableClassRe
  */
 export function playableClassIndex(): Resource<PlayableClassIndexResponse> {
   return {
-    path: `${base}/playable-class/index`,
     namespace: 'static',
+    path: `${base}/playable-class/index`,
   };
 }
 /**
@@ -35,8 +35,8 @@ export function playableClassIndex(): Resource<PlayableClassIndexResponse> {
  */
 export function playableClassMedia(playableClassId: number): Resource<PlayableClassMediaResponse> {
   return {
-    path: `${mediaBase}/playable-class/${playableClassId}`,
     namespace: 'static',
+    path: `${mediaBase}/playable-class/${playableClassId}`,
   };
 }
 /**
@@ -46,7 +46,7 @@ export function playableClassMedia(playableClassId: number): Resource<PlayableCl
  */
 export function pvpTalentSlots(playableClassId: number): Resource<PvpTalentSlotsResponse> {
   return {
-    path: `${base}/playable-class/${playableClassId}/pvp-talent-slots`,
     namespace: 'static',
+    path: `${base}/playable-class/${playableClassId}/pvp-talent-slots`,
   };
 }

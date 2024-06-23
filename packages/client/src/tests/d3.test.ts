@@ -6,8 +6,8 @@ import { createBlizzardApiClient } from '../client/create-client';
 describe.concurrent('smoketest some d3 api responses', async () => {
   const client = await createBlizzardApiClient({
     key: environment.blizzardClientId,
-    secret: environment.blizzardClientSecret,
     origin: 'eu',
+    secret: environment.blizzardClientSecret,
   });
   it('should be able to fetch the act index', async ({ expect }) => {
     const response = await client.sendRequest(d3.actIndex());

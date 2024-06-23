@@ -15,8 +15,8 @@ import type {
  */
 export function techTalent(techTalentId: number): Resource<TechTalentResponse> {
   return {
-    path: `${base}/tech-talent/${techTalentId}`,
     namespace: 'static',
+    path: `${base}/tech-talent/${techTalentId}`,
   };
 }
 /**
@@ -25,8 +25,8 @@ export function techTalent(techTalentId: number): Resource<TechTalentResponse> {
  */
 export function techTalentIndex(): Resource<TechTalentIndexResponse> {
   return {
-    path: `${base}/tech-talent/index`,
     namespace: 'static',
+    path: `${base}/tech-talent/index`,
   };
 }
 /**
@@ -36,8 +36,8 @@ export function techTalentIndex(): Resource<TechTalentIndexResponse> {
  */
 export function techTalentMedia(techTalentId: number): Resource<TechTalentMediaResponse> {
   return {
-    path: `${mediaBase}/tech-talent/${techTalentId}`,
     namespace: 'static',
+    path: `${mediaBase}/tech-talent/${techTalentId}`,
   };
 }
 /**
@@ -47,8 +47,8 @@ export function techTalentMedia(techTalentId: number): Resource<TechTalentMediaR
  */
 export function techTalentTree(techTalentTreeId: number): Resource<TechTalentTreeResponse> {
   return {
-    path: `${base}/tech-talent-tree/${techTalentTreeId}`,
     namespace: 'static',
+    path: `${base}/tech-talent-tree/${techTalentTreeId}`,
   };
 }
 /**
@@ -57,7 +57,7 @@ export function techTalentTree(techTalentTreeId: number): Resource<TechTalentTre
  */
 export function techTalentTreeIndex(): Resource<TechTalentTreeIndexResponse> {
   return {
-    path: `${base}/tech-talent-tree/index`,
     namespace: 'static',
+    path: `${base}/tech-talent-tree/index`,
   };
 }

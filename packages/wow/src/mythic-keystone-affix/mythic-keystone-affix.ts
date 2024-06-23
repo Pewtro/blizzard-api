@@ -12,8 +12,8 @@ import type {
  */
 export function mythicKeystoneAffix(mythicKeystoneAffixId: number): Resource<MythicKeystoneAffixResponse> {
   return {
-    path: `${base}/keystone-affix/${mythicKeystoneAffixId}`,
     namespace: 'static',
+    path: `${base}/keystone-affix/${mythicKeystoneAffixId}`,
   };
 }
 /**
@@ -22,8 +22,8 @@ export function mythicKeystoneAffix(mythicKeystoneAffixId: number): Resource<Myt
  */
 export function mythicKeystoneAffixIndex(): Resource<MythicKeystoneAffixIndexResponse> {
   return {
-    path: `${base}/keystone-affix/index`,
     namespace: 'static',
+    path: `${base}/keystone-affix/index`,
   };
 }
 /**
@@ -32,7 +32,7 @@ export function mythicKeystoneAffixIndex(): Resource<MythicKeystoneAffixIndexRes
  */
 export function mythicKeystoneAffixMedia(mythicKeystoneAffixId: number): Resource<MythicKeystoneAffixMediaResponse> {
   return {
-    path: `${mediaBase}/keystone-affix/${mythicKeystoneAffixId}`,
     namespace: 'static',
+    path: `${mediaBase}/keystone-affix/${mythicKeystoneAffixId}`,
   };
 }

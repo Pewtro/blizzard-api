@@ -19,8 +19,8 @@ import type {
  */
 export function journalEncounter(journalEncounterId: number): Resource<JournalEncounterResponse> {
   return {
-    path: `${base}/journal-encounter/${journalEncounterId}`,
     namespace: 'static',
+    path: `${base}/journal-encounter/${journalEncounterId}`,
   };
 }
 /**
@@ -29,8 +29,8 @@ export function journalEncounter(journalEncounterId: number): Resource<JournalEn
  */
 export function journalEncounterIndex(): Resource<JournalEncounterIndexResponse> {
   return {
-    path: `${base}/journal-encounter/index`,
     namespace: 'static',
+    path: `${base}/journal-encounter/index`,
   };
 }
 /**
@@ -48,8 +48,8 @@ export function journalEncounterSearch(
     namespace: 'static',
     parameters: {
       _page: options._page,
-      orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
       [`instance.name.${options.locale}`]: options.instanceName,
+      orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
     },
     path: `${searchBase}/journal-encounter`,
   };
@@ -61,8 +61,8 @@ export function journalEncounterSearch(
  */
 export function journalExpansion(journalExpansionId: number): Resource<JournalExpansionResponse> {
   return {
-    path: `${base}/journal-expansion/${journalExpansionId}`,
     namespace: 'static',
+    path: `${base}/journal-expansion/${journalExpansionId}`,
   };
 }
 /**
@@ -71,8 +71,8 @@ export function journalExpansion(journalExpansionId: number): Resource<JournalEx
  */
 export function journalExpansionIndex(): Resource<JournalExpansionIndexResponse> {
   return {
-    path: `${base}/journal-expansion/index`,
     namespace: 'static',
+    path: `${base}/journal-expansion/index`,
   };
 }
 /**
@@ -82,8 +82,8 @@ export function journalExpansionIndex(): Resource<JournalExpansionIndexResponse>
  */
 export function journalInstance(journalInstanceId: number): Resource<JournalInstanceResponse> {
   return {
-    path: `${base}/journal-instance/${journalInstanceId}`,
     namespace: 'static',
+    path: `${base}/journal-instance/${journalInstanceId}`,
   };
 }
 /**
@@ -92,8 +92,8 @@ export function journalInstance(journalInstanceId: number): Resource<JournalInst
  */
 export function journalInstanceIndex(): Resource<JournalInstanceIndexResponse> {
   return {
-    path: `${base}/journal-instance/index`,
     namespace: 'static',
+    path: `${base}/journal-instance/index`,
   };
 }
 /**
@@ -103,7 +103,7 @@ export function journalInstanceIndex(): Resource<JournalInstanceIndexResponse> {
  */
 export function journalInstanceMedia(journalInstanceId: number): Resource<JournalInstanceMediaResponse> {
   return {
-    path: `${mediaBase}/journal-instance/${journalInstanceId}`,
     namespace: 'static',
+    path: `${mediaBase}/journal-instance/${journalInstanceId}`,
   };
 }

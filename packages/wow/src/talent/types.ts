@@ -13,12 +13,12 @@ export interface PvpTalentIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface PvpTalentResponse extends ResponseBase {
-  id: number;
-  spell: NameIdKey;
-  playable_specialization: NameIdKey;
-  description: string;
-  unlock_player_level: number;
   compatible_slots: Array<number>;
+  description: string;
+  id: number;
+  playable_specialization: NameIdKey;
+  spell: NameIdKey;
+  unlock_player_level: number;
 }
 
 /**
@@ -35,9 +35,9 @@ export interface TalentIndexResponse extends ResponseBase {
  */
 export interface TalentResponse extends ResponseBase {
   id: number;
+  playable_class: PlayableClass;
   rank_descriptions: Array<RankDescription>;
   spell: NameIdKey;
-  playable_class: PlayableClass;
 }
 
 interface PlayableClass extends KeyBase {
@@ -45,8 +45,8 @@ interface PlayableClass extends KeyBase {
 }
 
 interface RankDescription {
-  rank: number;
   description: null;
+  rank: number;
 }
 
 /**
@@ -54,8 +54,8 @@ interface RankDescription {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface TalentTreeIndexResponse extends ResponseBase {
-  spec_talent_trees: Array<TalentTree>;
   class_talent_trees: Array<TalentTree>;
+  spec_talent_trees: Array<TalentTree>;
 }
 
 interface TalentTree extends KeyBase {
@@ -67,24 +67,24 @@ interface TalentTree extends KeyBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface TalentTreeResponse extends ResponseBase, NameId {
+  class_talent_nodes: Array<ClassTalentNode>;
+  media: { href: string };
   playable_class: NameIdKey;
   playable_specialization: NameIdKey;
-  media: { href: string };
   restriction_lines: Array<RestrictionLine>;
-  class_talent_nodes: Array<ClassTalentNode>;
   spec_talent_nodes: Array<SpecTalentNode>;
 }
 
 interface ClassTalentNode {
+  display_col: number;
+  display_row: number;
   id: number;
-  unlocks?: Array<number>;
+  locked_by?: Array<number>;
   node_type: NodeType;
   ranks: Array<ClassTalentNodeRank>;
-  display_row: number;
-  display_col: number;
   raw_position_x: number;
   raw_position_y: number;
-  locked_by?: Array<number>;
+  unlocks?: Array<number>;
 }
 
 interface NodeType {
@@ -93,59 +93,59 @@ interface NodeType {
 }
 
 interface ClassTalentNodeRank {
+  choice_of_tooltips?: Array<Tooltip>;
+  default_points?: number;
   rank: number;
   tooltip?: Tooltip;
-  default_points?: number;
-  choice_of_tooltips?: Array<Tooltip>;
 }
 
 interface Tooltip {
-  talent: NameIdKey;
   spell_tooltip: TooltipSpellTooltip;
+  talent: NameIdKey;
 }
 
 interface TooltipSpellTooltip {
-  spell: NameIdKey;
-  description: string;
   cast_time: string;
   cooldown?: string;
-  range?: string;
+  description: string;
   power_cost?: string;
+  range?: string;
+  spell: NameIdKey;
 }
 
 interface RestrictionLine {
+  is_for_class: boolean;
   required_points: number;
   restricted_row: number;
-  is_for_class: boolean;
 }
 
 interface SpecTalentNode {
+  display_col: number;
+  display_row: number;
   id: number;
-  unlocks?: Array<number>;
+  locked_by?: Array<number>;
   node_type: NodeType;
   ranks: Array<SpecTalentNodeRank>;
-  display_row: number;
-  display_col: number;
   raw_position_x: number;
   raw_position_y: number;
-  locked_by?: Array<number>;
+  unlocks?: Array<number>;
 }
 
 interface SpecTalentNodeRank {
+  choice_of_tooltips?: Array<ChoiceOfTooltip>;
   rank: number;
   tooltip?: Tooltip;
-  choice_of_tooltips?: Array<ChoiceOfTooltip>;
 }
 
 interface ChoiceOfTooltip {
-  talent: NameIdKey;
   spell_tooltip: PurpleSpellTooltip;
+  talent: NameIdKey;
 }
 
 interface PurpleSpellTooltip {
-  spell: NameIdKey;
-  description: string;
   cast_time: string;
+  description: string;
+  spell: NameIdKey;
 }
 
 /**
@@ -163,17 +163,17 @@ interface SpecTalentTree extends KeyBase {
 }
 
 interface TalentNode {
+  display_col: number;
+  display_row: number;
   id: number;
   node_type: NodeType;
   ranks: Array<Rank>;
-  display_row: number;
-  display_col: number;
   raw_position_x: number;
   raw_position_y: number;
 }
 
 interface Rank {
-  rank: number;
   choice_of_tooltips?: Array<Tooltip>;
+  rank: number;
   tooltip?: Tooltip;
 }

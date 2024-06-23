@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { gameDataBase } from '../base';
-import { seasonIndex, season, seasonLeaderboard, eraIndex, era, eraLeaderboard } from '../game-data/game-data';
+import { era, eraIndex, eraLeaderboard, season, seasonIndex, seasonLeaderboard } from '../game-data/game-data';
 
 describe.concurrent('game-data', () => {
   it('seasonIndex should return the correct resource path', ({ expect }) => {

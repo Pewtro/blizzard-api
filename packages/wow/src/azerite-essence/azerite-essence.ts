@@ -15,8 +15,8 @@ import type {
  */
 export function azeriteEssence(azeriteEssenceId: number): Resource<AzeriteEssenceResponse> {
   return {
-    path: `${base}/azerite-essence/${azeriteEssenceId}`,
     namespace: 'static',
+    path: `${base}/azerite-essence/${azeriteEssenceId}`,
   };
 }
 /**
@@ -25,8 +25,8 @@ export function azeriteEssence(azeriteEssenceId: number): Resource<AzeriteEssenc
  */
 export function azeriteEssenceIndex(): Resource<AzeriteEssenceIndexResponse> {
   return {
-    path: `${base}/azerite-essence/index`,
     namespace: 'static',
+    path: `${base}/azerite-essence/index`,
   };
 }
 /**
@@ -35,7 +35,7 @@ export function azeriteEssenceIndex(): Resource<AzeriteEssenceIndexResponse> {
  * @returns The azerite essence media. See {@link AzeriteEssenceMediaResponse}.
  */
 export function azeriteEssenceMedia(azeriteEssenceId: number): Resource<AzeriteEssenceMediaResponse> {
-  return { path: `${mediaBase}/azerite-essence/${azeriteEssenceId}`, namespace: 'static' };
+  return { namespace: 'static', path: `${mediaBase}/azerite-essence/${azeriteEssenceId}` };
 }
 /**
  * Search for azerite essences.
@@ -46,12 +46,12 @@ export function azeriteEssenceSearch(
   options: AzeriteEssenceSearchParameters,
 ): Resource<SearchResponse<AzeriteEssenceSearchResponseItem>, AzeriteEssenceSearchParameters> {
   return {
-    path: `${searchBase}/azerite-essence`,
     namespace: 'static',
     parameters: {
       _page: options._page,
       'allowed_specializations.id': options['allowed_specializations.id'],
       orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
     },
+    path: `${searchBase}/azerite-essence`,
   };
 }

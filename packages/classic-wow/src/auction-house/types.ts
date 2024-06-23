@@ -10,10 +10,10 @@ export interface AuctionsResponse extends ResponseBase, NameId {
 }
 
 interface Auction {
-  id: number;
-  item: { id: number; rand?: number; seed?: number };
   bid: number;
   buyout: number;
+  id: number;
+  item: { id: number; rand?: number; seed?: number };
   quantity: number;
-  time_left: 'SHORT' | 'MEDIUM' | 'LONG' | 'VERY_LONG';
+  time_left: 'LONG' | 'MEDIUM' | 'SHORT' | 'VERY_LONG';
 }

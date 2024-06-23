@@ -13,26 +13,26 @@ export interface PetIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface PetResponse extends ResponseBase, NameId {
-  battle_pet_type: BattlePetType;
-  description: string;
-  is_capturable: boolean;
-  is_tradable: boolean;
-  is_battlepet: boolean;
-  is_alliance_only: boolean;
-  is_horde_only: boolean;
   abilities: Array<Ability>;
-  source: Source;
-  icon: string;
+  battle_pet_type: BattlePetType;
   creature: NameIdKey;
+  description: string;
+  icon: string;
+  is_alliance_only: boolean;
+  is_battlepet: boolean;
+  is_capturable: boolean;
+  is_horde_only: boolean;
   is_random_creature_display: boolean;
+  is_tradable: boolean;
   media: Media;
   should_exclude_if_uncollected: boolean;
+  source: Source;
 }
 
 interface Ability {
   ability: NameIdKey;
-  slot: number;
   required_level: number;
+  slot: number;
 }
 
 interface BattlePetType extends NameId {
@@ -44,8 +44,8 @@ interface Media extends KeyBase {
 }
 
 interface Source {
-  type: string;
   name: string;
+  type: string;
 }
 
 /**
@@ -71,8 +71,8 @@ export interface PetAbilityIndexResponse extends ResponseBase {
  */
 export interface PetAbilityResponse extends ResponseBase, NameId {
   battle_pet_type: BattlePetType;
-  rounds: number;
   media: Media;
+  rounds: number;
 }
 
 /**

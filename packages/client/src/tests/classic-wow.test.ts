@@ -6,8 +6,8 @@ import { createBlizzardApiClient } from '../client/create-client';
 describe.concurrent('smoketest some classic wow api responses', async () => {
   const client = await createBlizzardApiClient({
     key: environment.blizzardClientId,
-    secret: environment.blizzardClientSecret,
     origin: 'eu',
+    secret: environment.blizzardClientSecret,
   });
 
   it('should be able to fetch the auction house index', async ({ expect }) => {
