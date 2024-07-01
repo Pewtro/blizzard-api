@@ -1,5 +1,11 @@
 # @blizzard-api/client
 
+## 1.0.4
+
+### Patch Changes
+
+- 0fb2bed: Add default exports and improve the README documentation slightly
+
 ## 1.0.3
 
 ### Patch Changes
