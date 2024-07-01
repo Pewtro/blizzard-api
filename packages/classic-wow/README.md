@@ -14,10 +14,23 @@ You can get paths, namespaces, parameters and more for a specific endpoint by ca
 
 ```ts
 import { classicWow } from "@blizzard-api/classic-wow"
+//or
+import classicWow from "@blizzard-api/classic-wow"
 
 const powerType = classicWow.powerType("static-classic", 123);
-        ^ { path: string, namespace: string }
+        ^ { path: string, namespace?: string, parameters?: Record<string, never> }
 ```
+
+If you don't want to use the exported classicWow object, you can also access the functions directly:
+
+```ts
+import { powerType } from "@blizzard-api/classic-wow"
+
+const powerTypeEndpoint = powerType("static-classic", 123);
+        ^ { path: string, namespace?: string, parameters?: Record<string, never> }
+```
+
+### Types
 
 If you need the response types, they are also exported with "Response" appended, so to get the response type from the above code, you can import it like this:
 
@@ -25,24 +38,16 @@ If you need the response types, they are also exported with "Response" appended,
 import type { PowerTypeResponse } from '@blizzard-api/classic-wow';
 ```
 
-If you simply want to use the existing object, you can use the helper from `@blizzard-api/core` like so:
+If you simply want to use the existing object, you can use the helper, `ExtractResourceType`, from `@blizzard-api/core` like so:
 
 ```ts
 import { classicWow } from "@blizzard-api/classic-wow"
+import type { ExtractResourceType } from "@blizzard-api/core";
 
 const powerType = classicWow.powerType("static-classic", 123);
-        ^ { path: string, namespace: string }
+        ^ { path: string, namespace?: string, parameters?: Record<string, never> }
+
 type PowerTypeResponse = ExtractResourceType<typeof powerType>;
-```
-
-If you don't want to use the exported classicWow object, you can also access the functions directly:
-
-```ts
-import { powerType } from "@blizzard-api/wow"
-
-const powerTypeEndpoint = powerType("static-classic", 123);
-        ^ { path: string, namespace: string }
-type PowerTypeResponse = ExtractResourceType<typeof powerTypeEndpoint>;
 ```
 
 ## Differences to @blizzard-api/wow
@@ -56,11 +61,11 @@ Because there are multiple classic flavours of the game, each endpoint will take
 | World of Warcraft Classic (Era)              | static-classic1x-{region} | dynamic-classic1x-{region} | profile-classic1x-{region} |
 | Wrath of the Lich King Classic (Progression) | static-classic-{region}   | dynamic-classic-{region}   | profile-classic-{region}   |
 
-## Types
+## Notes on Types
 
 The types are manually created from using the Blizzard API documentation, and are as accurate as possible with smoke testing each endpoint. However, no-one is perfect so there is likely be some discrepancies. If you encounter any issues with the types from this package, please open an issue or a pull request.
 
-### Client
+## Client
 
 While this package is made to function on it's own, it performs even better when combined with `@blizzard-api/client` where you can easily request data combining the two libraries.
 

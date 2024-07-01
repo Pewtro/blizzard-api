@@ -23,6 +23,8 @@ npm i @blizzard-api/client
 
 ```ts
 import { createBlizzardApiClient } from '@blizzard-api/client';
+//or
+import createBlizzardApiClient from '@blizzard-api/client';
 import { wow } from '@blizzard-api/wow';
 
 const client = await createBlizzardApiClient({

@@ -319,6 +319,7 @@ export const wow = {
   //WoW Token
   wowToken,
 };
+export default wow;
 
 //Achievements
 export * from './achievements/achievements';
