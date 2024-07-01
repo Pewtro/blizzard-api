@@ -10,5 +10,6 @@ export default defineConfig(({ watch = false }) => ({
   format: ['cjs', 'esm'],
   outDir: 'dist',
   sourcemap: true,
+  treeshake: true,
   watch,
 }));
