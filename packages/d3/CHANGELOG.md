@@ -1,5 +1,11 @@
 # @blizzard-api/d3
 
+## 0.1.2
+
+### Patch Changes
+
+- 0fb2bed: Add default exports and improve the README documentation slightly
+
 ## 0.1.1
 
 ### Patch Changes

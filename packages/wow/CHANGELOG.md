@@ -1,5 +1,11 @@
 # @blizzard-api/wow
 
+## 1.1.3
+
+### Patch Changes
+
+- 0fb2bed: Add default exports and improve the README documentation slightly
+
 ## 1.1.2
 
 ### Patch Changes
