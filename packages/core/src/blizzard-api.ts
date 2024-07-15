@@ -24,7 +24,7 @@ export type Locales =
 /**
  * A record of regions and their supported locales.
  */
-const locales = {
+const _regionLocaleMap = {
   cn: ['zh_CN'],
   eu: ['en_GB', 'es_ES', 'fr_FR', 'ru_RU', 'de_DE', 'pt_PT', 'it_IT', 'multi'],
   kr: ['ko_KR', 'en_GB', 'en_US', 'multi'],
@@ -36,7 +36,7 @@ const locales = {
  * The default Blizzard API configuration for each region.
  */
 interface BlizzardApiDefault<T extends Origins> {
-  defaultLocale: (typeof locales)[T][number];
+  defaultLocale: (typeof _regionLocaleMap)[T][number];
   hostname: T extends 'cn' ? 'https://gateway.battlenet.com.cn' : `https://${T}.api.blizzard.com`;
 }
 
@@ -83,7 +83,7 @@ const endpoints: BlizzardApiByRegion = {
  */
 interface BlizzardApi<T extends Origins> {
   hostname: BlizzardApiDefault<Origins>['hostname'];
-  locale: (typeof locales)[T][number];
+  locale: (typeof _regionLocaleMap)[T][number];
   origin: Origins;
 }
 
@@ -101,7 +101,7 @@ interface BlizzardApi<T extends Origins> {
  */
 export function getBlizzardApi<T extends Origins>(
   origin: T,
-  locale?: (typeof locales)[typeof origin][number],
+  locale?: (typeof _regionLocaleMap)[typeof origin][number],
 ): BlizzardApi<typeof origin> {
   const endpoint = endpoints[origin];
 
