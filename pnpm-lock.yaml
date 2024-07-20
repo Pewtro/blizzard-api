@@ -12,8 +12,8 @@ importers:
         specifier: 2.27.7
         version: 2.27.7
       '@putstack/eslint-config-typescript':
-        specifier: 3.0.0-next.4
-        version: 3.0.0-next.4(eslint@9.7.0)(typescript@5.5.3)
+        specifier: 3.0.0-next.5
+        version: 3.0.0-next.5(eslint@9.7.0)(typescript@5.5.3)
       '@putstack/prettier-config':
         specifier: 1.4.1
         version: 1.4.1(prettier@3.3.3)
@@ -550,8 +550,8 @@ packages:
   '@polka/url@1.0.0-next.25':
     resolution: {integrity: sha512-j7P6Rgr3mmtdkeDGTe0E/aYyWEWVtc5yFXtHCRHs28/jptDEWfaVOc5T7cblqy1XKPPfCxJc/8DwQ5YgLOZOVQ==}
 
-  '@putstack/eslint-config-typescript@3.0.0-next.4':
-    resolution: {integrity: sha512-9FbA2tMuVkvAF0Av5hA8hlks/QQM8rQ4j9gmnbAu5LCVUxL2XfnohnhQb8NQoeGS+G3mD5O5SE5YPOB7VfoqAA==}
+  '@putstack/eslint-config-typescript@3.0.0-next.5':
+    resolution: {integrity: sha512-Oq6Ngx6Ni7/ZxwGpemT7d0C/jbJqQ3vzx5hfm1qcRLYcowcoDgvziOni9UXQ2sewsUwyzX3HlRFZOIYAHukafg==}
     engines: {node: ^18.18 || ^20.9 || ^21.1 || ^22}
     peerDependencies:
       eslint: '>=9.7.0'
@@ -2707,7 +2707,7 @@ snapshots:
 
   '@polka/url@1.0.0-next.25': {}
 
-  '@putstack/eslint-config-typescript@3.0.0-next.4(eslint@9.7.0)(typescript@5.5.3)':
+  '@putstack/eslint-config-typescript@3.0.0-next.5(eslint@9.7.0)(typescript@5.5.3)':
     dependencies:
       '@eslint/js': 9.7.0
       '@typescript-eslint/utils': 8.0.0-alpha.44(eslint@9.7.0)(typescript@5.5.3)
