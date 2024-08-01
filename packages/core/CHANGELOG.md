@@ -1,5 +1,11 @@
 # @blizzard-api/core
 
+## 1.1.2
+
+### Patch Changes
+
+- 3330b07: Rename internal locales to \_regionLocaleMap to better indicate it's a private value used internally and give it a more fitting name
+
 ## 1.1.1
 
 ### Patch Changes

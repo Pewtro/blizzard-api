@@ -1,5 +1,13 @@
 # @blizzard-api/client
 
+## 1.0.5
+
+### Patch Changes
+
+- 7f3b196: Update axios to 1.7.3
+- Updated dependencies [3330b07]
+  - @blizzard-api/core@1.1.2
+
 ## 1.0.4
 
 ### Patch Changes
