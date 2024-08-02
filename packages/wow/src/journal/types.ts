@@ -17,13 +17,13 @@ type ModeName =
   | 'Raid Finder';
 type ModeType =
   | 'HEROIC'
-  | 'LEGACY_10_MAN_HEROIC'
   | 'LEGACY_10_MAN'
-  | 'LEGACY_25_MAN_HEROIC'
+  | 'LEGACY_10_MAN_HEROIC'
   | 'LEGACY_25_MAN'
+  | 'LEGACY_25_MAN_HEROIC'
   | 'LFR'
-  | 'MYTHIC_KEYSTONE'
   | 'MYTHIC'
+  | 'MYTHIC_KEYSTONE'
   | 'NORMAL';
 
 /**

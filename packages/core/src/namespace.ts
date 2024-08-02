@@ -3,10 +3,10 @@
  * @see https://develop.battle.net/documentation/world-of-warcraft/guides/namespaces
  */
 export type BlizzardNamespaces =
+  | 'dynamic'
   | 'dynamic-classic'
   | 'dynamic-classic1x'
-  | 'dynamic'
   | 'profile'
+  | 'static'
   | 'static-classic'
-  | 'static-classic1x'
-  | 'static';
+  | 'static-classic1x';

@@ -54,12 +54,12 @@ export type * from './follower/types';
 //Game Data
 export * from './game-data/game-data';
 export type * from './game-data/types';
-//Item Type
-export * from './item-type/item-type';
-export type * from './item-type/types';
 //Item
 export * from './item/item';
 export type * from './item/types';
+//Item Type
+export * from './item-type/item-type';
+export type * from './item-type/types';
 //Profile
 export * from './profile/profile';
 export type * from './profile/types';
