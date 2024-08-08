@@ -4,19 +4,25 @@ The @blizzard-api collection aims to help you connect to the Blizzard Battle.net
 
 ## Installation
 
-If you already have a way of authenticating your application with battle.net, you only need to install `@blizzard-api/core` and the relevant game package you want, e.g.:
+If you already have a way of authenticating your application with battle.net, you only need to install the relevant game package you want, e.g.:
 
 ```sh
-npm i @blizzard-api/core @blizzard-api/wow
+npm i @blizzard-api/wow
 ```
 
-Currently available packages are:
+If your package manager doesn't automatically install peer dependencies, you should also install `@blizzard-api/core`:
+
+```sh
+npm i @blizzard-api/core
+```
+
+Currently available game-specific packages are:
 
 - `@blizzard-api/d3`
 - `@blizzard-api/wow`
 - `@blizzard-api/classic-wow`
 
-Planned packages are:
+Additionally planned packages are:
 
 - `@blizzard-api/hs`
 - `@blizzard-api/sc2`
@@ -66,7 +72,7 @@ Please refer to the [battle.net documentation](https://develop.battle.net/docume
 
 This list is generally prioritized but no promises that things will be addressed in this order.
 
+- Migrate the client away from axios to native fetch
 - Add a package for the following games/flavours
-  - Diablo III
   - Hearthstone
   - StarCraft II
