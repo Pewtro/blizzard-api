@@ -22,6 +22,18 @@ export type Resource<
 } & (ProtectedResource extends true ? { token: string } : unknown);
 
 /**
+ * Represents a resource that requires a token to be requested
+ * @param Response The response type of the resource
+ * @param SearchOptions The search options that can be passed to the resource
+ *
+ */
+export type ProtectedResource<Response, SearchOptions extends object = Record<string, never>> = Resource<
+  Response,
+  SearchOptions,
+  true
+>;
+
+/**
  * Represents the response of a resource
  * @param T The response type of the resource
  * @example
