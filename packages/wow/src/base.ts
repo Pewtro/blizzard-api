@@ -72,11 +72,27 @@ export interface MediaAsset {
 }
 
 /**
- * The playable genders in World of Warcraft.
+ * The playable gender names/descriptions in World of Warcraft.
  */
-export interface Gender {
+export interface GenderName {
   female: string;
   male: string;
+}
+
+/**
+ * The playable genders in World of Warcraft.
+ */
+export const Genders = {
+  FEMALE: 'FEMALE',
+  MALE: 'MALE',
+} as const;
+
+/**
+ * The gender associated with a character or entity in World of Warcraft.
+ */
+export interface Gender {
+  name: Capitalize<Lowercase<keyof typeof Genders>>;
+  type: keyof typeof Genders;
 }
 
 /**

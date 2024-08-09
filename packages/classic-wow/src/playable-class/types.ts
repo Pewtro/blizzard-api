@@ -1,4 +1,4 @@
-import type { Gender, KeyBase, NameId, NameIdKey, ResponseBase } from '../../../wow/src/base';
+import type { GenderName, KeyBase, NameId, NameIdKey, ResponseBase } from '../../../wow/src/base';
 
 export type { PlayableClassIndexResponse, PlayableClassMediaResponse } from '../../../wow/src/playable-class/types';
 
@@ -7,7 +7,7 @@ export type { PlayableClassIndexResponse, PlayableClassMediaResponse } from '../
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft-classic/game-data-apis}
  */
 export interface PlayableClassResponse extends ResponseBase, NameId {
-  gender_name: Gender;
+  gender_name: GenderName;
   media: Media;
   playable_races: Array<NameIdKey>;
   power_type: NameIdKey;

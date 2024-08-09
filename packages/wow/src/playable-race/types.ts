@@ -1,4 +1,4 @@
-import type { Faction, Gender, NameId, NameIdKey, ResponseBase } from '../base';
+import type { Faction, GenderName, NameId, NameIdKey, ResponseBase } from '../base';
 
 /**
  * The playable race index response.
@@ -14,7 +14,7 @@ export interface PlayableRaceIndexResponse extends ResponseBase {
  */
 export interface PlayableRaceResponse extends ResponseBase, NameId {
   faction: Faction;
-  gender_name: Gender;
+  gender_name: GenderName;
   is_allied_race: boolean;
   is_selectable: boolean;
   playable_classes: Array<NameIdKey>;

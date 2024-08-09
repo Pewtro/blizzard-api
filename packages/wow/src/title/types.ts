@@ -1,4 +1,4 @@
-import type { Gender, NameId, NameIdKey, ResponseBase } from '../base';
+import type { GenderName, NameId, NameIdKey, ResponseBase } from '../base';
 
 /**
  * The response for a title index.
@@ -13,5 +13,5 @@ export interface TitleIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface TitleResponse extends ResponseBase, NameId {
-  gender_name: Gender;
+  gender_name: GenderName;
 }

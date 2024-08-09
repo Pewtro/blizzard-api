@@ -1,4 +1,14 @@
 import {
+  accountCollectionsIndex,
+  accountHeirloomsCollectionSummary,
+  accountMountsCollectionSummary,
+  accountPetsCollectionSummary,
+  accountProfileSummary,
+  accountToysCollectionSummary,
+  accountTransmogsCollectionSummary,
+  protectedCharacterProfileSummary,
+} from './account-profile/account-profile';
+import {
   achievement,
   achievementCategory,
   achievementCategoryIndex,
@@ -144,6 +154,15 @@ import { wowToken } from './wow-token/wow-token';
  */
 
 export const wow = {
+  //Account Profile
+  accountCollectionsIndex,
+  accountHeirloomsCollectionSummary,
+  accountMountsCollectionSummary,
+  accountPetsCollectionSummary,
+  accountProfileSummary,
+  accountToysCollectionSummary,
+  accountTransmogsCollectionSummary,
+  protectedCharacterProfileSummary,
   //Achievements
   achievement,
   achievementCategory,
@@ -321,6 +340,9 @@ export const wow = {
 };
 export default wow;
 
+//Account Profile
+export * from './account-profile/account-profile';
+export * from './account-profile/types';
 //Achievements
 export * from './achievements/achievements';
 export * from './achievements/types';

@@ -1,4 +1,4 @@
-import type { Gender, KeyBase, MediaAsset, NameId, NameIdKey, ResponseBase } from '../base';
+import type { GenderName, KeyBase, MediaAsset, NameId, NameIdKey, ResponseBase } from '../base';
 
 /**
  * The response for a playable class index.
@@ -13,7 +13,7 @@ export interface PlayableClassIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface PlayableClassResponse extends ResponseBase, NameId {
-  gender_name: Gender;
+  gender_name: GenderName;
   media: Media;
   playable_races: Array<NameIdKey>;
   power_type: NameIdKey;
