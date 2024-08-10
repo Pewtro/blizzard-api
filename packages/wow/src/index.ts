@@ -27,6 +27,14 @@ import {
   characterAchievementStatistics,
 } from './character-achievements/character-achievements';
 import { characterAppearanceSummary } from './character-appearance/character-appearance';
+import {
+  characterCollectionsIndex,
+  characterHeirloomsCollectionSummary,
+  characterMountsCollectionSummary,
+  characterPetsCollectionSummary,
+  characterToysCollectionSummary,
+  characterTransmogCollectionSummary,
+} from './character-collections/character-collections';
 import { connectedRealm, connectedRealmIndex, connectedRealmSearch } from './connected-realm/connected-realm';
 import {
   conduit,
@@ -187,6 +195,13 @@ export const wow = {
   characterAchievementStatistics,
   //Character Appearance
   characterAppearanceSummary,
+  //Character Collections
+  characterCollectionsIndex,
+  characterHeirloomsCollectionSummary,
+  characterMountsCollectionSummary,
+  characterPetsCollectionSummary,
+  characterToysCollectionSummary,
+  characterTransmogCollectionSummary,
   //Connected Realm
   connectedRealm,
   connectedRealmIndex,
@@ -368,6 +383,9 @@ export * from './character-achievements/types';
 //Character Appearance
 export * from './character-appearance/character-appearance';
 export * from './character-appearance/types';
+//Character Collections
+export * from './character-collections/character-collections';
+export * from './character-collections/types';
 //Connected Realm
 export * from './connected-realm/connected-realm';
 export * from './connected-realm/types';
