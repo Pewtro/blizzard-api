@@ -50,6 +50,7 @@ import {
 import { characterProfessionsSummary } from './character-professions/character-professions';
 import { characterProfileStatus, characterProfileSummary } from './character-profile/character-profile';
 import { characterPvpSummary } from './character-pvp/character-pvp';
+import { characterCompletedQuests, characterQuests } from './character-quests/character-quests';
 import { connectedRealm, connectedRealmIndex, connectedRealmSearch } from './connected-realm/connected-realm';
 import {
   conduit,
@@ -237,6 +238,9 @@ export const wow = {
   characterProfileSummary,
   //Character PvP
   characterPvpSummary,
+  //Character Quests
+  characterCompletedQuests,
+  characterQuests,
   //Connected Realm
   connectedRealm,
   connectedRealmIndex,
@@ -445,6 +449,9 @@ export * from './character-profile/types';
 //Character PvP
 export * from './character-pvp/character-pvp';
 export * from './character-pvp/types';
+//Character Quests
+export * from './character-quests/character-quests';
+export * from './character-quests/types';
 //Connected Realm
 export * from './connected-realm/connected-realm';
 export * from './connected-realm/types';
