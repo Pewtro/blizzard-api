@@ -26,6 +26,7 @@ import {
   characterAchievementsSummary,
   characterAchievementStatistics,
 } from './character-achievements/character-achievements';
+import { characterAppearanceSummary } from './character-appearance/character-appearance';
 import { connectedRealm, connectedRealmIndex, connectedRealmSearch } from './connected-realm/connected-realm';
 import {
   conduit,
@@ -184,6 +185,8 @@ export const wow = {
   //Character Achievements
   characterAchievementsSummary,
   characterAchievementStatistics,
+  //Character Appearance
+  characterAppearanceSummary,
   //Connected Realm
   connectedRealm,
   connectedRealmIndex,
@@ -362,6 +365,9 @@ export * from './azerite-essence/types';
 //Character Achievements
 export * from './character-achievements/character-achievements';
 export * from './character-achievements/types';
+//Character Appearance
+export * from './character-appearance/character-appearance';
+export * from './character-appearance/types';
 //Connected Realm
 export * from './connected-realm/connected-realm';
 export * from './connected-realm/types';
