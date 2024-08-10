@@ -35,6 +35,11 @@ import {
   characterToysCollectionSummary,
   characterTransmogCollectionSummary,
 } from './character-collections/character-collections';
+import {
+  characterDungeons,
+  characterEncountersSummary,
+  characterRaids,
+} from './character-encounters/character-encounters';
 import { connectedRealm, connectedRealmIndex, connectedRealmSearch } from './connected-realm/connected-realm';
 import {
   conduit,
@@ -202,6 +207,10 @@ export const wow = {
   characterPetsCollectionSummary,
   characterToysCollectionSummary,
   characterTransmogCollectionSummary,
+  //Character Encounters
+  characterDungeons,
+  characterEncountersSummary,
+  characterRaids,
   //Connected Realm
   connectedRealm,
   connectedRealmIndex,
@@ -386,6 +395,9 @@ export * from './character-appearance/types';
 //Character Collections
 export * from './character-collections/character-collections';
 export * from './character-collections/types';
+//Character Encounters
+export * from './character-encounters/character-encounters';
+export * from './character-encounters/types';
 //Connected Realm
 export * from './connected-realm/connected-realm';
 export * from './connected-realm/types';
