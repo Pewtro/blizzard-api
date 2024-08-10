@@ -41,6 +41,7 @@ import {
   characterRaids,
 } from './character-encounters/character-encounters';
 import { characterEquipmentSummary } from './character-equipment/character-equipment';
+import { characterHunterPetsSummary } from './character-hunter-pets/character-hunter-pets';
 import { connectedRealm, connectedRealmIndex, connectedRealmSearch } from './connected-realm/connected-realm';
 import {
   conduit,
@@ -214,6 +215,8 @@ export const wow = {
   characterRaids,
   //Character Equipment
   characterEquipmentSummary,
+  //Character Hunter Pets
+  characterHunterPetsSummary,
   //Connected Realm
   connectedRealm,
   connectedRealmIndex,
@@ -404,6 +407,9 @@ export * from './character-encounters/types';
 //Character Equipment
 export * from './character-equipment/character-equipment';
 export * from './character-equipment/types';
+//Character Hunter Pets
+export * from './character-hunter-pets/character-hunter-pets';
+export * from './character-hunter-pets/types';
 //Connected Realm
 export * from './connected-realm/connected-realm';
 export * from './connected-realm/types';
