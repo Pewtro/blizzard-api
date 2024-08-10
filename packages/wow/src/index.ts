@@ -43,6 +43,10 @@ import {
 import { characterEquipmentSummary } from './character-equipment/character-equipment';
 import { characterHunterPetsSummary } from './character-hunter-pets/character-hunter-pets';
 import { characterMediaSummary } from './character-media/character-media';
+import {
+  characterMythicKeystoneProfileIndex,
+  characterMythicKeystoneSeasonDetails,
+} from './character-mythic-keystone-profile/character-mythic-keystone-profile';
 import { connectedRealm, connectedRealmIndex, connectedRealmSearch } from './connected-realm/connected-realm';
 import {
   conduit,
@@ -220,6 +224,9 @@ export const wow = {
   characterHunterPetsSummary,
   //Character Media
   characterMediaSummary,
+  //Character Mythic Keystone Profile
+  characterMythicKeystoneProfileIndex,
+  characterMythicKeystoneSeasonDetails,
   //Connected Realm
   connectedRealm,
   connectedRealmIndex,
@@ -416,6 +423,9 @@ export * from './character-hunter-pets/types';
 //Character Media
 export * from './character-media/character-media';
 export * from './character-media/types';
+//Character Mythic Keystone Profile
+export * from './character-mythic-keystone-profile/character-mythic-keystone-profile';
+export * from './character-mythic-keystone-profile/types';
 //Connected Realm
 export * from './connected-realm/connected-realm';
 export * from './connected-realm/types';
