@@ -42,6 +42,7 @@ import {
 } from './character-encounters/character-encounters';
 import { characterEquipmentSummary } from './character-equipment/character-equipment';
 import { characterHunterPetsSummary } from './character-hunter-pets/character-hunter-pets';
+import { characterMediaSummary } from './character-media/character-media';
 import { connectedRealm, connectedRealmIndex, connectedRealmSearch } from './connected-realm/connected-realm';
 import {
   conduit,
@@ -217,6 +218,8 @@ export const wow = {
   characterEquipmentSummary,
   //Character Hunter Pets
   characterHunterPetsSummary,
+  //Character Media
+  characterMediaSummary,
   //Connected Realm
   connectedRealm,
   connectedRealmIndex,
@@ -410,6 +413,9 @@ export * from './character-equipment/types';
 //Character Hunter Pets
 export * from './character-hunter-pets/character-hunter-pets';
 export * from './character-hunter-pets/types';
+//Character Media
+export * from './character-media/character-media';
+export * from './character-media/types';
 //Connected Realm
 export * from './connected-realm/connected-realm';
 export * from './connected-realm/types';
