@@ -52,6 +52,7 @@ import { characterProfileStatus, characterProfileSummary } from './character-pro
 import { characterPvpSummary } from './character-pvp/character-pvp';
 import { characterCompletedQuests, characterQuests } from './character-quests/character-quests';
 import { characterReputationsSummary } from './character-reputations/character-reputations';
+import { characterSoulbinds } from './character-soulbinds/character-soulbinds';
 import { connectedRealm, connectedRealmIndex, connectedRealmSearch } from './connected-realm/connected-realm';
 import {
   conduit,
@@ -244,6 +245,8 @@ export const wow = {
   characterQuests,
   //Character Reputations
   characterReputationsSummary,
+  //Character Soulbinds
+  characterSoulbinds,
   //Connected Realm
   connectedRealm,
   connectedRealmIndex,
@@ -458,6 +461,9 @@ export * from './character-quests/types';
 //Character Reputations
 export * from './character-reputations/character-reputations';
 export * from './character-reputations/types';
+//Character Soulbinds
+export * from './character-soulbinds/character-soulbinds';
+export * from './character-soulbinds/types';
 //Connected Realm
 export * from './connected-realm/connected-realm';
 export * from './connected-realm/types';
