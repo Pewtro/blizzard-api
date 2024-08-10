@@ -48,6 +48,7 @@ import {
   characterMythicKeystoneSeasonDetails,
 } from './character-mythic-keystone-profile/character-mythic-keystone-profile';
 import { characterProfessionsSummary } from './character-professions/character-professions';
+import { characterProfileStatus, characterProfileSummary } from './character-profile/character-profile';
 import { connectedRealm, connectedRealmIndex, connectedRealmSearch } from './connected-realm/connected-realm';
 import {
   conduit,
@@ -230,6 +231,9 @@ export const wow = {
   characterMythicKeystoneSeasonDetails,
   //Character Professions
   characterProfessionsSummary,
+  //Character Profile
+  characterProfileStatus,
+  characterProfileSummary,
   //Connected Realm
   connectedRealm,
   connectedRealmIndex,
@@ -432,6 +436,9 @@ export * from './character-mythic-keystone-profile/types';
 //Character Professions
 export * from './character-professions/character-professions';
 export * from './character-professions/types';
+//Character Profile
+export * from './character-profile/character-profile';
+export * from './character-profile/types';
 //Connected Realm
 export * from './connected-realm/connected-realm';
 export * from './connected-realm/types';
