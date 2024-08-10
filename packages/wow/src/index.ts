@@ -40,6 +40,7 @@ import {
   characterEncountersSummary,
   characterRaids,
 } from './character-encounters/character-encounters';
+import { characterEquipmentSummary } from './character-equipment/character-equipment';
 import { connectedRealm, connectedRealmIndex, connectedRealmSearch } from './connected-realm/connected-realm';
 import {
   conduit,
@@ -211,6 +212,8 @@ export const wow = {
   characterDungeons,
   characterEncountersSummary,
   characterRaids,
+  //Character Equipment
+  characterEquipmentSummary,
   //Connected Realm
   connectedRealm,
   connectedRealmIndex,
@@ -398,6 +401,9 @@ export * from './character-collections/types';
 //Character Encounters
 export * from './character-encounters/character-encounters';
 export * from './character-encounters/types';
+//Character Equipment
+export * from './character-equipment/character-equipment';
+export * from './character-equipment/types';
 //Connected Realm
 export * from './connected-realm/connected-realm';
 export * from './connected-realm/types';
