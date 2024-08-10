@@ -20,13 +20,18 @@ export const mediaBase = `${base}/media` as const;
 export const searchBase = `${base}/search` as const;
 
 /**
+ *
+ */
+
+export interface Href {
+  href: string;
+}
+/**
  * Base interface for Blizzard API responses.
  */
 export interface ResponseBase {
   _links: {
-    self: {
-      href: string;
-    };
+    self: Href;
   };
 }
 
@@ -34,9 +39,7 @@ export interface ResponseBase {
  * Base record interface containing key.href property that often appear in Blizzard API responses.
  */
 export interface KeyBase {
-  key: {
-    href: string;
-  };
+  key: Href;
 }
 
 /**

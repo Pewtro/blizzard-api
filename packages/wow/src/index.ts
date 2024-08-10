@@ -22,6 +22,10 @@ import {
   azeriteEssenceMedia,
   azeriteEssenceSearch,
 } from './azerite-essence/azerite-essence';
+import {
+  characterAchievementsSummary,
+  characterAchievementStatistics,
+} from './character-achievements/character-achievements';
 import { connectedRealm, connectedRealmIndex, connectedRealmSearch } from './connected-realm/connected-realm';
 import {
   conduit,
@@ -177,6 +181,9 @@ export const wow = {
   azeriteEssenceIndex,
   azeriteEssenceMedia,
   azeriteEssenceSearch,
+  //Character Achievements
+  characterAchievementsSummary,
+  characterAchievementStatistics,
   //Connected Realm
   connectedRealm,
   connectedRealmIndex,
@@ -352,6 +359,9 @@ export * from './auction-house/types';
 //Azerite Essence
 export * from './azerite-essence/azerite-essence';
 export * from './azerite-essence/types';
+//Character Achievements
+export * from './character-achievements/character-achievements';
+export * from './character-achievements/types';
 //Connected Realm
 export * from './connected-realm/connected-realm';
 export * from './connected-realm/types';

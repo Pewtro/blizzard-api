@@ -1,4 +1,4 @@
-import type { Faction, Gender, KeyBase, NameId, NameIdKey } from '../base';
+import type { Faction, Gender, Href, KeyBase, NameId, NameIdKey } from '../base';
 
 export interface AccountProfileSummaryResponse {
   _links: Links;
@@ -11,10 +11,6 @@ interface Links {
   profile: Href;
   self: Href;
   user: Href;
-}
-
-interface Href {
-  href: string;
 }
 
 interface WowAccount {
