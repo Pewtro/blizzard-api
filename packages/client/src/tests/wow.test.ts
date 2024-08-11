@@ -180,4 +180,9 @@ describe.concurrent('smoketest some wow api responses', async () => {
     const response = await client.sendRequest(wow.characterMythicKeystoneProfileIndex(defaultRealm, defaultCharacter));
     expect(response.data).toBeDefined();
   });
+
+  it("can search for a character's professions", async ({ expect }) => {
+    const response = await client.sendRequest(wow.characterProfessionsSummary(defaultRealm, defaultCharacter));
+    expect(response.data).toBeDefined();
+  });
 });
