@@ -1,5 +1,12 @@
 # @blizzard-api/classic-wow
 
+## 1.1.5
+
+### Patch Changes
+
+- Updated dependencies [23c193f]
+  - @blizzard-api/core@1.2.0
+
 ## 1.1.4
 
 ### Patch Changes

@@ -1,5 +1,34 @@
 # @blizzard-api/wow
 
+## 1.2.0
+
+### Minor Changes
+
+- 9108aeb: Add support for Character Professions APIs
+- a77dc5d: Add support for the protected Guild APIs
+- 0eb6dde: Add support for Character PvP APIs
+- c202b50: Add support for Character Collections APIs
+- 5c03ab5: Add support for Character Media APIs
+- 6424b30: Add support for Character Soulbinds APIs
+- f224581: Add support for Character Encounters APIs
+- e6261b7: Add support for Character Titles APIs
+- 455d766: Add support for Character Mythic Keystone Profile APIs
+- 57f0f76: Add Account Profile API responses.
+- 28b9676: Add support for Character Profile APIs
+- d191168: Add support for Character Appearance APIs
+- e102c3e: Add support for Character Statistics APIs
+- 9a9714e: Add support for Character Equipment APIs
+- 2029362: Add support for Character Specialization APIs
+- 38de1fd: Add support for Character Reputations APIs
+- 333fcda: Add support for Character Hunter Pets APIs
+- 1d182dd: Add support for Character Achievement APIs
+- 759f61b: Add support for Character Quests APIs
+
+### Patch Changes
+
+- Updated dependencies [23c193f]
+  - @blizzard-api/core@1.2.0
+
 ## 1.1.4
 
 ### Patch Changes

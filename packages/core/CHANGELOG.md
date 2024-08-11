@@ -1,5 +1,11 @@
 # @blizzard-api/core
 
+## 1.2.0
+
+### Minor Changes
+
+- 23c193f: Add ProtectedResource type that is meant to be used as a helper to reduce generics passed along to Resource
+
 ## 1.1.2
 
 ### Patch Changes
