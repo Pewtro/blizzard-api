@@ -1,14 +1,14 @@
-import type { ProtectedResource } from '@blizzard-api/core';
+import type { Resource } from '@blizzard-api/core';
 import type { CharacterPvpSummaryResponse } from './types';
 
-export function characterPvpSummary(
-  realmSlug: string,
-  characterName: string,
-  token: string,
-): ProtectedResource<CharacterPvpSummaryResponse> {
+/**
+ * @param realmSlug The slug of the realm.
+ * @param characterName The lowercase name of the character.
+ * @returns a PvP summary for a character.
+ */
+export function characterPvpSummary(realmSlug: string, characterName: string): Resource<CharacterPvpSummaryResponse> {
   return {
     namespace: 'profile',
     path: `/profile/wow/character/${realmSlug}/${characterName.toLowerCase()}/pvp-summary`,
-    token,
   };
 }
