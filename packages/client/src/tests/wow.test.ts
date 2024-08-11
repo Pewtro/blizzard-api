@@ -225,4 +225,9 @@ describe.concurrent('smoketest some wow api responses', async () => {
     const response = await client.sendRequest(wow.characterTitlesSummary(defaultRealm, defaultCharacter));
     expect(response.data).toBeDefined();
   });
+
+  it("can search for a guild's profile", async ({ expect }) => {
+    const response = await client.sendRequest(wow.guild(defaultRealm, 'echoes'));
+    expect(response.data).toBeDefined();
+  });
 });
