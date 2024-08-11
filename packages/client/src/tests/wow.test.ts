@@ -139,13 +139,20 @@ describe.concurrent('smoketest some wow api responses', async () => {
     expect(response.data.results.length).toBeGreaterThan(0);
   });
 
+  const defaultRealm = 'laughing-skull';
+  const defaultCharacter = 'putro';
   it("can search for a character's achievements", async ({ expect }) => {
-    const response = await client.sendRequest(wow.characterAchievementsSummary('laughing-skull', 'putro'));
+    const response = await client.sendRequest(wow.characterAchievementsSummary(defaultRealm, defaultCharacter));
     expect(response.data).toBeDefined();
   });
 
   it("can search for a character's achievements statistics", async ({ expect }) => {
-    const response = await client.sendRequest(wow.characterAchievementStatistics('laughing-skull', 'putro'));
+    const response = await client.sendRequest(wow.characterAchievementStatistics(defaultRealm, defaultCharacter));
+    expect(response.data).toBeDefined();
+  });
+
+  it("can search for a character's appearance", async ({ expect }) => {
+    const response = await client.sendRequest(wow.characterAppearanceSummary(defaultRealm, defaultCharacter));
     expect(response.data).toBeDefined();
   });
 });
