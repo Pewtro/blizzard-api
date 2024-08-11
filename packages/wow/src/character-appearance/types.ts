@@ -1,7 +1,6 @@
-import type { Color, Faction, Gender, Href, KeyBase, NameId, NameIdKey } from '../base';
+import type { Color, Faction, Gender, KeyBase, NameId, NameIdKey, ResponseBase } from '../base';
 
-export interface CharacterAppearanceResponse {
-  _links: { self: Href };
+export interface CharacterAppearanceResponse extends ResponseBase {
   active_spec: NameIdKey;
   character: Character;
   customizations: Array<Customization>;

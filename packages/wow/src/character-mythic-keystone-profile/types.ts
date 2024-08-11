@@ -1,7 +1,6 @@
-import type { Color, Href, KeyBase, NameId, NameIdKey } from '../base';
+import type { Color, KeyBase, NameId, NameIdKey, ResponseBase } from '../base';
 
-export interface CharacterMythicKeystoneProfileIndexResponse {
-  _links: { self: Href };
+export interface CharacterMythicKeystoneProfileIndexResponse extends ResponseBase {
   character: Character;
   current_period: CurrentPeriod;
   seasons: Array<{ id: number } & KeyBase>;
@@ -19,8 +18,7 @@ interface CurrentPeriod {
   period: { id: number } & KeyBase;
 }
 
-export interface CharacterMythicKeystoneSeasonDetailsResponse {
-  _links: { self: Href };
+export interface CharacterMythicKeystoneSeasonDetailsResponse extends ResponseBase {
   best_runs: Array<BestRun>;
   character: NameIdKey;
   mythic_rating: MythicRating;

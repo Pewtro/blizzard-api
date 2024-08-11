@@ -1,7 +1,6 @@
-import type { Href, NameIdKey } from '../base';
+import type { NameIdKey, ResponseBase } from '../base';
 
-export interface CharacterMediaSummaryResponse {
-  _links: { self: Href };
+export interface CharacterMediaSummaryResponse extends ResponseBase {
   assets: Array<Asset>;
   character: Character;
 }

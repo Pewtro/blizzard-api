@@ -1,7 +1,6 @@
-import type { Href, NameId, NameIdKey } from '../base';
+import type { NameId, NameIdKey, ResponseBase } from '../base';
 
-export interface CharacterProfessionsSummaryResponse {
-  _links: { self: Href };
+export interface CharacterProfessionsSummaryResponse extends ResponseBase {
   character: Character;
   primaries: Array<Primary>;
   secondaries: Array<Secondary>;

@@ -1,7 +1,6 @@
-import type { Color, Href, KeyBase, NameIdKey } from '../base';
+import type { Color, KeyBase, NameIdKey, ResponseBase } from '../base';
 
-export interface CharacterEquipmentSummaryResponse {
-  _links: { self: Href };
+export interface CharacterEquipmentSummaryResponse extends ResponseBase {
   character: Character;
   equipped_item_sets: Array<Set>;
   equipped_items: Array<EquippedItem>;

@@ -1,7 +1,6 @@
-import type { Href, NameIdKey } from '../base';
+import type { Href, NameIdKey, ResponseBase } from '../base';
 
-export interface CharacterEncountersSummaryResponse {
-  _links: { self: Href };
+export interface CharacterEncountersSummaryResponse extends ResponseBase {
   character: Character;
   dungeons: Href;
   raids: Href;
@@ -15,8 +14,7 @@ interface Character extends NameIdKey {
   realm: Realm;
 }
 
-export interface CharacterDungeonsResponse {
-  _links: { self: Href };
+export interface CharacterDungeonsResponse extends ResponseBase {
   expansions: Array<Expansion<DungeonMode>>;
 }
 
@@ -58,8 +56,7 @@ interface Encounter {
   last_kill_timestamp: number;
 }
 
-export interface CharacterRaidsResponse {
-  _links: { self: Href };
+export interface CharacterRaidsResponse extends ResponseBase {
   character: Character;
   expansions: Array<Expansion<RaidMode>>;
 }

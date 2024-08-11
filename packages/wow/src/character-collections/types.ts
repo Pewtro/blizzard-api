@@ -1,7 +1,6 @@
-import type { Href, KeyBase, NameIdKey } from '../base';
+import type { Href, KeyBase, NameIdKey, ResponseBase } from '../base';
 
-export interface CharacterCollectionsIndexResponse {
-  _links: { self: Href };
+export interface CharacterCollectionsIndexResponse extends ResponseBase {
   character: Character;
   heirlooms: Href;
   mounts: Href;
@@ -18,8 +17,7 @@ interface Character extends NameIdKey {
   realm: Realm;
 }
 
-export interface CharacterHeirloomsCollectionSummaryResponse {
-  _links: { self: Href };
+export interface CharacterHeirloomsCollectionSummaryResponse extends ResponseBase {
   heirlooms: Array<Heirloom>;
 }
 
@@ -28,8 +26,7 @@ interface Heirloom {
   upgrade: { level: number };
 }
 
-export interface CharacterMountsCollectionSummaryResponse {
-  _links: { self: Href };
+export interface CharacterMountsCollectionSummaryResponse extends ResponseBase {
   mounts: Array<Mount>;
 }
 
@@ -40,8 +37,7 @@ interface Mount {
   mount: NameIdKey;
 }
 
-export interface CharacterPetsCollectionSummaryResponse {
-  _links: { self: Href };
+export interface CharacterPetsCollectionSummaryResponse extends ResponseBase {
   pets: Array<Pet>;
   unlocked_battle_pet_slots: number;
 }
@@ -71,8 +67,7 @@ interface Stats {
   speed: number;
 }
 
-export interface CharacterToysCollectionSummaryResponse {
-  _links: { self: Href };
+export interface CharacterToysCollectionSummaryResponse extends ResponseBase {
   toys: Array<Toy>;
 }
 
@@ -81,8 +76,7 @@ interface Toy {
   toy: NameIdKey;
 }
 
-export interface CharacterTransmogCollectionSummaryResponse {
-  _links: { self: Href };
+export interface CharacterTransmogCollectionSummaryResponse extends ResponseBase {
   appearance_sets: Array<NameIdKey>;
   slots: Array<Slot>;
 }

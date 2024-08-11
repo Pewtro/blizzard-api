@@ -1,7 +1,6 @@
-import type { Href, NameIdKey } from '../base';
+import type { Href, NameIdKey, ResponseBase } from '../base';
 
-export interface CharacterAchievementsSummaryResponse {
-  _links: { self: Href };
+export interface CharacterAchievementsSummaryResponse extends ResponseBase {
   achievements: Array<Achievement>;
   category_progress: Array<CategoryProgress>;
   character: Character;
@@ -44,8 +43,7 @@ interface RecentEvent {
   timestamp: number;
 }
 
-export interface CharacterAchievementStatisticsResponse {
-  _links: { self: Href };
+export interface CharacterAchievementStatisticsResponse extends ResponseBase {
   categories: Array<Category>;
   character: Character;
 }
