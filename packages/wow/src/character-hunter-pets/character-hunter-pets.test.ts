@@ -5,15 +5,13 @@ describe('characterHunterPetsSummary', () => {
   it('should return the correct ProtectedResource object', () => {
     const realmSlug = 'testRealm';
     const characterName = 'testCharacter';
-    const token = 'testToken';
 
     const expectedResource = {
       namespace: 'profile',
       path: `/profile/wow/character/${realmSlug}/${characterName}/hunter-pets`,
-      token,
     };
 
-    const result = characterHunterPetsSummary(realmSlug, characterName, token);
+    const result = characterHunterPetsSummary(realmSlug, characterName);
 
     expect(result).toEqual(expectedResource);
   });

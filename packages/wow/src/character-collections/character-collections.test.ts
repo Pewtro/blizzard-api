@@ -11,16 +11,14 @@ import {
 describe('Character Collections', () => {
   const realmSlug = 'realm-slug';
   const characterName = 'character-name';
-  const token = 'token';
 
   it('should generate the correct protected resource for characterCollectionsIndex', () => {
     const expectedResource = {
       namespace: 'profile',
       path: '/profile/wow/character/realm-slug/character-name/collections',
-      token: 'token',
     };
 
-    const resource = characterCollectionsIndex(realmSlug, characterName, token);
+    const resource = characterCollectionsIndex(realmSlug, characterName);
 
     expect(resource).toEqual(expectedResource);
   });
@@ -29,10 +27,9 @@ describe('Character Collections', () => {
     const expectedResource = {
       namespace: 'profile',
       path: '/profile/wow/character/realm-slug/character-name/collections/heirlooms',
-      token: 'token',
     };
 
-    const resource = characterHeirloomsCollectionSummary(realmSlug, characterName, token);
+    const resource = characterHeirloomsCollectionSummary(realmSlug, characterName);
 
     expect(resource).toEqual(expectedResource);
   });
@@ -41,10 +38,9 @@ describe('Character Collections', () => {
     const expectedResource = {
       namespace: 'profile',
       path: '/profile/wow/character/realm-slug/character-name/collections/mounts',
-      token: 'token',
     };
 
-    const resource = characterMountsCollectionSummary(realmSlug, characterName, token);
+    const resource = characterMountsCollectionSummary(realmSlug, characterName);
 
     expect(resource).toEqual(expectedResource);
   });
@@ -53,10 +49,9 @@ describe('Character Collections', () => {
     const expectedResource = {
       namespace: 'profile',
       path: '/profile/wow/character/realm-slug/character-name/collections/pets',
-      token: 'token',
     };
 
-    const resource = characterPetsCollectionSummary(realmSlug, characterName, token);
+    const resource = characterPetsCollectionSummary(realmSlug, characterName);
 
     expect(resource).toEqual(expectedResource);
   });
@@ -65,10 +60,9 @@ describe('Character Collections', () => {
     const expectedResource = {
       namespace: 'profile',
       path: '/profile/wow/character/realm-slug/character-name/collections/toys',
-      token: 'token',
     };
 
-    const resource = characterToysCollectionSummary(realmSlug, characterName, token);
+    const resource = characterToysCollectionSummary(realmSlug, characterName);
 
     expect(resource).toEqual(expectedResource);
   });
@@ -77,10 +71,9 @@ describe('Character Collections', () => {
     const expectedResource = {
       namespace: 'profile',
       path: '/profile/wow/character/realm-slug/character-name/collections/transmogs',
-      token: 'token',
     };
 
-    const resource = characterTransmogCollectionSummary(realmSlug, characterName, token);
+    const resource = characterTransmogCollectionSummary(realmSlug, characterName);
 
     expect(resource).toEqual(expectedResource);
   });

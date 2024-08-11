@@ -5,14 +5,12 @@ describe('characterQuests', () => {
   it('should return the correct ProtectedResource object', () => {
     const realmSlug = 'realm';
     const characterName = 'character';
-    const token = 'token';
 
-    const result = characterQuests(realmSlug, characterName, token);
+    const result = characterQuests(realmSlug, characterName);
 
     expect(result).toEqual({
       namespace: 'profile',
       path: `/profile/wow/character/${realmSlug}/${characterName}/quests`,
-      token,
     });
   });
 });
@@ -21,14 +19,12 @@ describe('characterCompletedQuests', () => {
   it('should return the correct ProtectedResource object', () => {
     const realmSlug = 'realm';
     const characterName = 'character';
-    const token = 'token';
 
-    const result = characterCompletedQuests(realmSlug, characterName, token);
+    const result = characterCompletedQuests(realmSlug, characterName);
 
     expect(result).toEqual({
       namespace: 'profile',
       path: `/profile/wow/character/${realmSlug}/${characterName}/quests/completed`,
-      token,
     });
   });
 });

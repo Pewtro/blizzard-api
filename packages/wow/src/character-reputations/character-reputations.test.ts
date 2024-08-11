@@ -5,15 +5,13 @@ describe('characterReputationsSummary', () => {
   it('should return the correct ProtectedResource object', () => {
     const realmSlug = 'test-realm';
     const characterName = 'test-character';
-    const token = 'test-token';
 
     const expectedResource = {
       namespace: 'profile',
       path: `/profile/wow/character/${realmSlug}/${characterName}/reputations`,
-      token,
     };
 
-    const result = characterReputationsSummary(realmSlug, characterName, token);
+    const result = characterReputationsSummary(realmSlug, characterName);
 
     expect(result).toEqual(expectedResource);
   });

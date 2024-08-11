@@ -5,15 +5,13 @@ describe('characterPvpSummary', () => {
   it('should return the correct ProtectedResource object', () => {
     const realmSlug = 'example-realm';
     const characterName = 'example-character';
-    const token = 'example-token';
 
     const expectedResource = {
       namespace: 'profile',
       path: '/profile/wow/character/example-realm/example-character/pvp-summary',
-      token: 'example-token',
     };
 
-    const result = characterPvpSummary(realmSlug, characterName, token);
+    const result = characterPvpSummary(realmSlug, characterName);
 
     expect(result).toEqual(expectedResource);
   });

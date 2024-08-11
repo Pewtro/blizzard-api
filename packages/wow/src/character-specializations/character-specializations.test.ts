@@ -5,15 +5,13 @@ describe('characterSpecializationsSummary', () => {
   it('should return the correct ProtectedResource object', () => {
     const realmSlug = 'test-realm';
     const characterName = 'test-character';
-    const token = 'test-token';
 
     const expectedResource = {
       namespace: 'profile',
       path: `/profile/wow/character/${realmSlug}/${characterName}/specializations`,
-      token,
     };
 
-    const result = characterSpecializationsSummary(realmSlug, characterName, token);
+    const result = characterSpecializationsSummary(realmSlug, characterName);
 
     expect(result).toEqual(expectedResource);
   });

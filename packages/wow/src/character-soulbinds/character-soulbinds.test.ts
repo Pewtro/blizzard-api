@@ -5,15 +5,13 @@ describe('characterSoulbinds', () => {
   it('returns the correct ProtectedResource object', () => {
     const realmSlug = 'example-realm';
     const characterName = 'example-character';
-    const token = 'example-token';
 
     const expectedResource = {
       namespace: 'profile',
       path: '/profile/wow/character/example-realm/example-character/soulbinds',
-      token: 'example-token',
     };
 
-    const result = characterSoulbinds(realmSlug, characterName, token);
+    const result = characterSoulbinds(realmSlug, characterName);
 
     expect(result).toEqual(expectedResource);
   });
