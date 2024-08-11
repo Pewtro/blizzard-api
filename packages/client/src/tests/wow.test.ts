@@ -195,4 +195,9 @@ describe.concurrent('smoketest some wow api responses', async () => {
     const response = await client.sendRequest(wow.characterPvpSummary(defaultRealm, defaultCharacter));
     expect(response.data).toBeDefined();
   });
+
+  it("can search for a character's quests", async ({ expect }) => {
+    const response = await client.sendRequest(wow.characterQuests(defaultRealm, defaultCharacter));
+    expect(response.data).toBeDefined();
+  });
 });
