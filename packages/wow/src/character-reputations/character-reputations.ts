@@ -1,14 +1,17 @@
-import type { ProtectedResource } from '@blizzard-api/core';
+import type { Resource } from '@blizzard-api/core';
 import type { CharacterReputationsSummaryResponse } from './types';
 
+/**
+ * @param realmSlug The slug of the realm.
+ * @param characterName The lowercase name of the character.
+ * @returns a summary of a character's reputations.
+ */
 export function characterReputationsSummary(
   realmSlug: string,
   characterName: string,
-  token: string,
-): ProtectedResource<CharacterReputationsSummaryResponse> {
+): Resource<CharacterReputationsSummaryResponse> {
   return {
     namespace: 'profile',
     path: `/profile/wow/character/${realmSlug}/${characterName}/reputations`,
-    token,
   };
 }
