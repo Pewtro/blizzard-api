@@ -51,7 +51,7 @@ type AchievementResponse = ExtractResourceType<typeof achievement>;
 
 ## Notes on Types
 
-The types are manually created from using the Blizzard API documentation, and are as accurate as possible with smoke testing each endpoint. However, no-one is perfect so there is likely be some discrepancies. If you encounter any issues with the types from this package, please open an issue or a pull request.
+The types are manually created from using the Blizzard API documentation, and are as accurate as possible with smoke testing each endpoint. However, no-one is perfect so there is likely to be some discrepancies. If you encounter any issues with the types from this package, please open an issue or a pull request.
 
 ### Client
 
