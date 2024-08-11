@@ -160,4 +160,9 @@ describe.concurrent('smoketest some wow api responses', async () => {
     const response = await client.sendRequest(wow.characterDungeons(defaultRealm, defaultCharacter));
     expect(response.data).toBeDefined();
   });
+
+  it("can search for a character's equipment", async ({ expect }) => {
+    const response = await client.sendRequest(wow.characterEquipmentSummary(defaultRealm, defaultCharacter));
+    expect(response.data).toBeDefined();
+  });
 });
