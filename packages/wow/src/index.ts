@@ -77,6 +77,7 @@ import {
   creatureTypeIndex,
 } from './creature/creature';
 import { guildCrestBorder, guildCrestComponentsIndex, guildCrestEmblem } from './guild-crest/guild-crest';
+import { guild, guildAchievements, guildActivity, guildRoster } from './guild/guild';
 import { heirloom, heirloomIndex } from './heirloom/heirloom';
 import {
   item,
@@ -277,6 +278,11 @@ export const wow = {
   creatureSearch,
   creatureType,
   creatureTypeIndex,
+  //Guild
+  guild,
+  guildAchievements,
+  guildActivity,
+  guildRoster,
   //Guild Crest
   guildCrestBorder,
   guildCrestComponentsIndex,
@@ -491,6 +497,9 @@ export * from './covenant/types';
 //Creature
 export * from './creature/creature';
 export * from './creature/types';
+//Guild
+export * from './guild/guild';
+export * from './guild/types';
 //Guild Crest
 export * from './guild-crest/guild-crest';
 export * from './guild-crest/types';
