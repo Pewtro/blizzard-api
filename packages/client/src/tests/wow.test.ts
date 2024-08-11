@@ -205,4 +205,9 @@ describe.concurrent('smoketest some wow api responses', async () => {
     const response = await client.sendRequest(wow.characterReputationsSummary(defaultRealm, defaultCharacter));
     expect(response.data).toBeDefined();
   });
+
+  it("can search for a character's soulbinds", async ({ expect }) => {
+    const response = await client.sendRequest(wow.characterSoulbinds(defaultRealm, defaultCharacter));
+    expect(response.data).toBeDefined();
+  });
 });
