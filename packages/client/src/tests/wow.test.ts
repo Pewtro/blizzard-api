@@ -215,4 +215,9 @@ describe.concurrent('smoketest some wow api responses', async () => {
     const response = await client.sendRequest(wow.characterSpecializationsSummary(defaultRealm, defaultCharacter));
     expect(response.data).toBeDefined();
   });
+
+  it("can search for a character's statistics", async ({ expect }) => {
+    const response = await client.sendRequest(wow.characterStatisticsSummary(defaultRealm, defaultCharacter));
+    expect(response.data).toBeDefined();
+  });
 });
