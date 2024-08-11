@@ -55,6 +55,7 @@ import { characterReputationsSummary } from './character-reputations/character-r
 import { characterSoulbinds } from './character-soulbinds/character-soulbinds';
 import { characterSpecializationsSummary } from './character-specializations/character-specializations';
 import { characterStatisticsSummary } from './character-statistics/character-statistics';
+import { characterTitlesSummary } from './character-titles/character-titles';
 import { connectedRealm, connectedRealmIndex, connectedRealmSearch } from './connected-realm/connected-realm';
 import {
   conduit,
@@ -253,6 +254,8 @@ export const wow = {
   characterSpecializationsSummary,
   //Character Statistics
   characterStatisticsSummary,
+  //Character Titles
+  characterTitlesSummary,
   //Connected Realm
   connectedRealm,
   connectedRealmIndex,
@@ -476,6 +479,9 @@ export * from './character-specializations/types';
 //Character Statistics
 export * from './character-statistics/character-statistics';
 export * from './character-statistics/types';
+//Character Titles
+export * from './character-titles/character-titles';
+export * from './character-titles/types';
 //Connected Realm
 export * from './connected-realm/connected-realm';
 export * from './connected-realm/types';
