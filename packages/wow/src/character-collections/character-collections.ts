@@ -1,4 +1,4 @@
-import type { ProtectedResource } from '@blizzard-api/core';
+import type { Resource } from '@blizzard-api/core';
 import type {
   CharacterCollectionsIndexResponse,
   CharacterHeirloomsCollectionSummaryResponse,
@@ -10,74 +10,92 @@ import type {
 
 const basePath = '/profile/wow/character';
 
+/**
+ * @param realmSlug The slug of the realm.
+ * @param characterName The lowercase name of the character.
+ * @returns an index of collection types for a character.
+ */
 export function characterCollectionsIndex(
   realmSlug: string,
   characterName: string,
-  token: string,
-): ProtectedResource<CharacterCollectionsIndexResponse> {
+): Resource<CharacterCollectionsIndexResponse> {
   return {
     namespace: 'profile',
     path: `${basePath}/${realmSlug}/${characterName}/collections`,
-    token,
   };
 }
 
+/**
+ * @param realmSlug The slug of the realm.
+ * @param characterName The lowercase name of the character.
+ * @returns a summary of the heirlooms a character has obtained.
+ */
 export function characterHeirloomsCollectionSummary(
   realmSlug: string,
   characterName: string,
-  token: string,
-): ProtectedResource<CharacterHeirloomsCollectionSummaryResponse> {
+): Resource<CharacterHeirloomsCollectionSummaryResponse> {
   return {
     namespace: 'profile',
     path: `${basePath}/${realmSlug}/${characterName}/collections/heirlooms`,
-    token,
   };
 }
 
+/**
+ * @param realmSlug The slug of the realm.
+ * @param characterName The lowercase name of the character.
+ * @returns a summary of the mounts a character has obtained.
+ */
 export function characterMountsCollectionSummary(
   realmSlug: string,
   characterName: string,
-  token: string,
-): ProtectedResource<CharacterMountsCollectionSummaryResponse> {
+): Resource<CharacterMountsCollectionSummaryResponse> {
   return {
     namespace: 'profile',
     path: `${basePath}/${realmSlug}/${characterName}/collections/mounts`,
-    token,
   };
 }
 
+/**
+ * @param realmSlug The slug of the realm.
+ * @param characterName The lowercase name of the character.
+ * @returns a summary of the battle pets a character has obtained.
+ */
 export function characterPetsCollectionSummary(
   realmSlug: string,
   characterName: string,
-  token: string,
-): ProtectedResource<CharacterPetsCollectionSummaryResponse> {
+): Resource<CharacterPetsCollectionSummaryResponse> {
   return {
     namespace: 'profile',
     path: `${basePath}/${realmSlug}/${characterName}/collections/pets`,
-    token,
   };
 }
 
+/**
+ * @param realmSlug The slug of the realm.
+ * @param characterName The lowercase name of the character.
+ * @returns a summary of the toys a character has obtained.
+ */
 export function characterToysCollectionSummary(
   realmSlug: string,
   characterName: string,
-  token: string,
-): ProtectedResource<CharacterToysCollectionSummaryResponse> {
+): Resource<CharacterToysCollectionSummaryResponse> {
   return {
     namespace: 'profile',
     path: `${basePath}/${realmSlug}/${characterName}/collections/toys`,
-    token,
   };
 }
 
+/**
+ * @param realmSlug The slug of the realm.
+ * @param characterName The lowercase name of the character.
+ * @returns a summary of the transmog unlocks a character has obtained.
+ */
 export function characterTransmogCollectionSummary(
   realmSlug: string,
   characterName: string,
-  token: string,
-): ProtectedResource<CharacterTransmogCollectionSummaryResponse> {
+): Resource<CharacterTransmogCollectionSummaryResponse> {
   return {
     namespace: 'profile',
     path: `${basePath}/${realmSlug}/${characterName}/collections/transmogs`,
-    token,
   };
 }

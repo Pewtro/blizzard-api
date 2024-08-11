@@ -146,13 +146,13 @@ describe.concurrent('smoketest some wow api responses', async () => {
     expect(response.data).toBeDefined();
   });
 
-  it("can search for a character's achievements statistics", async ({ expect }) => {
-    const response = await client.sendRequest(wow.characterAchievementStatistics(defaultRealm, defaultCharacter));
+  it("can search for a character's appearance", async ({ expect }) => {
+    const response = await client.sendRequest(wow.characterAppearanceSummary(defaultRealm, defaultCharacter));
     expect(response.data).toBeDefined();
   });
 
-  it("can search for a character's appearance", async ({ expect }) => {
-    const response = await client.sendRequest(wow.characterAppearanceSummary(defaultRealm, defaultCharacter));
+  it("can search for a character's collections", async ({ expect }) => {
+    const response = await client.sendRequest(wow.characterCollectionsIndex(defaultRealm, defaultCharacter));
     expect(response.data).toBeDefined();
   });
 });
