@@ -1,4 +1,4 @@
-import type { Faction, Gender, Href, KeyBase, NameId, NameIdKey } from '../base';
+import type { Faction, Gender, Href, KeyBase, NameId, NameIdKey, Realm } from '../base';
 
 export interface AccountProfileSummaryResponse {
   _links: Links;
@@ -16,10 +16,6 @@ interface Links {
 interface WowAccount {
   characters: Array<Character>;
   id: number;
-}
-
-interface Realm extends NameIdKey {
-  slug: string;
 }
 
 interface Character {

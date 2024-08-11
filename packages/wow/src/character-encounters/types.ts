@@ -1,17 +1,9 @@
-import type { Href, NameIdKey, ResponseBase } from '../base';
+import type { Character, Href, NameIdKey, ResponseBase } from '../base';
 
 export interface CharacterEncountersSummaryResponse extends ResponseBase {
   character: Character;
   dungeons: Href;
   raids: Href;
-}
-
-interface Realm extends NameIdKey {
-  slug: string;
-}
-
-interface Character extends NameIdKey {
-  realm: Realm;
 }
 
 export interface CharacterDungeonsResponse extends ResponseBase {

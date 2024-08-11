@@ -1,17 +1,9 @@
-import type { NameId, NameIdKey, ResponseBase } from '../base';
+import type { Character, NameId, NameIdKey, ResponseBase } from '../base';
 
 export interface CharacterProfessionsSummaryResponse extends ResponseBase {
   character: Character;
   primaries: Array<Primary>;
   secondaries: Array<Secondary>;
-}
-
-interface Realm extends NameIdKey {
-  slug: string;
-}
-
-interface Character extends NameIdKey {
-  realm: Realm;
 }
 
 interface Primary {

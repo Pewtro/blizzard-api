@@ -1,4 +1,4 @@
-import type { NameIdKey, ResponseBase } from '../base';
+import type { Character, NameIdKey, ResponseBase } from '../base';
 
 export interface CharacterSpecializationsSummaryResponse extends ResponseBase {
   //TODO Awaiting The War Within launch to see how to type this
@@ -6,14 +6,6 @@ export interface CharacterSpecializationsSummaryResponse extends ResponseBase {
   active_specialization: NameIdKey;
   character: Character;
   specializations: Array<Specialization>;
-}
-
-interface Realm extends NameIdKey {
-  slug: string;
-}
-
-interface Character extends NameIdKey {
-  realm: Realm;
 }
 
 interface Specialization {

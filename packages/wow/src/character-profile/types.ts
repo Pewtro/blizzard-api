@@ -1,4 +1,4 @@
-import type { Faction, Href, NameIdKey, ResponseBase } from '../base';
+import type { Faction, Href, NameIdKey, Realm, ResponseBase } from '../base';
 
 export interface CharacterProfileSummaryResponse extends ResponseBase {
   achievement_points: number;
@@ -41,10 +41,6 @@ interface CovenantProgress {
   chosen_covenant: NameIdKey;
   renown_level: number;
   soulbinds: Href;
-}
-
-interface Realm extends NameIdKey {
-  slug: string;
 }
 
 interface Guild extends NameIdKey {

@@ -1,5 +1,5 @@
 import type { BaseSearchParameters, Locales } from '@blizzard-api/core';
-import type { KeyBase, NameId, NameIdKey, ResponseBase } from '../base';
+import type { KeyBase, NameId, NameIdKey, Realm, ResponseBase } from '../base';
 
 // RealmLocale is the same as Locales but without the _ in the middle, assuming that `multi` cannot be used in this context
 export type WithoutUnderscore<T extends string> = T extends `${infer Prefix}_${infer Suffix}`
@@ -53,10 +53,6 @@ export type RealmType = 'Normal' | 'Roleplaying';
  */
 export interface RealmIndexResponse extends ResponseBase {
   realms: Array<Realm>;
-}
-
-interface Realm extends NameIdKey {
-  slug: string;
 }
 
 /**

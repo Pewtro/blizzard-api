@@ -1,17 +1,9 @@
-import type { Color, KeyBase, NameId, NameIdKey, ResponseBase } from '../base';
+import type { Character, Color, KeyBase, NameId, NameIdKey, Realm, ResponseBase } from '../base';
 
 export interface CharacterMythicKeystoneProfileIndexResponse extends ResponseBase {
   character: Character;
   current_period: CurrentPeriod;
   seasons: Array<{ id: number } & KeyBase>;
-}
-
-interface Realm extends NameIdKey {
-  slug: string;
-}
-
-interface Character extends NameIdKey {
-  realm: Realm;
 }
 
 interface CurrentPeriod {

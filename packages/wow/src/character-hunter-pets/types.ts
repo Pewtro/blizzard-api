@@ -1,16 +1,8 @@
-import type { KeyBase, NameIdKey, ResponseBase } from '../base';
+import type { Character, KeyBase, NameIdKey, ResponseBase } from '../base';
 
 export interface CharacterHunterPetsSummaryResponse extends ResponseBase {
   character: Character;
   hunter_pets: Array<HunterPet>;
-}
-
-interface Realm extends NameIdKey {
-  slug: string;
-}
-
-interface Character extends NameIdKey {
-  realm: Realm;
 }
 
 interface HunterPet {

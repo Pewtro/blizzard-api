@@ -113,3 +113,17 @@ export interface Faction {
   name: Capitalize<Lowercase<keyof typeof Factions>>;
   type: keyof typeof Factions;
 }
+
+/**
+ * The standard structure to represent a World of Warcraft Realm.
+ */
+export interface Realm extends NameIdKey {
+  slug: string;
+}
+
+/**
+ * The standard structure to represent a World of Warcraft Character.
+ */
+export interface Character extends NameIdKey {
+  realm: Realm;
+}

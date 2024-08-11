@@ -1,4 +1,4 @@
-import type { Color, Faction, Gender, KeyBase, NameId, NameIdKey, ResponseBase } from '../base';
+import type { Character, Color, Faction, Gender, KeyBase, NameId, NameIdKey, ResponseBase } from '../base';
 
 export interface CharacterAppearanceResponse extends ResponseBase {
   active_spec: NameIdKey;
@@ -10,10 +10,6 @@ export interface CharacterAppearanceResponse extends ResponseBase {
   items: Array<Item>;
   playable_class: NameIdKey;
   playable_race: NameIdKey;
-}
-
-interface Character extends NameIdKey {
-  realm: { slug: string } & NameIdKey;
 }
 
 interface Customization {

@@ -1,18 +1,10 @@
-import type { NameIdKey, ResponseBase } from '../base';
+import type { Character, NameIdKey, ResponseBase } from '../base';
 
 export interface CharacterSoulbindsResponse extends ResponseBase {
   character: Character;
   chosen_covenant: NameIdKey;
   renown_level: number;
   soulbinds: Array<Soulbind>;
-}
-
-interface Realm extends NameIdKey {
-  slug: string;
-}
-
-interface Character extends NameIdKey {
-  realm: Realm;
 }
 
 interface Soulbind {

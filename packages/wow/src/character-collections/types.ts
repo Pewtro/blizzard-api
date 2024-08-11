@@ -1,4 +1,4 @@
-import type { Href, KeyBase, NameIdKey, ResponseBase } from '../base';
+import type { Character, Href, KeyBase, NameIdKey, ResponseBase } from '../base';
 
 export interface CharacterCollectionsIndexResponse extends ResponseBase {
   character: Character;
@@ -7,14 +7,6 @@ export interface CharacterCollectionsIndexResponse extends ResponseBase {
   pets: Href;
   toys: Href;
   transmogs: Href;
-}
-
-interface Realm extends NameIdKey {
-  slug: string;
-}
-
-interface Character extends NameIdKey {
-  realm: Realm;
 }
 
 export interface CharacterHeirloomsCollectionSummaryResponse extends ResponseBase {

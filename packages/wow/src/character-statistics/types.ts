@@ -1,4 +1,4 @@
-import type { NameIdKey, ResponseBase } from '../base';
+import type { Character, ResponseBase } from '../base';
 
 export interface CharacterStatisticsSummaryResponse extends ResponseBase {
   agility: BaseEffectiveStat;
@@ -57,12 +57,4 @@ interface RatingWithValue {
   rating: number;
   rating_bonus: number;
   value: number;
-}
-
-interface Realm extends NameIdKey {
-  slug: string;
-}
-
-interface Character extends NameIdKey {
-  realm: Realm;
 }

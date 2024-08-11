@@ -1,17 +1,9 @@
-import type { Color, KeyBase, NameIdKey, ResponseBase } from '../base';
+import type { Character, Color, KeyBase, NameIdKey, ResponseBase } from '../base';
 
 export interface CharacterEquipmentSummaryResponse extends ResponseBase {
   character: Character;
   equipped_item_sets: Array<Set>;
   equipped_items: Array<EquippedItem>;
-}
-
-interface Realm extends NameIdKey {
-  slug: string;
-}
-
-interface Character extends NameIdKey {
-  realm: Realm;
 }
 
 interface Set {

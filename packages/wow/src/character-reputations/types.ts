@@ -1,16 +1,8 @@
-import type { NameIdKey, ResponseBase } from '../base';
+import type { Character, NameIdKey, ResponseBase } from '../base';
 
 export interface CharacterReputationsSummaryResponse extends ResponseBase {
   character: Character;
   reputations: Array<Reputation>;
-}
-
-interface Realm extends NameIdKey {
-  slug: string;
-}
-
-interface Character extends NameIdKey {
-  realm: Realm;
 }
 
 interface Reputation {

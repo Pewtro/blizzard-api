@@ -1,4 +1,4 @@
-import type { Color, Faction, Href, KeyBase, NameIdKey, ResponseBase } from '../base';
+import type { Character, Color, Faction, Href, KeyBase, NameIdKey, Realm, ResponseBase } from '../base';
 
 export interface GuildResponse extends ResponseBase {
   achievement_points: number;
@@ -13,10 +13,6 @@ export interface GuildResponse extends ResponseBase {
   name_search: string;
   realm: Realm;
   roster: Href;
-}
-
-interface Realm extends NameIdKey {
-  slug: string;
 }
 
 interface Crest {
@@ -50,14 +46,6 @@ interface ActivityElement {
 interface CharacterAchievement {
   achievement: NameIdKey;
   character: Character;
-}
-
-interface Realm extends NameIdKey {
-  slug: string;
-}
-
-interface Character extends NameIdKey {
-  realm: Realm;
 }
 
 interface Guild extends NameIdKey {
@@ -105,15 +93,14 @@ export interface GuildRosterResponse extends ResponseBase {
 }
 
 interface Member {
-  character: Character;
+  character: RosterMemberCharacter;
   rank: number;
 }
 
-interface Character extends NameIdKey {
+interface RosterMemberCharacter extends Character {
   level: number;
   playable_class: Playable;
   playable_race: Playable;
-  realm: Realm;
 }
 
 interface Playable extends KeyBase {

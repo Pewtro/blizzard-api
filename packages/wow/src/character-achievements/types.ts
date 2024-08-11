@@ -1,4 +1,4 @@
-import type { Href, NameIdKey, ResponseBase } from '../base';
+import type { Character, Href, NameIdKey, ResponseBase } from '../base';
 
 export interface CharacterAchievementsSummaryResponse extends ResponseBase {
   achievements: Array<Achievement>;
@@ -15,14 +15,6 @@ interface Achievement {
   completed_timestamp?: number;
   criteria?: Criteria;
   id: number;
-}
-
-interface Realm extends NameIdKey {
-  slug: string;
-}
-
-interface Character extends NameIdKey {
-  realm: Realm;
 }
 
 interface Criteria {

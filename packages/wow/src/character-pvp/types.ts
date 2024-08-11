@@ -1,18 +1,10 @@
-import type { NameId, NameIdKey, ResponseBase } from '../base';
+import type { Character, NameId, ResponseBase } from '../base';
 
 export interface CharacterPvpSummaryResponse extends ResponseBase {
   character: Character;
   honor_level: number;
   honorable_kills: number;
   pvp_map_statistics: Array<PvpMapStatistic>;
-}
-
-interface Realm extends NameIdKey {
-  slug: string;
-}
-
-interface Character extends NameIdKey {
-  realm: Realm;
 }
 
 interface PvpMapStatistic {
