@@ -138,4 +138,14 @@ describe.concurrent('smoketest some wow api responses', async () => {
     expect(response.data).toBeDefined();
     expect(response.data.results.length).toBeGreaterThan(0);
   });
+
+  it("can search for a character's achievements", async ({ expect }) => {
+    const response = await client.sendRequest(wow.characterAchievementsSummary('laughing-skull', 'putro'));
+    expect(response.data).toBeDefined();
+  });
+
+  it("can search for a character's achievements statistics", async ({ expect }) => {
+    const response = await client.sendRequest(wow.characterAchievementStatistics('laughing-skull', 'putro'));
+    expect(response.data).toBeDefined();
+  });
 });
