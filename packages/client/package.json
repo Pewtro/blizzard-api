@@ -1,6 +1,6 @@
 {
   "name": "@blizzard-api/client",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "license": "MIT",
   "author": "Putro",
   "description": "A node.js axios client to integrate with the blizzard battle.net api.",
