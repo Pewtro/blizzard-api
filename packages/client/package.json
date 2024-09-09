@@ -44,7 +44,7 @@
     "hearthstone"
   ],
   "dependencies": {
-    "axios": "1.7.5"
+    "axios": "1.7.7"
   },
   "peerDependencies": {
     "@blizzard-api/core": "1.2.0"
