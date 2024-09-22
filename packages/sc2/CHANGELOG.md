@@ -1,0 +1,1 @@
+# @blizzard-api/sc2
