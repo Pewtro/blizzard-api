@@ -1,0 +1,51 @@
+{
+  "name": "@blizzard-api/sc2",
+  "version": "0.0.0",
+  "license": "MIT",
+  "author": "Putro",
+  "description": "A series of helpers to interact with the Starcraft II Blizzard API",
+  "repository": "https://github.com/Pewtro/blizzard-api/tree/main/packages/sc2",
+  "type": "module",
+  "engines": {
+    "node": "^18.18 || ^20.9 || ^21.1 || ^22"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "import": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "require": {
+      "types": "./dist/index.d.cts",
+      "default": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "blizzard",
+    "battlenet",
+    "battle.net",
+    "bnet",
+    "api",
+    "starcraft",
+    "sc2"
+  ],
+  "dependencies": {},
+  "peerDependencies": {
+    "@blizzard-api/core": "1.2.0"
+  },
+  "devDependencies": {
+    "@blizzard-api/core": "workspace:*"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:coverage": "pnpm test -- --coverage",
+    "test:watch": "vitest watch"
+  }
+}

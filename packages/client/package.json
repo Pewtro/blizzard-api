@@ -53,6 +53,7 @@
     "@blizzard-api/classic-wow": "workspace:*",
     "@blizzard-api/core": "workspace:*",
     "@blizzard-api/d3": "workspace:*",
+    "@blizzard-api/sc2": "workspace:*",
     "@blizzard-api/wow": "workspace:*"
   },
   "scripts": {
