@@ -1,3 +1,5 @@
+//We have to explicitly import setTimeout because of https://github.com/electron/electron/issues/21162#issuecomment-554792447
+import { setTimeout } from 'node:timers';
 import { BlizzardApiClient } from './client';
 import type { AccessToken, ClientOptions } from './types';
 
