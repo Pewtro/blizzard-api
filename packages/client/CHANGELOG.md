@@ -1,5 +1,11 @@
 # @blizzard-api/client
 
+## 1.0.9
+
+### Patch Changes
+
+- 2e0d6aa: Fix an issue where Electron would override global setTimeout that didn't have access to unref
+
 ## 1.0.8
 
 ### Patch Changes
