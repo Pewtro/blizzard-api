@@ -1,5 +1,13 @@
 # @blizzard-api/wow
 
+## 1.2.1
+
+### Patch Changes
+
+- 7932e99: Explicitly export types as types
+- Updated dependencies [6587647]
+  - @blizzard-api/core@1.2.1
+
 ## 1.2.0
 
 ### Minor Changes

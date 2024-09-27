@@ -1,5 +1,11 @@
 # @blizzard-api/core
 
+## 1.2.1
+
+### Patch Changes
+
+- 6587647: Explicitly export namespace, resource and search types as types
+
 ## 1.2.0
 
 ### Minor Changes
