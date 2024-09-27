@@ -2,10 +2,10 @@
 export * from './blizzard-api';
 
 //Namespace
-export * from './namespace';
+export type * from './namespace';
 
 //Resource
-export * from './resource';
+export type * from './resource';
 
 //Search
-export * from './search';
+export type * from './search';
