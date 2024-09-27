@@ -18,14 +18,14 @@ npm i @blizzard-api/core
 
 Currently available game-specific packages are:
 
-- `@blizzard-api/d3`
-- `@blizzard-api/wow`
 - `@blizzard-api/classic-wow`
+- `@blizzard-api/d3`
+- `@blizzard-api/sc2`
+- `@blizzard-api/wow`
 
 Additionally planned packages are:
 
 - `@blizzard-api/hs`
-- `@blizzard-api/sc2`
 
 The core package gives you access to helper functions such as `getBlizzardApi` which will quickly get you the hostname and locales for a specific region.
 
