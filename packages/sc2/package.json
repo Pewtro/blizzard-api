@@ -1,6 +1,6 @@
 {
   "name": "@blizzard-api/sc2",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "license": "MIT",
   "author": "Putro",
   "description": "A series of helpers to interact with the Starcraft II Blizzard API",
@@ -36,7 +36,7 @@
   ],
   "dependencies": {},
   "peerDependencies": {
-    "@blizzard-api/core": "1.2.0"
+    "@blizzard-api/core": "1.2.1"
   },
   "devDependencies": {
     "@blizzard-api/core": "workspace:*"

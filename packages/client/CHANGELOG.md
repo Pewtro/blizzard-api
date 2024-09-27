@@ -1,5 +1,13 @@
 # @blizzard-api/client
 
+## 1.0.10
+
+### Patch Changes
+
+- c03c028: Export client types explicitly as types
+- Updated dependencies [6587647]
+  - @blizzard-api/core@1.2.1
+
 ## 1.0.9
 
 ### Patch Changes
