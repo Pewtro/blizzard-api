@@ -76,8 +76,8 @@ import {
   creatureType,
   creatureTypeIndex,
 } from './creature/creature';
-import { guildCrestBorder, guildCrestComponentsIndex, guildCrestEmblem } from './guild-crest/guild-crest';
 import { guild, guildAchievements, guildActivity, guildRoster } from './guild/guild';
+import { guildCrestBorder, guildCrestComponentsIndex, guildCrestEmblem } from './guild-crest/guild-crest';
 import { heirloom, heirloomIndex } from './heirloom/heirloom';
 import {
   item,
@@ -427,163 +427,163 @@ export default wow;
 
 //Account Profile
 export * from './account-profile/account-profile';
-export * from './account-profile/types';
+export type * from './account-profile/types';
 //Achievements
 export * from './achievements/achievements';
-export * from './achievements/types';
+export type * from './achievements/types';
 //Auction House
 export * from './auction-house/auction-house';
-export * from './auction-house/types';
+export type * from './auction-house/types';
 //Azerite Essence
 export * from './azerite-essence/azerite-essence';
-export * from './azerite-essence/types';
+export type * from './azerite-essence/types';
 //Character Achievements
 export * from './character-achievements/character-achievements';
-export * from './character-achievements/types';
+export type * from './character-achievements/types';
 //Character Appearance
 export * from './character-appearance/character-appearance';
-export * from './character-appearance/types';
+export type * from './character-appearance/types';
 //Character Collections
 export * from './character-collections/character-collections';
-export * from './character-collections/types';
+export type * from './character-collections/types';
 //Character Encounters
 export * from './character-encounters/character-encounters';
-export * from './character-encounters/types';
+export type * from './character-encounters/types';
 //Character Equipment
 export * from './character-equipment/character-equipment';
-export * from './character-equipment/types';
+export type * from './character-equipment/types';
 //Character Hunter Pets
 export * from './character-hunter-pets/character-hunter-pets';
-export * from './character-hunter-pets/types';
+export type * from './character-hunter-pets/types';
 //Character Media
 export * from './character-media/character-media';
-export * from './character-media/types';
+export type * from './character-media/types';
 //Character Mythic Keystone Profile
 export * from './character-mythic-keystone-profile/character-mythic-keystone-profile';
-export * from './character-mythic-keystone-profile/types';
+export type * from './character-mythic-keystone-profile/types';
 //Character Professions
 export * from './character-professions/character-professions';
-export * from './character-professions/types';
+export type * from './character-professions/types';
 //Character Profile
 export * from './character-profile/character-profile';
-export * from './character-profile/types';
+export type * from './character-profile/types';
 //Character PvP
 export * from './character-pvp/character-pvp';
-export * from './character-pvp/types';
+export type * from './character-pvp/types';
 //Character Quests
 export * from './character-quests/character-quests';
-export * from './character-quests/types';
+export type * from './character-quests/types';
 //Character Reputations
 export * from './character-reputations/character-reputations';
-export * from './character-reputations/types';
+export type * from './character-reputations/types';
 //Character Soulbinds
 export * from './character-soulbinds/character-soulbinds';
-export * from './character-soulbinds/types';
+export type * from './character-soulbinds/types';
 //Character Specializations
 export * from './character-specializations/character-specializations';
-export * from './character-specializations/types';
+export type * from './character-specializations/types';
 //Character Statistics
 export * from './character-statistics/character-statistics';
-export * from './character-statistics/types';
+export type * from './character-statistics/types';
 //Character Titles
 export * from './character-titles/character-titles';
-export * from './character-titles/types';
+export type * from './character-titles/types';
 //Connected Realm
 export * from './connected-realm/connected-realm';
-export * from './connected-realm/types';
+export type * from './connected-realm/types';
 //Covenant
 export * from './covenant/covenant';
-export * from './covenant/types';
+export type * from './covenant/types';
 //Creature
 export * from './creature/creature';
-export * from './creature/types';
+export type * from './creature/types';
 //Guild
 export * from './guild/guild';
-export * from './guild/types';
+export type * from './guild/types';
 //Guild Crest
 export * from './guild-crest/guild-crest';
-export * from './guild-crest/types';
+export type * from './guild-crest/types';
 //Heirloom
 export * from './heirloom/heirloom';
-export * from './heirloom/types';
+export type * from './heirloom/types';
 //Item
 export * from './item/item';
-export * from './item/types';
+export type * from './item/types';
 //Journal
 export * from './journal/journal';
-export * from './journal/types';
+export type * from './journal/types';
 //Media Search
 export * from './media-search/media-search';
-export * from './media-search/types';
+export type * from './media-search/types';
 //Modified Crafting
 export * from './modified-crafting/modified-crafting';
-export * from './modified-crafting/types';
+export type * from './modified-crafting/types';
 //Mount
 export * from './mount/mount';
-export * from './mount/types';
+export type * from './mount/types';
 //Mythic Keystone Affix
 export * from './mythic-keystone-affix/mythic-keystone-affix';
-export * from './mythic-keystone-affix/types';
+export type * from './mythic-keystone-affix/types';
 //Mythic Keystone Dungeon
 export * from './mythic-keystone-dungeon/mythic-keystone-dungeon';
-export * from './mythic-keystone-dungeon/types';
+export type * from './mythic-keystone-dungeon/types';
 //Mythic Keystone Leaderboard
 export * from './mythic-keystone-leaderboard/mythic-keystone-leaderboard';
-export * from './mythic-keystone-leaderboard/types';
+export type * from './mythic-keystone-leaderboard/types';
 //Mythic Raid Leaderboard
 export * from './mythic-raid-leaderboard/mythic-raid-leaderboard';
-export * from './mythic-raid-leaderboard/types';
+export type * from './mythic-raid-leaderboard/types';
 //Pet
 export * from './pet/pet';
-export * from './pet/types';
+export type * from './pet/types';
 //Playable Class
 export * from './playable-class/playable-class';
-export * from './playable-class/types';
+export type * from './playable-class/types';
 //Playable Race
 export * from './playable-race/playable-race';
-export * from './playable-race/types';
+export type * from './playable-race/types';
 //Playable Specialization
 export * from './playable-specialization/playable-specialization';
-export * from './playable-specialization/types';
+export type * from './playable-specialization/types';
 //Power Type
 export * from './power-type/power-type';
-export * from './power-type/types';
+export type * from './power-type/types';
 //Profession
 export * from './profession/profession';
-export * from './profession/types';
+export type * from './profession/types';
 //Pvp Season
 export * from './pvp-season/pvp-season';
-export * from './pvp-season/types';
+export type * from './pvp-season/types';
 //Pvp Tier
 export * from './pvp-tier/pvp-tier';
-export * from './pvp-tier/types';
+export type * from './pvp-tier/types';
 //Quest
 export * from './quest/quest';
-export * from './quest/types';
+export type * from './quest/types';
 //Realm
 export * from './realm/realm';
-export * from './realm/types';
+export type * from './realm/types';
 //Region
 export * from './region/region';
-export * from './region/types';
+export type * from './region/types';
 //Reputations
 export * from './reputations/reputations';
-export * from './reputations/types';
+export type * from './reputations/types';
 //Spell
 export * from './spell/spell';
-export * from './spell/types';
+export type * from './spell/types';
 //Talent
 export * from './talent/talent';
-export * from './talent/types';
+export type * from './talent/types';
 //Tech Talent
 export * from './tech-talent/tech-talent';
-export * from './tech-talent/types';
+export type * from './tech-talent/types';
 //Title
 export * from './title/title';
-export * from './title/types';
+export type * from './title/types';
 //Toy
 export * from './toy/toy';
-export * from './toy/types';
-export * from './wow-token/types';
+export type * from './toy/types';
+export type * from './wow-token/types';
 //WoW Token
 export * from './wow-token/wow-token';
