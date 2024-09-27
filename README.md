@@ -75,4 +75,3 @@ This list is generally prioritized but no promises that things will be addressed
 - Migrate the client away from axios to native fetch
 - Add a package for the following games/flavours
   - Hearthstone
-  - StarCraft II
