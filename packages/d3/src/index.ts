@@ -3,8 +3,8 @@ import { artisan, recipe } from './artisan-and-recipe/artisan-and-recipe';
 import { characterClass, skill } from './character-class-and-skill/character-class-and-skill';
 import { follower } from './follower/follower';
 import { era, eraIndex, eraLeaderboard, season, seasonIndex, seasonLeaderboard } from './game-data/game-data';
-import { itemType, itemTypeIndex } from './item-type/item-type';
 import { item } from './item/item';
+import { itemType, itemTypeIndex } from './item-type/item-type';
 import { account, accountHero, accountHeroFollowerItems, accountHeroItems } from './profile/profile';
 
 export const d3 = {
