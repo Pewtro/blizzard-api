@@ -6,10 +6,10 @@ type EncounterCategory = 'DUNGEON' | 'RAID' | 'WORLD_BOSS';
 type EncounterMode = 'HEROIC' | 'LFR' | 'MYTHIC' | 'NORMAL';
 
 type ModeName =
-  | '10 Player (Heroic)'
   | '10 Player'
-  | '25 Player (Heroic)'
+  | '10 Player (Heroic)'
   | '25 Player'
+  | '25 Player (Heroic)'
   | 'Heroic'
   | 'Mythic'
   | 'Mythic+ Dungeons'

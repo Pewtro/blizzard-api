@@ -61,10 +61,10 @@ interface RaidMode {
 
 interface RaidDifficulties {
   name:
-    | '10 Player (Heroic)'
     | '10 Player'
-    | '25 Player (Heroic)'
+    | '10 Player (Heroic)'
     | '25 Player'
+    | '25 Player (Heroic)'
     | 'Heroic'
     | 'Mythic'
     | 'Normal'
