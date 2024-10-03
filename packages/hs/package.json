@@ -1,10 +1,10 @@
 {
-  "name": "@blizzard-api/client",
-  "version": "1.0.10",
+  "name": "@blizzard-api/hs",
+  "version": "0.0.0",
   "license": "MIT",
   "author": "Putro",
-  "description": "A node.js axios client to integrate with the blizzard battle.net api.",
-  "repository": "https://github.com/Pewtro/blizzard-api/tree/main/packages/client",
+  "description": "A series of helpers to interact with the Hearthstone Blizzard API",
+  "repository": "https://github.com/Pewtro/blizzard-api/tree/main/packages/hs",
   "type": "module",
   "engines": {
     "node": "^18.18 || ^20.9 || ^21.1 || ^22"
@@ -31,31 +31,15 @@
     "battle.net",
     "bnet",
     "api",
-    "world of warcraft",
-    "warcraft",
-    "wow",
-    "classic",
-    "retail",
-    "starcraft",
-    "sc2",
-    "diablo",
-    "d3",
     "hs",
     "hearthstone"
   ],
-  "dependencies": {
-    "axios": "1.7.7"
-  },
+  "dependencies": {},
   "peerDependencies": {
     "@blizzard-api/core": "1.2.1"
   },
   "devDependencies": {
-    "@blizzard-api/classic-wow": "workspace:*",
-    "@blizzard-api/core": "workspace:*",
-    "@blizzard-api/d3": "workspace:*",
-    "@blizzard-api/hs": "workspace:*",
-    "@blizzard-api/sc2": "workspace:*",
-    "@blizzard-api/wow": "workspace:*"
+    "@blizzard-api/core": "workspace:*"
   },
   "scripts": {
     "build": "tsup",

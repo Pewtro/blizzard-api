@@ -20,12 +20,9 @@ Currently available game-specific packages are:
 
 - `@blizzard-api/classic-wow`
 - `@blizzard-api/d3`
+- `@blizzard-api/hs`
 - `@blizzard-api/sc2`
 - `@blizzard-api/wow`
-
-Additionally planned packages are:
-
-- `@blizzard-api/hs`
 
 The core package gives you access to helper functions such as `getBlizzardApi` which will quickly get you the hostname and locales for a specific region.
 
@@ -67,11 +64,3 @@ console.log(response.data);
 ## Authentication
 
 Please refer to the [battle.net documentation](https://develop.battle.net/documentation/guides/getting-started) for guides on how to obtain Blizzard API credentials.
-
-## TODO
-
-This list is generally prioritized but no promises that things will be addressed in this order.
-
-- Migrate the client away from axios to native fetch
-- Add a package for the following games/flavours
-  - Hearthstone
