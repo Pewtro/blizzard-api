@@ -78,6 +78,9 @@ importers:
       '@blizzard-api/d3':
         specifier: workspace:*
         version: link:../d3
+      '@blizzard-api/hs':
+        specifier: workspace:*
+        version: link:../hs
       '@blizzard-api/sc2':
         specifier: workspace:*
         version: link:../sc2
@@ -88,6 +91,12 @@ importers:
   packages/core: {}
 
   packages/d3:
+    devDependencies:
+      '@blizzard-api/core':
+        specifier: workspace:*
+        version: link:../core
+
+  packages/hs:
     devDependencies:
       '@blizzard-api/core':
         specifier: workspace:*
