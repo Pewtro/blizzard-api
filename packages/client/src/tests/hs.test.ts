@@ -15,7 +15,7 @@ describe.concurrent('smoketest some hs api responses', async () => {
     expect(response.data).toBeDefined();
   });
 
-  it('should be able to fetch a card back', async ({ expect }) => {
+  it('should be able to fetch a card back', { timeout: 10_000 }, async ({ expect }) => {
     const response = await client.sendRequest(hs.fetchOneCardBack('1', 'en_GB'));
     expect(response.data).toBeDefined();
   });
