@@ -1,5 +1,12 @@
 # @blizzard-api/wow
 
+## 1.2.2
+
+### Patch Changes
+
+- dddd542: Sort some types more naturally rather than strictly alphabetically
+- 77fa6c3: Add type to active_hero_talent response part of CharacterSpecializationsSummaryResponse
+
 ## 1.2.1
 
 ### Patch Changes
