@@ -1,8 +1,7 @@
 import type { Character, NameIdKey, ResponseBase } from '../base';
 
 export interface CharacterSpecializationsSummaryResponse extends ResponseBase {
-  //TODO Awaiting The War Within launch to see how to type this
-  active_hero_talent: unknown;
+  active_hero_talent: NameIdKey;
   active_specialization: NameIdKey;
   character: Character;
   specializations: Array<Specialization>;
