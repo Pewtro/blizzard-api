@@ -37,12 +37,12 @@ describe.concurrent('smoketest some hs api responses', async () => {
     expect(response.data).toBeDefined();
   });
 
-  it('should be able to fetch all metadata', async ({ expect }) => {
+  it('should be able to fetch all metadata', { timeout: 10_000 }, async ({ expect }) => {
     const response = await client.sendRequest(hs.allMetadata());
     expect(response.data).toBeDefined();
   });
 
-  it('should be able to fetch specific metadata', async ({ expect }) => {
+  it('should be able to fetch specific metadata', { timeout: 10_000 }, async ({ expect }) => {
     const response = await client.sendRequest(hs.specificMetadata('classes'));
     expect(response.data).toBeDefined();
   });
