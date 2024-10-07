@@ -187,8 +187,7 @@ import { wowToken } from './wow-token/wow-token';
  * The Blizzard API for World of Warcraft.
  * @see https://develop.battle.net/documentation/world-of-warcraft
  */
-
-export const wow = {
+const wow = {
   //Account Profile
   accountCollectionsIndex,
   accountHeirloomsCollectionSummary,
@@ -423,7 +422,7 @@ export const wow = {
   //WoW Token
   wowToken,
 };
-export default wow;
+export { wow as default, wow };
 
 //Account Profile
 export * from './account-profile/account-profile';

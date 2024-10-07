@@ -3,7 +3,7 @@ import { cardSearch, fetchOneCard } from './cards/cards';
 import { getDeck } from './decks/decks';
 import { allMetadata, specificMetadata } from './metadata/metadata';
 
-export const hs = {
+const hs = {
   //Card Backs
   cardBackSearch,
   fetchOneCardBack,
@@ -16,8 +16,7 @@ export const hs = {
   allMetadata,
   specificMetadata,
 };
-
-export default hs;
+export { hs as default, hs };
 
 //Card Backs
 export * from './card-backs/card-backs';

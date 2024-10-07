@@ -11,7 +11,7 @@ import {
 } from './legacy/legacy';
 import { ladder, ladderSummary, metadata, profile, staticProfile } from './profile/profile';
 
-export const sc2 = {
+const sc2 = {
   //Account
   player,
   //Ladder
@@ -33,7 +33,7 @@ export const sc2 = {
   profile,
   staticProfile,
 };
-export default sc2;
+export { sc2 as default, sc2 };
 
 //Account
 export * from './account/account';

@@ -29,7 +29,7 @@ import {
 import { realm, realmIndex, realmSearch } from './realm/realm';
 import { region, regionIndex } from './region/region';
 
-export const classicWow = {
+const classicWow = {
   //Auction House
   auctionHouseIndex,
   auctions,
@@ -86,7 +86,7 @@ export const classicWow = {
   region,
   regionIndex,
 };
-export default classicWow;
+export { classicWow as default, classicWow };
 
 //Auction House
 export * from './auction-house/auction-house';

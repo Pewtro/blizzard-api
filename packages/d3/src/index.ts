@@ -7,7 +7,7 @@ import { item } from './item/item';
 import { itemType, itemTypeIndex } from './item-type/item-type';
 import { account, accountHero, accountHeroFollowerItems, accountHeroItems } from './profile/profile';
 
-export const d3 = {
+const d3 = {
   //Act
   act,
   actIndex,
@@ -37,7 +37,7 @@ export const d3 = {
   seasonIndex,
   seasonLeaderboard,
 };
-export default d3;
+export { d3 as default, d3 };
 
 //Act
 export * from './act/act';
