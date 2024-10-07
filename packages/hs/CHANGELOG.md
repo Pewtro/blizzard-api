@@ -1,5 +1,11 @@
 # @blizzard-api/hs
 
+## 0.1.1
+
+### Patch Changes
+
+- d414f3e: Adjust exports in game packages to not be duplicated
+
 ## 0.1.0
 
 ### Minor Changes

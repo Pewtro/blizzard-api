@@ -1,5 +1,11 @@
 # @blizzard-api/d3
 
+## 0.1.6
+
+### Patch Changes
+
+- d414f3e: Adjust exports in game packages to not be duplicated
+
 ## 0.1.5
 
 ### Patch Changes
