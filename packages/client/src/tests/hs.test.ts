@@ -10,7 +10,7 @@ describe.concurrent('smoketest some hs api responses', async () => {
     secret: environment.blizzardClientSecret,
   });
 
-  it('should be able to search for a card back', async ({ expect }) => {
+  it('should be able to search for a card back', { timeout: 10_000 }, async ({ expect }) => {
     const response = await client.sendRequest(hs.cardBackSearch({ locale: 'en_GB' }));
     expect(response.data).toBeDefined();
   });
@@ -20,17 +20,17 @@ describe.concurrent('smoketest some hs api responses', async () => {
     expect(response.data).toBeDefined();
   });
 
-  it('should be able to search for a card', async ({ expect }) => {
+  it('should be able to search for a card', { timeout: 10_000 }, async ({ expect }) => {
     const response = await client.sendRequest(hs.cardSearch({ locale: 'en_GB', textFilter: 'fireball' }));
     expect(response.data).toBeDefined();
   });
 
-  it('should be able to fetch a card', async ({ expect }) => {
+  it('should be able to fetch a card', { timeout: 10_000 }, async ({ expect }) => {
     const response = await client.sendRequest(hs.fetchOneCard('52119-arch-villain-rafaam'));
     expect(response.data).toBeDefined();
   });
 
-  it('should be able to fetch a deck', async ({ expect }) => {
+  it('should be able to fetch a deck', { timeout: 10_000 }, async ({ expect }) => {
     const response = await client.sendRequest(
       hs.getDeck({ code: 'AAECAQcG+wyd8AKS+AKggAOblAPanQMMS6IE/web8wLR9QKD+wKe+wKz/AL1gAOXlAOalAOSnwMA' }),
     );
