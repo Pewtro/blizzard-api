@@ -50,6 +50,9 @@ importers:
       typescript:
         specifier: 5.6.2
         version: 5.6.2
+      typescript-eslint:
+        specifier: 8.8.1
+        version: 8.8.1(eslint@9.12.0)(typescript@5.6.2)
       vitest:
         specifier: 2.1.2
         version: 2.1.2(@types/node@22.7.4)(@vitest/ui@2.1.2)
@@ -126,10 +129,6 @@ packages:
 
   '@babel/helper-string-parser@7.24.1':
     resolution: {integrity: sha512-2ofRCjnnA9y+wk8b9IAREroeUP02KHp431N2mhKniy2yKIDKpbrHv9eXwm8cBeWQYcJmzv5qKCu65P47eCF7CQ==}
-    engines: {node: '>=6.9.0'}
-
-  '@babel/helper-validator-identifier@7.24.5':
-    resolution: {integrity: sha512-3q93SSKX2TWCG30M2G2kwaKeTYgEUp5Snjuj8qm729SObL6nbtUldAi37qbxkD5gg3xnBio+f9nqpSepGZMvxA==}
     engines: {node: '>=6.9.0'}
 
   '@babel/helper-validator-identifier@7.25.7':
@@ -738,10 +737,6 @@ packages:
       typescript:
         optional: true
 
-  '@typescript-eslint/types@8.8.0':
-    resolution: {integrity: sha512-QJwc50hRCgBd/k12sTykOJbESe1RrzmX6COk8Y525C9l7oweZ+1lw9JiU56im7Amm8swlz00DRIlxMYLizr2Vw==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-
   '@typescript-eslint/types@8.8.1':
     resolution: {integrity: sha512-WCcTP4SDXzMd23N27u66zTKMuEevH4uzU8C9jf0RO4E04yVHgQgW+r+TeVTNnO1KIfrL8ebgVVYYMMO3+jC55Q==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
@@ -1156,10 +1151,6 @@ packages:
     resolution: {integrity: sha512-eGuFFw7Upda+g4p+QHvnW0RyTX/SVeJBDM/gCtMARO0cLuT2HcEKnTPvhjV6aGeqrCB/sbNop0Kszm0jsaWU4A==}
     engines: {node: '>=4'}
     hasBin: true
-
-  esquery@1.5.0:
-    resolution: {integrity: sha512-YQLXUplAwJgCydQ78IMJywZCceoqk1oH01OERdSAJc/7U2AylwjhSCLDEtqwg811idIS/9fIU5GjG73IgjKMVg==}
-    engines: {node: '>=0.10'}
 
   esquery@1.6.0:
     resolution: {integrity: sha512-ca9pw9fomFcKPvFLXhBKUK90ZvGibiGOvRJNbjljY7s7uq/5YO4BOzcYtJqExdx99rF6aAcnRxHmcUHcz6sQsg==}
@@ -2359,8 +2350,6 @@ snapshots:
 
   '@babel/helper-string-parser@7.24.1': {}
 
-  '@babel/helper-validator-identifier@7.24.5': {}
-
   '@babel/helper-validator-identifier@7.25.7': {}
 
   '@babel/highlight@7.24.5':
@@ -2381,7 +2370,7 @@ snapshots:
   '@babel/types@7.24.5':
     dependencies:
       '@babel/helper-string-parser': 7.24.1
-      '@babel/helper-validator-identifier': 7.24.5
+      '@babel/helper-validator-identifier': 7.25.7
       to-fast-properties: 2.0.0
 
   '@bcoe/v8-coverage@0.2.3': {}
@@ -2912,8 +2901,6 @@ snapshots:
       - eslint
       - supports-color
 
-  '@typescript-eslint/types@8.8.0': {}
-
   '@typescript-eslint/types@8.8.1': {}
 
   '@typescript-eslint/typescript-estree@8.8.1(typescript@5.6.2)':
@@ -3317,7 +3304,7 @@ snapshots:
 
   eslint-plugin-perfectionist@3.8.0(eslint@9.12.0)(typescript@5.6.2):
     dependencies:
-      '@typescript-eslint/types': 8.8.0
+      '@typescript-eslint/types': 8.8.1
       '@typescript-eslint/utils': 8.8.1(eslint@9.12.0)(typescript@5.6.2)
       eslint: 9.12.0
       minimatch: 9.0.5
@@ -3381,7 +3368,7 @@ snapshots:
       eslint-scope: 8.1.0
       eslint-visitor-keys: 4.1.0
       espree: 10.2.0
-      esquery: 1.5.0
+      esquery: 1.6.0
       esutils: 2.0.3
       fast-deep-equal: 3.1.3
       file-entry-cache: 8.0.0
@@ -3406,10 +3393,6 @@ snapshots:
       eslint-visitor-keys: 4.1.0
 
   esprima@4.0.1: {}
-
-  esquery@1.5.0:
-    dependencies:
-      estraverse: 5.3.0
 
   esquery@1.6.0:
     dependencies:
