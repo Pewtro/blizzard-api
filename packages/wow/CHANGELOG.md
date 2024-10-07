@@ -1,5 +1,11 @@
 # @blizzard-api/wow
 
+## 1.2.3
+
+### Patch Changes
+
+- d414f3e: Adjust exports in game packages to not be duplicated
+
 ## 1.2.2
 
 ### Patch Changes

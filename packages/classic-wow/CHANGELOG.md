@@ -1,5 +1,11 @@
 # @blizzard-api/classic-wow
 
+## 1.1.7
+
+### Patch Changes
+
+- d414f3e: Adjust exports in game packages to not be duplicated
+
 ## 1.1.6
 
 ### Patch Changes
