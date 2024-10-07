@@ -33,13 +33,19 @@ export const sc2 = {
   profile,
   staticProfile,
 };
+export default sc2;
 
 //Account
+export * from './account/account';
 //Ladder
+export * from './ladder/ladder';
 export type * from './ladder/types';
 //League
+export * from './league/league';
 export type * from './league/types';
 //Legacy
+export * from './legacy/legacy';
 export type * from './legacy/types';
 //Profile
+export * from './profile/profile';
 export type * from './profile/types';
