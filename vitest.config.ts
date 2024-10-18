@@ -1,6 +1,17 @@
 import { defaultExclude, defineConfig } from 'vitest/config';
 
 export default defineConfig({
+  resolve: {
+    conditions: [
+      '@blizzard-api/classic-wow-local',
+      '@blizzard-api/client-local',
+      '@blizzard-api/core-local',
+      '@blizzard-api/d3-local',
+      '@blizzard-api/hs-local',
+      '@blizzard-api/sc2-local',
+      '@blizzard-api/wow-local',
+    ],
+  },
   test: {
     coverage: {
       exclude: [

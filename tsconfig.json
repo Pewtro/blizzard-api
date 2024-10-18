@@ -23,7 +23,18 @@
     /* We transpile with tsup */
     "noEmit": true,
     "module": "Preserve",
-    "moduleResolution": "Bundler"
+    "moduleResolution": "Bundler",
+
+    //https://colinhacks.com/essays/live-types-typescript-monorepo
+    "customConditions": [
+      "@blizzard-api/classic-wow-local",
+      "@blizzard-api/client-local",
+      "@blizzard-api/core-local",
+      "@blizzard-api/d3-local",
+      "@blizzard-api/hs-local",
+      "@blizzard-api/sc2-local",
+      "@blizzard-api/wow-local"
+    ]
 
     /* If transpiling with TypeScript: */
     //"moduleResolution": "NodeNext",
