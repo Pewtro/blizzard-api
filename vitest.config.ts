@@ -19,7 +19,6 @@ export default defineConfig({
         //There's no reason to test the index files as they are just exporting what is already tested
         '**/index.ts',
         //Ignore the config files
-        '**/.eslintrc.cjs',
         '**/.prettierrc.js',
         '**/vitest.workspace.ts',
       ],

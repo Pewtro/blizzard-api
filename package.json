@@ -62,10 +62,10 @@
     "typecheck": "tsc"
   },
   "lint-staged": {
-    "*.{ts,tsx,js,jsx,cjs,mjs,md,mdx,yaml,yml,json}": [
+    "*.{ts,tsx,js,jsx,mjs,md,mdx,yaml,yml,json}": [
       "prettier --write"
     ],
-    "*.{ts,tsx,js,jsx,cjs,mjs}": [
+    "*.{ts,tsx,js,jsx,mjs}": [
       "pnpm --silent lint:fix"
     ]
   }
