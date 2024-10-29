@@ -1,5 +1,15 @@
 # @blizzard-api/core
 
+## 2.0.0
+
+### Major Changes
+
+- 2d2e2c1: This package now ships with ESM-only. If you need ESM and CJS you can use the previous major release that was a dual-release. Node v22 also ships with native interoperability between the two that you can utilise
+
+### Minor Changes
+
+- 443e856: Broaden the allowed node versions
+
 ## 1.2.1
 
 ### Patch Changes
