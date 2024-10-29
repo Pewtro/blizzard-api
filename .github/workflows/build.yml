@@ -11,7 +11,7 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 env:
   # The node version to release with, generally the latest LTS
-  release_node: 20.x
+  release_node: 22.x
 
 jobs:
   build:
