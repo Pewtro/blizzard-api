@@ -9,7 +9,6 @@
   "engines": {
     "node": "^18.18 || >=20.9"
   },
-  "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
@@ -17,11 +16,6 @@
       "@blizzard-api/wow-local": "./src/index.ts",
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
-    },
-    "require": {
-      "@blizzard-api/wow-local": "./src/index.ts",
-      "types": "./dist/index.d.cts",
-      "default": "./dist/index.cjs"
     }
   },
   "files": [

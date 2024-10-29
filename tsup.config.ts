@@ -7,7 +7,7 @@ export default defineConfig(({ watch = false }) => ({
     index: './src/index.ts',
   },
   external: [],
-  format: ['cjs', 'esm'],
+  format: 'esm',
   outDir: 'dist',
   sourcemap: true,
   treeshake: true,
