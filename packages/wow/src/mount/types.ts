@@ -22,15 +22,6 @@ export interface MountResponse extends ResponseBase {
   source: Source;
 }
 
-interface CreatureDisplay extends KeyBase {
-  id: number;
-}
-
-interface Source {
-  name: string;
-  type: string;
-}
-
 /**
  * The search parameters for mounts.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
@@ -54,4 +45,13 @@ export interface MountSearchResponseItem extends KeyBase {
     name: Record<Locales, string>;
     source: { name: Record<Locales, string>; type: string };
   };
+}
+
+interface CreatureDisplay extends KeyBase {
+  id: number;
+}
+
+interface Source {
+  name: string;
+  type: string;
 }

@@ -1,6 +1,33 @@
 import type { KeyBase, MediaAsset, NameId, NameIdKey, ResponseBase } from '../base';
 
 /**
+ * The response for a pet ability index.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
+export interface PetAbilityIndexResponse extends ResponseBase {
+  abilities: Array<NameIdKey>;
+}
+
+/**
+ * The response for a pet ability media.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
+export interface PetAbilityMediaResponse extends ResponseBase {
+  assets: Array<MediaAsset>;
+  id: number;
+}
+
+/**
+ * The response for a pet ability.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
+export interface PetAbilityResponse extends NameId, ResponseBase {
+  battle_pet_type: BattlePetType;
+  media: Media;
+  rounds: number;
+}
+
+/**
  * The response for a pet index.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
@@ -9,10 +36,19 @@ export interface PetIndexResponse extends ResponseBase {
 }
 
 /**
+ * The response for a pet search.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
+export interface PetMediaResponse extends ResponseBase {
+  assets: Array<MediaAsset>;
+  id: number;
+}
+
+/**
  * The response for a pet.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface PetResponse extends ResponseBase, NameId {
+export interface PetResponse extends NameId, ResponseBase {
   abilities: Array<Ability>;
   battle_pet_type: BattlePetType;
   creature: NameIdKey;
@@ -46,40 +82,4 @@ interface Media extends KeyBase {
 interface Source {
   name: string;
   type: string;
-}
-
-/**
- * The response for a pet search.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
-export interface PetMediaResponse extends ResponseBase {
-  assets: Array<MediaAsset>;
-  id: number;
-}
-
-/**
- * The response for a pet ability index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
-export interface PetAbilityIndexResponse extends ResponseBase {
-  abilities: Array<NameIdKey>;
-}
-
-/**
- * The response for a pet ability.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
-export interface PetAbilityResponse extends ResponseBase, NameId {
-  battle_pet_type: BattlePetType;
-  media: Media;
-  rounds: number;
-}
-
-/**
- * The response for a pet ability media.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
-export interface PetAbilityMediaResponse extends ResponseBase {
-  assets: Array<MediaAsset>;
-  id: number;
 }

@@ -67,6 +67,24 @@ export function creatureFamilyMedia(creatureFamilyId: number): Resource<Creature
   };
 }
 /**
+ * Search for creatures.
+ * @param options The creature search parameters. See {@link CreatureSearchParameters}.
+ * @returns The creature search results. See {@link SearchResponse} & {@link CreatureSearchResponseItem}.
+ */
+export function creatureSearch(
+  options: CreatureSearchParameters,
+): Resource<SearchResponse<CreatureSearchResponseItem>, Omit<CreatureSearchParameters, 'locale' | 'name'>> {
+  return {
+    namespace: 'static',
+    parameters: {
+      _page: options._page,
+      [`name.${options.locale}`]: options.name,
+      orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
+    },
+    path: `${searchBase}/creature`,
+  };
+}
+/**
  * Get a creature type by ID.
  * @param creatureTypeId The creature type ID.
  * @returns The creature type. See {@link CreatureTypeResponse}.
@@ -85,23 +103,5 @@ export function creatureTypeIndex(): Resource<CreatureTypeIndexResponse> {
   return {
     namespace: 'static',
     path: `${base}/creature-type/index`,
-  };
-}
-/**
- * Search for creatures.
- * @param options The creature search parameters. See {@link CreatureSearchParameters}.
- * @returns The creature search results. See {@link SearchResponse} & {@link CreatureSearchResponseItem}.
- */
-export function creatureSearch(
-  options: CreatureSearchParameters,
-): Resource<SearchResponse<CreatureSearchResponseItem>, Omit<CreatureSearchParameters, 'locale' | 'name'>> {
-  return {
-    namespace: 'static',
-    parameters: {
-      _page: options._page,
-      [`name.${options.locale}`]: options.name,
-      orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
-    },
-    path: `${searchBase}/creature`,
   };
 }

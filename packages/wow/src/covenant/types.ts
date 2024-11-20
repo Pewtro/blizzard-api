@@ -20,49 +20,12 @@ export interface ConduitResponse extends ResponseBase {
   socket_type: SocketType;
 }
 
-interface Item extends KeyBase {
-  id: number;
-}
-
-interface Rank {
-  id: number;
-  spell_tooltip: SpellTooltip;
-  tier: number;
-}
-
-interface SpellTooltip {
-  cast_time: string;
-  description: string;
-  spell: Item;
-}
-
-interface SocketType {
-  name: string;
-  type: string;
-}
-
 /**
  * Interface for a response from the covenant index endpoint.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface CovenantIndexResponse extends ResponseBase {
   covenants: Array<NameIdKey>;
-}
-
-/**
- * Interface for a response from the covenant endpoint.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
-export interface CovenantResponse extends ResponseBase {
-  description: string;
-  id: number;
-  name: string;
-  renown_rewards: Array<RenownReward>;
-}
-
-interface RenownReward {
-  level: number;
-  reward: NameIdKey;
 }
 
 /**
@@ -80,35 +43,23 @@ export interface CovenantMediaResponse extends ResponseBase {
   soulbinds: Array<NameIdKey>;
 }
 
-interface ClassAbility {
-  id: number;
-  playable_class: NameIdKey;
-  spell_tooltip: ClassAbilitySpellTooltip;
-}
-
-interface ClassAbilitySpellTooltip {
-  cast_time: string;
-  cooldown?: string;
+/**
+ * Interface for a response from the covenant endpoint.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
+export interface CovenantResponse extends ResponseBase {
   description: string;
-  power_cost?: null | string;
-  range?: string;
-  spell: NameIdKey;
-}
-
-interface Media extends KeyBase {
   id: number;
+  name: string;
+  renown_rewards: Array<RenownReward>;
 }
 
-interface SignatureAbility {
-  id: number;
-  spell_tooltip: SignatureAbilitySpellTooltip;
-}
-
-interface SignatureAbilitySpellTooltip {
-  cast_time: string;
-  cooldown: string;
-  description: string;
-  spell: NameIdKey;
+/**
+ * Interface for a response from the soulbind index endpoint.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
+export interface SoulbindIndexResponse extends ResponseBase {
+  soulbinds: Array<NameIdKey>;
 }
 
 /**
@@ -124,10 +75,59 @@ export interface SoulbindResponse extends ResponseBase {
   talent_tree: NameIdKey;
 }
 
-/**
- * Interface for a response from the soulbind index endpoint.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
-export interface SoulbindIndexResponse extends ResponseBase {
-  soulbinds: Array<NameIdKey>;
+interface ClassAbility {
+  id: number;
+  playable_class: NameIdKey;
+  spell_tooltip: ClassAbilitySpellTooltip;
+}
+
+interface ClassAbilitySpellTooltip {
+  cast_time: string;
+  cooldown?: string;
+  description: string;
+  power_cost?: null | string;
+  range?: string;
+  spell: NameIdKey;
+}
+
+interface Item extends KeyBase {
+  id: number;
+}
+
+interface Media extends KeyBase {
+  id: number;
+}
+
+interface Rank {
+  id: number;
+  spell_tooltip: SpellTooltip;
+  tier: number;
+}
+
+interface RenownReward {
+  level: number;
+  reward: NameIdKey;
+}
+
+interface SignatureAbility {
+  id: number;
+  spell_tooltip: SignatureAbilitySpellTooltip;
+}
+
+interface SignatureAbilitySpellTooltip {
+  cast_time: string;
+  cooldown: string;
+  description: string;
+  spell: NameIdKey;
+}
+
+interface SocketType {
+  name: string;
+  type: string;
+}
+
+interface SpellTooltip {
+  cast_time: string;
+  description: string;
+  spell: Item;
 }

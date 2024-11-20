@@ -8,7 +8,7 @@ import type { MediaSearchParameters, MediaSearchResponseItem } from './types';
  * @returns The search results. See {@link SearchResponse}.
  */
 export function mediaSearch(
-  namespace: Extract<BlizzardNamespaces, 'static-classic' | 'static-classic1x'>,
+  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
   options: MediaSearchParameters,
 ): Resource<SearchResponse<MediaSearchResponseItem>, MediaSearchParameters> {
   return {

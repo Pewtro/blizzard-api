@@ -4,7 +4,7 @@ export interface AuctionHouseIndexResponse extends ResponseBase {
   auctions: Array<NameIdKey>;
 }
 
-export interface AuctionsResponse extends ResponseBase, NameId {
+export interface AuctionsResponse extends NameId, ResponseBase {
   auctions: Array<Auction>;
   connected_realm: { href: string };
 }

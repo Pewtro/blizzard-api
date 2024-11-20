@@ -21,13 +21,45 @@ export interface HeirloomResponse extends ResponseBase {
   upgrades: Array<Upgrade>;
 }
 
+interface AttackSpeedClass {
+  display_string: string;
+  value: number;
+}
+
+interface Damage {
+  damage_class: Source;
+  display_string: string;
+  max_value: number;
+  min_value: number;
+}
+
+interface Display {
+  color: Color;
+  display_string: string;
+}
+
 interface Media extends KeyBase {
   id: number;
+}
+
+interface Requirements {
+  level: RequirementsLevel;
+}
+
+interface RequirementsLevel {
+  display_string: string;
 }
 
 interface Source {
   name: string;
   type: string;
+}
+
+interface Stat {
+  display: Display;
+  is_equip_bonus?: boolean;
+  type: Source;
+  value: number;
 }
 
 interface Upgrade {
@@ -53,31 +85,6 @@ interface UpgradeItem {
   weapon: Weapon;
 }
 
-interface AttackSpeedClass {
-  display_string: string;
-  value: number;
-}
-
-interface Requirements {
-  level: RequirementsLevel;
-}
-
-interface RequirementsLevel {
-  display_string: string;
-}
-
-interface Stat {
-  display: Display;
-  is_equip_bonus?: boolean;
-  type: Source;
-  value: number;
-}
-
-interface Display {
-  color: Color;
-  display_string: string;
-}
-
 interface Upgrades {
   display_string: string;
   max_value: number;
@@ -88,11 +95,4 @@ interface Weapon {
   attack_speed: AttackSpeedClass;
   damage: Damage;
   dps: AttackSpeedClass;
-}
-
-interface Damage {
-  damage_class: Source;
-  display_string: string;
-  max_value: number;
-  min_value: number;
 }

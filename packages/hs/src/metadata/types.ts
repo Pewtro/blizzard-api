@@ -19,9 +19,15 @@ export interface AllMetadataResponse {
   types: Array<GameMode>;
 }
 
-interface GameMode extends NameId {
-  gameModes?: Array<number>;
+export interface SpecificMetadataResponse extends NameId {
+  aliasSetIds?: Array<number>;
+  collectibleCount: number;
+  collectibleRevealedCount: number;
+  hyped: boolean;
+  nonCollectibleCount: number;
+  nonCollectibleRevealedCount: number;
   slug: string;
+  type: SetType;
 }
 
 interface Class {
@@ -30,6 +36,11 @@ interface Class {
   heroPowerCardId?: number;
   id: number;
   name: string;
+  slug: string;
+}
+
+interface GameMode extends NameId {
+  gameModes?: Array<number>;
   slug: string;
 }
 
@@ -46,6 +57,17 @@ interface Rarity extends NameId {
   slug: string;
 }
 
+interface Set extends NameId {
+  aliasSetIds?: Array<number>;
+  collectibleCount: number;
+  collectibleRevealedCount: number;
+  hyped: boolean;
+  nonCollectibleCount: number;
+  nonCollectibleRevealedCount: number;
+  slug: string;
+  type: SetType;
+}
+
 interface SetGroup {
   cardSets: Array<string>;
   icon?: string;
@@ -58,25 +80,3 @@ interface SetGroup {
 }
 
 type SetType = '' | 'adventure' | 'base' | 'expansion';
-
-interface Set extends NameId {
-  aliasSetIds?: Array<number>;
-  collectibleCount: number;
-  collectibleRevealedCount: number;
-  hyped: boolean;
-  nonCollectibleCount: number;
-  nonCollectibleRevealedCount: number;
-  slug: string;
-  type: SetType;
-}
-
-export interface SpecificMetadataResponse extends NameId {
-  aliasSetIds?: Array<number>;
-  collectibleCount: number;
-  collectibleRevealedCount: number;
-  hyped: boolean;
-  nonCollectibleCount: number;
-  nonCollectibleRevealedCount: number;
-  slug: string;
-  type: SetType;
-}

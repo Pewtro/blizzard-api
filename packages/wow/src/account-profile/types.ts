@@ -1,5 +1,30 @@
 import type { Faction, Gender, Href, KeyBase, NameId, NameIdKey, Realm } from '../base';
 
+export interface AccountCollectionsIndexResponse {
+  _links: Links;
+  heirlooms: Href;
+  mounts: Href;
+  pets: Href;
+  toys: Href;
+  transmogs: Href;
+}
+
+export interface AccountHeirloomsCollectionSummaryResponse {
+  _links: Links;
+  heirlooms: Array<Heirloom>;
+}
+
+export interface AccountMountsCollectionSummaryResponse {
+  _links: Links;
+  mounts: Array<Mount>;
+}
+
+export interface AccountPetsCollectionSummaryResponse {
+  _links: Links;
+  pets: Array<Pet>;
+  unlocked_battle_pet_slots: number;
+}
+
 export interface AccountProfileSummaryResponse {
   _links: Links;
   collections: Href;
@@ -7,15 +32,27 @@ export interface AccountProfileSummaryResponse {
   wow_accounts?: Array<WowAccount>;
 }
 
-interface Links {
-  profile: Href;
-  self: Href;
-  user: Href;
+export interface AccountToysCollectionSummaryResponse {
+  _links: Links;
+  toys: Array<Toy>;
 }
 
-interface WowAccount {
-  characters: Array<Character>;
+export interface AccountTransmogsCollectionSummaryResponse {
+  _links: Links;
+  appearance_sets: Array<NameIdKey>;
+  slots: Array<Slot>;
+}
+
+export interface ProtectedCharacterProfileSummaryResponse {
+  _links: Links;
+  bind_position: Position;
+  character: NameIdKey & Realm;
   id: number;
+  money: number;
+  name: string;
+  position: Position;
+  protected_stats: ProtectedStats;
+  wow_account: number;
 }
 
 interface Character {
@@ -31,16 +68,33 @@ interface Character {
   realm: Realm;
 }
 
-export interface ProtectedCharacterProfileSummaryResponse {
-  _links: Links;
-  bind_position: Position;
-  character: NameIdKey & Realm;
+interface Heirloom {
+  heirloom: NameIdKey;
+  upgrade: { level: number };
+}
+
+interface Links {
+  profile: Href;
+  self: Href;
+  user: Href;
+}
+
+interface Mount {
+  is_favorite?: boolean;
+  mount: NameIdKey;
+}
+
+interface Pet {
+  active_slot?: number;
+  creature_display?: KeyBase & { id: number };
   id: number;
-  money: number;
-  name: string;
-  position: Position;
-  protected_stats: ProtectedStats;
-  wow_account: number;
+  is_active?: boolean;
+  is_favorite?: boolean;
+  level: number;
+  name?: string;
+  quality: Quality;
+  species: NameIdKey;
+  stats: Stats;
 }
 
 interface Position {
@@ -63,57 +117,19 @@ interface ProtectedStats {
   total_number_deaths: number;
 }
 
-export interface AccountCollectionsIndexResponse {
-  _links: Links;
-  heirlooms: Href;
-  mounts: Href;
-  pets: Href;
-  toys: Href;
-  transmogs: Href;
-}
-
-export interface AccountHeirloomsCollectionSummaryResponse {
-  _links: Links;
-  heirlooms: Array<Heirloom>;
-}
-
-interface Heirloom {
-  heirloom: NameIdKey;
-  upgrade: { level: number };
-}
-
-export interface AccountMountsCollectionSummaryResponse {
-  _links: Links;
-  mounts: Array<Mount>;
-}
-
-interface Mount {
-  is_favorite?: boolean;
-  mount: NameIdKey;
-}
-
-export interface AccountPetsCollectionSummaryResponse {
-  _links: Links;
-  pets: Array<Pet>;
-  unlocked_battle_pet_slots: number;
-}
-
-interface Pet {
-  active_slot?: number;
-  creature_display?: { id: number } & KeyBase;
-  id: number;
-  is_active?: boolean;
-  is_favorite?: boolean;
-  level: number;
-  name?: string;
-  quality: Quality;
-  species: NameIdKey;
-  stats: Stats;
-}
-
 interface Quality {
   name: 'Common' | 'Poor' | 'Rare' | 'Uncommon';
   type: 'COMMON' | 'POOR' | 'RARE' | 'UNCOMMON';
+}
+
+interface Slot {
+  appearances: Array<KeyBase & { id: number }>;
+  slot: Slot;
+}
+
+interface Slot {
+  name: string;
+  type: string;
 }
 
 interface Stats {
@@ -123,28 +139,12 @@ interface Stats {
   speed: number;
 }
 
-export interface AccountToysCollectionSummaryResponse {
-  _links: Links;
-  toys: Array<Toy>;
-}
-
 interface Toy {
   is_favorite?: boolean;
   toy: NameIdKey;
 }
 
-export interface AccountTransmogsCollectionSummaryResponse {
-  _links: Links;
-  appearance_sets: Array<NameIdKey>;
-  slots: Array<Slot>;
-}
-
-interface Slot {
-  appearances: Array<{ id: number } & KeyBase>;
-  slot: Slot;
-}
-
-interface Slot {
-  name: string;
-  type: string;
+interface WowAccount {
+  characters: Array<Character>;
+  id: number;
 }

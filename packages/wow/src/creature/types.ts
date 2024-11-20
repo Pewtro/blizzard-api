@@ -2,23 +2,6 @@ import type { BaseSearchParameters, Locales } from '@blizzard-api/core';
 import type { KeyBase, MediaAsset, NameIdKey, ResponseBase } from '../base';
 
 /**
- * The response for a creature.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
-export interface CreatureResponse extends ResponseBase {
-  creature_displays: Array<CreatureDisplay>;
-  family: NameIdKey;
-  id: number;
-  is_tameable: boolean;
-  name: string;
-  type: NameIdKey;
-}
-
-interface CreatureDisplay extends KeyBase {
-  id: number;
-}
-
-/**
  * The response for creature display media.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
@@ -27,17 +10,21 @@ export interface CreatureDisplayMediaResponse extends ResponseBase {
   id: number;
 }
 
-interface DisplayMediaAsset {
-  key: string;
-  value: string;
-}
-
 /**
  * The response for a creature family index.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface CreatureFamilyIndexResponse extends ResponseBase {
   creature_families: Array<NameIdKey>;
+}
+
+/**
+ * The response for creature family media.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
+export interface CreatureFamilyMediaResponse extends ResponseBase {
+  assets: Array<MediaAsset>;
+  id: number;
 }
 
 /**
@@ -51,34 +38,17 @@ export interface CreatureFamilyResponse extends ResponseBase {
   specialization: NameIdKey;
 }
 
-interface Media extends KeyBase {
-  id: number;
-}
-
 /**
- * The response for creature family media.
+ * The response for a creature.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface CreatureFamilyMediaResponse extends ResponseBase {
-  assets: Array<MediaAsset>;
+export interface CreatureResponse extends ResponseBase {
+  creature_displays: Array<CreatureDisplay>;
+  family: NameIdKey;
   id: number;
-}
-
-/**
- * The response for a creature type index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
-export interface CreatureTypeIndexResponse extends ResponseBase {
-  creature_types: Array<NameIdKey>;
-}
-
-/**
- * The response for a creature type.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
-export interface CreatureTypeResponse extends ResponseBase {
-  id: number;
+  is_tameable: boolean;
   name: string;
+  type: NameIdKey;
 }
 
 /**
@@ -105,4 +75,34 @@ export interface CreatureSearchResponseItem extends KeyBase {
     name: Record<Locales, string | undefined>;
     type: { id: number; name: Record<Locales, string | undefined> };
   };
+}
+
+/**
+ * The response for a creature type index.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
+export interface CreatureTypeIndexResponse extends ResponseBase {
+  creature_types: Array<NameIdKey>;
+}
+
+/**
+ * The response for a creature type.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
+export interface CreatureTypeResponse extends ResponseBase {
+  id: number;
+  name: string;
+}
+
+interface CreatureDisplay extends KeyBase {
+  id: number;
+}
+
+interface DisplayMediaAsset {
+  key: string;
+  value: string;
+}
+
+interface Media extends KeyBase {
+  id: number;
 }

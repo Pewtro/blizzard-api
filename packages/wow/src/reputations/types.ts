@@ -20,21 +20,12 @@ export interface ReputationFactionResponse extends ResponseBase {
   reputation_tiers: ReputationTiers;
 }
 
-interface ReputationTiers extends KeyBase {
-  id: number;
-}
-
 /**
  * The response for a reputation tier index.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface ReputationTiersIndexResponse extends ResponseBase {
   reputation_tiers: Array<ReputationTier>;
-}
-
-interface ReputationTier extends KeyBase {
-  id: number;
-  name?: string;
 }
 
 /**
@@ -45,6 +36,15 @@ export interface ReputationTiersResponse extends ResponseBase {
   faction?: NameIdKey;
   id: number;
   tiers: Array<Tier>;
+}
+
+interface ReputationTier extends KeyBase {
+  id: number;
+  name?: string;
+}
+
+interface ReputationTiers extends KeyBase {
+  id: number;
 }
 
 interface Tier {

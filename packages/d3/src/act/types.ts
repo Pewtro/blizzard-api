@@ -1,12 +1,12 @@
+export interface ActIndexResponse {
+  acts: Array<Act>;
+}
+
 export interface ActResponse {
   name: string;
   number: number;
   quests: Array<Quest>;
   slug: string;
-}
-
-export interface ActIndexResponse {
-  acts: Array<Act>;
 }
 
 interface Act {

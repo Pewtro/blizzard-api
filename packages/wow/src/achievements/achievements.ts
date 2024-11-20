@@ -12,6 +12,17 @@ const achievementBase = `${base}/achievement`;
 const achievementCategoryBase = `${base}/achievement-category`;
 
 /**
+ * Get an achievement by ID.
+ * @param achievementId The achievement ID.
+ * @returns The achievement. See {@link AchievementResponse}.
+ */
+export function achievement(achievementId: number): Resource<AchievementResponse> {
+  return {
+    namespace: 'static',
+    path: `${achievementBase}/${achievementId}`,
+  };
+}
+/**
  * Get an achievement category by ID.
  * @param achievementCategoryId The achievement category ID.
  * @returns The achievement category. See {@link AchievementCategoryResponse}.
@@ -30,17 +41,6 @@ export function achievementCategoryIndex(): Resource<AchievementCategoryIndexRes
   return {
     namespace: 'static',
     path: `${achievementCategoryBase}/index`,
-  };
-}
-/**
- * Get an achievement by ID.
- * @param achievementId The achievement ID.
- * @returns The achievement. See {@link AchievementResponse}.
- */
-export function achievement(achievementId: number): Resource<AchievementResponse> {
-  return {
-    namespace: 'static',
-    path: `${achievementBase}/${achievementId}`,
   };
 }
 /**

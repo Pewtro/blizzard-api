@@ -3,31 +3,31 @@ import { base, mediaBase } from '../../../wow/src/base';
 import type { GuildCrestBorderEmblemResponse, GuildCrestComponentsIndexResponse } from './types';
 
 /**
- * Returns an index of guild crest media.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
- * @returns The guild crest components index. See {@link GuildCrestComponentsIndexResponse}.
- */
-export function guildCrestComponentsIndex(
-  namespace: Extract<BlizzardNamespaces, 'static-classic' | 'static-classic1x'>,
-): Resource<GuildCrestComponentsIndexResponse> {
-  return {
-    namespace,
-    path: `${base}/guild-crest/index`,
-  };
-}
-/**
  * Returns media for a guild crest border by ID.
  * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
  * @param borderId The guild crest border ID.
  * @returns The guild crest border. See {@link GuildCrestBorderEmblemResponse}.
  */
 export function guildCrestBorder(
-  namespace: Extract<BlizzardNamespaces, 'static-classic' | 'static-classic1x'>,
+  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
   borderId: number,
 ): Resource<GuildCrestBorderEmblemResponse> {
   return {
     namespace,
     path: `${mediaBase}/guild-crest/border/${borderId}`,
+  };
+}
+/**
+ * Returns an index of guild crest media.
+ * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @returns The guild crest components index. See {@link GuildCrestComponentsIndexResponse}.
+ */
+export function guildCrestComponentsIndex(
+  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
+): Resource<GuildCrestComponentsIndexResponse> {
+  return {
+    namespace,
+    path: `${base}/guild-crest/index`,
   };
 }
 /**
@@ -37,7 +37,7 @@ export function guildCrestBorder(
  * @returns The guild crest emblem. See {@link GuildCrestBorderEmblemResponse}.
  */
 export function guildCrestEmblem(
-  namespace: Extract<BlizzardNamespaces, 'static-classic' | 'static-classic1x'>,
+  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
   emblemId: number,
 ): Resource<GuildCrestBorderEmblemResponse> {
   return {

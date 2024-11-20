@@ -12,7 +12,7 @@ export interface PlayableRaceIndexResponse extends ResponseBase {
  * The playable race response.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface PlayableRaceResponse extends ResponseBase, NameId {
+export interface PlayableRaceResponse extends NameId, ResponseBase {
   faction: Faction;
   gender_name: GenderName;
   is_allied_race: boolean;

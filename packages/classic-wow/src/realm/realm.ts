@@ -9,7 +9,7 @@ import type { RealmIndexResponse, RealmResponse, RealmSearchParameters, RealmSea
  * @returns The realm. See {@link RealmResponse}.
  */
 export function realm(
-  namespace: Extract<BlizzardNamespaces, 'dynamic-classic' | 'dynamic-classic1x'>,
+  namespace: Extract<BlizzardNamespaces, 'dynamic-classic1x' | 'dynamic-classic'>,
   realmSlug: string,
 ): Resource<RealmResponse> {
   return {
@@ -23,7 +23,7 @@ export function realm(
  * @returns The realm index. See {@link RealmIndexResponse}.
  */
 export function realmIndex(
-  namespace: Extract<BlizzardNamespaces, 'dynamic-classic' | 'dynamic-classic1x'>,
+  namespace: Extract<BlizzardNamespaces, 'dynamic-classic1x' | 'dynamic-classic'>,
 ): Resource<RealmIndexResponse> {
   return {
     namespace,
@@ -37,7 +37,7 @@ export function realmIndex(
  * @returns The search results. See {@link SearchResponse}.
  */
 export function realmSearch(
-  namespace: Extract<BlizzardNamespaces, 'dynamic-classic' | 'dynamic-classic1x'>,
+  namespace: Extract<BlizzardNamespaces, 'dynamic-classic1x' | 'dynamic-classic'>,
   options: RealmSearchParameters,
 ): Resource<SearchResponse<RealmSearchResponseItem>, RealmSearchParameters> {
   return {

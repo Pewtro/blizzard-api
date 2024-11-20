@@ -9,21 +9,9 @@ import type {
   SeasonResponse,
 } from './types';
 
-export function seasonIndex(): Resource<SeasonIndexResponse> {
+export function era(id: number): Resource<EraResponse> {
   return {
-    path: `${gameDataBase}/season`,
-  };
-}
-
-export function season(id: number): Resource<SeasonResponse> {
-  return {
-    path: `${gameDataBase}/season/${id}`,
-  };
-}
-
-export function seasonLeaderboard(id: number, leaderboard: string): Resource<SeasonLeaderboardResponse> {
-  return {
-    path: `${gameDataBase}/season/${id}/leaderboard/${leaderboard}`,
+    path: `${gameDataBase}/era/${id}`,
   };
 }
 
@@ -33,14 +21,26 @@ export function eraIndex(): Resource<EraIndexResponse> {
   };
 }
 
-export function era(id: number): Resource<EraResponse> {
-  return {
-    path: `${gameDataBase}/era/${id}`,
-  };
-}
-
 export function eraLeaderboard(id: number, leaderboard: string): Resource<EraLeaderboardResponse> {
   return {
     path: `${gameDataBase}/era/${id}/leaderboard/${leaderboard}`,
+  };
+}
+
+export function season(id: number): Resource<SeasonResponse> {
+  return {
+    path: `${gameDataBase}/season/${id}`,
+  };
+}
+
+export function seasonIndex(): Resource<SeasonIndexResponse> {
+  return {
+    path: `${gameDataBase}/season`,
+  };
+}
+
+export function seasonLeaderboard(id: number, leaderboard: string): Resource<SeasonLeaderboardResponse> {
+  return {
+    path: `${gameDataBase}/season/${id}/leaderboard/${leaderboard}`,
   };
 }

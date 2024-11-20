@@ -2,25 +2,21 @@ import type { BaseSearchParameters, Locales } from '@blizzard-api/core';
 import type { KeyBase, MediaAsset, NameId, ResponseBase } from '../base';
 
 /**
- * The response for a spell.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
-export interface SpellResponse extends ResponseBase, NameId {
-  description: null | string;
-  media: Media;
-}
-
-interface Media extends KeyBase {
-  id: number;
-}
-
-/**
  * The response for a spell media.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface SpellMediaResponse extends ResponseBase {
   assets: Array<MediaAsset>;
   id: number;
+}
+
+/**
+ * The response for a spell.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
+export interface SpellResponse extends NameId, ResponseBase {
+  description: null | string;
+  media: Media;
 }
 
 /**
@@ -44,4 +40,8 @@ export interface SpellSearchResponseItem extends KeyBase {
     media: { id: number };
     name: Record<Locales, string | undefined>;
   };
+}
+
+interface Media extends KeyBase {
+  id: number;
 }

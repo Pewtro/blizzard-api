@@ -23,16 +23,6 @@ export function quest(questId: number): Resource<QuestResponse> {
   };
 }
 /**
- * Get a quest index.
- * @returns The quest index. See {@link QuestIndexResponse}.
- */
-export function questIndex(): Resource<QuestIndexResponse> {
-  return {
-    namespace: 'static',
-    path: `${base}/quest/index`,
-  };
-}
-/**
  * Get a quest area by ID.
  * @param questAreaId The quest area ID.
  * @returns The quest area. See {@link QuestAreaResponse}.
@@ -72,6 +62,16 @@ export function questCategoryIndex(): Resource<QuestCategoryIndexResponse> {
   return {
     namespace: 'static',
     path: `${base}/quest/category/index`,
+  };
+}
+/**
+ * Get a quest index.
+ * @returns The quest index. See {@link QuestIndexResponse}.
+ */
+export function questIndex(): Resource<QuestIndexResponse> {
+  return {
+    namespace: 'static',
+    path: `${base}/quest/index`,
   };
 }
 /**

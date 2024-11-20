@@ -3,18 +3,14 @@ import type { Character, Color, KeyBase, NameId, NameIdKey, Realm, ResponseBase 
 export interface CharacterMythicKeystoneProfileIndexResponse extends ResponseBase {
   character: Character;
   current_period: CurrentPeriod;
-  seasons: Array<{ id: number } & KeyBase>;
-}
-
-interface CurrentPeriod {
-  period: { id: number } & KeyBase;
+  seasons: Array<KeyBase & { id: number }>;
 }
 
 export interface CharacterMythicKeystoneSeasonDetailsResponse extends ResponseBase {
   best_runs: Array<BestRun>;
   character: NameIdKey;
   mythic_rating: MythicRating;
-  season: { id: number } & KeyBase;
+  season: KeyBase & { id: number };
 }
 
 interface BestRun {
@@ -28,8 +24,12 @@ interface BestRun {
   mythic_rating: MythicRating;
 }
 
+interface CurrentPeriod {
+  period: KeyBase & { id: number };
+}
+
 interface Member {
-  character: { realm: Realm } & NameId;
+  character: NameId & { realm: Realm };
   equipped_item_level: number;
   race: NameIdKey;
   specialization: NameIdKey;

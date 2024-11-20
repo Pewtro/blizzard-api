@@ -14,17 +14,17 @@ export function accountHero(battleTag: string, heroId: number): Resource<Account
   };
 }
 
-export function accountHeroItems(battleTag: string, heroId: number): Resource<AccountHeroResponse> {
-  return {
-    path: `${profileBase}/${battleTag}/hero/${heroId}/items`,
-  };
-}
-
 export function accountHeroFollowerItems(
   battleTag: string,
   heroId: number,
 ): Resource<AccountHeroFollowerItemsResponse> {
   return {
     path: `${profileBase}/${battleTag}/hero/${heroId}/follower-items`,
+  };
+}
+
+export function accountHeroItems(battleTag: string, heroId: number): Resource<AccountHeroResponse> {
+  return {
+    path: `${profileBase}/${battleTag}/hero/${heroId}/items`,
   };
 }

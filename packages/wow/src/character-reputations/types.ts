@@ -5,16 +5,16 @@ export interface CharacterReputationsSummaryResponse extends ResponseBase {
   reputations: Array<Reputation>;
 }
 
-interface Reputation {
-  faction: NameIdKey;
-  paragon?: Paragon;
-  standing: Standing;
-}
-
 interface Paragon {
   max: number;
   raw: number;
   value: number;
+}
+
+interface Reputation {
+  faction: NameIdKey;
+  paragon?: Paragon;
+  standing: Standing;
 }
 
 interface Standing {

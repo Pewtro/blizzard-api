@@ -13,13 +13,27 @@ export interface CharacterHeirloomsCollectionSummaryResponse extends ResponseBas
   heirlooms: Array<Heirloom>;
 }
 
+export interface CharacterMountsCollectionSummaryResponse extends ResponseBase {
+  mounts: Array<Mount>;
+}
+
+export interface CharacterPetsCollectionSummaryResponse extends ResponseBase {
+  pets: Array<Pet>;
+  unlocked_battle_pet_slots: number;
+}
+
+export interface CharacterToysCollectionSummaryResponse extends ResponseBase {
+  toys: Array<Toy>;
+}
+
+export interface CharacterTransmogCollectionSummaryResponse extends ResponseBase {
+  appearance_sets: Array<NameIdKey>;
+  slots: Array<Slot>;
+}
+
 interface Heirloom {
   heirloom: NameIdKey;
   upgrade: { level: number };
-}
-
-export interface CharacterMountsCollectionSummaryResponse extends ResponseBase {
-  mounts: Array<Mount>;
 }
 
 interface Mount {
@@ -29,14 +43,9 @@ interface Mount {
   mount: NameIdKey;
 }
 
-export interface CharacterPetsCollectionSummaryResponse extends ResponseBase {
-  pets: Array<Pet>;
-  unlocked_battle_pet_slots: number;
-}
-
 interface Pet {
   active_slot?: number;
-  creature_display?: { id: number } & KeyBase;
+  creature_display?: KeyBase & { id: number };
   id: number;
   is_active?: boolean;
   is_favorite?: boolean;
@@ -52,6 +61,16 @@ interface Quality {
   type: 'COMMON' | 'POOR' | 'RARE' | 'UNCOMMON';
 }
 
+interface Slot {
+  appearances: Array<KeyBase & { id: number }>;
+  slot: Slot;
+}
+
+interface Slot {
+  name: string;
+  type: string;
+}
+
 interface Stats {
   breed_id: number;
   health: number;
@@ -59,26 +78,7 @@ interface Stats {
   speed: number;
 }
 
-export interface CharacterToysCollectionSummaryResponse extends ResponseBase {
-  toys: Array<Toy>;
-}
-
 interface Toy {
   is_favorite?: boolean;
   toy: NameIdKey;
-}
-
-export interface CharacterTransmogCollectionSummaryResponse extends ResponseBase {
-  appearance_sets: Array<NameIdKey>;
-  slots: Array<Slot>;
-}
-
-interface Slot {
-  appearances: Array<{ id: number } & KeyBase>;
-  slot: Slot;
-}
-
-interface Slot {
-  name: string;
-  type: string;
 }

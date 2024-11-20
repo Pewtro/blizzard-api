@@ -3,16 +3,6 @@ import { base, mediaBase } from '../base';
 import type { GuildCrestBorderEmblemResponse, GuildCrestComponentsIndexResponse } from './types';
 
 /**
- * Get the guild crest components index.
- * @returns The guild crest components index. See {@link GuildCrestComponentsIndexResponse}.
- */
-export function guildCrestComponentsIndex(): Resource<GuildCrestComponentsIndexResponse> {
-  return {
-    namespace: 'static',
-    path: `${base}/guild-crest/index`,
-  };
-}
-/**
  * Get a guild crest border by ID.
  * @param borderId The guild crest border ID.
  * @returns The guild crest border. See {@link GuildCrestBorderEmblemResponse}.
@@ -21,6 +11,16 @@ export function guildCrestBorder(borderId: number): Resource<GuildCrestBorderEmb
   return {
     namespace: 'static',
     path: `${mediaBase}/guild-crest/border/${borderId}`,
+  };
+}
+/**
+ * Get the guild crest components index.
+ * @returns The guild crest components index. See {@link GuildCrestComponentsIndexResponse}.
+ */
+export function guildCrestComponentsIndex(): Resource<GuildCrestComponentsIndexResponse> {
+  return {
+    namespace: 'static',
+    path: `${base}/guild-crest/index`,
   };
 }
 /**

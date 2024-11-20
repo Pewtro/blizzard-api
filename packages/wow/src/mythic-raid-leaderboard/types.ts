@@ -24,13 +24,13 @@ interface Guild extends NameId {
   realm: Realm;
 }
 
+interface JournalInstance extends KeyBase {
+  id: number;
+  name: null;
+}
+
 interface Realm {
   id: number;
   name: null;
   slug: string;
-}
-
-interface JournalInstance extends KeyBase {
-  id: number;
-  name: null;
 }

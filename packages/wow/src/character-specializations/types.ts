@@ -7,13 +7,6 @@ export interface CharacterSpecializationsSummaryResponse extends ResponseBase {
   specializations: Array<Specialization>;
 }
 
-interface Specialization {
-  glyphs?: Array<NameIdKey>;
-  loadouts: Array<Loadout>;
-  pvp_talent_slots?: Array<PvpTalentSlot>;
-  specialization: NameIdKey;
-}
-
 interface Loadout {
   is_active: boolean;
   selected_class_talent_tree: NameIdKey;
@@ -23,6 +16,16 @@ interface Loadout {
   talent_loadout_code: string;
 }
 
+interface PvpTalentSlot {
+  selected: Selected;
+  slot_number: number;
+}
+
+interface Selected {
+  spell_tooltip: SpellTooltip;
+  talent: NameIdKey;
+}
+
 interface SelectedTalent {
   default_points?: number;
   id: number;
@@ -30,9 +33,11 @@ interface SelectedTalent {
   tooltip: Selected;
 }
 
-interface Selected {
-  spell_tooltip: SpellTooltip;
-  talent: NameIdKey;
+interface Specialization {
+  glyphs?: Array<NameIdKey>;
+  loadouts: Array<Loadout>;
+  pvp_talent_slots?: Array<PvpTalentSlot>;
+  specialization: NameIdKey;
 }
 
 interface SpellTooltip {
@@ -50,9 +55,4 @@ interface SpellTooltip {
     | '100 yd range'
     | 'Melee Range';
   spell: NameIdKey;
-}
-
-interface PvpTalentSlot {
-  selected: Selected;
-  slot_number: number;
 }

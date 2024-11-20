@@ -1,13 +1,35 @@
 import type { Character, Href, NameIdKey, ResponseBase } from '../base';
 
+export interface CharacterDungeonsResponse extends ResponseBase {
+  expansions: Array<Expansion<DungeonMode>>;
+}
+
 export interface CharacterEncountersSummaryResponse extends ResponseBase {
   character: Character;
   dungeons: Href;
   raids: Href;
 }
 
-export interface CharacterDungeonsResponse extends ResponseBase {
-  expansions: Array<Expansion<DungeonMode>>;
+export interface CharacterRaidsResponse extends ResponseBase {
+  character: Character;
+  expansions: Array<Expansion<RaidMode>>;
+}
+
+interface DungeonDifficulties {
+  name: 'Heroic' | 'Mythic' | 'Mythic+ Dungeons' | 'Normal';
+  type: 'HEROIC' | 'MYTHIC' | 'MYTHIC_KEYSTONE' | 'NORMAL';
+}
+
+interface DungeonMode {
+  difficulty: DungeonDifficulties;
+  progress: Progress;
+  status: Status;
+}
+
+interface Encounter {
+  completed_count: number;
+  encounter: NameIdKey;
+  last_kill_timestamp: number;
 }
 
 interface Expansion<T> {
@@ -20,43 +42,10 @@ interface Instance<T> {
   modes: Array<T>;
 }
 
-interface DungeonMode {
-  difficulty: DungeonDifficulties;
-  progress: Progress;
-  status: Status;
-}
-
-interface Status {
-  name: 'Complete' | 'In Progress';
-  type: 'COMPLETE' | 'IN_PROGRESS';
-}
-
-interface DungeonDifficulties {
-  name: 'Heroic' | 'Mythic' | 'Mythic+ Dungeons' | 'Normal';
-  type: 'HEROIC' | 'MYTHIC' | 'MYTHIC_KEYSTONE' | 'NORMAL';
-}
-
 interface Progress {
   completed_count: number;
   encounters: Array<Encounter>;
   total_count: number;
-}
-
-interface Encounter {
-  completed_count: number;
-  encounter: NameIdKey;
-  last_kill_timestamp: number;
-}
-
-export interface CharacterRaidsResponse extends ResponseBase {
-  character: Character;
-  expansions: Array<Expansion<RaidMode>>;
-}
-
-interface RaidMode {
-  difficulty: RaidDifficulties;
-  progress: Progress;
-  status: Status;
 }
 
 interface RaidDifficulties {
@@ -78,4 +67,15 @@ interface RaidDifficulties {
     | 'LFR'
     | 'MYTHIC'
     | 'NORMAL';
+}
+
+interface RaidMode {
+  difficulty: RaidDifficulties;
+  progress: Progress;
+  status: Status;
+}
+
+interface Status {
+  name: 'Complete' | 'In Progress';
+  type: 'COMPLETE' | 'IN_PROGRESS';
 }

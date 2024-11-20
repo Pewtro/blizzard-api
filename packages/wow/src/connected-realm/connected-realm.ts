@@ -8,16 +8,6 @@ import type {
 } from './types';
 
 /**
- * Get a connected realm index.
- * @returns The connected realm index. See {@link ConnectedRealmIndexResponse}.
- */
-export function connectedRealmIndex(): Resource<ConnectedRealmIndexResponse> {
-  return {
-    namespace: 'dynamic',
-    path: `${base}/connected-realm/index`,
-  };
-}
-/**
  * Get a connected realm by ID.
  * @param connectedRealmId The connected realm ID.
  * @returns The connected realm. See {@link ConnectedRealmResponse}.
@@ -26,6 +16,16 @@ export function connectedRealm(connectedRealmId: number): Resource<ConnectedReal
   return {
     namespace: 'dynamic',
     path: `${base}/connected-realm/${connectedRealmId}`,
+  };
+}
+/**
+ * Get a connected realm index.
+ * @returns The connected realm index. See {@link ConnectedRealmIndexResponse}.
+ */
+export function connectedRealmIndex(): Resource<ConnectedRealmIndexResponse> {
+  return {
+    namespace: 'dynamic',
+    path: `${base}/connected-realm/index`,
   };
 }
 /**

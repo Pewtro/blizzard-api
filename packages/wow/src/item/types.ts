@@ -1,9 +1,149 @@
 import type { BaseSearchParameters, Locales } from '@blizzard-api/core';
 import type { Color, KeyBase, MediaAsset, NameId, NameIdKey, ResponseBase } from '../base';
 
-interface ItemQuality {
-  name: Record<Locales, string | undefined>;
-  type: 'ARTIFACT' | 'COMMON' | 'EPIC' | 'HEIRLOOM' | 'LEGENDARY' | 'POOR' | 'RARE' | 'UNCOMMON';
+/**
+ * The response for an item class index.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
+export interface ItemClassIndexResponse extends ResponseBase {
+  item_classes: Array<NameIdKey>;
+}
+
+/**
+ * The response for an item class.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
+export interface ItemClassResponse extends ResponseBase {
+  class_id: number;
+  item_subclasses: Array<NameIdKey>;
+  name: string;
+}
+
+/**
+ * The response for an item media.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
+export interface ItemMediaResponse extends ResponseBase {
+  assets: Array<MediaAsset>;
+  id: number;
+}
+
+/**
+ * The response for an item.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
+export interface ItemResponse extends NameId, ResponseBase {
+  description?: string;
+  inventory_type: InventoryType;
+  is_equippable: boolean;
+  is_stackable: boolean;
+  item_class: NameIdKey;
+  item_subclass: NameIdKey;
+  level: number;
+  max_count: number;
+  media: Media;
+  preview_item: PreviewItem;
+  purchase_price: number;
+  purchase_quantity: number;
+  quality: ItemQuality;
+  required_level: number;
+  sell_price: number;
+}
+
+/**
+ * The parameters for an item search.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
+ */
+export interface ItemSearchParameters extends BaseSearchParameters {
+  locale: Locales;
+  name: string;
+}
+
+/**
+ * The response for an item search.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
+ */
+export interface ItemSearchResponseItem extends KeyBase {
+  data: {
+    id: number;
+    inventory_type: InventoryType;
+    is_equippable: boolean;
+    is_stackable: boolean;
+    item_class: { id: number; name: Record<Locales, string | undefined> };
+    item_subclass: { id: number; name: Record<Locales, string | undefined> };
+    level: number;
+    max_count: number;
+    media: { id: number };
+    name: Record<Locales, string | undefined>;
+    purchase_price: number;
+    purchase_quantity: number;
+    quality: ItemQuality;
+    required_level: number;
+    sell_price: number;
+  };
+}
+
+/**
+ * The response for an item set index.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
+export interface ItemSetIndexResponse extends ResponseBase {
+  item_sets: Array<NameIdKey>;
+}
+
+/**
+ * The response for an item set.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
+export interface ItemSetResponse extends ResponseBase {
+  effects: Array<Effect>;
+  id: number;
+  items: Array<NameIdKey>;
+  name: string;
+}
+
+/**
+ * The response for an item subclass.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
+export interface ItemSubClassResponse extends ResponseBase {
+  class_id: number;
+  display_name: string;
+  hide_subclass_in_tooltips: boolean;
+  subclass_id: number;
+  verbose_name: string;
+}
+
+interface Armor {
+  display: Display;
+  value: number;
+}
+
+interface Damage {
+  damage_class: {
+    name: string;
+    type: string;
+  };
+  display_string: string;
+  max_value: number;
+  min_value: number;
+}
+
+interface Display {
+  color: Color;
+  display_string: string;
+}
+
+interface Durability {
+  display_string: string;
+  value: number;
+}
+
+interface Effect {
+  display_string: string;
+  required_count: number;
 }
 
 interface InventoryType {
@@ -30,46 +170,9 @@ interface InventoryType {
     | 'WRIST';
 }
 
-type StatTypeCapitalized =
-  | 'AGILITY'
-  | 'CRIT_RATING'
-  | 'HASTE_RATING'
-  | 'INTELLECT'
-  | 'MASTERY'
-  | 'STAMINA'
-  | 'STRENGTH'
-  | 'VERSATILITY';
-
-type StatType =
-  | 'Agility'
-  | 'Critical Strike'
-  | 'Haste'
-  | 'Intellect'
-  | 'Mastery'
-  | 'Stamina'
-  | 'Strength'
-  | 'Versatility';
-
-/**
- * The response for an item.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
-export interface ItemResponse extends ResponseBase, NameId {
-  description?: string;
-  inventory_type: InventoryType;
-  is_equippable: boolean;
-  is_stackable: boolean;
-  item_class: NameIdKey;
-  item_subclass: NameIdKey;
-  level: number;
-  max_count: number;
-  media: Media;
-  preview_item: PreviewItem;
-  purchase_price: number;
-  purchase_quantity: number;
-  quality: ItemQuality;
-  required_level: number;
-  sell_price: number;
+interface ItemQuality {
+  name: Record<Locales, string | undefined>;
+  type: 'ARTIFACT' | 'COMMON' | 'EPIC' | 'HEIRLOOM' | 'LEGENDARY' | 'POOR' | 'RARE' | 'UNCOMMON';
 }
 
 interface Media extends KeyBase {
@@ -107,59 +210,9 @@ interface PreviewItem {
   weapon?: Weapon;
 }
 
-interface Armor {
-  display: Display;
-  value: number;
-}
-
-interface Durability {
-  display_string: string;
-  value: number;
-}
-
-interface Requirements {
-  level: Durability;
-}
-
-interface Spell {
-  description: string;
-  spell: NameIdKey;
-}
-
-interface Stat {
-  display: Display;
-  is_negated?: boolean;
-  type: {
-    name: StatType;
-    type: StatTypeCapitalized;
-  };
-  value: number;
-}
-
-interface Display {
-  color: Color;
-  display_string: string;
-}
-
-interface Weapon {
-  attack_speed: Durability;
-  damage: Damage;
-  dps: Durability;
-}
-
-interface Damage {
-  damage_class: {
-    name: string;
-    type: string;
-  };
-  display_string: string;
-  max_value: number;
-  min_value: number;
-}
-
 interface Recipe {
   item: RecipeItem;
-  reagents: Array<{ quantity: number } & NameIdKey>;
+  reagents: Array<NameIdKey & { quantity: number }>;
   reagents_display_string: string;
 }
 
@@ -191,100 +244,47 @@ interface RecipeItemDisplayStrings {
   silver: string;
 }
 
-/**
- * The response for an item class index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
-export interface ItemClassIndexResponse extends ResponseBase {
-  item_classes: Array<NameIdKey>;
+interface Requirements {
+  level: Durability;
 }
 
-/**
- * The response for an item class.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
-export interface ItemClassResponse extends ResponseBase {
-  class_id: number;
-  item_subclasses: Array<NameIdKey>;
-  name: string;
+interface Spell {
+  description: string;
+  spell: NameIdKey;
 }
 
-/**
- * The response for an item media.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
-export interface ItemMediaResponse extends ResponseBase {
-  assets: Array<MediaAsset>;
-  id: number;
-}
-
-/**
- * The response for an item subclass.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
-export interface ItemSubClassResponse extends ResponseBase {
-  class_id: number;
-  display_name: string;
-  hide_subclass_in_tooltips: boolean;
-  subclass_id: number;
-  verbose_name: string;
-}
-
-/**
- * The response for an item set index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
-export interface ItemSetIndexResponse extends ResponseBase {
-  item_sets: Array<NameIdKey>;
-}
-
-/**
- * The response for an item set.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
-export interface ItemSetResponse extends ResponseBase {
-  effects: Array<Effect>;
-  id: number;
-  items: Array<NameIdKey>;
-  name: string;
-}
-
-interface Effect {
-  display_string: string;
-  required_count: number;
-}
-
-/**
- * The parameters for an item search.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
- */
-export interface ItemSearchParameters extends BaseSearchParameters {
-  locale: Locales;
-  name: string;
-}
-
-/**
- * The response for an item search.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
- */
-export interface ItemSearchResponseItem extends KeyBase {
-  data: {
-    id: number;
-    inventory_type: InventoryType;
-    is_equippable: boolean;
-    is_stackable: boolean;
-    item_class: { id: number; name: Record<Locales, string | undefined> };
-    item_subclass: { id: number; name: Record<Locales, string | undefined> };
-    level: number;
-    max_count: number;
-    media: { id: number };
-    name: Record<Locales, string | undefined>;
-    purchase_price: number;
-    purchase_quantity: number;
-    quality: ItemQuality;
-    required_level: number;
-    sell_price: number;
+interface Stat {
+  display: Display;
+  is_negated?: boolean;
+  type: {
+    name: StatType;
+    type: StatTypeCapitalized;
   };
+  value: number;
+}
+
+type StatType =
+  | 'Agility'
+  | 'Critical Strike'
+  | 'Haste'
+  | 'Intellect'
+  | 'Mastery'
+  | 'Stamina'
+  | 'Strength'
+  | 'Versatility';
+
+type StatTypeCapitalized =
+  | 'AGILITY'
+  | 'CRIT_RATING'
+  | 'HASTE_RATING'
+  | 'INTELLECT'
+  | 'MASTERY'
+  | 'STAMINA'
+  | 'STRENGTH'
+  | 'VERSATILITY';
+
+interface Weapon {
+  attack_speed: Durability;
+  damage: Damage;
+  dps: Durability;
 }

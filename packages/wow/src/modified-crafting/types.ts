@@ -1,18 +1,18 @@
 import type { KeyBase, NameId, NameIdKey, ResponseBase } from '../base';
 
 /**
- * The response for a modified crafting category.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
-export interface ModifiedCraftingCategoryResponse extends ResponseBase, NameId {}
-
-/**
  * The response for a modified crafting category index.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface ModifiedCraftingCategoryIndexResponse extends ResponseBase {
   categories: Array<NameIdKey>;
 }
+
+/**
+ * The response for a modified crafting category.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
+export interface ModifiedCraftingCategoryResponse extends NameId, ResponseBase {}
 
 /**
  * The response for a modified crafting index.
@@ -31,11 +31,6 @@ export interface ModifiedCraftingReagentSlotTypeIndexResponse extends ResponseBa
   slot_types: Array<SlotType>;
 }
 
-interface SlotType extends KeyBase {
-  id: number;
-  name?: string;
-}
-
 /**
  * The response for a modified crafting reagent slot type.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
@@ -44,4 +39,9 @@ export interface ModifiedCraftingReagentSlotTypeResponse extends ResponseBase {
   compatible_categories: Array<NameIdKey>;
   description: string;
   id: number;
+}
+
+interface SlotType extends KeyBase {
+  id: number;
+  name?: string;
 }

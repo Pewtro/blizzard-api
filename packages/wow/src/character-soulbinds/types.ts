@@ -7,6 +7,16 @@ export interface CharacterSoulbindsResponse extends ResponseBase {
   soulbinds: Array<Soulbind>;
 }
 
+interface ConduitSocket {
+  socket: Socket;
+  type: TypeClass;
+}
+
+interface Socket {
+  conduit: NameIdKey;
+  rank: number;
+}
+
 interface Soulbind {
   is_active?: boolean;
   soulbind: NameIdKey;
@@ -18,16 +28,6 @@ interface Trait {
   display_order: number;
   tier: number;
   trait?: NameIdKey;
-}
-
-interface ConduitSocket {
-  socket: Socket;
-  type: TypeClass;
-}
-
-interface Socket {
-  conduit: NameIdKey;
-  rank: number;
 }
 
 interface TypeClass {

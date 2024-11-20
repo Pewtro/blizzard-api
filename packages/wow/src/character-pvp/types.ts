@@ -7,13 +7,13 @@ export interface CharacterPvpSummaryResponse extends ResponseBase {
   pvp_map_statistics: Array<PvpMapStatistic>;
 }
 
-interface PvpMapStatistic {
-  match_statistics: MatchStatistics;
-  world_map: NameId;
-}
-
 interface MatchStatistics {
   lost: number;
   played: number;
   won: number;
+}
+
+interface PvpMapStatistic {
+  match_statistics: MatchStatistics;
+  world_map: NameId;
 }

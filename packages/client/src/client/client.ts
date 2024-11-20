@@ -27,8 +27,6 @@ import type {
  * });
  */
 export class BlizzardApiClient implements IBlizzardApiClient {
-  private axios = axios.create();
-
   public defaults: {
     key: string;
     locale: Locales;
@@ -36,6 +34,8 @@ export class BlizzardApiClient implements IBlizzardApiClient {
     secret: string;
     token?: string;
   };
+
+  private axios = axios.create();
 
   /**
    * Get an access token.
@@ -102,6 +102,17 @@ export class BlizzardApiClient implements IBlizzardApiClient {
    * console.log(response.data.client_id);
    * // => 'client-id'
    */
+  constructor(options: ClientOptions) {
+    const { locale, origin } = getBlizzardApi(options.origin, options.locale);
+    this.defaults = {
+      key: options.key,
+      locale: locale,
+      origin: origin,
+      secret: options.secret,
+      token: options.token,
+    };
+  }
+
   public validateAccessToken = async (
     options?: ValidateAccessTokenArguments,
   ): Promise<AxiosResponse<ValidateAccessTokenResponse>> => {
@@ -121,17 +132,6 @@ export class BlizzardApiClient implements IBlizzardApiClient {
       },
     );
   };
-
-  constructor(options: ClientOptions) {
-    const { locale, origin } = getBlizzardApi(options.origin, options.locale);
-    this.defaults = {
-      key: options.key,
-      locale: locale,
-      origin: origin,
-      secret: options.secret,
-      token: options.token,
-    };
-  }
 
   /**
    * Get the request configuration.

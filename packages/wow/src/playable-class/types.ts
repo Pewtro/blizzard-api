@@ -9,23 +9,6 @@ export interface PlayableClassIndexResponse extends ResponseBase {
 }
 
 /**
- * The response for a playable class.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
-export interface PlayableClassResponse extends ResponseBase, NameId {
-  gender_name: GenderName;
-  media: Media;
-  playable_races: Array<NameIdKey>;
-  power_type: NameIdKey;
-  pvp_talent_slots: { href: string };
-  specializations: Array<NameIdKey>;
-}
-
-interface Media extends KeyBase {
-  id: number;
-}
-
-/**
  * The response for playable class media.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
@@ -35,11 +18,28 @@ export interface PlayableClassMediaResponse extends ResponseBase {
 }
 
 /**
+ * The response for a playable class.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
+export interface PlayableClassResponse extends NameId, ResponseBase {
+  gender_name: GenderName;
+  media: Media;
+  playable_races: Array<NameIdKey>;
+  power_type: NameIdKey;
+  pvp_talent_slots: { href: string };
+  specializations: Array<NameIdKey>;
+}
+
+/**
  * The response for a playable class's PvP talent slots.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface PvpTalentSlotsResponse extends ResponseBase {
   talent_slots: Array<TalentSlot>;
+}
+
+interface Media extends KeyBase {
+  id: number;
 }
 
 interface TalentSlot {

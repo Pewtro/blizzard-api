@@ -11,16 +11,18 @@ import type {
 } from './types';
 
 /**
- * Get an item class index.
+ * Get an item by ID.
  * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
- * @returns The item class index. See {@link ItemClassIndexResponse}.
+ * @param itemId The item ID.
+ * @returns The item. See {@link ItemResponse}.
  */
-export function itemClassIndex(
-  namespace: Extract<BlizzardNamespaces, 'static-classic' | 'static-classic1x'>,
-): Resource<ItemClassIndexResponse> {
+export function item(
+  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
+  itemId: number,
+): Resource<ItemResponse> {
   return {
     namespace,
-    path: `${base}/item-class/index`,
+    path: `${base}/item/${itemId}`,
   };
 }
 /**
@@ -30,7 +32,7 @@ export function itemClassIndex(
  * @returns The item class. See {@link ItemClassResponse}.
  */
 export function itemClass(
-  namespace: Extract<BlizzardNamespaces, 'static-classic' | 'static-classic1x'>,
+  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
   itemClassId: number,
 ): Resource<ItemClassResponse> {
   return {
@@ -39,35 +41,16 @@ export function itemClass(
   };
 }
 /**
- * Get an item subclass by ID.
+ * Get an item class index.
  * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
- * @param itemClassId The item class ID.
- * @param itemSubclassId The item subclass ID.
- * @returns The item subclass. See {@link ItemSubClassResponse}.
+ * @returns The item class index. See {@link ItemClassIndexResponse}.
  */
-export function itemSubClass(
-  namespace: Extract<BlizzardNamespaces, 'static-classic' | 'static-classic1x'>,
-  itemClassId: number,
-  itemSubclassId: number,
-): Resource<ItemSubClassResponse> {
+export function itemClassIndex(
+  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
+): Resource<ItemClassIndexResponse> {
   return {
     namespace,
-    path: `${base}/item-class/${itemClassId}/item-subclass/${itemSubclassId}`,
-  };
-}
-/**
- * Get an item by ID.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
- * @param itemId The item ID.
- * @returns The item. See {@link ItemResponse}.
- */
-export function item(
-  namespace: Extract<BlizzardNamespaces, 'static-classic' | 'static-classic1x'>,
-  itemId: number,
-): Resource<ItemResponse> {
-  return {
-    namespace,
-    path: `${base}/item/${itemId}`,
+    path: `${base}/item-class/index`,
   };
 }
 /**
@@ -77,7 +60,7 @@ export function item(
  * @returns The item media. See {@link ItemMediaResponse}.
  */
 export function itemMedia(
-  namespace: Extract<BlizzardNamespaces, 'static-classic' | 'static-classic1x'>,
+  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
   itemId: number,
 ): Resource<ItemMediaResponse> {
   return {
@@ -92,7 +75,7 @@ export function itemMedia(
  * @returns The search results. See {@link SearchResponse}.
  */
 export function itemSearch(
-  namespace: Extract<BlizzardNamespaces, 'static-classic' | 'static-classic1x'>,
+  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
   options: ItemSearchParameters,
 ): Resource<SearchResponse<ItemSearchResponseItem>, Omit<ItemSearchParameters, 'locale' | 'name'>> {
   return {
@@ -103,5 +86,22 @@ export function itemSearch(
       orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
     },
     path: `${searchBase}/item`,
+  };
+}
+/**
+ * Get an item subclass by ID.
+ * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param itemClassId The item class ID.
+ * @param itemSubclassId The item subclass ID.
+ * @returns The item subclass. See {@link ItemSubClassResponse}.
+ */
+export function itemSubClass(
+  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
+  itemClassId: number,
+  itemSubclassId: number,
+): Resource<ItemSubClassResponse> {
+  return {
+    namespace,
+    path: `${base}/item-class/${itemClassId}/item-subclass/${itemSubclassId}`,
   };
 }

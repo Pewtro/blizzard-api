@@ -1,3 +1,9 @@
+export interface Attributes {
+  other: Array<unknown>;
+  primary: Array<Primary>;
+  secondary: Array<Primary>;
+}
+
 export interface ItemResponse {
   accountBound: boolean;
   attributes: Attributes;
@@ -21,12 +27,6 @@ export interface ItemResponse {
   tooltipParams: string;
   type: Type;
   typeName: string;
-}
-
-export interface Attributes {
-  other: Array<unknown>;
-  primary: Array<Primary>;
-  secondary: Array<Primary>;
 }
 
 export interface Primary {

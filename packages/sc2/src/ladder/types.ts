@@ -2,6 +2,14 @@ export interface GrandmasterLeaderboardResponse {
   ladderTeams: Array<LadderTeam>;
 }
 
+export interface SeasonResponse {
+  endDate: string;
+  number: number;
+  seasonId: number;
+  startDate: string;
+  year: number;
+}
+
 interface LadderTeam {
   joinTimestamp: number;
   losses: number;
@@ -19,12 +27,4 @@ interface TeamMember {
   id: string;
   realm: number;
   region: number;
-}
-
-export interface SeasonResponse {
-  endDate: string;
-  number: number;
-  seasonId: number;
-  startDate: string;
-  year: number;
 }

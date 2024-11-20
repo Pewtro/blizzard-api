@@ -5,17 +5,7 @@ export interface ArtisanResponse {
   training: Training;
 }
 
-interface Training {
-  tiers: Array<Tier>;
-}
-
-interface Tier {
-  taughtRecipes: Array<Recipe>;
-  tier: number;
-  trainedRecipes: Array<Recipe>;
-}
-
-interface Recipe {
+export interface RecipeResponse {
   cost: number;
   id: string;
   itemProduced: Item;
@@ -37,11 +27,21 @@ interface Reagent {
   quantity: number;
 }
 
-export interface RecipeResponse {
+interface Recipe {
   cost: number;
   id: string;
   itemProduced: Item;
   name: string;
   reagents: Array<Reagent>;
   slug: string;
+}
+
+interface Tier {
+  taughtRecipes: Array<Recipe>;
+  tier: number;
+  trainedRecipes: Array<Recipe>;
+}
+
+interface Training {
+  tiers: Array<Tier>;
 }

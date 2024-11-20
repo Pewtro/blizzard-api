@@ -44,6 +44,11 @@ interface Member {
   specialization: Specialization;
 }
 
+interface MythicRating {
+  color: Color;
+  rating: number;
+}
+
 interface Profile extends NameId {
   realm: Realm;
 }
@@ -55,9 +60,4 @@ interface Realm extends KeyBase {
 
 interface Specialization extends KeyBase {
   id: number;
-}
-
-interface MythicRating {
-  color: Color;
-  rating: number;
 }

@@ -76,8 +76,8 @@ import {
   creatureType,
   creatureTypeIndex,
 } from './creature/creature';
-import { guild, guildAchievements, guildActivity, guildRoster } from './guild/guild';
 import { guildCrestBorder, guildCrestComponentsIndex, guildCrestEmblem } from './guild-crest/guild-crest';
+import { guild, guildAchievements, guildActivity, guildRoster } from './guild/guild';
 import { heirloom, heirloomIndex } from './heirloom/heirloom';
 import {
   item,

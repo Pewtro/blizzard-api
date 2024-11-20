@@ -8,13 +8,15 @@ import type {
   LegacyRewardsResponse,
 } from './types';
 
-export function legacyProfile(
-  regionId: StarcraftRegion,
-  realmId: 1 | 2,
-  profileId: number,
-): Resource<LegacyProfileResponse> {
+export function legacyAchievements(regionId: StarcraftRegion): Resource<LegacyAchievementsResponse> {
   return {
-    path: `/sc2/legacy/profile/${starcraftRegion[regionId]}/${realmId}/${profileId}`,
+    path: `/sc2/legacy/data/achievements/${starcraftRegion[regionId]}`,
+  };
+}
+
+export function legacyLadder(regionId: StarcraftRegion, ladderId: number): Resource<unknown> {
+  return {
+    path: `/sc2/legacy/ladder/${starcraftRegion[regionId]}/${ladderId}`,
   };
 }
 
@@ -38,15 +40,13 @@ export function legacyMatchHistory(
   };
 }
 
-export function legacyLadder(regionId: StarcraftRegion, ladderId: number): Resource<unknown> {
+export function legacyProfile(
+  regionId: StarcraftRegion,
+  realmId: 1 | 2,
+  profileId: number,
+): Resource<LegacyProfileResponse> {
   return {
-    path: `/sc2/legacy/ladder/${starcraftRegion[regionId]}/${ladderId}`,
-  };
-}
-
-export function legacyAchievements(regionId: StarcraftRegion): Resource<LegacyAchievementsResponse> {
-  return {
-    path: `/sc2/legacy/data/achievements/${starcraftRegion[regionId]}`,
+    path: `/sc2/legacy/profile/${starcraftRegion[regionId]}/${realmId}/${profileId}`,
   };
 }
 

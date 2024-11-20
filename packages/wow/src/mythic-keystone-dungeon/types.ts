@@ -12,21 +12,12 @@ export interface MythicKeystoneDungeonIndexResponse extends ResponseBase {
  * The response for a Mythic Keystone dungeon.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface MythicKeystoneDungeonResponse extends ResponseBase, NameId {
+export interface MythicKeystoneDungeonResponse extends NameId, ResponseBase {
   dungeon: NameIdKey;
   is_tracked: boolean;
   keystone_upgrades: Array<KeystoneUpgrade>;
   map: NameId;
   zone: Zone;
-}
-
-interface KeystoneUpgrade {
-  qualifying_duration: number;
-  upgrade_level: number;
-}
-
-interface Zone {
-  slug: string;
 }
 
 /**
@@ -45,10 +36,6 @@ export interface MythicKeystoneIndexResponse extends ResponseBase {
 export interface MythicKeystonePeriodIndexResponse extends ResponseBase {
   current_period: Period;
   periods: Array<Period>;
-}
-
-interface Period extends KeyBase {
-  id: number;
 }
 
 /**
@@ -80,4 +67,17 @@ export interface MythicKeystoneSeasonResponse extends ResponseBase {
   periods: Array<Period>;
   season_name: null | string;
   start_timestamp: number;
+}
+
+interface KeystoneUpgrade {
+  qualifying_duration: number;
+  upgrade_level: number;
+}
+
+interface Period extends KeyBase {
+  id: number;
+}
+
+interface Zone {
+  slug: string;
 }

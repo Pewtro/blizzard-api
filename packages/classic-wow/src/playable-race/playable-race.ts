@@ -9,7 +9,7 @@ import type { PlayableRaceIndexResponse, PlayableRaceResponse } from './types';
  * @returns The playable race. See {@link PlayableRaceResponse}.
  */
 export function playableRace(
-  namespace: Extract<BlizzardNamespaces, 'static-classic' | 'static-classic1x'>,
+  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
   playableRaceId: number,
 ): Resource<PlayableRaceResponse> {
   return {
@@ -23,7 +23,7 @@ export function playableRace(
  * @returns The playable race index. See {@link PlayableRaceIndexResponse}.
  */
 export function playableRaceIndex(
-  namespace: Extract<BlizzardNamespaces, 'static-classic' | 'static-classic1x'>,
+  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
 ): Resource<PlayableRaceIndexResponse> {
   return {
     namespace,

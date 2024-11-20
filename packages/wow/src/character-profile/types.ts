@@ -1,11 +1,16 @@
 import type { Faction, Href, NameIdKey, Realm, ResponseBase } from '../base';
 
+export interface CharacterProfileStatusResponse extends ResponseBase {
+  id: number;
+  is_valid: boolean;
+}
+
 export interface CharacterProfileSummaryResponse extends ResponseBase {
   achievement_points: number;
   achievements: Href;
   achievements_statistics: Href;
   active_spec: NameIdKey;
-  active_title: { display_string: string } & NameIdKey;
+  active_title: NameIdKey & { display_string: string };
   appearance: Href;
   average_item_level: number;
   character_class: NameIdKey;
@@ -46,9 +51,4 @@ interface CovenantProgress {
 interface Guild extends NameIdKey {
   faction: Faction;
   realm: Realm;
-}
-
-export interface CharacterProfileStatusResponse extends ResponseBase {
-  id: number;
-  is_valid: boolean;
 }

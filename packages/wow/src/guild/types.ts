@@ -1,5 +1,19 @@
 import type { Character, Color, Faction, Href, KeyBase, NameIdKey, Realm, ResponseBase } from '../base';
 
+export interface GuildAchievementsResponse extends ResponseBase {
+  achievements: Array<Achievement>;
+  category_progress: Array<CategoryProgress>;
+  guild: Guild;
+  recent_events: Array<RecentEvent>;
+  total_points: number;
+  total_quantity: number;
+}
+
+export interface GuildActivityResponse extends ResponseBase {
+  activities: Array<ActivityElement>;
+  guild: Guild;
+}
+
 export interface GuildResponse extends ResponseBase {
   achievement_points: number;
   achievements: Href;
@@ -15,51 +29,9 @@ export interface GuildResponse extends ResponseBase {
   roster: Href;
 }
 
-interface Crest {
-  background: { color: RgbWithId };
-  border: Border;
-  emblem: Border;
-}
-
-interface RgbWithId {
-  id: number;
-  rgba: Color;
-}
-
-interface Border {
-  color: RgbWithId;
-  id: number;
-  media: { id: number } & KeyBase;
-}
-
-export interface GuildActivityResponse extends ResponseBase {
-  activities: Array<ActivityElement>;
+export interface GuildRosterResponse extends ResponseBase {
   guild: Guild;
-}
-
-interface ActivityElement {
-  activity: { type: string };
-  character_achievement: CharacterAchievement;
-  timestamp: number;
-}
-
-interface CharacterAchievement {
-  achievement: NameIdKey;
-  character: Character;
-}
-
-interface Guild extends NameIdKey {
-  faction: Faction;
-  realm: Realm;
-}
-
-export interface GuildAchievementsResponse extends ResponseBase {
-  achievements: Array<Achievement>;
-  category_progress: Array<CategoryProgress>;
-  guild: Guild;
-  recent_events: Array<RecentEvent>;
-  total_points: number;
-  total_quantity: number;
+  members: Array<Member>;
 }
 
 interface Achievement {
@@ -69,11 +41,16 @@ interface Achievement {
   id: number;
 }
 
-interface Criteria {
-  amount?: number;
-  child_criteria?: Array<Criteria>;
+interface ActivityElement {
+  activity: { type: string };
+  character_achievement: CharacterAchievement;
+  timestamp: number;
+}
+
+interface Border {
+  color: RgbWithId;
   id: number;
-  is_completed: boolean;
+  media: KeyBase & { id: number };
 }
 
 interface CategoryProgress {
@@ -82,14 +59,27 @@ interface CategoryProgress {
   quantity: number;
 }
 
-interface RecentEvent {
+interface CharacterAchievement {
   achievement: NameIdKey;
-  timestamp: number;
+  character: Character;
 }
 
-export interface GuildRosterResponse extends ResponseBase {
-  guild: Guild;
-  members: Array<Member>;
+interface Crest {
+  background: { color: RgbWithId };
+  border: Border;
+  emblem: Border;
+}
+
+interface Criteria {
+  amount?: number;
+  child_criteria?: Array<Criteria>;
+  id: number;
+  is_completed: boolean;
+}
+
+interface Guild extends NameIdKey {
+  faction: Faction;
+  realm: Realm;
 }
 
 interface Member {
@@ -97,12 +87,22 @@ interface Member {
   rank: number;
 }
 
+interface Playable extends KeyBase {
+  id: number;
+}
+
+interface RecentEvent {
+  achievement: NameIdKey;
+  timestamp: number;
+}
+
+interface RgbWithId {
+  id: number;
+  rgba: Color;
+}
+
 interface RosterMemberCharacter extends Character {
   level: number;
   playable_class: Playable;
   playable_race: Playable;
-}
-
-interface Playable extends KeyBase {
-  id: number;
 }

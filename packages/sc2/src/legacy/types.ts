@@ -1,3 +1,18 @@
+export interface LegacyAchievementsResponse {
+  achievements: Array<Achievement>;
+  categories: Array<Category>;
+}
+
+export interface LegacyLaddersResponse {
+  currentSeason: Array<unknown>;
+  previousSeason: Array<unknown>;
+  showcasePlacement: Array<unknown>;
+}
+
+export interface LegacyMatchHistoryResponse {
+  matches: Array<Match>;
+}
+
 export interface LegacyProfileResponse {
   achievements: Achievements;
   campaign: Campaign;
@@ -14,6 +29,24 @@ export interface LegacyProfileResponse {
   swarmLevels: SwarmLevels;
 }
 
+export interface LegacyRewardsResponse {
+  animations: Array<Animation>;
+  portraits: Array<Animation>;
+  protossDecals: Array<Animation>;
+  skins: Array<Animation>;
+  terranDecals: Array<Animation>;
+  zergDecals: Array<Animation>;
+}
+
+interface Achievement {
+  achievementId: string;
+  categoryId: string;
+  description: string;
+  icon: Icon;
+  points: number;
+  title: string;
+}
+
 interface Achievements {
   achievements: Array<{
     achievementId: string;
@@ -22,9 +55,13 @@ interface Achievements {
   points: Points;
 }
 
-interface Points {
-  categoryPoints: Record<string, number>;
-  totalPoints: number;
+interface Animation {
+  achievementId: string;
+  command?: '/dance';
+  icon: Icon;
+  id: string;
+  name?: string;
+  title: string;
 }
 
 interface Campaign {
@@ -43,6 +80,13 @@ interface Career {
   zergWins: number;
 }
 
+interface Category {
+  categoryId: string;
+  children?: Array<Category>;
+  featuredAchievementId: string;
+  title: string;
+}
+
 interface Icon {
   h: number;
   offset: number;
@@ -50,6 +94,19 @@ interface Icon {
   w: number;
   x: number;
   y: number;
+}
+
+interface Match {
+  date: number;
+  decision: 'Left' | 'Loss' | 'Win';
+  map: string;
+  speed: 'Fast' | 'Faster';
+  type: '2v2' | '3v3' | 'Co-Op' | 'Custom';
+}
+
+interface Points {
+  categoryPoints: Record<string, number>;
+  totalPoints: number;
 }
 
 interface Rewards {
@@ -82,61 +139,4 @@ interface SwarmLevelsByRace {
   currentLevelXP: number;
   level: number;
   totalLevelXP: number;
-}
-
-export interface LegacyLaddersResponse {
-  currentSeason: Array<unknown>;
-  previousSeason: Array<unknown>;
-  showcasePlacement: Array<unknown>;
-}
-
-export interface LegacyMatchHistoryResponse {
-  matches: Array<Match>;
-}
-
-interface Match {
-  date: number;
-  decision: 'Left' | 'Loss' | 'Win';
-  map: string;
-  speed: 'Fast' | 'Faster';
-  type: '2v2' | '3v3' | 'Co-Op' | 'Custom';
-}
-
-export interface LegacyAchievementsResponse {
-  achievements: Array<Achievement>;
-  categories: Array<Category>;
-}
-
-interface Achievement {
-  achievementId: string;
-  categoryId: string;
-  description: string;
-  icon: Icon;
-  points: number;
-  title: string;
-}
-
-interface Category {
-  categoryId: string;
-  children?: Array<Category>;
-  featuredAchievementId: string;
-  title: string;
-}
-
-export interface LegacyRewardsResponse {
-  animations: Array<Animation>;
-  portraits: Array<Animation>;
-  protossDecals: Array<Animation>;
-  skins: Array<Animation>;
-  terranDecals: Array<Animation>;
-  zergDecals: Array<Animation>;
-}
-
-interface Animation {
-  achievementId: string;
-  command?: '/dance';
-  icon: Icon;
-  id: string;
-  name?: string;
-  title: string;
 }

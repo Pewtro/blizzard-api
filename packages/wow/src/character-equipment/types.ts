@@ -6,11 +6,28 @@ export interface CharacterEquipmentSummaryResponse extends ResponseBase {
   equipped_items: Array<EquippedItem>;
 }
 
-interface Set {
+interface Armor {
+  display: NameDescription;
+  value: number;
+}
+
+interface Damage {
+  damage_class: NameType;
   display_string: string;
-  effects: Array<Effect>;
-  item_set: NameIdKey;
-  items: Array<ItemElement>;
+  max_value: number;
+  min_value: number;
+}
+
+interface DisplayStrings {
+  copper: string;
+  gold: string;
+  header: string;
+  silver: string;
+}
+
+interface DisplayStringValue {
+  display_string: string;
+  value: number;
 }
 
 interface Effect {
@@ -19,8 +36,16 @@ interface Effect {
   required_count: number;
 }
 
-interface ItemElement extends NameIdKey {
-  is_equipped?: boolean;
+interface Enchantment {
+  display_string: string;
+  enchantment_id: number;
+  enchantment_slot: EnchantmentSlot;
+  source_item?: NameIdKey;
+}
+
+interface EnchantmentSlot {
+  id: number;
+  type: string;
 }
 
 interface EquippedItem {
@@ -33,12 +58,12 @@ interface EquippedItem {
   enchantments?: Array<Enchantment>;
   inventory_type: NameType;
   is_subclass_hidden?: boolean;
-  item: { id: number } & KeyBase;
+  item: KeyBase & { id: number };
   item_class: NameIdKey;
   item_subclass: NameIdKey;
   level: DisplayStringValue;
   limit_category?: string;
-  media: { id: number } & KeyBase;
+  media: KeyBase & { id: number };
   modified_appearance_id?: number;
   modified_crafting_stat?: Array<ModifiedCraftingStat>;
   name: string;
@@ -57,9 +82,14 @@ interface EquippedItem {
   weapon?: Weapon;
 }
 
-interface Armor {
-  display: NameDescription;
-  value: number;
+interface ItemElement extends NameIdKey {
+  is_equipped?: boolean;
+}
+
+interface ModifiedCraftingStat {
+  id: number;
+  name: string;
+  type: string;
 }
 
 interface NameDescription {
@@ -72,27 +102,9 @@ interface NameType {
   type: string;
 }
 
-interface DisplayStringValue {
+interface PlayableClasses {
   display_string: string;
-  value: number;
-}
-
-interface Enchantment {
-  display_string: string;
-  enchantment_id: number;
-  enchantment_slot: EnchantmentSlot;
-  source_item?: NameIdKey;
-}
-
-interface EnchantmentSlot {
-  id: number;
-  type: string;
-}
-
-interface ModifiedCraftingStat {
-  id: number;
-  name: string;
-  type: string;
+  links: Array<NameIdKey>;
 }
 
 interface Requirements {
@@ -100,27 +112,22 @@ interface Requirements {
   playable_classes?: PlayableClasses;
 }
 
-interface PlayableClasses {
-  display_string: string;
-  links: Array<NameIdKey>;
-}
-
 interface SellPrice {
   display_strings: DisplayStrings;
   value: number;
 }
 
-interface DisplayStrings {
-  copper: string;
-  gold: string;
-  header: string;
-  silver: string;
+interface Set {
+  display_string: string;
+  effects: Array<Effect>;
+  item_set: NameIdKey;
+  items: Array<ItemElement>;
 }
 
 interface Socket {
   display_string: string;
   item: NameIdKey;
-  media: { id: number } & KeyBase;
+  media: KeyBase & { id: number };
   socket_type: NameType;
 }
 
@@ -147,11 +154,4 @@ interface Weapon {
   attack_speed: DisplayStringValue;
   damage: Damage;
   dps: DisplayStringValue;
-}
-
-interface Damage {
-  damage_class: NameType;
-  display_string: string;
-  max_value: number;
-  min_value: number;
 }

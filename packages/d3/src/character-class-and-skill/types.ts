@@ -8,9 +8,18 @@ export interface CharacterClassResponse {
   slug: string;
 }
 
-interface SkillCategory {
+export interface SkillResponse {
+  runes: Array<Rune>;
+  skill: Skill;
+}
+
+interface Rune {
+  description: string;
+  descriptionHtml: string;
+  level: number;
   name: string;
   slug: string;
+  type: string;
 }
 
 interface Skill {
@@ -24,16 +33,7 @@ interface Skill {
   tooltipUrl: string;
 }
 
-export interface SkillResponse {
-  runes: Array<Rune>;
-  skill: Skill;
-}
-
-interface Rune {
-  description: string;
-  descriptionHtml: string;
-  level: number;
+interface SkillCategory {
   name: string;
   slug: string;
-  type: string;
 }

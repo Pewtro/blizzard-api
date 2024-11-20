@@ -86,7 +86,7 @@ const classicWow = {
   region,
   regionIndex,
 };
-export { classicWow as default, classicWow };
+export { classicWow, classicWow as default };
 
 //Auction House
 export * from './auction-house/auction-house';

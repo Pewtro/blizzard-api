@@ -9,7 +9,7 @@ import type { PowerTypeIndexResponse, PowerTypeResponse } from './types';
  * @returns The power type. See {@link PowerTypeResponse}.
  */
 export function powerType(
-  namespace: Extract<BlizzardNamespaces, 'static-classic' | 'static-classic1x'>,
+  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
   powerTypeId: number,
 ): Resource<PowerTypeResponse> {
   return {
@@ -23,7 +23,7 @@ export function powerType(
  * @returns The power type index. See {@link PowerTypeIndexResponse}.
  */
 export function powerTypeIndex(
-  namespace: Extract<BlizzardNamespaces, 'static-classic' | 'static-classic1x'>,
+  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
 ): Resource<PowerTypeIndexResponse> {
   return {
     namespace,

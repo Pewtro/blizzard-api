@@ -40,15 +40,6 @@ export interface TalentResponse extends ResponseBase {
   spell: NameIdKey;
 }
 
-interface PlayableClass extends KeyBase {
-  id: number;
-}
-
-interface RankDescription {
-  description: null;
-  rank: number;
-}
-
 /**
  * The response for a talent tree index.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
@@ -58,21 +49,32 @@ export interface TalentTreeIndexResponse extends ResponseBase {
   spec_talent_trees: Array<TalentTree>;
 }
 
-interface TalentTree extends KeyBase {
-  name: string;
+/**
+ * The response for a talent tree nodes.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
+export interface TalentTreeNodesResponse extends ResponseBase {
+  id: number;
+  spec_talent_trees: Array<SpecTalentTree>;
+  talent_nodes: Array<TalentNode>;
 }
 
 /**
  * The response for a talent tree.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface TalentTreeResponse extends ResponseBase, NameId {
+export interface TalentTreeResponse extends NameId, ResponseBase {
   class_talent_nodes: Array<ClassTalentNode>;
   media: { href: string };
   playable_class: NameIdKey;
   playable_specialization: NameIdKey;
   restriction_lines: Array<RestrictionLine>;
   spec_talent_nodes: Array<SpecTalentNode>;
+}
+
+interface ChoiceOfTooltip {
+  spell_tooltip: PurpleSpellTooltip;
+  talent: NameIdKey;
 }
 
 interface ClassTalentNode {
@@ -87,11 +89,6 @@ interface ClassTalentNode {
   unlocks?: Array<number>;
 }
 
-interface NodeType {
-  id: number;
-  type: 'ACTIVE' | 'CHOICE' | 'PASSIVE';
-}
-
 interface ClassTalentNodeRank {
   choice_of_tooltips?: Array<Tooltip>;
   default_points?: number;
@@ -99,18 +96,30 @@ interface ClassTalentNodeRank {
   tooltip?: Tooltip;
 }
 
-interface Tooltip {
-  spell_tooltip: TooltipSpellTooltip;
-  talent: NameIdKey;
+interface NodeType {
+  id: number;
+  type: 'ACTIVE' | 'CHOICE' | 'PASSIVE';
 }
 
-interface TooltipSpellTooltip {
+interface PlayableClass extends KeyBase {
+  id: number;
+}
+
+interface PurpleSpellTooltip {
   cast_time: string;
-  cooldown?: string;
   description: string;
-  power_cost?: string;
-  range?: string;
   spell: NameIdKey;
+}
+
+interface Rank {
+  choice_of_tooltips?: Array<Tooltip>;
+  rank: number;
+  tooltip?: Tooltip;
+}
+
+interface RankDescription {
+  description: null;
+  rank: number;
 }
 
 interface RestrictionLine {
@@ -137,27 +146,6 @@ interface SpecTalentNodeRank {
   tooltip?: Tooltip;
 }
 
-interface ChoiceOfTooltip {
-  spell_tooltip: PurpleSpellTooltip;
-  talent: NameIdKey;
-}
-
-interface PurpleSpellTooltip {
-  cast_time: string;
-  description: string;
-  spell: NameIdKey;
-}
-
-/**
- * The response for a talent tree nodes.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
-export interface TalentTreeNodesResponse extends ResponseBase {
-  id: number;
-  spec_talent_trees: Array<SpecTalentTree>;
-  talent_nodes: Array<TalentNode>;
-}
-
 interface SpecTalentTree extends KeyBase {
   name: string;
 }
@@ -172,8 +160,20 @@ interface TalentNode {
   raw_position_y: number;
 }
 
-interface Rank {
-  choice_of_tooltips?: Array<Tooltip>;
-  rank: number;
-  tooltip?: Tooltip;
+interface TalentTree extends KeyBase {
+  name: string;
+}
+
+interface Tooltip {
+  spell_tooltip: TooltipSpellTooltip;
+  talent: NameIdKey;
+}
+
+interface TooltipSpellTooltip {
+  cast_time: string;
+  cooldown?: string;
+  description: string;
+  power_cost?: string;
+  range?: string;
+  spell: NameIdKey;
 }

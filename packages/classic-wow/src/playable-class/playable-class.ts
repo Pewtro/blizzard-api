@@ -9,7 +9,7 @@ import type { PlayableClassIndexResponse, PlayableClassMediaResponse, PlayableCl
  * @returns The playable class. See {@link PlayableClassResponse}.
  */
 export function playableClass(
-  namespace: Extract<BlizzardNamespaces, 'static-classic' | 'static-classic1x'>,
+  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
   playableClassId: number,
 ): Resource<PlayableClassResponse> {
   return {
@@ -23,7 +23,7 @@ export function playableClass(
  * @returns The playable class index. See {@link PlayableClassIndexResponse}.
  */
 export function playableClassIndex(
-  namespace: Extract<BlizzardNamespaces, 'static-classic' | 'static-classic1x'>,
+  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
 ): Resource<PlayableClassIndexResponse> {
   return {
     namespace,
@@ -37,7 +37,7 @@ export function playableClassIndex(
  * @returns The playable class media. See {@link PlayableClassMediaResponse}.
  */
 export function playableClassMedia(
-  namespace: Extract<BlizzardNamespaces, 'static-classic' | 'static-classic1x'>,
+  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
   playableClassId: number,
 ): Resource<PlayableClassMediaResponse> {
   return {

@@ -10,10 +10,19 @@ export interface PlayableSpecializationIndexResponse extends ResponseBase {
 }
 
 /**
+ * The response for a playable specialization media.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
+export interface PlayableSpecializationMediaResponse extends ResponseBase {
+  assets: Array<MediaAsset>;
+  id: number;
+}
+
+/**
  * The response for a playable specialization.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface PlayableSpecializationResponse extends ResponseBase, NameId {
+export interface PlayableSpecializationResponse extends NameId, ResponseBase {
   gender_description: GenderName;
   media: Media;
   playable_class: NameIdKey;
@@ -38,23 +47,14 @@ interface PvpTalent {
   talent: NameIdKey;
 }
 
+interface SpecTalentTree extends KeyBase {
+  name: string;
+}
+
 interface SpellTooltip {
   cast_time: string;
   cooldown?: string;
   description: string;
   power_cost?: string;
   range?: string;
-}
-
-interface SpecTalentTree extends KeyBase {
-  name: string;
-}
-
-/**
- * The response for a playable specialization media.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
-export interface PlayableSpecializationMediaResponse extends ResponseBase {
-  assets: Array<MediaAsset>;
-  id: number;
 }

@@ -7,7 +7,7 @@ export interface CharacterHunterPetsSummaryResponse extends ResponseBase {
 
 interface HunterPet {
   creature: NameIdKey;
-  creature_display: { id: number } & KeyBase;
+  creature_display: KeyBase & { id: number };
   is_active?: boolean;
   is_summoned?: boolean;
   level: number;

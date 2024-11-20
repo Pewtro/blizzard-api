@@ -1,19 +1,11 @@
 import type { ResponseBase } from '../base';
 
-type AuctionHouseTimeLeft = 'LONG' | 'MEDIUM' | 'SHORT' | 'VERY_LONG';
-
-interface AuctionHousePosting {
-  bid: number;
-  buyout: number;
-  id: number;
-  item: {
-    bonus_lists: Array<number>;
-    context: number;
-    id: number;
-    modifiers: Array<{ type: number; value: number }>;
-  };
-  quantity: number;
-  time_left: AuctionHouseTimeLeft;
+/**
+ * Interface for a response from the auction house commodities endpoint.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
+export interface AuctionHouseCommoditiesResponse extends ResponseBase {
+  auctions: Array<AuctionHouseCommodity>;
 }
 
 /**
@@ -38,10 +30,18 @@ interface AuctionHouseCommodity {
   unit_price: number;
 }
 
-/**
- * Interface for a response from the auction house commodities endpoint.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
-export interface AuctionHouseCommoditiesResponse extends ResponseBase {
-  auctions: Array<AuctionHouseCommodity>;
+interface AuctionHousePosting {
+  bid: number;
+  buyout: number;
+  id: number;
+  item: {
+    bonus_lists: Array<number>;
+    context: number;
+    id: number;
+    modifiers: Array<{ type: number; value: number }>;
+  };
+  quantity: number;
+  time_left: AuctionHouseTimeLeft;
 }
+
+type AuctionHouseTimeLeft = 'LONG' | 'MEDIUM' | 'SHORT' | 'VERY_LONG';

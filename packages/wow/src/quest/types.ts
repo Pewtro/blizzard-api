@@ -1,57 +1,6 @@
 import type { Faction, NameIdKey, ResponseBase } from '../base';
 
 /**
- * The response for a quest index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
-export interface QuestIndexResponse extends ResponseBase {
-  areas: { href: string };
-  categories: { href: string };
-  types: { href: string };
-}
-
-/**
- * The response for a quest.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
-export interface QuestResponse extends ResponseBase {
-  area: NameIdKey;
-  description: string;
-  id: number;
-  requirements: Requirements;
-  rewards: Rewards;
-  title: string;
-}
-
-interface Requirements {
-  faction: Faction;
-  max_character_level: number;
-  min_character_level: number;
-}
-
-interface Rewards {
-  experience: number;
-  money: Money;
-  reputations: Array<Reputation>;
-}
-
-interface Money {
-  units: Units;
-  value: number;
-}
-
-interface Units {
-  copper: number;
-  gold: number;
-  silver: number;
-}
-
-interface Reputation {
-  reward: NameIdKey;
-  value: number;
-}
-
-/**
  * The response for a quest area index.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
@@ -88,6 +37,29 @@ export interface QuestCategoryResponse extends ResponseBase {
 }
 
 /**
+ * The response for a quest index.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
+export interface QuestIndexResponse extends ResponseBase {
+  areas: { href: string };
+  categories: { href: string };
+  types: { href: string };
+}
+
+/**
+ * The response for a quest.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
+export interface QuestResponse extends ResponseBase {
+  area: NameIdKey;
+  description: string;
+  id: number;
+  requirements: Requirements;
+  rewards: Rewards;
+  title: string;
+}
+
+/**
  * The response for a quest type index.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
@@ -103,4 +75,32 @@ export interface QuestTypeResponse extends ResponseBase {
   id: number;
   quests: Array<NameIdKey>;
   type: string;
+}
+
+interface Money {
+  units: Units;
+  value: number;
+}
+
+interface Reputation {
+  reward: NameIdKey;
+  value: number;
+}
+
+interface Requirements {
+  faction: Faction;
+  max_character_level: number;
+  min_character_level: number;
+}
+
+interface Rewards {
+  experience: number;
+  money: Money;
+  reputations: Array<Reputation>;
+}
+
+interface Units {
+  copper: number;
+  gold: number;
+  silver: number;
 }

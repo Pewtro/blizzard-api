@@ -9,10 +9,19 @@ export interface PvpTierIndexResponse extends ResponseBase {
 }
 
 /**
+ * The response for a PvP tier media.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
+export interface PvpTierMediaResponse extends ResponseBase {
+  assets: Array<MediaAsset>;
+  id: number;
+}
+
+/**
  * The response for a PvP tier.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface PvpTierResponse extends ResponseBase, NameId {
+export interface PvpTierResponse extends NameId, ResponseBase {
   bracket: Bracket;
   max_rating: number;
   media: Media;
@@ -26,14 +35,5 @@ interface Bracket {
 }
 
 interface Media extends KeyBase {
-  id: number;
-}
-
-/**
- * The response for a PvP tier media.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
-export interface PvpTierMediaResponse extends ResponseBase {
-  assets: Array<MediaAsset>;
   id: number;
 }

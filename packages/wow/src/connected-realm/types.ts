@@ -2,16 +2,50 @@ import type { BaseSearchParameters, Locales } from '@blizzard-api/core';
 import type { KeyBase, NameIdKey, ResponseBase } from '../base';
 import type { RealmCategory, RealmTimezone, RealmType, RealmTypeCapitalized, WithoutUnderscore } from '../realm/types';
 
-type RealmPopulation = 'Full' | 'High' | 'Low' | 'Medium' | 'New Players';
-type RealmPopulationCapitalized = 'FULL' | 'HIGH' | 'LOW' | 'MEDIUM' | 'RECOMMENDED';
-type RealmStatus = 'Down' | 'Up';
-
 /**
  * Connected Realm Index API response.
  * @see https://develop.battle.net/documentation/world-of-warcraft/game-data-apis
  */
 export interface ConnectedRealmIndexResponse extends ResponseBase {
   connected_realms: Array<{ href: string }>;
+}
+/**
+ * Connected Realm API response.
+ * @see https://develop.battle.net/documentation/world-of-warcraft/game-data-apis
+ */
+export interface ConnectedRealmResponse extends ResponseBase {
+  auctions: { href: string };
+  has_queue: boolean;
+  id: number;
+  mythic_leaderboards: { href: string };
+  population: { name: RealmPopulation; type: RealmPopulationCapitalized };
+  realm_locked_status?: RealmLockedStatus;
+  realms: Array<Realm>;
+  status: { name: RealmStatus; type: Uppercase<RealmStatus> };
+}
+/**
+ * Connected Realm Search API parameters.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
+ */
+export interface ConnectedRealmSearchParameters extends BaseSearchParameters {
+  'realms.timezone'?: RealmTimezone;
+  'status.type'?: Uppercase<RealmStatus>;
+}
+
+/**
+ * Connected Realm Search API response item.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
+ */
+export interface ConnectedRealmSearchResponseItem extends KeyBase {
+  data: {
+    has_queue: boolean;
+    id: number;
+    population: SearchRealmPopulation;
+    realms: Array<SearchRealm>;
+    status: SearchRealmStatus;
+  };
 }
 
 interface Realm {
@@ -32,30 +66,11 @@ interface RealmLockedStatus {
   is_locked_for_pct: boolean;
 }
 
-/**
- * Connected Realm API response.
- * @see https://develop.battle.net/documentation/world-of-warcraft/game-data-apis
- */
-export interface ConnectedRealmResponse extends ResponseBase {
-  auctions: { href: string };
-  has_queue: boolean;
-  id: number;
-  mythic_leaderboards: { href: string };
-  population: { name: RealmPopulation; type: RealmPopulationCapitalized };
-  realm_locked_status?: RealmLockedStatus;
-  realms: Array<Realm>;
-  status: { name: RealmStatus; type: Uppercase<RealmStatus> };
-}
+type RealmPopulation = 'Full' | 'High' | 'Low' | 'Medium' | 'New Players';
 
-/**
- * Connected Realm Search API parameters.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
- */
-export interface ConnectedRealmSearchParameters extends BaseSearchParameters {
-  'realms.timezone'?: RealmTimezone;
-  'status.type'?: Uppercase<RealmStatus>;
-}
+type RealmPopulationCapitalized = 'FULL' | 'HIGH' | 'LOW' | 'MEDIUM' | 'RECOMMENDED';
+
+type RealmStatus = 'Down' | 'Up';
 
 interface SearchRealm {
   category: Record<Locales, string | undefined>;
@@ -69,27 +84,12 @@ interface SearchRealm {
   type: { name: Record<Locales, string | undefined>; type: RealmTypeCapitalized };
 }
 
-interface SearchRealmStatus {
-  name: Record<Locales, string>;
-  type: Uppercase<RealmStatus>;
-}
-
 interface SearchRealmPopulation {
   name: Record<Locales, string>;
   type: RealmPopulationCapitalized;
 }
 
-/**
- * Connected Realm Search API response item.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
- */
-export interface ConnectedRealmSearchResponseItem extends KeyBase {
-  data: {
-    has_queue: boolean;
-    id: number;
-    population: SearchRealmPopulation;
-    realms: Array<SearchRealm>;
-    status: SearchRealmStatus;
-  };
+interface SearchRealmStatus {
+  name: Record<Locales, string>;
+  type: Uppercase<RealmStatus>;
 }

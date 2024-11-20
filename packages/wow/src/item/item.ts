@@ -35,18 +35,6 @@ export function itemClass(itemClassId: number): Resource<ItemClassResponse> {
   };
 }
 /**
- * Get an item subclass by ID.
- * @param itemClassId The item class ID.
- * @param itemSubclassId The item subclass ID.
- * @returns The item subclass. See {@link ItemSubClassResponse}.
- */
-export function itemSubClass(itemClassId: number, itemSubclassId: number): Resource<ItemSubClassResponse> {
-  return {
-    namespace: 'static',
-    path: `${base}/item-class/${itemClassId}/item-subclass/${itemSubclassId}`,
-  };
-}
-/**
  * Get an item class index.
  * @returns The item class index. See {@link ItemClassIndexResponse}.
  */
@@ -65,6 +53,24 @@ export function itemMedia(itemId: number): Resource<ItemMediaResponse> {
   return {
     namespace: 'static',
     path: `${mediaBase}/item/${itemId}`,
+  };
+}
+/**
+ * Search for items.
+ * @param options The search parameters. See {@link ItemSearchParameters}.
+ * @returns The search results. See {@link SearchResponse}.
+ */
+export function itemSearch(
+  options: ItemSearchParameters,
+): Resource<SearchResponse<ItemSearchResponseItem>, Omit<ItemSearchParameters, 'locale' | 'name'>> {
+  return {
+    namespace: 'static',
+    parameters: {
+      _page: options._page,
+      [`name.${options.locale}`]: options.name,
+      orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
+    },
+    path: `${searchBase}/item`,
   };
 }
 /**
@@ -89,20 +95,14 @@ export function itemSetIndex(): Resource<ItemSetIndexResponse> {
   };
 }
 /**
- * Search for items.
- * @param options The search parameters. See {@link ItemSearchParameters}.
- * @returns The search results. See {@link SearchResponse}.
+ * Get an item subclass by ID.
+ * @param itemClassId The item class ID.
+ * @param itemSubclassId The item subclass ID.
+ * @returns The item subclass. See {@link ItemSubClassResponse}.
  */
-export function itemSearch(
-  options: ItemSearchParameters,
-): Resource<SearchResponse<ItemSearchResponseItem>, Omit<ItemSearchParameters, 'locale' | 'name'>> {
+export function itemSubClass(itemClassId: number, itemSubclassId: number): Resource<ItemSubClassResponse> {
   return {
     namespace: 'static',
-    parameters: {
-      _page: options._page,
-      [`name.${options.locale}`]: options.name,
-      orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
-    },
-    path: `${searchBase}/item`,
+    path: `${base}/item-class/${itemClassId}/item-subclass/${itemSubclassId}`,
   };
 }

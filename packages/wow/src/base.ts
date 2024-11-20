@@ -23,16 +23,25 @@ export const searchBase = `${base}/search` as const;
  *
  */
 
-export interface Href {
-  href: string;
+/**
+ * A record containing the RGBA values of a color.
+ */
+export interface Color {
+  a: number;
+  b: number;
+  g: number;
+  r: number;
 }
 /**
- * Base interface for Blizzard API responses.
+ * The playable gender names/descriptions in World of Warcraft.
  */
-export interface ResponseBase {
-  _links: {
-    self: Href;
-  };
+export interface GenderName {
+  female: string;
+  male: string;
+}
+
+export interface Href {
+  href: string;
 }
 
 /**
@@ -40,6 +49,15 @@ export interface ResponseBase {
  */
 export interface KeyBase {
   key: Href;
+}
+
+/**
+ * The media asset associated with a character or entity in World of Warcraft.
+ */
+export interface MediaAsset {
+  file_data_id: number;
+  key: string;
+  value: string;
 }
 
 /**
@@ -56,30 +74,12 @@ export interface NameId {
 export interface NameIdKey extends KeyBase, NameId {}
 
 /**
- * A record containing the RGBA values of a color.
+ * Base interface for Blizzard API responses.
  */
-export interface Color {
-  a: number;
-  b: number;
-  g: number;
-  r: number;
-}
-
-/**
- * The media asset associated with a character or entity in World of Warcraft.
- */
-export interface MediaAsset {
-  file_data_id: number;
-  key: string;
-  value: string;
-}
-
-/**
- * The playable gender names/descriptions in World of Warcraft.
- */
-export interface GenderName {
-  female: string;
-  male: string;
+export interface ResponseBase {
+  _links: {
+    self: Href;
+  };
 }
 
 /**
@@ -107,6 +107,13 @@ export const Factions = {
 } as const;
 
 /**
+ * The standard structure to represent a World of Warcraft Character.
+ */
+export interface Character extends NameIdKey {
+  realm: Realm;
+}
+
+/**
  * The faction associated with a character or entity in World of Warcraft.
  */
 export interface Faction {
@@ -119,11 +126,4 @@ export interface Faction {
  */
 export interface Realm extends NameIdKey {
   slug: string;
-}
-
-/**
- * The standard structure to represent a World of Warcraft Character.
- */
-export interface Character extends NameIdKey {
-  realm: Realm;
 }

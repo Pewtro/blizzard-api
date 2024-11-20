@@ -8,31 +8,31 @@ import type {
 } from './types';
 
 /**
- * Returns an index of connected realms.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
- * @returns The connected realm index. See {@link ConnectedRealmIndexResponse}.
- */
-export function connectedRealmIndex(
-  namespace: Extract<BlizzardNamespaces, 'dynamic-classic' | 'dynamic-classic1x'>,
-): Resource<ConnectedRealmIndexResponse> {
-  return {
-    namespace,
-    path: `${base}/connected-realm/index`,
-  };
-}
-/**
  * Returns a connected realm by ID.
  * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
  * @param connectedRealmId The connected realm ID.
  * @returns The connected realm. See {@link ConnectedRealmResponse}.
  */
 export function connectedRealm(
-  namespace: Extract<BlizzardNamespaces, 'dynamic-classic' | 'dynamic-classic1x'>,
+  namespace: Extract<BlizzardNamespaces, 'dynamic-classic1x' | 'dynamic-classic'>,
   connectedRealmId: number,
 ): Resource<ConnectedRealmResponse> {
   return {
     namespace,
     path: `${base}/connected-realm/${connectedRealmId}`,
+  };
+}
+/**
+ * Returns an index of connected realms.
+ * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @returns The connected realm index. See {@link ConnectedRealmIndexResponse}.
+ */
+export function connectedRealmIndex(
+  namespace: Extract<BlizzardNamespaces, 'dynamic-classic1x' | 'dynamic-classic'>,
+): Resource<ConnectedRealmIndexResponse> {
+  return {
+    namespace,
+    path: `${base}/connected-realm/index`,
   };
 }
 /**
@@ -42,7 +42,7 @@ export function connectedRealm(
  * @returns The search results. See {@link SearchResponse} & {@link ConnectedRealmSearchResponseItem}.
  */
 export function connectedRealmSearch(
-  namespace: Extract<BlizzardNamespaces, 'dynamic-classic' | 'dynamic-classic1x'>,
+  namespace: Extract<BlizzardNamespaces, 'dynamic-classic1x' | 'dynamic-classic'>,
   options: ConnectedRealmSearchParameters,
 ): Resource<SearchResponse<ConnectedRealmSearchResponseItem>, ConnectedRealmSearchParameters> {
   return {

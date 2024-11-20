@@ -15,38 +15,6 @@ const accountProfileBase = '/profile/user/wow';
 /**
  * Because this endpoint provides data about the current logged-in user's World of Warcraft account, it requires an access token with the wow.profile scope acquired via the Authorization Code Flow. See {@link https://develop.battle.net/documentation/guides/using-oauth/authorization-code-flow}
  * @param token The OAuth 2.0 access token to use for authentication.
- * @returns a profile summary for an account.
- */
-export function accountProfileSummary(token: string): ProtectedResource<AccountProfileSummaryResponse> {
-  return {
-    namespace: 'profile',
-    path: `${accountProfileBase}`,
-    token,
-  };
-}
-
-/**
- * Because this endpoint provides data about the current logged-in user's World of Warcraft account, it requires an access token with the wow.profile scope acquired via the Authorization Code Flow. See {@link https://develop.battle.net/documentation/guides/using-oauth/authorization-code-flow}
- * @param realmId The realm ID.
- * @param characterId The character ID.
- * @param token The OAuth 2.0 access token to use for authentication.
- * @returns a protected profile summary for a character.
- */
-export function protectedCharacterProfileSummary(
-  realmId: number,
-  characterId: number,
-  token: string,
-): ProtectedResource<ProtectedCharacterProfileSummaryResponse> {
-  return {
-    namespace: 'profile',
-    path: `${accountProfileBase}/protected-character/${realmId}-${characterId}`,
-    token,
-  };
-}
-
-/**
- * Because this endpoint provides data about the current logged-in user's World of Warcraft account, it requires an access token with the wow.profile scope acquired via the Authorization Code Flow. See {@link https://develop.battle.net/documentation/guides/using-oauth/authorization-code-flow}
- * @param token The OAuth 2.0 access token to use for authentication.
  * @returns an index of collection types for an account.
  */
 export function accountCollectionsIndex(token: string): ProtectedResource<AccountCollectionsIndexResponse> {
@@ -103,6 +71,19 @@ export function accountPetsCollectionSummary(token: string): ProtectedResource<A
 /**
  * Because this endpoint provides data about the current logged-in user's World of Warcraft account, it requires an access token with the wow.profile scope acquired via the Authorization Code Flow. See {@link https://develop.battle.net/documentation/guides/using-oauth/authorization-code-flow}
  * @param token The OAuth 2.0 access token to use for authentication.
+ * @returns a profile summary for an account.
+ */
+export function accountProfileSummary(token: string): ProtectedResource<AccountProfileSummaryResponse> {
+  return {
+    namespace: 'profile',
+    path: `${accountProfileBase}`,
+    token,
+  };
+}
+
+/**
+ * Because this endpoint provides data about the current logged-in user's World of Warcraft account, it requires an access token with the wow.profile scope acquired via the Authorization Code Flow. See {@link https://develop.battle.net/documentation/guides/using-oauth/authorization-code-flow}
+ * @param token The OAuth 2.0 access token to use for authentication.
  * @returns a summary of the toys an account has obtained.
  */
 export function accountToysCollectionSummary(token: string): ProtectedResource<AccountToysCollectionSummaryResponse> {
@@ -124,6 +105,25 @@ export function accountTransmogsCollectionSummary(
   return {
     namespace: 'profile',
     path: `${accountProfileBase}/collections/transmogs`,
+    token,
+  };
+}
+
+/**
+ * Because this endpoint provides data about the current logged-in user's World of Warcraft account, it requires an access token with the wow.profile scope acquired via the Authorization Code Flow. See {@link https://develop.battle.net/documentation/guides/using-oauth/authorization-code-flow}
+ * @param realmId The realm ID.
+ * @param characterId The character ID.
+ * @param token The OAuth 2.0 access token to use for authentication.
+ * @returns a protected profile summary for a character.
+ */
+export function protectedCharacterProfileSummary(
+  realmId: number,
+  characterId: number,
+  token: string,
+): ProtectedResource<ProtectedCharacterProfileSummaryResponse> {
+  return {
+    namespace: 'profile',
+    path: `${accountProfileBase}/protected-character/${realmId}-${characterId}`,
     token,
   };
 }

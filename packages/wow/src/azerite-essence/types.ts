@@ -10,33 +10,22 @@ export interface AzeriteEssenceIndexResponse extends ResponseBase {
 }
 
 /**
- * Interface for a response from the azerite essence endpoint.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
-export interface AzeriteEssenceResponse extends ResponseBase, NameId {
-  allowed_specializations: Array<NameIdKey>;
-  media: Media;
-  powers: Array<Power>;
-}
-
-interface Media extends KeyBase {
-  id: number;
-}
-
-interface Power {
-  id: number;
-  main_power_spell: NameIdKey;
-  passive_power_spell: NameIdKey;
-  rank: number;
-}
-
-/**
  * Interface for a response from the azerite essence media endpoint.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface AzeriteEssenceMediaResponse extends ResponseBase {
   assets: Array<MediaAsset>;
   id: number;
+}
+
+/**
+ * Interface for a response from the azerite essence endpoint.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
+export interface AzeriteEssenceResponse extends NameId, ResponseBase {
+  allowed_specializations: Array<NameIdKey>;
+  media: Media;
+  powers: Array<Power>;
 }
 
 /**
@@ -58,4 +47,15 @@ export interface AzeriteEssenceSearchResponseItem extends KeyBase {
     allowed_specializations: Array<NameId>;
     name: Record<Locales, string>;
   };
+}
+
+interface Media extends KeyBase {
+  id: number;
+}
+
+interface Power {
+  id: number;
+  main_power_spell: NameIdKey;
+  passive_power_spell: NameIdKey;
+  rank: number;
 }

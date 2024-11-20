@@ -9,7 +9,7 @@ import type { RegionIndexResponse, RegionResponse } from './types';
  * @returns The region. See {@link RegionResponse}.
  */
 export function region(
-  namespace: Extract<BlizzardNamespaces, 'dynamic-classic' | 'dynamic-classic1x'>,
+  namespace: Extract<BlizzardNamespaces, 'dynamic-classic1x' | 'dynamic-classic'>,
   regionId: number,
 ): Resource<RegionResponse> {
   return {
@@ -23,7 +23,7 @@ export function region(
  * @returns The region index. See {@link RegionIndexResponse}.
  */
 export function regionIndex(
-  namespace: Extract<BlizzardNamespaces, 'dynamic-classic' | 'dynamic-classic1x'>,
+  namespace: Extract<BlizzardNamespaces, 'dynamic-classic1x' | 'dynamic-classic'>,
 ): Resource<RegionIndexResponse> {
   return {
     namespace,

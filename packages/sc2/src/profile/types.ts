@@ -1,3 +1,24 @@
+export interface LadderResponse {
+  allLadderMemberships: Array<unknown>;
+  ladderTeams: Array<unknown>;
+  ranksAndPools: Array<unknown>;
+}
+
+export interface LadderSummaryResponse {
+  allLadderMemberships: Array<unknown>;
+  placementMatches: Array<unknown>;
+  showCaseEntries: Array<unknown>;
+}
+
+export interface MetadataResponse {
+  avatarUrl: string;
+  name: string;
+  profileId: string;
+  profileUrl: string;
+  realmId: number;
+  regionId: number;
+}
+
 export interface StaticProfileResponse {
   achievements: Array<Achievement>;
   categories: Array<Category>;
@@ -51,25 +72,4 @@ interface Reward {
   name: string;
   uiOrderHint: number;
   unlockableType: string;
-}
-
-export interface MetadataResponse {
-  avatarUrl: string;
-  name: string;
-  profileId: string;
-  profileUrl: string;
-  realmId: number;
-  regionId: number;
-}
-
-export interface LadderSummaryResponse {
-  allLadderMemberships: Array<unknown>;
-  placementMatches: Array<unknown>;
-  showCaseEntries: Array<unknown>;
-}
-
-export interface LadderResponse {
-  allLadderMemberships: Array<unknown>;
-  ladderTeams: Array<unknown>;
-  ranksAndPools: Array<unknown>;
 }

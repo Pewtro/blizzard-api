@@ -12,9 +12,10 @@ export interface CharacterAppearanceResponse extends ResponseBase {
   playable_race: NameIdKey;
 }
 
-interface Customization {
-  choice: Choice;
-  option: NameId;
+interface BorderEmblem {
+  color: RGBWithId;
+  id: number;
+  media: KeyBase & { id: number };
 }
 
 interface Choice {
@@ -23,21 +24,15 @@ interface Choice {
   name?: string;
 }
 
+interface Customization {
+  choice: Choice;
+  option: NameId;
+}
+
 interface GuildCrest {
   background: { color: RGBWithId };
   border: BorderEmblem;
   emblem: BorderEmblem;
-}
-
-interface RGBWithId {
-  id: number;
-  rgba: Color;
-}
-
-interface BorderEmblem {
-  color: RGBWithId;
-  id: number;
-  media: { id: number } & KeyBase;
 }
 
 interface Item {
@@ -47,4 +42,9 @@ interface Item {
   item_appearance_modifier_id: number;
   slot: { name: string; type: string };
   subclass: number;
+}
+
+interface RGBWithId {
+  id: number;
+  rgba: Color;
 }

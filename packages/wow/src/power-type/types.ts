@@ -12,4 +12,4 @@ export interface PowerTypeIndexResponse extends ResponseBase {
  * The response for a power type.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface PowerTypeResponse extends ResponseBase, NameId {}
+export interface PowerTypeResponse extends NameId, ResponseBase {}

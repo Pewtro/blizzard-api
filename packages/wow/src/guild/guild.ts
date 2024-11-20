@@ -18,24 +18,24 @@ export function guild(realmSlug: string, nameSlug: string): Resource<GuildRespon
 /**
  * @param realmSlug The slug of the realm.
  * @param nameSlug The lowercase name of the guild.
- * @returns a single guild's activity by name and realm.
- */
-export function guildActivity(realmSlug: string, nameSlug: string): Resource<GuildActivityResponse> {
-  return {
-    namespace: 'profile',
-    path: `${basePath}/${realmSlug}/${nameSlug}/activity`,
-  };
-}
-
-/**
- * @param realmSlug The slug of the realm.
- * @param nameSlug The lowercase name of the guild.
  * @returns a single guild's achievements by name and realm.
  */
 export function guildAchievements(realmSlug: string, nameSlug: string): Resource<GuildAchievementsResponse> {
   return {
     namespace: 'profile',
     path: `${basePath}/${realmSlug}/${nameSlug}/achievements`,
+  };
+}
+
+/**
+ * @param realmSlug The slug of the realm.
+ * @param nameSlug The lowercase name of the guild.
+ * @returns a single guild's activity by name and realm.
+ */
+export function guildActivity(realmSlug: string, nameSlug: string): Resource<GuildActivityResponse> {
+  return {
+    namespace: 'profile',
+    path: `${basePath}/${realmSlug}/${nameSlug}/activity`,
   };
 }
 

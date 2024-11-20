@@ -10,34 +10,16 @@ export interface CharacterAchievementsSummaryResponse extends ResponseBase {
   total_quantity: number;
 }
 
+export interface CharacterAchievementStatisticsResponse extends ResponseBase {
+  categories: Array<Category>;
+  character: Character;
+}
+
 interface Achievement {
   achievement: NameIdKey;
   completed_timestamp?: number;
   criteria?: Criteria;
   id: number;
-}
-
-interface Criteria {
-  amount?: number;
-  child_criteria?: Array<Criteria>;
-  id: number;
-  is_completed: boolean;
-}
-
-interface CategoryProgress {
-  category: NameIdKey;
-  points: number;
-  quantity: number;
-}
-
-interface RecentEvent {
-  achievement: NameIdKey;
-  timestamp: number;
-}
-
-export interface CharacterAchievementStatisticsResponse extends ResponseBase {
-  categories: Array<Category>;
-  character: Character;
 }
 
 interface Category {
@@ -47,10 +29,22 @@ interface Category {
   sub_categories: Array<SubCategory>;
 }
 
-interface SubCategory {
+interface CategoryProgress {
+  category: NameIdKey;
+  points: number;
+  quantity: number;
+}
+
+interface Criteria {
+  amount?: number;
+  child_criteria?: Array<Criteria>;
   id: number;
-  name: string;
-  statistics: Array<Statistic>;
+  is_completed: boolean;
+}
+
+interface RecentEvent {
+  achievement: NameIdKey;
+  timestamp: number;
 }
 
 interface Statistic {
@@ -59,4 +53,10 @@ interface Statistic {
   last_updated_timestamp: number;
   name: string;
   quantity: number;
+}
+
+interface SubCategory {
+  id: number;
+  name: string;
+  statistics: Array<Statistic>;
 }

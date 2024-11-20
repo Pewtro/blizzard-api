@@ -4,18 +4,6 @@ import type { CharacterCompletedQuestsResponse, CharacterQuestsResponse } from '
 /**
  * @param realmSlug The slug of the realm.
  * @param characterName The lowercase name of the character.
- * @returns a character's active quests as well as a link to the character's completed quests.
- */
-export function characterQuests(realmSlug: string, characterName: string): Resource<CharacterQuestsResponse> {
-  return {
-    namespace: 'profile',
-    path: `/profile/wow/character/${realmSlug}/${characterName}/quests`,
-  };
-}
-
-/**
- * @param realmSlug The slug of the realm.
- * @param characterName The lowercase name of the character.
  * @returns a list of quests that a character has completed.
  */
 export function characterCompletedQuests(
@@ -25,5 +13,17 @@ export function characterCompletedQuests(
   return {
     namespace: 'profile',
     path: `/profile/wow/character/${realmSlug}/${characterName}/quests/completed`,
+  };
+}
+
+/**
+ * @param realmSlug The slug of the realm.
+ * @param characterName The lowercase name of the character.
+ * @returns a character's active quests as well as a link to the character's completed quests.
+ */
+export function characterQuests(realmSlug: string, characterName: string): Resource<CharacterQuestsResponse> {
+  return {
+    namespace: 'profile',
+    path: `/profile/wow/character/${realmSlug}/${characterName}/quests`,
   };
 }

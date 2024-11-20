@@ -1,4 +1,3 @@
-export type DeckSearchParameters = { code: string } | { hero?: string; ids: string };
 export interface DeckResponse {
   cardCount: number;
   cards: Array<Card>;
@@ -9,6 +8,7 @@ export interface DeckResponse {
   heroPower: Hero;
   version: number;
 }
+export type DeckSearchParameters = { code: string } | { hero?: string; ids: string };
 
 interface Card {
   armor?: number;

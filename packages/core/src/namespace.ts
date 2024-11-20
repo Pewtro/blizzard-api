@@ -4,9 +4,9 @@
  */
 export type BlizzardNamespaces =
   | 'dynamic'
-  | 'dynamic-classic'
   | 'dynamic-classic1x'
+  | 'dynamic-classic'
   | 'profile'
   | 'static'
-  | 'static-classic'
-  | 'static-classic1x';
+  | 'static-classic1x'
+  | 'static-classic';

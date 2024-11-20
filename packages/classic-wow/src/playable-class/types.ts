@@ -6,7 +6,7 @@ export type { PlayableClassIndexResponse, PlayableClassMediaResponse } from '../
  * The response for a playable class.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft-classic/game-data-apis}
  */
-export interface PlayableClassResponse extends ResponseBase, NameId {
+export interface PlayableClassResponse extends NameId, ResponseBase {
   gender_name: GenderName;
   media: Media;
   playable_races: Array<NameIdKey>;

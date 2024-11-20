@@ -1,10 +1,20 @@
 import type { KeyBase, NameId, NameIdKey, ResponseBase } from '../base';
 
 /**
+ * Interface for a response from the achievement category index endpoint.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
+export interface AchievementCategoryIndexResponse extends ResponseBase {
+  categories: Array<NameIdKey>;
+  guild_categories: Array<NameIdKey>;
+  root_categories: Array<NameIdKey>;
+}
+
+/**
  * Interface for a response from the achievement category endpoint.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface AchievementCategoryResponse extends ResponseBase, NameId {
+export interface AchievementCategoryResponse extends NameId, ResponseBase {
   achievements: Array<NameIdKey>;
   aggregates_by_faction: {
     alliance: {
@@ -22,20 +32,27 @@ export interface AchievementCategoryResponse extends ResponseBase, NameId {
 }
 
 /**
- * Interface for a response from the achievement category index endpoint.
+ * Interface for a response from the achievement index endpoint.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface AchievementCategoryIndexResponse extends ResponseBase {
-  categories: Array<NameIdKey>;
-  guild_categories: Array<NameIdKey>;
-  root_categories: Array<NameIdKey>;
+export interface AchievementIndexResponse extends ResponseBase {
+  achievements: Array<NameIdKey>;
+}
+
+/**
+ * Interface for a response from the achievement media endpoint.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
+export interface AchievementMediaResponse extends ResponseBase {
+  assets: Array<AchievementMediaItem>;
+  id: number;
 }
 
 /**
  * Interface for a response from the achievement endpoint.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface AchievementResponse extends ResponseBase, NameId {
+export interface AchievementResponse extends NameId, ResponseBase {
   category: NameIdKey;
   criteria: {
     amount: number;
@@ -49,25 +66,8 @@ export interface AchievementResponse extends ResponseBase, NameId {
   points: number;
 }
 
-/**
- * Interface for a response from the achievement index endpoint.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
-export interface AchievementIndexResponse extends ResponseBase {
-  achievements: Array<NameIdKey>;
-}
-
 interface AchievementMediaItem {
   file_data_id: number;
   key: string;
   value: string;
-}
-
-/**
- * Interface for a response from the achievement media endpoint.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
-export interface AchievementMediaResponse extends ResponseBase {
-  assets: Array<AchievementMediaItem>;
-  id: number;
 }

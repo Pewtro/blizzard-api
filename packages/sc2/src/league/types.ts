@@ -5,23 +5,7 @@ export interface LeagueDataResponse extends ResponseBase {
   tier: Array<Tier>;
 }
 
-interface Key {
-  league_id: number;
-  queue_id: number;
-  season_id: number;
-  team_type: number;
-}
-
-interface Tier {
-  division: Array<Division>;
-  id: number;
-}
-
-interface Division {
-  id: number;
-  ladder_id: number;
-  member_count: number;
-}
+export type StarcraftLeagueId = 'bronze' | 'diamond' | 'gold' | 'grandmaster' | 'master' | 'platinum' | 'silver';
 
 export type StarcraftLeagueQueue =
   | 'hots-1v1'
@@ -40,4 +24,20 @@ export type StarcraftLeagueQueue =
 
 export type StarcraftLeagueTeamType = 'arranged' | 'random';
 
-export type StarcraftLeagueId = 'bronze' | 'diamond' | 'gold' | 'grandmaster' | 'master' | 'platinum' | 'silver';
+interface Division {
+  id: number;
+  ladder_id: number;
+  member_count: number;
+}
+
+interface Key {
+  league_id: number;
+  queue_id: number;
+  season_id: number;
+  team_type: number;
+}
+
+interface Tier {
+  division: Array<Division>;
+  id: number;
+}

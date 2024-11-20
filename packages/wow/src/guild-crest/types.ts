@@ -1,6 +1,15 @@
 import type { KeyBase, ResponseBase } from '../base';
 
 /**
+ * The response for a guild crest border or emblem.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
+export interface GuildCrestBorderEmblemResponse extends ResponseBase {
+  assets: Array<GuildCrestAsset>;
+  id: number;
+}
+
+/**
  * The response for the guild crest components index.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
@@ -10,13 +19,14 @@ export interface GuildCrestComponentsIndexResponse extends ResponseBase {
   emblems: Array<Border>;
 }
 
+interface Background {
+  id: number;
+  rgba: RGBA;
+}
+
 interface Border {
   id: number;
   media: Media;
-}
-
-interface Media extends KeyBase {
-  id: number;
 }
 
 interface Colors {
@@ -25,9 +35,13 @@ interface Colors {
   emblems: Array<Background>;
 }
 
-interface Background {
+interface GuildCrestAsset {
+  key: string;
+  value: string;
+}
+
+interface Media extends KeyBase {
   id: number;
-  rgba: RGBA;
 }
 
 interface RGBA {
@@ -35,18 +49,4 @@ interface RGBA {
   b: number;
   g: number;
   r: number;
-}
-
-/**
- * The response for a guild crest border or emblem.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
-export interface GuildCrestBorderEmblemResponse extends ResponseBase {
-  assets: Array<GuildCrestAsset>;
-  id: number;
-}
-
-interface GuildCrestAsset {
-  key: string;
-  value: string;
 }

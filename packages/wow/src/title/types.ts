@@ -12,6 +12,6 @@ export interface TitleIndexResponse extends ResponseBase {
  * The response for a title.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface TitleResponse extends ResponseBase, NameId {
+export interface TitleResponse extends NameId, ResponseBase {
   gender_name: GenderName;
 }

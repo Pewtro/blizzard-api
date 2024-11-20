@@ -1,5 +1,32 @@
 import type { ResponseBase } from '../base';
 
+export interface EraIndexResponse extends ResponseBase {
+  current_era: number;
+  era: Array<{ href: string }>;
+  generated_by: string;
+  last_update_time: string;
+}
+
+export interface EraLeaderboardResponse extends ResponseBase {
+  column: Array<Column>;
+  era: number;
+  generated_by: string;
+  greater_rift: boolean;
+  greater_rift_solo_class: string;
+  key: string;
+  last_update_time: string;
+  row: Array<Row>;
+  title: string;
+}
+
+export interface EraResponse extends ResponseBase {
+  era_id: number;
+  era_start_date: number;
+  generated_by: string;
+  last_update_time: string;
+  leaderboard: Array<EraLeaderboard>;
+}
+
 export interface SeasonIndexResponse extends ResponseBase {
   current_season: number;
   generated_by: string;
@@ -7,20 +34,6 @@ export interface SeasonIndexResponse extends ResponseBase {
   season: Array<{ href: string }>;
   service_current_season: number;
   service_season_state: string;
-}
-
-export interface SeasonResponse extends ResponseBase {
-  generated_by: string;
-  last_update_time: string;
-  leaderboard: Array<Leaderboard>;
-  season_id: number;
-}
-
-interface Leaderboard {
-  hardcore?: boolean;
-  hero_class_string?: string;
-  ladder: { href: string };
-  team_size?: number;
 }
 
 export interface SeasonLeaderboardResponse extends ResponseBase {
@@ -34,12 +47,33 @@ export interface SeasonLeaderboardResponse extends ResponseBase {
   title: string;
 }
 
+export interface SeasonResponse extends ResponseBase {
+  generated_by: string;
+  last_update_time: string;
+  leaderboard: Array<Leaderboard>;
+  season_id: number;
+}
+
 interface Column {
   hidden: boolean;
   id: LeaderboardId;
   label: null | string;
   order?: number;
   type: 'DATETIME' | 'NUMBER' | 'STRING';
+}
+
+interface EraLeaderboard {
+  hardcore?: boolean;
+  hero_class_string?: string;
+  ladder: Self;
+  team_size: number;
+}
+
+interface Leaderboard {
+  hardcore?: boolean;
+  hero_class_string?: string;
+  ladder: { href: string };
+  team_size?: number;
 }
 
 type LeaderboardId =
@@ -60,6 +94,12 @@ type LeaderboardId =
   | 'RiftLevel'
   | 'RiftTime';
 
+interface Player {
+  accountId: number;
+  data: Array<RowData>;
+  key: string;
+}
+
 interface Row {
   data: Array<RowData>;
   order: number;
@@ -73,46 +113,6 @@ interface RowData {
   timestamp?: number;
 }
 
-interface Player {
-  accountId: number;
-  data: Array<RowData>;
-  key: string;
-}
-
-export interface EraIndexResponse extends ResponseBase {
-  current_era: number;
-  era: Array<{ href: string }>;
-  generated_by: string;
-  last_update_time: string;
-}
-
-export interface EraResponse extends ResponseBase {
-  era_id: number;
-  era_start_date: number;
-  generated_by: string;
-  last_update_time: string;
-  leaderboard: Array<EraLeaderboard>;
-}
-
 interface Self {
   href: string;
-}
-
-interface EraLeaderboard {
-  hardcore?: boolean;
-  hero_class_string?: string;
-  ladder: Self;
-  team_size: number;
-}
-
-export interface EraLeaderboardResponse extends ResponseBase {
-  column: Array<Column>;
-  era: number;
-  generated_by: string;
-  greater_rift: boolean;
-  greater_rift_solo_class: string;
-  key: string;
-  last_update_time: string;
-  row: Array<Row>;
-  title: string;
 }

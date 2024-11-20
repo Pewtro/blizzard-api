@@ -12,7 +12,7 @@ export interface RegionIndexResponse extends ResponseBase {
  * The response for a region.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface RegionResponse extends ResponseBase, NameId {
+export interface RegionResponse extends NameId, ResponseBase {
   patch_string: string;
   tag: string;
 }
