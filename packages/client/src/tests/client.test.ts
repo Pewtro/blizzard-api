@@ -90,8 +90,8 @@ describe.concurrent('client', async () => {
     expect(config.params.locale).toBeDefined();
   });
 
-  it("validateAccessToken should throw an error if the access token isn't valid", ({ expect }) => {
-    void expect(() => client.validateAccessToken({ token: undefined })).rejects.toThrow();
+  it("validateAccessToken should throw an error if the access token isn't valid", async ({ expect }) => {
+    await expect(() => client.validateAccessToken({ token: undefined })).rejects.toThrow();
   });
 
   it('should be able to manually refresh the token', async ({ expect }) => {
@@ -104,18 +104,18 @@ describe.concurrent('client', async () => {
     expect(sub).length.greaterThan(0);
   });
 
-  it("the client will throw an error when requesting resources that don't exist", ({ expect }) => {
-    void expect(() => client.sendRequest(wow.connectedRealm(9_999_999_999))).rejects.toThrow();
+  it("the client will throw an error when requesting resources that don't exist", async ({ expect }) => {
+    await expect(() => client.sendRequest(wow.connectedRealm(9_999_999_999))).rejects.toThrow();
   });
 
-  it('the client cannot be created without a client id and secret', ({ expect }) => {
-    void expect(() =>
+  it('the client cannot be created without a client id and secret', async ({ expect }) => {
+    await expect(() =>
       //@ts-expect-error expect error when key is missing
       createBlizzardApiClient({ origin: 'eu', secret: environment.blizzardClientSecret }),
     ).rejects.toThrow();
 
     //@ts-expect-error expect error when secret is missing
-    void expect(() => createBlizzardApiClient({ key: environment.blizzardClientId, origin: 'eu' })).rejects.toThrow();
+    await expect(() => createBlizzardApiClient({ key: environment.blizzardClientId, origin: 'eu' })).rejects.toThrow();
   });
 
   it("the client can be created without automatic token refresh by setting onTokenRefresh to 'false'", async ({
