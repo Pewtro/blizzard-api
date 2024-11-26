@@ -1,5 +1,14 @@
 # @blizzard-api/client
 
+## 2.0.1
+
+### Patch Changes
+
+- b27c9e9: Update axios to 1.7.8
+- 36584d8: Sort types, functions and more - has no impact on consumers of the library
+- Updated dependencies [36584d8]
+  - @blizzard-api/core@2.0.1
+
 ## 2.0.0
 
 ### Major Changes
