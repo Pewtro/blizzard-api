@@ -1,6 +1,6 @@
 {
   "name": "@blizzard-api/client",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "license": "MIT",
   "author": "Putro",
   "description": "A node.js axios client to integrate with the blizzard battle.net api.",
@@ -43,7 +43,7 @@
     "axios": "1.7.8"
   },
   "peerDependencies": {
-    "@blizzard-api/core": "2.0.0"
+    "@blizzard-api/core": "2.0.1"
   },
   "devDependencies": {
     "@blizzard-api/classic-wow": "workspace:*",
