@@ -68,10 +68,5 @@
     "*.{ts,tsx,js,jsx,mjs}": [
       "pnpm --silent lint:fix"
     ]
-  },
-  "pnpm": {
-    "overrides": {
-      "nanoid@<3.3.8": ">=3.3.8"
-    }
   }
 }
