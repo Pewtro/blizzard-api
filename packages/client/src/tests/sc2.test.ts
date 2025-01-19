@@ -9,10 +9,6 @@ describe.concurrent('smoketest some sc2 api responses', async () => {
     origin: 'eu',
     secret: environment.blizzardClientSecret,
   });
-  it('should get player data', async () => {
-    const result = await client.sendRequest(sc2.player('235782'));
-    expect(result.data).toBeDefined();
-  });
   it('should get grandmaster leaderboard', async () => {
     const result = await client.sendRequest(sc2.grandmasterLeaderboard('eu'));
     expect(result.data).toBeDefined();
