@@ -67,6 +67,14 @@ export class BlizzardApiClient implements IBlizzardApiClient {
   };
 
   /**
+   * Set the access token.
+   * @param token The access token.
+   */
+  public setAccessToken = (token: string): void => {
+    this.defaults.token = token;
+  };
+
+  /**
    * Refresh the access token.
    * @param options The access token request arguments. See {@link AccessTokenRequestArguments}.
    * @returns The access token. See {@link AccessToken}.
@@ -83,14 +91,6 @@ export class BlizzardApiClient implements IBlizzardApiClient {
     const response = await this.getAccessToken(options);
     this.setAccessToken(response.data.access_token);
     return response;
-  };
-
-  /**
-   * Set the access token.
-   * @param token The access token.
-   */
-  public setAccessToken = (token: string): void => {
-    this.defaults.token = token;
   };
 
   /**
