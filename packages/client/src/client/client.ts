@@ -14,8 +14,6 @@ import type {
 
 /**
  * A Blizzard API client.
- * @implements IBlizzardApiClient
- * @class
  * @classdesc A client to interact with the Blizzard API.
  * @example
  * const client = new BlizzardApiClient({

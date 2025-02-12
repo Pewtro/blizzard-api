@@ -1,6 +1,11 @@
 import type { Resource } from '@blizzard-api/core';
 import type { DeckResponse, DeckSearchParameters } from './types';
 
+/**
+ * Returns a deck based on the code provided.
+ * @param options The options for fetching a deck.
+ * @returns The deck resource. See {@link DeckResponse}.
+ */
 export function getDeck(
   options: { code: string } | { hero?: string; ids: Array<string> },
 ): Resource<DeckResponse, DeckSearchParameters> {

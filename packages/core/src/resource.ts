@@ -14,7 +14,6 @@ export type ExtractResourceType<Type> =
  * Represents a resource that requires a token to be requested
  * @param Response The response type of the resource
  * @param SearchOptions The search options that can be passed to the resource
- *
  */
 export type ProtectedResource<Response, SearchOptions extends object = Record<string, never>> = Resource<
   Response,
@@ -35,7 +34,7 @@ export type Resource<
 > = (IsProtectedResource extends true ? { token: string } : unknown) & {
   /**
    * The response type of the resource
-   * @private @internal This is an internal property and should not be used as it will not be populated
+   * @internal
    */
   _responseType?: Response;
   namespace?: BlizzardNamespaces;

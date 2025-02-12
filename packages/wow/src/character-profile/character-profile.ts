@@ -13,7 +13,6 @@ import type { CharacterProfileStatusResponse, CharacterProfileSummaryResponse } 
  * 2. After 30 days, the client makes a request to the status endpoint to verify if the character information is still valid.
  * 3. If character cannot be found, is not valid, or the characters IDs do not match, the client removes the information from their application.
  * 4. If the character is valid and the character IDs match, the client retains the data for another 30 days.
- *
  * @param realmSlug The slug of the realm.
  * @param characterName The lowercase name of the character.
  * @returns the status of the character profile for a character.
@@ -29,6 +28,7 @@ export function characterProfileStatus(
 }
 
 /**
+ * Returns a summary of the character profile for a character.
  * @param realmSlug The slug of the realm.
  * @param characterName The lowercase name of the character.
  * @returns a summary of the character profile for a character.

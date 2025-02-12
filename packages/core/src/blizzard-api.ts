@@ -77,9 +77,6 @@ const endpoints: BlizzardApiByRegion = {
 /**
  * A Blizzard API configuration object.
  * @template T The region of the Blizzard API.
- * @property origin The region of the Blizzard API.
- * @property locale The locale of the Blizzard API.
- * @property hostname The hostname of the Blizzard API.
  */
 interface BlizzardApi<T extends Origins> {
   hostname: BlizzardApiDefault<Origins>['hostname'];

@@ -8,6 +8,7 @@ import type {
 
 /**
  * Get a list of all Mythic Keystone affixes.
+ * @param mythicKeystoneAffixId The ID of the Mythic Keystone affix.
  * @returns A list of all Mythic Keystone affixes. See {@link MythicKeystoneAffixIndexResponse}
  */
 export function mythicKeystoneAffix(mythicKeystoneAffixId: number): Resource<MythicKeystoneAffixResponse> {
@@ -28,6 +29,7 @@ export function mythicKeystoneAffixIndex(): Resource<MythicKeystoneAffixIndexRes
 }
 /**
  * Get a list of all Mythic Keystone affix media.
+ * @param mythicKeystoneAffixId The ID of the Mythic Keystone affix.
  * @returns A list of all Mythic Keystone affix media. See {@link MythicKeystoneAffixMediaResponse}
  */
 export function mythicKeystoneAffixMedia(mythicKeystoneAffixId: number): Resource<MythicKeystoneAffixMediaResponse> {

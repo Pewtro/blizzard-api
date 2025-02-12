@@ -5,11 +5,6 @@ import type { AxiosResponse } from 'axios';
  * An access token response from the Blizzard API.
  * @see https://develop.battle.net/documentation/guides/using-oauth
  * @see https://develop.battle.net/documentation/guides/using-oauth/client-credentials-flow¨
- * @interface AccessToken
- * @property access_token The access token.
- * @property token_type The type of token.
- * @property expires_in The time in seconds until  the token expires.
- * @property sub The subject (unique user identifier) of the token.
  * @example
  * const response: AccessToken = {
  *  access_token: 'access-token',
@@ -19,19 +14,15 @@ import type { AxiosResponse } from 'axios';
  * };
  */
 export interface AccessToken {
-  access_token: string;
-  expires_in: number;
-  sub?: string;
-  token_type: 'bearer';
+  access_token: string; // The access token.
+  expires_in: number; // The time in seconds until the token expires.
+  sub?: string; // The subject (unique user identifier) of the token.
+  token_type: 'bearer'; // The type of token.
 }
 
 /**
  * An access token request.
  * @see https://develop.battle.net/documentation/guides/using-oauth/client-credentials-flow
- * @interface AccessTokenRequestArguments
- * @property origin The region to request the access token from.
- * @property key The client ID.
- * @property secret The client secret.
  * @example
  * const request: AccessTokenRequestArguments = {
  *  origin: 'eu',
@@ -40,19 +31,13 @@ export interface AccessToken {
  * };
  */
 export interface AccessTokenRequestArguments {
-  key?: string;
-  origin?: Origins;
-  secret?: string;
+  key?: string; // The client ID.
+  origin?: Origins; // The region to request the access token from.
+  secret?: string; // The client secret.
 }
 
 /**
  * A client configuration object.
- * @interface ClientOptions
- * @property key The client ID.
- * @property secret The client secret.
- * @property origin The region of the Blizzard API.
- * @property locale The locale of the Blizzard API.
- * @property token The access token.
  * @example
  * const options: ClientOptions = {
  *  key: 'client',
@@ -63,34 +48,26 @@ export interface AccessTokenRequestArguments {
  * };
  */
 export interface ClientOptions {
-  key: string;
-  locale?: Locales;
-  origin: Origins;
-  secret: string;
-  token?: string;
+  key: string; // The client ID.
+  locale?: Locales; // The locale of the Blizzard API.
+  origin: Origins; // The region of the Blizzard API.
+  secret: string; // The client secret.
+  token?: string; // The access token.
 }
 
 /**
  * A Blizzard API client.
- * @interface IBlizzardApiClient
- * @property getAccessToken Get an access token.
- * @property setAccessToken Set an access token.
- * @property refreshAccessToken Refresh an access token.
- * @property validateAccessToken Validate an access token.
  */
 export interface IBlizzardApiClient {
-  getAccessToken: (options: AccessTokenRequestArguments) => Promise<AxiosResponse<AccessToken>>;
-  refreshAccessToken: (options: AccessTokenRequestArguments) => Promise<AxiosResponse<AccessToken>>;
-  setAccessToken: (token: string) => void;
-  validateAccessToken: (options: ValidateAccessTokenArguments) => Promise<AxiosResponse<ValidateAccessTokenResponse>>;
+  getAccessToken: (options: AccessTokenRequestArguments) => Promise<AxiosResponse<AccessToken>>; // Get an access token.
+  refreshAccessToken: (options: AccessTokenRequestArguments) => Promise<AxiosResponse<AccessToken>>; // Refresh an access token.
+  setAccessToken: (token: string) => void; // Set an access token.
+  validateAccessToken: (options: ValidateAccessTokenArguments) => Promise<AxiosResponse<ValidateAccessTokenResponse>>; // Validate an access token.
 }
 
 /**
  * Validate an access token.
  * @see https://develop.battle.net/documentation/guides/using-oauth/client-credentials-flow
- * @interface ValidateAccessTokenArguments
- * @property origin The region to validate the access token from.
- * @property token The access token to validate.
  * @example
  * const request: ValidateAccessTokenArguments = {
  *  origin: 'eu',
@@ -98,20 +75,13 @@ export interface IBlizzardApiClient {
  * };
  */
 export interface ValidateAccessTokenArguments {
-  origin?: Origins;
-  token?: string;
+  origin?: Origins; // The region to validate the access token from.
+  token?: string; // The access token to validate.
 }
 
 /**
  * A response from validating an access token.
  * @see https://develop.battle.net/documentation/guides/using-oauth/client-credentials-flow
- * @interface ValidateAccessTokenResponse
- * @property scope The scope of the token.
- * @property account_authorities The account authorities.
- * @property exp The expiration time of the token.
- * @property client_authorities The client authorities.
- * @property authorities The authorities.
- * @property client_id The client ID.
  * @example
  * const response: ValidateAccessTokenResponse = {
  *  scope: ['wow.profile'],
@@ -123,10 +93,10 @@ export interface ValidateAccessTokenArguments {
  * };
  */
 export interface ValidateAccessTokenResponse {
-  account_authorities: Array<unknown>;
-  authorities: Array<string>;
-  client_authorities: Array<unknown>;
-  client_id: string;
-  exp: number;
-  scope: Array<string>;
+  account_authorities: Array<unknown>; // The account authorities.
+  authorities: Array<string>; // The authorities.
+  client_authorities: Array<unknown>; // The client authorities.
+  client_id: string; // The client ID.
+  exp: number; // The expiration time of the token.
+  scope: Array<string>; // The scope of the token.
 }

@@ -32,6 +32,14 @@ const starcraftLeagueId: Record<StarcraftLeagueId, number> = {
   silver: 1,
 };
 
+/**
+ * Returns the league data for the specified season, queue, team type, and league.
+ * @param seasonId The season ID
+ * @param queueId The queue ID
+ * @param teamType The team type
+ * @param leagueId The league ID
+ * @returns The league data resource. See {@link LeagueDataResponse}.
+ */
 export function getLeagueData(
   seasonId: string,
   queueId: StarcraftLeagueQueue,

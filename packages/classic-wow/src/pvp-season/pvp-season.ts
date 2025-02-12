@@ -8,6 +8,7 @@ import type { PvpSeasonIndexResponse, PvpSeasonResponse } from './types';
  * @param pvpRegionId The PvP region ID.
  * @param pvpSeasonId The PvP season ID.
  * @param pvpBracket The PvP bracket.
+ * @returns The PvP leaderboard.
  */
 export function pvpLeaderboard(
   namespace: Extract<BlizzardNamespaces, 'dynamic-classic1x' | 'dynamic-classic'>,
@@ -25,6 +26,7 @@ export function pvpLeaderboard(
  * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
  * @param pvpRegionId The PvP region ID.
  * @param pvpSeasonId The PvP season ID.
+ * @returns The PvP leaderboard index.
  */
 export function pvpLeaderboardIndex(
   namespace: Extract<BlizzardNamespaces, 'dynamic-classic1x' | 'dynamic-classic'>,
@@ -41,6 +43,7 @@ export function pvpLeaderboardIndex(
  * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
  * @param pvpRegionId The PvP region ID.
  * @param pvpSeasonId The PvP season ID.
+ * @returns The PvP season.
  */
 export function pvpRegionalSeason(
   namespace: Extract<BlizzardNamespaces, 'dynamic-classic1x' | 'dynamic-classic'>,
@@ -70,6 +73,7 @@ export function pvpRegionalSeasonIndex(
 /**
  * Returns an index of PvP Regions.
  * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @returns The PvP region index.
  */
 export function pvpRegionIndex(
   namespace: Extract<BlizzardNamespaces, 'dynamic-classic1x' | 'dynamic-classic'>,
@@ -84,6 +88,7 @@ export function pvpRegionIndex(
  * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
  * @param pvpRegionId The PvP region ID.
  * @param pvpSeasonId The PvP season ID.
+ * @returns The PvP reward index.
  */
 export function pvpRewardsIndex(
   namespace: Extract<BlizzardNamespaces, 'dynamic-classic1x' | 'dynamic-classic'>,
@@ -97,6 +102,7 @@ export function pvpRewardsIndex(
 }
 /**
  * Get a PvP season by ID.
+ * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
  * @param pvpSeasonId The PvP season ID.
  * @returns The PvP season. See {@link PvpSeasonResponse}.
  */

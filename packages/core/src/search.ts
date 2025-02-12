@@ -1,8 +1,7 @@
 /**
  * Base search parameters
- * @interface BaseSearchParameters
- * @property orderby The field to order results by.
- * @property _page The page number to return.
+ * orderby The field to order results by.
+ * _page The page number to return.
  * @example
  * const params: BaseSearchParameters = {
  *  orderby: 'name',
@@ -16,12 +15,11 @@ export interface BaseSearchParameters {
 
 /**
  * Search response
- * @interface SearchResponse
- * @property page The current page number.
- * @property pageSize The number of results per page.
- * @property maxPageSize The maximum number of results per page.
- * @property pageCount The total number of pages.
- * @property results The search results.
+ * page The current page number.
+ * pageSize The number of results per page.
+ * maxPageSize The maximum number of results per page.
+ * pageCount The total number of pages.
+ * results The search results.
  * @example
  * const response: SearchResponse = {
  *  page: 1,

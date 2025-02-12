@@ -7,6 +7,11 @@ import type {
   FetchOneCardResponse,
 } from './types';
 
+/**
+ * Returns a list of cards based on the search parameters provided.
+ * @param options The options for fetching cards. See {@link CardSearchParameters}.
+ * @returns The card search resource. See {@link CardSearchResponse}.
+ */
 export function cardSearch(options: CardSearchParameters): Resource<CardSearchResponse, BlizzardCardSearchParameters> {
   let attack: string | undefined = undefined;
   let defaultMercenary: string | undefined = undefined;
@@ -40,6 +45,14 @@ export function cardSearch(options: CardSearchParameters): Resource<CardSearchRe
   };
 }
 
+/**
+ * Returns a single card based on the ID provided.
+ * @param id The card ID
+ * @param options The options for fetching a card.
+ * @param options.gameMode The game mode to use for fetching the card (optional).
+ * @param options.locale The locale to use for fetching the card (optional).
+ * @returns The card resource. See {@link FetchOneCardResponse}.
+ */
 export function fetchOneCard(
   id: string,
   options?: {
