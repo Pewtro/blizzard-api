@@ -1,6 +1,6 @@
 {
   "name": "@blizzard-api/classic-wow",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "license": "MIT",
   "author": "Putro",
   "description": "A series of helpers to interact with the World of Warcraft Classic Blizzard API",
@@ -34,7 +34,7 @@
   ],
   "dependencies": {},
   "peerDependencies": {
-    "@blizzard-api/core": "2.0.1"
+    "@blizzard-api/core": "2.0.2"
   },
   "devDependencies": {
     "@blizzard-api/core": "workspace:*"

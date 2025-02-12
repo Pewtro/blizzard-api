@@ -1,5 +1,13 @@
 # @blizzard-api/sc2
 
+## 1.0.2
+
+### Patch Changes
+
+- 9b4245b: Improve JSDoc for a large amount of interfaces, types or functions
+- Updated dependencies [9b4245b]
+  - @blizzard-api/core@2.0.2
+
 ## 1.0.1
 
 ### Patch Changes
