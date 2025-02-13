@@ -48,6 +48,11 @@
     "vitest": "3.0.5",
     "zod": "3.24.2"
   },
+  "pnpm": {
+    "overrides": {
+      "esbuild": "0.25.0"
+    }
+  },
   "scripts": {
     "build": "turbo build",
     "lint": "eslint --format stylish --max-warnings 0 --cache .",
