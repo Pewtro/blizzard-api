@@ -28,14 +28,14 @@ export const createBlizzardApiClient = async (
   const refreshToken = async () => {
     const response = await client.getAccessToken();
 
-    client.setAccessToken(response.data.access_token);
+    client.setAccessToken(response.access_token);
 
     if (typeof onTokenRefresh === 'function') {
-      onTokenRefresh?.(response.data);
+      onTokenRefresh?.(response);
     }
 
     //Schedule a refresh of the token
-    const timeout = setTimeout(() => void refreshToken(), getTokenExpiration(response.data.expires_in));
+    const timeout = setTimeout(() => void refreshToken(), getTokenExpiration(response.expires_in));
     timeout.unref();
   };
 
@@ -48,7 +48,7 @@ export const createBlizzardApiClient = async (
     try {
       //If token is set, validate the token
       const validatedToken = await client.validateAccessToken({ token });
-      const expiry = getTokenExpiration(validatedToken.data.exp);
+      const expiry = getTokenExpiration(validatedToken.exp);
       //If token is expiring in less than 60 seconds, refresh the token
       if (expiry - Date.now() < 60_000) {
         await refreshToken();

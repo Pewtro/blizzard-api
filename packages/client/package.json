@@ -3,7 +3,7 @@
   "version": "2.0.3",
   "license": "MIT",
   "author": "Putro",
-  "description": "A node.js axios client to integrate with the blizzard battle.net api.",
+  "description": "A node.js client to integrate with the blizzard battle.net api.",
   "repository": "https://github.com/Pewtro/blizzard-api/tree/main/packages/client",
   "type": "module",
   "engines": {
@@ -40,7 +40,7 @@
     "hearthstone"
   ],
   "dependencies": {
-    "axios": "1.7.9"
+    "ky": "1.7.5"
   },
   "peerDependencies": {
     "@blizzard-api/core": "2.0.2"

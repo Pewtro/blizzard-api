@@ -82,6 +82,6 @@ const client = await createBlizzardApiClient({
 //Response will automatically be typed with the appropriate values
 const response = await client.sendRequest(classicWow.commodities());
 
-console.log(response.data);
-                      ^ typeof AuctionHouseCommoditiesResponse
+console.log(response);
+                ^ typeof AuctionHouseCommoditiesResponse
 ```

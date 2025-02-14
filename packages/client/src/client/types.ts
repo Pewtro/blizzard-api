@@ -1,5 +1,4 @@
 import type { Locales, Origins } from '@blizzard-api/core';
-import type { AxiosResponse } from 'axios';
 
 /**
  * An access token response from the Blizzard API.
@@ -36,6 +35,15 @@ export interface AccessTokenRequestArguments {
   secret?: string; // The client secret.
 }
 
+export type AxiosCompatability<T> = T & {
+  /**
+   * @deprecated
+   * This property is only here for backward compatibility, it will be removed in the next major version.
+   * All data should be accessed directly from the response object instead of through this property.
+   */
+  data: T;
+};
+
 /**
  * A client configuration object.
  * @example
@@ -59,10 +67,12 @@ export interface ClientOptions {
  * A Blizzard API client.
  */
 export interface IBlizzardApiClient {
-  getAccessToken: (options: AccessTokenRequestArguments) => Promise<AxiosResponse<AccessToken>>; // Get an access token.
-  refreshAccessToken: (options: AccessTokenRequestArguments) => Promise<AxiosResponse<AccessToken>>; // Refresh an access token.
+  getAccessToken: (options: AccessTokenRequestArguments) => Promise<AxiosCompatability<AccessToken>>; // Get an access token.
+  refreshAccessToken: (options: AccessTokenRequestArguments) => Promise<AxiosCompatability<AccessToken>>; // Refresh an access token.
   setAccessToken: (token: string) => void; // Set an access token.
-  validateAccessToken: (options: ValidateAccessTokenArguments) => Promise<AxiosResponse<ValidateAccessTokenResponse>>; // Validate an access token.
+  validateAccessToken: (
+    options: ValidateAccessTokenArguments,
+  ) => Promise<AxiosCompatability<ValidateAccessTokenResponse>>; // Validate an access token.
 }
 
 /**

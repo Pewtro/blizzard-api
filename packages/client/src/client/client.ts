@@ -1,11 +1,11 @@
 import { stringify } from 'node:querystring';
 import { getBlizzardApi } from '@blizzard-api/core';
 import type { Locales, Origins, Resource, ResourceResponse } from '@blizzard-api/core';
-import type { AxiosResponse } from 'axios';
-import axios, { AxiosError, isAxiosError } from 'axios';
+import ky from 'ky';
 import type {
   AccessToken,
   AccessTokenRequestArguments,
+  AxiosCompatability,
   ClientOptions,
   IBlizzardApiClient,
   ValidateAccessTokenArguments,
@@ -33,7 +33,7 @@ export class BlizzardApiClient implements IBlizzardApiClient {
     token?: string;
   };
 
-  private axios = axios.create();
+  private ky = ky.create();
 
   constructor(options: ClientOptions) {
     const { locale, origin } = getBlizzardApi(options.origin, options.locale);
@@ -52,27 +52,32 @@ export class BlizzardApiClient implements IBlizzardApiClient {
    * @returns The access token. See {@link AccessToken}.
    * @example
    * const response = await client.getAccessToken();
-   * const { access_token, token_type, expires_in, sub } = response.data;
+   * const { access_token, token_type, expires_in, sub } = response;
    * console.log(access_token, token_type, expires_in, sub);
    * // => 'access'
    * // => 'bearer'
    * // => 86399
    * // => 'client-id'
    */
-  public getAccessToken = async (options?: AccessTokenRequestArguments): Promise<AxiosResponse<AccessToken>> => {
+  public getAccessToken = async (options?: AccessTokenRequestArguments): Promise<AxiosCompatability<AccessToken>> => {
     const { key, origin, secret } = { ...this.defaults, ...options };
-    return this.axios.post<AccessToken>(`https://${origin}.battle.net/oauth/token`, undefined, {
-      auth: {
-        password: secret,
-        username: key,
-      },
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      params: {
-        grant_type: 'client_credentials',
-      },
-    });
+    const basicAuth = Buffer.from(`${key}:${secret}`).toString('base64');
+    const response = await this.ky
+      .post<AccessToken>(`https://${origin}.battle.net/oauth/token`, {
+        headers: {
+          Authorization: `Basic ${basicAuth}`,
+          'Content-Type': 'application/json',
+        },
+        searchParams: {
+          grant_type: 'client_credentials',
+        },
+      })
+      .json();
+
+    return {
+      data: response,
+      ...response,
+    };
   };
 
   /**
@@ -89,16 +94,18 @@ export class BlizzardApiClient implements IBlizzardApiClient {
    * @returns The access token. See {@link AccessToken}.
    * @example
    * const response = await client.refreshAccessToken();
-   * const { access_token, token_type, expires_in, sub } = response.data;
+   * const { access_token, token_type, expires_in, sub } = response;
    * console.log(access_token, token_type, expires_in, sub);
    * // => 'access'
    * // => 'bearer'
    * // => 86399
    * // => 'client-id'
    */
-  public refreshAccessToken = async (options?: AccessTokenRequestArguments): Promise<AxiosResponse<AccessToken>> => {
+  public refreshAccessToken = async (
+    options?: AccessTokenRequestArguments,
+  ): Promise<AxiosCompatability<AccessToken>> => {
     const response = await this.getAccessToken(options);
-    this.setAccessToken(response.data.access_token);
+    this.setAccessToken(response.access_token);
     return response;
   };
 
@@ -108,27 +115,31 @@ export class BlizzardApiClient implements IBlizzardApiClient {
    * @returns The response from the Blizzard API. See {@link ValidateAccessTokenResponse}.
    * @example
    * const response = await client.validateAccessToken({ token: 'access' });
-   * console.log(response.data.client_id);
+   * console.log(response.client_id);
    * // => 'client-id'
    */
   public validateAccessToken = async (
     options?: ValidateAccessTokenArguments,
-  ): Promise<AxiosResponse<ValidateAccessTokenResponse>> => {
+  ): Promise<AxiosCompatability<ValidateAccessTokenResponse>> => {
     const { origin, token } = { ...this.defaults, ...options };
 
     if (!token) {
       throw new Error('No token has been set previously or been passed to the validateAccessToken method.');
     }
 
-    return await this.axios.post<ValidateAccessTokenResponse>(
-      `https://${origin}.battle.net/oauth/check_token`,
-      stringify({ token }),
-      {
+    const response = await this.ky
+      .post<ValidateAccessTokenResponse>(`https://${origin}.battle.net/oauth/check_token`, {
+        body: stringify({ token }),
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
-      },
-    );
+      })
+      .json();
+
+    return {
+      data: response,
+      ...response,
+    };
   };
 
   /**
@@ -150,6 +161,15 @@ export class BlizzardApiClient implements IBlizzardApiClient {
       ? { 'Battlenet-Namespace': `${resource.namespace}-${endpoint.origin}` }
       : undefined;
 
+    const parameters = resource.parameters as Record<string, unknown>;
+    if (parameters) {
+      for (const key of Object.keys(parameters)) {
+        if (parameters[key] === undefined) {
+          delete parameters[key];
+        }
+      }
+    }
+
     return {
       headers: {
         ...headers,
@@ -157,7 +177,7 @@ export class BlizzardApiClient implements IBlizzardApiClient {
         Authorization: `Bearer ${config.token}`,
         'Content-Type': 'application/json',
       },
-      params: {
+      searchParams: {
         locale: endpoint.locale,
         ...resource.parameters,
       },
@@ -193,17 +213,14 @@ export class BlizzardApiClient implements IBlizzardApiClient {
     resource: Resource<T, object, Protected>,
     options?: Partial<ClientOptions>,
     headers?: Record<string, string>,
-  ): ResourceResponse<AxiosResponse<T>> {
+  ): ResourceResponse<AxiosCompatability<T>> {
     const url = this.getRequestUrl(resource, options);
     const config = this.getRequestConfig(resource, options, headers);
 
-    try {
-      return await this.axios.get<T>(url, config);
-    } catch (error) {
-      if (isAxiosError(error)) {
-        throw new AxiosError(error.message, error.code);
-      }
-      throw error;
-    }
+    const response = await this.ky.get<T>(url, config).json();
+    return {
+      data: response,
+      ...response,
+    };
   }
 }

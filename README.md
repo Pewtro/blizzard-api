@@ -38,7 +38,7 @@ const achievement = achievement(123);
         ^ { path: string, namespace: string }
 ```
 
-If you additionally want to have a axios client with built in helpers, you can install `@blizzard-api/client` which will let you easily connect to the API and begin consuming it.
+If you additionally want to have an API client with built in helpers, you can install `@blizzard-api/client` which will let you easily connect to the API and begin consuming it.
 
 ```sh
 npm i @blizzard-api/client
@@ -57,8 +57,8 @@ const client = await createBlizzardApiClient({
 //Response will automatically be typed with the appropriate values
 const response = await client.sendRequest(wow.commodities());
 
-console.log(response.data);
-                      ^ typeof AuctionHouseCommoditiesResponse
+console.log(response);
+                ^ typeof AuctionHouseCommoditiesResponse
 ```
 
 ## Authentication

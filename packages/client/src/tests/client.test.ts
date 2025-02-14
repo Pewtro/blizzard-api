@@ -24,7 +24,7 @@ describe.concurrent('client', async () => {
   it('should be able to authorize with the Blizzard API', async ({ expect }) => {
     const response = await client.getAccessToken();
 
-    const { access_token, expires_in, sub, token_type } = response.data;
+    const { access_token, expires_in, sub, token_type } = response;
     expect(access_token).length.greaterThan(0);
     expect(token_type).toBe('bearer');
     expect(expires_in).toBeGreaterThan(0);
@@ -34,14 +34,14 @@ describe.concurrent('client', async () => {
   it('should be able to validate the access token', async ({ expect }) => {
     const response = await client.getAccessToken();
 
-    const { access_token } = response.data;
+    const { access_token } = response;
     const validateResponse = await client.validateAccessToken({ token: access_token });
-    expect(validateResponse.data.scope).toBeInstanceOf(Array);
-    expect(validateResponse.data.account_authorities).toBeInstanceOf(Array);
-    expect(validateResponse.data.exp).toBeGreaterThan(0);
-    expect(validateResponse.data.client_authorities).toBeInstanceOf(Array);
-    expect(validateResponse.data.authorities).toBeInstanceOf(Array);
-    expect(validateResponse.data.client_id).toBe(client.defaults.key);
+    expect(validateResponse.scope).toBeInstanceOf(Array);
+    expect(validateResponse.account_authorities).toBeInstanceOf(Array);
+    expect(validateResponse.exp).toBeGreaterThan(0);
+    expect(validateResponse.client_authorities).toBeInstanceOf(Array);
+    expect(validateResponse.authorities).toBeInstanceOf(Array);
+    expect(validateResponse.client_id).toBe(client.defaults.key);
   });
 
   it("should be able to provide a client's access token", ({ expect }) => {
@@ -87,7 +87,7 @@ describe.concurrent('client', async () => {
     expect(config.headers['Battlenet-Namespace']).not.toBeDefined();
     expect(config.headers['Content-Type']).toBeDefined();
 
-    expect(config.params.locale).toBeDefined();
+    expect(config.searchParams.locale).toBeDefined();
   });
 
   it("validateAccessToken should throw an error if the access token isn't valid", async ({ expect }) => {
@@ -97,7 +97,7 @@ describe.concurrent('client', async () => {
   it('should be able to manually refresh the token', async ({ expect }) => {
     const response = await client.refreshAccessToken();
 
-    const { access_token, expires_in, sub, token_type } = response.data;
+    const { access_token, expires_in, sub, token_type } = response;
     expect(access_token).length.greaterThan(0);
     expect(token_type).toBe('bearer');
     expect(expires_in).toBeGreaterThan(0);
@@ -132,7 +132,7 @@ describe.concurrent('client', async () => {
 
     const response = await noRefreshClient.getAccessToken();
 
-    const { access_token, expires_in, sub, token_type } = response.data;
+    const { access_token, expires_in, sub, token_type } = response;
     expect(access_token).length.greaterThan(0);
     expect(token_type).toBe('bearer');
     expect(expires_in).toBeGreaterThan(0);
@@ -141,7 +141,7 @@ describe.concurrent('client', async () => {
 
   it('the client can be created with a pre-existing token', async ({ expect }) => {
     const response = await client.getAccessToken();
-    const { access_token } = response.data;
+    const { access_token } = response;
 
     const tokenClient = await createBlizzardApiClient({
       key: environment.blizzardClientId,
@@ -151,7 +151,7 @@ describe.concurrent('client', async () => {
     });
 
     const tokenResponse = await tokenClient.getAccessToken();
-    expect(tokenResponse.data.access_token).toBe(access_token);
+    expect(tokenResponse.access_token).toBe(access_token);
   });
 
   it('the client can be created with a pre-existing expired token', async ({ expect }) => {
@@ -163,6 +163,6 @@ describe.concurrent('client', async () => {
     });
 
     const tokenResponse = await tokenClient.getAccessToken();
-    expect(tokenResponse.data.access_token).toBeDefined();
+    expect(tokenResponse.access_token).toBeDefined();
   });
 });

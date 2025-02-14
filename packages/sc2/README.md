@@ -70,6 +70,6 @@ const client = await createBlizzardApiClient({
 //Response will automatically be typed with the appropriate values
 const response = await client.sendRequest(sc2.season("eu"));
 
-console.log(response.data);
-                      ^ typeof SeasonResponse
+console.log(response);
+                ^ typeof SeasonResponse
 ```

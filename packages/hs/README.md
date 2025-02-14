@@ -70,6 +70,6 @@ const client = await createBlizzardApiClient({
 //Response will automatically be typed with the appropriate values
 const response = await client.sendRequest(hs.allMetadata());
 
-console.log(response.data);
-                      ^ typeof AllMetadataResponse
+console.log(response);
+                ^ typeof AllMetadataResponse
 ```
