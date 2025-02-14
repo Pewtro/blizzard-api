@@ -35,6 +35,17 @@ export class BlizzardApiClient implements IBlizzardApiClient {
 
   private axios = axios.create();
 
+  constructor(options: ClientOptions) {
+    const { locale, origin } = getBlizzardApi(options.origin, options.locale);
+    this.defaults = {
+      key: options.key,
+      locale: locale,
+      origin: origin,
+      secret: options.secret,
+      token: options.token,
+    };
+  }
+
   /**
    * Get an access token.
    * @param options The access token request arguments. See {@link AccessTokenRequestArguments}.
@@ -100,17 +111,6 @@ export class BlizzardApiClient implements IBlizzardApiClient {
    * console.log(response.data.client_id);
    * // => 'client-id'
    */
-  constructor(options: ClientOptions) {
-    const { locale, origin } = getBlizzardApi(options.origin, options.locale);
-    this.defaults = {
-      key: options.key,
-      locale: locale,
-      origin: origin,
-      secret: options.secret,
-      token: options.token,
-    };
-  }
-
   public validateAccessToken = async (
     options?: ValidateAccessTokenArguments,
   ): Promise<AxiosResponse<ValidateAccessTokenResponse>> => {
