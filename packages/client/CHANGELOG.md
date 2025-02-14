@@ -1,5 +1,13 @@
 # @blizzard-api/client
 
+## 2.1.0
+
+### Minor Changes
+
+- 2b2dd6f: Replace axios with ky that uses native Fetch under the hood.
+
+  This means that response bodies should no longer be accessed through `data` property, but they are instead directly available. For the remainder of v2, the `data` property will exist for backwards compatability, but `data` has been marked as depreacted.
+
 ## 2.0.3
 
 ### Patch Changes
