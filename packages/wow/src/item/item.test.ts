@@ -1,18 +1,18 @@
 import { describe, it } from 'vitest';
 import { base, mediaBase, searchBase } from '../base';
-import * as itemApi from './item';
+import { item, itemClass, itemClassIndex, itemMedia, itemSearch, itemSet, itemSetIndex, itemSubClass } from './item';
 
 describe.concurrent('itemApi', () => {
   it('should return the item resource for a given itemId', ({ expect }) => {
     const itemId = 123;
-    const resource = itemApi.item(itemId);
+    const resource = item(itemId);
     expect(resource.path).toBe(`${base}/item/${itemId}`);
     expect(resource.namespace).toBe('static');
   });
 
   it('should return the item class resource for a given itemClassId', ({ expect }) => {
     const itemClassId = 456;
-    const resource = itemApi.itemClass(itemClassId);
+    const resource = itemClass(itemClassId);
     expect(resource.path).toBe(`${base}/item-class/${itemClassId}`);
     expect(resource.namespace).toBe('static');
   });
@@ -20,39 +20,39 @@ describe.concurrent('itemApi', () => {
   it('should return the item sub class resource for a given itemClassId and itemSubClassId', ({ expect }) => {
     const itemClassId = 456;
     const itemSubClassId = 789;
-    const resource = itemApi.itemSubClass(itemClassId, itemSubClassId);
+    const resource = itemSubClass(itemClassId, itemSubClassId);
     expect(resource.path).toBe(`${base}/item-class/${itemClassId}/item-subclass/${itemSubClassId}`);
     expect(resource.namespace).toBe('static');
   });
 
   it('should return the item class index resource', ({ expect }) => {
-    const resource = itemApi.itemClassIndex();
+    const resource = itemClassIndex();
     expect(resource.path).toBe(`${base}/item-class/index`);
     expect(resource.namespace).toBe('static');
   });
 
   it('should return the item media resource for a given itemId', ({ expect }) => {
     const itemId = 789;
-    const resource = itemApi.itemMedia(itemId);
+    const resource = itemMedia(itemId);
     expect(resource.path).toBe(`${mediaBase}/item/${itemId}`);
     expect(resource.namespace).toBe('static');
   });
 
   it('should return the item set resource for a given itemSetId', ({ expect }) => {
     const itemSetId = 987;
-    const resource = itemApi.itemSet(itemSetId);
+    const resource = itemSet(itemSetId);
     expect(resource.path).toBe(`${base}/item-set/${itemSetId}`);
     expect(resource.namespace).toBe('static');
   });
 
   it('should return the item set index resource', ({ expect }) => {
-    const resource = itemApi.itemSetIndex();
+    const resource = itemSetIndex();
     expect(resource.path).toBe(`${base}/item-set/index`);
     expect(resource.namespace).toBe('static');
   });
 
   it('should return the correct path and namespace for itemSearch', ({ expect }) => {
-    const resource = itemApi.itemSearch({
+    const resource = itemSearch({
       _page: 1,
       locale: 'en_US',
       name: 'test',
@@ -69,7 +69,7 @@ describe.concurrent('itemApi', () => {
   });
 
   it('should return the correct path and namespace for itemSearch when orderby is an array', ({ expect }) => {
-    const resource = itemApi.itemSearch({
+    const resource = itemSearch({
       _page: 1,
       locale: 'en_US',
       name: 'test',

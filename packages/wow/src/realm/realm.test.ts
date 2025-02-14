@@ -1,25 +1,25 @@
 import { describe, it } from 'vitest';
 import { base, searchBase } from '../base';
-import * as realmApi from './realm';
+import { realm, realmIndex, realmSearch } from './realm';
 
 describe.concurrent('realmApi', () => {
   it('realm should return a resource object with the correct path and namespace', ({ expect }) => {
     const realmSlug = 'my-realm';
-    const resource = realmApi.realm(realmSlug);
+    const resource = realm(realmSlug);
 
     expect(resource.path).toBe(`${base}/realm/${realmSlug}`);
     expect(resource.namespace).toBe('dynamic');
   });
 
   it('realmIndex should return a resource object with the correct path and namespace', ({ expect }) => {
-    const resource = realmApi.realmIndex();
+    const resource = realmIndex();
 
     expect(resource.path).toBe(`${base}/realm/index`);
     expect(resource.namespace).toBe('dynamic');
   });
 
   it('realmSearch should return a resource object with the correct path and namespace', ({ expect }) => {
-    const resource = realmApi.realmSearch({
+    const resource = realmSearch({
       _page: 1,
       orderby: 'name',
       timezone: 'Europe/Paris',
@@ -35,7 +35,7 @@ describe.concurrent('realmApi', () => {
   });
 
   it('realmSearch should return correct resource object when orderby is an array', ({ expect }) => {
-    const resource = realmApi.realmSearch({
+    const resource = realmSearch({
       _page: 1,
       orderby: ['name', 'id'],
       timezone: 'America/Chicago',

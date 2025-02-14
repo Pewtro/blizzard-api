@@ -1,13 +1,13 @@
 import type { BlizzardNamespaces } from '@blizzard-api/core';
 import { describe, it } from 'vitest';
-import * as classicConnectedRealmApi from '../connected-realm/connected-realm';
+import { connectedRealm, connectedRealmIndex, connectedRealmSearch } from '../connected-realm/connected-realm';
 
 const namespace: BlizzardNamespaces = 'dynamic-classic';
 const namespace1x: BlizzardNamespaces = 'dynamic-classic1x';
 
 describe.concurrent('classicConnectedRealmApi', () => {
   it('should return the connected realm index', ({ expect }) => {
-    const result = classicConnectedRealmApi.connectedRealmIndex(namespace);
+    const result = connectedRealmIndex(namespace);
     expect(result).toBeDefined();
     expect(result.path).toBe('/data/wow/connected-realm/index');
     expect(result.namespace).toBe(namespace);
@@ -15,14 +15,14 @@ describe.concurrent('classicConnectedRealmApi', () => {
 
   it('should return the connected realm', ({ expect }) => {
     const connectedRealmId = 123;
-    const result = classicConnectedRealmApi.connectedRealm(namespace1x, connectedRealmId);
+    const result = connectedRealm(namespace1x, connectedRealmId);
     expect(result).toBeDefined();
     expect(result.path).toBe(`/data/wow/connected-realm/${connectedRealmId}`);
     expect(result.namespace).toBe(namespace1x);
   });
 
   it('should return the proper search resource when orderby is an array', ({ expect }) => {
-    const result = classicConnectedRealmApi.connectedRealmSearch(namespace1x, {
+    const result = connectedRealmSearch(namespace1x, {
       _page: 1,
       orderby: 'name',
       'realms.timezone': 'America/Chicago',
@@ -40,7 +40,7 @@ describe.concurrent('classicConnectedRealmApi', () => {
   });
 
   it('should return the proper search resource when orderby is an array', ({ expect }) => {
-    const result = classicConnectedRealmApi.connectedRealmSearch(namespace, {
+    const result = connectedRealmSearch(namespace, {
       _page: 1,
       orderby: ['name', 'id'],
       'realms.timezone': 'America/New_York',

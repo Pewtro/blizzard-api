@@ -1,12 +1,12 @@
 import { describe, it } from 'vitest';
 import { base } from '../base';
-import * as mythicRaidLeaderboardApi from './mythic-raid-leaderboard';
+import { mythicRaidLeaderboard } from './mythic-raid-leaderboard';
 
 describe.concurrent('mythicRaidLeaderboardApi', () => {
   it('mythicRaidLeaderboard should return a resource object with the correct path and namespace', ({ expect }) => {
     const raid = 'castle-nathria';
     const faction = 'alliance';
-    const resource = mythicRaidLeaderboardApi.mythicRaidLeaderboard(raid, faction);
+    const resource = mythicRaidLeaderboard(raid, faction);
 
     expect(resource.path).toBe(`${base}/leaderboard/hall-of-fame/${raid}/${faction}`);
     expect(resource.namespace).toBe('dynamic');
@@ -17,7 +17,7 @@ describe.concurrent('mythicRaidLeaderboardApi', () => {
   }) => {
     const raid = 'sanctum-of-domination';
     const faction = 'horde';
-    const resource = mythicRaidLeaderboardApi.mythicRaidLeaderboard(raid, faction);
+    const resource = mythicRaidLeaderboard(raid, faction);
 
     expect(resource.path).toBe(`${base}/leaderboard/hall-of-fame/${raid}/${faction}`);
     expect(resource.namespace).toBe('dynamic');

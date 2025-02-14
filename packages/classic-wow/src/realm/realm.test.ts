@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { base, searchBase } from '../../../wow/src/base';
-import * as classicRealmApi from './realm';
+import { realm, realmIndex, realmSearch } from './realm';
 import type { RealmSearchParameters } from './types';
 
 const namespace = 'dynamic-classic';
@@ -9,7 +9,7 @@ describe.concurrent('classicRealmApi', () => {
   it('should return appropriate realm resource', ({ expect }) => {
     const realmSlug = 'test-realm';
 
-    const result = classicRealmApi.realm(namespace, realmSlug);
+    const result = realm(namespace, realmSlug);
 
     expect(result).toEqual({
       namespace,
@@ -18,7 +18,7 @@ describe.concurrent('classicRealmApi', () => {
   });
 
   it('should return appropriate realm index resource', ({ expect }) => {
-    const result = classicRealmApi.realmIndex(namespace);
+    const result = realmIndex(namespace);
 
     expect(result).toEqual({
       namespace,
@@ -33,7 +33,7 @@ describe.concurrent('classicRealmApi', () => {
       timezone: 'Europe/Paris',
     } satisfies RealmSearchParameters;
 
-    const result = classicRealmApi.realmSearch(namespace, options);
+    const result = realmSearch(namespace, options);
 
     expect(result).toEqual({
       namespace,
@@ -53,7 +53,7 @@ describe.concurrent('classicRealmApi', () => {
       timezone: 'America/Chicago',
     } satisfies RealmSearchParameters;
 
-    const result = classicRealmApi.realmSearch(namespace, options);
+    const result = realmSearch(namespace, options);
 
     expect(result).toEqual({
       namespace,

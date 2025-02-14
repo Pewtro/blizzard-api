@@ -1,11 +1,11 @@
 import { describe, it } from 'vitest';
 import { base, mediaBase, searchBase } from '../base';
-import * as spellApi from './spell';
+import { spell, spellMedia, spellSearch } from './spell';
 
 describe.concurrent('spellApi', () => {
   it('spell should return a resource object with the correct path and namespace', ({ expect }) => {
     const spellId = 456;
-    const resource = spellApi.spell(spellId);
+    const resource = spell(spellId);
 
     expect(resource.path).toBe(`${base}/spell/${spellId}`);
     expect(resource.namespace).toBe('static');
@@ -13,14 +13,14 @@ describe.concurrent('spellApi', () => {
 
   it('spellMedia should return a resource object with the correct path and namespace', ({ expect }) => {
     const spellId = 789;
-    const resource = spellApi.spellMedia(spellId);
+    const resource = spellMedia(spellId);
 
     expect(resource.path).toBe(`${mediaBase}/spell/${spellId}`);
     expect(resource.namespace).toBe('static');
   });
 
   it('spellSearch should return a resource object with the correct path, namespace and parameters', ({ expect }) => {
-    const resource = spellApi.spellSearch({
+    const resource = spellSearch({
       _page: 1,
       locale: 'en_US',
       name: 'Fireball',
@@ -37,7 +37,7 @@ describe.concurrent('spellApi', () => {
   });
 
   it('spellSearch should return correct resource object when orderby is an array', ({ expect }) => {
-    const resource = spellApi.spellSearch({
+    const resource = spellSearch({
       _page: 1,
       locale: 'en_US',
       name: 'Fireball',

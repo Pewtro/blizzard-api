@@ -1,25 +1,33 @@
 import { describe, it } from 'vitest';
 import { base } from '../base';
-import * as mythicKeystoneDungeonApi from './mythic-keystone-dungeon';
+import {
+  mythicKeystoneDungeon,
+  mythicKeystoneDungeonIndex,
+  mythicKeystoneIndex,
+  mythicKeystonePeriod,
+  mythicKeystonePeriodIndex,
+  mythicKeystoneSeason,
+  mythicKeystoneSeasonIndex,
+} from './mythic-keystone-dungeon';
 
 describe.concurrent('mythicKeystoneDungeonApi', () => {
   it('mythicKeystoneDungeon should return a resource object with the correct path and namespace', ({ expect }) => {
     const mythicKeystoneDungeonId = 123;
-    const resource = mythicKeystoneDungeonApi.mythicKeystoneDungeon(mythicKeystoneDungeonId);
+    const resource = mythicKeystoneDungeon(mythicKeystoneDungeonId);
 
     expect(resource.path).toBe(`${base}/mythic-keystone/dungeon/${mythicKeystoneDungeonId}`);
     expect(resource.namespace).toBe('dynamic');
   });
 
   it('mythicKeystoneDungeonIndex should return a resource object with the correct path and namespace', ({ expect }) => {
-    const resource = mythicKeystoneDungeonApi.mythicKeystoneDungeonIndex();
+    const resource = mythicKeystoneDungeonIndex();
 
     expect(resource.path).toBe(`${base}/mythic-keystone/dungeon/index`);
     expect(resource.namespace).toBe('dynamic');
   });
 
   it('mythicKeystoneIndex should return a resource object with the correct path and namespace', ({ expect }) => {
-    const resource = mythicKeystoneDungeonApi.mythicKeystoneIndex();
+    const resource = mythicKeystoneIndex();
 
     expect(resource.path).toBe(`${base}/mythic-keystone/index`);
     expect(resource.namespace).toBe('dynamic');
@@ -27,14 +35,14 @@ describe.concurrent('mythicKeystoneDungeonApi', () => {
 
   it('mythicKeystonePeriod should return a resource object with the correct path and namespace', ({ expect }) => {
     const mythicKeystonePeriodId = 456;
-    const resource = mythicKeystoneDungeonApi.mythicKeystonePeriod(mythicKeystonePeriodId);
+    const resource = mythicKeystonePeriod(mythicKeystonePeriodId);
 
     expect(resource.path).toBe(`${base}/mythic-keystone/period/${mythicKeystonePeriodId}`);
     expect(resource.namespace).toBe('dynamic');
   });
 
   it('mythicKeystonePeriodIndex should return a resource object with the correct path and namespace', ({ expect }) => {
-    const resource = mythicKeystoneDungeonApi.mythicKeystonePeriodIndex();
+    const resource = mythicKeystonePeriodIndex();
 
     expect(resource.path).toBe(`${base}/mythic-keystone/period/index`);
     expect(resource.namespace).toBe('dynamic');
@@ -42,14 +50,14 @@ describe.concurrent('mythicKeystoneDungeonApi', () => {
 
   it('mythicKeystoneSeason should return a resource object with the correct path and namespace', ({ expect }) => {
     const mythicKeystoneSeasonId = 789;
-    const resource = mythicKeystoneDungeonApi.mythicKeystoneSeason(mythicKeystoneSeasonId);
+    const resource = mythicKeystoneSeason(mythicKeystoneSeasonId);
 
     expect(resource.path).toBe(`${base}/mythic-keystone/season/${mythicKeystoneSeasonId}`);
     expect(resource.namespace).toBe('dynamic');
   });
 
   it('mythicKeystoneSeasonIndex should return a resource object with the correct path and namespace', ({ expect }) => {
-    const resource = mythicKeystoneDungeonApi.mythicKeystoneSeasonIndex();
+    const resource = mythicKeystoneSeasonIndex();
 
     expect(resource.path).toBe(`${base}/mythic-keystone/season/index`);
     expect(resource.namespace).toBe('dynamic');

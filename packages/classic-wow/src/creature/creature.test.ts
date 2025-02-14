@@ -1,6 +1,15 @@
 import { describe, it } from 'vitest';
 import { base, mediaBase, searchBase } from '../../../wow/src/base';
-import * as classicCreatureApi from './creature';
+import {
+  creature,
+  creatureDisplayMedia,
+  creatureFamily,
+  creatureFamilyIndex,
+  creatureFamilyMedia,
+  creatureSearch,
+  creatureType,
+  creatureTypeIndex,
+} from './creature';
 
 describe.concurrent('classicCreatureApi', () => {
   const namespace = 'static-classic';
@@ -10,7 +19,7 @@ describe.concurrent('classicCreatureApi', () => {
   const creatureTypeId = 987;
 
   it('creature should return the correct resource information', ({ expect }) => {
-    const resource = classicCreatureApi.creature(namespace, creatureId);
+    const resource = creature(namespace, creatureId);
     expect(resource).toEqual({
       namespace,
       path: `${base}/creature/123`,
@@ -18,7 +27,7 @@ describe.concurrent('classicCreatureApi', () => {
   });
 
   it('creatureDisplayMedia should return the correct resource information', ({ expect }) => {
-    const resource = classicCreatureApi.creatureDisplayMedia(namespace, creatureDisplayId);
+    const resource = creatureDisplayMedia(namespace, creatureDisplayId);
     expect(resource).toEqual({
       namespace,
       path: `${mediaBase}/creature-display/456`,
@@ -26,7 +35,7 @@ describe.concurrent('classicCreatureApi', () => {
   });
 
   it('creatureFamily should return the correct resource information', ({ expect }) => {
-    const resource = classicCreatureApi.creatureFamily(namespace, creatureFamilyId);
+    const resource = creatureFamily(namespace, creatureFamilyId);
     expect(resource).toEqual({
       namespace,
       path: `${base}/creature-family/789`,
@@ -34,7 +43,7 @@ describe.concurrent('classicCreatureApi', () => {
   });
 
   it('creatureFamilyIndex should return the correct resource information', ({ expect }) => {
-    const resource = classicCreatureApi.creatureFamilyIndex(namespace);
+    const resource = creatureFamilyIndex(namespace);
     expect(resource).toEqual({
       namespace,
       path: `${base}/creature-family/index`,
@@ -42,7 +51,7 @@ describe.concurrent('classicCreatureApi', () => {
   });
 
   it('creatureFamilyMedia should return the correct resource information', ({ expect }) => {
-    const resource = classicCreatureApi.creatureFamilyMedia(namespace, creatureFamilyId);
+    const resource = creatureFamilyMedia(namespace, creatureFamilyId);
     expect(resource).toEqual({
       namespace,
       path: `${mediaBase}/creature-family/789`,
@@ -50,7 +59,7 @@ describe.concurrent('classicCreatureApi', () => {
   });
 
   it('creatureType should return the correct resource information', ({ expect }) => {
-    const resource = classicCreatureApi.creatureType(namespace, creatureTypeId);
+    const resource = creatureType(namespace, creatureTypeId);
     expect(resource).toEqual({
       namespace,
       path: `${base}/creature-type/987`,
@@ -58,7 +67,7 @@ describe.concurrent('classicCreatureApi', () => {
   });
 
   it('creatureTypeIndex should return the correct resource information', ({ expect }) => {
-    const resource = classicCreatureApi.creatureTypeIndex(namespace);
+    const resource = creatureTypeIndex(namespace);
     expect(resource).toEqual({
       namespace,
       path: `${base}/creature-type/index`,
@@ -66,7 +75,7 @@ describe.concurrent('classicCreatureApi', () => {
   });
 
   it('creatureSearch should return the correct resource information', ({ expect }) => {
-    const resource = classicCreatureApi.creatureSearch(namespace, {
+    const resource = creatureSearch(namespace, {
       _page: 1,
       locale: 'en_US',
       name: 'creatureName',
@@ -84,7 +93,7 @@ describe.concurrent('classicCreatureApi', () => {
   });
 
   it('creatureSearch should return the correct resource information when orderby is an array', ({ expect }) => {
-    const resource = classicCreatureApi.creatureSearch(namespace, {
+    const resource = creatureSearch(namespace, {
       _page: 1,
       locale: 'en_US',
       name: 'creatureName',

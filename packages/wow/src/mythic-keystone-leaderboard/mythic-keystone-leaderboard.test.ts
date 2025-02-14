@@ -1,13 +1,13 @@
 import { describe, it } from 'vitest';
 import { base } from '../base';
-import * as mythicKeystoneLeaderboardApi from './mythic-keystone-leaderboard';
+import { mythicKeystoneLeaderboard, mythicKeystoneLeaderboardIndex } from './mythic-keystone-leaderboard';
 
 describe.concurrent('mythicKeystoneLeaderboardApi', () => {
   it('mythicKeystoneLeaderboard should return a resource object with the correct path and namespace', ({ expect }) => {
     const connectedRealmId = 456;
     const dungeonId = 789;
     const period = 123;
-    const resource = mythicKeystoneLeaderboardApi.mythicKeystoneLeaderboard(connectedRealmId, dungeonId, period);
+    const resource = mythicKeystoneLeaderboard(connectedRealmId, dungeonId, period);
 
     expect(resource.path).toBe(
       `${base}/connected-realm/${connectedRealmId}/mythic-leaderboard/${dungeonId}/period/${period}`,
@@ -19,7 +19,7 @@ describe.concurrent('mythicKeystoneLeaderboardApi', () => {
     expect,
   }) => {
     const connectedRealmId = 456;
-    const resource = mythicKeystoneLeaderboardApi.mythicKeystoneLeaderboardIndex(connectedRealmId);
+    const resource = mythicKeystoneLeaderboardIndex(connectedRealmId);
 
     expect(resource.path).toBe(`${base}/connected-realm/${connectedRealmId}/mythic-leaderboard/index`);
     expect(resource.namespace).toBe('dynamic');

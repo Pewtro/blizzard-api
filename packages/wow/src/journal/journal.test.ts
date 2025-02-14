@@ -1,56 +1,65 @@
 import { describe, it } from 'vitest';
 import { base, mediaBase, searchBase } from '../base';
-import * as journalApi from './journal';
+import {
+  journalEncounter,
+  journalEncounterIndex,
+  journalEncounterSearch,
+  journalExpansion,
+  journalExpansionIndex,
+  journalInstance,
+  journalInstanceIndex,
+  journalInstanceMedia,
+} from './journal';
 
 describe.concurrent('journalApi', () => {
   it('should return the journal encounter resource for a given journalEncounterId', ({ expect }) => {
     const journalEncounterId = 123;
-    const resource = journalApi.journalEncounter(journalEncounterId);
+    const resource = journalEncounter(journalEncounterId);
     expect(resource.path).toBe(`${base}/journal-encounter/123`);
     expect(resource.namespace).toBe('static');
   });
 
   it('should return the journal encounter index resource', ({ expect }) => {
-    const resource = journalApi.journalEncounterIndex();
+    const resource = journalEncounterIndex();
     expect(resource.path).toBe(`${base}/journal-encounter/index`);
     expect(resource.namespace).toBe('static');
   });
 
   it('should return the journal expansion resource for a given journalExpansionId', ({ expect }) => {
     const journalExpansionId = 456;
-    const resource = journalApi.journalExpansion(journalExpansionId);
+    const resource = journalExpansion(journalExpansionId);
     expect(resource.path).toBe(`${base}/journal-expansion/456`);
     expect(resource.namespace).toBe('static');
   });
 
   it('should return the journal expansion index resource', ({ expect }) => {
-    const resource = journalApi.journalExpansionIndex();
+    const resource = journalExpansionIndex();
     expect(resource.path).toBe(`${base}/journal-expansion/index`);
     expect(resource.namespace).toBe('static');
   });
 
   it('should return the journal instance resource for a given journalInstanceId', ({ expect }) => {
     const journalInstanceId = 789;
-    const resource = journalApi.journalInstance(journalInstanceId);
+    const resource = journalInstance(journalInstanceId);
     expect(resource.path).toBe(`${base}/journal-instance/789`);
     expect(resource.namespace).toBe('static');
   });
 
   it('should return the journal instance index resource', ({ expect }) => {
-    const resource = journalApi.journalInstanceIndex();
+    const resource = journalInstanceIndex();
     expect(resource.path).toBe(`${base}/journal-instance/index`);
     expect(resource.namespace).toBe('static');
   });
 
   it('should return the journal instance media resource for a given journalInstanceId', ({ expect }) => {
     const journalInstanceId = 789;
-    const resource = journalApi.journalInstanceMedia(journalInstanceId);
+    const resource = journalInstanceMedia(journalInstanceId);
     expect(resource.path).toBe(`${mediaBase}/journal-instance/789`);
     expect(resource.namespace).toBe('static');
   });
 
   it('should return the journal encounter search resource with parameters', ({ expect }) => {
-    const resource = journalApi.journalEncounterSearch({
+    const resource = journalEncounterSearch({
       _page: 1,
       instanceName: 'instanceName',
       locale: 'en_US',
@@ -66,7 +75,7 @@ describe.concurrent('journalApi', () => {
   });
 
   it('should return the journal encounter search resource when orderby is an array', ({ expect }) => {
-    const resource = journalApi.journalEncounterSearch({
+    const resource = journalEncounterSearch({
       _page: 1,
       instanceName: 'instanceName',
       locale: 'en_US',

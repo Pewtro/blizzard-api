@@ -1,17 +1,17 @@
 import { describe, it } from 'vitest';
 import { searchBase } from '../base';
-import * as mediaSearchApi from './media-search';
+import { mediaSearch } from './media-search';
 
 describe.concurrent('mediaSearchApi', () => {
   it('should return the media search resource', ({ expect }) => {
-    const resource = mediaSearchApi.mediaSearch({});
+    const resource = mediaSearch({});
     expect(resource.path).toBe(`${searchBase}/media`);
     expect(resource.namespace).toBe('static');
     expect(resource.parameters).toEqual({});
   });
 
   it('should return the media search resource with parameters', ({ expect }) => {
-    const resource = mediaSearchApi.mediaSearch({
+    const resource = mediaSearch({
       _page: 1,
       orderby: 'name',
       tags: 'tag',
@@ -26,7 +26,7 @@ describe.concurrent('mediaSearchApi', () => {
   });
 
   it('should return the media search resource with parameters when orderby is an array', ({ expect }) => {
-    const resource = mediaSearchApi.mediaSearch({
+    const resource = mediaSearch({
       _page: 1,
       orderby: ['name', 'id'],
       tags: 'tag',
