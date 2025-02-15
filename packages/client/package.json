@@ -1,6 +1,6 @@
 {
   "name": "@blizzard-api/client",
-  "version": "2.0.3",
+  "version": "2.1.0",
   "license": "MIT",
   "author": "Putro",
   "description": "A node.js client to integrate with the blizzard battle.net api.",
