@@ -1,5 +1,11 @@
 # @blizzard-api/classic-wow
 
+## 2.0.3
+
+### Patch Changes
+
+- e79b26f: Prefer default export rather than named syntax for the game flavours
+
 ## 2.0.2
 
 ### Patch Changes

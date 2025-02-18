@@ -1,5 +1,11 @@
 # @blizzard-api/d3
 
+## 1.0.3
+
+### Patch Changes
+
+- e79b26f: Prefer default export rather than named syntax for the game flavours
+
 ## 1.0.2
 
 ### Patch Changes

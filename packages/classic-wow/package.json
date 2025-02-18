@@ -1,6 +1,6 @@
 {
   "name": "@blizzard-api/classic-wow",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "license": "MIT",
   "author": "Putro",
   "description": "A series of helpers to interact with the World of Warcraft Classic Blizzard API",
