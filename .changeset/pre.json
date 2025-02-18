@@ -10,5 +10,5 @@
     "@blizzard-api/sc2": "1.0.3",
     "@blizzard-api/wow": "2.0.3"
   },
-  "changesets": []
+  "changesets": ["old-moons-mate"]
 }

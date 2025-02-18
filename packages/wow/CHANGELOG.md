@@ -1,5 +1,11 @@
 # @blizzard-api/wow
 
+## 2.1.0-next.0
+
+### Minor Changes
+
+- 23e273c: Deprecate the `wow` object as well as the root export of all the resources in favour of enabling better treeshaking for consumers by encouraging to import directly from folders
+
 ## 2.0.3
 
 ### Patch Changes
