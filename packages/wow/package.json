@@ -12,10 +12,19 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
-    "import": {
-      "@blizzard-api/wow-local": "./src/index.ts",
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
+    ".": {
+      "import": {
+        "@blizzard-api/wow-local": "./src/index.ts",
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    },
+    "./*": {
+      "import": {
+        "@blizzard-api/wow-local/*": "./src/*/*.ts",
+        "types": "./dist/*/*.d.ts",
+        "default": "./dist/*/*.js"
+      }
     }
   },
   "files": [

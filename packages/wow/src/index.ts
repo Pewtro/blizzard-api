@@ -186,6 +186,7 @@ import { wowToken } from './wow-token/wow-token';
 /**
  * The Blizzard API for World of Warcraft.
  * @see https://develop.battle.net/documentation/world-of-warcraft
+ * @deprecated Use the appropriate named export from it's sub-folder instead, e.g. import { achievement } from "@blizzard-api/wow/achievements". This is done to improve treeshaking capabilities. This export will be removed in a future release.
  */
 const wow = {
   //Account Profile
@@ -422,6 +423,7 @@ const wow = {
   //WoW Token
   wowToken,
 };
+
 export default wow;
 export { wow };
 
