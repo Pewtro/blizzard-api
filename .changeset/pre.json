@@ -1,0 +1,14 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@blizzard-api/classic-wow": "2.0.3",
+    "@blizzard-api/client": "2.1.0",
+    "@blizzard-api/core": "2.0.2",
+    "@blizzard-api/d3": "1.0.3",
+    "@blizzard-api/hs": "1.0.3",
+    "@blizzard-api/sc2": "1.0.3",
+    "@blizzard-api/wow": "2.0.3"
+  },
+  "changesets": []
+}
