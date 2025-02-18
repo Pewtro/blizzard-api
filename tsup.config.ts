@@ -3,7 +3,9 @@ import { defineConfig } from 'tsup';
 export default defineConfig(({ watch = false }) => ({
   clean: true,
   dts: true,
-  entry: ['src/**/*.ts', '!src/**/*.test.ts'],
+  entry: {
+    index: './src/index.ts',
+  },
   external: [],
   format: 'esm',
   outDir: 'dist',
