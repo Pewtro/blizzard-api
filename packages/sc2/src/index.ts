@@ -33,7 +33,8 @@ const sc2 = {
   profile,
   staticProfile,
 };
-export { sc2 as default, sc2 };
+export default sc2;
+export { sc2 };
 
 //Account
 export * from './account/account';

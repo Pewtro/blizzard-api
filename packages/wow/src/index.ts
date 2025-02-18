@@ -422,7 +422,8 @@ const wow = {
   //WoW Token
   wowToken,
 };
-export { wow as default, wow };
+export default wow;
+export { wow };
 
 //Account Profile
 export * from './account-profile/account-profile';

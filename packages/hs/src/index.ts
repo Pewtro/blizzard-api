@@ -16,7 +16,8 @@ const hs = {
   allMetadata,
   specificMetadata,
 };
-export { hs as default, hs };
+export default hs;
+export { hs };
 
 //Card Backs
 export * from './card-backs/card-backs';

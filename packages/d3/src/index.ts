@@ -37,7 +37,8 @@ const d3 = {
   seasonIndex,
   seasonLeaderboard,
 };
-export { d3, d3 as default };
+export default d3;
+export { d3 };
 
 //Act
 export * from './act/act';
