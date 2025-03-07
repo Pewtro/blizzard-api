@@ -18,7 +18,7 @@ jobs:
     strategy:
       matrix:
         # Test against multiple node versions
-        # Last LTS, current LTS, current, and next LTS (if not same as current)
+        # Any currently maintained version, e.g. whether they are current, active or maintenance should be included
         node: [18.x, 20.x, 22.x, 23.x]
     name: Build, Test & Release
     runs-on: ubuntu-latest
