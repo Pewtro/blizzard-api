@@ -1,4 +1,4 @@
-import type { Faction, Href, NameIdKey, Realm, ResponseBase } from '../base';
+import type { Faction, Gender, Href, NameIdKey, Realm, ResponseBase } from '../base';
 
 export interface CharacterProfileStatusResponse extends ResponseBase {
   id: number;
@@ -21,7 +21,7 @@ export interface CharacterProfileSummaryResponse extends ResponseBase {
   equipped_item_level: number;
   experience: number;
   faction: Faction;
-  gender: Faction;
+  gender: Gender;
   guild: Guild;
   hunter_pets: Href;
   id: number;
