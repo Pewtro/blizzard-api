@@ -7,6 +7,8 @@ export type BlizzardNamespaces =
   | 'dynamic-classic1x'
   | 'dynamic-classic'
   | 'profile'
+  | 'profile-classic1x'
+  | 'profile-classic'
   | 'static'
   | 'static-classic1x'
   | 'static-classic';
