@@ -1,5 +1,13 @@
 # @blizzard-api/classic-wow
 
+## 2.1.1
+
+### Patch Changes
+
+- 40fea58: Add is_ghost and is_self_found as optional boolean values for Character Profile Summary API in classic wow.
+
+  These values are only be present on Hardcore characters.
+
 ## 2.1.0
 
 ### Minor Changes
