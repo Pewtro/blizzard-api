@@ -1,10 +1,13 @@
 # @blizzard-api/wow
 
-## 2.1.0-next.0
+## 2.0.4
 
-### Minor Changes
+### Patch Changes
 
-- 23e273c: Deprecate the `wow` object as well as the root export of all the resources in favour of enabling better treeshaking for consumers by encouraging to import directly from folders
+- 461a8cb: Update statistic description to be nullable
+- 7ef2b51: Correct the gender type for the character profile summary response
+- Updated dependencies [3faeb2c]
+  - @blizzard-api/core@2.1.0
 
 ## 2.0.3
 

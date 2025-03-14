@@ -1,5 +1,12 @@
 # @blizzard-api/client
 
+## 2.1.1
+
+### Patch Changes
+
+- Updated dependencies [3faeb2c]
+  - @blizzard-api/core@2.1.0
+
 ## 2.1.0
 
 ### Minor Changes

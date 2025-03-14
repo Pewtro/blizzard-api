@@ -1,5 +1,11 @@
 # @blizzard-api/core
 
+## 2.1.0
+
+### Minor Changes
+
+- 3faeb2c: Add profile-classic1x and profile-classic to BlizzardNamespaces
+
 ## 2.0.2
 
 ### Patch Changes

@@ -1,5 +1,26 @@
 # @blizzard-api/classic-wow
 
+## 2.1.0
+
+### Minor Changes
+
+- ce41414: Add a bunch of profile APIs, this includes:
+
+  - Character Achievements
+  - Character Equipment
+  - Character Hunter Pets
+  - Character Media
+  - Character Profile
+  - Character Specialization
+  - Character Statistics
+
+- ce41414: Add Guild related APIs
+
+### Patch Changes
+
+- Updated dependencies [3faeb2c]
+  - @blizzard-api/core@2.1.0
+
 ## 2.0.3
 
 ### Patch Changes
