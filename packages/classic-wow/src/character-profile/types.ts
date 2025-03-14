@@ -16,6 +16,10 @@ export interface CharacterProfileSummaryResponse extends ResponseBase {
   gender: Gender;
   guild: Guild;
   id: number;
+  //Hardcore only
+  is_ghost?: boolean;
+  //Hardcore only
+  is_self_found?: boolean;
   last_login_timestamp: number;
   level: number;
   media: Href;
