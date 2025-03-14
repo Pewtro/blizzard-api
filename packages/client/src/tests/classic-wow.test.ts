@@ -30,4 +30,18 @@ describe.concurrent('smoketest some classic wow api responses', async () => {
 
     expect(response.realms).toBeDefined();
   });
+
+  it("should be able to fetch a guild's achievements", async ({ expect }) => {
+    const response = await client.sendRequest(
+      classicWow.guildAchievements('profile-classic', 'firemaw', 'raid-drømmen'),
+    );
+
+    expect(response.achievements).toBeDefined();
+  });
+  it('should be able to fetch some information on a guild', async ({ expect }) => {
+    const response = await client.sendRequest(classicWow.guild('profile-classic', 'firemaw', 'raid-drømmen'));
+
+    expect(response.name).toBeDefined();
+    expect(response.name).toBe('Raid Drømmen');
+  });
 });
