@@ -48,7 +48,7 @@ interface RecentEvent {
 }
 
 interface Statistic {
-  description?: string;
+  description?: null | string;
   id: number;
   last_updated_timestamp: number;
   name: string;
