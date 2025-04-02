@@ -58,8 +58,8 @@
   },
   "scripts": {
     "build": "turbo build",
-    "lint": "eslint --format stylish --max-warnings 0 --cache .",
-    "lint:ci": "npm-run-all -p -l lint typecheck stylecheck",
+    "lint": "eslint --format stylish --max-warnings 0 --cache",
+    "lint:ci": "npm-run-all -p -l typecheck stylecheck \"lint .\"",
     "lint:fix": "pnpm lint --fix",
     "prepare": "husky",
     "release": "changeset publish",
