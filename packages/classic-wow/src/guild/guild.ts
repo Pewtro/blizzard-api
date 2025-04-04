@@ -37,7 +37,6 @@ export function guildAchievements<T extends Extract<BlizzardNamespaces, 'profile
   realmSlug: string,
   nameSlug: string,
 ): Resource<T extends 'profile-classic1x' ? GuildAchievementsClassicEraResponse : GuildAchievementsResponse> {
-  console.log('typeof namespace', typeof namespace);
   return {
     namespace,
     path: `${basePath}/${realmSlug}/${nameSlug}/achievements`,
