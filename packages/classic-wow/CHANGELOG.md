@@ -1,5 +1,11 @@
 # @blizzard-api/classic-wow
 
+## 2.1.2
+
+### Patch Changes
+
+- db2b56f: Remove stray console.log from guildAchievements
+
 ## 2.1.1
 
 ### Patch Changes
