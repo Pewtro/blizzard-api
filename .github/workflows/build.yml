@@ -1,4 +1,6 @@
 name: CI
+permissions:
+  contents: read
 
 on:
   pull_request:
@@ -26,9 +28,9 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v3
+      - uses: pnpm/action-setup@d648c2dd069001a242c621c8306af467f150e99d
         with:
-          version: 9
+          version: 10
 
       - name: Cache turbo build setup
         uses: actions/cache@v4
@@ -63,7 +65,7 @@ jobs:
       - if: ${{ matrix.node == env.release_node && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         name: Create Release Pull Request or Publish to npm
         id: changesets
-        uses: changesets/action@v1
+        uses: changesets/action@bd5d1d2a62e4b24b413ec54e34c667c025a53d10
         with:
           # This expects you to have a script called release which does a build for your packages and calls changeset publish
           publish: pnpm release
