@@ -65,7 +65,7 @@ jobs:
       - if: ${{ matrix.node == env.release_node && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         name: Create Release Pull Request or Publish to npm
         id: changesets
-        uses: changesets/action@ff7179cf129faeb3e444f56e6290adef5901f936
+        uses: changesets/action@v1
         with:
           # This expects you to have a script called release which does a build for your packages and calls changeset publish
           publish: pnpm release
