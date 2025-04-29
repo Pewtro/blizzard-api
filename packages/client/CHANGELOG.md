@@ -1,5 +1,11 @@
 # @blizzard-api/client
 
+## 2.1.3
+
+### Patch Changes
+
+- 08da205: Update ky to 1.8.1
+
 ## 2.1.2
 
 ### Patch Changes
