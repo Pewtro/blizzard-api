@@ -20,7 +20,7 @@
     /* Vite specific settings */
     "types": ["vitest/importMeta"],
 
-    /* We transpile with tsup */
+    /* We transpile with tsdown */
     "noEmit": true,
     "module": "Preserve",
     "moduleResolution": "Bundler",

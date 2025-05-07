@@ -54,8 +54,8 @@
     "@blizzard-api/wow": "workspace:*"
   },
   "scripts": {
-    "build": "tsup",
-    "dev": "tsup --watch",
+    "build": "tsdown",
+    "dev": "tsdown --watch",
     "test": "vitest run",
     "test:coverage": "pnpm test -- --coverage",
     "test:watch": "vitest watch"
