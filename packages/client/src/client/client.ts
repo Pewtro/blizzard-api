@@ -217,10 +217,12 @@ export class BlizzardApiClient implements IBlizzardApiClient {
     const url = this.getRequestUrl(resource, options);
     const config = this.getRequestConfig(resource, options, headers);
 
-    const response = await this.ky.get<T>(url, config).json();
+    const response = await this.ky.get<T>(url, config);
+    const data = await response.json();
+
     return {
-      data: response,
-      ...response,
+      data,
+      ...data,
     };
   }
 }
