@@ -49,9 +49,6 @@
     "zod": "3.24.4"
   },
   "pnpm": {
-    "overrides": {
-      "vite": "^6.3.4"
-    },
     "onlyBuiltDependencies": [
       "esbuild"
     ]
