@@ -1,5 +1,11 @@
 # @blizzard-api/client
 
+## 2.1.4
+
+### Patch Changes
+
+- a96da45: Fix a rare intermittent issue where the client would think the body had already been consumed
+
 ## 2.1.3
 
 ### Patch Changes
