@@ -1,5 +1,12 @@
 # @blizzard-api/sc2
 
+## 1.0.5
+
+### Patch Changes
+
+- Updated dependencies [eea4060]
+  - @blizzard-api/core@2.1.1
+
 ## 1.0.4
 
 ### Patch Changes

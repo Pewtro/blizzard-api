@@ -1,5 +1,12 @@
 # @blizzard-api/classic-wow
 
+## 2.1.3
+
+### Patch Changes
+
+- Updated dependencies [eea4060]
+  - @blizzard-api/core@2.1.1
+
 ## 2.1.2
 
 ### Patch Changes
