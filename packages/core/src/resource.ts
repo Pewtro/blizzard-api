@@ -29,7 +29,7 @@ export type ProtectedResource<Response, SearchOptions extends object = Record<st
  */
 export type Resource<
   Response,
-  SearchOptions extends object = Record<string, never>,
+  SearchOptions extends object = Record<string, unknown>,
   IsProtectedResource extends boolean = false,
 > = (IsProtectedResource extends true ? { token: string } : unknown) & {
   /**
