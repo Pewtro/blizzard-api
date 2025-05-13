@@ -1,5 +1,19 @@
 # @blizzard-api/client
 
+## 2.2.0
+
+### Minor Changes
+
+- 8dc484a: Add support for passing custom options to the clients internal ky instance both when calling createBlizzardApiClient or when calling sendRequest exposed through the client. This deprecates the old headers parameter on getRequestConfig and sendRequest as it can instead be passed through the options.kyOptions parameter. The old headers parameter will be removed in the next major version.
+  This change allows for more flexibility and customization of the requests made by the client, as users can now pass any options supported by ky, such as timeout, hooks, and retry options.
+- 8dc484a: Remove the unnecessary IBlizzardApiClient interface that only held partial information about the functions implemented in the BlizzardApiClient class
+
+### Patch Changes
+
+- a96da45: Fix a rare intermittent issue where the client would think the body had already been consumed
+- Updated dependencies [eea4060]
+  - @blizzard-api/core@2.1.1
+
 ## 2.1.3
 
 ### Patch Changes

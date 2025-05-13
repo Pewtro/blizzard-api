@@ -1,5 +1,12 @@
 # @blizzard-api/wow
 
+## 2.0.5
+
+### Patch Changes
+
+- Updated dependencies [eea4060]
+  - @blizzard-api/core@2.1.1
+
 ## 2.0.4
 
 ### Patch Changes

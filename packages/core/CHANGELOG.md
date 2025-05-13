@@ -1,5 +1,11 @@
 # @blizzard-api/core
 
+## 2.1.1
+
+### Patch Changes
+
+- eea4060: Update the default type of SearchOptions in Resource to Record<string, unknown> as opposed to Record<string, never>
+
 ## 2.1.0
 
 ### Minor Changes
