@@ -7,7 +7,6 @@ import type {
   AccessTokenRequestArguments,
   AxiosCompatability,
   ClientOptions,
-  IBlizzardApiClient,
   ValidateAccessTokenArguments,
   ValidateAccessTokenResponse,
 } from './types';
@@ -24,7 +23,7 @@ import type {
  *  token: 'access'
  * });
  */
-export class BlizzardApiClient implements IBlizzardApiClient {
+export class BlizzardApiClient {
   public defaults: {
     key: string;
     locale: Locales;
@@ -33,7 +32,7 @@ export class BlizzardApiClient implements IBlizzardApiClient {
     token?: string;
   };
 
-  private ky = ky.create();
+  private ky;
 
   constructor(options: ClientOptions) {
     const { locale, origin } = getBlizzardApi(options.origin, options.locale);
@@ -44,6 +43,7 @@ export class BlizzardApiClient implements IBlizzardApiClient {
       secret: options.secret,
       token: options.token,
     };
+    this.ky = ky.create(options.kyOptions);
   }
 
   /**
@@ -146,14 +146,21 @@ export class BlizzardApiClient implements IBlizzardApiClient {
    * Get the request configuration.
    * @param resource The resource to fetch. See {@link Resource}.
    * @param options Client options. See {@link ClientOptions}.
-   * @param headers Additional headers to include in the request.
+   * @param headers Additional headers to include in the request. This is deprecated and should be passed into the kyOptions as part of the client options instead.
    * @returns The request configuration.
    */
   public getRequestConfig<T, Protected extends boolean = false>(
     resource: Resource<T, object, Protected>,
     options?: Partial<ClientOptions>,
     headers?: Record<string, string>,
-  ) {
+  ): {
+    headers: Record<string, string> & {
+      Authorization: `Bearer ${string}`;
+      'Battlenet-Namespace'?: string;
+      'Content-Type': 'application/json';
+    };
+    searchParams: Record<string, unknown> & { locale: ReturnType<typeof getBlizzardApi>['locale'] };
+  } {
     const config = { ...this.defaults, ...options };
     const endpoint = getBlizzardApi(config.origin, config.locale);
 
@@ -178,8 +185,8 @@ export class BlizzardApiClient implements IBlizzardApiClient {
         'Content-Type': 'application/json',
       },
       searchParams: {
+        ...parameters,
         locale: endpoint.locale,
-        ...resource.parameters,
       },
     };
   }
@@ -206,7 +213,7 @@ export class BlizzardApiClient implements IBlizzardApiClient {
    * Send a request to the Blizzard API.
    * @param resource The resource to fetch. See {@link Resource}.
    * @param options Client options. See {@link ClientOptions}.
-   * @param headers Additional headers to include in the request.
+   * @param headers Additional headers to include in the request. This is deprecated and should be passed into the kyOptions as part of the client options instead.
    * @returns The response from the Blizzard API. See {@link ResourceResponse}.
    */
   public async sendRequest<T, Protected extends boolean = false>(
@@ -217,7 +224,14 @@ export class BlizzardApiClient implements IBlizzardApiClient {
     const url = this.getRequestUrl(resource, options);
     const config = this.getRequestConfig(resource, options, headers);
 
-    const response = await this.ky.get<T>(url, config);
+    const response = await this.ky.get<T>(url, {
+      ...options?.kyOptions,
+      headers: {
+        ...config.headers,
+        ...options?.kyOptions?.headers,
+      },
+      searchParams: { ...config.searchParams, ...Object.entries(options?.kyOptions?.searchParams ?? {}) },
+    });
     const data = await response.json();
 
     return {

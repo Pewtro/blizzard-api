@@ -1,4 +1,5 @@
 import type { Locales, Origins } from '@blizzard-api/core';
+import type { Options as KyOptions } from 'ky';
 
 /**
  * An access token response from the Blizzard API.
@@ -49,6 +50,7 @@ export type AxiosCompatability<T> = T & {
  * @example
  * const options: ClientOptions = {
  *  key: 'client',
+ *  kyOptions: { ... },
  *  secret: 'secret',
  *  origin: 'eu',
  *  locale: 'en_GB',
@@ -57,22 +59,11 @@ export type AxiosCompatability<T> = T & {
  */
 export interface ClientOptions {
   key: string; // The client ID.
+  kyOptions?: KyOptions; // The options to pass to the ky client.
   locale?: Locales; // The locale of the Blizzard API.
   origin: Origins; // The region of the Blizzard API.
   secret: string; // The client secret.
   token?: string; // The access token.
-}
-
-/**
- * A Blizzard API client.
- */
-export interface IBlizzardApiClient {
-  getAccessToken: (options: AccessTokenRequestArguments) => Promise<AxiosCompatability<AccessToken>>; // Get an access token.
-  refreshAccessToken: (options: AccessTokenRequestArguments) => Promise<AxiosCompatability<AccessToken>>; // Refresh an access token.
-  setAccessToken: (token: string) => void; // Set an access token.
-  validateAccessToken: (
-    options: ValidateAccessTokenArguments,
-  ) => Promise<AxiosCompatability<ValidateAccessTokenResponse>>; // Validate an access token.
 }
 
 /**

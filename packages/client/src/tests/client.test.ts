@@ -165,4 +165,19 @@ describe.concurrent('client', async () => {
     const tokenResponse = await tokenClient.getAccessToken();
     expect(tokenResponse.access_token).toBeDefined();
   });
+
+  it('getRequestConfig should include correct headers and searchParams', ({ expect }) => {
+    const resource: Resource<{ foo: string }> = {
+      parameters: { bar: 'baz', unused: undefined },
+      path: '/foo',
+    };
+    const config = client.getRequestConfig(resource, undefined, { 'X-Test': 'yes' });
+
+    expect(config.headers.Authorization).toBeDefined();
+    expect(config.headers['Content-Type']).toBe('application/json');
+    expect(config.headers['X-Test']).toBe('yes');
+    expect(config.searchParams.locale).toBeDefined();
+    expect(config.searchParams.bar).toBe('baz');
+    expect(config.searchParams.unused).toBeUndefined();
+  });
 });
