@@ -1,5 +1,11 @@
 # @blizzard-api/wow
 
+## 2.1.0
+
+### Minor Changes
+
+- 120a26f: Add characterPvpBracketStatistics
+
 ## 2.0.5
 
 ### Patch Changes
