@@ -1,8 +1,21 @@
 import { describe, expect, it } from 'vitest';
-import { characterPvpSummary } from './character-pvp';
+import { characterPvpBracketStatistics, characterPvpSummary } from './character-pvp';
 
-describe('characterPvpSummary', () => {
-  it('should return the correct ProtectedResource object', () => {
+describe('character pvp', () => {
+  it('bracket statistics', () => {
+    const realmSlug = 'example-realm';
+    const characterName = 'example-character';
+    const bracketId = '2v2';
+
+    const expectedResource = {
+      namespace: 'profile',
+      path: `/profile/wow/character/${realmSlug}/${characterName.toLowerCase()}/pvp-bracket/${bracketId}`,
+    };
+
+    const result = characterPvpBracketStatistics(realmSlug, characterName, bracketId);
+    expect(result).toEqual(expectedResource);
+  });
+  it('summary', () => {
     const realmSlug = 'example-realm';
     const characterName = 'example-character';
 

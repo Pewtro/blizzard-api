@@ -49,7 +49,7 @@ import {
 } from './character-mythic-keystone-profile/character-mythic-keystone-profile';
 import { characterProfessionsSummary } from './character-professions/character-professions';
 import { characterProfileStatus, characterProfileSummary } from './character-profile/character-profile';
-import { characterPvpSummary } from './character-pvp/character-pvp';
+import { characterPvpBracketStatistics, characterPvpSummary } from './character-pvp/character-pvp';
 import { characterCompletedQuests, characterQuests } from './character-quests/character-quests';
 import { characterReputationsSummary } from './character-reputations/character-reputations';
 import { characterSoulbinds } from './character-soulbinds/character-soulbinds';
@@ -242,6 +242,7 @@ const wow = {
   characterProfileStatus,
   characterProfileSummary,
   //Character PvP
+  characterPvpBracketStatistics,
   characterPvpSummary,
   //Character Quests
   characterCompletedQuests,
