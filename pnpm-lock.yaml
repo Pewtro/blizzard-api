@@ -12,8 +12,8 @@ importers:
         specifier: 2.29.4
         version: 2.29.4
       '@putstack/eslint-config-typescript':
-        specifier: 4.3.0
-        version: 4.3.0(@eslint/js@9.27.0)(@typescript-eslint/utils@8.32.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.27.0(jiti@2.4.2))(typescript-eslint@8.32.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3))(typescript@5.8.3)
+        specifier: 4.4.0
+        version: 4.4.0(@eslint/js@9.27.0)(@typescript-eslint/utils@8.32.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.27.0(jiti@2.4.2))(typescript-eslint@8.32.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3))(typescript@5.8.3)
       '@putstack/prettier-config':
         specifier: 2.0.0
         version: 2.0.0(prettier@3.5.3)
@@ -496,8 +496,8 @@ packages:
   '@polka/url@1.0.0-next.29':
     resolution: {integrity: sha512-wwQAWhWSuHaag8c4q/KN/vCoeOJYshAIvMQwD4GpSb3OiZklFfvAgmj0VCBBImRpuF/aFgIRzllXlVX93Jevww==}
 
-  '@putstack/eslint-config-typescript@4.3.0':
-    resolution: {integrity: sha512-V80pRKCHgGdxpYE9Qh3vmJxZEqf1O2yoJCoHrg4axZH3nU1JBKyf5aIPDSvZdduT24cZhp3wS1Z+w7J2rlShKA==}
+  '@putstack/eslint-config-typescript@4.4.0':
+    resolution: {integrity: sha512-EL1TSpEkNrbOJtndAcob9AyL98aJIBGXB3McT/1n3OjvhpSxmdX+iPP40LSIX43gp6YezfjxK+DJ09MtyXIOzQ==}
     engines: {node: ^20.9 || >=22}
     peerDependencies:
       '@eslint/js': ^9.20.0
@@ -1053,8 +1053,8 @@ packages:
     peerDependencies:
       eslint: '>=8.0.0'
 
-  eslint-plugin-depend@1.0.0:
-    resolution: {integrity: sha512-w49fVwN3mhkqEfUXdguy6cTrPvj18PtsIq1tcqtGlHBWv7OPz2w8ogzQCiiKDRrN5VDb9B0K2zSw/P/Cm4GNkw==}
+  eslint-plugin-depend@1.2.0:
+    resolution: {integrity: sha512-nbG8AOTYk43kM/SLCFLNW8tvAssF3rrvE5W5dWLP9/joNdAvzJLMuTEx9GIahoRYVTFCQYLejg2tll0USSvFHg==}
 
   eslint-plugin-jsdoc@50.6.17:
     resolution: {integrity: sha512-hq+VQylhd12l8qjexyriDsejZhqiP33WgMTy2AmaGZ9+MrMWVqPECsM87GPxgHfQn0zw+YTuhqjUfk1f+q67aQ==}
@@ -1062,8 +1062,8 @@ packages:
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0 || ^9.0.0
 
-  eslint-plugin-perfectionist@4.12.3:
-    resolution: {integrity: sha512-V0dmpq6fBbn0BYofHsiRuuY9wgkKMDkdruM0mIRBIJ8XZ8vEaTAZqFsywm40RuWNVnduWBt5HO1ZZ+flE2yqjg==}
+  eslint-plugin-perfectionist@4.13.0:
+    resolution: {integrity: sha512-dsPwXwV7IrG26PJ+h1crQ1f5kxay/gQAU0NJnbVTQc91l5Mz9kPjyIZ7fXgie+QSgi8a+0TwGbfaJx+GIhzuoQ==}
     engines: {node: ^18.0.0 || >=20.0.0}
     peerDependencies:
       eslint: '>=8.45.0'
@@ -1074,8 +1074,8 @@ packages:
     peerDependencies:
       eslint: ^8.0.0 || ^9.0.0
 
-  eslint-plugin-unicorn@59.0.0:
-    resolution: {integrity: sha512-7IEeqkymGa7tr6wTWS4DolfXnfcE3QjcD0g7I+qCfV5GPMvVsFsLT7zTIYvnudqwAm5nWekdGIOTTXA93Sz9Ow==}
+  eslint-plugin-unicorn@59.0.1:
+    resolution: {integrity: sha512-EtNXYuWPUmkgSU2E7Ttn57LbRREQesIP1BiLn7OZLKodopKfDXfBUkC/0j6mpw2JExwf43Uf3qLSvrSvppgy8Q==}
     engines: {node: ^18.20.0 || ^20.10.0 || >=21.0.0}
     peerDependencies:
       eslint: '>=9.22.0'
@@ -1491,8 +1491,8 @@ packages:
     resolution: {integrity: sha512-qOOzS1cBTWYF4BH8fVePDBOO9iptMnGUEZwNc/cMWnTV2nVLZ7VoNWEPHkYczZA0pdoA7dl6e7FL659nX9S2aw==}
     engines: {node: '>=16 || 14 >=14.17'}
 
-  module-replacements@2.6.0:
-    resolution: {integrity: sha512-LL+VhVXMIie3aO/uqPPAGaP7fhJb6yr98FW5IcSSJv+0gmJvS2c/L3C8WIaAA/HPyVhabKFKBKcfeLLi7WnRvg==}
+  module-replacements@2.8.0:
+    resolution: {integrity: sha512-ecTdT19nf+jYxPhXNCUuopDwazNOfcEW/GVlRmVxFO/zWcFFedso+pV4GbJ0TKjI+su3htyghhCJJ99ZAkuUyg==}
 
   mri@1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
@@ -2523,16 +2523,16 @@ snapshots:
 
   '@polka/url@1.0.0-next.29': {}
 
-  '@putstack/eslint-config-typescript@4.3.0(@eslint/js@9.27.0)(@typescript-eslint/utils@8.32.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.27.0(jiti@2.4.2))(typescript-eslint@8.32.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3))(typescript@5.8.3)':
+  '@putstack/eslint-config-typescript@4.4.0(@eslint/js@9.27.0)(@typescript-eslint/utils@8.32.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.27.0(jiti@2.4.2))(typescript-eslint@8.32.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3))(typescript@5.8.3)':
     dependencies:
       '@eslint/js': 9.27.0
       '@typescript-eslint/utils': 8.32.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3)
       eslint: 9.27.0(jiti@2.4.2)
       eslint-plugin-de-morgan: 1.2.1(eslint@9.27.0(jiti@2.4.2))
-      eslint-plugin-depend: 1.0.0
-      eslint-plugin-perfectionist: 4.12.3(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3)
+      eslint-plugin-depend: 1.2.0
+      eslint-plugin-perfectionist: 4.13.0(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3)
       eslint-plugin-sonarjs: 1.0.4(eslint@9.27.0(jiti@2.4.2))
-      eslint-plugin-unicorn: 59.0.0(eslint@9.27.0(jiti@2.4.2))
+      eslint-plugin-unicorn: 59.0.1(eslint@9.27.0(jiti@2.4.2))
       typescript: 5.8.3
       typescript-eslint: 8.32.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3)
     transitivePeerDependencies:
@@ -3039,10 +3039,10 @@ snapshots:
     dependencies:
       eslint: 9.27.0(jiti@2.4.2)
 
-  eslint-plugin-depend@1.0.0:
+  eslint-plugin-depend@1.2.0:
     dependencies:
       fd-package-json: 1.2.0
-      module-replacements: 2.6.0
+      module-replacements: 2.8.0
       semver: 7.7.2
 
   eslint-plugin-jsdoc@50.6.17(eslint@9.27.0(jiti@2.4.2)):
@@ -3061,7 +3061,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-perfectionist@4.12.3(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3):
+  eslint-plugin-perfectionist@4.13.0(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3):
     dependencies:
       '@typescript-eslint/types': 8.32.1
       '@typescript-eslint/utils': 8.32.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3)
@@ -3075,7 +3075,7 @@ snapshots:
     dependencies:
       eslint: 9.27.0(jiti@2.4.2)
 
-  eslint-plugin-unicorn@59.0.0(eslint@9.27.0(jiti@2.4.2)):
+  eslint-plugin-unicorn@59.0.1(eslint@9.27.0(jiti@2.4.2)):
     dependencies:
       '@babel/helper-validator-identifier': 7.27.1
       '@eslint-community/eslint-utils': 4.7.0(eslint@9.27.0(jiti@2.4.2))
@@ -3509,7 +3509,7 @@ snapshots:
 
   minipass@7.1.2: {}
 
-  module-replacements@2.6.0: {}
+  module-replacements@2.8.0: {}
 
   mri@1.2.0: {}
 
