@@ -26,5 +26,6 @@ export default defineConfig({
       reporter: ['html', 'lcov'],
     },
     globals: true,
+    projects: ['packages/*'],
   },
 });
