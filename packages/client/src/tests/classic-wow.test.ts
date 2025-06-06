@@ -12,7 +12,7 @@ describe.concurrent('smoketest some classic wow api responses', async () => {
 
   //TODO This is not working, it returns a 404 - it does the same in the official documentation
   it.skip('should be able to fetch the auction house index', async ({ expect }) => {
-    const response = await client.sendRequest(classicWow.auctionHouseIndex('dynamic-classic', 4440));
+    const response = await client.sendRequest(classicWow.auctionHouseIndex('dynamic-classic1x', 4440));
 
     expect(response.auctions).toBeDefined();
   });
@@ -26,7 +26,7 @@ describe.concurrent('smoketest some classic wow api responses', async () => {
   });
 
   it('should be able to fetch the classic wow realms', async ({ expect }) => {
-    const response = await client.sendRequest(classicWow.realmIndex('dynamic-classic1x'));
+    const response = await client.sendRequest(classicWow.realmIndex('dynamic-classic'));
 
     expect(response.realms).toBeDefined();
   });
