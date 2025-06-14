@@ -31,7 +31,7 @@ jobs:
 
       - uses: pnpm/action-setup@d648c2dd069001a242c621c8306af467f150e99d # https://github.com/pnpm/action-setup/commit/d648c2dd069001a242c621c8306af467f150e99d
         with:
-          version: 10.11.1
+          version: 10.12.1
 
       - name: Cache turbo build setup
         uses: actions/cache@v4
