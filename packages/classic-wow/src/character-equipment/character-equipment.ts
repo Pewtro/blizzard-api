@@ -1,5 +1,4 @@
-import type { Resource } from '@blizzard-api/core';
-import type { BlizzardNamespaces } from '@blizzard-api/core';
+import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
 import { characterBase } from '../base';
 import type { CharacterEquipmentSummaryResponse } from './types';
 

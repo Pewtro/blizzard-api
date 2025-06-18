@@ -1,6 +1,7 @@
 import type { Resource } from '@blizzard-api/core';
 import { describe, expect, it } from 'vitest';
-import { starcraftRegion, type StarcraftRegion } from '../base';
+import { starcraftRegion } from '../base';
+import type { StarcraftRegion } from '../base';
 import { ladder, ladderSummary, metadata, profile, staticProfile } from './profile';
 import type { LadderResponse, LadderSummaryResponse, MetadataResponse, StaticProfileResponse } from './types';
 

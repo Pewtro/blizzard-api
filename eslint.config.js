@@ -1,4 +1,4 @@
-import putstack from '@putstack/eslint-config-typescript';
+import { configs as putstackConfigs } from '@putstack/eslint-config-typescript';
 import jsdoc from 'eslint-plugin-jsdoc';
 import tseslint from 'typescript-eslint';
 
@@ -15,5 +15,5 @@ export default tseslint.config(
     },
   },
   jsdoc.configs['flat/recommended-typescript'],
-  ...putstack.configs.recommended,
+  putstackConfigs.recommended,
 );

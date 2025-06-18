@@ -30,23 +30,23 @@
   ],
   "devDependencies": {
     "@changesets/cli": "2.29.4",
-    "@putstack/eslint-config-typescript": "4.4.0",
+    "@putstack/eslint-config-typescript": "4.6.0",
     "@putstack/prettier-config": "2.0.0",
-    "@types/node": "24.0.1",
-    "@vitest/coverage-v8": "3.2.3",
-    "@vitest/ui": "3.2.3",
+    "@types/node": "24.0.3",
+    "@vitest/coverage-v8": "3.2.4",
+    "@vitest/ui": "3.2.4",
     "eslint": "9.29.0",
-    "eslint-plugin-jsdoc": "51.0.1",
+    "eslint-plugin-jsdoc": "51.0.3",
     "husky": "9.1.7",
-    "lint-staged": "16.1.1",
+    "lint-staged": "16.1.2",
     "npm-run-all2": "8.0.4",
     "prettier": "3.5.3",
-    "tsdown": "0.12.7",
+    "tsdown": "0.12.8",
     "turbo": "2.5.4",
     "typescript": "5.8.3",
-    "typescript-eslint": "8.34.0",
-    "vitest": "3.2.3",
-    "zod": "3.25.64"
+    "typescript-eslint": "8.34.1",
+    "vitest": "3.2.4",
+    "zod": "3.25.67"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
