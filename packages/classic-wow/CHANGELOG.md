@@ -26,7 +26,6 @@
 ### Minor Changes
 
 - ce41414: Add a bunch of profile APIs, this includes:
-
   - Character Achievements
   - Character Equipment
   - Character Hunter Pets
