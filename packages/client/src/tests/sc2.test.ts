@@ -10,7 +10,8 @@ describe.concurrent('smoketest some sc2 api responses', async () => {
     origin: 'eu',
     secret: environment.blizzardClientSecret,
   });
-  it('should get grandmaster leaderboard', async () => {
+  //Skip this test because the blizzard API returns an empty string which is not a valid JSON response
+  it.skip('should get grandmaster leaderboard', async () => {
     const result = await client.sendRequest(sc2.grandmasterLeaderboard('eu'));
     expect(result).toBeDefined();
   });
