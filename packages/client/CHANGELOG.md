@@ -1,5 +1,11 @@
 # @blizzard-api/client
 
+## 2.2.1
+
+### Patch Changes
+
+- e583dd9: Update ky to 1.8.2 fixing an issue in older versions of Safari
+
 ## 2.2.0
 
 ### Minor Changes
