@@ -29,7 +29,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@d648c2dd069001a242c621c8306af467f150e99d # https://github.com/pnpm/action-setup/commit/d648c2dd069001a242c621c8306af467f150e99d
+      - uses: pnpm/action-setup@f2b2b233b538f500472c7274c7012f57857d8ce0 # https://github.com/pnpm/action-setup/commit/f2b2b233b538f500472c7274c7012f57857d8ce0
         with:
           version: 10.14.0
 
@@ -66,7 +66,7 @@ jobs:
       - if: ${{ matrix.node == env.release_node && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         name: Create Release Pull Request or Publish to npm
         id: changesets
-        uses: changesets/action@06245a4e0a36c064a573d4150030f5ec548e4fcc # Commit hash taken from https://github.com/changesets/action/tree/v1/src
+        uses: changesets/action@5078b4b48bc0653522c3e3124a37a337afd45a9f # Commit hash taken from https://github.com/changesets/action/tree/v1/src
         with:
           # This expects you to have a script called release which does a build for your packages and calls changeset publish
           publish: pnpm release
