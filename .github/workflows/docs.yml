@@ -42,7 +42,7 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
       - name: Build static files
-        run: pnpm docs
+        run: pnpm build:docs
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

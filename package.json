@@ -57,7 +57,7 @@
   },
   "scripts": {
     "build": "turbo build",
-    "docs": "typedoc",
+    "build:docs": "typedoc",
     "lint": "eslint --format stylish --max-warnings 0 --cache",
     "lint:ci": "npm-run-all -p -l typecheck stylecheck \"lint .\"",
     "lint:fix": "pnpm lint --fix",
