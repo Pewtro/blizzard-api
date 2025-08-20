@@ -17,6 +17,7 @@ coverage
 # build artifacts
 dist
 build 
+docs
 
 # misc 
 .DS_Store
