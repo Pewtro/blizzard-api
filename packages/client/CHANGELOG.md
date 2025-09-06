@@ -1,5 +1,12 @@
 # @blizzard-api/client
 
+## 2.2.2
+
+### Patch Changes
+
+- 30bcb8e: Update ky to 1.10.0
+- 242e18d: Update ky to 1.9.0
+
 ## 2.2.1
 
 ### Patch Changes
