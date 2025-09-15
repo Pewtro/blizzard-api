@@ -90,6 +90,7 @@ describe.concurrent('client', async () => {
     expect(config.searchParams.locale).toBeDefined();
   });
 
+  // eslint-disable-next-line sonarjs/assertions-in-tests
   it("validateAccessToken should throw an error if the access token isn't valid", async ({ expect }) => {
     await expect(() => client.validateAccessToken({ token: undefined })).rejects.toThrow();
   });
@@ -104,10 +105,12 @@ describe.concurrent('client', async () => {
     expect(sub).length.greaterThan(0);
   });
 
+  // eslint-disable-next-line sonarjs/assertions-in-tests
   it("the client will throw an error when requesting resources that don't exist", async ({ expect }) => {
     await expect(() => client.sendRequest(wow.connectedRealm(9_999_999_999))).rejects.toThrow();
   });
 
+  // eslint-disable-next-line sonarjs/assertions-in-tests
   it('the client cannot be created without a client id and secret', async ({ expect }) => {
     await expect(() =>
       //@ts-expect-error expect error when key is missing

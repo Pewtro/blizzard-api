@@ -1,4 +1,3 @@
-/* eslint-disable sonarjs/no-duplicate-string */
 import type { Locales } from '@blizzard-api/core';
 import { describe, expect, it } from 'vitest';
 import type { GameMode } from '../base';

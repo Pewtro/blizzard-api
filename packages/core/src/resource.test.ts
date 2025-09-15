@@ -9,9 +9,9 @@ describe.concurrent('Resource', () => {
       path: '/path',
     };
 
-    expectTypeOf(resource).toMatchTypeOf<MyResource>();
-    expectTypeOf<ExtractResourceType<MyResource>>().toMatchTypeOf<{ id: number }>();
-    expectTypeOf<ExtractResourceType<typeof resource>>().toMatchTypeOf<{ id: number }>();
+    expectTypeOf(resource).toEqualTypeOf<MyResource>();
+    expectTypeOf<ExtractResourceType<MyResource>>().toEqualTypeOf<{ id: number }>();
+    expectTypeOf<ExtractResourceType<typeof resource>>().toEqualTypeOf<{ id: number }>();
     expect(resource).toMatchObject({
       namespace: 'static',
       path: '/path',
@@ -26,9 +26,9 @@ describe.concurrent('Resource', () => {
       path: '/path',
     };
 
-    expectTypeOf(resource).toMatchTypeOf<MyResource>();
-    expectTypeOf<ExtractResourceType<MyResource>>().toMatchTypeOf<{ id: number }>();
-    expectTypeOf<ExtractResourceType<typeof resource>>().toMatchTypeOf<{ id: number }>();
+    expectTypeOf(resource).toEqualTypeOf<MyResource>();
+    expectTypeOf<ExtractResourceType<MyResource>>().toEqualTypeOf<{ id: number }>();
+    expectTypeOf<ExtractResourceType<typeof resource>>().toEqualTypeOf<{ id: number }>();
     expect(resource).toMatchObject({
       namespace: 'static',
       parameters: { name: 'name' },
@@ -44,9 +44,9 @@ describe.concurrent('Resource', () => {
       token: 'token',
     };
 
-    expectTypeOf(resource).toMatchTypeOf<MyResource>();
-    expectTypeOf<ExtractResourceType<MyResource>>().toMatchTypeOf<{ id: number }>();
-    expectTypeOf<ExtractResourceType<typeof resource>>().toMatchTypeOf<{ id: number }>();
+    expectTypeOf(resource).toEqualTypeOf<MyResource>();
+    expectTypeOf<ExtractResourceType<MyResource>>().toEqualTypeOf<{ id: number }>();
+    expectTypeOf<ExtractResourceType<typeof resource>>().toEqualTypeOf<{ id: number }>();
     expect(resource).toMatchObject({
       namespace: 'static',
       path: '/path',
@@ -63,9 +63,9 @@ describe.concurrent('Resource', () => {
       token: 'token',
     };
 
-    expectTypeOf(resource).toMatchTypeOf<MyResource>();
-    expectTypeOf<ExtractResourceType<MyResource>>().toMatchTypeOf<{ id: number }>();
-    expectTypeOf<ExtractResourceType<typeof resource>>().toMatchTypeOf<{ id: number }>();
+    expectTypeOf(resource).toEqualTypeOf<MyResource>();
+    expectTypeOf<ExtractResourceType<MyResource>>().toEqualTypeOf<{ id: number }>();
+    expectTypeOf<ExtractResourceType<typeof resource>>().toEqualTypeOf<{ id: number }>();
     expect(resource).toMatchObject({
       namespace: 'static',
       parameters: { name: 'name' },
