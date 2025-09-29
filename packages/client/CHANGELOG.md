@@ -1,5 +1,11 @@
 # @blizzard-api/client
 
+## 2.3.0
+
+### Minor Changes
+
+- 15cea7b: Update ky to 1.11.0 to fix some node.js hang issues - see the changelog [here](https://github.com/sindresorhus/ky/releases/tag/v1.11.0).
+
 ## 2.2.2
 
 ### Patch Changes
