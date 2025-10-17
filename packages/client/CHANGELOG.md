@@ -1,5 +1,11 @@
 # @blizzard-api/client
 
+## 2.3.1
+
+### Patch Changes
+
+- d1513c8: Update ky to 1.12.0
+
 ## 2.3.0
 
 ### Minor Changes
