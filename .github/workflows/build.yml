@@ -22,7 +22,7 @@ jobs:
       matrix:
         # Test against multiple node versions
         # Any currently maintained version, e.g. whether they are current, active or maintenance should be included
-        node: [18.x, 20.x, 22.x, 23.x, 24.x]
+        node: [20.x, 22.x, 24.x, 25.x]
     name: Build, Test & Release
     runs-on: ubuntu-latest
     steps:
