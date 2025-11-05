@@ -7,6 +7,7 @@ export default defineConfig(({ watch = false }) => ({
     index: './src/index.ts',
   },
   external: [],
+  fixedExtension: false,
   format: 'esm',
   outDir: 'dist',
   sourcemap: true,
