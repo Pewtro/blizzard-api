@@ -1,0 +1,33 @@
+name: Nightly API tests
+
+on:
+  schedule:
+    - cron: '0 2 * * *' # Runs daily at 02:00 UTC
+  workflow_dispatch: {}
+
+jobs:
+  run-api-tests:
+    runs-on: ubuntu-latest
+    env:
+      VITE_BLIZZARD_CLIENT_ID: ${{ secrets.VITE_BLIZZARD_CLIENT_ID }}
+      VITE_BLIZZARD_CLIENT_SECRET: ${{ secrets.VITE_BLIZZARD_CLIENT_SECRET }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        run: corepack enable && corepack prepare pnpm@latest --activate
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate Zod schemas
+        run: pnpm --filter @blizzard-api/schemas... run generate
+
+      - name: Run client tests
+        run: pnpm test --filter @blizzard-api/client...
