@@ -46,7 +46,7 @@ export interface AccountTransmogsCollectionSummaryResponse {
 export interface ProtectedCharacterProfileSummaryResponse {
   _links: Links;
   bind_position: Position;
-  character: NameIdKey & Realm;
+  character: Realm;
   id: number;
   money: number;
   name: string;

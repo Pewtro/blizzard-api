@@ -1,11 +1,5 @@
-import {
-  
-  
-  
-  wowBasePath,
-  wowSearchBasePath
-} from '@blizzard-api/core';
-import type {BlizzardNamespaces, Resource, SearchResponse} from '@blizzard-api/core';
+import { wowBasePath, wowSearchBasePath } from '@blizzard-api/core';
+import type { BlizzardNamespaces, Resource, SearchResponse } from '@blizzard-api/core';
 import type { RealmIndexResponse, RealmResponse, RealmSearchParameters, RealmSearchResponseItem } from './types';
 
 /**

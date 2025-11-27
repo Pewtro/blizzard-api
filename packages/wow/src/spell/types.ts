@@ -1,5 +1,4 @@
-import type { BaseSearchParameters, KeyBase, Locales, MediaAsset, NameId, ResponseBase  } from '@blizzard-api/core';
-
+import type { BaseSearchParameters, KeyBase, Locales, MediaAsset, NameId, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a spell media.

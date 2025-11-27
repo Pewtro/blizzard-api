@@ -54,8 +54,6 @@ async function run(): Promise<void> {
 
     for (const file of tsFiles) {
       try {
-        //console.log('Generating schema for', path.relative(root, file));
-
         const content = await fs.readFile(file, 'utf8');
         const generator = generate({
           inputOutputMappings,
@@ -79,7 +77,6 @@ async function run(): Promise<void> {
         const outName = HANDLE_ALL_FILE_FOLDERS.has(packageName) ? path.basename(file) : `${parentName}.ts`;
         const outPath = path.join(packageOut, outName);
         await fs.writeFile(outPath, schema, 'utf8');
-        //console.log('Wrote', path.relative(root, outPath));
       } catch (error) {
         console.error('Failed to generate for', file, (error as Error)?.message ?? error);
       }

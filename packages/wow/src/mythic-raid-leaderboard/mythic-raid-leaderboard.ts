@@ -1,4 +1,4 @@
-import type { Factions, Resource  } from '@blizzard-api/core';
+import type { Factions, Resource } from '@blizzard-api/core';
 import { wowBasePath } from '@blizzard-api/core';
 import type { MythicRaidLeaderboardResponse } from './types';
 

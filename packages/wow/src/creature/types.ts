@@ -1,5 +1,4 @@
-import type { BaseSearchParameters, KeyBase, Locales, MediaAsset, NameIdKey, ResponseBase  } from '@blizzard-api/core';
-
+import type { BaseSearchParameters, KeyBase, Locales, MediaAsset, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for creature display media.

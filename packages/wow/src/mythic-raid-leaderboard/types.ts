@@ -1,5 +1,4 @@
-import type { Factions, KeyBase, NameId, Origins, ResponseBase  } from '@blizzard-api/core';
-
+import type { Factions, KeyBase, NameId, Origins, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a Mythic Raid leaderboard.
@@ -16,7 +15,7 @@ interface Entry {
   faction: { type: Factions };
   guild: Guild;
   rank: number;
-  region: 'cn' | Origins;
+  region: Origins;
   timestamp: number;
 }
 
