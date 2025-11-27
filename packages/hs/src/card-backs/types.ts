@@ -1,5 +1,4 @@
 import type { Locales } from '@blizzard-api/core';
-import type { SearchSortOption } from '../base';
 
 export interface CardBackSearchParameters {
   cardBackCategory?:
@@ -38,3 +37,7 @@ export interface SingleCardBackSearchResponse {
   sortCategory: number;
   text: Record<Locales, string> | string;
 }
+
+type SearchOptions = 'attack' | 'class' | 'dataAdded' | 'groupByClass' | 'health' | 'manaCost' | 'name';
+type SearchSortOption = `${SearchOptions}:${SortOptions}`;
+type SortOptions = 'asc' | 'desc';

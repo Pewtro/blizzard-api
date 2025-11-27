@@ -1,5 +1,5 @@
 import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
-import { base, mediaBase } from '../../../wow/src/base';
+import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
 import type { GuildCrestBorderEmblemResponse, GuildCrestComponentsIndexResponse } from './types';
 
 /**
@@ -14,7 +14,7 @@ export function guildCrestBorder(
 ): Resource<GuildCrestBorderEmblemResponse> {
   return {
     namespace,
-    path: `${mediaBase}/guild-crest/border/${borderId}`,
+    path: `${wowMediaBasePath}/guild-crest/border/${borderId}`,
   };
 }
 /**
@@ -27,7 +27,7 @@ export function guildCrestComponentsIndex(
 ): Resource<GuildCrestComponentsIndexResponse> {
   return {
     namespace,
-    path: `${base}/guild-crest/index`,
+    path: `${wowBasePath}/guild-crest/index`,
   };
 }
 /**
@@ -42,6 +42,6 @@ export function guildCrestEmblem(
 ): Resource<GuildCrestBorderEmblemResponse> {
   return {
     namespace,
-    path: `${mediaBase}/guild-crest/emblem/${emblemId}`,
+    path: `${wowMediaBasePath}/guild-crest/emblem/${emblemId}`,
   };
 }

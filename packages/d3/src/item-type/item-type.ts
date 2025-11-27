@@ -1,5 +1,5 @@
 import type { Resource } from '@blizzard-api/core';
-import { base } from '../base';
+import { d3BasePath } from '@blizzard-api/core';
 import type { ItemTypeIndexResponse, ItemTypeResponse } from './types';
 
 /**
@@ -9,7 +9,7 @@ import type { ItemTypeIndexResponse, ItemTypeResponse } from './types';
  */
 export function itemType(itemTypeSlug: string): Resource<Array<ItemTypeResponse>> {
   return {
-    path: `${base}/item-type/${itemTypeSlug}`,
+    path: `${d3BasePath}/item-type/${itemTypeSlug}`,
   };
 }
 
@@ -19,6 +19,6 @@ export function itemType(itemTypeSlug: string): Resource<Array<ItemTypeResponse>
  */
 export function itemTypeIndex(): Resource<Array<ItemTypeIndexResponse>> {
   return {
-    path: `${base}/item-type`,
+    path: `${d3BasePath}/item-type`,
   };
 }

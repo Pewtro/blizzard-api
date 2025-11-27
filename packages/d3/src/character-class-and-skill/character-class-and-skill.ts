@@ -1,5 +1,5 @@
 import type { Resource } from '@blizzard-api/core';
-import { base } from '../base';
+import { d3BasePath } from '@blizzard-api/core';
 import type { CharacterClassResponse, SkillResponse } from './types';
 
 /**
@@ -9,7 +9,7 @@ import type { CharacterClassResponse, SkillResponse } from './types';
  */
 export function characterClass(characterClassSlug: string): Resource<CharacterClassResponse> {
   return {
-    path: `${base}/character-class/${characterClassSlug}`,
+    path: `${d3BasePath}/character-class/${characterClassSlug}`,
   };
 }
 
@@ -21,6 +21,6 @@ export function characterClass(characterClassSlug: string): Resource<CharacterCl
  */
 export function skill(characterClassSlug: string, skillSlug: string): Resource<SkillResponse> {
   return {
-    path: `${base}/hero/${characterClassSlug}/skill/${skillSlug}`,
+    path: `${d3BasePath}/hero/${characterClassSlug}/skill/${skillSlug}`,
   };
 }

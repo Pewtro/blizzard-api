@@ -1,6 +1,5 @@
 import type { Locales } from '@blizzard-api/core';
 import { describe, expect, it } from 'vitest';
-import type { GameMode } from '../base';
 import { cardSearch, fetchOneCard } from './cards';
 import type { CardSearchParameters } from './types';
 
@@ -69,8 +68,7 @@ describe('fetchOneCard', () => {
 
   it('should return correct parameters with specified gameMode', () => {
     const id = 'card123';
-    const options = { gameMode: 'battlegrounds' as GameMode, locale: 'en_US' as Locales };
-    const result = fetchOneCard(id, options);
+    const result = fetchOneCard(id, { gameMode: 'battlegrounds', locale: 'en_US' });
     expect(result.parameters).toEqual({
       gameMode: 'battlegrounds',
       locale: 'en_US',
@@ -80,8 +78,7 @@ describe('fetchOneCard', () => {
 
   it('should handle undefined locale correctly', () => {
     const id = 'card123';
-    const options = { gameMode: 'battlegrounds' as GameMode };
-    const result = fetchOneCard(id, options);
+    const result = fetchOneCard(id, { gameMode: 'battlegrounds' });
     expect(result.parameters).toEqual({
       gameMode: 'battlegrounds',
       locale: undefined,

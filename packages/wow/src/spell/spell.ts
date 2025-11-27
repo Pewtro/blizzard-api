@@ -1,5 +1,5 @@
 import type { Resource, SearchResponse } from '@blizzard-api/core';
-import { base, mediaBase, searchBase } from '../base';
+import { wowBasePath, wowMediaBasePath, wowSearchBasePath } from '@blizzard-api/core';
 import type { SpellMediaResponse, SpellResponse, SpellSearchParameters, SpellSearchResponseItem } from './types';
 
 /**
@@ -10,7 +10,7 @@ import type { SpellMediaResponse, SpellResponse, SpellSearchParameters, SpellSea
 export function spell(spellId: number): Resource<SpellResponse> {
   return {
     namespace: 'static',
-    path: `${base}/spell/${spellId}`,
+    path: `${wowBasePath}/spell/${spellId}`,
   };
 }
 /**
@@ -21,7 +21,7 @@ export function spell(spellId: number): Resource<SpellResponse> {
 export function spellMedia(spellId: number): Resource<SpellMediaResponse> {
   return {
     namespace: 'static',
-    path: `${mediaBase}/spell/${spellId}`,
+    path: `${wowMediaBasePath}/spell/${spellId}`,
   };
 }
 /**
@@ -39,6 +39,6 @@ export function spellSearch(
       [`name.${options.locale}`]: options.name,
       orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
     },
-    path: `${searchBase}/spell`,
+    path: `${wowSearchBasePath}/spell`,
   };
 }

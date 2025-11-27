@@ -1,5 +1,5 @@
+import { wowSearchBasePath } from '@blizzard-api/core';
 import { describe, it } from 'vitest';
-import { searchBase } from '../base';
 import { connectedRealm, connectedRealmIndex, connectedRealmSearch } from './connected-realm';
 
 describe.concurrent('connectedRealm', () => {
@@ -21,7 +21,7 @@ describe.concurrent('connectedRealm', () => {
   it('should return the correct resource for connected realm search', ({ expect }) => {
     const resource = connectedRealmSearch({ _page: 1 });
 
-    expect(resource.path).toBe(`${searchBase}/connected-realm`);
+    expect(resource.path).toBe(`${wowSearchBasePath}/connected-realm`);
     expect(resource.namespace).toBe('dynamic');
     expect(resource.parameters).toEqual({ _page: 1 });
   });
@@ -32,7 +32,7 @@ describe.concurrent('connectedRealm', () => {
       orderby: ['name', 'id'],
     });
 
-    expect(resource.path).toBe(`${searchBase}/connected-realm`);
+    expect(resource.path).toBe(`${wowSearchBasePath}/connected-realm`);
     expect(resource.namespace).toBe('dynamic');
     expect(resource.parameters).toEqual({
       _page: 1,

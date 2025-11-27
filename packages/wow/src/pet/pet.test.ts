@@ -1,5 +1,5 @@
+import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
 import { describe, it } from 'vitest';
-import { base, mediaBase } from '../base';
 import { pet, petAbility, petAbilityIndex, petAbilityMedia, petIndex, petMedia } from './pet';
 
 describe.concurrent('petApi', () => {
@@ -7,14 +7,14 @@ describe.concurrent('petApi', () => {
     const petId = 123;
     const resource = pet(petId);
 
-    expect(resource.path).toBe(`${base}/pet/${petId}`);
+    expect(resource.path).toBe(`${wowBasePath}/pet/${petId}`);
     expect(resource.namespace).toBe('static');
   });
 
   it('petIndex should return a resource object with the correct path and namespace', ({ expect }) => {
     const resource = petIndex();
 
-    expect(resource.path).toBe(`${base}/pet/index`);
+    expect(resource.path).toBe(`${wowBasePath}/pet/index`);
     expect(resource.namespace).toBe('static');
   });
 
@@ -22,7 +22,7 @@ describe.concurrent('petApi', () => {
     const petId = 123;
     const resource = petMedia(petId);
 
-    expect(resource.path).toBe(`${mediaBase}/pet/${petId}`);
+    expect(resource.path).toBe(`${wowMediaBasePath}/pet/${petId}`);
     expect(resource.namespace).toBe('static');
   });
 
@@ -30,14 +30,14 @@ describe.concurrent('petApi', () => {
     const petAbilityId = 123;
     const resource = petAbility(petAbilityId);
 
-    expect(resource.path).toBe(`${base}/pet-ability/${petAbilityId}`);
+    expect(resource.path).toBe(`${wowBasePath}/pet-ability/${petAbilityId}`);
     expect(resource.namespace).toBe('static');
   });
 
   it('petAbilityIndex should return a resource object with the correct path and namespace', ({ expect }) => {
     const resource = petAbilityIndex();
 
-    expect(resource.path).toBe(`${base}/pet-ability/index`);
+    expect(resource.path).toBe(`${wowBasePath}/pet-ability/index`);
     expect(resource.namespace).toBe('static');
   });
 
@@ -45,7 +45,7 @@ describe.concurrent('petApi', () => {
     const petAbilityId = 123;
     const resource = petAbilityMedia(petAbilityId);
 
-    expect(resource.path).toBe(`${mediaBase}/pet-ability/${petAbilityId}`);
+    expect(resource.path).toBe(`${wowMediaBasePath}/pet-ability/${petAbilityId}`);
     expect(resource.namespace).toBe('static');
   });
 });

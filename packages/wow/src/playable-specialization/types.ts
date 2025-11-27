@@ -1,4 +1,4 @@
-import type { GenderName, KeyBase, MediaAsset, NameId, NameIdKey, ResponseBase } from '../base';
+import type { GenderName, KeyBase, MediaAsset, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a playable specialization index.

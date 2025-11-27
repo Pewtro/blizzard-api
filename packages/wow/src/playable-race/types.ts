@@ -1,4 +1,4 @@
-import type { Faction, GenderName, NameId, NameIdKey, ResponseBase } from '../base';
+import type { Faction, GenderName, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The playable race index response.

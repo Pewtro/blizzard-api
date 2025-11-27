@@ -1,4 +1,4 @@
-import type { Character, Faction, KeyBase, NameIdKey, Realm, ResponseBase } from '../../../wow/src/base';
+import type { Character, Faction, KeyBase, NameIdKey, Realm, ResponseBase } from '@blizzard-api/core';
 import type { GuildResponse as GuildRetailResponse } from '../../../wow/src/guild/types';
 export type { GuildAchievementsResponse } from '../../../wow/src/guild/types';
 

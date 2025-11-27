@@ -1,5 +1,5 @@
-import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
-import { base } from '../../../wow/src/base';
+import {   wowBasePath } from '@blizzard-api/core';
+import type {BlizzardNamespaces, Resource} from '@blizzard-api/core';
 import type { RegionIndexResponse, RegionResponse } from './types';
 
 /**
@@ -14,7 +14,7 @@ export function region(
 ): Resource<RegionResponse> {
   return {
     namespace,
-    path: `${base}/region/${regionId}`,
+    path: `${wowBasePath}/region/${regionId}`,
   };
 }
 /**
@@ -27,6 +27,6 @@ export function regionIndex(
 ): Resource<RegionIndexResponse> {
   return {
     namespace,
-    path: `${base}/region/index`,
+    path: `${wowBasePath}/region/index`,
   };
 }

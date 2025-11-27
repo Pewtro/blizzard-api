@@ -1,4 +1,4 @@
-import type { Faction, Gender, Href, KeyBase, NameId, NameIdKey, Realm } from '../base';
+import type { Faction, Gender, Href, KeyBase, NameId, NameIdKey, Realm } from '@blizzard-api/core';
 
 export interface AccountCollectionsIndexResponse {
   _links: Links;

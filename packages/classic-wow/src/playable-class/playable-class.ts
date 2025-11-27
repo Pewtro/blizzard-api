@@ -1,5 +1,5 @@
+import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
 import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
-import { base, mediaBase } from '../../../wow/src/base';
 import type { PlayableClassIndexResponse, PlayableClassMediaResponse, PlayableClassResponse } from './types';
 
 /**
@@ -14,7 +14,7 @@ export function playableClass(
 ): Resource<PlayableClassResponse> {
   return {
     namespace,
-    path: `${base}/playable-class/${playableClassId}`,
+    path: `${wowBasePath}/playable-class/${playableClassId}`,
   };
 }
 /**
@@ -27,7 +27,7 @@ export function playableClassIndex(
 ): Resource<PlayableClassIndexResponse> {
   return {
     namespace,
-    path: `${base}/playable-class/index`,
+    path: `${wowBasePath}/playable-class/index`,
   };
 }
 /**
@@ -42,6 +42,6 @@ export function playableClassMedia(
 ): Resource<PlayableClassMediaResponse> {
   return {
     namespace,
-    path: `${mediaBase}/playable-class/${playableClassId}`,
+    path: `${wowMediaBasePath}/playable-class/${playableClassId}`,
   };
 }

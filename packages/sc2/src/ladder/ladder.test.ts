@@ -1,6 +1,6 @@
 import type { Resource } from '@blizzard-api/core';
 import { describe, expect, it } from 'vitest';
-import type { StarcraftRegion } from '../base';
+import type { StarcraftRegion } from '../regions';
 import { grandmasterLeaderboard, season } from './ladder';
 import type { GrandmasterLeaderboardResponse, SeasonResponse } from './types';
 

@@ -1,4 +1,4 @@
-import type { Character, NameId, ResponseBase } from '../../../wow/src/base';
+import type { Character, NameId, ResponseBase } from '@blizzard-api/core';
 
 export interface CharacterSpecializationsSummaryResponse extends ResponseBase {
   character: Character;

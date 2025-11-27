@@ -1,5 +1,5 @@
+import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
 import { describe, it } from 'vitest';
-import { base, mediaBase } from '../base';
 import { profession, professionIndex, professionMedia, professionSkillTier, recipe, recipeMedia } from './profession';
 
 describe.concurrent('professionApi', () => {
@@ -7,14 +7,14 @@ describe.concurrent('professionApi', () => {
     const professionId = 123;
     const resource = profession(professionId);
 
-    expect(resource.path).toBe(`${base}/profession/${professionId}`);
+    expect(resource.path).toBe(`${wowBasePath}/profession/${professionId}`);
     expect(resource.namespace).toBe('static');
   });
 
   it('professionIndex should return a resource object with the correct path and namespace', ({ expect }) => {
     const resource = professionIndex();
 
-    expect(resource.path).toBe(`${base}/profession/index`);
+    expect(resource.path).toBe(`${wowBasePath}/profession/index`);
     expect(resource.namespace).toBe('static');
   });
 
@@ -22,7 +22,7 @@ describe.concurrent('professionApi', () => {
     const professionId = 123;
     const resource = professionMedia(professionId);
 
-    expect(resource.path).toBe(`${mediaBase}/profession/${professionId}`);
+    expect(resource.path).toBe(`${wowMediaBasePath}/profession/${professionId}`);
     expect(resource.namespace).toBe('static');
   });
 
@@ -31,7 +31,7 @@ describe.concurrent('professionApi', () => {
     const skillTierId = 456;
     const resource = professionSkillTier(professionId, skillTierId);
 
-    expect(resource.path).toBe(`${base}/profession/${professionId}/skill-tier/${skillTierId}`);
+    expect(resource.path).toBe(`${wowBasePath}/profession/${professionId}/skill-tier/${skillTierId}`);
     expect(resource.namespace).toBe('static');
   });
 
@@ -39,7 +39,7 @@ describe.concurrent('professionApi', () => {
     const recipeId = 123;
     const resource = recipe(recipeId);
 
-    expect(resource.path).toBe(`${base}/recipe/${recipeId}`);
+    expect(resource.path).toBe(`${wowBasePath}/recipe/${recipeId}`);
     expect(resource.namespace).toBe('static');
   });
 
@@ -47,7 +47,7 @@ describe.concurrent('professionApi', () => {
     const recipeId = 123;
     const resource = recipeMedia(recipeId);
 
-    expect(resource.path).toBe(`${mediaBase}/recipe/${recipeId}`);
+    expect(resource.path).toBe(`${wowMediaBasePath}/recipe/${recipeId}`);
     expect(resource.namespace).toBe('static');
   });
 });

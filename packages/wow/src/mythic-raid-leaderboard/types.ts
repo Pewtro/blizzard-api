@@ -1,5 +1,5 @@
-import type { Origins } from '@blizzard-api/core';
-import type { Factions, KeyBase, NameId, ResponseBase } from '../base';
+import type { Factions, KeyBase, NameId, Origins, ResponseBase  } from '@blizzard-api/core';
+
 
 /**
  * The response for a Mythic Raid leaderboard.

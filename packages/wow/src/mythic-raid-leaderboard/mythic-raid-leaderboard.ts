@@ -1,6 +1,5 @@
-import type { Resource } from '@blizzard-api/core';
-import type { Factions } from '../base';
-import { base } from '../base';
+import type { Factions, Resource  } from '@blizzard-api/core';
+import { wowBasePath } from '@blizzard-api/core';
 import type { MythicRaidLeaderboardResponse } from './types';
 
 /**
@@ -15,6 +14,6 @@ export function mythicRaidLeaderboard(
 ): Resource<MythicRaidLeaderboardResponse> {
   return {
     namespace: 'dynamic',
-    path: `${base}/leaderboard/hall-of-fame/${raid}/${faction}`,
+    path: `${wowBasePath}/leaderboard/hall-of-fame/${raid}/${faction}`,
   };
 }

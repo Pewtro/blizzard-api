@@ -1,4 +1,4 @@
-import type { Character, Color, KeyBase, NameIdKey, ResponseBase } from '../base';
+import type { Character, Color, KeyBase, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 export interface CharacterEquipmentSummaryResponse extends ResponseBase {
   character: Character;

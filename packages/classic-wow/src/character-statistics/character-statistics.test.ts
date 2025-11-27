@@ -1,6 +1,6 @@
 import type { BlizzardNamespaces } from '@blizzard-api/core';
+import { wowCharacterBasePath } from '@blizzard-api/core';
 import { describe, expect, it } from 'vitest';
-import { characterBase } from '../base';
 import { characterStatisticsSummary } from './character-statistics';
 
 describe('characterStatisticsSummary', () => {
@@ -13,7 +13,7 @@ describe('characterStatisticsSummary', () => {
 
     expect(result).toEqual({
       namespace,
-      path: `${characterBase}/${realmSlug}/${characterName}/statistics`,
+      path: `${wowCharacterBasePath}/${realmSlug}/${characterName}/statistics`,
     });
   });
 
@@ -26,7 +26,7 @@ describe('characterStatisticsSummary', () => {
 
     expect(result).toEqual({
       namespace,
-      path: `${characterBase}/${realmSlug}/${characterName}/statistics`,
+      path: `${wowCharacterBasePath}/${realmSlug}/${characterName}/statistics`,
     });
   });
 });

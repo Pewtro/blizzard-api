@@ -1,6 +1,6 @@
+import { wowCharacterBasePath } from '@blizzard-api/core';
 import type { BlizzardNamespaces } from '@blizzard-api/core';
 import { describe, expect, it } from 'vitest';
-import { characterBase } from '../base';
 import { characterAchievementsSummary, characterAchievementStatistics } from './character-achievements';
 
 describe('characterAchievementsSummary', () => {
@@ -12,7 +12,7 @@ describe('characterAchievementsSummary', () => {
 
     expect(result).toEqual({
       namespace,
-      path: `${characterBase}/${realmSlug}/${characterName.toLowerCase()}/achievements`,
+      path: `${wowCharacterBasePath}/${realmSlug}/${characterName.toLowerCase()}/achievements`,
     });
   });
 });
@@ -26,7 +26,7 @@ describe('characterAchievementStatistics', () => {
 
     expect(result).toEqual({
       namespace,
-      path: `${characterBase}/${realmSlug}/${characterName.toLowerCase()}/achievements/statistics`,
+      path: `${wowCharacterBasePath}/${realmSlug}/${characterName.toLowerCase()}/achievements/statistics`,
     });
   });
 });

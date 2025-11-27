@@ -1,4 +1,4 @@
-import type { ResponseBase } from '../base';
+import type { ResponseBase } from '@blizzard-api/core';
 
 /**
  * Interface for a response from the auction house commodities endpoint.

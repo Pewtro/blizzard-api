@@ -1,10 +1,10 @@
 import type { Locales, Resource } from '@blizzard-api/core';
-import type { GameMode } from '../base';
 import type {
   BlizzardCardSearchParameters,
   CardSearchParameters,
   CardSearchResponse,
   FetchOneCardResponse,
+  GameMode,
 } from './types';
 
 /**

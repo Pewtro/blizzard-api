@@ -1,5 +1,5 @@
+import { wowBasePath, wowSearchBasePath } from '@blizzard-api/core';
 import { describe, it } from 'vitest';
-import { base, searchBase } from '../../../wow/src/base';
 import { realm, realmIndex, realmSearch } from './realm';
 import type { RealmSearchParameters } from './types';
 
@@ -13,7 +13,7 @@ describe.concurrent('classicRealmApi', () => {
 
     expect(result).toEqual({
       namespace,
-      path: `${base}/realm/test-realm`,
+      path: `${wowBasePath}/realm/test-realm`,
     });
   });
 
@@ -22,7 +22,7 @@ describe.concurrent('classicRealmApi', () => {
 
     expect(result).toEqual({
       namespace,
-      path: `${base}/realm/index`,
+      path: `${wowBasePath}/realm/index`,
     });
   });
 
@@ -42,7 +42,7 @@ describe.concurrent('classicRealmApi', () => {
         orderby: 'name',
         timezone: options.timezone,
       },
-      path: `${searchBase}/realm`,
+      path: `${wowSearchBasePath}/realm`,
     });
   });
 
@@ -62,7 +62,7 @@ describe.concurrent('classicRealmApi', () => {
         orderby: 'name,population',
         timezone: options.timezone,
       },
-      path: `${searchBase}/realm`,
+      path: `${wowSearchBasePath}/realm`,
     });
   });
 });

@@ -1,4 +1,4 @@
-import type { Character, Color, Faction, Href, KeyBase, NameIdKey, Realm, ResponseBase } from '../base';
+import type { Character, Color, Faction, Href, KeyBase, NameIdKey, Realm, ResponseBase } from '@blizzard-api/core';
 
 export interface GuildAchievementsResponse extends ResponseBase {
   achievements: Array<Achievement>;

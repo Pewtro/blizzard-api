@@ -1,4 +1,4 @@
-import type { GenderName, NameId, NameIdKey, ResponseBase } from '../base';
+import type { GenderName, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a title index.

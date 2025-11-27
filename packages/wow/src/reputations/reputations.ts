@@ -1,5 +1,5 @@
 import type { Resource } from '@blizzard-api/core';
-import { base } from '../base';
+import { wowBasePath } from '@blizzard-api/core';
 import type {
   ReputationFactionIndexResponse,
   ReputationFactionResponse,
@@ -15,7 +15,7 @@ import type {
 export function reputationFaction(reputationFactionId: number): Resource<ReputationFactionResponse> {
   return {
     namespace: 'static',
-    path: `${base}/reputation-faction/${reputationFactionId}`,
+    path: `${wowBasePath}/reputation-faction/${reputationFactionId}`,
   };
 }
 /**
@@ -25,7 +25,7 @@ export function reputationFaction(reputationFactionId: number): Resource<Reputat
 export function reputationFactionIndex(): Resource<ReputationFactionIndexResponse> {
   return {
     namespace: 'static',
-    path: `${base}/reputation-faction/index`,
+    path: `${wowBasePath}/reputation-faction/index`,
   };
 }
 /**
@@ -36,7 +36,7 @@ export function reputationFactionIndex(): Resource<ReputationFactionIndexRespons
 export function reputationTiers(reputationTiersId: number): Resource<ReputationTiersResponse> {
   return {
     namespace: 'static',
-    path: `${base}/reputation-tiers/${reputationTiersId}`,
+    path: `${wowBasePath}/reputation-tiers/${reputationTiersId}`,
   };
 }
 /**
@@ -46,6 +46,6 @@ export function reputationTiers(reputationTiersId: number): Resource<ReputationT
 export function reputationTiersIndex(): Resource<ReputationTiersIndexResponse> {
   return {
     namespace: 'static',
-    path: `${base}/reputation-tiers/index`,
+    path: `${wowBasePath}/reputation-tiers/index`,
   };
 }

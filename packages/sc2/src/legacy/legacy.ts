@@ -1,6 +1,6 @@
 import type { Resource } from '@blizzard-api/core';
-import { starcraftRegion } from '../base';
-import type { StarcraftRegion } from '../base';
+import { starcraftRegion } from '../regions';
+import type { StarcraftRegion } from '../regions';
 import type {
   LegacyAchievementsResponse,
   LegacyLaddersResponse,

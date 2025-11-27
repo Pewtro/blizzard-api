@@ -1,5 +1,4 @@
-import type { BaseSearchParameters, Locales } from '@blizzard-api/core';
-import type { KeyBase, NameIdKey, ResponseBase } from '../base';
+import type { BaseSearchParameters, KeyBase, Locales, NameIdKey, ResponseBase } from '@blizzard-api/core';
 import type { RealmCategory, RealmLocales, RealmTimezone, RealmType, RealmTypeCapitalized } from '../realm/types';
 
 /**
@@ -18,10 +17,10 @@ export interface ConnectedRealmResponse extends ResponseBase {
   has_queue: boolean;
   id: number;
   mythic_leaderboards: { href: string };
-  population: { name: RealmPopulation; type: RealmPopulationCapitalized };
+  population: { name: 'Full' | 'High' | 'Low' | 'Medium' | 'New Players'; type: RealmPopulationCapitalized };
   realm_locked_status?: RealmLockedStatus;
   realms: Array<Realm>;
-  status: { name: RealmStatus; type: Uppercase<RealmStatus> };
+  status: { name: RealmStatus; type: RealmStatusCapitalized };
 }
 /**
  * Connected Realm Search API parameters.
@@ -30,7 +29,7 @@ export interface ConnectedRealmResponse extends ResponseBase {
  */
 export interface ConnectedRealmSearchParameters extends BaseSearchParameters {
   'realms.timezone'?: RealmTimezone;
-  'status.type'?: Uppercase<RealmStatus>;
+  'status.type'?: RealmStatusCapitalized;
 }
 
 /**
@@ -66,11 +65,11 @@ interface RealmLockedStatus {
   is_locked_for_pct: boolean;
 }
 
-type RealmPopulation = 'Full' | 'High' | 'Low' | 'Medium' | 'New Players';
-
 type RealmPopulationCapitalized = 'FULL' | 'HIGH' | 'LOW' | 'MEDIUM' | 'RECOMMENDED';
 
 type RealmStatus = 'Down' | 'Up';
+
+type RealmStatusCapitalized = 'DOWN' | 'UP';
 
 interface SearchRealm {
   category: Record<Locales, string | undefined>;
@@ -91,5 +90,5 @@ interface SearchRealmPopulation {
 
 interface SearchRealmStatus {
   name: Record<Locales, string>;
-  type: Uppercase<RealmStatus>;
+  type: RealmStatusCapitalized;
 }

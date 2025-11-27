@@ -1,5 +1,5 @@
-import type { BaseSearchParameters, Locales } from '@blizzard-api/core';
-import type { Faction, KeyBase, NameId, NameIdKey, ResponseBase } from '../base';
+import type { BaseSearchParameters, Faction, KeyBase, Locales, NameId, NameIdKey, ResponseBase  } from '@blizzard-api/core';
+
 
 /**
  * The response for a journal encounter index.

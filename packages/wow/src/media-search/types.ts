@@ -1,5 +1,5 @@
-import type { BaseSearchParameters } from '@blizzard-api/core';
-import type { KeyBase } from '../base';
+import type { BaseSearchParameters, KeyBase  } from '@blizzard-api/core';
+
 
 /**
  * The search parameters for media.

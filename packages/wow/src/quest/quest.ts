@@ -1,5 +1,5 @@
 import type { Resource } from '@blizzard-api/core';
-import { base } from '../base';
+import { wowBasePath } from '@blizzard-api/core';
 import type {
   QuestAreaIndexResponse,
   QuestAreaResponse,
@@ -19,7 +19,7 @@ import type {
 export function quest(questId: number): Resource<QuestResponse> {
   return {
     namespace: 'static',
-    path: `${base}/quest/${questId}`,
+    path: `${wowBasePath}/quest/${questId}`,
   };
 }
 /**
@@ -30,7 +30,7 @@ export function quest(questId: number): Resource<QuestResponse> {
 export function questArea(questAreaId: number): Resource<QuestAreaResponse> {
   return {
     namespace: 'static',
-    path: `${base}/quest/area/${questAreaId}`,
+    path: `${wowBasePath}/quest/area/${questAreaId}`,
   };
 }
 /**
@@ -40,7 +40,7 @@ export function questArea(questAreaId: number): Resource<QuestAreaResponse> {
 export function questAreaIndex(): Resource<QuestAreaIndexResponse> {
   return {
     namespace: 'static',
-    path: `${base}/quest/area/index`,
+    path: `${wowBasePath}/quest/area/index`,
   };
 }
 /**
@@ -51,7 +51,7 @@ export function questAreaIndex(): Resource<QuestAreaIndexResponse> {
 export function questCategory(questCategoryId: number): Resource<QuestCategoryResponse> {
   return {
     namespace: 'static',
-    path: `${base}/quest/category/${questCategoryId}`,
+    path: `${wowBasePath}/quest/category/${questCategoryId}`,
   };
 }
 /**
@@ -61,7 +61,7 @@ export function questCategory(questCategoryId: number): Resource<QuestCategoryRe
 export function questCategoryIndex(): Resource<QuestCategoryIndexResponse> {
   return {
     namespace: 'static',
-    path: `${base}/quest/category/index`,
+    path: `${wowBasePath}/quest/category/index`,
   };
 }
 /**
@@ -71,7 +71,7 @@ export function questCategoryIndex(): Resource<QuestCategoryIndexResponse> {
 export function questIndex(): Resource<QuestIndexResponse> {
   return {
     namespace: 'static',
-    path: `${base}/quest/index`,
+    path: `${wowBasePath}/quest/index`,
   };
 }
 /**
@@ -82,7 +82,7 @@ export function questIndex(): Resource<QuestIndexResponse> {
 export function questType(questTypeId: number): Resource<QuestTypeResponse> {
   return {
     namespace: 'static',
-    path: `${base}/quest/type/${questTypeId}`,
+    path: `${wowBasePath}/quest/type/${questTypeId}`,
   };
 }
 /**
@@ -92,6 +92,6 @@ export function questType(questTypeId: number): Resource<QuestTypeResponse> {
 export function questTypeIndex(): Resource<QuestTypeIndexResponse> {
   return {
     namespace: 'static',
-    path: `${base}/quest/type/index`,
+    path: `${wowBasePath}/quest/type/index`,
   };
 }

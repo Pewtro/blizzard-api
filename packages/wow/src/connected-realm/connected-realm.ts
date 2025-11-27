@@ -1,5 +1,5 @@
 import type { Resource, SearchResponse } from '@blizzard-api/core';
-import { base } from '../base';
+import { wowBasePath } from '@blizzard-api/core';
 import type {
   ConnectedRealmIndexResponse,
   ConnectedRealmResponse,
@@ -15,7 +15,7 @@ import type {
 export function connectedRealm(connectedRealmId: number): Resource<ConnectedRealmResponse> {
   return {
     namespace: 'dynamic',
-    path: `${base}/connected-realm/${connectedRealmId}`,
+    path: `${wowBasePath}/connected-realm/${connectedRealmId}`,
   };
 }
 /**
@@ -25,7 +25,7 @@ export function connectedRealm(connectedRealmId: number): Resource<ConnectedReal
 export function connectedRealmIndex(): Resource<ConnectedRealmIndexResponse> {
   return {
     namespace: 'dynamic',
-    path: `${base}/connected-realm/index`,
+    path: `${wowBasePath}/connected-realm/index`,
   };
 }
 /**
@@ -44,6 +44,6 @@ export function connectedRealmSearch(
       'realms.timezone': options['realms.timezone'],
       'status.type': options['status.type'],
     },
-    path: `${base}/search/connected-realm`,
+    path: `${wowBasePath}/search/connected-realm`,
   };
 }

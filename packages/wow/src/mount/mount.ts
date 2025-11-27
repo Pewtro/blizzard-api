@@ -1,5 +1,5 @@
 import type { Resource, SearchResponse } from '@blizzard-api/core';
-import { base, searchBase } from '../base';
+import { wowBasePath, wowSearchBasePath } from '@blizzard-api/core';
 import type { MountIndexResponse, MountResponse, MountSearchParameters, MountSearchResponseItem } from './types';
 
 /**
@@ -10,7 +10,7 @@ import type { MountIndexResponse, MountResponse, MountSearchParameters, MountSea
 export function mount(mountId: number): Resource<MountResponse> {
   return {
     namespace: 'static',
-    path: `${base}/mount/${mountId}`,
+    path: `${wowBasePath}/mount/${mountId}`,
   };
 }
 /**
@@ -20,7 +20,7 @@ export function mount(mountId: number): Resource<MountResponse> {
 export function mountIndex(): Resource<MountIndexResponse> {
   return {
     namespace: 'static',
-    path: `${base}/mount/index`,
+    path: `${wowBasePath}/mount/index`,
   };
 }
 /**
@@ -38,6 +38,6 @@ export function mountSearch(
       [`name.${options.locale}`]: options.name,
       orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
     },
-    path: `${searchBase}/mount`,
+    path: `${wowSearchBasePath}/mount`,
   };
 }

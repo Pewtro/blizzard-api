@@ -1,5 +1,4 @@
-import type { NameId } from '@blizzard-api/core';
-import type { NameIdKey, ResponseBase } from '../../../wow/src/base';
+import type { NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 export interface AuctionHouseIndexResponse extends ResponseBase {
   auctions: Array<NameIdKey>;
