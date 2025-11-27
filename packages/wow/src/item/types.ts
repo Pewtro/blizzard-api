@@ -157,7 +157,7 @@ interface Effect {
 interface InventoryType {
   name: Record<Locales, string | undefined>;
   type: //Armor
-  | 'BACK'
+    | 'BACK'
     | 'BAG'
     | 'CHEST'
     | 'FEET'

@@ -1,5 +1,5 @@
-import {  wowBasePath } from '@blizzard-api/core';
-import type {BlizzardNamespaces} from '@blizzard-api/core';
+import { wowBasePath } from '@blizzard-api/core';
+import type { BlizzardNamespaces } from '@blizzard-api/core';
 import { describe, it } from 'vitest';
 import { powerType, powerTypeIndex } from './power-type';
 

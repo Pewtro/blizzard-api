@@ -1,5 +1,5 @@
-import {   wowBasePath } from '@blizzard-api/core';
-import type {BlizzardNamespaces, Resource} from '@blizzard-api/core';
+import { wowBasePath } from '@blizzard-api/core';
+import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
 import type { PvpSeasonIndexResponse, PvpSeasonResponse } from './types';
 
 /**

@@ -1,5 +1,4 @@
-import type { BaseSearchParameters, Factions, KeyBase, Locales, NameIdKey, ResponseBase  } from '@blizzard-api/core';
-
+import type { BaseSearchParameters, Factions, KeyBase, Locales, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a mount index.

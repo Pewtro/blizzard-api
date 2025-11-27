@@ -1,5 +1,5 @@
-import { d3ProfileBasePath  } from '@blizzard-api/core';
-import type {Resource} from '@blizzard-api/core';
+import { d3ProfileBasePath } from '@blizzard-api/core';
+import type { Resource } from '@blizzard-api/core';
 import type { AccountHeroFollowerItemsResponse, AccountHeroResponse, AccountResponse } from './types';
 
 /**
