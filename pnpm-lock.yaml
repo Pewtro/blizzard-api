@@ -120,6 +120,30 @@ importers:
         specifier: workspace:*
         version: link:../core
 
+  packages/integration-tests:
+    devDependencies:
+      '@blizzard-api/classic-wow':
+        specifier: workspace:*
+        version: link:../classic-wow
+      '@blizzard-api/client':
+        specifier: workspace:*
+        version: link:../client
+      '@blizzard-api/core':
+        specifier: workspace:*
+        version: link:../core
+      '@blizzard-api/d3':
+        specifier: workspace:*
+        version: link:../d3
+      '@blizzard-api/hs':
+        specifier: workspace:*
+        version: link:../hs
+      '@blizzard-api/sc2':
+        specifier: workspace:*
+        version: link:../sc2
+      '@blizzard-api/wow':
+        specifier: workspace:*
+        version: link:../wow
+
   packages/sc2:
     devDependencies:
       '@blizzard-api/core':

@@ -1,0 +1,25 @@
+{
+  "name": "@blizzard-api/integration-tests",
+  "version": "0.0.1",
+  "license": "MIT",
+  "author": "Putro",
+  "description": "Integration tests for the Blizzard Battle.net API client",
+  "repository": "https://github.com/Pewtro/blizzard-api/tree/main/packages/integration-tests",
+  "type": "module",
+  "engines": {
+    "node": "^18.18 || >=20.9"
+  },
+  "devDependencies": {
+    "@blizzard-api/classic-wow": "workspace:*",
+    "@blizzard-api/client": "workspace:*",
+    "@blizzard-api/core": "workspace:*",
+    "@blizzard-api/d3": "workspace:*",
+    "@blizzard-api/hs": "workspace:*",
+    "@blizzard-api/sc2": "workspace:*",
+    "@blizzard-api/wow": "workspace:*"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest watch"
+  }
+}
