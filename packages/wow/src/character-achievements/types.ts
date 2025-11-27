@@ -35,9 +35,29 @@ interface CategoryProgress {
   quantity: number;
 }
 
+interface ChildCriterum {
+  amount?: number;
+  child_criteria?: Array<ChildCriterum2>;
+  id: number;
+  is_completed: boolean;
+}
+
+interface ChildCriterum2 {
+  amount?: number;
+  child_criteria?: Array<ChildCriterum3>;
+  id: number;
+  is_completed: boolean;
+}
+
+interface ChildCriterum3 {
+  amount?: number;
+  id: number;
+  is_completed: boolean;
+}
+
 interface Criteria {
   amount?: number;
-  child_criteria?: Array<Criteria>;
+  child_criteria?: Array<ChildCriterum>;
   id: number;
   is_completed: boolean;
 }

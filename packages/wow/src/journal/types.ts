@@ -144,7 +144,42 @@ interface JournalSection {
   body_text?: string;
   creature_display?: CreatureDisplay;
   id: number;
-  sections?: Array<JournalSection>;
+  sections?: Array<JournalSubSection>;
+  spell?: NameIdKey;
+  title: string;
+}
+
+interface JournalSubSection {
+  body_text?: string;
+  creature_display?: CreatureDisplay;
+  id: number;
+  sections?: Array<JournalSubSection2>;
+  spell?: NameIdKey;
+  title: string;
+}
+
+interface JournalSubSection2 {
+  body_text?: string;
+  creature_display?: CreatureDisplay;
+  id: number;
+  sections?: Array<JournalSubSection3>;
+  spell?: NameIdKey;
+  title: string;
+}
+
+interface JournalSubSection3 {
+  body_text?: string;
+  creature_display?: CreatureDisplay;
+  id: number;
+  sections?: Array<JournalSubSection4>;
+  spell?: NameIdKey;
+  title: string;
+}
+
+interface JournalSubSection4 {
+  body_text?: string;
+  creature_display?: CreatureDisplay;
+  id: number;
   spell?: NameIdKey;
   title: string;
 }

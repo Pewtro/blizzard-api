@@ -41,6 +41,8 @@
     "lint-staged": "16.2.7",
     "npm-run-all2": "8.0.4",
     "prettier": "3.7.1",
+    "ts-to-zod": "5.1.0",
+    "tsx": "4.20.6",
     "tsdown": "0.16.8",
     "turbo": "2.6.1",
     "typedoc": "0.28.14",
@@ -69,7 +71,8 @@
     "test:coverage": "pnpm run test --coverage",
     "test:ui": "vitest --ui --coverage",
     "test:watch": "vitest watch",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "generate:zod:classic:ts": "tsx ./scripts/generate-zod.ts"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx,mjs,md,mdx,yaml,yml,json}": [

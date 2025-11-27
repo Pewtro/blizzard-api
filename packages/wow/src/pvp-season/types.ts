@@ -61,7 +61,7 @@ interface Character extends NameId {
 
 interface Entry {
   character: Character;
-  faction: { type: keyof typeof Factions };
+  faction: { type: Factions };
   rank: number;
   rating: number;
   season_match_statistics: SeasonMatchStatistics;

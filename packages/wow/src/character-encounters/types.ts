@@ -1,7 +1,7 @@
 import type { Character, Href, NameIdKey, ResponseBase } from '../base';
 
 export interface CharacterDungeonsResponse extends ResponseBase {
-  expansions: Array<Expansion<DungeonMode>>;
+  expansions: Array<ExpansionWithDungeonInstances>;
 }
 
 export interface CharacterEncountersSummaryResponse extends ResponseBase {
@@ -12,12 +12,17 @@ export interface CharacterEncountersSummaryResponse extends ResponseBase {
 
 export interface CharacterRaidsResponse extends ResponseBase {
   character: Character;
-  expansions: Array<Expansion<RaidMode>>;
+  expansions: Array<ExpansionWithRaidInstances>;
 }
 
 interface DungeonDifficulties {
   name: 'Heroic' | 'Mythic' | 'Mythic+ Dungeons' | 'Normal';
   type: 'HEROIC' | 'MYTHIC' | 'MYTHIC_KEYSTONE' | 'NORMAL';
+}
+
+interface DungeonInstance {
+  instance: NameIdKey;
+  modes: Array<DungeonMode>;
 }
 
 interface DungeonMode {
@@ -32,14 +37,14 @@ interface Encounter {
   last_kill_timestamp: number;
 }
 
-interface Expansion<T> {
+interface ExpansionWithDungeonInstances {
   expansion: NameIdKey;
-  instances: Array<Instance<T>>;
+  instances: Array<DungeonInstance>;
 }
 
-interface Instance<T> {
-  instance: NameIdKey;
-  modes: Array<T>;
+interface ExpansionWithRaidInstances {
+  expansion: NameIdKey;
+  instances: Array<RaidInstance>;
 }
 
 interface Progress {
@@ -67,6 +72,11 @@ interface RaidDifficulties {
     | 'LFR'
     | 'MYTHIC'
     | 'NORMAL';
+}
+
+interface RaidInstance {
+  instance: NameIdKey;
+  modes: Array<RaidMode>;
 }
 
 interface RaidMode {
