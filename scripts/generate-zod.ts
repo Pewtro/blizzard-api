@@ -47,7 +47,7 @@ async function run(): Promise<void> {
       ? allFiles.filter((f) => f.endsWith('.ts') && !f.endsWith('.test.ts') && !f.endsWith('index.ts'))
       : allFiles.filter((f) => path.basename(f) === 'types.ts');
 
-    const packageOut = path.join(root, 'generated', packageName);
+    const packageOut = path.join(root, 'generated', 'schemas', packageName);
     // Clean package output
     await fs.rm(packageOut, { force: true, recursive: true });
     await fs.mkdir(packageOut, { recursive: true });
