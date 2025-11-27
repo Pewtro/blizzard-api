@@ -1,5 +1,12 @@
-import type { BaseSearchParameters, KeyBase, Locales, NameId, NameIdKey, Realm, ResponseBase  } from '@blizzard-api/core';
-
+import type {
+  BaseSearchParameters,
+  KeyBase,
+  Locales,
+  NameId,
+  NameIdKey,
+  Realm,
+  ResponseBase,
+} from '@blizzard-api/core';
 
 /**
  * The category of a realm.
@@ -81,7 +88,7 @@ export interface RealmSearchResponseItem extends KeyBase {
     region: { id: number; name: Record<Locales, string | undefined> };
     slug: string;
     timezone: RealmTimezone;
-    type: { name: Record<Locales, string | undefined>; type: RealmTypeCapitalized };
+    type: { name: RealmType; type: RealmTypeCapitalized };
   };
 }
 

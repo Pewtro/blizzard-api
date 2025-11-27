@@ -2,7 +2,9 @@
 import { z } from 'zod';
 import {
   characterSchema,
+  colorSchema,
   factionSchema,
+  hrefSchema,
   keyBaseSchema,
   nameIdKeySchema,
   realmSchema,
@@ -14,9 +16,48 @@ const guildSchema = nameIdKeySchema.extend({
   realm: realmSchema,
 });
 
+const categoryProgressSchema = z.object({
+  category: nameIdKeySchema,
+  points: z.number(),
+  quantity: z.number(),
+});
+
+const recentEventSchema = z.object({
+  achievement: nameIdKeySchema,
+  timestamp: z.number(),
+});
+
 const characterAchievementSchema = z.object({
   achievement: nameIdKeySchema,
   character: characterSchema,
+});
+
+const rgbWithIdSchema = z.object({
+  id: z.number(),
+  rgba: colorSchema,
+});
+
+const childCriterumSchema = z.object({
+  amount: z.number(),
+  id: z.number(),
+  is_completed: z.boolean(),
+});
+
+const borderSchema = z.object({
+  color: rgbWithIdSchema,
+  id: z.number(),
+  media: keyBaseSchema.and(
+    z.object({
+      id: z.number(),
+    }),
+  ),
+});
+
+const criteriaSchema = z.object({
+  amount: z.number().optional(),
+  child_criteria: z.array(childCriterumSchema).optional(),
+  id: z.number(),
+  is_completed: z.boolean(),
 });
 
 const playableSchema = keyBaseSchema.extend({
@@ -29,10 +70,15 @@ const rosterMemberCharacterSchema = characterSchema.extend({
   playable_race: playableSchema,
 });
 
-const guildRetailResponseSchema = z.any();
-
 export const guildAchievementsClassicEraResponseSchema = responseBaseSchema.extend({
   guild: guildSchema,
+});
+
+const achievementSchema = z.object({
+  achievement: nameIdKeySchema,
+  completed_timestamp: z.number().optional(),
+  criteria: criteriaSchema.optional(),
+  id: z.number(),
 });
 
 const activityElementSchema = z.object({
@@ -43,20 +89,46 @@ const activityElementSchema = z.object({
   timestamp: z.number(),
 });
 
-export const guildResponseSchema = guildRetailResponseSchema.omit({ crest: true }).and(
-  z.object({
-    crest: guildRetailResponseSchema.shape.crest.optional(),
+const crestSchema = z.object({
+  background: z.object({
+    color: rgbWithIdSchema,
   }),
-);
+  border: borderSchema,
+  emblem: borderSchema,
+});
 
 const memberSchema = z.object({
   character: rosterMemberCharacterSchema,
   rank: z.number(),
 });
 
+export const guildAchievementsResponseSchema = responseBaseSchema.extend({
+  achievements: z.array(achievementSchema),
+  category_progress: z.array(categoryProgressSchema),
+  guild: guildSchema,
+  recent_events: z.array(recentEventSchema),
+  total_points: z.number(),
+  total_quantity: z.number(),
+});
+
 export const guildActivityResponseSchema = responseBaseSchema.extend({
   activities: z.array(activityElementSchema).optional(),
   guild: guildSchema,
+});
+
+export const guildResponseSchema = responseBaseSchema.extend({
+  achievement_points: z.number(),
+  achievements: hrefSchema,
+  activity: hrefSchema,
+  created_timestamp: z.number(),
+  crest: crestSchema.optional(),
+  faction: factionSchema,
+  id: z.number(),
+  member_count: z.number(),
+  name: z.string(),
+  name_search: z.string(),
+  realm: realmSchema,
+  roster: hrefSchema,
 });
 
 export const guildRosterResponseSchema = responseBaseSchema.extend({

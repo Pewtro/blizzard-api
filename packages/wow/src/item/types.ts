@@ -1,5 +1,13 @@
-import type { BaseSearchParameters, Color, KeyBase, Locales, MediaAsset, NameId, NameIdKey, ResponseBase  } from '@blizzard-api/core';
-
+import type {
+  BaseSearchParameters,
+  Color,
+  KeyBase,
+  Locales,
+  MediaAsset,
+  NameId,
+  NameIdKey,
+  ResponseBase,
+} from '@blizzard-api/core';
 
 /**
  * The response for an item class index.

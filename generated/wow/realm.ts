@@ -78,7 +78,7 @@ export const realmSearchResponseItemSchema = keyBaseSchema.extend({
     slug: z.string(),
     timezone: realmTimezoneSchema,
     type: z.object({
-      name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
+      name: realmTypeSchema,
       type: realmTypeCapitalizedSchema,
     }),
   }),
