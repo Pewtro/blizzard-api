@@ -9,3 +9,6 @@ export type * from './resource';
 
 //Search
 export type * from './search';
+
+//Base
+export type * from './base';
