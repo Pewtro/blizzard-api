@@ -91,22 +91,6 @@ export const Genders = {
 } as const;
 
 /**
- * The gender associated with a character or entity in World of Warcraft.
- */
-export interface Gender {
-  name: Capitalize<Lowercase<keyof typeof Genders>>;
-  type: keyof typeof Genders;
-}
-
-/**
- * The playable factions in World of Warcraft.
- */
-export const Factions = {
-  ALLIANCE: 'ALLIANCE',
-  HORDE: 'HORDE',
-} as const;
-
-/**
  * The standard structure to represent a World of Warcraft Character.
  */
 export interface Character extends NameIdKey {
@@ -117,8 +101,21 @@ export interface Character extends NameIdKey {
  * The faction associated with a character or entity in World of Warcraft.
  */
 export interface Faction {
-  name: Capitalize<Lowercase<keyof typeof Factions>>;
-  type: keyof typeof Factions;
+  name: Capitalize<Lowercase<Factions>>;
+  type: Factions;
+}
+
+/**
+ * The playable factions in World of Warcraft.
+ */
+export type Factions = 'ALLIANCE' | 'HORDE';
+
+/**
+ * The gender associated with a character or entity in World of Warcraft.
+ */
+export interface Gender {
+  name: Capitalize<Lowercase<keyof typeof Genders>>;
+  type: keyof typeof Genders;
 }
 
 /**

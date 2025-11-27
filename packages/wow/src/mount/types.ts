@@ -40,7 +40,7 @@ export interface MountSearchParameters extends BaseSearchParameters {
 export interface MountSearchResponseItem extends KeyBase {
   data: {
     creature_displays: Array<{ id: number }>;
-    faction?: { name: Record<Locales, string>; type: keyof typeof Factions };
+    faction?: { name: Record<Locales, string>; type: Factions };
     id: number;
     name: Record<Locales, string>;
     source: { name: Record<Locales, string>; type: string };

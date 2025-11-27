@@ -39,7 +39,7 @@ interface LeadingGroup {
 }
 
 interface Member {
-  faction: { type: keyof typeof Factions };
+  faction: { type: Factions };
   profile: Profile;
   specialization: Specialization;
 }

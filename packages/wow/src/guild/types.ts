@@ -64,6 +64,12 @@ interface CharacterAchievement {
   character: Character;
 }
 
+interface ChildCriterum {
+  amount: number;
+  id: number;
+  is_completed: boolean;
+}
+
 interface Crest {
   background: { color: RgbWithId };
   border: Border;
@@ -72,7 +78,7 @@ interface Crest {
 
 interface Criteria {
   amount?: number;
-  child_criteria?: Array<Criteria>;
+  child_criteria?: Array<ChildCriterum>;
   id: number;
   is_completed: boolean;
 }

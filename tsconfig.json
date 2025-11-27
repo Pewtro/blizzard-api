@@ -47,5 +47,5 @@
     //"composite": true,
     //"declarationMap": true,
   },
-  "include": ["*.*ts", "*.*js", "packages/**/*"]
+  "include": ["*.*ts", "*.*js", "packages/**/*", "scripts/*", "generated/**/*"]
 }

@@ -13,7 +13,7 @@ export interface MythicRaidLeaderboardResponse extends ResponseBase {
 }
 
 interface Entry {
-  faction: { type: keyof typeof Factions };
+  faction: { type: Factions };
   guild: Guild;
   rank: number;
   region: Origins;

@@ -1,6 +1,6 @@
 import type { BaseSearchParameters, Locales } from '@blizzard-api/core';
 import type { KeyBase, NameIdKey, ResponseBase } from '../base';
-import type { RealmCategory, RealmTimezone, RealmType, RealmTypeCapitalized, WithoutUnderscore } from '../realm/types';
+import type { RealmCategory, RealmLocales, RealmTimezone, RealmType, RealmTypeCapitalized } from '../realm/types';
 
 /**
  * Connected Realm Index API response.
@@ -53,7 +53,7 @@ interface Realm {
   connected_realm: { href: string };
   id: number;
   is_tournament: boolean;
-  locale: WithoutUnderscore<Locales>;
+  locale: RealmLocales;
   name: string;
   region: NameIdKey;
   slug: string;
@@ -76,7 +76,7 @@ interface SearchRealm {
   category: Record<Locales, string | undefined>;
   id: number;
   is_tournament: boolean;
-  locale: WithoutUnderscore<Locales>;
+  locale: RealmLocales;
   name: Record<Locales, string | undefined>;
   region: { id: number; name: Record<Locales, string | undefined> };
   slug: string;

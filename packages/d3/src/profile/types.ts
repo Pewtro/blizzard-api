@@ -230,7 +230,7 @@ interface HeroProgression {
 
 interface Item {
   displayColor?: DisplayColor;
-  dyeColor?: Item;
+  dyeColor?: Dye;
   icon: string;
   id: string;
   name: string;

@@ -11,7 +11,7 @@ import type { MythicRaidLeaderboardResponse } from './types';
  */
 export function mythicRaidLeaderboard(
   raid: string,
-  faction: Lowercase<keyof typeof Factions>,
+  faction: Lowercase<Factions>,
 ): Resource<MythicRaidLeaderboardResponse> {
   return {
     namespace: 'dynamic',

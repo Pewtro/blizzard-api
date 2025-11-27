@@ -27,6 +27,21 @@ export interface RealmIndexResponse extends ResponseBase {
   realms: Array<Realm>;
 }
 
+export type RealmLocales =
+  | 'deDE'
+  | 'enGB'
+  | 'enUS'
+  | 'esES'
+  | 'esMX'
+  | 'frFR'
+  | 'itIT'
+  | 'koKR'
+  | 'ptBR'
+  | 'ptPT'
+  | 'ruRU'
+  | 'zhCN'
+  | 'zhTW';
+
 /**
  * The response for a realm.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
@@ -35,7 +50,7 @@ export interface RealmResponse extends NameId, ResponseBase {
   category: RealmCategory;
   connected_realm: { href: string };
   is_tournament: boolean;
-  locale: WithoutUnderscore<Locales>;
+  locale: RealmLocales;
   region: NameIdKey;
   slug: string;
   timezone: RealmTimezone;
@@ -61,7 +76,7 @@ export interface RealmSearchResponseItem extends KeyBase {
     category: Record<Locales, string | undefined>;
     id: number;
     is_tournament: boolean;
-    locale: WithoutUnderscore<Locales>;
+    locale: RealmLocales;
     name: Record<Locales, string | undefined>;
     region: { id: number; name: Record<Locales, string | undefined> };
     slug: string;
@@ -92,8 +107,3 @@ export type RealmType = 'Normal' | 'Roleplaying';
  * The type of a realm, capitalized and shortended).
  */
 export type RealmTypeCapitalized = 'NORMAL' | 'RP';
-
-// RealmLocale is the same as Locales but without the _ in the middle, assuming that `multi` cannot be used in this context
-export type WithoutUnderscore<T extends string> = T extends `${infer Prefix}_${infer Suffix}`
-  ? `${Prefix}${Suffix}`
-  : never;

@@ -9,7 +9,7 @@ import type { AccountHeroFollowerItemsResponse, AccountHeroResponse, AccountResp
  */
 export function account(battleTag: string): Resource<AccountResponse> {
   return {
-    path: `${profileBase}/${battleTag}`,
+    path: `${profileBase}/${encodeURIComponent(battleTag)}`,
   };
 }
 
@@ -21,7 +21,7 @@ export function account(battleTag: string): Resource<AccountResponse> {
  */
 export function accountHero(battleTag: string, heroId: number): Resource<AccountHeroResponse> {
   return {
-    path: `${profileBase}/${battleTag}/hero/${heroId}`,
+    path: `${profileBase}/${encodeURIComponent(battleTag)}/hero/${heroId}`,
   };
 }
 
@@ -36,7 +36,7 @@ export function accountHeroFollowerItems(
   heroId: number,
 ): Resource<AccountHeroFollowerItemsResponse> {
   return {
-    path: `${profileBase}/${battleTag}/hero/${heroId}/follower-items`,
+    path: `${profileBase}/${encodeURIComponent(battleTag)}/hero/${heroId}/follower-items`,
   };
 }
 
@@ -48,6 +48,6 @@ export function accountHeroFollowerItems(
  */
 export function accountHeroItems(battleTag: string, heroId: number): Resource<AccountHeroResponse> {
   return {
-    path: `${profileBase}/${battleTag}/hero/${heroId}/items`,
+    path: `${profileBase}/${encodeURIComponent(battleTag)}/hero/${heroId}/items`,
   };
 }
