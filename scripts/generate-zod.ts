@@ -5,6 +5,7 @@ import { existsSync } from 'node:fs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { generate } from 'ts-to-zod';
+import { inputOutputMappings } from './input-output-mapping';
 
 const root = process.cwd();
 const packagesDirectory = path.join(root, 'packages');
@@ -59,6 +60,7 @@ async function run(): Promise<void> {
 
         const content = await fs.readFile(file, 'utf8');
         const generator = generate({
+          inputOutputMappings,
           keepComments: true,
           skipParseJSDoc: true,
           sourceText: content,
