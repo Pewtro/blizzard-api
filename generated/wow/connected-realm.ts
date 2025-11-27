@@ -2,10 +2,6 @@
 import { z } from 'zod';
 import { baseSearchParametersSchema, keyBaseSchema, localesSchema, nameIdKeySchema, responseBaseSchema } from '../core';
 
-/**
- * Connected Realm Index API response.
- * @see https://develop.battle.net/documentation/world-of-warcraft/game-data-apis
- */
 export const connectedRealmIndexResponseSchema = responseBaseSchema.extend({
   connected_realms: z.array(
     z.object({
@@ -69,11 +65,6 @@ const realmSchema = z.object({
   }),
 });
 
-/**
- * Connected Realm Search API parameters.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
- */
 export const connectedRealmSearchParametersSchema = baseSearchParametersSchema.extend({
   'realms.timezone': realmTimezoneSchema.optional(),
   'status.type': realmStatusCapitalizedSchema.optional(),
@@ -97,10 +88,6 @@ const searchRealmSchema = z.object({
   }),
 });
 
-/**
- * Connected Realm API response.
- * @see https://develop.battle.net/documentation/world-of-warcraft/game-data-apis
- */
 export const connectedRealmResponseSchema = responseBaseSchema.extend({
   auctions: z.object({
     href: z.string(),
@@ -128,11 +115,6 @@ export const connectedRealmResponseSchema = responseBaseSchema.extend({
   }),
 });
 
-/**
- * Connected Realm Search API response item.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
- */
 export const connectedRealmSearchResponseItemSchema = keyBaseSchema.extend({
   data: z.object({
     has_queue: z.boolean(),

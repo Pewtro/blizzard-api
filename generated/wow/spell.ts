@@ -9,10 +9,6 @@ import {
   responseBaseSchema,
 } from '../core';
 
-/**
- * The response for a spell media.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const spellMediaResponseSchema = responseBaseSchema.extend({
   assets: z.array(mediaAssetSchema),
   id: z.number(),
@@ -22,21 +18,11 @@ const mediaSchema = keyBaseSchema.extend({
   id: z.number(),
 });
 
-/**
- * The search parameters for spells.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
- */
 export const spellSearchParametersSchema = baseSearchParametersSchema.extend({
   locale: localesSchema,
   name: z.string(),
 });
 
-/**
- * The response for a spell search.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
- */
 export const spellSearchResponseItemSchema = keyBaseSchema.extend({
   data: z.object({
     id: z.number(),
@@ -47,10 +33,6 @@ export const spellSearchResponseItemSchema = keyBaseSchema.extend({
   }),
 });
 
-/**
- * The response for a spell.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const spellResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   description: z.string().nullable(),
   media: mediaSchema,

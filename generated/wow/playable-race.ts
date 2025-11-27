@@ -2,18 +2,10 @@
 import { z } from 'zod';
 import { factionSchema, genderNameSchema, nameIdKeySchema, nameIdSchema, responseBaseSchema } from '../core';
 
-/**
- * The playable race index response.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const playableRaceIndexResponseSchema = responseBaseSchema.extend({
   races: z.array(nameIdKeySchema),
 });
 
-/**
- * The playable race response.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const playableRaceResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   faction: factionSchema,
   gender_name: genderNameSchema,

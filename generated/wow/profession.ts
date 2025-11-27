@@ -2,18 +2,10 @@
 import { z } from 'zod';
 import { keyBaseSchema, mediaAssetSchema, nameIdKeySchema, nameIdSchema, responseBaseSchema } from '../core';
 
-/**
- * The response for a profession index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const professionIndexResponseSchema = responseBaseSchema.extend({
   professions: z.array(nameIdKeySchema),
 });
 
-/**
- * The response for a profession media.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const professionMediaResponseSchema = responseBaseSchema.extend({
   assets: z.array(mediaAssetSchema),
   id: z.number(),
@@ -33,10 +25,6 @@ const categorySchema = z.object({
   recipes: z.array(nameIdKeySchema),
 });
 
-/**
- * The response for a recipe media.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const recipeMediaResponseSchema = responseBaseSchema.extend({
   assets: z.array(mediaAssetSchema),
   id: z.number(),
@@ -51,10 +39,6 @@ const reagentSchema = z.object({
   reagent: nameIdKeySchema,
 });
 
-/**
- * The response for a profession.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const professionResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   description: z.string(),
   media: mediaSchema,
@@ -62,20 +46,12 @@ export const professionResponseSchema = nameIdSchema.extend(responseBaseSchema.s
   type: typeSchema,
 });
 
-/**
- * The response for a profession skill tier.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const professionSkillTierResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   categories: z.array(categorySchema),
   maximum_skill_level: z.number(),
   minimum_skill_level: z.number(),
 });
 
-/**
- * The response for a recipe.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const recipeResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   crafted_item: nameIdKeySchema,
   crafted_quantity: craftedQuantitySchema,

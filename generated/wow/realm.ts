@@ -10,10 +10,6 @@ import {
   responseBaseSchema,
 } from '../core';
 
-/**
- * The category of a realm.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const realmCategorySchema = z.union([
   z.literal('Brazil'),
   z.literal('English'),
@@ -29,10 +25,6 @@ export const realmCategorySchema = z.union([
   z.literal('\uD55C\uAD6D'),
 ]);
 
-/**
- * The response for a realm index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const realmIndexResponseSchema = responseBaseSchema.extend({
   realms: z.array(realmSchema),
 });
@@ -53,9 +45,6 @@ export const realmLocalesSchema = z.union([
   z.literal('zhTW'),
 ]);
 
-/**
- * The timezone of a realm.
- */
 export const realmTimezoneSchema = z.union([
   z.literal('America/Chicago'),
   z.literal('America/Denver'),
@@ -67,30 +56,14 @@ export const realmTimezoneSchema = z.union([
   z.literal('Europe/Paris'),
 ]);
 
-/**
- * The type of a realm, not capitalized or shortened.
- */
 export const realmTypeSchema = z.union([z.literal('Normal'), z.literal('Roleplaying')]);
 
-/**
- * The type of a realm, capitalized and shortended).
- */
 export const realmTypeCapitalizedSchema = z.union([z.literal('NORMAL'), z.literal('RP')]);
 
-/**
- * The search parameters for realms.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
- */
 export const realmSearchParametersSchema = baseSearchParametersSchema.extend({
   timezone: realmTimezoneSchema.optional(),
 });
 
-/**
- * The response for a realm search.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
- */
 export const realmSearchResponseItemSchema = keyBaseSchema.extend({
   data: z.object({
     category: z.record(localesSchema, z.union([z.string(), z.undefined()])),
@@ -111,10 +84,6 @@ export const realmSearchResponseItemSchema = keyBaseSchema.extend({
   }),
 });
 
-/**
- * The response for a realm.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const realmResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   category: realmCategorySchema,
   connected_realm: z.object({

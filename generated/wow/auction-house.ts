@@ -38,10 +38,6 @@ const auctionHouseCommoditySchema = z.object({
   unit_price: z.number(),
 });
 
-/**
- * Interface for a response from the auction house endpoint.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const auctionHouseResponseSchema = responseBaseSchema.extend({
   auctions: z.array(auctionHousePostingSchema),
   commodities: z.object({
@@ -52,10 +48,6 @@ export const auctionHouseResponseSchema = responseBaseSchema.extend({
   }),
 });
 
-/**
- * Interface for a response from the auction house commodities endpoint.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const auctionHouseCommoditiesResponseSchema = responseBaseSchema.extend({
   auctions: z.array(auctionHouseCommoditySchema),
 });

@@ -2,18 +2,10 @@
 import { z } from 'zod';
 import { keyBaseSchema, mediaAssetSchema, nameIdKeySchema, nameIdSchema, responseBaseSchema } from '../core';
 
-/**
- * The response for a PvP tier index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const pvpTierIndexResponseSchema = responseBaseSchema.extend({
   tiers: z.array(nameIdKeySchema),
 });
 
-/**
- * The response for a PvP tier media.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const pvpTierMediaResponseSchema = responseBaseSchema.extend({
   assets: z.array(mediaAssetSchema),
   id: z.number(),
@@ -28,10 +20,6 @@ const mediaSchema = keyBaseSchema.extend({
   id: z.number(),
 });
 
-/**
- * The response for a PvP tier.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const pvpTierResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   bracket: bracketSchema,
   max_rating: z.number(),

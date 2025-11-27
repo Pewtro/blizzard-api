@@ -2,10 +2,6 @@
 import { z } from 'zod';
 import { keyBaseSchema, nameIdKeySchema, responseBaseSchema } from '../core';
 
-/**
- * Interface for a response from the conduit index endpoint.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const conduitIndexResponseSchema = responseBaseSchema.extend({
   conduits: z.array(nameIdKeySchema),
 });
@@ -19,10 +15,6 @@ const socketTypeSchema = z.object({
   type: z.string(),
 });
 
-/**
- * Interface for a response from the covenant index endpoint.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const covenantIndexResponseSchema = responseBaseSchema.extend({
   covenants: z.array(nameIdKeySchema),
 });
@@ -36,10 +28,6 @@ const renownRewardSchema = z.object({
   reward: nameIdKeySchema,
 });
 
-/**
- * Interface for a response from the covenant endpoint.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const covenantResponseSchema = responseBaseSchema.extend({
   description: z.string(),
   id: z.number(),
@@ -47,18 +35,10 @@ export const covenantResponseSchema = responseBaseSchema.extend({
   renown_rewards: z.array(renownRewardSchema),
 });
 
-/**
- * Interface for a response from the soulbind index endpoint.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const soulbindIndexResponseSchema = responseBaseSchema.extend({
   soulbinds: z.array(nameIdKeySchema),
 });
 
-/**
- * Interface for a response from the soulbind endpoint.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const soulbindResponseSchema = responseBaseSchema.extend({
   covenant: nameIdKeySchema,
   creature: nameIdKeySchema,
@@ -107,10 +87,6 @@ const signatureAbilitySchema = z.object({
   spell_tooltip: signatureAbilitySpellTooltipSchema,
 });
 
-/**
- * Interface for a response from the conduit endpoint.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const conduitResponseSchema = responseBaseSchema.extend({
   id: z.number(),
   item: itemSchema,
@@ -119,10 +95,6 @@ export const conduitResponseSchema = responseBaseSchema.extend({
   socket_type: socketTypeSchema,
 });
 
-/**
- * Interface for a response from the covenant media endpoint.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const covenantMediaResponseSchema = responseBaseSchema.extend({
   class_abilities: z.array(classAbilitySchema),
   description: z.string(),

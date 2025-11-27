@@ -2,18 +2,10 @@
 import { z } from 'zod';
 import { keyBaseSchema, mediaAssetSchema, nameIdKeySchema, nameIdSchema, responseBaseSchema } from '../core';
 
-/**
- * The response for a Mythic Keystone affix index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const mythicKeystoneAffixIndexResponseSchema = responseBaseSchema.extend({
   affixes: z.array(nameIdKeySchema),
 });
 
-/**
- * The response for a Mythic Keystone affix media.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const mythicKeystoneAffixMediaResponseSchema = responseBaseSchema.extend({
   assets: z.array(mediaAssetSchema),
   id: z.number(),
@@ -23,10 +15,6 @@ const mediaSchema = keyBaseSchema.extend({
   id: z.number(),
 });
 
-/**
- * The response for a Mythic Keystone affix.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const mythicKeystoneAffixResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   description: z.string(),
   media: mediaSchema,

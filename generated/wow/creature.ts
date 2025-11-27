@@ -14,18 +14,10 @@ const displayMediaAssetSchema = z.object({
   value: z.string(),
 });
 
-/**
- * The response for a creature family index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const creatureFamilyIndexResponseSchema = responseBaseSchema.extend({
   creature_families: z.array(nameIdKeySchema),
 });
 
-/**
- * The response for creature family media.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const creatureFamilyMediaResponseSchema = responseBaseSchema.extend({
   assets: z.array(mediaAssetSchema),
   id: z.number(),
@@ -39,21 +31,11 @@ const creatureDisplaySchema = keyBaseSchema.extend({
   id: z.number(),
 });
 
-/**
- * The search parameters for a creature.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
- */
 export const creatureSearchParametersSchema = baseSearchParametersSchema.extend({
   locale: localesSchema,
   name: z.string(),
 });
 
-/**
- * The response for a creature search.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
- */
 export const creatureSearchResponseItemSchema = keyBaseSchema.extend({
   data: z.object({
     creature_displays: z.array(
@@ -77,36 +59,20 @@ export const creatureSearchResponseItemSchema = keyBaseSchema.extend({
   }),
 });
 
-/**
- * The response for a creature type index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const creatureTypeIndexResponseSchema = responseBaseSchema.extend({
   creature_types: z.array(nameIdKeySchema),
 });
 
-/**
- * The response for a creature type.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const creatureTypeResponseSchema = responseBaseSchema.extend({
   id: z.number(),
   name: z.string(),
 });
 
-/**
- * The response for creature display media.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const creatureDisplayMediaResponseSchema = responseBaseSchema.extend({
   assets: z.array(displayMediaAssetSchema),
   id: z.number(),
 });
 
-/**
- * The response for a creature family.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const creatureFamilyResponseSchema = responseBaseSchema.extend({
   id: z.number(),
   media: mediaSchema,
@@ -114,10 +80,6 @@ export const creatureFamilyResponseSchema = responseBaseSchema.extend({
   specialization: nameIdKeySchema,
 });
 
-/**
- * The response for a creature.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const creatureResponseSchema = responseBaseSchema.extend({
   creature_displays: z.array(creatureDisplaySchema),
   family: nameIdKeySchema,

@@ -23,10 +23,6 @@ const backgroundSchema = z.object({
   rgba: rgbaSchema,
 });
 
-/**
- * The response for a guild crest border or emblem.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const guildCrestBorderEmblemResponseSchema = responseBaseSchema.extend({
   assets: z.array(guildCrestAssetSchema),
   id: z.number(),
@@ -43,10 +39,6 @@ const colorsSchema = z.object({
   emblems: z.array(backgroundSchema),
 });
 
-/**
- * The response for the guild crest components index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const guildCrestComponentsIndexResponseSchema = responseBaseSchema.extend({
   borders: z.array(borderSchema),
   colors: colorsSchema,

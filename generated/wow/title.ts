@@ -2,18 +2,10 @@
 import { z } from 'zod';
 import { genderNameSchema, nameIdKeySchema, nameIdSchema, responseBaseSchema } from '../core';
 
-/**
- * The response for a title index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const titleIndexResponseSchema = responseBaseSchema.extend({
   titles: z.array(nameIdKeySchema),
 });
 
-/**
- * The response for a title.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const titleResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   gender_name: genderNameSchema,
 });

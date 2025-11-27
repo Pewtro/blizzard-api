@@ -2,10 +2,6 @@
 import { z } from 'zod';
 import { keyBaseSchema, nameIdKeySchema, nameIdSchema, responseBaseSchema } from '../core';
 
-/**
- * The response for a Mythic Keystone dungeon index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const mythicKeystoneDungeonIndexResponseSchema = responseBaseSchema.extend({
   dungeons: z.array(nameIdKeySchema),
 });
@@ -19,10 +15,6 @@ const zoneSchema = z.object({
   slug: z.string(),
 });
 
-/**
- * The response for a Mythic Keystone index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const mythicKeystoneIndexResponseSchema = responseBaseSchema.extend({
   dungeons: z.object({
     href: z.string(),
@@ -36,29 +28,17 @@ const periodSchema = keyBaseSchema.extend({
   id: z.number(),
 });
 
-/**
- * The response for a Mythic Keystone period.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const mythicKeystonePeriodResponseSchema = responseBaseSchema.extend({
   end_timestamp: z.number(),
   id: z.number(),
   start_timestamp: z.number(),
 });
 
-/**
- * The response for a Mythic Keystone season index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const mythicKeystoneSeasonIndexResponseSchema = responseBaseSchema.extend({
   current_season: periodSchema,
   seasons: z.array(periodSchema),
 });
 
-/**
- * The response for a Mythic Keystone season.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const mythicKeystoneSeasonResponseSchema = responseBaseSchema.extend({
   end_timestamp: z.number(),
   id: z.number(),
@@ -67,10 +47,6 @@ export const mythicKeystoneSeasonResponseSchema = responseBaseSchema.extend({
   start_timestamp: z.number(),
 });
 
-/**
- * The response for a Mythic Keystone dungeon.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const mythicKeystoneDungeonResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   dungeon: nameIdKeySchema,
   is_tracked: z.boolean(),
@@ -79,10 +55,6 @@ export const mythicKeystoneDungeonResponseSchema = nameIdSchema.extend(responseB
   zone: zoneSchema,
 });
 
-/**
- * The response for a Mythic Keystone period index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const mythicKeystonePeriodIndexResponseSchema = responseBaseSchema.extend({
   current_period: periodSchema,
   periods: z.array(periodSchema),

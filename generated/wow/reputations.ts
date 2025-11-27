@@ -2,10 +2,6 @@
 import { z } from 'zod';
 import { keyBaseSchema, nameIdKeySchema, responseBaseSchema } from '../core';
 
-/**
- * The response for a reputation faction index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const reputationFactionIndexResponseSchema = responseBaseSchema.extend({
   factions: z.array(nameIdKeySchema),
   root_factions: z.array(nameIdKeySchema),
@@ -27,10 +23,6 @@ const tierSchema = z.object({
   name: z.string(),
 });
 
-/**
- * The response for a reputation faction.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const reputationFactionResponseSchema = responseBaseSchema.extend({
   description: z.string(),
   id: z.number(),
@@ -38,18 +30,10 @@ export const reputationFactionResponseSchema = responseBaseSchema.extend({
   reputation_tiers: reputationTiersSchema,
 });
 
-/**
- * The response for a reputation tier index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const reputationTiersIndexResponseSchema = responseBaseSchema.extend({
   reputation_tiers: z.array(reputationTierSchema),
 });
 
-/**
- * The response for a reputation tier.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const reputationTiersResponseSchema = responseBaseSchema.extend({
   faction: nameIdKeySchema.optional(),
   id: z.number(),

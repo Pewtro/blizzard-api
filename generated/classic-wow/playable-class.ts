@@ -6,10 +6,6 @@ const mediaSchema = keyBaseSchema.extend({
   id: z.number(),
 });
 
-/**
- * The response for a playable class.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft-classic/game-data-apis}
- */
 export const playableClassResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   gender_name: genderNameSchema,
   media: mediaSchema,

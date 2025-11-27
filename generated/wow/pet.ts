@@ -2,18 +2,10 @@
 import { z } from 'zod';
 import { keyBaseSchema, mediaAssetSchema, nameIdKeySchema, nameIdSchema, responseBaseSchema } from '../core';
 
-/**
- * The response for a pet ability index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const petAbilityIndexResponseSchema = responseBaseSchema.extend({
   abilities: z.array(nameIdKeySchema),
 });
 
-/**
- * The response for a pet ability media.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const petAbilityMediaResponseSchema = responseBaseSchema.extend({
   assets: z.array(mediaAssetSchema),
   id: z.number(),
@@ -27,18 +19,10 @@ const mediaSchema = keyBaseSchema.extend({
   id: z.number(),
 });
 
-/**
- * The response for a pet index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const petIndexResponseSchema = responseBaseSchema.extend({
   pets: z.array(nameIdKeySchema),
 });
 
-/**
- * The response for a pet search.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const petMediaResponseSchema = responseBaseSchema.extend({
   assets: z.array(mediaAssetSchema),
   id: z.number(),
@@ -55,20 +39,12 @@ const sourceSchema = z.object({
   type: z.string(),
 });
 
-/**
- * The response for a pet ability.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const petAbilityResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   battle_pet_type: battlePetTypeSchema,
   media: mediaSchema,
   rounds: z.number(),
 });
 
-/**
- * The response for a pet.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const petResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   abilities: z.array(abilitySchema),
   battle_pet_type: battlePetTypeSchema,

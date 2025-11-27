@@ -2,16 +2,8 @@
 import { z } from 'zod';
 import { nameIdKeySchema, nameIdSchema, responseBaseSchema } from '../core';
 
-/**
- * The response for a power type index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const powerTypeIndexResponseSchema = responseBaseSchema.extend({
   power_types: z.array(nameIdKeySchema),
 });
 
-/**
- * The response for a power type.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const powerTypeResponseSchema = nameIdSchema.extend(responseBaseSchema.shape);

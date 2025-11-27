@@ -10,18 +10,10 @@ import {
   responseBaseSchema,
 } from '../core';
 
-/**
- * Interface for a response from the azerite essence index endpoint.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const azeriteEssenceIndexResponseSchema = responseBaseSchema.extend({
   azerite_essences: z.array(nameIdKeySchema),
 });
 
-/**
- * Interface for a response from the azerite essence media endpoint.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const azeriteEssenceMediaResponseSchema = responseBaseSchema.extend({
   assets: z.array(mediaAssetSchema),
   id: z.number(),
@@ -38,20 +30,10 @@ const powerSchema = z.object({
   rank: z.number(),
 });
 
-/**
- * Interface for search parameters for azerite essences.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
- */
 export const azeriteEssenceSearchParametersSchema = baseSearchParametersSchema.extend({
   'allowed_specializations.id': z.number().optional(),
 });
 
-/**
- * Interface for a response item from the azerite essence search endpoint.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
- */
 export const azeriteEssenceSearchResponseItemSchema = keyBaseSchema.extend({
   data: z.object({
     allowed_specializations: z.array(nameIdSchema),
@@ -59,10 +41,6 @@ export const azeriteEssenceSearchResponseItemSchema = keyBaseSchema.extend({
   }),
 });
 
-/**
- * Interface for a response from the azerite essence endpoint.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const azeriteEssenceResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   allowed_specializations: z.array(nameIdKeySchema),
   media: mediaSchema,

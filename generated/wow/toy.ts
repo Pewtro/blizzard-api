@@ -2,10 +2,6 @@
 import { z } from 'zod';
 import { keyBaseSchema, nameIdKeySchema, responseBaseSchema } from '../core';
 
-/**
- * The response for a toy index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const toyIndexResponseSchema = responseBaseSchema.extend({
   toys: z.array(nameIdKeySchema),
 });
@@ -19,10 +15,6 @@ const sourceSchema = z.object({
   type: z.string(),
 });
 
-/**
- * The response for a toy.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const toyResponseSchema = responseBaseSchema.extend({
   id: z.number(),
   item: nameIdKeySchema,

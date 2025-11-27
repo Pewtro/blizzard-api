@@ -2,10 +2,6 @@
 import { z } from 'zod';
 import { colorSchema, keyBaseSchema, nameIdKeySchema, responseBaseSchema } from '../core';
 
-/**
- * The response for the heirloom index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const heirloomIndexResponseSchema = responseBaseSchema.extend({
   heirlooms: z.array(nameIdKeySchema),
 });
@@ -86,10 +82,6 @@ const upgradeSchema = z.object({
   level: z.number(),
 });
 
-/**
- * The response for a heirloom.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const heirloomResponseSchema = responseBaseSchema.extend({
   id: z.number(),
   item: nameIdKeySchema,

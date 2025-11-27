@@ -9,19 +9,11 @@ import {
   responseBaseSchema,
 } from '../core';
 
-/**
- * The response for a playable specialization index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const playableSpecializationIndexResponseSchema = responseBaseSchema.extend({
   character_specializations: z.array(nameIdKeySchema),
   pet_specializations: z.array(nameIdKeySchema),
 });
 
-/**
- * The response for a playable specialization media.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const playableSpecializationMediaResponseSchema = responseBaseSchema.extend({
   assets: z.array(mediaAssetSchema),
   id: z.number(),
@@ -53,10 +45,6 @@ const pvpTalentSchema = z.object({
   talent: nameIdKeySchema,
 });
 
-/**
- * The response for a playable specialization.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const playableSpecializationResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   gender_description: genderNameSchema,
   media: mediaSchema,

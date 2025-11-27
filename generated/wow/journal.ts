@@ -10,10 +10,6 @@ import {
   responseBaseSchema,
 } from '../core';
 
-/**
- * The response for a journal encounter index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const journalEncounterIndexResponseSchema = responseBaseSchema.extend({
   encounters: z.array(nameIdKeySchema),
 });
@@ -23,11 +19,6 @@ const itemSchema = z.object({
   item: nameIdKeySchema,
 });
 
-/**
- * The parameters for a journal encounter search.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
- */
 export const journalEncounterSearchParametersSchema = baseSearchParametersSchema.extend({
   instanceName: z.string(),
   locale: localesSchema,
@@ -51,27 +42,15 @@ const journalEncounterSearchItemSchema = z.object({
 
 const encounterModeSchema = z.union([z.literal('HEROIC'), z.literal('LFR'), z.literal('MYTHIC'), z.literal('NORMAL')]);
 
-/**
- * The response for a journal expansion index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const journalExpansionIndexResponseSchema = responseBaseSchema.extend({
   tiers: z.array(nameIdKeySchema),
 });
 
-/**
- * The response for a journal expansion.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const journalExpansionResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   dungeons: z.array(nameIdKeySchema),
   raids: z.array(nameIdKeySchema),
 });
 
-/**
- * The response for a journal instance index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const journalInstanceIndexResponseSchema = responseBaseSchema.extend({
   instances: z.array(nameIdKeySchema),
 });
@@ -137,10 +116,6 @@ const creatureSchema = nameIdSchema.extend({
   description: z.string().optional(),
 });
 
-/**
- * The response for journal instance media.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const journalInstanceMediaResponseSchema = responseBaseSchema.extend({
   assets: z.array(assetSchema),
 });
@@ -160,10 +135,6 @@ const journalSubSection3Schema = z.object({
   title: z.string(),
 });
 
-/**
- * The response for a journal instance.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const journalInstanceResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   area: nameIdSchema,
   category: categorySchema,
@@ -205,11 +176,6 @@ const journalSectionSchema = z.object({
   title: z.string(),
 });
 
-/**
- * The response for a journal encounter search.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
- */
 export const journalEncounterSearchResponseItemSchema = keyBaseSchema.extend({
   data: z.object({
     category: categorySchema,
@@ -233,10 +199,6 @@ export const journalEncounterSearchResponseItemSchema = keyBaseSchema.extend({
   }),
 });
 
-/**
- * The response for a journal encounter.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const journalEncounterResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   category: categorySchema,
   creatures: z.array(creatureSchema),
