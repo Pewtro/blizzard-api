@@ -1,4 +1,4 @@
-import type { Character, ResponseBase } from '../../../wow/src/base';
+import type { Character, ResponseBase } from '@blizzard-api/core';
 
 export interface CharacterStatisticsSummaryResponse extends ResponseBase {
   agility: BaseEffectiveStat;

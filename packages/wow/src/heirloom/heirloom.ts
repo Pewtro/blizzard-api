@@ -1,5 +1,5 @@
 import type { Resource } from '@blizzard-api/core';
-import { base } from '../base';
+import { wowBasePath } from '@blizzard-api/core';
 import type { HeirloomIndexResponse, HeirloomResponse } from './types';
 
 /**
@@ -10,7 +10,7 @@ import type { HeirloomIndexResponse, HeirloomResponse } from './types';
 export function heirloom(heirloomId: number): Resource<HeirloomResponse> {
   return {
     namespace: 'static',
-    path: `${base}/heirloom/${heirloomId}`,
+    path: `${wowBasePath}/heirloom/${heirloomId}`,
   };
 }
 /**
@@ -20,6 +20,6 @@ export function heirloom(heirloomId: number): Resource<HeirloomResponse> {
 export function heirloomIndex(): Resource<HeirloomIndexResponse> {
   return {
     namespace: 'static',
-    path: `${base}/heirloom/index`,
+    path: `${wowBasePath}/heirloom/index`,
   };
 }

@@ -1,5 +1,5 @@
 import type { Resource } from '@blizzard-api/core';
-import { base } from '../base';
+import { d3BasePath } from '@blizzard-api/core';
 import type { ArtisanResponse, RecipeResponse } from './types';
 
 /**
@@ -9,7 +9,7 @@ import type { ArtisanResponse, RecipeResponse } from './types';
  */
 export function artisan(artisanSlug: string): Resource<ArtisanResponse> {
   return {
-    path: `${base}/artisan/${artisanSlug}`,
+    path: `${d3BasePath}/artisan/${artisanSlug}`,
   };
 }
 
@@ -21,6 +21,6 @@ export function artisan(artisanSlug: string): Resource<ArtisanResponse> {
  */
 export function recipe(artisanSlug: string, recipeSlug: string): Resource<RecipeResponse> {
   return {
-    path: `${base}/artisan/${artisanSlug}/recipe/${recipeSlug}`,
+    path: `${d3BasePath}/artisan/${artisanSlug}/recipe/${recipeSlug}`,
   };
 }

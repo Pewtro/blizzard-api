@@ -1,5 +1,5 @@
 import type { Resource } from '@blizzard-api/core';
-import { base } from '../base';
+import { wowBasePath } from '@blizzard-api/core';
 import type {
   PvpTalentIndexResponse,
   PvpTalentResponse,
@@ -18,7 +18,7 @@ import type {
 export function pvpTalent(pvpTalentId: number): Resource<PvpTalentResponse> {
   return {
     namespace: 'static',
-    path: `${base}/pvp-talent/${pvpTalentId}`,
+    path: `${wowBasePath}/pvp-talent/${pvpTalentId}`,
   };
 }
 /**
@@ -28,7 +28,7 @@ export function pvpTalent(pvpTalentId: number): Resource<PvpTalentResponse> {
 export function pvpTalentIndex(): Resource<PvpTalentIndexResponse> {
   return {
     namespace: 'static',
-    path: `${base}/pvp-talent/index`,
+    path: `${wowBasePath}/pvp-talent/index`,
   };
 }
 /**
@@ -39,7 +39,7 @@ export function pvpTalentIndex(): Resource<PvpTalentIndexResponse> {
 export function talent(talentId: number): Resource<TalentResponse> {
   return {
     namespace: 'static',
-    path: `${base}/talent/${talentId}`,
+    path: `${wowBasePath}/talent/${talentId}`,
   };
 }
 /**
@@ -49,7 +49,7 @@ export function talent(talentId: number): Resource<TalentResponse> {
 export function talentIndex(): Resource<TalentIndexResponse> {
   return {
     namespace: 'static',
-    path: `${base}/talent/index`,
+    path: `${wowBasePath}/talent/index`,
   };
 }
 /**
@@ -61,7 +61,7 @@ export function talentIndex(): Resource<TalentIndexResponse> {
 export function talentTree(talentTreeId: number, specId: number): Resource<TalentTreeResponse> {
   return {
     namespace: 'static',
-    path: `${base}/talent-tree/${talentTreeId}/playable-specialization/${specId}`,
+    path: `${wowBasePath}/talent-tree/${talentTreeId}/playable-specialization/${specId}`,
   };
 }
 /**
@@ -71,7 +71,7 @@ export function talentTree(talentTreeId: number, specId: number): Resource<Talen
 export function talentTreeIndex(): Resource<TalentTreeIndexResponse> {
   return {
     namespace: 'static',
-    path: `${base}/talent-tree/index`,
+    path: `${wowBasePath}/talent-tree/index`,
   };
 }
 /**
@@ -82,6 +82,6 @@ export function talentTreeIndex(): Resource<TalentTreeIndexResponse> {
 export function talentTreeNodes(talentTreeId: number): Resource<TalentTreeNodesResponse> {
   return {
     namespace: 'static',
-    path: `${base}/talent-tree/${talentTreeId}`,
+    path: `${wowBasePath}/talent-tree/${talentTreeId}`,
   };
 }

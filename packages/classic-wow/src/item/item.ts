@@ -1,5 +1,5 @@
+import { wowBasePath, wowMediaBasePath, wowSearchBasePath } from '@blizzard-api/core';
 import type { BlizzardNamespaces, Resource, SearchResponse } from '@blizzard-api/core';
-import { base, mediaBase, searchBase } from '../../../wow/src/base';
 import type {
   ItemClassIndexResponse,
   ItemClassResponse,
@@ -22,7 +22,7 @@ export function item(
 ): Resource<ItemResponse> {
   return {
     namespace,
-    path: `${base}/item/${itemId}`,
+    path: `${wowBasePath}/item/${itemId}`,
   };
 }
 /**
@@ -37,7 +37,7 @@ export function itemClass(
 ): Resource<ItemClassResponse> {
   return {
     namespace,
-    path: `${base}/item-class/${itemClassId}`,
+    path: `${wowBasePath}/item-class/${itemClassId}`,
   };
 }
 /**
@@ -50,7 +50,7 @@ export function itemClassIndex(
 ): Resource<ItemClassIndexResponse> {
   return {
     namespace,
-    path: `${base}/item-class/index`,
+    path: `${wowBasePath}/item-class/index`,
   };
 }
 /**
@@ -65,7 +65,7 @@ export function itemMedia(
 ): Resource<ItemMediaResponse> {
   return {
     namespace,
-    path: `${mediaBase}/item/${itemId}`,
+    path: `${wowMediaBasePath}/item/${itemId}`,
   };
 }
 /**
@@ -85,7 +85,7 @@ export function itemSearch(
       [`name.${options.locale}`]: options.name,
       orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
     },
-    path: `${searchBase}/item`,
+    path: `${wowSearchBasePath}/item`,
   };
 }
 /**
@@ -102,6 +102,6 @@ export function itemSubClass(
 ): Resource<ItemSubClassResponse> {
   return {
     namespace,
-    path: `${base}/item-class/${itemClassId}/item-subclass/${itemSubclassId}`,
+    path: `${wowBasePath}/item-class/${itemClassId}/item-subclass/${itemSubclassId}`,
   };
 }

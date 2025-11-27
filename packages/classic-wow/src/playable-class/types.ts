@@ -1,4 +1,4 @@
-import type { GenderName, KeyBase, NameId, NameIdKey, ResponseBase } from '../../../wow/src/base';
+import type { GenderName, KeyBase, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 export type { PlayableClassIndexResponse, PlayableClassMediaResponse } from '../../../wow/src/playable-class/types';
 

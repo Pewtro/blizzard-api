@@ -1,5 +1,11 @@
-import type { BlizzardNamespaces, Resource, SearchResponse } from '@blizzard-api/core';
-import { base, searchBase } from '../../../wow/src/base';
+import {
+  
+  
+  
+  wowBasePath,
+  wowSearchBasePath
+} from '@blizzard-api/core';
+import type {BlizzardNamespaces, Resource, SearchResponse} from '@blizzard-api/core';
 import type { RealmIndexResponse, RealmResponse, RealmSearchParameters, RealmSearchResponseItem } from './types';
 
 /**
@@ -14,7 +20,7 @@ export function realm(
 ): Resource<RealmResponse> {
   return {
     namespace,
-    path: `${base}/realm/${realmSlug}`,
+    path: `${wowBasePath}/realm/${realmSlug}`,
   };
 }
 /**
@@ -27,7 +33,7 @@ export function realmIndex(
 ): Resource<RealmIndexResponse> {
   return {
     namespace,
-    path: `${base}/realm/index`,
+    path: `${wowBasePath}/realm/index`,
   };
 }
 /**
@@ -47,6 +53,6 @@ export function realmSearch(
       orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
       timezone: options.timezone,
     },
-    path: `${searchBase}/realm`,
+    path: `${wowSearchBasePath}/realm`,
   };
 }

@@ -1,5 +1,5 @@
 import type { Resource } from '@blizzard-api/core';
-import { base, mediaBase } from '../base';
+import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
 import type {
   MythicKeystoneAffixIndexResponse,
   MythicKeystoneAffixMediaResponse,
@@ -14,7 +14,7 @@ import type {
 export function mythicKeystoneAffix(mythicKeystoneAffixId: number): Resource<MythicKeystoneAffixResponse> {
   return {
     namespace: 'static',
-    path: `${base}/keystone-affix/${mythicKeystoneAffixId}`,
+    path: `${wowBasePath}/keystone-affix/${mythicKeystoneAffixId}`,
   };
 }
 /**
@@ -24,7 +24,7 @@ export function mythicKeystoneAffix(mythicKeystoneAffixId: number): Resource<Myt
 export function mythicKeystoneAffixIndex(): Resource<MythicKeystoneAffixIndexResponse> {
   return {
     namespace: 'static',
-    path: `${base}/keystone-affix/index`,
+    path: `${wowBasePath}/keystone-affix/index`,
   };
 }
 /**
@@ -35,6 +35,6 @@ export function mythicKeystoneAffixIndex(): Resource<MythicKeystoneAffixIndexRes
 export function mythicKeystoneAffixMedia(mythicKeystoneAffixId: number): Resource<MythicKeystoneAffixMediaResponse> {
   return {
     namespace: 'static',
-    path: `${mediaBase}/keystone-affix/${mythicKeystoneAffixId}`,
+    path: `${wowMediaBasePath}/keystone-affix/${mythicKeystoneAffixId}`,
   };
 }

@@ -1,4 +1,4 @@
-import type { ResponseBase } from '../base';
+import type { ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a WoW token.

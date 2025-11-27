@@ -54,17 +54,23 @@ async function run(): Promise<void> {
 
     for (const file of tsFiles) {
       try {
-        console.log('Generating schema for', path.relative(root, file));
+        //console.log('Generating schema for', path.relative(root, file));
 
         const content = await fs.readFile(file, 'utf8');
         const generator = generate({
           inputOutputMappings,
           keepComments: true,
-          skipParseJSDoc: true,
+          skipParseJSDoc: false,
           sourceText: content,
         });
 
         const schema = generator.getZodSchemasFile(file);
+
+        if (generator.errors.length > 0) {
+          for (const error of generator.errors) {
+            console.error(error);
+          }
+        }
 
         const parentName = path.basename(path.dirname(file));
         // For the packages where we only handle `types.ts`, use the parent folder name as output file name.
@@ -73,7 +79,7 @@ async function run(): Promise<void> {
         const outName = HANDLE_ALL_FILE_FOLDERS.has(packageName) ? path.basename(file) : `${parentName}.ts`;
         const outPath = path.join(packageOut, outName);
         await fs.writeFile(outPath, schema, 'utf8');
-        console.log('Wrote', path.relative(root, outPath));
+        //console.log('Wrote', path.relative(root, outPath));
       } catch (error) {
         console.error('Failed to generate for', file, (error as Error)?.message ?? error);
       }

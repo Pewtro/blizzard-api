@@ -1,5 +1,5 @@
 import type { Resource } from '@blizzard-api/core';
-import { base, mediaBase } from '../base';
+import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
 import type {
   TechTalentIndexResponse,
   TechTalentMediaResponse,
@@ -16,7 +16,7 @@ import type {
 export function techTalent(techTalentId: number): Resource<TechTalentResponse> {
   return {
     namespace: 'static',
-    path: `${base}/tech-talent/${techTalentId}`,
+    path: `${wowBasePath}/tech-talent/${techTalentId}`,
   };
 }
 /**
@@ -26,7 +26,7 @@ export function techTalent(techTalentId: number): Resource<TechTalentResponse> {
 export function techTalentIndex(): Resource<TechTalentIndexResponse> {
   return {
     namespace: 'static',
-    path: `${base}/tech-talent/index`,
+    path: `${wowBasePath}/tech-talent/index`,
   };
 }
 /**
@@ -37,7 +37,7 @@ export function techTalentIndex(): Resource<TechTalentIndexResponse> {
 export function techTalentMedia(techTalentId: number): Resource<TechTalentMediaResponse> {
   return {
     namespace: 'static',
-    path: `${mediaBase}/tech-talent/${techTalentId}`,
+    path: `${wowMediaBasePath}/tech-talent/${techTalentId}`,
   };
 }
 /**
@@ -48,7 +48,7 @@ export function techTalentMedia(techTalentId: number): Resource<TechTalentMediaR
 export function techTalentTree(techTalentTreeId: number): Resource<TechTalentTreeResponse> {
   return {
     namespace: 'static',
-    path: `${base}/tech-talent-tree/${techTalentTreeId}`,
+    path: `${wowBasePath}/tech-talent-tree/${techTalentTreeId}`,
   };
 }
 /**
@@ -58,6 +58,6 @@ export function techTalentTree(techTalentTreeId: number): Resource<TechTalentTre
 export function techTalentTreeIndex(): Resource<TechTalentTreeIndexResponse> {
   return {
     namespace: 'static',
-    path: `${base}/tech-talent-tree/index`,
+    path: `${wowBasePath}/tech-talent-tree/index`,
   };
 }

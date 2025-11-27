@@ -26,12 +26,15 @@ export const fetchOneCardResponseSchema = z.object({
   text: z.union([z.record(localesSchema, z.string()), z.string()]),
 });
 
-const statsByLevelSchema = z.object({
-  attack: z.number(),
-  health: z.number(),
-});
-
-const gameModeSchema = z.any();
+export const gameModeSchema = z.union([
+  z.literal('arena'),
+  z.literal('battlegrounds'),
+  z.literal('classic'),
+  z.literal('constructed'),
+  z.literal('duels'),
+  z.literal('mercenaries'),
+  z.literal('standard'),
+]);
 
 const baseSearchParametersSchema = z.object({
   gameMode: gameModeSchema.optional(),
@@ -58,6 +61,18 @@ const baseSearchParametersSchema = z.object({
     .optional(),
 });
 
+const statsByLevelSchema = z.object({
+  attack: z.number(),
+  health: z.number(),
+});
+
+export const blizzardCardSearchParametersSchema = baseSearchParametersSchema.extend({
+  attack: z.string().optional(),
+  defaultMercenary: z.string().optional(),
+  health: z.string().optional(),
+  mercenaryId: z.string().optional(),
+});
+
 export const cardSearchParametersSchema = baseSearchParametersSchema.extend({
   attack: z.union([z.array(z.number()), z.number()]).optional(),
   defaultMercenary: z.union([z.array(z.number()), z.number()]).optional(),
@@ -74,13 +89,6 @@ const mercenaryHeroSchema = z.object({
   rarity: z.number(),
   roleId: z.number(),
   statsByLevel: z.record(z.string(), statsByLevelSchema),
-});
-
-export const blizzardCardSearchParametersSchema = baseSearchParametersSchema.extend({
-  attack: z.string().optional(),
-  defaultMercenary: z.string().optional(),
-  health: z.string().optional(),
-  mercenaryId: z.string().optional(),
 });
 
 const cardSchema = z.object({

@@ -1,4 +1,4 @@
-import type { KeyBase, NameId, NameIdKey, ResponseBase } from '../base';
+import type { KeyBase, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a modified crafting category index.

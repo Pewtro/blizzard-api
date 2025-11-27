@@ -1,5 +1,5 @@
 import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
-import { characterBase } from '../base';
+import { wowCharacterBasePath } from '@blizzard-api/core';
 import type { CharacterMediaSummaryResponse } from './types';
 
 /**
@@ -15,6 +15,6 @@ export function characterMediaSummary(
 ): Resource<CharacterMediaSummaryResponse> {
   return {
     namespace,
-    path: `${characterBase}/${realmSlug}/${characterName}/character-media`,
+    path: `${wowCharacterBasePath}/${realmSlug}/${characterName}/character-media`,
   };
 }

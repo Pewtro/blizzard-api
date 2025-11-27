@@ -1,4 +1,4 @@
-import type { Color, Factions, KeyBase, NameId, NameIdKey, ResponseBase } from '../base';
+import type { Color, Factions, KeyBase, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a Mythic Keystone leaderboard index.

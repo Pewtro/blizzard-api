@@ -1,5 +1,5 @@
+import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
 import { describe, it } from 'vitest';
-import { base, mediaBase } from '../base';
 import {
   playableSpecialization,
   playableSpecializationIndex,
@@ -11,7 +11,7 @@ describe.concurrent('playableSpecializationApi', () => {
     const specializationId = 123;
     const resource = playableSpecialization(specializationId);
 
-    expect(resource.path).toBe(`${base}/playable-specialization/${specializationId}`);
+    expect(resource.path).toBe(`${wowBasePath}/playable-specialization/${specializationId}`);
     expect(resource.namespace).toBe('static');
   });
 
@@ -20,7 +20,7 @@ describe.concurrent('playableSpecializationApi', () => {
   }) => {
     const resource = playableSpecializationIndex();
 
-    expect(resource.path).toBe(`${base}/playable-specialization/index`);
+    expect(resource.path).toBe(`${wowBasePath}/playable-specialization/index`);
     expect(resource.namespace).toBe('static');
   });
 
@@ -30,7 +30,7 @@ describe.concurrent('playableSpecializationApi', () => {
     const specializationId = 123;
     const resource = playableSpecializationMedia(specializationId);
 
-    expect(resource.path).toBe(`${mediaBase}/playable-specialization/${specializationId}`);
+    expect(resource.path).toBe(`${wowMediaBasePath}/playable-specialization/${specializationId}`);
     expect(resource.namespace).toBe('static');
   });
 });

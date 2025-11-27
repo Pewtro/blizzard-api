@@ -1,5 +1,5 @@
+import { wowBasePath } from '@blizzard-api/core';
 import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
-import { base } from '../../../wow/src/base';
 import type { PlayableRaceIndexResponse, PlayableRaceResponse } from './types';
 
 /**
@@ -14,7 +14,7 @@ export function playableRace(
 ): Resource<PlayableRaceResponse> {
   return {
     namespace,
-    path: `${base}/playable-race/${playableRaceId}`,
+    path: `${wowBasePath}/playable-race/${playableRaceId}`,
   };
 }
 /**
@@ -27,6 +27,6 @@ export function playableRaceIndex(
 ): Resource<PlayableRaceIndexResponse> {
   return {
     namespace,
-    path: `${base}/playable-race/index`,
+    path: `${wowBasePath}/playable-race/index`,
   };
 }

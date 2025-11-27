@@ -1,5 +1,5 @@
 import type { Resource } from '@blizzard-api/core';
-import { base } from '../base';
+import { wowBasePath } from '@blizzard-api/core';
 import type { RegionIndexResponse, RegionResponse } from './types';
 
 /**
@@ -10,7 +10,7 @@ import type { RegionIndexResponse, RegionResponse } from './types';
 export function region(regionId: number): Resource<RegionResponse> {
   return {
     namespace: 'dynamic',
-    path: `${base}/region/${regionId}`,
+    path: `${wowBasePath}/region/${regionId}`,
   };
 }
 /**
@@ -20,6 +20,6 @@ export function region(regionId: number): Resource<RegionResponse> {
 export function regionIndex(): Resource<RegionIndexResponse> {
   return {
     namespace: 'dynamic',
-    path: `${base}/region/index`,
+    path: `${wowBasePath}/region/index`,
   };
 }

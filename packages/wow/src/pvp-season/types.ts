@@ -1,4 +1,4 @@
-import type { Faction, Factions, KeyBase, NameId, NameIdKey, ResponseBase } from '../base';
+import type { Faction, Factions, KeyBase, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a PvP leaderboard index.

@@ -1,5 +1,5 @@
+import { wowBasePath, wowSearchBasePath } from '@blizzard-api/core';
 import { describe, it } from 'vitest';
-import { base, searchBase } from '../base';
 import { mount, mountIndex, mountSearch } from './mount';
 
 describe.concurrent('mountApi', () => {
@@ -7,14 +7,14 @@ describe.concurrent('mountApi', () => {
     const mountId = 123;
     const resource = mount(mountId);
 
-    expect(resource.path).toBe(`${base}/mount/123`);
+    expect(resource.path).toBe(`${wowBasePath}/mount/123`);
     expect(resource.namespace).toBe('static');
   });
 
   it('mountIndex should return a resource object with the correct path and namespace', ({ expect }) => {
     const resource = mountIndex();
 
-    expect(resource.path).toBe(`${base}/mount/index`);
+    expect(resource.path).toBe(`${wowBasePath}/mount/index`);
     expect(resource.namespace).toBe('static');
   });
 
@@ -26,7 +26,7 @@ describe.concurrent('mountApi', () => {
       orderby: 'name',
     });
 
-    expect(resource.path).toBe(`${searchBase}/mount`);
+    expect(resource.path).toBe(`${wowSearchBasePath}/mount`);
     expect(resource.namespace).toBe('static');
     expect(resource.parameters).toEqual({
       _page: 1,
@@ -43,7 +43,7 @@ describe.concurrent('mountApi', () => {
       orderby: ['name', 'id'],
     });
 
-    expect(resource.path).toBe(`${searchBase}/mount`);
+    expect(resource.path).toBe(`${wowSearchBasePath}/mount`);
     expect(resource.namespace).toBe('static');
     expect(resource.parameters).toEqual({
       _page: 1,

@@ -1,5 +1,5 @@
-import type { BaseSearchParameters, Locales } from '@blizzard-api/core';
-import type { KeyBase, NameId, NameIdKey, Realm, ResponseBase } from '../base';
+import type { BaseSearchParameters, KeyBase, Locales, NameId, NameIdKey, Realm, ResponseBase  } from '@blizzard-api/core';
+
 
 /**
  * The category of a realm.

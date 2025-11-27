@@ -1,4 +1,4 @@
-import type { Character, Href, NameIdKey, ResponseBase } from '../base';
+import type { Character, Href, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 export interface CharacterCompletedQuestsResponse extends ResponseBase {
   character: Character;

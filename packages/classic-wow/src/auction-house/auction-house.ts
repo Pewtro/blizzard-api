@@ -1,5 +1,5 @@
+import { wowBasePath } from '@blizzard-api/core';
 import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
-import { base } from '../../../wow/src/base';
 import type { AuctionHouseIndexResponse, AuctionsResponse } from './types';
 
 /**
@@ -14,7 +14,7 @@ export function auctionHouseIndex(
 ): Resource<AuctionHouseIndexResponse> {
   return {
     namespace,
-    path: `${base}/connected-realm/${connectedRealmId}/auctions/index`,
+    path: `${wowBasePath}/connected-realm/${connectedRealmId}/auctions/index`,
   };
 }
 /**
@@ -35,6 +35,6 @@ export function auctions(
 ): Resource<AuctionsResponse> {
   return {
     namespace,
-    path: `${base}/connected-realm/${connectedRealmId}/auctions/${auctionHouseId}`,
+    path: `${wowBasePath}/connected-realm/${connectedRealmId}/auctions/${auctionHouseId}`,
   };
 }

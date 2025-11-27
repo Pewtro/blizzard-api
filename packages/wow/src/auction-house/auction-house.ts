@@ -1,5 +1,5 @@
+import { wowBasePath } from '@blizzard-api/core';
 import type { Resource } from '@blizzard-api/core';
-import { base } from '../base';
 import type { AuctionHouseCommoditiesResponse, AuctionHouseResponse } from './types';
 
 /**
@@ -10,7 +10,7 @@ import type { AuctionHouseCommoditiesResponse, AuctionHouseResponse } from './ty
 export function auctions(connectedRealmId: number): Resource<AuctionHouseResponse> {
   return {
     namespace: 'dynamic',
-    path: `${base}/connected-realm/${connectedRealmId}/auctions`,
+    path: `${wowBasePath}/connected-realm/${connectedRealmId}/auctions`,
   };
 }
 /**
@@ -20,6 +20,6 @@ export function auctions(connectedRealmId: number): Resource<AuctionHouseRespons
 export function commodities(): Resource<AuctionHouseCommoditiesResponse> {
   return {
     namespace: 'dynamic',
-    path: `${base}/auctions/commodities`,
+    path: `${wowBasePath}/auctions/commodities`,
   };
 }

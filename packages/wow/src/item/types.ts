@@ -1,5 +1,5 @@
-import type { BaseSearchParameters, Locales } from '@blizzard-api/core';
-import type { Color, KeyBase, MediaAsset, NameId, NameIdKey, ResponseBase } from '../base';
+import type { BaseSearchParameters, Color, KeyBase, Locales, MediaAsset, NameId, NameIdKey, ResponseBase  } from '@blizzard-api/core';
+
 
 /**
  * The response for an item class index.
@@ -149,7 +149,7 @@ interface Effect {
 interface InventoryType {
   name: Record<Locales, string | undefined>;
   type: //Armor
-    | 'BACK'
+  | 'BACK'
     | 'BAG'
     | 'CHEST'
     | 'FEET'

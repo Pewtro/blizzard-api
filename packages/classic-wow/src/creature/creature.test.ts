@@ -1,5 +1,5 @@
+import { wowBasePath, wowMediaBasePath, wowSearchBasePath } from '@blizzard-api/core';
 import { describe, it } from 'vitest';
-import { base, mediaBase, searchBase } from '../../../wow/src/base';
 import {
   creature,
   creatureDisplayMedia,
@@ -22,7 +22,7 @@ describe.concurrent('classicCreatureApi', () => {
     const resource = creature(namespace, creatureId);
     expect(resource).toEqual({
       namespace,
-      path: `${base}/creature/123`,
+      path: `${wowBasePath}/creature/123`,
     });
   });
 
@@ -30,7 +30,7 @@ describe.concurrent('classicCreatureApi', () => {
     const resource = creatureDisplayMedia(namespace, creatureDisplayId);
     expect(resource).toEqual({
       namespace,
-      path: `${mediaBase}/creature-display/456`,
+      path: `${wowMediaBasePath}/creature-display/456`,
     });
   });
 
@@ -38,7 +38,7 @@ describe.concurrent('classicCreatureApi', () => {
     const resource = creatureFamily(namespace, creatureFamilyId);
     expect(resource).toEqual({
       namespace,
-      path: `${base}/creature-family/789`,
+      path: `${wowBasePath}/creature-family/789`,
     });
   });
 
@@ -46,7 +46,7 @@ describe.concurrent('classicCreatureApi', () => {
     const resource = creatureFamilyIndex(namespace);
     expect(resource).toEqual({
       namespace,
-      path: `${base}/creature-family/index`,
+      path: `${wowBasePath}/creature-family/index`,
     });
   });
 
@@ -54,7 +54,7 @@ describe.concurrent('classicCreatureApi', () => {
     const resource = creatureFamilyMedia(namespace, creatureFamilyId);
     expect(resource).toEqual({
       namespace,
-      path: `${mediaBase}/creature-family/789`,
+      path: `${wowMediaBasePath}/creature-family/789`,
     });
   });
 
@@ -62,7 +62,7 @@ describe.concurrent('classicCreatureApi', () => {
     const resource = creatureType(namespace, creatureTypeId);
     expect(resource).toEqual({
       namespace,
-      path: `${base}/creature-type/987`,
+      path: `${wowBasePath}/creature-type/987`,
     });
   });
 
@@ -70,7 +70,7 @@ describe.concurrent('classicCreatureApi', () => {
     const resource = creatureTypeIndex(namespace);
     expect(resource).toEqual({
       namespace,
-      path: `${base}/creature-type/index`,
+      path: `${wowBasePath}/creature-type/index`,
     });
   });
 
@@ -88,7 +88,7 @@ describe.concurrent('classicCreatureApi', () => {
         'name.en_US': 'creatureName',
         orderby: 'name',
       },
-      path: `${searchBase}/creature`,
+      path: `${wowSearchBasePath}/creature`,
     });
   });
 
@@ -106,7 +106,7 @@ describe.concurrent('classicCreatureApi', () => {
         'name.en_US': 'creatureName',
         orderby: 'name,id',
       },
-      path: `${searchBase}/creature`,
+      path: `${wowSearchBasePath}/creature`,
     });
   });
 });

@@ -1,6 +1,6 @@
 import type { BlizzardNamespaces } from '@blizzard-api/core';
+import { wowCharacterBasePath } from '@blizzard-api/core';
 import { describe, expect, it } from 'vitest';
-import { characterBase } from '../base';
 import { characterEquipmentSummary } from './character-equipment';
 
 describe('characterEquipmentSummary', () => {
@@ -13,7 +13,7 @@ describe('characterEquipmentSummary', () => {
 
     expect(result).toEqual({
       namespace,
-      path: `${characterBase}/${realmSlug}/${characterName}/equipment`,
+      path: `${wowCharacterBasePath}/${realmSlug}/${characterName}/equipment`,
     });
   });
 
@@ -26,7 +26,7 @@ describe('characterEquipmentSummary', () => {
 
     expect(result).toEqual({
       namespace,
-      path: `${characterBase}/${realmSlug}/${characterName}/equipment`,
+      path: `${wowCharacterBasePath}/${realmSlug}/${characterName}/equipment`,
     });
   });
 });

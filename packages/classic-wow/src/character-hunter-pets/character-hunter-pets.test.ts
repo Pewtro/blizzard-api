@@ -1,6 +1,6 @@
 import type { BlizzardNamespaces } from '@blizzard-api/core';
+import { wowCharacterBasePath } from '@blizzard-api/core';
 import { describe, expect, it } from 'vitest';
-import { characterBase } from '../base';
 import { characterHunterPetsSummary } from './character-hunter-pets';
 
 describe('characterHunterPetsSummary', () => {
@@ -12,7 +12,7 @@ describe('characterHunterPetsSummary', () => {
 
     expect(result).toEqual({
       namespace,
-      path: `${characterBase}/${realmSlug}/${characterName}/hunter-pets`,
+      path: `${wowCharacterBasePath}/${realmSlug}/${characterName}/hunter-pets`,
     });
   });
 
@@ -24,7 +24,7 @@ describe('characterHunterPetsSummary', () => {
 
     expect(result).toEqual({
       namespace,
-      path: `${characterBase}/${realmSlug}/${characterName}/hunter-pets`,
+      path: `${wowCharacterBasePath}/${realmSlug}/${characterName}/hunter-pets`,
     });
   });
 });

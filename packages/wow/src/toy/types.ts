@@ -1,4 +1,4 @@
-import type { KeyBase, NameIdKey, ResponseBase } from '../base';
+import type { KeyBase, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a toy index.

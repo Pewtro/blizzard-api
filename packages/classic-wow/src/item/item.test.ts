@@ -1,5 +1,5 @@
+import { wowBasePath, wowMediaBasePath, wowSearchBasePath } from '@blizzard-api/core';
 import { describe, it } from 'vitest';
-import { base, mediaBase, searchBase } from '../../../wow/src/base';
 import { item, itemClass, itemClassIndex, itemMedia, itemSearch, itemSubClass } from './item';
 import type { ItemSearchParameters } from './types';
 
@@ -8,14 +8,14 @@ const namespace = 'static-classic';
 describe.concurrent('classicItemApi', () => {
   it('should return the item class index resource', ({ expect }) => {
     const resource = itemClassIndex(namespace);
-    expect(resource.path).toBe(`${base}/item-class/index`);
+    expect(resource.path).toBe(`${wowBasePath}/item-class/index`);
     expect(resource.namespace).toBe(namespace);
   });
 
   it('should return the item class resource for a given itemClassId', ({ expect }) => {
     const itemClassId = 123;
     const resource = itemClass(namespace, itemClassId);
-    expect(resource.path).toBe(`${base}/item-class/${itemClassId}`);
+    expect(resource.path).toBe(`${wowBasePath}/item-class/${itemClassId}`);
     expect(resource.namespace).toBe(namespace);
   });
 
@@ -23,21 +23,21 @@ describe.concurrent('classicItemApi', () => {
     const itemClassId = 123;
     const itemSubClassId = 456;
     const resource = itemSubClass(namespace, itemClassId, itemSubClassId);
-    expect(resource.path).toBe(`${base}/item-class/${itemClassId}/item-subclass/${itemSubClassId}`);
+    expect(resource.path).toBe(`${wowBasePath}/item-class/${itemClassId}/item-subclass/${itemSubClassId}`);
     expect(resource.namespace).toBe(namespace);
   });
 
   it('should return the item resource for a given itemId', ({ expect }) => {
     const itemId = 123;
     const resource = item(namespace, itemId);
-    expect(resource.path).toBe(`${base}/item/${itemId}`);
+    expect(resource.path).toBe(`${wowBasePath}/item/${itemId}`);
     expect(resource.namespace).toBe(namespace);
   });
 
   it('should return the item media resource for a given itemId', ({ expect }) => {
     const itemId = 123;
     const resource = itemMedia(namespace, itemId);
-    expect(resource.path).toBe(`${mediaBase}/item/${itemId}`);
+    expect(resource.path).toBe(`${wowMediaBasePath}/item/${itemId}`);
     expect(resource.namespace).toBe(namespace);
   });
 
@@ -49,7 +49,7 @@ describe.concurrent('classicItemApi', () => {
       orderby: 'name',
     } satisfies ItemSearchParameters;
     const resource = itemSearch(namespace, options);
-    expect(resource.path).toBe(`${searchBase}/item`);
+    expect(resource.path).toBe(`${wowSearchBasePath}/item`);
     expect(resource.namespace).toBe(namespace);
     expect(resource.parameters).toEqual({
       _page: 1,
@@ -66,7 +66,7 @@ describe.concurrent('classicItemApi', () => {
       orderby: ['name', 'id'],
     } satisfies ItemSearchParameters;
     const resource = itemSearch(namespace, options);
-    expect(resource.path).toBe(`${searchBase}/item`);
+    expect(resource.path).toBe(`${wowSearchBasePath}/item`);
     expect(resource.namespace).toBe(namespace);
     expect(resource.parameters).toEqual({
       _page: 1,

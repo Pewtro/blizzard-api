@@ -1,5 +1,5 @@
 import type { Resource, SearchResponse } from '@blizzard-api/core';
-import { base, mediaBase, searchBase } from '../base';
+import { wowBasePath, wowMediaBasePath, wowSearchBasePath } from '@blizzard-api/core';
 import type {
   AzeriteEssenceIndexResponse,
   AzeriteEssenceMediaResponse,
@@ -16,7 +16,7 @@ import type {
 export function azeriteEssence(azeriteEssenceId: number): Resource<AzeriteEssenceResponse> {
   return {
     namespace: 'static',
-    path: `${base}/azerite-essence/${azeriteEssenceId}`,
+    path: `${wowBasePath}/azerite-essence/${azeriteEssenceId}`,
   };
 }
 /**
@@ -26,7 +26,7 @@ export function azeriteEssence(azeriteEssenceId: number): Resource<AzeriteEssenc
 export function azeriteEssenceIndex(): Resource<AzeriteEssenceIndexResponse> {
   return {
     namespace: 'static',
-    path: `${base}/azerite-essence/index`,
+    path: `${wowBasePath}/azerite-essence/index`,
   };
 }
 /**
@@ -35,7 +35,7 @@ export function azeriteEssenceIndex(): Resource<AzeriteEssenceIndexResponse> {
  * @returns The azerite essence media. See {@link AzeriteEssenceMediaResponse}.
  */
 export function azeriteEssenceMedia(azeriteEssenceId: number): Resource<AzeriteEssenceMediaResponse> {
-  return { namespace: 'static', path: `${mediaBase}/azerite-essence/${azeriteEssenceId}` };
+  return { namespace: 'static', path: `${wowMediaBasePath}/azerite-essence/${azeriteEssenceId}` };
 }
 /**
  * Search for azerite essences.
@@ -52,6 +52,6 @@ export function azeriteEssenceSearch(
       'allowed_specializations.id': options['allowed_specializations.id'],
       orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
     },
-    path: `${searchBase}/azerite-essence`,
+    path: `${wowSearchBasePath}/azerite-essence`,
   };
 }

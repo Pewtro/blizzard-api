@@ -1,5 +1,5 @@
 import type { Resource } from '@blizzard-api/core';
-import { base } from '../base';
+import { wowBasePath } from '@blizzard-api/core';
 import type { MythicKeystoneLeaderboardIndexResponse, MythicKeystoneLeaderboardResponse } from './types';
 
 /**
@@ -16,7 +16,7 @@ export function mythicKeystoneLeaderboard(
 ): Resource<MythicKeystoneLeaderboardResponse> {
   return {
     namespace: 'dynamic',
-    path: `${base}/connected-realm/${connectedRealmId}/mythic-leaderboard/${dungeonId}/period/${period}`,
+    path: `${wowBasePath}/connected-realm/${connectedRealmId}/mythic-leaderboard/${dungeonId}/period/${period}`,
   };
 }
 /**
@@ -29,6 +29,6 @@ export function mythicKeystoneLeaderboardIndex(
 ): Resource<MythicKeystoneLeaderboardIndexResponse> {
   return {
     namespace: 'dynamic',
-    path: `${base}/connected-realm/${connectedRealmId}/mythic-leaderboard/index`,
+    path: `${wowBasePath}/connected-realm/${connectedRealmId}/mythic-leaderboard/index`,
   };
 }

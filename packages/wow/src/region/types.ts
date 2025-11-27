@@ -1,4 +1,4 @@
-import type { NameId, ResponseBase } from '../base';
+import type { NameId, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a region index.

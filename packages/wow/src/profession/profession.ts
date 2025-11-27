@@ -1,5 +1,5 @@
 import type { Resource } from '@blizzard-api/core';
-import { base, mediaBase } from '../base';
+import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
 import type {
   ProfessionIndexResponse,
   ProfessionMediaResponse,
@@ -17,7 +17,7 @@ import type {
 export function profession(professionId: number): Resource<ProfessionResponse> {
   return {
     namespace: 'static',
-    path: `${base}/profession/${professionId}`,
+    path: `${wowBasePath}/profession/${professionId}`,
   };
 }
 /**
@@ -27,7 +27,7 @@ export function profession(professionId: number): Resource<ProfessionResponse> {
 export function professionIndex(): Resource<ProfessionIndexResponse> {
   return {
     namespace: 'static',
-    path: `${base}/profession/index`,
+    path: `${wowBasePath}/profession/index`,
   };
 }
 /**
@@ -38,7 +38,7 @@ export function professionIndex(): Resource<ProfessionIndexResponse> {
 export function professionMedia(professionId: number): Resource<ProfessionMediaResponse> {
   return {
     namespace: 'static',
-    path: `${mediaBase}/profession/${professionId}`,
+    path: `${wowMediaBasePath}/profession/${professionId}`,
   };
 }
 /**
@@ -50,7 +50,7 @@ export function professionMedia(professionId: number): Resource<ProfessionMediaR
 export function professionSkillTier(professionId: number, skillTierId: number): Resource<ProfessionSkillTierResponse> {
   return {
     namespace: 'static',
-    path: `${base}/profession/${professionId}/skill-tier/${skillTierId}`,
+    path: `${wowBasePath}/profession/${professionId}/skill-tier/${skillTierId}`,
   };
 }
 /**
@@ -61,7 +61,7 @@ export function professionSkillTier(professionId: number, skillTierId: number): 
 export function recipe(recipeId: number): Resource<RecipeResponse> {
   return {
     namespace: 'static',
-    path: `${base}/recipe/${recipeId}`,
+    path: `${wowBasePath}/recipe/${recipeId}`,
   };
 }
 /**
@@ -72,6 +72,6 @@ export function recipe(recipeId: number): Resource<RecipeResponse> {
 export function recipeMedia(recipeId: number): Resource<RecipeMediaResponse> {
   return {
     namespace: 'static',
-    path: `${mediaBase}/recipe/${recipeId}`,
+    path: `${wowMediaBasePath}/recipe/${recipeId}`,
   };
 }

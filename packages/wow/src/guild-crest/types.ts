@@ -1,4 +1,4 @@
-import type { KeyBase, ResponseBase } from '../base';
+import type { KeyBase, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a guild crest border or emblem.

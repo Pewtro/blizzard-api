@@ -1,5 +1,5 @@
 import type { Resource } from '@blizzard-api/core';
-import { base, mediaBase } from '../base';
+import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
 import type {
   ConduitIndexResponse,
   ConduitResponse,
@@ -18,7 +18,7 @@ import type {
 export function conduit(conduitId: number): Resource<ConduitResponse> {
   return {
     namespace: 'static',
-    path: `${base}/covenant/conduit/${conduitId}`,
+    path: `${wowBasePath}/covenant/conduit/${conduitId}`,
   };
 }
 /**
@@ -28,7 +28,7 @@ export function conduit(conduitId: number): Resource<ConduitResponse> {
 export function conduitIndex(): Resource<ConduitIndexResponse> {
   return {
     namespace: 'static',
-    path: `${base}/covenant/conduit/index`,
+    path: `${wowBasePath}/covenant/conduit/index`,
   };
 }
 /**
@@ -39,7 +39,7 @@ export function conduitIndex(): Resource<ConduitIndexResponse> {
 export function covenant(covenantId: number): Resource<CovenantResponse> {
   return {
     namespace: 'static',
-    path: `${base}/covenant/${covenantId}`,
+    path: `${wowBasePath}/covenant/${covenantId}`,
   };
 }
 /**
@@ -49,7 +49,7 @@ export function covenant(covenantId: number): Resource<CovenantResponse> {
 export function covenantIndex(): Resource<CovenantIndexResponse> {
   return {
     namespace: 'static',
-    path: `${base}/covenant/index`,
+    path: `${wowBasePath}/covenant/index`,
   };
 }
 /**
@@ -60,7 +60,7 @@ export function covenantIndex(): Resource<CovenantIndexResponse> {
 export function covenantMedia(covenantId: number): Resource<CovenantMediaResponse> {
   return {
     namespace: 'static',
-    path: `${mediaBase}/covenant/${covenantId}`,
+    path: `${wowMediaBasePath}/covenant/${covenantId}`,
   };
 }
 /**
@@ -71,7 +71,7 @@ export function covenantMedia(covenantId: number): Resource<CovenantMediaRespons
 export function soulbind(soulbindId: number): Resource<SoulbindResponse> {
   return {
     namespace: 'static',
-    path: `${base}/covenant/soulbind/${soulbindId}`,
+    path: `${wowBasePath}/covenant/soulbind/${soulbindId}`,
   };
 }
 /**
@@ -81,6 +81,6 @@ export function soulbind(soulbindId: number): Resource<SoulbindResponse> {
 export function soulbindIndex(): Resource<SoulbindIndexResponse> {
   return {
     namespace: 'static',
-    path: `${base}/covenant/soulbind/index`,
+    path: `${wowBasePath}/covenant/soulbind/index`,
   };
 }

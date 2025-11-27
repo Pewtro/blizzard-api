@@ -1,5 +1,5 @@
 import type { Resource } from '@blizzard-api/core';
-import { base } from '../base';
+import { wowBasePath } from '@blizzard-api/core';
 import type { ToyIndexResponse, ToyResponse } from './types';
 
 /**
@@ -10,7 +10,7 @@ import type { ToyIndexResponse, ToyResponse } from './types';
 export function toy(toyId: number): Resource<ToyResponse> {
   return {
     namespace: 'static',
-    path: `${base}/toy/${toyId}`,
+    path: `${wowBasePath}/toy/${toyId}`,
   };
 }
 /**
@@ -20,6 +20,6 @@ export function toy(toyId: number): Resource<ToyResponse> {
 export function toyIndex(): Resource<ToyIndexResponse> {
   return {
     namespace: 'static',
-    path: `${base}/toy/index`,
+    path: `${wowBasePath}/toy/index`,
   };
 }

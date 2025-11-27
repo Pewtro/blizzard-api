@@ -2,6 +2,23 @@
 import { z } from 'zod';
 import { localesSchema } from '../core';
 
+const searchSortOptionSchema = z.union([
+  z.literal('attack:asc'),
+  z.literal('attack:desc'),
+  z.literal('class:asc'),
+  z.literal('class:desc'),
+  z.literal('dataAdded:asc'),
+  z.literal('dataAdded:desc'),
+  z.literal('groupByClass:asc'),
+  z.literal('groupByClass:desc'),
+  z.literal('health:asc'),
+  z.literal('health:desc'),
+  z.literal('manaCost:asc'),
+  z.literal('manaCost:desc'),
+  z.literal('name:asc'),
+  z.literal('name:desc'),
+]);
+
 export const singleCardBackSearchResponseSchema = z.object({
   id: z.number(),
   image: z.string(),
@@ -11,7 +28,17 @@ export const singleCardBackSearchResponseSchema = z.object({
   text: z.union([z.record(localesSchema, z.string()), z.string()]),
 });
 
-const searchSortOptionSchema = z.any();
+const searchOptionsSchema = z.union([
+  z.literal('attack'),
+  z.literal('class'),
+  z.literal('dataAdded'),
+  z.literal('groupByClass'),
+  z.literal('health'),
+  z.literal('manaCost'),
+  z.literal('name'),
+]);
+
+const sortOptionsSchema = z.union([z.literal('asc'), z.literal('desc')]);
 
 export const cardBackSearchParametersSchema = z.object({
   cardBackCategory: z

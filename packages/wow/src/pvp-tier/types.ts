@@ -1,4 +1,4 @@
-import type { KeyBase, MediaAsset, NameId, NameIdKey, ResponseBase } from '../base';
+import type { KeyBase, MediaAsset, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a PvP tier index.

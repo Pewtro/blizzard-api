@@ -1,4 +1,4 @@
-import type { Faction, NameIdKey, ResponseBase } from '../base';
+import type { Faction, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a quest area index.

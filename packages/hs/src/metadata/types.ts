@@ -1,4 +1,4 @@
-import type { NameId } from '../../../wow/src/base';
+import type { NameId } from '@blizzard-api/core';
 
 export interface AllMetadataResponse {
   arenaIds: Array<number>;

@@ -1,4 +1,4 @@
-import type { Character, Color, KeyBase, NameId, NameIdKey, Realm, ResponseBase } from '../base';
+import type { Character, Color, KeyBase, NameId, NameIdKey, Realm, ResponseBase } from '@blizzard-api/core';
 
 export interface CharacterMythicKeystoneProfileIndexResponse extends ResponseBase {
   character: Character;

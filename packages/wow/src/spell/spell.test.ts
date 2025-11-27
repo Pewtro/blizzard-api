@@ -1,5 +1,5 @@
+import { wowBasePath, wowMediaBasePath, wowSearchBasePath } from '@blizzard-api/core';
 import { describe, it } from 'vitest';
-import { base, mediaBase, searchBase } from '../base';
 import { spell, spellMedia, spellSearch } from './spell';
 
 describe.concurrent('spellApi', () => {
@@ -7,7 +7,7 @@ describe.concurrent('spellApi', () => {
     const spellId = 456;
     const resource = spell(spellId);
 
-    expect(resource.path).toBe(`${base}/spell/${spellId}`);
+    expect(resource.path).toBe(`${wowBasePath}/spell/${spellId}`);
     expect(resource.namespace).toBe('static');
   });
 
@@ -15,7 +15,7 @@ describe.concurrent('spellApi', () => {
     const spellId = 789;
     const resource = spellMedia(spellId);
 
-    expect(resource.path).toBe(`${mediaBase}/spell/${spellId}`);
+    expect(resource.path).toBe(`${wowMediaBasePath}/spell/${spellId}`);
     expect(resource.namespace).toBe('static');
   });
 
@@ -27,7 +27,7 @@ describe.concurrent('spellApi', () => {
       orderby: 'name',
     });
 
-    expect(resource.path).toBe(`${searchBase}/spell`);
+    expect(resource.path).toBe(`${wowSearchBasePath}/spell`);
     expect(resource.namespace).toBe('static');
     expect(resource.parameters).toEqual({
       _page: 1,
@@ -44,7 +44,7 @@ describe.concurrent('spellApi', () => {
       orderby: ['name', 'id'],
     });
 
-    expect(resource.path).toBe(`${searchBase}/spell`);
+    expect(resource.path).toBe(`${wowSearchBasePath}/spell`);
     expect(resource.namespace).toBe('static');
     expect(resource.parameters).toEqual({
       _page: 1,

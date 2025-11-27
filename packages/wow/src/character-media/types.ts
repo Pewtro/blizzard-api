@@ -1,4 +1,4 @@
-import type { Character, ResponseBase } from '../base';
+import type { Character, ResponseBase } from '@blizzard-api/core';
 
 export interface CharacterMediaSummaryResponse extends ResponseBase {
   assets: Array<Asset>;

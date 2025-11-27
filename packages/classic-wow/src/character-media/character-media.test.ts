@@ -1,6 +1,6 @@
 import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
+import { wowCharacterBasePath } from '@blizzard-api/core';
 import { describe, expect, it } from 'vitest';
-import { characterBase } from '../base';
 import { characterMediaSummary } from './character-media';
 import type { CharacterMediaSummaryResponse } from './types';
 
@@ -14,7 +14,7 @@ describe('characterMediaSummary', () => {
 
     expect(result).toEqual({
       namespace,
-      path: `${characterBase}/${realmSlug}/${characterName}/character-media`,
+      path: `${wowCharacterBasePath}/${realmSlug}/${characterName}/character-media`,
     });
   });
 
@@ -27,7 +27,7 @@ describe('characterMediaSummary', () => {
 
     expect(result).toEqual({
       namespace,
-      path: `${characterBase}/${realmSlug}/${characterName}/character-media`,
+      path: `${wowCharacterBasePath}/${realmSlug}/${characterName}/character-media`,
     });
   });
 });

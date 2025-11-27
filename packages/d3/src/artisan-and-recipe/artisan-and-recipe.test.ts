@@ -1,11 +1,11 @@
+import { d3BasePath } from '@blizzard-api/core';
 import { describe, it } from 'vitest';
-import { base } from '../base';
 import { artisan, recipe } from './artisan-and-recipe';
 
 describe.concurrent('artisan and recipe', () => {
   it('should return the correct resource path', ({ expect }) => {
     const artisanSlug = 'blacksmith';
-    const expectedPath = `${base}/artisan/blacksmith`;
+    const expectedPath = `${d3BasePath}/artisan/blacksmith`;
 
     const resource = artisan(artisanSlug);
 
@@ -15,7 +15,7 @@ describe.concurrent('artisan and recipe', () => {
     const artisanSlug = 'blacksmith';
     const recipeSlug = 'sword';
 
-    const expectedPath = `${base}/artisan/blacksmith/recipe/sword`;
+    const expectedPath = `${d3BasePath}/artisan/blacksmith/recipe/sword`;
 
     const resource = recipe(artisanSlug, recipeSlug);
 

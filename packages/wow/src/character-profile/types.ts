@@ -1,4 +1,4 @@
-import type { Faction, Gender, Href, NameIdKey, Realm, ResponseBase } from '../base';
+import type { Faction, Gender, Href, NameIdKey, Realm, ResponseBase } from '@blizzard-api/core';
 
 export interface CharacterProfileStatusResponse extends ResponseBase {
   id: number;

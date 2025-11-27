@@ -1,5 +1,5 @@
 import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
-import { characterBase } from '../base';
+import { wowCharacterBasePath } from '@blizzard-api/core';
 import type { CharacterAchievementsSummaryResponse, CharacterAchievementStatisticsResponse } from './types';
 
 /**
@@ -15,7 +15,7 @@ export function characterAchievementsSummary(
 ): Resource<CharacterAchievementsSummaryResponse> {
   return {
     namespace,
-    path: `${characterBase}/${realmSlug}/${characterName.toLowerCase()}/achievements`,
+    path: `${wowCharacterBasePath}/${realmSlug}/${characterName.toLowerCase()}/achievements`,
   };
 }
 
@@ -32,6 +32,6 @@ export function characterAchievementStatistics(
 ): Resource<CharacterAchievementStatisticsResponse> {
   return {
     namespace,
-    path: `${characterBase}/${realmSlug}/${characterName.toLowerCase()}/achievements/statistics`,
+    path: `${wowCharacterBasePath}/${realmSlug}/${characterName.toLowerCase()}/achievements/statistics`,
   };
 }

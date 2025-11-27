@@ -1,5 +1,5 @@
 import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
-import { characterBase } from '../base';
+import { wowCharacterBasePath } from '@blizzard-api/core';
 import type { CharacterEquipmentSummaryResponse } from './types';
 
 /**
@@ -16,6 +16,6 @@ export function characterEquipmentSummary(
 ): Resource<CharacterEquipmentSummaryResponse> {
   return {
     namespace,
-    path: `${characterBase}/${realmSlug}/${characterName}/equipment`,
+    path: `${wowCharacterBasePath}/${realmSlug}/${characterName}/equipment`,
   };
 }

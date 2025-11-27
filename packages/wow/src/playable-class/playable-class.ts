@@ -1,5 +1,5 @@
 import type { Resource } from '@blizzard-api/core';
-import { base, mediaBase } from '../base';
+import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
 import type {
   PlayableClassIndexResponse,
   PlayableClassMediaResponse,
@@ -15,7 +15,7 @@ import type {
 export function playableClass(playableClassId: number): Resource<PlayableClassResponse> {
   return {
     namespace: 'static',
-    path: `${base}/playable-class/${playableClassId}`,
+    path: `${wowBasePath}/playable-class/${playableClassId}`,
   };
 }
 /**
@@ -25,7 +25,7 @@ export function playableClass(playableClassId: number): Resource<PlayableClassRe
 export function playableClassIndex(): Resource<PlayableClassIndexResponse> {
   return {
     namespace: 'static',
-    path: `${base}/playable-class/index`,
+    path: `${wowBasePath}/playable-class/index`,
   };
 }
 /**
@@ -36,7 +36,7 @@ export function playableClassIndex(): Resource<PlayableClassIndexResponse> {
 export function playableClassMedia(playableClassId: number): Resource<PlayableClassMediaResponse> {
   return {
     namespace: 'static',
-    path: `${mediaBase}/playable-class/${playableClassId}`,
+    path: `${wowMediaBasePath}/playable-class/${playableClassId}`,
   };
 }
 /**
@@ -47,6 +47,6 @@ export function playableClassMedia(playableClassId: number): Resource<PlayableCl
 export function pvpTalentSlots(playableClassId: number): Resource<PvpTalentSlotsResponse> {
   return {
     namespace: 'static',
-    path: `${base}/playable-class/${playableClassId}/pvp-talent-slots`,
+    path: `${wowBasePath}/playable-class/${playableClassId}/pvp-talent-slots`,
   };
 }

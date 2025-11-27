@@ -1,5 +1,5 @@
 import type { Resource } from '@blizzard-api/core';
-import { base } from '../base';
+import { wowBasePath } from '@blizzard-api/core';
 import type {
   PvpLeaderboardIndexResponse,
   PvpLeaderboardResponse,
@@ -17,7 +17,7 @@ import type {
 export function pvpLeaderboard(pvpSeasonId: number, bracket: string): Resource<PvpLeaderboardResponse> {
   return {
     namespace: 'dynamic',
-    path: `${base}/pvp-season/${pvpSeasonId}/pvp-leaderboard/${bracket}`,
+    path: `${wowBasePath}/pvp-season/${pvpSeasonId}/pvp-leaderboard/${bracket}`,
   };
 }
 /**
@@ -28,7 +28,7 @@ export function pvpLeaderboard(pvpSeasonId: number, bracket: string): Resource<P
 export function pvpLeaderboardIndex(pvpSeasonId: number): Resource<PvpLeaderboardIndexResponse> {
   return {
     namespace: 'dynamic',
-    path: `${base}/pvp-season/${pvpSeasonId}/pvp-leaderboard/index`,
+    path: `${wowBasePath}/pvp-season/${pvpSeasonId}/pvp-leaderboard/index`,
   };
 }
 /**
@@ -39,7 +39,7 @@ export function pvpLeaderboardIndex(pvpSeasonId: number): Resource<PvpLeaderboar
 export function pvpRewardsIndex(pvpSeasonId: number): Resource<PvpRewardsIndexResponse> {
   return {
     namespace: 'dynamic',
-    path: `${base}/pvp-season/${pvpSeasonId}/pvp-reward/index`,
+    path: `${wowBasePath}/pvp-season/${pvpSeasonId}/pvp-reward/index`,
   };
 }
 /**
@@ -50,7 +50,7 @@ export function pvpRewardsIndex(pvpSeasonId: number): Resource<PvpRewardsIndexRe
 export function pvpSeason(pvpSeasonId: number): Resource<PvpSeasonResponse> {
   return {
     namespace: 'dynamic',
-    path: `${base}/pvp-season/${pvpSeasonId}`,
+    path: `${wowBasePath}/pvp-season/${pvpSeasonId}`,
   };
 }
 /**
@@ -60,6 +60,6 @@ export function pvpSeason(pvpSeasonId: number): Resource<PvpSeasonResponse> {
 export function pvpSeasonIndex(): Resource<PvpSeasonIndexResponse> {
   return {
     namespace: 'dynamic',
-    path: `${base}/pvp-season/index`,
+    path: `${wowBasePath}/pvp-season/index`,
   };
 }

@@ -1,6 +1,6 @@
 import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
+import { wowCharacterBasePath } from '@blizzard-api/core';
 import { describe, expect, it } from 'vitest';
-import { characterBase } from '../base';
 import { characterSpecializationsSummary } from './character-specialization';
 import type { CharacterSpecializationsSummaryResponse } from './types';
 
@@ -18,7 +18,7 @@ describe('characterSpecializationsSummary', () => {
 
     expect(result).toEqual({
       namespace,
-      path: `${characterBase}/${realmSlug}/${characterName}/specializations`,
+      path: `${wowCharacterBasePath}/${realmSlug}/${characterName}/specializations`,
     });
   });
 
@@ -35,7 +35,7 @@ describe('characterSpecializationsSummary', () => {
 
     expect(result).toEqual({
       namespace,
-      path: `${characterBase}/${realmSlug}/${characterName}/specializations`,
+      path: `${wowCharacterBasePath}/${realmSlug}/${characterName}/specializations`,
     });
   });
 });

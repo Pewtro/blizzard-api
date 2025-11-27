@@ -1,5 +1,5 @@
-import type { BaseSearchParameters, Locales } from '@blizzard-api/core';
-import type { KeyBase, MediaAsset, NameId, NameIdKey, ResponseBase } from '../base';
+import type { BaseSearchParameters, KeyBase, Locales, MediaAsset, NameId, NameIdKey, ResponseBase  } from '@blizzard-api/core';
+
 
 /**
  * Interface for a response from the azerite essence index endpoint.

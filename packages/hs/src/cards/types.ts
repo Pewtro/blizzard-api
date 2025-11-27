@@ -1,5 +1,4 @@
 import type { Locales } from '@blizzard-api/core';
-import type { GameMode } from '../base';
 
 export interface BlizzardCardSearchParameters extends BaseSearchParameters {
   attack?: string;
@@ -45,6 +44,8 @@ export interface FetchOneCardResponse {
   slug: string;
   text: Record<Locales, string> | string;
 }
+
+export type GameMode = 'arena' | 'battlegrounds' | 'classic' | 'constructed' | 'duels' | 'mercenaries' | 'standard';
 
 interface BaseSearchParameters {
   gameMode?: GameMode;

@@ -1,5 +1,5 @@
 import type { Resource } from '@blizzard-api/core';
-import { base, mediaBase } from '../base';
+import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
 import type { PvpTierIndexResponse, PvpTierMediaResponse, PvpTierResponse } from './types';
 
 /**
@@ -10,7 +10,7 @@ import type { PvpTierIndexResponse, PvpTierMediaResponse, PvpTierResponse } from
 export function pvpTier(pvpTierId: number): Resource<PvpTierResponse> {
   return {
     namespace: 'static',
-    path: `${base}/pvp-tier/${pvpTierId}`,
+    path: `${wowBasePath}/pvp-tier/${pvpTierId}`,
   };
 }
 /**
@@ -20,7 +20,7 @@ export function pvpTier(pvpTierId: number): Resource<PvpTierResponse> {
 export function pvpTierIndex(): Resource<PvpTierIndexResponse> {
   return {
     namespace: 'static',
-    path: `${base}/pvp-tier/index`,
+    path: `${wowBasePath}/pvp-tier/index`,
   };
 }
 /**
@@ -31,6 +31,6 @@ export function pvpTierIndex(): Resource<PvpTierIndexResponse> {
 export function pvpTierMedia(pvpTierId: number): Resource<PvpTierMediaResponse> {
   return {
     namespace: 'static',
-    path: `${mediaBase}/pvp-tier/${pvpTierId}`,
+    path: `${wowMediaBasePath}/pvp-tier/${pvpTierId}`,
   };
 }

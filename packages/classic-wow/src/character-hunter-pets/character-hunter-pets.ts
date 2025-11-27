@@ -1,5 +1,5 @@
 import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
-import { characterBase } from '../base';
+import { wowCharacterBasePath } from '@blizzard-api/core';
 import type { CharacterHunterPetsSummaryResponse } from './types';
 
 /**
@@ -16,6 +16,6 @@ export function characterHunterPetsSummary(
 ): Resource<CharacterHunterPetsSummaryResponse> {
   return {
     namespace,
-    path: `${characterBase}/${realmSlug}/${characterName}/hunter-pets`,
+    path: `${wowCharacterBasePath}/${realmSlug}/${characterName}/hunter-pets`,
   };
 }

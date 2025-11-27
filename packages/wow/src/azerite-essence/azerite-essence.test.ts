@@ -1,5 +1,5 @@
+import { wowBasePath, wowMediaBasePath, wowSearchBasePath } from '@blizzard-api/core';
 import { describe, it } from 'vitest';
-import { base, mediaBase, searchBase } from '../base';
 import { azeriteEssence, azeriteEssenceIndex, azeriteEssenceMedia, azeriteEssenceSearch } from './azerite-essence';
 
 describe.concurrent('azeriteEssenceApi', () => {
@@ -7,14 +7,14 @@ describe.concurrent('azeriteEssenceApi', () => {
     const azeriteEssenceId = 123;
     const resource = azeriteEssence(azeriteEssenceId);
 
-    expect(resource.path).toBe(`${base}/azerite-essence/123`);
+    expect(resource.path).toBe(`${wowBasePath}/azerite-essence/123`);
     expect(resource.namespace).toBe('static');
   });
 
   it('should return the correct path and namespace for azeriteEssenceIndex', ({ expect }) => {
     const resource = azeriteEssenceIndex();
 
-    expect(resource.path).toBe(`${base}/azerite-essence/index`);
+    expect(resource.path).toBe(`${wowBasePath}/azerite-essence/index`);
     expect(resource.namespace).toBe('static');
   });
 
@@ -22,14 +22,14 @@ describe.concurrent('azeriteEssenceApi', () => {
     const azeriteEssenceId = 123;
     const resource = azeriteEssenceMedia(azeriteEssenceId);
 
-    expect(resource.path).toBe(`${mediaBase}/azerite-essence/123`);
+    expect(resource.path).toBe(`${wowMediaBasePath}/azerite-essence/123`);
     expect(resource.namespace).toBe('static');
   });
 
   it('should return the correct path and namespace for azeriteEssenceSearch', ({ expect }) => {
     const resource = azeriteEssenceSearch({ _page: 1 });
 
-    expect(resource.path).toBe(`${searchBase}/azerite-essence`);
+    expect(resource.path).toBe(`${wowSearchBasePath}/azerite-essence`);
     expect(resource.namespace).toBe('static');
     expect(resource.parameters).toEqual({ _page: 1 });
   });
@@ -40,7 +40,7 @@ describe.concurrent('azeriteEssenceApi', () => {
       orderby: 'name',
     });
 
-    expect(resource.path).toBe(`${searchBase}/azerite-essence`);
+    expect(resource.path).toBe(`${wowSearchBasePath}/azerite-essence`);
     expect(resource.namespace).toBe('static');
     expect(resource.parameters).toEqual({
       _page: 1,
@@ -56,7 +56,7 @@ describe.concurrent('azeriteEssenceApi', () => {
       orderby: ['name', 'id'],
     });
 
-    expect(resource.path).toBe(`${searchBase}/azerite-essence`);
+    expect(resource.path).toBe(`${wowSearchBasePath}/azerite-essence`);
     expect(resource.namespace).toBe('static');
     expect(resource.parameters).toEqual({
       _page: 1,

@@ -1,5 +1,5 @@
 import type { Resource, SearchResponse } from '@blizzard-api/core';
-import { searchBase } from '../base';
+import { wowSearchBasePath } from '@blizzard-api/core';
 import type { MediaSearchParameters, MediaSearchResponseItem } from './types';
 
 /**
@@ -17,6 +17,6 @@ export function mediaSearch(
       orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
       tags: options.tags,
     },
-    path: `${searchBase}/media`,
+    path: `${wowSearchBasePath}/media`,
   };
 }

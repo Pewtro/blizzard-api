@@ -1,4 +1,4 @@
-import type { Character, Color, Faction, Gender, KeyBase, NameId, NameIdKey, ResponseBase } from '../base';
+import type { Character, Color, Faction, Gender, KeyBase, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 export interface CharacterAppearanceResponse extends ResponseBase {
   active_spec: NameIdKey;
