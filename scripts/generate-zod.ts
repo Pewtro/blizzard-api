@@ -10,10 +10,9 @@ import { inputOutputMappings } from './input-output-mapping';
 const root = process.cwd();
 const packagesDirectory = path.join(root, 'packages');
 
-// Maintain an explicit whitelist of packages to process. Edit this array
-// to add/remove packages. Packages not in this list will be skipped.
-// Note: `client` is intentionally omitted.
+// Maintain an explicit whitelist of packages to process.
 const PACKAGE_WHITELIST = new Set(['classic-wow', 'core', 'd3', 'hs', 'sc2', 'wow']);
+const HANDLE_ALL_FILE_FOLDERS = new Set(['core']);
 
 async function main() {
   try {
@@ -42,12 +41,11 @@ async function run(): Promise<void> {
     console.log('Processing package', packageName);
 
     const allFiles = await walk(packageSource);
-    // For `core` we want to generate from all `.ts` files (except `.test.ts`).
+    // For some packages, such as `core`, we want to generate from all `.ts` files (except `.test.ts`).
     // For other packages, only convert `types.ts` files.
-    const tsFiles: Array<string> =
-      packageName === 'core'
-        ? allFiles.filter((f) => f.endsWith('.ts') && !f.endsWith('.test.ts') && !f.endsWith('index.ts'))
-        : allFiles.filter((f) => path.basename(f) === 'types.ts');
+    const tsFiles: Array<string> = HANDLE_ALL_FILE_FOLDERS.has(packageName)
+      ? allFiles.filter((f) => f.endsWith('.ts') && !f.endsWith('.test.ts') && !f.endsWith('index.ts'))
+      : allFiles.filter((f) => path.basename(f) === 'types.ts');
 
     const packageOut = path.join(root, 'generated', packageName);
     // Clean package output
@@ -69,15 +67,33 @@ async function run(): Promise<void> {
         const schema = generator.getZodSchemasFile(file);
 
         const parentName = path.basename(path.dirname(file));
-        // Special-case `core`: use the original file name (e.g. `blizzard-api.ts`, `resource.ts`)
-        // to avoid many files named `src.ts` overwriting each other.
-        const outName = packageName === 'core' ? path.basename(file) : `${parentName}.ts`;
+        // For the packages where we only handle `types.ts`, use the parent folder name as output file name.
+        // E.g. `packages/wow/src/character-hunter-pets/types.ts` -> `generated/wow/character-hunter-pets.ts`
+        // For other packages (like `core`), we use the original file name.
+        const outName = HANDLE_ALL_FILE_FOLDERS.has(packageName) ? path.basename(file) : `${parentName}.ts`;
         const outPath = path.join(packageOut, outName);
         await fs.writeFile(outPath, schema, 'utf8');
         console.log('Wrote', path.relative(root, outPath));
       } catch (error) {
         console.error('Failed to generate for', file, (error as Error)?.message ?? error);
       }
+    }
+
+    // After generating all files for the package, write an `index.ts` that
+    // re-exports everything in the package output directory.
+    try {
+      const generatedFiles = await fs.readdir(packageOut);
+      const exportLines = generatedFiles
+        .filter((f) => f.endsWith('.ts') && f !== 'index.ts')
+        .map((f) => `export * from './${path.basename(f, '.ts')}';`);
+
+      if (exportLines.length > 0) {
+        const indexContent = exportLines.join('\n') + '\n';
+        await fs.writeFile(path.join(packageOut, 'index.ts'), indexContent, 'utf8');
+        console.log('Wrote', path.relative(root, path.join(packageOut, 'index.ts')));
+      }
+    } catch (error) {
+      console.error('Failed to write index.ts for', packageName, (error as Error)?.message ?? error);
     }
   }
 }
