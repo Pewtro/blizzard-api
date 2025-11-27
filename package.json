@@ -59,20 +59,22 @@
     ]
   },
   "scripts": {
-    "build": "turbo build",
     "build:docs": "typedoc",
-    "lint": "eslint --format stylish --max-warnings 0 --cache",
+    "build": "turbo build",
+    "generate:zod": "tsx ./scripts/generate-zod.ts",
+    "generate": "npm-run-all -l generate:zod \"prettier:write ./generated\" \"lint:fix ./generated\"",
     "lint:ci": "npm-run-all -p -l typecheck stylecheck \"lint .\"",
     "lint:fix": "pnpm lint --fix",
+    "lint": "eslint --format stylish --max-warnings 0 --cache",
     "prepare": "husky",
+    "prettier:write": "prettier --write",
     "release": "changeset publish",
     "stylecheck": "prettier --check .",
-    "test": "vitest run",
     "test:coverage": "pnpm run test --coverage",
     "test:ui": "vitest --ui --coverage",
     "test:watch": "vitest watch",
-    "typecheck": "tsc",
-    "generate:zod:classic:ts": "tsx ./scripts/generate-zod.ts"
+    "test": "vitest run",
+    "typecheck": "tsc"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx,mjs,md,mdx,yaml,yml,json}": [
