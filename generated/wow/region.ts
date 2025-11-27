@@ -2,10 +2,6 @@
 import { z } from 'zod';
 import { nameIdSchema, responseBaseSchema } from '../core';
 
-/**
- * The response for a region index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const regionIndexResponseSchema = responseBaseSchema.extend({
   regions: z.array(
     z.object({
@@ -14,10 +10,6 @@ export const regionIndexResponseSchema = responseBaseSchema.extend({
   ),
 });
 
-/**
- * The response for a region.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const regionResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   patch_string: z.string(),
   tag: z.string(),

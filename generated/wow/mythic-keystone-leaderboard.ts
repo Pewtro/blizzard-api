@@ -2,10 +2,6 @@
 import { z } from 'zod';
 import { colorSchema, factionsSchema, keyBaseSchema, nameIdKeySchema, nameIdSchema, responseBaseSchema } from '../core';
 
-/**
- * The response for a Mythic Keystone leaderboard index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const mythicKeystoneLeaderboardIndexResponseSchema = responseBaseSchema.extend({
   current_leaderboards: z.array(nameIdKeySchema),
 });
@@ -50,10 +46,6 @@ const leadingGroupSchema = z.object({
   ranking: z.number(),
 });
 
-/**
- * The response for a Mythic Keystone leaderboard.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const mythicKeystoneLeaderboardResponseSchema = responseBaseSchema.extend({
   connected_realm: z.object({
     href: z.string(),

@@ -11,28 +11,16 @@ import {
   responseBaseSchema,
 } from '../core';
 
-/**
- * The response for an item class index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const itemClassIndexResponseSchema = responseBaseSchema.extend({
   item_classes: z.array(nameIdKeySchema),
 });
 
-/**
- * The response for an item class.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const itemClassResponseSchema = responseBaseSchema.extend({
   class_id: z.number(),
   item_subclasses: z.array(nameIdKeySchema),
   name: z.string(),
 });
 
-/**
- * The response for an item media.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const itemMediaResponseSchema = responseBaseSchema.extend({
   assets: z.array(mediaAssetSchema),
   id: z.number(),
@@ -79,21 +67,11 @@ const itemQualitySchema = z.object({
   ]),
 });
 
-/**
- * The parameters for an item search.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
- */
 export const itemSearchParametersSchema = baseSearchParametersSchema.extend({
   locale: localesSchema,
   name: z.string(),
 });
 
-/**
- * The response for an item search.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
- */
 export const itemSearchResponseItemSchema = keyBaseSchema.extend({
   data: z.object({
     id: z.number(),
@@ -122,10 +100,6 @@ export const itemSearchResponseItemSchema = keyBaseSchema.extend({
   }),
 });
 
-/**
- * The response for an item set index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const itemSetIndexResponseSchema = responseBaseSchema.extend({
   item_sets: z.array(nameIdKeySchema),
 });
@@ -135,10 +109,6 @@ const effectSchema = z.object({
   required_count: z.number(),
 });
 
-/**
- * The response for an item subclass.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const itemSubClassResponseSchema = responseBaseSchema.extend({
   class_id: z.number(),
   display_name: z.string(),
@@ -216,10 +186,6 @@ const statTypeCapitalizedSchema = z.union([
   z.literal('VERSATILITY'),
 ]);
 
-/**
- * The response for an item set.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const itemSetResponseSchema = responseBaseSchema.extend({
   effects: z.array(effectSchema),
   id: z.number(),
@@ -306,10 +272,6 @@ const previewItemSchema = z.object({
   weapon: weaponSchema.optional(),
 });
 
-/**
- * The response for an item.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const itemResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   description: z.string().optional(),
   inventory_type: inventoryTypeSchema,

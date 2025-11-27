@@ -2,24 +2,12 @@
 import { z } from 'zod';
 import { keyBaseSchema, nameIdKeySchema, nameIdSchema, responseBaseSchema } from '../core';
 
-/**
- * The response for a modified crafting category index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const modifiedCraftingCategoryIndexResponseSchema = responseBaseSchema.extend({
   categories: z.array(nameIdKeySchema),
 });
 
-/**
- * The response for a modified crafting category.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const modifiedCraftingCategoryResponseSchema = nameIdSchema.extend(responseBaseSchema.shape);
 
-/**
- * The response for a modified crafting index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const modifiedCraftingIndexResponseSchema = responseBaseSchema.extend({
   categories: z.object({
     href: z.string(),
@@ -34,20 +22,12 @@ const slotTypeSchema = keyBaseSchema.extend({
   name: z.string().optional(),
 });
 
-/**
- * The response for a modified crafting reagent slot type.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const modifiedCraftingReagentSlotTypeResponseSchema = responseBaseSchema.extend({
   compatible_categories: z.array(nameIdKeySchema),
   description: z.string(),
   id: z.number(),
 });
 
-/**
- * The response for a modified crafting reagent slot type index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const modifiedCraftingReagentSlotTypeIndexResponseSchema = responseBaseSchema.extend({
   slot_types: z.array(slotTypeSchema),
 });

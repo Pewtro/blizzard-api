@@ -2,10 +2,6 @@
 import { z } from 'zod';
 import { responseBaseSchema } from '../core';
 
-/**
- * The response for a WoW token.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const wowTokenResponseSchema = responseBaseSchema.extend({
   last_updated_timestamp: z.number(),
   price: z.number(),

@@ -26,9 +26,7 @@ export const characterProfileSummaryResponseSchema = responseBaseSchema.extend({
   gender: genderSchema,
   guild: guildSchema,
   id: z.number(),
-  //Hardcore only
   is_ghost: z.boolean().optional(),
-  //Hardcore only
   is_self_found: z.boolean().optional(),
   last_login_timestamp: z.number(),
   level: z.number(),

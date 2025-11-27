@@ -2,46 +2,26 @@
 import { z } from 'zod';
 import { factionSchema, nameIdKeySchema, responseBaseSchema } from '../core';
 
-/**
- * The response for a quest area index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const questAreaIndexResponseSchema = responseBaseSchema.extend({
   areas: z.array(nameIdKeySchema),
 });
 
-/**
- * The response for a quest area.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const questAreaResponseSchema = responseBaseSchema.extend({
   area: z.string(),
   id: z.number(),
   quests: z.array(nameIdKeySchema),
 });
 
-/**
- * The response for a quest category index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const questCategoryIndexResponseSchema = responseBaseSchema.extend({
   categories: z.array(nameIdKeySchema),
 });
 
-/**
- * The response for a quest category.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const questCategoryResponseSchema = responseBaseSchema.extend({
   category: z.string(),
   id: z.number(),
   quests: z.array(nameIdKeySchema),
 });
 
-/**
- * The response for a quest index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const questIndexResponseSchema = responseBaseSchema.extend({
   areas: z.object({
     href: z.string(),
@@ -60,18 +40,10 @@ const requirementsSchema = z.object({
   min_character_level: z.number(),
 });
 
-/**
- * The response for a quest type index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const questTypeIndexResponseSchema = responseBaseSchema.extend({
   types: z.array(nameIdKeySchema),
 });
 
-/**
- * The response for a quest type.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const questTypeResponseSchema = responseBaseSchema.extend({
   id: z.number(),
   quests: z.array(nameIdKeySchema),
@@ -100,10 +72,6 @@ const rewardsSchema = z.object({
   reputations: z.array(reputationSchema),
 });
 
-/**
- * The response for a quest.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const questResponseSchema = responseBaseSchema.extend({
   area: nameIdKeySchema,
   description: z.string(),

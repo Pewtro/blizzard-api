@@ -2,20 +2,12 @@
 import { z } from 'zod';
 import { keyBaseSchema, nameIdKeySchema, nameIdSchema, responseBaseSchema } from '../core';
 
-/**
- * Interface for a response from the achievement category index endpoint.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const achievementCategoryIndexResponseSchema = responseBaseSchema.extend({
   categories: z.array(nameIdKeySchema),
   guild_categories: z.array(nameIdKeySchema),
   root_categories: z.array(nameIdKeySchema),
 });
 
-/**
- * Interface for a response from the achievement category endpoint.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const achievementCategoryResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   achievements: z.array(nameIdKeySchema),
   aggregates_by_faction: z.object({
@@ -33,10 +25,6 @@ export const achievementCategoryResponseSchema = nameIdSchema.extend(responseBas
   parent_category: nameIdKeySchema,
 });
 
-/**
- * Interface for a response from the achievement index endpoint.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const achievementIndexResponseSchema = responseBaseSchema.extend({
   achievements: z.array(nameIdKeySchema),
 });
@@ -47,10 +35,6 @@ const achievementMediaItemSchema = z.object({
   value: z.string(),
 });
 
-/**
- * Interface for a response from the achievement endpoint.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const achievementResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   category: nameIdKeySchema,
   criteria: z.object({
@@ -65,10 +49,6 @@ export const achievementResponseSchema = nameIdSchema.extend(responseBaseSchema.
   points: z.number(),
 });
 
-/**
- * Interface for a response from the achievement media endpoint.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const achievementMediaResponseSchema = responseBaseSchema.extend({
   assets: z.array(achievementMediaItemSchema),
   id: z.number(),

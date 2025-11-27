@@ -2,18 +2,10 @@
 import { z } from 'zod';
 import { keyBaseSchema, mediaAssetSchema, nameIdKeySchema, nameIdSchema, responseBaseSchema } from '../core';
 
-/**
- * The response for a tech talent index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const techTalentIndexResponseSchema = responseBaseSchema.extend({
   talents: z.array(nameIdKeySchema),
 });
 
-/**
- * The response for a tech talent media.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const techTalentMediaResponseSchema = responseBaseSchema.extend({
   assets: z.array(mediaAssetSchema),
 });
@@ -27,10 +19,6 @@ const talentTreeSchema = keyBaseSchema.extend({
   name: z.string().optional(),
 });
 
-/**
- * The response for a tech talent tree.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const techTalentTreeResponseSchema = responseBaseSchema.extend({
   id: z.number(),
   max_tiers: z.number(),
@@ -38,10 +26,6 @@ export const techTalentTreeResponseSchema = responseBaseSchema.extend({
   talents: z.array(nameIdKeySchema),
 });
 
-/**
- * The response for a tech talent.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const techTalentResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   display_order: z.number(),
   media: mediaSchema,
@@ -49,10 +33,6 @@ export const techTalentResponseSchema = nameIdSchema.extend(responseBaseSchema.s
   tier: z.number(),
 });
 
-/**
- * The response for a tech talent tree index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const techTalentTreeIndexResponseSchema = responseBaseSchema.extend({
   talent_trees: z.array(talentTreeSchema),
 });

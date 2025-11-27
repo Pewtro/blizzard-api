@@ -9,18 +9,10 @@ import {
   responseBaseSchema,
 } from '../core';
 
-/**
- * The response for a playable class index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const playableClassIndexResponseSchema = responseBaseSchema.extend({
   classes: z.array(nameIdKeySchema),
 });
 
-/**
- * The response for playable class media.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const playableClassMediaResponseSchema = responseBaseSchema.extend({
   assets: z.array(mediaAssetSchema),
   id: z.number(),
@@ -35,10 +27,6 @@ const talentSlotSchema = z.object({
   unlock_player_level: z.number(),
 });
 
-/**
- * The response for a playable class.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const playableClassResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   gender_name: genderNameSchema,
   media: mediaSchema,
@@ -50,10 +38,6 @@ export const playableClassResponseSchema = nameIdSchema.extend(responseBaseSchem
   specializations: z.array(nameIdKeySchema),
 });
 
-/**
- * The response for a playable class's PvP talent slots.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const pvpTalentSlotsResponseSchema = responseBaseSchema.extend({
   talent_slots: z.array(talentSlotSchema),
 });

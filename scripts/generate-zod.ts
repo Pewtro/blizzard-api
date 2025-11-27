@@ -59,7 +59,7 @@ async function run(): Promise<void> {
         const content = await fs.readFile(file, 'utf8');
         const generator = generate({
           inputOutputMappings,
-          keepComments: true,
+          keepComments: false,
           skipParseJSDoc: false,
           sourceText: content,
         });

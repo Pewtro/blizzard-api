@@ -2,18 +2,10 @@
 import { z } from 'zod';
 import { keyBaseSchema, nameIdKeySchema, nameIdSchema, responseBaseSchema } from '../core';
 
-/**
- * The response for a pvp talent index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const pvpTalentIndexResponseSchema = responseBaseSchema.extend({
   pvp_talents: z.array(nameIdKeySchema),
 });
 
-/**
- * The response for a pvp talent.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const pvpTalentResponseSchema = responseBaseSchema.extend({
   compatible_slots: z.array(z.number()),
   description: z.string(),
@@ -23,10 +15,6 @@ export const pvpTalentResponseSchema = responseBaseSchema.extend({
   unlock_player_level: z.number(),
 });
 
-/**
- * The response for a talent index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const talentIndexResponseSchema = responseBaseSchema.extend({
   talents: z.array(nameIdKeySchema),
 });
@@ -79,10 +67,6 @@ const tooltipSpellTooltipSchema = z.object({
   spell: nameIdKeySchema,
 });
 
-/**
- * The response for a talent.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const talentResponseSchema = responseBaseSchema.extend({
   id: z.number(),
   playable_class: playableClassSchema,
@@ -90,10 +74,6 @@ export const talentResponseSchema = responseBaseSchema.extend({
   spell: nameIdKeySchema,
 });
 
-/**
- * The response for a talent tree index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const talentTreeIndexResponseSchema = responseBaseSchema.extend({
   class_talent_trees: z.array(talentTreeSchema),
   spec_talent_trees: z.array(talentTreeSchema),
@@ -126,10 +106,6 @@ const talentNodeSchema = z.object({
   raw_position_y: z.number(),
 });
 
-/**
- * The response for a talent tree nodes.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const talentTreeNodesResponseSchema = responseBaseSchema.extend({
   id: z.number(),
   spec_talent_trees: z.array(specTalentTreeSchema),
@@ -167,10 +143,6 @@ const classTalentNodeSchema = z.object({
   unlocks: z.array(z.number()).optional(),
 });
 
-/**
- * The response for a talent tree.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const talentTreeResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   class_talent_nodes: z.array(classTalentNodeSchema),
   media: z.object({

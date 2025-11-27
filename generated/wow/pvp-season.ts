@@ -26,19 +26,11 @@ const rewardSchema = z.object({
   specialization: nameIdKeySchema.optional(),
 });
 
-/**
- * The response for a PvP season index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const pvpSeasonIndexResponseSchema = responseBaseSchema.extend({
   current_season: seasonSchema,
   seasons: z.array(seasonSchema),
 });
 
-/**
- * The response for a PvP season.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const pvpSeasonResponseSchema = responseBaseSchema.extend({
   id: z.number(),
   leaderboards: z.object({
@@ -66,10 +58,6 @@ const seasonMatchStatisticsSchema = z.object({
   won: z.number(),
 });
 
-/**
- * The response for a PvP leaderboard index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const pvpLeaderboardIndexResponseSchema = responseBaseSchema.extend({
   leaderboards: z.array(nameIdKeySchema),
   season: seasonSchema,
@@ -86,19 +74,11 @@ const entrySchema = z.object({
   tier: seasonSchema,
 });
 
-/**
- * The response for PvP rewards index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const pvpRewardsIndexResponseSchema = responseBaseSchema.extend({
   rewards: z.array(rewardSchema),
   season: seasonSchema,
 });
 
-/**
- * The response for a PvP leaderboard.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const pvpLeaderboardResponseSchema = responseBaseSchema.extend({
   bracket: bracketSchema,
   entries: z.array(entrySchema),

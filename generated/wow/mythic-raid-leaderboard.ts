@@ -27,10 +27,6 @@ const entrySchema = z.object({
   timestamp: z.number(),
 });
 
-/**
- * The response for a Mythic Raid leaderboard.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const mythicRaidLeaderboardResponseSchema = responseBaseSchema.extend({
   criteria_type: z.string(),
   entries: z.array(entrySchema),

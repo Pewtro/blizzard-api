@@ -9,10 +9,6 @@ import {
   responseBaseSchema,
 } from '../core';
 
-/**
- * The response for a mount index.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const mountIndexResponseSchema = responseBaseSchema.extend({
   mounts: z.array(nameIdKeySchema),
 });
@@ -26,21 +22,11 @@ const sourceSchema = z.object({
   type: z.string(),
 });
 
-/**
- * The search parameters for mounts.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
- */
 export const mountSearchParametersSchema = baseSearchParametersSchema.extend({
   locale: localesSchema,
   name: z.string(),
 });
 
-/**
- * The response for a mount search.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
- */
 export const mountSearchResponseItemSchema = keyBaseSchema.extend({
   data: z.object({
     creature_displays: z.array(
@@ -63,10 +49,6 @@ export const mountSearchResponseItemSchema = keyBaseSchema.extend({
   }),
 });
 
-/**
- * The response for a mount.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
 export const mountResponseSchema = responseBaseSchema.extend({
   creature_displays: z.array(creatureDisplaySchema),
   description: z.string(),
