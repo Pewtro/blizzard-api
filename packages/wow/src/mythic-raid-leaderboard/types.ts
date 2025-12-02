@@ -16,7 +16,7 @@ interface Entry {
   faction: { type: keyof typeof Factions };
   guild: Guild;
   rank: number;
-  region: 'cn' | Origins;
+  region: Origins;
   timestamp: number;
 }
 
