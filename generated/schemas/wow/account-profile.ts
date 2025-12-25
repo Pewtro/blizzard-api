@@ -147,7 +147,7 @@ export const accountTransmogsCollectionSummaryResponseSchema = z.object({
 export const protectedCharacterProfileSummaryResponseSchema = z.object({
   _links: linksSchema,
   bind_position: positionSchema,
-  character: nameIdKeySchema.and(realmSchema),
+  character: realmSchema,
   id: z.number(),
   money: z.number(),
   name: z.string(),

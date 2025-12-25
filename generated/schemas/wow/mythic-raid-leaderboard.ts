@@ -23,7 +23,7 @@ const entrySchema = z.object({
   }),
   guild: guildSchema,
   rank: z.number(),
-  region: z.union([z.literal('cn'), originsSchema]),
+  region: originsSchema,
   timestamp: z.number(),
 });
 
