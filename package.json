@@ -9,7 +9,7 @@
   "engines": {
     "node": "^18.18 || >=20.9"
   },
-  "packageManager": "pnpm@10.26.0",
+  "packageManager": "pnpm@10.27.0",
   "keywords": [
     "blizzard",
     "battlenet",
@@ -42,8 +42,8 @@
     "npm-run-all2": "8.0.4",
     "prettier": "3.7.4",
     "ts-to-zod": "5.1.0",
-    "tsx": "4.21.0",
     "tsdown": "0.18.4",
+    "tsx": "4.21.0",
     "turbo": "2.7.2",
     "typedoc": "0.28.15",
     "typedoc-github-theme": "0.3.1",
