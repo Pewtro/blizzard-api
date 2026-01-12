@@ -7,7 +7,7 @@
   "repository": "https://github.com/Pewtro/blizzard-api/tree/main/packages/integration-tests",
   "type": "module",
   "engines": {
-    "node": "^18.18 || >=20.9"
+    "node": "^20.19.0 || ^22.13.0 || >=24"
   },
   "devDependencies": {
     "@blizzard-api/classic-wow": "workspace:*",
