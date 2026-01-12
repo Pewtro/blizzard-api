@@ -7,7 +7,7 @@
   "repository": "https://github.com/Pewtro/blizzard-api",
   "type": "module",
   "engines": {
-    "node": "^18.18 || >=20.9"
+    "node": ">=20.19"
   },
   "packageManager": "pnpm@10.27.0",
   "keywords": [
@@ -30,27 +30,27 @@
   ],
   "devDependencies": {
     "@changesets/cli": "2.29.8",
-    "@putstack/eslint-config-typescript": "4.12.0",
+    "@putstack/eslint-config-typescript": "4.13.0",
     "@putstack/prettier-config": "2.0.0",
-    "@types/node": "24.10.4",
-    "@vitest/coverage-v8": "4.0.16",
-    "@vitest/ui": "4.0.16",
+    "@types/node": "24.10.7",
+    "@vitest/coverage-v8": "4.0.17",
+    "@vitest/ui": "4.0.17",
     "eslint": "9.39.2",
-    "eslint-plugin-jsdoc": "61.5.0",
+    "eslint-plugin-jsdoc": "62.0.0",
     "husky": "9.1.7",
     "lint-staged": "16.2.7",
     "npm-run-all2": "8.0.4",
     "prettier": "3.7.4",
     "ts-to-zod": "5.1.0",
-    "tsdown": "0.18.4",
+    "tsdown": "0.19.0",
     "tsx": "4.21.0",
-    "turbo": "2.7.2",
-    "typedoc": "0.28.15",
+    "turbo": "2.7.4",
+    "typedoc": "0.28.16",
     "typedoc-github-theme": "0.3.1",
     "typescript": "5.9.3",
-    "typescript-eslint": "8.51.0",
-    "vitest": "4.0.16",
-    "zod": "4.3.4"
+    "typescript-eslint": "8.53.0",
+    "vitest": "4.0.17",
+    "zod": "4.3.5"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
