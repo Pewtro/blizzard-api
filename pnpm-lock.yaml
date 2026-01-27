@@ -84,8 +84,8 @@ importers:
   packages/client:
     dependencies:
       ky:
-        specifier: 1.14.2
-        version: 1.14.2
+        specifier: 1.14.3
+        version: 1.14.3
     devDependencies:
       '@blizzard-api/classic-wow':
         specifier: workspace:*
@@ -1887,8 +1887,8 @@ packages:
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
 
-  ky@1.14.2:
-    resolution: {integrity: sha512-q3RBbsO5A5zrPhB6CaCS8ZUv+NWCXv6JJT4Em0i264G9W0fdPB8YRfnnEi7Dm7X7omAkBIPojzYJ2D1oHTHqug==}
+  ky@1.14.3:
+    resolution: {integrity: sha512-9zy9lkjac+TR1c2tG+mkNSVlyOpInnWdSMiue4F+kq8TwJSgv6o8jhLRg8Ho6SnZ9wOYUq/yozts9qQCfk7bIw==}
     engines: {node: '>=18'}
 
   levn@0.4.1:
@@ -4396,7 +4396,7 @@ snapshots:
     dependencies:
       json-buffer: 3.0.1
 
-  ky@1.14.2: {}
+  ky@1.14.3: {}
 
   levn@0.4.1:
     dependencies:
