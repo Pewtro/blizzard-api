@@ -5,7 +5,7 @@ import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
   azeriteEssenceIndexResponseSchema,
-  azeriteEssenceSearchResponseItemSchema,
+  azeriteEssenceSearchResponseSchema,
 } from '../../../generated/schemas/wow/azerite-essence';
 
 describe('wow azerite-essence integration', () => {
@@ -24,7 +24,7 @@ describe('wow azerite-essence integration', () => {
     expect(parsedIndex.success).toBe(true);
 
     const search = await client.sendRequest(wow.azeriteEssenceSearch({ _page: 1 }));
-    const parsedSearch = azeriteEssenceSearchResponseItemSchema.safeParse(search);
+    const parsedSearch = azeriteEssenceSearchResponseSchema.safeParse(search);
     if (!parsedSearch.success) {
       console.error('Azerite essence search validation failed:', treeifyError(parsedSearch.error));
     }
