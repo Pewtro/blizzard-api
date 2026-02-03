@@ -34,8 +34,6 @@ describe('wow toy integration', () => {
       if (!parsedToy.success) {
         console.error('Toy detail validation failed for id', t.id, treeifyError(parsedToy.error));
       }
-      console.log('paredToy', parsedToy.error);
-      console.log('toy', toy);
       expect(parsedToy.success).toBe(true);
     }
   }, 30_000);

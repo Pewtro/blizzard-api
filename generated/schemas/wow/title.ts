@@ -6,6 +6,22 @@ export const titleIndexResponseSchema = responseBaseSchema.extend({
   titles: z.array(nameIdKeySchema),
 });
 
+const titleSourceSchema = z.strictObject({
+  achievements: z.array(nameIdKeySchema).optional(),
+  quests: z.array(nameIdKeySchema).optional(),
+  type: z.union([
+    z.strictObject({
+      name: z.literal('Achievement'),
+      type: z.literal('ACHIEVEMENT'),
+    }),
+    z.strictObject({
+      name: z.literal('Quest'),
+      type: z.literal('QUEST'),
+    }),
+  ]),
+});
+
 export const titleResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   gender_name: genderNameSchema,
+  source: titleSourceSchema.optional(),
 });

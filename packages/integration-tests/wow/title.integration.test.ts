@@ -19,12 +19,20 @@ describe('wow title integration', () => {
     }
     expect(parsed.success).toBe(true);
 
-    const first = parsed.success ? parsed.data.titles[0] : undefined;
-    if (first) {
-      const title = await client.sendRequest(wow.title(first.id));
+    // Pick up to 5 titles at random from the index to fetch details
+    const titles = parsed.success ? parsed.data.titles : [];
+    const sampleSize = Math.min(5, titles.length);
+    const sampled =
+      titles.length > sampleSize
+        ? // eslint-disable-next-line sonarjs/pseudo-random
+          titles.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
+        : titles.slice(0, sampleSize);
+
+    for (const t of sampled) {
+      const title = await client.sendRequest(wow.title(t.id));
       const parsedTitle = titleResponseSchema.safeParse(title);
       if (!parsedTitle.success) {
-        console.error('Title detail validation failed:', treeifyError(parsedTitle.error));
+        console.error('Title detail validation failed for id', t.id, treeifyError(parsedTitle.error));
       }
       expect(parsedTitle.success).toBe(true);
     }
