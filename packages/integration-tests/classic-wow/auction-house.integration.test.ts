@@ -22,8 +22,6 @@ describe.skip('classic-wow auction house integration', () => {
     const realmIndexResponse = await client.sendRequest(classicWow.connectedRealmIndex('dynamic-classic1x'));
     const parsedRealmIndex = connectedRealmIndexResponseSchema.safeParse(realmIndexResponse);
     if (!parsedRealmIndex.success) {
-      // Log detailed zod errors to help debugging
-
       console.error('Connected realm index validation failed:', treeifyError(parsedRealmIndex.error));
     }
     expect(parsedRealmIndex.success).toBe(true);
