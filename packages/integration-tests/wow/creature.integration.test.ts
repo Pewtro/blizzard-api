@@ -5,9 +5,10 @@ import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
   creatureFamilyIndexResponseSchema,
-  creatureFamilyResponseSchema, creatureTypeIndexResponseSchema, creatureTypeResponseSchema 
+  creatureFamilyResponseSchema,
+  creatureTypeIndexResponseSchema,
+  creatureTypeResponseSchema,
 } from '../../../generated/schemas/wow/creature';
-
 
 describe('wow creature integration', () => {
   it('validates creature family index', async ({ expect }) => {
