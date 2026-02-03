@@ -1,4 +1,12 @@
-import type { BaseSearchParameters, KeyBase, Locales, MediaAsset, NameId, ResponseBase } from '@blizzard-api/core';
+import type {
+  BaseSearchParameters,
+  KeyBase,
+  Locales,
+  MediaAsset,
+  NameId,
+  ResponseBase,
+  SearchResponseWithoutResults,
+} from '@blizzard-api/core';
 
 /**
  * The response for a spell media.
@@ -33,14 +41,18 @@ export interface SpellSearchParameters extends BaseSearchParameters {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
  */
-export interface SpellSearchResponseItem extends KeyBase {
+export interface SpellSearchResponse extends SearchResponseWithoutResults {
+  results: Array<SpellSearchResponseItem>;
+}
+
+interface Media extends KeyBase {
+  id: number;
+}
+
+interface SpellSearchResponseItem extends KeyBase {
   data: {
     id: number;
     media: { id: number };
     name: Record<Locales, string | undefined>;
   };
-}
-
-interface Media extends KeyBase {
-  id: number;
 }

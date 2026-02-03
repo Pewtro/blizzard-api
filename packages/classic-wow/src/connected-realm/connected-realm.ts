@@ -1,10 +1,10 @@
 import { wowBasePath } from '@blizzard-api/core';
-import type { BlizzardNamespaces, Resource, SearchResponse } from '@blizzard-api/core';
+import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
 import type {
   ConnectedRealmIndexResponse,
   ConnectedRealmResponse,
   ConnectedRealmSearchParameters,
-  ConnectedRealmSearchResponseItem,
+  ConnectedRealmSearchResponse,
 } from './types';
 
 /**
@@ -39,12 +39,12 @@ export function connectedRealmIndex(
  * Performs a search of connected realms.
  * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
  * @param options The search parameters. See {@link ConnectedRealmSearchParameters}.
- * @returns The search results. See {@link SearchResponse} & {@link ConnectedRealmSearchResponseItem}.
+ * @returns The search results. See {@link ConnectedRealmSearchResponse}.
  */
 export function connectedRealmSearch(
   namespace: Extract<BlizzardNamespaces, 'dynamic-classic1x' | 'dynamic-classic'>,
   options: ConnectedRealmSearchParameters,
-): Resource<SearchResponse<ConnectedRealmSearchResponseItem>, ConnectedRealmSearchParameters> {
+): Resource<ConnectedRealmSearchResponse, ConnectedRealmSearchParameters> {
   return {
     namespace,
     parameters: {

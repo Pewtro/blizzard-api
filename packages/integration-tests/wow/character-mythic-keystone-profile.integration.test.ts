@@ -6,7 +6,7 @@ import { environment } from '../../../environment';
 import { characterMythicKeystoneProfileIndexResponseSchema } from '../../../generated/schemas/wow';
 
 describe('wow character-mythic-keystone-profile integration', () => {
-  it('validates mythic keystone profile index for putro', async ({ expect }) => {
+  it('validates mythic keystone profile index', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',

@@ -6,6 +6,7 @@ import type {
   NameId,
   NameIdKey,
   ResponseBase,
+  SearchResponseWithoutResults,
 } from '@blizzard-api/core';
 
 /**
@@ -49,7 +50,10 @@ export interface AzeriteEssenceSearchParameters extends BaseSearchParameters {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
  */
-export interface AzeriteEssenceSearchResponseItem extends KeyBase {
+export interface AzeriteEssenceSearchResponse extends SearchResponseWithoutResults {
+  results: Array<AzeriteEssenceSearchResponseItem>;
+}
+interface AzeriteEssenceSearchResponseItem extends KeyBase {
   data: {
     allowed_specializations: Array<NameId>;
     name: Record<Locales, string>;

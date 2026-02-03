@@ -1,10 +1,10 @@
-import type { Resource, SearchResponse } from '@blizzard-api/core';
+import type { Resource } from '@blizzard-api/core';
 import { wowBasePath, wowMediaBasePath, wowSearchBasePath } from '@blizzard-api/core';
 import type {
   JournalEncounterIndexResponse,
   JournalEncounterResponse,
   JournalEncounterSearchParameters,
-  JournalEncounterSearchResponseItem,
+  JournalEncounterSearchResponse,
   JournalExpansionIndexResponse,
   JournalExpansionResponse,
   JournalInstanceIndexResponse,
@@ -36,14 +36,11 @@ export function journalEncounterIndex(): Resource<JournalEncounterIndexResponse>
 /**
  * Search for journal encounters.
  * @param options The search parameters. See {@link JournalEncounterSearchParameters}.
- * @returns The search results. See {@link SearchResponse}.
+ * @returns The search results. See {@link JournalEncounterSearchResponse}.
  */
 export function journalEncounterSearch(
   options: JournalEncounterSearchParameters,
-): Resource<
-  SearchResponse<JournalEncounterSearchResponseItem>,
-  Omit<JournalEncounterSearchParameters, 'instanceName' | 'locale'>
-> {
+): Resource<JournalEncounterSearchResponse, Omit<JournalEncounterSearchParameters, 'instanceName' | 'locale'>> {
   return {
     namespace: 'static',
     parameters: {

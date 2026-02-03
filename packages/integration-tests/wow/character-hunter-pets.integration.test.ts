@@ -6,7 +6,7 @@ import { environment } from '../../../environment';
 import { characterHunterPetsSummaryResponseSchema } from '../../../generated/schemas/wow';
 
 describe('wow character-hunter-pets integration', () => {
-  it('validates character hunter pets for putro', async ({ expect }) => {
+  it('validates character hunter pets', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',

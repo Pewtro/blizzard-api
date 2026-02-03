@@ -6,7 +6,7 @@ import { environment } from '../../../environment';
 import { characterPvpSummaryResponseSchema } from '../../../generated/schemas/wow';
 
 describe('wow character-pvp integration', () => {
-  it('validates character pvp summary for putro', async ({ expect }) => {
+  it('validates character pvp summary', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',

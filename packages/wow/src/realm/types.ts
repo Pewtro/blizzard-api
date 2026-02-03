@@ -6,6 +6,7 @@ import type {
   NameIdKey,
   Realm,
   ResponseBase,
+  SearchResponseWithoutResults,
 } from '@blizzard-api/core';
 
 /**
@@ -78,18 +79,8 @@ export interface RealmSearchParameters extends BaseSearchParameters {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
  */
-export interface RealmSearchResponseItem extends KeyBase {
-  data: {
-    category: Record<Locales, string | undefined>;
-    id: number;
-    is_tournament: boolean;
-    locale: RealmLocales;
-    name: Record<Locales, string | undefined>;
-    region: { id: number; name: Record<Locales, string | undefined> };
-    slug: string;
-    timezone: RealmTimezone;
-    type: { name: RealmType; type: RealmTypeCapitalized };
-  };
+export interface RealmSearchResponse extends SearchResponseWithoutResults {
+  results: Array<RealmSearchResponseItem>;
 }
 
 /**
@@ -114,3 +105,17 @@ export type RealmType = 'Normal' | 'Roleplaying';
  * The type of a realm, capitalized and shortended).
  */
 export type RealmTypeCapitalized = 'NORMAL' | 'RP';
+
+interface RealmSearchResponseItem extends KeyBase {
+  data: {
+    category: Record<Locales, string | undefined>;
+    id: number;
+    is_tournament: boolean;
+    locale: RealmLocales;
+    name: Record<Locales, string | undefined>;
+    region: { id: number; name: Record<Locales, string | undefined> };
+    slug: string;
+    timezone: RealmTimezone;
+    type: { name: RealmType; type: RealmTypeCapitalized };
+  };
+}

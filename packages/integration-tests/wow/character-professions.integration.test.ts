@@ -6,7 +6,7 @@ import { environment } from '../../../environment';
 import { characterProfessionsSummaryResponseSchema } from '../../../generated/schemas/wow';
 
 describe('wow character-professions integration', () => {
-  it('validates character professions for putro', async ({ expect }) => {
+  it('validates character professions', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',

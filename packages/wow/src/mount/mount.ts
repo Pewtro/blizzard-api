@@ -1,6 +1,6 @@
-import type { Resource, SearchResponse } from '@blizzard-api/core';
+import type { Resource } from '@blizzard-api/core';
 import { wowBasePath, wowSearchBasePath } from '@blizzard-api/core';
-import type { MountIndexResponse, MountResponse, MountSearchParameters, MountSearchResponseItem } from './types';
+import type { MountIndexResponse, MountResponse, MountSearchParameters, MountSearchResponse } from './types';
 
 /**
  * Get a mount by ID.
@@ -26,11 +26,11 @@ export function mountIndex(): Resource<MountIndexResponse> {
 /**
  * Get a mount search.
  * @param options The search parameters. See {@link MountSearchParameters}.
- * @returns The search results. See {@link SearchResponse}.
+ * @returns The search results. See {@link MountSearchResponse}.
  */
 export function mountSearch(
   options: MountSearchParameters,
-): Resource<SearchResponse<MountSearchResponseItem>, Omit<MountSearchParameters, 'locale' | 'name'>> {
+): Resource<MountSearchResponse, Omit<MountSearchParameters, 'locale' | 'name'>> {
   return {
     namespace: 'static',
     parameters: {

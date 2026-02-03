@@ -7,6 +7,7 @@ import {
   localesSchema,
   nameIdKeySchema,
   responseBaseSchema,
+  searchResponseWithoutResultsSchema,
 } from '../core';
 
 export const mountIndexResponseSchema = responseBaseSchema.extend({
@@ -27,7 +28,7 @@ export const mountSearchParametersSchema = baseSearchParametersSchema.extend({
   name: z.string(),
 });
 
-export const mountSearchResponseItemSchema = keyBaseSchema.extend({
+const mountSearchResponseItemSchema = keyBaseSchema.extend({
   data: z.strictObject({
     creature_displays: z.array(
       z.strictObject({
@@ -56,4 +57,8 @@ export const mountResponseSchema = responseBaseSchema.extend({
   name: z.string(),
   should_exclude_if_uncollected: z.boolean(),
   source: sourceSchema,
+});
+
+export const mountSearchResponseSchema = searchResponseWithoutResultsSchema.extend({
+  results: z.array(mountSearchResponseItemSchema),
 });

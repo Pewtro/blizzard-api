@@ -1,6 +1,6 @@
-import type { Resource, SearchResponse } from '@blizzard-api/core';
+import type { Resource } from '@blizzard-api/core';
 import { wowBasePath, wowSearchBasePath } from '@blizzard-api/core';
-import type { RealmIndexResponse, RealmResponse, RealmSearchParameters, RealmSearchResponseItem } from './types';
+import type { RealmIndexResponse, RealmResponse, RealmSearchParameters, RealmSearchResponse } from './types';
 
 /**
  * Get a realm by slug.
@@ -26,11 +26,9 @@ export function realmIndex(): Resource<RealmIndexResponse> {
 /**
  * Search for realms.
  * @param options The search parameters. See {@link RealmSearchParameters}.
- * @returns The search results. See {@link SearchResponse}.
+ * @returns The search results. See {@link RealmSearchResponse}.
  */
-export function realmSearch(
-  options: RealmSearchParameters,
-): Resource<SearchResponse<RealmSearchResponseItem>, RealmSearchParameters> {
+export function realmSearch(options: RealmSearchParameters): Resource<RealmSearchResponse, RealmSearchParameters> {
   return {
     namespace: 'dynamic',
     parameters: {

@@ -1,15 +1,13 @@
-import type { Resource, SearchResponse } from '@blizzard-api/core';
+import type { Resource } from '@blizzard-api/core';
 import { wowSearchBasePath } from '@blizzard-api/core';
-import type { MediaSearchParameters, MediaSearchResponseItem } from './types';
+import type { MediaSearchParameters, MediaSearchResponse } from './types';
 
 /**
  * Search for media.
  * @param options The search parameters. See {@link MediaSearchParameters}.
- * @returns The search results. See {@link SearchResponse}.
+ * @returns The search results. See {@link MediaSearchResponse}.
  */
-export function mediaSearch(
-  options: MediaSearchParameters,
-): Resource<SearchResponse<MediaSearchResponseItem>, MediaSearchParameters> {
+export function mediaSearch(options: MediaSearchParameters): Resource<MediaSearchResponse, MediaSearchParameters> {
   return {
     namespace: 'static',
     parameters: {

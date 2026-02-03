@@ -6,7 +6,7 @@ import { environment } from '../../../environment';
 import { characterSpecializationsSummaryResponseSchema } from '../../../generated/schemas/wow';
 
 describe('wow character-specializations integration', () => {
-  it('validates character specializations for putro', async ({ expect }) => {
+  it('validates character specializations', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',

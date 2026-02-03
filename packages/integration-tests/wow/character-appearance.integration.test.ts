@@ -6,7 +6,7 @@ import { environment } from '../../../environment';
 import { characterAppearanceResponseSchema } from '../../../generated/schemas/wow';
 
 describe('wow character-appearance integration', () => {
-  it('validates character appearance for putro', async ({ expect }) => {
+  it('validates character appearance', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',

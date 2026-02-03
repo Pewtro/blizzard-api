@@ -1,6 +1,6 @@
 import { wowBasePath, wowSearchBasePath } from '@blizzard-api/core';
-import type { BlizzardNamespaces, Resource, SearchResponse } from '@blizzard-api/core';
-import type { RealmIndexResponse, RealmResponse, RealmSearchParameters, RealmSearchResponseItem } from './types';
+import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
+import type { RealmIndexResponse, RealmResponse, RealmSearchParameters, RealmSearchResponse } from './types';
 
 /**
  * Get a realm by slug.
@@ -34,12 +34,12 @@ export function realmIndex(
  * Search for realms.
  * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
  * @param options The search parameters. See {@link RealmSearchParameters}.
- * @returns The search results. See {@link SearchResponse}.
+ * @returns The search results. See {@link RealmSearchResponse}.
  */
 export function realmSearch(
   namespace: Extract<BlizzardNamespaces, 'dynamic-classic1x' | 'dynamic-classic'>,
   options: RealmSearchParameters,
-): Resource<SearchResponse<RealmSearchResponseItem>, RealmSearchParameters> {
+): Resource<RealmSearchResponse, RealmSearchParameters> {
   return {
     namespace,
     parameters: {

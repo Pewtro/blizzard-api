@@ -8,6 +8,7 @@ import {
   nameIdSchema,
   realmSchema,
   responseBaseSchema,
+  searchResponseWithoutResultsSchema,
 } from '../core';
 
 export const realmCategorySchema = z.union([
@@ -64,7 +65,7 @@ export const realmSearchParametersSchema = baseSearchParametersSchema.extend({
   timezone: realmTimezoneSchema.optional(),
 });
 
-export const realmSearchResponseItemSchema = keyBaseSchema.extend({
+const realmSearchResponseItemSchema = keyBaseSchema.extend({
   data: z.strictObject({
     category: z.record(localesSchema, z.union([z.string(), z.undefined()])),
     id: z.number(),
@@ -98,4 +99,8 @@ export const realmResponseSchema = nameIdSchema.extend(responseBaseSchema.shape)
     name: realmTypeSchema,
     type: realmTypeCapitalizedSchema,
   }),
+});
+
+export const realmSearchResponseSchema = searchResponseWithoutResultsSchema.extend({
+  results: z.array(realmSearchResponseItemSchema),
 });

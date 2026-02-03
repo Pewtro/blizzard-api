@@ -7,6 +7,7 @@ import {
   mediaAssetSchema,
   nameIdKeySchema,
   responseBaseSchema,
+  searchResponseWithoutResultsSchema,
 } from '../core';
 
 const displayMediaAssetSchema = z.strictObject({
@@ -36,7 +37,7 @@ export const creatureSearchParametersSchema = baseSearchParametersSchema.extend(
   name: z.string(),
 });
 
-export const creatureSearchResponseItemSchema = keyBaseSchema.extend({
+const creatureSearchResponseItemSchema = keyBaseSchema.extend({
   data: z.strictObject({
     creature_displays: z.array(
       z.strictObject({
@@ -87,4 +88,8 @@ export const creatureResponseSchema = responseBaseSchema.extend({
   is_tameable: z.boolean(),
   name: z.string(),
   type: nameIdKeySchema,
+});
+
+export const creatureSearchResponseSchema = searchResponseWithoutResultsSchema.extend({
+  results: z.array(creatureSearchResponseItemSchema),
 });

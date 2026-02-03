@@ -9,6 +9,7 @@ import {
   nameIdKeySchema,
   nameIdSchema,
   responseBaseSchema,
+  searchResponseWithoutResultsSchema,
 } from '../core';
 
 export const itemClassIndexResponseSchema = responseBaseSchema.extend({
@@ -72,7 +73,7 @@ export const itemSearchParametersSchema = baseSearchParametersSchema.extend({
   name: z.string(),
 });
 
-export const itemSearchResponseItemSchema = keyBaseSchema.extend({
+const itemSearchResponseItemSchema = keyBaseSchema.extend({
   data: z.strictObject({
     id: z.number(),
     inventory_type: inventoryTypeSchema,
@@ -185,6 +186,10 @@ const statTypeCapitalizedSchema = z.union([
   z.literal('STRENGTH'),
   z.literal('VERSATILITY'),
 ]);
+
+export const itemSearchResponseSchema = searchResponseWithoutResultsSchema.extend({
+  results: z.array(itemSearchResponseItemSchema),
+});
 
 export const itemSetResponseSchema = responseBaseSchema.extend({
   effects: z.array(effectSchema),

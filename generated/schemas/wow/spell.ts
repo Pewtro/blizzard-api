@@ -7,6 +7,7 @@ import {
   mediaAssetSchema,
   nameIdSchema,
   responseBaseSchema,
+  searchResponseWithoutResultsSchema,
 } from '../core';
 
 export const spellMediaResponseSchema = responseBaseSchema.extend({
@@ -23,7 +24,7 @@ export const spellSearchParametersSchema = baseSearchParametersSchema.extend({
   name: z.string(),
 });
 
-export const spellSearchResponseItemSchema = keyBaseSchema.extend({
+const spellSearchResponseItemSchema = keyBaseSchema.extend({
   data: z.strictObject({
     id: z.number(),
     media: z.strictObject({
@@ -36,4 +37,8 @@ export const spellSearchResponseItemSchema = keyBaseSchema.extend({
 export const spellResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   description: z.string().nullable(),
   media: mediaSchema,
+});
+
+export const spellSearchResponseSchema = searchResponseWithoutResultsSchema.extend({
+  results: z.array(spellSearchResponseItemSchema),
 });

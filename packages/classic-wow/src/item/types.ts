@@ -7,6 +7,7 @@ import type {
   NameId,
   NameIdKey,
   ResponseBase,
+  SearchResponseWithoutResults,
 } from '@blizzard-api/core';
 
 /**
@@ -72,26 +73,9 @@ export interface ItemSearchParameters extends BaseSearchParameters {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
  */
-export interface ItemSearchResponseItem extends KeyBase {
-  data: {
-    id: number;
-    inventory_type: InventoryType;
-    is_equippable: boolean;
-    is_stackable: boolean;
-    item_class: { id: number; name: Record<Locales, string | undefined> };
-    item_subclass: { id: number; name: Record<Locales, string | undefined> };
-    level: number;
-    max_count: number;
-    media: { id: number };
-    name: Record<Locales, string | undefined>;
-    purchase_price: number;
-    purchase_quantity: number;
-    quality: ItemQuality;
-    required_level: number;
-    sell_price: number;
-  };
+export interface ItemSearchResponse extends SearchResponseWithoutResults {
+  results: Array<ItemSearchResponseItem>;
 }
-
 /**
  * The response for an item subclass.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
@@ -156,6 +140,26 @@ interface InventoryType {
 interface ItemQuality {
   name: Record<Locales, string | undefined>;
   type: 'ARTIFACT' | 'COMMON' | 'EPIC' | 'HEIRLOOM' | 'LEGENDARY' | 'POOR' | 'RARE' | 'UNCOMMON';
+}
+
+interface ItemSearchResponseItem extends KeyBase {
+  data: {
+    id: number;
+    inventory_type: InventoryType;
+    is_equippable: boolean;
+    is_stackable: boolean;
+    item_class: { id: number; name: Record<Locales, string | undefined> };
+    item_subclass: { id: number; name: Record<Locales, string | undefined> };
+    level: number;
+    max_count: number;
+    media: { id: number };
+    name: Record<Locales, string | undefined>;
+    purchase_price: number;
+    purchase_quantity: number;
+    quality: ItemQuality;
+    required_level: number;
+    sell_price: number;
+  };
 }
 
 interface Media extends KeyBase {

@@ -1,10 +1,10 @@
-import type { Resource, SearchResponse } from '@blizzard-api/core';
+import type { Resource } from '@blizzard-api/core';
 import { wowBasePath } from '@blizzard-api/core';
 import type {
   ConnectedRealmIndexResponse,
   ConnectedRealmResponse,
   ConnectedRealmSearchParameters,
-  ConnectedRealmSearchResponseItem,
+  ConnectedRealmSearchResponse,
 } from './types';
 
 /**
@@ -31,11 +31,11 @@ export function connectedRealmIndex(): Resource<ConnectedRealmIndexResponse> {
 /**
  * Search for connected realms.
  * @param options The search parameters. See {@link ConnectedRealmSearchParameters}.
- * @returns The search results. See {@link SearchResponse} & {@link ConnectedRealmSearchResponseItem}.
+ * @returns The search results. See {@link ConnectedRealmSearchResponse}.
  */
 export function connectedRealmSearch(
   options: ConnectedRealmSearchParameters,
-): Resource<SearchResponse<ConnectedRealmSearchResponseItem>, ConnectedRealmSearchParameters> {
+): Resource<ConnectedRealmSearchResponse, ConnectedRealmSearchParameters> {
   return {
     namespace: 'dynamic',
     parameters: {

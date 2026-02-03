@@ -9,7 +9,7 @@ import {
 } from '../../../generated/schemas/wow';
 
 describe('wow character-profile integration', () => {
-  it('validates character profile summary and status for putro', async ({ expect }) => {
+  it('validates character profile summary and status', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',

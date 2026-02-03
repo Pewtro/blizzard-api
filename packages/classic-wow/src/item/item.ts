@@ -1,12 +1,12 @@
 import { wowBasePath, wowMediaBasePath, wowSearchBasePath } from '@blizzard-api/core';
-import type { BlizzardNamespaces, Resource, SearchResponse } from '@blizzard-api/core';
+import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
 import type {
   ItemClassIndexResponse,
   ItemClassResponse,
   ItemMediaResponse,
   ItemResponse,
   ItemSearchParameters,
-  ItemSearchResponseItem,
+  ItemSearchResponse,
   ItemSubClassResponse,
 } from './types';
 
@@ -72,12 +72,12 @@ export function itemMedia(
  * Search for items.
  * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
  * @param options The search parameters. See {@link ItemSearchParameters}.
- * @returns The search results. See {@link SearchResponse}.
+ * @returns The search results. See {@link ItemSearchResponse}.
  */
 export function itemSearch(
   namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
   options: ItemSearchParameters,
-): Resource<SearchResponse<ItemSearchResponseItem>, Omit<ItemSearchParameters, 'locale' | 'name'>> {
+): Resource<ItemSearchResponse, Omit<ItemSearchParameters, 'locale' | 'name'>> {
   return {
     namespace,
     parameters: {

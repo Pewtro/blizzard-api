@@ -1,4 +1,4 @@
-import type { Resource, SearchResponse } from '@blizzard-api/core';
+import type { Resource } from '@blizzard-api/core';
 import { wowBasePath, wowMediaBasePath, wowSearchBasePath } from '@blizzard-api/core';
 import type {
   ItemClassIndexResponse,
@@ -6,7 +6,7 @@ import type {
   ItemMediaResponse,
   ItemResponse,
   ItemSearchParameters,
-  ItemSearchResponseItem,
+  ItemSearchResponse,
   ItemSetIndexResponse,
   ItemSetResponse,
   ItemSubClassResponse,
@@ -58,11 +58,11 @@ export function itemMedia(itemId: number): Resource<ItemMediaResponse> {
 /**
  * Search for items.
  * @param options The search parameters. See {@link ItemSearchParameters}.
- * @returns The search results. See {@link SearchResponse}.
+ * @returns The search results. See {@link ItemSearchResponse}.
  */
 export function itemSearch(
   options: ItemSearchParameters,
-): Resource<SearchResponse<ItemSearchResponseItem>, Omit<ItemSearchParameters, 'locale' | 'name'>> {
+): Resource<ItemSearchResponse, Omit<ItemSearchParameters, 'locale' | 'name'>> {
   return {
     namespace: 'static',
     parameters: {

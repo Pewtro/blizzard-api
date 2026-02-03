@@ -6,7 +6,7 @@ import { environment } from '../../../environment';
 import {
   spellMediaResponseSchema,
   spellResponseSchema,
-  spellSearchResponseItemSchema,
+  spellSearchResponseSchema,
 } from '../../../generated/schemas/wow/spell';
 
 describe('wow spell integration', () => {
@@ -24,14 +24,14 @@ describe('wow spell integration', () => {
     }
     expect(parsedSpell.success).toBe(true);
 
-    const search = await client.sendRequest(wow.spellSearch({ locale: 'en_GB', name: 'fire' }));
-    const parsedSearch = spellSearchResponseItemSchema.safeParse(search);
+    const search = await client.sendRequest(wow.spellSearch({ locale: 'en_GB', name: 'Barbed' }));
+    const parsedSearch = spellSearchResponseSchema.safeParse(search);
     if (!parsedSearch.success) {
       console.error('Spell search validation failed:', treeifyError(parsedSearch.error));
     }
     expect(parsedSearch.success).toBe(true);
 
-    const media = await client.sendRequest(wow.spellMedia(1));
+    const media = await client.sendRequest(wow.spellMedia(1_264_781));
     const parsedMedia = spellMediaResponseSchema.safeParse(media);
     if (!parsedMedia.success) {
       console.error('Spell media validation failed:', treeifyError(parsedMedia.error));

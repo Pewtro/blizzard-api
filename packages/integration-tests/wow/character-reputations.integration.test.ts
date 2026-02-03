@@ -6,7 +6,7 @@ import { environment } from '../../../environment';
 import { characterReputationsSummaryResponseSchema } from '../../../generated/schemas/wow';
 
 describe('wow character-reputations integration', () => {
-  it('validates character reputations for putro', async ({ expect }) => {
+  it('validates character reputations', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',

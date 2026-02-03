@@ -1,5 +1,5 @@
 import { wowBasePath, wowMediaBasePath, wowSearchBasePath } from '@blizzard-api/core';
-import type { BlizzardNamespaces, Resource, SearchResponse } from '@blizzard-api/core';
+import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
 import type {
   CreatureDisplayMediaResponse,
   CreatureFamilyIndexResponse,
@@ -7,7 +7,7 @@ import type {
   CreatureFamilyResponse,
   CreatureResponse,
   CreatureSearchParameters,
-  CreatureSearchResponseItem,
+  CreatureSearchResponse,
   CreatureTypeIndexResponse,
   CreatureTypeResponse,
 } from './types';
@@ -89,12 +89,12 @@ export function creatureFamilyMedia(
  * Performs a search of creatures.
  * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
  * @param options The creature search parameters. See {@link CreatureSearchParameters}.
- * @returns The creature search results. See {@link SearchResponse} & {@link CreatureSearchResponseItem}.
+ * @returns The creature search results. See {@link CreatureSearchResponse}.
  */
 export function creatureSearch(
   namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
   options: CreatureSearchParameters,
-): Resource<SearchResponse<CreatureSearchResponseItem>, Omit<CreatureSearchParameters, 'locale' | 'name'>> {
+): Resource<CreatureSearchResponse, Omit<CreatureSearchParameters, 'locale' | 'name'>> {
   return {
     namespace,
     parameters: {

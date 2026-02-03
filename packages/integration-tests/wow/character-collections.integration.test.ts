@@ -9,7 +9,7 @@ import {
 } from '../../../generated/schemas/wow';
 
 describe('wow character-collections integration', () => {
-  it('validates collections indices and summaries for putro', async ({ expect }) => {
+  it('validates collections indices and summaries', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',

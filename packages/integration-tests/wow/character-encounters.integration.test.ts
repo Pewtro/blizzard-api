@@ -6,7 +6,7 @@ import { environment } from '../../../environment';
 import { characterEncountersSummaryResponseSchema } from '../../../generated/schemas/wow';
 
 describe('wow character-encounters integration', () => {
-  it('validates character encounters for putro', async ({ expect }) => {
+  it('validates character encounters', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',

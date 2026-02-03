@@ -11,14 +11,12 @@
  *  pageSize: 20,
  *  maxPageSize: 100,
  *  pageCount: 10,
- *  results: [],
  * };
  */
-export interface SearchResponse<T> {
+export interface SearchResponseWithoutResults {
   maxPageSize: number;
   page: number;
   pageCount: number;
   pageSize: number;
   resultCountCapped?: boolean;
-  results: Array<T>;
 }

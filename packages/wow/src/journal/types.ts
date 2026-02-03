@@ -6,6 +6,7 @@ import type {
   NameId,
   NameIdKey,
   ResponseBase,
+  SearchResponseWithoutResults,
 } from '@blizzard-api/core';
 
 /**
@@ -45,17 +46,8 @@ export interface JournalEncounterSearchParameters extends BaseSearchParameters {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
  */
-export interface JournalEncounterSearchResponseItem extends KeyBase {
-  data: {
-    category: Category;
-    creatures: Array<JournalEncounterSearchCreature>;
-    id: number;
-    instance: { id: number; name: Record<Locales, string> };
-    items: Array<JournalEncounterSearchItem>;
-    modes?: Array<{ name: Record<Locales, string>; type: EncounterMode }>;
-    name: Record<Locales, string>;
-    sections: Array<JournalSection>;
-  };
+export interface JournalEncounterSearchResponse extends SearchResponseWithoutResults {
+  results: Array<JournalEncounterSearchResponseItem>;
 }
 
 /**
@@ -145,6 +137,19 @@ interface JournalEncounterSearchCreature {
 interface JournalEncounterSearchItem {
   id: number;
   item: { id: number; name: Record<Locales, string> };
+}
+
+interface JournalEncounterSearchResponseItem extends KeyBase {
+  data: {
+    category: Category;
+    creatures: Array<JournalEncounterSearchCreature>;
+    id: number;
+    instance: { id: number; name: Record<Locales, string> };
+    items: Array<JournalEncounterSearchItem>;
+    modes?: Array<{ name: Record<Locales, string>; type: EncounterMode }>;
+    name: Record<Locales, string>;
+    sections: Array<JournalSection>;
+  };
 }
 
 interface JournalSection {

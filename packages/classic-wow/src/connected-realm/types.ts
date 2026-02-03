@@ -1,4 +1,11 @@
-import type { BaseSearchParameters, KeyBase, Locales, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type {
+  BaseSearchParameters,
+  KeyBase,
+  Locales,
+  NameIdKey,
+  ResponseBase,
+  SearchResponseWithoutResults,
+} from '@blizzard-api/core';
 import type { RealmCategory, RealmLocales, RealmTimezone, RealmType, RealmTypeCapitalized } from '../realm/types';
 
 /**
@@ -37,7 +44,11 @@ export interface ConnectedRealmSearchParameters extends BaseSearchParameters {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
  */
-export interface ConnectedRealmSearchResponseItem extends KeyBase {
+export interface ConnectedRealmSearchResponse extends SearchResponseWithoutResults {
+  results: Array<ConnectedRealmSearchResponseItem>;
+}
+
+interface ConnectedRealmSearchResponseItem extends KeyBase {
   data: {
     has_queue: boolean;
     id: number;

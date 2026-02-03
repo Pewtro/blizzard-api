@@ -6,7 +6,7 @@ import { environment } from '../../../environment';
 import { characterTitlesSummaryResponseSchema } from '../../../generated/schemas/wow';
 
 describe('wow character-titles integration', () => {
-  it('validates character titles for putro', async ({ expect }) => {
+  it('validates character titles', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',

@@ -8,6 +8,7 @@ import {
   nameIdKeySchema,
   nameIdSchema,
   responseBaseSchema,
+  searchResponseWithoutResultsSchema,
 } from '../core';
 
 export const azeriteEssenceIndexResponseSchema = responseBaseSchema.extend({
@@ -34,7 +35,7 @@ export const azeriteEssenceSearchParametersSchema = baseSearchParametersSchema.e
   'allowed_specializations.id': z.number().optional(),
 });
 
-export const azeriteEssenceSearchResponseItemSchema = keyBaseSchema.extend({
+const azeriteEssenceSearchResponseItemSchema = keyBaseSchema.extend({
   data: z.strictObject({
     allowed_specializations: z.array(nameIdSchema),
     name: z.record(localesSchema, z.string()),
@@ -45,4 +46,8 @@ export const azeriteEssenceResponseSchema = nameIdSchema.extend(responseBaseSche
   allowed_specializations: z.array(nameIdKeySchema),
   media: mediaSchema,
   powers: z.array(powerSchema),
+});
+
+export const azeriteEssenceSearchResponseSchema = searchResponseWithoutResultsSchema.extend({
+  results: z.array(azeriteEssenceSearchResponseItemSchema),
 });

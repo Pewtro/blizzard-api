@@ -9,7 +9,7 @@ import {
 } from '../../../generated/schemas/wow';
 
 describe('wow character-achievements integration', () => {
-  it('validates character achievements summary and statistics for putro', async ({ expect }) => {
+  it('validates character achievements summary and statistics', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',

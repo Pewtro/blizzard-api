@@ -6,7 +6,7 @@ import { environment } from '../../../environment';
 import { characterQuestsResponseSchema } from '../../../generated/schemas/wow';
 
 describe('wow character-quests integration', () => {
-  it('validates character quests for putro', async ({ expect }) => {
+  it('validates character quests', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',
