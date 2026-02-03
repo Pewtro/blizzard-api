@@ -32,7 +32,7 @@ const effectSchema = z.object({
 
 const enchantmentSlotSchema = z.object({
   id: z.number(),
-  type: z.string(),
+  type: z.string().optional(),
 });
 
 const armorSchema = z.object({
@@ -41,10 +41,16 @@ const armorSchema = z.object({
 });
 
 const enchantmentSchema = z.object({
-  display_string: z.string(),
+  display_string: z.string().optional(),
   enchantment_id: z.number(),
   enchantment_slot: enchantmentSlotSchema,
   source_item: nameIdKeySchema.optional(),
+  spell: z
+    .object({
+      description: z.string(),
+      spell: nameIdKeySchema,
+    })
+    .optional(),
 });
 
 const modifiedCraftingStatSchema = z.object({
@@ -88,8 +94,9 @@ const transmogSchema = z.object({
   item_modified_appearance_id: z.number(),
 });
 
-const itemElementSchema = nameIdKeySchema.extend({
+const itemElementSchema = z.object({
   is_equipped: z.boolean().optional(),
+  item: nameIdKeySchema,
 });
 
 const playableClassesSchema = z.object({
@@ -103,10 +110,10 @@ const requirementsSchema = z.object({
 });
 
 const setSchema = z.object({
-  display_string: z.string(),
-  effects: z.array(effectSchema),
-  item_set: nameIdKeySchema,
-  items: z.array(itemElementSchema),
+  display_string: z.string().optional(),
+  effects: z.array(effectSchema).optional(),
+  item_set: nameIdKeySchema.optional(),
+  items: z.array(itemElementSchema).optional(),
 });
 
 const damageSchema = z.object({
@@ -126,7 +133,7 @@ const equippedItemSchema = z.object({
   armor: armorSchema.optional(),
   binding: nameTypeSchema,
   bonus_list: z.array(z.number()).optional(),
-  context: z.number(),
+  context: z.number().optional(),
   description: z.string().optional(),
   durability: displayStringValueSchema.optional(),
   enchantments: z.array(enchantmentSchema).optional(),
@@ -139,7 +146,7 @@ const equippedItemSchema = z.object({
   ),
   item_class: nameIdKeySchema,
   item_subclass: nameIdKeySchema,
-  level: displayStringValueSchema,
+  level: displayStringValueSchema.optional(),
   limit_category: z.string().optional(),
   media: keyBaseSchema.and(
     z.object({
@@ -149,7 +156,7 @@ const equippedItemSchema = z.object({
   modified_appearance_id: z.number().optional(),
   modified_crafting_stat: z.array(modifiedCraftingStatSchema).optional(),
   name: z.string(),
-  name_description: nameDescriptionSchema,
+  name_description: nameDescriptionSchema.optional(),
   quality: nameTypeSchema,
   quantity: z.number(),
   requirements: requirementsSchema.optional(),

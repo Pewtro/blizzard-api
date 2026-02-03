@@ -37,22 +37,23 @@ interface Effect {
 }
 
 interface Enchantment {
-  display_string: string;
+  display_string?: string;
   enchantment_id: number;
   enchantment_slot: EnchantmentSlot;
   source_item?: NameIdKey;
+  spell?: { description: string; spell: NameIdKey };
 }
 
 interface EnchantmentSlot {
   id: number;
-  type: string;
+  type?: string;
 }
 
 interface EquippedItem {
   armor?: Armor;
   binding: NameType;
   bonus_list?: Array<number>;
-  context: number;
+  context?: number;
   description?: string;
   durability?: DisplayStringValue;
   enchantments?: Array<Enchantment>;
@@ -61,13 +62,13 @@ interface EquippedItem {
   item: KeyBase & { id: number };
   item_class: NameIdKey;
   item_subclass: NameIdKey;
-  level: DisplayStringValue;
+  level?: DisplayStringValue;
   limit_category?: string;
   media: KeyBase & { id: number };
   modified_appearance_id?: number;
   modified_crafting_stat?: Array<ModifiedCraftingStat>;
   name: string;
-  name_description: NameDescription;
+  name_description?: NameDescription;
   quality: NameType;
   quantity: number;
   requirements?: Requirements;
@@ -82,8 +83,9 @@ interface EquippedItem {
   weapon?: Weapon;
 }
 
-interface ItemElement extends NameIdKey {
+interface ItemElement {
   is_equipped?: boolean;
+  item: NameIdKey;
 }
 
 interface ModifiedCraftingStat {
@@ -118,10 +120,10 @@ interface SellPrice {
 }
 
 interface Set {
-  display_string: string;
-  effects: Array<Effect>;
-  item_set: NameIdKey;
-  items: Array<ItemElement>;
+  display_string?: string;
+  effects?: Array<Effect>;
+  item_set?: NameIdKey;
+  items?: Array<ItemElement>;
 }
 
 interface Socket {

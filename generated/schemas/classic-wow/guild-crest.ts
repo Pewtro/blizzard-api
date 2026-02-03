@@ -17,9 +17,9 @@ const mediaSchema = keyBaseSchema.extend({
 });
 
 const colorsSchema = z.object({
-  backgrounds: z.array(backgroundSchema),
-  borders: z.array(backgroundSchema),
-  emblems: z.array(backgroundSchema),
+  backgrounds: z.array(backgroundSchema).optional(),
+  borders: z.array(backgroundSchema).optional(),
+  emblems: z.array(backgroundSchema).optional(),
 });
 
 export const guildCrestBorderEmblemResponseSchema = responseBaseSchema.extend({

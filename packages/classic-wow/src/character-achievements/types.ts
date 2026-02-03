@@ -24,8 +24,8 @@ interface Achievement {
 interface Category {
   id: number;
   name: string;
-  statistics: Array<Statistic>;
-  sub_categories: Array<SubCategory>;
+  statistics?: Array<Statistic>;
+  sub_categories?: Array<SubCategory>;
 }
 
 interface CategoryProgress {

@@ -36,8 +36,8 @@ const childCriterum3Schema = z.object({
 const categorySchema = z.object({
   id: z.number(),
   name: z.string(),
-  statistics: z.array(statisticSchema),
-  sub_categories: z.array(subCategorySchema),
+  statistics: z.array(statisticSchema).optional(),
+  sub_categories: z.array(subCategorySchema).optional(),
 });
 
 const childCriterum2Schema = z.object({

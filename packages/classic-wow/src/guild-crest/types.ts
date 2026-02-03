@@ -30,9 +30,9 @@ interface Border {
 }
 
 interface Colors {
-  backgrounds: Array<Background>;
-  borders: Array<Background>;
-  emblems: Array<Background>;
+  backgrounds?: Array<Background>;
+  borders?: Array<Background>;
+  emblems?: Array<Background>;
 }
 
 interface GuildCrestAsset {
