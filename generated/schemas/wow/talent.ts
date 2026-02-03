@@ -23,7 +23,7 @@ const playableClassSchema = keyBaseSchema.extend({
   id: z.number(),
 });
 
-const rankDescriptionSchema = z.object({
+const rankDescriptionSchema = z.strictObject({
   description: z.null(),
   rank: z.number(),
 });
@@ -36,29 +36,29 @@ const specTalentTreeSchema = keyBaseSchema.extend({
   name: z.string(),
 });
 
-const restrictionLineSchema = z.object({
+const restrictionLineSchema = z.strictObject({
   is_for_class: z.boolean(),
   required_points: z.number(),
   restricted_row: z.number(),
 });
 
-const purpleSpellTooltipSchema = z.object({
+const purpleSpellTooltipSchema = z.strictObject({
   cast_time: z.string(),
   description: z.string(),
   spell: nameIdKeySchema,
 });
 
-const nodeTypeSchema = z.object({
+const nodeTypeSchema = z.strictObject({
   id: z.number(),
   type: z.union([z.literal('ACTIVE'), z.literal('CHOICE'), z.literal('PASSIVE')]),
 });
 
-const choiceOfTooltipSchema = z.object({
+const choiceOfTooltipSchema = z.strictObject({
   spell_tooltip: purpleSpellTooltipSchema,
   talent: nameIdKeySchema,
 });
 
-const tooltipSpellTooltipSchema = z.object({
+const tooltipSpellTooltipSchema = z.strictObject({
   cast_time: z.string(),
   cooldown: z.string().optional(),
   description: z.string(),
@@ -79,24 +79,24 @@ export const talentTreeIndexResponseSchema = responseBaseSchema.extend({
   spec_talent_trees: z.array(talentTreeSchema),
 });
 
-const tooltipSchema = z.object({
+const tooltipSchema = z.strictObject({
   spell_tooltip: tooltipSpellTooltipSchema,
   talent: nameIdKeySchema,
 });
 
-const rankSchema = z.object({
+const rankSchema = z.strictObject({
   choice_of_tooltips: z.array(tooltipSchema).optional(),
   rank: z.number(),
   tooltip: tooltipSchema.optional(),
 });
 
-const specTalentNodeRankSchema = z.object({
+const specTalentNodeRankSchema = z.strictObject({
   choice_of_tooltips: z.array(choiceOfTooltipSchema).optional(),
   rank: z.number(),
   tooltip: tooltipSchema.optional(),
 });
 
-const talentNodeSchema = z.object({
+const talentNodeSchema = z.strictObject({
   display_col: z.number(),
   display_row: z.number(),
   id: z.number(),
@@ -112,7 +112,7 @@ export const talentTreeNodesResponseSchema = responseBaseSchema.extend({
   talent_nodes: z.array(talentNodeSchema),
 });
 
-const specTalentNodeSchema = z.object({
+const specTalentNodeSchema = z.strictObject({
   display_col: z.number(),
   display_row: z.number(),
   id: z.number(),
@@ -124,14 +124,14 @@ const specTalentNodeSchema = z.object({
   unlocks: z.array(z.number()).optional(),
 });
 
-const classTalentNodeRankSchema = z.object({
+const classTalentNodeRankSchema = z.strictObject({
   choice_of_tooltips: z.array(tooltipSchema).optional(),
   default_points: z.number().optional(),
   rank: z.number(),
   tooltip: tooltipSchema.optional(),
 });
 
-const classTalentNodeSchema = z.object({
+const classTalentNodeSchema = z.strictObject({
   display_col: z.number(),
   display_row: z.number(),
   id: z.number(),
@@ -145,7 +145,7 @@ const classTalentNodeSchema = z.object({
 
 export const talentTreeResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   class_talent_nodes: z.array(classTalentNodeSchema),
-  media: z.object({
+  media: z.strictObject({
     href: z.string(),
   }),
   playable_class: nameIdKeySchema,

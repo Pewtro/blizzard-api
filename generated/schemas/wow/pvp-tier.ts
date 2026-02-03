@@ -11,7 +11,7 @@ export const pvpTierMediaResponseSchema = responseBaseSchema.extend({
   id: z.number(),
 });
 
-const bracketSchema = z.object({
+const bracketSchema = z.strictObject({
   id: z.number(),
   type: z.string(),
 });

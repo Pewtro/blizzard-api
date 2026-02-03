@@ -10,35 +10,35 @@ import {
   realmSchema,
 } from '../core';
 
-const linksSchema = z.object({
+const linksSchema = z.strictObject({
   profile: hrefSchema,
   self: hrefSchema,
   user: hrefSchema,
 });
 
-const heirloomSchema = z.object({
+const heirloomSchema = z.strictObject({
   heirloom: nameIdKeySchema,
-  upgrade: z.object({
+  upgrade: z.strictObject({
     level: z.number(),
   }),
 });
 
-const mountSchema = z.object({
+const mountSchema = z.strictObject({
   is_favorite: z.boolean().optional(),
   mount: nameIdKeySchema,
 });
 
-const toySchema = z.object({
+const toySchema = z.strictObject({
   is_favorite: z.boolean().optional(),
   toy: nameIdKeySchema,
 });
 
-const slotSchema = z.object({
+const slotSchema = z.strictObject({
   name: z.string(),
   type: z.string(),
 });
 
-const positionSchema = z.object({
+const positionSchema = z.strictObject({
   facing: z.number(),
   map: nameIdSchema,
   x: z.number(),
@@ -47,7 +47,7 @@ const positionSchema = z.object({
   zone: nameIdSchema,
 });
 
-const protectedStatsSchema = z.object({
+const protectedStatsSchema = z.strictObject({
   level_gold_gained: z.number(),
   level_gold_lost: z.number(),
   level_item_value_gained: z.number(),
@@ -58,7 +58,7 @@ const protectedStatsSchema = z.object({
   total_number_deaths: z.number(),
 });
 
-const characterSchema = z.object({
+const characterSchema = z.strictObject({
   character: hrefSchema,
   faction: factionSchema,
   gender: genderSchema,
@@ -71,24 +71,24 @@ const characterSchema = z.object({
   realm: realmSchema,
 });
 
-const qualitySchema = z.object({
+const qualitySchema = z.strictObject({
   name: z.union([z.literal('Common'), z.literal('Poor'), z.literal('Rare'), z.literal('Uncommon')]),
   type: z.union([z.literal('COMMON'), z.literal('POOR'), z.literal('RARE'), z.literal('UNCOMMON')]),
 });
 
-const statsSchema = z.object({
+const statsSchema = z.strictObject({
   breed_id: z.number(),
   health: z.number(),
   power: z.number(),
   speed: z.number(),
 });
 
-const wowAccountSchema = z.object({
+const wowAccountSchema = z.strictObject({
   characters: z.array(characterSchema),
   id: z.number(),
 });
 
-export const accountCollectionsIndexResponseSchema = z.object({
+export const accountCollectionsIndexResponseSchema = z.strictObject({
   _links: linksSchema,
   heirlooms: hrefSchema,
   mounts: hrefSchema,
@@ -97,21 +97,21 @@ export const accountCollectionsIndexResponseSchema = z.object({
   transmogs: hrefSchema,
 });
 
-export const accountHeirloomsCollectionSummaryResponseSchema = z.object({
+export const accountHeirloomsCollectionSummaryResponseSchema = z.strictObject({
   _links: linksSchema,
   heirlooms: z.array(heirloomSchema),
 });
 
-export const accountMountsCollectionSummaryResponseSchema = z.object({
+export const accountMountsCollectionSummaryResponseSchema = z.strictObject({
   _links: linksSchema,
   mounts: z.array(mountSchema),
 });
 
-const petSchema = z.object({
+const petSchema = z.strictObject({
   active_slot: z.number().optional(),
   creature_display: keyBaseSchema
     .and(
-      z.object({
+      z.strictObject({
         id: z.number(),
       }),
     )
@@ -126,25 +126,25 @@ const petSchema = z.object({
   stats: statsSchema,
 });
 
-export const accountProfileSummaryResponseSchema = z.object({
+export const accountProfileSummaryResponseSchema = z.strictObject({
   _links: linksSchema,
   collections: hrefSchema,
   id: z.number(),
   wow_accounts: z.array(wowAccountSchema).optional(),
 });
 
-export const accountToysCollectionSummaryResponseSchema = z.object({
+export const accountToysCollectionSummaryResponseSchema = z.strictObject({
   _links: linksSchema,
   toys: z.array(toySchema),
 });
 
-export const accountTransmogsCollectionSummaryResponseSchema = z.object({
+export const accountTransmogsCollectionSummaryResponseSchema = z.strictObject({
   _links: linksSchema,
   appearance_sets: z.array(nameIdKeySchema),
   slots: z.array(slotSchema),
 });
 
-export const protectedCharacterProfileSummaryResponseSchema = z.object({
+export const protectedCharacterProfileSummaryResponseSchema = z.strictObject({
   _links: linksSchema,
   bind_position: positionSchema,
   character: realmSchema,
@@ -156,7 +156,7 @@ export const protectedCharacterProfileSummaryResponseSchema = z.object({
   wow_account: z.number(),
 });
 
-export const accountPetsCollectionSummaryResponseSchema = z.object({
+export const accountPetsCollectionSummaryResponseSchema = z.strictObject({
   _links: linksSchema,
   pets: z.array(petSchema),
   unlocked_battle_pet_slots: z.number(),

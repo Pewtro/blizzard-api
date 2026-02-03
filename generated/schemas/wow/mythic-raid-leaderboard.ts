@@ -7,7 +7,7 @@ const journalInstanceSchema = keyBaseSchema.extend({
   name: z.null(),
 });
 
-const realmSchema = z.object({
+const realmSchema = z.strictObject({
   id: z.number(),
   name: z.null(),
   slug: z.string(),
@@ -17,8 +17,8 @@ const guildSchema = nameIdSchema.extend({
   realm: realmSchema,
 });
 
-const entrySchema = z.object({
-  faction: z.object({
+const entrySchema = z.strictObject({
+  faction: z.strictObject({
     type: factionsSchema,
   }),
   guild: guildSchema,

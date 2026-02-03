@@ -2,12 +2,12 @@
 import { z } from 'zod';
 import { characterSchema, nameIdKeySchema, responseBaseSchema } from '../core';
 
-const socketSchema = z.object({
+const socketSchema = z.strictObject({
   conduit: nameIdKeySchema,
   rank: z.number(),
 });
 
-const typeClassSchema = z.object({
+const typeClassSchema = z.strictObject({
   name: z.union([
     z.literal('Endurance Conduit Slot'),
     z.literal('Finesse Conduit Slot'),
@@ -16,19 +16,19 @@ const typeClassSchema = z.object({
   type: z.union([z.literal('ENDURANCE'), z.literal('FINESSE'), z.literal('POTENCY')]),
 });
 
-const conduitSocketSchema = z.object({
+const conduitSocketSchema = z.strictObject({
   socket: socketSchema,
   type: typeClassSchema,
 });
 
-const traitSchema = z.object({
+const traitSchema = z.strictObject({
   conduit_socket: conduitSocketSchema.optional(),
   display_order: z.number(),
   tier: z.number(),
   trait: nameIdKeySchema.optional(),
 });
 
-const soulbindSchema = z.object({
+const soulbindSchema = z.strictObject({
   is_active: z.boolean().optional(),
   soulbind: nameIdKeySchema,
   traits: z.array(traitSchema),

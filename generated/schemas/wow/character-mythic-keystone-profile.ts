@@ -10,22 +10,22 @@ import {
   responseBaseSchema,
 } from '../core';
 
-const currentPeriodSchema = z.object({
+const currentPeriodSchema = z.strictObject({
   period: keyBaseSchema.and(
-    z.object({
+    z.strictObject({
       id: z.number(),
     }),
   ),
 });
 
-const mythicRatingSchema = z.object({
+const mythicRatingSchema = z.strictObject({
   color: colorSchema,
   rating: z.number(),
 });
 
-const memberSchema = z.object({
+const memberSchema = z.strictObject({
   character: nameIdSchema.and(
-    z.object({
+    z.strictObject({
       realm: realmSchema,
     }),
   ),
@@ -39,14 +39,14 @@ export const characterMythicKeystoneProfileIndexResponseSchema = responseBaseSch
   current_period: currentPeriodSchema,
   seasons: z.array(
     keyBaseSchema.and(
-      z.object({
+      z.strictObject({
         id: z.number(),
       }),
     ),
   ),
 });
 
-const bestRunSchema = z.object({
+const bestRunSchema = z.strictObject({
   completed_timestamp: z.number(),
   dungeon: nameIdKeySchema,
   duration: z.number(),
@@ -62,7 +62,7 @@ export const characterMythicKeystoneSeasonDetailsResponseSchema = responseBaseSc
   character: nameIdKeySchema,
   mythic_rating: mythicRatingSchema,
   season: keyBaseSchema.and(
-    z.object({
+    z.strictObject({
       id: z.number(),
     }),
   ),

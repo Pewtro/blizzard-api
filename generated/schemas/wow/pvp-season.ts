@@ -13,12 +13,12 @@ const seasonSchema = keyBaseSchema.extend({
   id: z.number(),
 });
 
-const bracketSchema = z.object({
+const bracketSchema = z.strictObject({
   id: z.number(),
   type: z.union([z.literal('ARENA_3v3'), z.literal('BATTLEGROUNDS'), z.literal('SHUFFLE')]),
 });
 
-const rewardSchema = z.object({
+const rewardSchema = z.strictObject({
   achievement: nameIdKeySchema,
   bracket: bracketSchema,
   faction: factionSchema.optional(),
@@ -33,10 +33,10 @@ export const pvpSeasonIndexResponseSchema = responseBaseSchema.extend({
 
 export const pvpSeasonResponseSchema = responseBaseSchema.extend({
   id: z.number(),
-  leaderboards: z.object({
+  leaderboards: z.strictObject({
     href: z.string(),
   }),
-  rewards: z.object({
+  rewards: z.strictObject({
     href: z.string(),
   }),
   season_name: z.string().optional(),
@@ -52,7 +52,7 @@ const characterSchema = nameIdSchema.extend({
   realm: realmSchema,
 });
 
-const seasonMatchStatisticsSchema = z.object({
+const seasonMatchStatisticsSchema = z.strictObject({
   lost: z.number(),
   played: z.number(),
   won: z.number(),
@@ -63,9 +63,9 @@ export const pvpLeaderboardIndexResponseSchema = responseBaseSchema.extend({
   season: seasonSchema,
 });
 
-const entrySchema = z.object({
+const entrySchema = z.strictObject({
   character: characterSchema,
-  faction: z.object({
+  faction: z.strictObject({
     type: factionsSchema,
   }),
   rank: z.number(),

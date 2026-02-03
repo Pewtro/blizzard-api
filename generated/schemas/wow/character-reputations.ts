@@ -2,13 +2,13 @@
 import { z } from 'zod';
 import { characterSchema, nameIdKeySchema, responseBaseSchema } from '../core';
 
-const paragonSchema = z.object({
+const paragonSchema = z.strictObject({
   max: z.number(),
   raw: z.number(),
   value: z.number(),
 });
 
-const standingSchema = z.object({
+const standingSchema = z.strictObject({
   max: z.number(),
   name: z.string(),
   raw: z.number(),
@@ -16,7 +16,7 @@ const standingSchema = z.object({
   value: z.number(),
 });
 
-const reputationSchema = z.object({
+const reputationSchema = z.strictObject({
   faction: nameIdKeySchema,
   paragon: paragonSchema.optional(),
   standing: standingSchema,

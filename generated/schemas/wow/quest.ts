@@ -23,18 +23,18 @@ export const questCategoryResponseSchema = responseBaseSchema.extend({
 });
 
 export const questIndexResponseSchema = responseBaseSchema.extend({
-  areas: z.object({
+  areas: z.strictObject({
     href: z.string(),
   }),
-  categories: z.object({
+  categories: z.strictObject({
     href: z.string(),
   }),
-  types: z.object({
+  types: z.strictObject({
     href: z.string(),
   }),
 });
 
-const requirementsSchema = z.object({
+const requirementsSchema = z.strictObject({
   faction: factionSchema,
   max_character_level: z.number(),
   min_character_level: z.number(),
@@ -50,23 +50,23 @@ export const questTypeResponseSchema = responseBaseSchema.extend({
   type: z.string(),
 });
 
-const unitsSchema = z.object({
+const unitsSchema = z.strictObject({
   copper: z.number(),
   gold: z.number(),
   silver: z.number(),
 });
 
-const reputationSchema = z.object({
+const reputationSchema = z.strictObject({
   reward: nameIdKeySchema,
   value: z.number(),
 });
 
-const moneySchema = z.object({
+const moneySchema = z.strictObject({
   units: unitsSchema,
   value: z.number(),
 });
 
-const rewardsSchema = z.object({
+const rewardsSchema = z.strictObject({
   experience: z.number(),
   money: moneySchema,
   reputations: z.array(reputationSchema),

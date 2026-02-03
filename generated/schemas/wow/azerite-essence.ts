@@ -23,7 +23,7 @@ const mediaSchema = keyBaseSchema.extend({
   id: z.number(),
 });
 
-const powerSchema = z.object({
+const powerSchema = z.strictObject({
   id: z.number(),
   main_power_spell: nameIdKeySchema,
   passive_power_spell: nameIdKeySchema,
@@ -35,7 +35,7 @@ export const azeriteEssenceSearchParametersSchema = baseSearchParametersSchema.e
 });
 
 export const azeriteEssenceSearchResponseItemSchema = keyBaseSchema.extend({
-  data: z.object({
+  data: z.strictObject({
     allowed_specializations: z.array(nameIdSchema),
     name: z.record(localesSchema, z.string()),
   }),

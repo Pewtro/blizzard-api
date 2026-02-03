@@ -89,8 +89,8 @@ export interface Gender {
  * The playable gender names/descriptions in World of Warcraft.
  */
 export interface GenderName {
-  female: string;
-  male: string;
+  female: null | string;
+  male: null | string;
 }
 
 export interface Href {

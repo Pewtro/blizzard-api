@@ -17,7 +17,7 @@ const creatureDisplaySchema = keyBaseSchema.extend({
   id: z.number(),
 });
 
-const sourceSchema = z.object({
+const sourceSchema = z.strictObject({
   name: z.string(),
   type: z.string(),
 });
@@ -28,21 +28,21 @@ export const mountSearchParametersSchema = baseSearchParametersSchema.extend({
 });
 
 export const mountSearchResponseItemSchema = keyBaseSchema.extend({
-  data: z.object({
+  data: z.strictObject({
     creature_displays: z.array(
-      z.object({
+      z.strictObject({
         id: z.number(),
       }),
     ),
     faction: z
-      .object({
+      .strictObject({
         name: z.record(localesSchema, z.string()),
         type: factionsSchema,
       })
       .optional(),
     id: z.number(),
     name: z.record(localesSchema, z.string()),
-    source: z.object({
+    source: z.strictObject({
       name: z.record(localesSchema, z.string()),
       type: z.string(),
     }),

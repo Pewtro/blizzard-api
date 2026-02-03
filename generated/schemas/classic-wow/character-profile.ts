@@ -12,7 +12,7 @@ export const characterProfileSummaryResponseSchema = responseBaseSchema.extend({
   achievements: hrefSchema.optional(),
   active_spec: nameIdKeySchema,
   active_title: z
-    .object({
+    .strictObject({
       name: z.string(),
     })
     .optional(),

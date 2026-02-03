@@ -2,18 +2,18 @@
 import { z } from 'zod';
 import { characterSchema, factionSchema, keyBaseSchema, nameIdSchema, responseBaseSchema } from '../core';
 
-const bracketSchema = z.object({
+const bracketSchema = z.strictObject({
   id: z.number(),
   type: z.string(),
 });
 
-const matchStatisticsSchema = z.object({
+const matchStatisticsSchema = z.strictObject({
   lost: z.number(),
   played: z.number(),
   won: z.number(),
 });
 
-const pvpMapStatisticSchema = z.object({
+const pvpMapStatisticSchema = z.strictObject({
   match_statistics: matchStatisticsSchema,
   world_map: nameIdSchema,
 });
@@ -24,13 +24,13 @@ export const characterPvpBracketStatisticsResponseSchema = responseBaseSchema.ex
   faction: factionSchema,
   rating: z.number(),
   season: keyBaseSchema.and(
-    z.object({
+    z.strictObject({
       id: z.number(),
     }),
   ),
   season_match_statistics: matchStatisticsSchema,
   tier: keyBaseSchema.and(
-    z.object({
+    z.strictObject({
       id: z.number(),
     }),
   ),

@@ -24,9 +24,9 @@ export const spellSearchParametersSchema = baseSearchParametersSchema.extend({
 });
 
 export const spellSearchResponseItemSchema = keyBaseSchema.extend({
-  data: z.object({
+  data: z.strictObject({
     id: z.number(),
-    media: z.object({
+    media: z.strictObject({
       id: z.number(),
     }),
     name: z.record(localesSchema, z.union([z.string(), z.undefined()])),

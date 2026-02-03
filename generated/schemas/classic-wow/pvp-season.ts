@@ -8,10 +8,10 @@ const seasonSchema = keyBaseSchema.extend({
 
 export const pvpSeasonResponseSchema = responseBaseSchema.extend({
   id: z.number(),
-  leaderboards: z.object({
+  leaderboards: z.strictObject({
     href: z.string(),
   }),
-  rewards: z.object({
+  rewards: z.strictObject({
     href: z.string(),
   }),
   season_name: z.string().optional(),

@@ -2,21 +2,21 @@
 import { z } from 'zod';
 import { characterSchema, nameIdKeySchema, nameIdSchema, responseBaseSchema } from '../core';
 
-const tierSchema = z.object({
+const tierSchema = z.strictObject({
   known_recipes: z.array(nameIdKeySchema).optional(),
   max_skill_points: z.number(),
   skill_points: z.number(),
   tier: nameIdSchema,
 });
 
-const secondarySchema = z.object({
+const secondarySchema = z.strictObject({
   max_skill_points: z.number().optional(),
   profession: nameIdKeySchema,
   skill_points: z.number().optional(),
   tiers: z.array(tierSchema).optional(),
 });
 
-const primarySchema = z.object({
+const primarySchema = z.strictObject({
   profession: nameIdKeySchema,
   tiers: z.array(tierSchema),
 });

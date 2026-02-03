@@ -10,7 +10,7 @@ const itemSchema = keyBaseSchema.extend({
   id: z.number(),
 });
 
-const socketTypeSchema = z.object({
+const socketTypeSchema = z.strictObject({
   name: z.string(),
   type: z.string(),
 });
@@ -23,7 +23,7 @@ const mediaSchema = keyBaseSchema.extend({
   id: z.number(),
 });
 
-const renownRewardSchema = z.object({
+const renownRewardSchema = z.strictObject({
   level: z.number(),
   reward: nameIdKeySchema,
 });
@@ -48,7 +48,7 @@ export const soulbindResponseSchema = responseBaseSchema.extend({
   talent_tree: nameIdKeySchema,
 });
 
-const classAbilitySpellTooltipSchema = z.object({
+const classAbilitySpellTooltipSchema = z.strictObject({
   cast_time: z.string(),
   cooldown: z.string().optional(),
   description: z.string(),
@@ -57,32 +57,32 @@ const classAbilitySpellTooltipSchema = z.object({
   spell: nameIdKeySchema,
 });
 
-const spellTooltipSchema = z.object({
+const spellTooltipSchema = z.strictObject({
   cast_time: z.string(),
   description: z.string(),
   spell: itemSchema,
 });
 
-const signatureAbilitySpellTooltipSchema = z.object({
+const signatureAbilitySpellTooltipSchema = z.strictObject({
   cast_time: z.string(),
   cooldown: z.string(),
   description: z.string(),
   spell: nameIdKeySchema,
 });
 
-const rankSchema = z.object({
+const rankSchema = z.strictObject({
   id: z.number(),
   spell_tooltip: spellTooltipSchema,
   tier: z.number(),
 });
 
-const classAbilitySchema = z.object({
+const classAbilitySchema = z.strictObject({
   id: z.number(),
   playable_class: nameIdKeySchema,
   spell_tooltip: classAbilitySpellTooltipSchema,
 });
 
-const signatureAbilitySchema = z.object({
+const signatureAbilitySchema = z.strictObject({
   id: z.number(),
   spell_tooltip: signatureAbilitySpellTooltipSchema,
 });

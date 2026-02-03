@@ -7,7 +7,7 @@ const gameModeSchema = nameIdSchema.extend({
   slug: z.string(),
 });
 
-const classSchema = z.object({
+const classSchema = z.strictObject({
   alternateHeroCardIds: z.array(z.number()).optional(),
   cardId: z.number().optional(),
   heroPowerCardId: z.number().optional(),
@@ -29,7 +29,7 @@ const raritySchema = nameIdSchema.extend({
   slug: z.string(),
 });
 
-const setGroupSchema = z.object({
+const setGroupSchema = z.strictObject({
   cardSets: z.array(z.string()),
   icon: z.string().optional(),
   name: z.string(),
@@ -53,7 +53,7 @@ const setSchema = nameIdSchema.extend({
   type: setTypeSchema,
 });
 
-export const allMetadataResponseSchema = z.object({
+export const allMetadataResponseSchema = z.strictObject({
   arenaIds: z.array(z.number()),
   bgGameModes: z.array(gameModeSchema),
   cardBackCategories: z.array(gameModeSchema),

@@ -9,16 +9,16 @@ const auctionHouseTimeLeftSchema = z.union([
   z.literal('VERY_LONG'),
 ]);
 
-const auctionHousePostingSchema = z.object({
+const auctionHousePostingSchema = z.strictObject({
   bid: z.number(),
   buyout: z.number(),
   id: z.number(),
-  item: z.object({
+  item: z.strictObject({
     bonus_lists: z.array(z.number()),
     context: z.number(),
     id: z.number(),
     modifiers: z.array(
-      z.object({
+      z.strictObject({
         type: z.number(),
         value: z.number(),
       }),
@@ -28,9 +28,9 @@ const auctionHousePostingSchema = z.object({
   time_left: auctionHouseTimeLeftSchema,
 });
 
-const auctionHouseCommoditySchema = z.object({
+const auctionHouseCommoditySchema = z.strictObject({
   id: z.number(),
-  item: z.object({
+  item: z.strictObject({
     id: z.number(),
   }),
   quantity: z.number(),
@@ -40,10 +40,10 @@ const auctionHouseCommoditySchema = z.object({
 
 export const auctionHouseResponseSchema = responseBaseSchema.extend({
   auctions: z.array(auctionHousePostingSchema),
-  commodities: z.object({
+  commodities: z.strictObject({
     href: z.string(),
   }),
-  connected_realm: z.object({
+  connected_realm: z.strictObject({
     href: z.string(),
   }),
 });

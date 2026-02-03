@@ -9,7 +9,7 @@ import {
   responseBaseSchema,
 } from '../core';
 
-const displayMediaAssetSchema = z.object({
+const displayMediaAssetSchema = z.strictObject({
   key: z.string(),
   value: z.string(),
 });
@@ -37,14 +37,14 @@ export const creatureSearchParametersSchema = baseSearchParametersSchema.extend(
 });
 
 export const creatureSearchResponseItemSchema = keyBaseSchema.extend({
-  data: z.object({
+  data: z.strictObject({
     creature_displays: z.array(
-      z.object({
+      z.strictObject({
         id: z.number(),
       }),
     ),
     family: z
-      .object({
+      .strictObject({
         id: z.number(),
         name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
       })
@@ -52,7 +52,7 @@ export const creatureSearchResponseItemSchema = keyBaseSchema.extend({
     id: z.number(),
     is_tameable: z.boolean(),
     name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
-    type: z.object({
+    type: z.strictObject({
       id: z.number(),
       name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
     }),

@@ -65,19 +65,19 @@ export const realmSearchParametersSchema = baseSearchParametersSchema.extend({
 });
 
 export const realmSearchResponseItemSchema = keyBaseSchema.extend({
-  data: z.object({
+  data: z.strictObject({
     category: z.record(localesSchema, z.union([z.string(), z.undefined()])),
     id: z.number(),
     is_tournament: z.boolean(),
     locale: realmLocalesSchema,
     name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
-    region: z.object({
+    region: z.strictObject({
       id: z.number(),
       name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
     }),
     slug: z.string(),
     timezone: realmTimezoneSchema,
-    type: z.object({
+    type: z.strictObject({
       name: realmTypeSchema,
       type: realmTypeCapitalizedSchema,
     }),
@@ -86,7 +86,7 @@ export const realmSearchResponseItemSchema = keyBaseSchema.extend({
 
 export const realmResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   category: realmCategorySchema,
-  connected_realm: z.object({
+  connected_realm: z.strictObject({
     href: z.string(),
   }),
   is_tournament: z.boolean(),
@@ -94,7 +94,7 @@ export const realmResponseSchema = nameIdSchema.extend(responseBaseSchema.shape)
   region: nameIdKeySchema,
   slug: z.string(),
   timezone: realmTimezoneSchema,
-  type: z.object({
+  type: z.strictObject({
     name: realmTypeSchema,
     type: realmTypeCapitalizedSchema,
   }),

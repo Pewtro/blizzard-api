@@ -2,7 +2,7 @@
 import { z } from 'zod';
 import { responseBaseSchema } from '../core';
 
-const keySchema = z.object({
+const keySchema = z.strictObject({
   league_id: z.number(),
   queue_id: z.number(),
   season_id: z.number(),
@@ -37,13 +37,13 @@ export const starcraftLeagueQueueSchema = z.union([
 
 export const starcraftLeagueTeamTypeSchema = z.union([z.literal('arranged'), z.literal('random')]);
 
-const divisionSchema = z.object({
+const divisionSchema = z.strictObject({
   id: z.number(),
   ladder_id: z.number(),
   member_count: z.number(),
 });
 
-const tierSchema = z.object({
+const tierSchema = z.strictObject({
   division: z.array(divisionSchema),
   id: z.number(),
 });

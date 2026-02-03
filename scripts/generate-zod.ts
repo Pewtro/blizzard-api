@@ -62,7 +62,7 @@ async function run(): Promise<void> {
           sourceText: content,
         });
 
-        const schema = generator.getZodSchemasFile(file);
+        const schema = generator.getZodSchemasFile(file).replaceAll('z.object', 'z.strictObject');
 
         if (generator.errors.length > 0) {
           for (const error of generator.errors) {

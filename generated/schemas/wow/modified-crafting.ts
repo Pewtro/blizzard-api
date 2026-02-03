@@ -9,10 +9,10 @@ export const modifiedCraftingCategoryIndexResponseSchema = responseBaseSchema.ex
 export const modifiedCraftingCategoryResponseSchema = nameIdSchema.extend(responseBaseSchema.shape);
 
 export const modifiedCraftingIndexResponseSchema = responseBaseSchema.extend({
-  categories: z.object({
+  categories: z.strictObject({
     href: z.string(),
   }),
-  slot_types: z.object({
+  slot_types: z.strictObject({
     href: z.string(),
   }),
 });

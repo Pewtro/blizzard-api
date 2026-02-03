@@ -7,7 +7,7 @@ export const characterProfileStatusResponseSchema = responseBaseSchema.extend({
   is_valid: z.boolean(),
 });
 
-const covenantProgressSchema = z.object({
+const covenantProgressSchema = z.strictObject({
   chosen_covenant: nameIdKeySchema,
   renown_level: z.number(),
   soulbinds: hrefSchema,
@@ -24,7 +24,7 @@ export const characterProfileSummaryResponseSchema = responseBaseSchema.extend({
   achievements_statistics: hrefSchema,
   active_spec: nameIdKeySchema,
   active_title: nameIdKeySchema.and(
-    z.object({
+    z.strictObject({
       display_string: z.string(),
     }),
   ),

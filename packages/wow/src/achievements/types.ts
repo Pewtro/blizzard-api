@@ -1,4 +1,4 @@
-import type { KeyBase, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { KeyBase, MediaAsset, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * Interface for a response from the achievement category index endpoint.
@@ -44,7 +44,7 @@ export interface AchievementIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface AchievementMediaResponse extends ResponseBase {
-  assets: Array<AchievementMediaItem>;
+  assets: Array<MediaAsset>;
   id: number;
 }
 
@@ -64,10 +64,4 @@ export interface AchievementResponse extends NameId, ResponseBase {
   is_account_wide: boolean;
   media: KeyBase;
   points: number;
-}
-
-interface AchievementMediaItem {
-  file_data_id: number;
-  key: string;
-  value: string;
 }

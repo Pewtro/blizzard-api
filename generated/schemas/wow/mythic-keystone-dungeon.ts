@@ -6,20 +6,20 @@ export const mythicKeystoneDungeonIndexResponseSchema = responseBaseSchema.exten
   dungeons: z.array(nameIdKeySchema),
 });
 
-const keystoneUpgradeSchema = z.object({
+const keystoneUpgradeSchema = z.strictObject({
   qualifying_duration: z.number(),
   upgrade_level: z.number(),
 });
 
-const zoneSchema = z.object({
+const zoneSchema = z.strictObject({
   slug: z.string(),
 });
 
 export const mythicKeystoneIndexResponseSchema = responseBaseSchema.extend({
-  dungeons: z.object({
+  dungeons: z.strictObject({
     href: z.string(),
   }),
-  seasons: z.object({
+  seasons: z.strictObject({
     href: z.string(),
   }),
 });

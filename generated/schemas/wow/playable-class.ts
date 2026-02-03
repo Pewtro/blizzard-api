@@ -22,7 +22,7 @@ const mediaSchema = keyBaseSchema.extend({
   id: z.number(),
 });
 
-const talentSlotSchema = z.object({
+const talentSlotSchema = z.strictObject({
   slot_number: z.number(),
   unlock_player_level: z.number(),
 });
@@ -32,7 +32,7 @@ export const playableClassResponseSchema = nameIdSchema.extend(responseBaseSchem
   media: mediaSchema,
   playable_races: z.array(nameIdKeySchema),
   power_type: nameIdKeySchema,
-  pvp_talent_slots: z.object({
+  pvp_talent_slots: z.strictObject({
     href: z.string(),
   }),
   specializations: z.array(nameIdKeySchema),

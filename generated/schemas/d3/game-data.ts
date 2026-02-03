@@ -5,7 +5,7 @@ import { responseBaseSchema } from '../core';
 export const eraIndexResponseSchema = responseBaseSchema.extend({
   current_era: z.number(),
   era: z.array(
-    z.object({
+    z.strictObject({
       href: z.string(),
     }),
   ),
@@ -18,7 +18,7 @@ export const seasonIndexResponseSchema = responseBaseSchema.extend({
   generated_by: z.string(),
   last_update_time: z.string(),
   season: z.array(
-    z.object({
+    z.strictObject({
       href: z.string(),
     }),
   ),
@@ -26,10 +26,10 @@ export const seasonIndexResponseSchema = responseBaseSchema.extend({
   service_season_state: z.string(),
 });
 
-const leaderboardSchema = z.object({
+const leaderboardSchema = z.strictObject({
   hardcore: z.boolean().optional(),
   hero_class_string: z.string().optional(),
-  ladder: z.object({
+  ladder: z.strictObject({
     href: z.string(),
   }),
   team_size: z.number().optional(),
@@ -54,24 +54,24 @@ const leaderboardIdSchema = z.union([
   z.literal('RiftTime'),
 ]);
 
-const selfSchema = z.object({
+const selfSchema = z.strictObject({
   href: z.string(),
 });
 
-const rowDataSchema = z.object({
+const rowDataSchema = z.strictObject({
   id: leaderboardIdSchema,
   number: z.number().optional(),
   string: z.string().optional(),
   timestamp: z.number().optional(),
 });
 
-const playerSchema = z.object({
+const playerSchema = z.strictObject({
   accountId: z.number(),
   data: z.array(rowDataSchema),
   key: z.string(),
 });
 
-const columnSchema = z.object({
+const columnSchema = z.strictObject({
   hidden: z.boolean(),
   id: leaderboardIdSchema,
   label: z.string().nullable(),
@@ -79,13 +79,13 @@ const columnSchema = z.object({
   type: z.union([z.literal('DATETIME'), z.literal('NUMBER'), z.literal('STRING')]),
 });
 
-const rowSchema = z.object({
+const rowSchema = z.strictObject({
   data: z.array(rowDataSchema),
   order: z.number(),
   player: z.array(playerSchema),
 });
 
-const eraLeaderboardSchema = z.object({
+const eraLeaderboardSchema = z.strictObject({
   hardcore: z.boolean().optional(),
   hero_class_string: z.string().optional(),
   ladder: selfSchema,

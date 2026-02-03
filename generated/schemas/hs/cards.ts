@@ -2,7 +2,7 @@
 import { z } from 'zod';
 import { localesSchema } from '../core';
 
-export const fetchOneCardResponseSchema = z.object({
+export const fetchOneCardResponseSchema = z.strictObject({
   artistName: z.string(),
   attack: z.number(),
   cardSetId: z.number(),
@@ -36,7 +36,7 @@ export const gameModeSchema = z.union([
   z.literal('standard'),
 ]);
 
-const baseSearchParametersSchema = z.object({
+const baseSearchParametersSchema = z.strictObject({
   gameMode: gameModeSchema.optional(),
   locale: localesSchema.optional(),
   mercenaryRole: z.string().optional(),
@@ -61,7 +61,7 @@ const baseSearchParametersSchema = z.object({
     .optional(),
 });
 
-const statsByLevelSchema = z.object({
+const statsByLevelSchema = z.strictObject({
   attack: z.number(),
   health: z.number(),
 });
@@ -80,7 +80,7 @@ export const cardSearchParametersSchema = baseSearchParametersSchema.extend({
   mercenaryId: z.union([z.array(z.number()), z.number()]).optional(),
 });
 
-const mercenaryHeroSchema = z.object({
+const mercenaryHeroSchema = z.strictObject({
   collectible: z.number(),
   craftingCost: z.number(),
   default: z.number(),
@@ -91,7 +91,7 @@ const mercenaryHeroSchema = z.object({
   statsByLevel: z.record(z.string(), statsByLevelSchema),
 });
 
-const cardSchema = z.object({
+const cardSchema = z.strictObject({
   artistName: z.string().nullable(),
   attack: z.number(),
   cardSetId: z.number(),
@@ -117,7 +117,7 @@ const cardSchema = z.object({
   text: z.string(),
 });
 
-export const cardSearchResponseSchema = z.object({
+export const cardSearchResponseSchema = z.strictObject({
   cardCount: z.number(),
   cards: z.array(cardSchema),
   page: z.number(),

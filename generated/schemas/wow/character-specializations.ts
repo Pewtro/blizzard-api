@@ -2,7 +2,7 @@
 import { z } from 'zod';
 import { characterSchema, nameIdKeySchema, responseBaseSchema } from '../core';
 
-const spellTooltipSchema = z.object({
+const spellTooltipSchema = z.strictObject({
   cast_time: z.union([
     z.literal('1.5 sec cast'),
     z.literal('2.5 sec cast'),
@@ -29,24 +29,24 @@ const spellTooltipSchema = z.object({
   spell: nameIdKeySchema,
 });
 
-const selectedSchema = z.object({
+const selectedSchema = z.strictObject({
   spell_tooltip: spellTooltipSchema,
   talent: nameIdKeySchema,
 });
 
-const pvpTalentSlotSchema = z.object({
+const pvpTalentSlotSchema = z.strictObject({
   selected: selectedSchema,
   slot_number: z.number(),
 });
 
-const selectedTalentSchema = z.object({
+const selectedTalentSchema = z.strictObject({
   default_points: z.number().optional(),
   id: z.number(),
   rank: z.number(),
   tooltip: selectedSchema,
 });
 
-const loadoutSchema = z.object({
+const loadoutSchema = z.strictObject({
   is_active: z.boolean(),
   selected_class_talent_tree: nameIdKeySchema,
   selected_class_talents: z.array(selectedTalentSchema),
@@ -55,7 +55,7 @@ const loadoutSchema = z.object({
   talent_loadout_code: z.string(),
 });
 
-const specializationSchema = z.object({
+const specializationSchema = z.strictObject({
   glyphs: z.array(nameIdKeySchema).optional(),
   loadouts: z.array(loadoutSchema),
   pvp_talent_slots: z.array(pvpTalentSlotSchema).optional(),

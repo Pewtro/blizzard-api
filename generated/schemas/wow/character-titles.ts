@@ -4,7 +4,7 @@ import { characterSchema, nameIdKeySchema, responseBaseSchema } from '../core';
 
 export const characterTitlesSummaryResponseSchema = responseBaseSchema.extend({
   active_title: nameIdKeySchema.and(
-    z.object({
+    z.strictObject({
       display_string: z.string(),
     }),
   ),

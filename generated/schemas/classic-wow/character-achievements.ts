@@ -2,18 +2,18 @@
 import { z } from 'zod';
 import { characterSchema, nameIdKeySchema, responseBaseSchema } from '../core';
 
-const categoryProgressSchema = z.object({
+const categoryProgressSchema = z.strictObject({
   category: nameIdKeySchema,
   points: z.number(),
   quantity: z.number(),
 });
 
-const recentEventSchema = z.object({
+const recentEventSchema = z.strictObject({
   achievement: nameIdKeySchema,
   timestamp: z.number(),
 });
 
-const statisticSchema = z.object({
+const statisticSchema = z.strictObject({
   description: z.string().optional().nullable(),
   id: z.number(),
   last_updated_timestamp: z.number(),
@@ -21,33 +21,33 @@ const statisticSchema = z.object({
   quantity: z.number(),
 });
 
-const subCategorySchema = z.object({
+const subCategorySchema = z.strictObject({
   id: z.number(),
   name: z.string(),
   statistics: z.array(statisticSchema),
 });
 
-const childCriterum3Schema = z.object({
+const childCriterum3Schema = z.strictObject({
   amount: z.number().optional(),
   id: z.number(),
   is_completed: z.boolean(),
 });
 
-const categorySchema = z.object({
+const categorySchema = z.strictObject({
   id: z.number(),
   name: z.string(),
   statistics: z.array(statisticSchema).optional(),
   sub_categories: z.array(subCategorySchema).optional(),
 });
 
-const childCriterum2Schema = z.object({
+const childCriterum2Schema = z.strictObject({
   amount: z.number().optional(),
   child_criteria: z.array(childCriterum3Schema).optional(),
   id: z.number(),
   is_completed: z.boolean(),
 });
 
-const childCriterumSchema = z.object({
+const childCriterumSchema = z.strictObject({
   amount: z.number().optional(),
   child_criteria: z.array(childCriterum2Schema).optional(),
   id: z.number(),
@@ -59,14 +59,14 @@ export const characterAchievementStatisticsResponseSchema = responseBaseSchema.e
   character: characterSchema,
 });
 
-const criteriaSchema = z.object({
+const criteriaSchema = z.strictObject({
   amount: z.number().optional(),
   child_criteria: z.array(childCriterumSchema).optional(),
   id: z.number(),
   is_completed: z.boolean(),
 });
 
-const achievementSchema = z.object({
+const achievementSchema = z.strictObject({
   achievement: nameIdKeySchema,
   completed_timestamp: z.number().optional(),
   criteria: criteriaSchema.optional(),

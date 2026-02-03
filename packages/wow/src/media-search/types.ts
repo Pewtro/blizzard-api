@@ -1,4 +1,4 @@
-import type { BaseSearchParameters, KeyBase } from '@blizzard-api/core';
+import type { BaseSearchParameters, KeyBase, MediaAsset } from '@blizzard-api/core';
 
 /**
  * The search parameters for media.
@@ -19,10 +19,4 @@ export interface MediaSearchResponseItem extends KeyBase {
     assets: Array<MediaAsset>;
     id: number;
   };
-}
-
-interface MediaAsset {
-  file_data_id: number;
-  key: string;
-  value: string;
 }

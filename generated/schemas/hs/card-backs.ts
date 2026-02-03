@@ -2,7 +2,7 @@
 import { z } from 'zod';
 import { localesSchema } from '../core';
 
-export const cardBackSearchParametersSchema = z.object({
+export const cardBackSearchParametersSchema = z.strictObject({
   cardBackCategory: z
     .union([
       z.literal('achieve'),
@@ -44,7 +44,7 @@ export const cardBackSearchParametersSchema = z.object({
   textFilter: z.string().optional(),
 });
 
-export const singleCardBackSearchResponseSchema = z.object({
+export const singleCardBackSearchResponseSchema = z.strictObject({
   id: z.number(),
   image: z.string(),
   name: z.union([z.record(localesSchema, z.string()), z.string()]),
@@ -65,7 +65,7 @@ export const searchOptionsSchema = z.union([
 
 export const sortOptionsSchema = z.union([z.literal('asc'), z.literal('desc')]);
 
-export const cardBackSearchResponseSchema = z.object({
+export const cardBackSearchResponseSchema = z.strictObject({
   cardBacks: z.array(singleCardBackSearchResponseSchema),
   cardCount: z.number(),
   page: z.number(),

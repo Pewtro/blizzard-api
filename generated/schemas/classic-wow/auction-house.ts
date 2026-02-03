@@ -6,11 +6,11 @@ export const auctionHouseIndexResponseSchema = responseBaseSchema.extend({
   auctions: z.array(nameIdKeySchema),
 });
 
-const auctionSchema = z.object({
+const auctionSchema = z.strictObject({
   bid: z.number(),
   buyout: z.number(),
   id: z.number(),
-  item: z.object({
+  item: z.strictObject({
     id: z.number(),
     rand: z.number().optional(),
     seed: z.number().optional(),
@@ -21,7 +21,7 @@ const auctionSchema = z.object({
 
 export const auctionsResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   auctions: z.array(auctionSchema),
-  connected_realm: z.object({
+  connected_realm: z.strictObject({
     href: z.string(),
   }),
 });

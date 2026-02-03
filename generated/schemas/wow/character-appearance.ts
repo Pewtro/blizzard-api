@@ -11,46 +11,46 @@ import {
   responseBaseSchema,
 } from '../core';
 
-const itemSchema = z.object({
+const itemSchema = z.strictObject({
   enchant: z.number(),
   id: z.number(),
   internal_slot_id: z.number(),
   item_appearance_modifier_id: z.number(),
-  slot: z.object({
+  slot: z.strictObject({
     name: z.string(),
     type: z.string(),
   }),
   subclass: z.number(),
 });
 
-const rgbWithIdSchema = z.object({
+const rgbWithIdSchema = z.strictObject({
   id: z.number(),
   rgba: colorSchema,
 });
 
-const choiceSchema = z.object({
+const choiceSchema = z.strictObject({
   display_order: z.number(),
   id: z.number(),
   name: z.string().optional(),
 });
 
-const customizationSchema = z.object({
+const customizationSchema = z.strictObject({
   choice: choiceSchema,
   option: nameIdSchema,
 });
 
-const borderEmblemSchema = z.object({
+const borderEmblemSchema = z.strictObject({
   color: rgbWithIdSchema,
   id: z.number(),
   media: keyBaseSchema.and(
-    z.object({
+    z.strictObject({
       id: z.number(),
     }),
   ),
 });
 
-const guildCrestSchema = z.object({
-  background: z.object({
+const guildCrestSchema = z.strictObject({
+  background: z.strictObject({
     color: rgbWithIdSchema,
   }),
   border: borderEmblemSchema,

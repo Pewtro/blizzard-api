@@ -11,36 +11,36 @@ export const characterCollectionsIndexResponseSchema = responseBaseSchema.extend
   transmogs: hrefSchema,
 });
 
-const heirloomSchema = z.object({
+const heirloomSchema = z.strictObject({
   heirloom: nameIdKeySchema,
-  upgrade: z.object({
+  upgrade: z.strictObject({
     level: z.number(),
   }),
 });
 
-const mountSchema = z.object({
+const mountSchema = z.strictObject({
   is_character_specific: z.boolean().optional(),
   is_favorite: z.boolean().optional(),
   is_useable: z.boolean(),
   mount: nameIdKeySchema,
 });
 
-const toySchema = z.object({
+const toySchema = z.strictObject({
   is_favorite: z.boolean().optional(),
   toy: nameIdKeySchema,
 });
 
-const slotSchema = z.object({
+const slotSchema = z.strictObject({
   name: z.string(),
   type: z.string(),
 });
 
-const qualitySchema = z.object({
+const qualitySchema = z.strictObject({
   name: z.union([z.literal('Common'), z.literal('Poor'), z.literal('Rare'), z.literal('Uncommon')]),
   type: z.union([z.literal('COMMON'), z.literal('POOR'), z.literal('RARE'), z.literal('UNCOMMON')]),
 });
 
-const statsSchema = z.object({
+const statsSchema = z.strictObject({
   breed_id: z.number(),
   health: z.number(),
   power: z.number(),
@@ -55,11 +55,11 @@ export const characterMountsCollectionSummaryResponseSchema = responseBaseSchema
   mounts: z.array(mountSchema),
 });
 
-const petSchema = z.object({
+const petSchema = z.strictObject({
   active_slot: z.number().optional(),
   creature_display: keyBaseSchema
     .and(
-      z.object({
+      z.strictObject({
         id: z.number(),
       }),
     )

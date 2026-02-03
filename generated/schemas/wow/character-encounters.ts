@@ -8,29 +8,29 @@ export const characterEncountersSummaryResponseSchema = responseBaseSchema.exten
   raids: hrefSchema,
 });
 
-const dungeonDifficultiesSchema = z.object({
+const dungeonDifficultiesSchema = z.strictObject({
   name: z.union([z.literal('Heroic'), z.literal('Mythic'), z.literal('Mythic+ Dungeons'), z.literal('Normal')]),
   type: z.union([z.literal('HEROIC'), z.literal('MYTHIC'), z.literal('MYTHIC_KEYSTONE'), z.literal('NORMAL')]),
 });
 
-const statusSchema = z.object({
+const statusSchema = z.strictObject({
   name: z.union([z.literal('Complete'), z.literal('In Progress')]),
   type: z.union([z.literal('COMPLETE'), z.literal('IN_PROGRESS')]),
 });
 
-const encounterSchema = z.object({
+const encounterSchema = z.strictObject({
   completed_count: z.number(),
   encounter: nameIdKeySchema,
   last_kill_timestamp: z.number(),
 });
 
-const progressSchema = z.object({
+const progressSchema = z.strictObject({
   completed_count: z.number(),
   encounters: z.array(encounterSchema),
   total_count: z.number(),
 });
 
-const raidDifficultiesSchema = z.object({
+const raidDifficultiesSchema = z.strictObject({
   name: z.union([
     z.literal('10 Player'),
     z.literal('10 Player (Heroic)'),
@@ -53,34 +53,34 @@ const raidDifficultiesSchema = z.object({
   ]),
 });
 
-const raidModeSchema = z.object({
+const raidModeSchema = z.strictObject({
   difficulty: raidDifficultiesSchema,
   progress: progressSchema,
   status: statusSchema,
 });
 
-const dungeonModeSchema = z.object({
+const dungeonModeSchema = z.strictObject({
   difficulty: dungeonDifficultiesSchema,
   progress: progressSchema,
   status: statusSchema,
 });
 
-const dungeonInstanceSchema = z.object({
+const dungeonInstanceSchema = z.strictObject({
   instance: nameIdKeySchema,
   modes: z.array(dungeonModeSchema),
 });
 
-const raidInstanceSchema = z.object({
+const raidInstanceSchema = z.strictObject({
   instance: nameIdKeySchema,
   modes: z.array(raidModeSchema),
 });
 
-const expansionWithDungeonInstancesSchema = z.object({
+const expansionWithDungeonInstancesSchema = z.strictObject({
   expansion: nameIdKeySchema,
   instances: z.array(dungeonInstanceSchema),
 });
 
-const expansionWithRaidInstancesSchema = z.object({
+const expansionWithRaidInstancesSchema = z.strictObject({
   expansion: nameIdKeySchema,
   instances: z.array(raidInstanceSchema),
 });

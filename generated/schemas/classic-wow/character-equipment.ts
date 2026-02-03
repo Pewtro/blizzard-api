@@ -2,85 +2,85 @@
 import { z } from 'zod';
 import { characterSchema, colorSchema, keyBaseSchema, nameIdKeySchema, responseBaseSchema } from '../core';
 
-const nameDescriptionSchema = z.object({
+const nameDescriptionSchema = z.strictObject({
   color: colorSchema,
   display_string: z.string(),
 });
 
-const nameTypeSchema = z.object({
+const nameTypeSchema = z.strictObject({
   name: z.string(),
   type: z.string(),
 });
 
-const displayStringsSchema = z.object({
+const displayStringsSchema = z.strictObject({
   copper: z.string(),
   gold: z.string(),
   header: z.string(),
   silver: z.string(),
 });
 
-const displayStringValueSchema = z.object({
+const displayStringValueSchema = z.strictObject({
   display_string: z.string(),
   value: z.number(),
 });
 
-const effectSchema = z.object({
+const effectSchema = z.strictObject({
   display_string: z.string(),
   is_active: z.boolean(),
   required_count: z.number(),
 });
 
-const enchantmentSlotSchema = z.object({
+const enchantmentSlotSchema = z.strictObject({
   id: z.number(),
   type: z.string().optional(),
 });
 
-const armorSchema = z.object({
+const armorSchema = z.strictObject({
   display: nameDescriptionSchema,
   value: z.number(),
 });
 
-const enchantmentSchema = z.object({
+const enchantmentSchema = z.strictObject({
   display_string: z.string().optional(),
   enchantment_id: z.number(),
   enchantment_slot: enchantmentSlotSchema,
   source_item: nameIdKeySchema.optional(),
   spell: z
-    .object({
+    .strictObject({
       description: z.string(),
       spell: nameIdKeySchema,
     })
     .optional(),
 });
 
-const modifiedCraftingStatSchema = z.object({
+const modifiedCraftingStatSchema = z.strictObject({
   id: z.number(),
   name: z.string(),
   type: z.string(),
 });
 
-const sellPriceSchema = z.object({
+const sellPriceSchema = z.strictObject({
   display_strings: displayStringsSchema,
   value: z.number(),
 });
 
-const socketSchema = z.object({
+const socketSchema = z.strictObject({
   display_string: z.string(),
   item: nameIdKeySchema,
   media: keyBaseSchema.and(
-    z.object({
+    z.strictObject({
       id: z.number(),
     }),
   ),
   socket_type: nameTypeSchema,
 });
 
-const spellSchema = z.object({
+const spellSchema = z.strictObject({
   description: z.string(),
   spell: nameIdKeySchema,
 });
 
-const statSchema = z.object({
+const statSchema = z.strictObject({
   display: nameDescriptionSchema,
   is_equip_bonus: z.boolean().optional(),
   is_negated: z.boolean().optional(),
@@ -88,48 +88,48 @@ const statSchema = z.object({
   value: z.number(),
 });
 
-const transmogSchema = z.object({
+const transmogSchema = z.strictObject({
   display_string: z.string(),
   item: nameIdKeySchema,
   item_modified_appearance_id: z.number(),
 });
 
-const itemElementSchema = z.object({
+const itemElementSchema = z.strictObject({
   is_equipped: z.boolean().optional(),
   item: nameIdKeySchema,
 });
 
-const playableClassesSchema = z.object({
+const playableClassesSchema = z.strictObject({
   display_string: z.string(),
   links: z.array(nameIdKeySchema),
 });
 
-const requirementsSchema = z.object({
+const requirementsSchema = z.strictObject({
   level: displayStringValueSchema,
   playable_classes: playableClassesSchema.optional(),
 });
 
-const setSchema = z.object({
+const setSchema = z.strictObject({
   display_string: z.string().optional(),
   effects: z.array(effectSchema).optional(),
   item_set: nameIdKeySchema.optional(),
   items: z.array(itemElementSchema).optional(),
 });
 
-const damageSchema = z.object({
+const damageSchema = z.strictObject({
   damage_class: nameTypeSchema,
   display_string: z.string(),
   max_value: z.number(),
   min_value: z.number(),
 });
 
-const weaponSchema = z.object({
+const weaponSchema = z.strictObject({
   attack_speed: displayStringValueSchema,
   damage: damageSchema,
   dps: displayStringValueSchema,
 });
 
-const equippedItemSchema = z.object({
+const equippedItemSchema = z.strictObject({
   armor: armorSchema.optional(),
   binding: nameTypeSchema,
   bonus_list: z.array(z.number()).optional(),
@@ -140,7 +140,7 @@ const equippedItemSchema = z.object({
   inventory_type: nameTypeSchema,
   is_subclass_hidden: z.boolean().optional(),
   item: keyBaseSchema.and(
-    z.object({
+    z.strictObject({
       id: z.number(),
     }),
   ),
@@ -149,7 +149,7 @@ const equippedItemSchema = z.object({
   level: displayStringValueSchema.optional(),
   limit_category: z.string().optional(),
   media: keyBaseSchema.and(
-    z.object({
+    z.strictObject({
       id: z.number(),
     }),
   ),

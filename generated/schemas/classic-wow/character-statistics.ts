@@ -2,12 +2,12 @@
 import { z } from 'zod';
 import { characterSchema, nameIdKeySchema, responseBaseSchema } from '../core';
 
-const baseEffectiveStatSchema = z.object({
+const baseEffectiveStatSchema = z.strictObject({
   base: z.number(),
   effective: z.number(),
 });
 
-const ratingWithValueSchema = z.object({
+const ratingWithValueSchema = z.strictObject({
   rating_bonus: z.number(),
   rating_normalized: z.number(),
   value: z.number(),

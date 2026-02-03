@@ -2,12 +2,12 @@
 import { z } from 'zod';
 import { colorSchema, keyBaseSchema, responseBaseSchema } from '../core';
 
-const guildCrestAssetSchema = z.object({
+const guildCrestAssetSchema = z.strictObject({
   key: z.string(),
   value: z.string(),
 });
 
-const backgroundSchema = z.object({
+const backgroundSchema = z.strictObject({
   id: z.number(),
   rgba: colorSchema,
 });
@@ -16,7 +16,7 @@ const mediaSchema = keyBaseSchema.extend({
   id: z.number(),
 });
 
-const colorsSchema = z.object({
+const colorsSchema = z.strictObject({
   backgrounds: z.array(backgroundSchema),
   borders: z.array(backgroundSchema),
   emblems: z.array(backgroundSchema),
@@ -27,7 +27,7 @@ export const guildCrestBorderEmblemResponseSchema = responseBaseSchema.extend({
   id: z.number(),
 });
 
-const borderSchema = z.object({
+const borderSchema = z.strictObject({
   id: z.number(),
   media: mediaSchema,
 });

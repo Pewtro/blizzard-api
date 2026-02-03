@@ -15,12 +15,12 @@ const mediaSchema = keyBaseSchema.extend({
   id: z.number(),
 });
 
-const typeSchema = z.object({
+const typeSchema = z.strictObject({
   name: z.string(),
   type: z.string(),
 });
 
-const categorySchema = z.object({
+const categorySchema = z.strictObject({
   name: z.string(),
   recipes: z.array(nameIdKeySchema),
 });
@@ -30,11 +30,11 @@ export const recipeMediaResponseSchema = responseBaseSchema.extend({
   id: z.number(),
 });
 
-const craftedQuantitySchema = z.object({
+const craftedQuantitySchema = z.strictObject({
   value: z.number(),
 });
 
-const reagentSchema = z.object({
+const reagentSchema = z.strictObject({
   quantity: z.number(),
   reagent: nameIdKeySchema,
 });

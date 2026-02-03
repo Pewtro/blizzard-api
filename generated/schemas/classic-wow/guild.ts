@@ -16,44 +16,44 @@ const guildSchema = nameIdKeySchema.extend({
   realm: realmSchema,
 });
 
-const categoryProgressSchema = z.object({
+const categoryProgressSchema = z.strictObject({
   category: nameIdKeySchema,
   points: z.number(),
   quantity: z.number(),
 });
 
-const recentEventSchema = z.object({
+const recentEventSchema = z.strictObject({
   achievement: nameIdKeySchema,
   timestamp: z.number(),
 });
 
-const characterAchievementSchema = z.object({
+const characterAchievementSchema = z.strictObject({
   achievement: nameIdKeySchema,
   character: characterSchema,
 });
 
-const rgbWithIdSchema = z.object({
+const rgbWithIdSchema = z.strictObject({
   id: z.number(),
   rgba: colorSchema,
 });
 
-const childCriterumSchema = z.object({
+const childCriterumSchema = z.strictObject({
   amount: z.number(),
   id: z.number(),
   is_completed: z.boolean(),
 });
 
-const borderSchema = z.object({
+const borderSchema = z.strictObject({
   color: rgbWithIdSchema,
   id: z.number(),
   media: keyBaseSchema.and(
-    z.object({
+    z.strictObject({
       id: z.number(),
     }),
   ),
 });
 
-const criteriaSchema = z.object({
+const criteriaSchema = z.strictObject({
   amount: z.number().optional(),
   child_criteria: z.array(childCriterumSchema).optional(),
   id: z.number(),
@@ -74,30 +74,30 @@ export const guildAchievementsClassicEraResponseSchema = responseBaseSchema.exte
   guild: guildSchema,
 });
 
-const achievementSchema = z.object({
+const achievementSchema = z.strictObject({
   achievement: nameIdKeySchema,
   completed_timestamp: z.number().optional(),
   criteria: criteriaSchema.optional(),
   id: z.number(),
 });
 
-const activityElementSchema = z.object({
-  activity: z.object({
+const activityElementSchema = z.strictObject({
+  activity: z.strictObject({
     type: z.string(),
   }),
   character_achievement: characterAchievementSchema,
   timestamp: z.number(),
 });
 
-const crestSchema = z.object({
-  background: z.object({
+const crestSchema = z.strictObject({
+  background: z.strictObject({
     color: rgbWithIdSchema,
   }),
   border: borderSchema,
   emblem: borderSchema,
 });
 
-const memberSchema = z.object({
+const memberSchema = z.strictObject({
   character: rosterMemberCharacterSchema,
   rank: z.number(),
 });

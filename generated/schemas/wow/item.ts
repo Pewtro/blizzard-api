@@ -26,7 +26,7 @@ export const itemMediaResponseSchema = responseBaseSchema.extend({
   id: z.number(),
 });
 
-const inventoryTypeSchema = z.object({
+const inventoryTypeSchema = z.strictObject({
   name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
   type: z.union([
     z.literal('BACK'),
@@ -53,7 +53,7 @@ const mediaSchema = keyBaseSchema.extend({
   id: z.number(),
 });
 
-const itemQualitySchema = z.object({
+const itemQualitySchema = z.strictObject({
   name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
   type: z.union([
     z.literal('ARTIFACT'),
@@ -73,22 +73,22 @@ export const itemSearchParametersSchema = baseSearchParametersSchema.extend({
 });
 
 export const itemSearchResponseItemSchema = keyBaseSchema.extend({
-  data: z.object({
+  data: z.strictObject({
     id: z.number(),
     inventory_type: inventoryTypeSchema,
     is_equippable: z.boolean(),
     is_stackable: z.boolean(),
-    item_class: z.object({
+    item_class: z.strictObject({
       id: z.number(),
       name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
     }),
-    item_subclass: z.object({
+    item_subclass: z.strictObject({
       id: z.number(),
       name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
     }),
     level: z.number(),
     max_count: z.number(),
-    media: z.object({
+    media: z.strictObject({
       id: z.number(),
     }),
     name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
@@ -104,7 +104,7 @@ export const itemSetIndexResponseSchema = responseBaseSchema.extend({
   item_sets: z.array(nameIdKeySchema),
 });
 
-const effectSchema = z.object({
+const effectSchema = z.strictObject({
   display_string: z.string(),
   required_count: z.number(),
 });
@@ -117,13 +117,13 @@ export const itemSubClassResponseSchema = responseBaseSchema.extend({
   verbose_name: z.string(),
 });
 
-const displaySchema = z.object({
+const displaySchema = z.strictObject({
   color: colorSchema,
   display_string: z.string(),
 });
 
-const damageSchema = z.object({
-  damage_class: z.object({
+const damageSchema = z.strictObject({
+  damage_class: z.strictObject({
     name: z.string(),
     type: z.string(),
   }),
@@ -132,32 +132,32 @@ const damageSchema = z.object({
   min_value: z.number(),
 });
 
-const durabilitySchema = z.object({
+const durabilitySchema = z.strictObject({
   display_string: z.string(),
   value: z.number(),
 });
 
-const armorSchema = z.object({
+const armorSchema = z.strictObject({
   display: displaySchema,
   value: z.number(),
 });
 
-const requirementsSchema = z.object({
+const requirementsSchema = z.strictObject({
   level: durabilitySchema,
 });
 
-const spellSchema = z.object({
+const spellSchema = z.strictObject({
   description: z.string(),
   spell: nameIdKeySchema,
 });
 
-const weaponSchema = z.object({
+const weaponSchema = z.strictObject({
   attack_speed: durabilitySchema,
   damage: damageSchema,
   dps: durabilitySchema,
 });
 
-const recipeItemDisplayStringsSchema = z.object({
+const recipeItemDisplayStringsSchema = z.strictObject({
   copper: z.string(),
   gold: z.string(),
   header: z.string(),
@@ -193,19 +193,19 @@ export const itemSetResponseSchema = responseBaseSchema.extend({
   name: z.string(),
 });
 
-const statSchema = z.object({
+const statSchema = z.strictObject({
   display: displaySchema,
   is_negated: z.boolean().optional(),
-  type: z.object({
+  type: z.strictObject({
     name: statTypeSchema,
     type: statTypeCapitalizedSchema,
   }),
   value: z.number(),
 });
 
-const recipeItemSchema = z.object({
+const recipeItemSchema = z.strictObject({
   armor: armorSchema.optional(),
-  binding: z.object({
+  binding: z.strictObject({
     name: z.string(),
     type: z.string(),
   }),
@@ -219,7 +219,7 @@ const recipeItemSchema = z.object({
   name: z.string(),
   quality: itemQualitySchema,
   requirements: requirementsSchema,
-  sell_price: z.object({
+  sell_price: z.strictObject({
     display_strings: recipeItemDisplayStringsSchema,
     value: z.number(),
   }),
@@ -227,11 +227,11 @@ const recipeItemSchema = z.object({
   weapon: weaponSchema.optional(),
 });
 
-const recipeSchema = z.object({
+const recipeSchema = z.strictObject({
   item: recipeItemSchema,
   reagents: z.array(
     nameIdKeySchema.and(
-      z.object({
+      z.strictObject({
         quantity: z.number(),
       }),
     ),
@@ -239,10 +239,10 @@ const recipeSchema = z.object({
   reagents_display_string: z.string(),
 });
 
-const previewItemSchema = z.object({
+const previewItemSchema = z.strictObject({
   armor: armorSchema.optional(),
   binding: z
-    .object({
+    .strictObject({
       name: z.string(),
       type: z.string(),
     })

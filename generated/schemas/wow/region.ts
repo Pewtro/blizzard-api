@@ -4,7 +4,7 @@ import { nameIdSchema, responseBaseSchema } from '../core';
 
 export const regionIndexResponseSchema = responseBaseSchema.extend({
   regions: z.array(
-    z.object({
+    z.strictObject({
       href: z.string(),
     }),
   ),

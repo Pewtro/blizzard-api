@@ -10,7 +10,7 @@ const mediaSchema = keyBaseSchema.extend({
   id: z.number(),
 });
 
-const sourceSchema = z.object({
+const sourceSchema = z.strictObject({
   name: z.string(),
   type: z.string(),
 });

@@ -6,12 +6,12 @@ export const mythicKeystoneLeaderboardIndexResponseSchema = responseBaseSchema.e
   current_leaderboards: z.array(nameIdKeySchema),
 });
 
-const keystoneAffixElementSchema = z.object({
+const keystoneAffixElementSchema = z.strictObject({
   keystone_affix: nameIdKeySchema,
   starting_level: z.number(),
 });
 
-const mythicRatingSchema = z.object({
+const mythicRatingSchema = z.strictObject({
   color: colorSchema,
   rating: z.number(),
 });
@@ -29,15 +29,15 @@ const profileSchema = nameIdSchema.extend({
   realm: realmSchema,
 });
 
-const memberSchema = z.object({
-  faction: z.object({
+const memberSchema = z.strictObject({
+  faction: z.strictObject({
     type: factionsSchema,
   }),
   profile: profileSchema,
   specialization: specializationSchema,
 });
 
-const leadingGroupSchema = z.object({
+const leadingGroupSchema = z.strictObject({
   completed_timestamp: z.number(),
   duration: z.number(),
   keystone_level: z.number(),
@@ -47,7 +47,7 @@ const leadingGroupSchema = z.object({
 });
 
 export const mythicKeystoneLeaderboardResponseSchema = responseBaseSchema.extend({
-  connected_realm: z.object({
+  connected_realm: z.strictObject({
     href: z.string(),
   }),
   keystone_affixes: z.array(keystoneAffixElementSchema),

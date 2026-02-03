@@ -23,7 +23,7 @@ const mediaSchema = keyBaseSchema.extend({
   id: z.number(),
 });
 
-const primaryStatTypeSchema = z.object({
+const primaryStatTypeSchema = z.strictObject({
   name: z.string(),
   type: z.string(),
 });
@@ -32,7 +32,7 @@ const specTalentTreeSchema = keyBaseSchema.extend({
   name: z.string(),
 });
 
-const spellTooltipSchema = z.object({
+const spellTooltipSchema = z.strictObject({
   cast_time: z.string(),
   cooldown: z.string().optional(),
   description: z.string(),
@@ -40,7 +40,7 @@ const spellTooltipSchema = z.object({
   range: z.string().optional(),
 });
 
-const pvpTalentSchema = z.object({
+const pvpTalentSchema = z.strictObject({
   spell_tooltip: spellTooltipSchema,
   talent: nameIdKeySchema,
 });

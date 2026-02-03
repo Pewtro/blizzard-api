@@ -2,17 +2,17 @@
 import { z } from 'zod';
 import { characterSchema, responseBaseSchema } from '../core';
 
-const baseEffectiveStatSchema = z.object({
+const baseEffectiveStatSchema = z.strictObject({
   base: z.number(),
   effective: z.number(),
 });
 
-const ratingSchema = z.object({
+const ratingSchema = z.strictObject({
   rating: z.number(),
   rating_bonus: z.number(),
 });
 
-const ratingWithValueSchema = z.object({
+const ratingWithValueSchema = z.strictObject({
   rating: z.number(),
   rating_bonus: z.number(),
   value: z.number(),

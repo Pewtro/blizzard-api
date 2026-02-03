@@ -14,7 +14,7 @@ export const journalEncounterIndexResponseSchema = responseBaseSchema.extend({
   encounters: z.array(nameIdKeySchema),
 });
 
-const itemSchema = z.object({
+const itemSchema = z.strictObject({
   id: z.number(),
   item: nameIdKeySchema,
 });
@@ -24,17 +24,17 @@ export const journalEncounterSearchParametersSchema = baseSearchParametersSchema
   locale: localesSchema,
 });
 
-const journalEncounterSearchCreatureSchema = z.object({
-  creature_display: z.object({
+const journalEncounterSearchCreatureSchema = z.strictObject({
+  creature_display: z.strictObject({
     id: z.number(),
   }),
   id: z.number(),
   name: z.record(localesSchema, z.string()),
 });
 
-const journalEncounterSearchItemSchema = z.object({
+const journalEncounterSearchItemSchema = z.strictObject({
   id: z.number(),
-  item: z.object({
+  item: z.strictObject({
     id: z.number(),
     name: z.record(localesSchema, z.string()),
   }),
@@ -55,7 +55,7 @@ export const journalInstanceIndexResponseSchema = responseBaseSchema.extend({
   instances: z.array(nameIdKeySchema),
 });
 
-const assetSchema = z.object({
+const assetSchema = z.strictObject({
   key: z.string(),
   value: z.string(),
 });
@@ -70,7 +70,7 @@ const creatureDisplaySchema = keyBaseSchema.extend({
   id: z.number(),
 });
 
-const journalSubSection4Schema = z.object({
+const journalSubSection4Schema = z.strictObject({
   body_text: z.string().optional(),
   creature_display: creatureDisplaySchema.optional(),
   id: z.number(),
@@ -102,12 +102,12 @@ const modeTypeSchema = z.union([
   z.literal('NORMAL'),
 ]);
 
-const modeSchema = z.object({
+const modeSchema = z.strictObject({
   name: modeNameSchema,
   type: modeTypeSchema,
 });
 
-const categorySchema = z.object({
+const categorySchema = z.strictObject({
   type: encounterCategorySchema,
 });
 
@@ -120,13 +120,13 @@ export const journalInstanceMediaResponseSchema = responseBaseSchema.extend({
   assets: z.array(assetSchema),
 });
 
-const modeElementSchema = z.object({
+const modeElementSchema = z.strictObject({
   is_tracked: z.boolean(),
   mode: modeSchema,
   players: z.number(),
 });
 
-const journalSubSection3Schema = z.object({
+const journalSubSection3Schema = z.strictObject({
   body_text: z.string().optional(),
   creature_display: creatureDisplaySchema.optional(),
   id: z.number(),
@@ -149,7 +149,7 @@ export const journalInstanceResponseSchema = nameIdSchema.extend(responseBaseSch
   order_index: z.number(),
 });
 
-const journalSubSection2Schema = z.object({
+const journalSubSection2Schema = z.strictObject({
   body_text: z.string().optional(),
   creature_display: creatureDisplaySchema.optional(),
   id: z.number(),
@@ -158,7 +158,7 @@ const journalSubSection2Schema = z.object({
   title: z.string(),
 });
 
-const journalSubSectionSchema = z.object({
+const journalSubSectionSchema = z.strictObject({
   body_text: z.string().optional(),
   creature_display: creatureDisplaySchema.optional(),
   id: z.number(),
@@ -167,7 +167,7 @@ const journalSubSectionSchema = z.object({
   title: z.string(),
 });
 
-const journalSectionSchema = z.object({
+const journalSectionSchema = z.strictObject({
   body_text: z.string().optional(),
   creature_display: creatureDisplaySchema.optional(),
   id: z.number(),
@@ -177,18 +177,18 @@ const journalSectionSchema = z.object({
 });
 
 export const journalEncounterSearchResponseItemSchema = keyBaseSchema.extend({
-  data: z.object({
+  data: z.strictObject({
     category: categorySchema,
     creatures: z.array(journalEncounterSearchCreatureSchema),
     id: z.number(),
-    instance: z.object({
+    instance: z.strictObject({
       id: z.number(),
       name: z.record(localesSchema, z.string()),
     }),
     items: z.array(journalEncounterSearchItemSchema),
     modes: z
       .array(
-        z.object({
+        z.strictObject({
           name: z.record(localesSchema, z.string()),
           type: encounterModeSchema,
         }),

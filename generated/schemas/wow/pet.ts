@@ -28,13 +28,13 @@ export const petMediaResponseSchema = responseBaseSchema.extend({
   id: z.number(),
 });
 
-const abilitySchema = z.object({
+const abilitySchema = z.strictObject({
   ability: nameIdKeySchema,
   required_level: z.number(),
   slot: z.number(),
 });
 
-const sourceSchema = z.object({
+const sourceSchema = z.strictObject({
   name: z.string(),
   type: z.string(),
 });

@@ -2,10 +2,10 @@
 import { z } from 'zod';
 import { characterSchema, keyBaseSchema, nameIdKeySchema, responseBaseSchema } from '../core';
 
-const hunterPetSchema = z.object({
+const hunterPetSchema = z.strictObject({
   creature: nameIdKeySchema,
   creature_display: keyBaseSchema.and(
-    z.object({
+    z.strictObject({
       id: z.number(),
     }),
   ),

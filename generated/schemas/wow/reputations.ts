@@ -16,7 +16,7 @@ const reputationTierSchema = keyBaseSchema.extend({
   name: z.string().optional(),
 });
 
-const tierSchema = z.object({
+const tierSchema = z.strictObject({
   id: z.number(),
   max_value: z.number(),
   min_value: z.number(),

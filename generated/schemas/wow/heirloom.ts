@@ -10,56 +10,56 @@ const mediaSchema = keyBaseSchema.extend({
   id: z.number(),
 });
 
-const sourceSchema = z.object({
+const sourceSchema = z.strictObject({
   name: z.string(),
   type: z.string(),
 });
 
-const attackSpeedClassSchema = z.object({
+const attackSpeedClassSchema = z.strictObject({
   display_string: z.string(),
   value: z.number(),
 });
 
-const damageSchema = z.object({
+const damageSchema = z.strictObject({
   damage_class: sourceSchema,
   display_string: z.string(),
   max_value: z.number(),
   min_value: z.number(),
 });
 
-const displaySchema = z.object({
+const displaySchema = z.strictObject({
   color: colorSchema,
   display_string: z.string(),
 });
 
-const requirementsLevelSchema = z.object({
+const requirementsLevelSchema = z.strictObject({
   display_string: z.string(),
 });
 
-const statSchema = z.object({
+const statSchema = z.strictObject({
   display: displaySchema,
   is_equip_bonus: z.boolean().optional(),
   type: sourceSchema,
   value: z.number(),
 });
 
-const requirementsSchema = z.object({
+const requirementsSchema = z.strictObject({
   level: requirementsLevelSchema,
 });
 
-const upgradesSchema = z.object({
+const upgradesSchema = z.strictObject({
   display_string: z.string(),
   max_value: z.number(),
   value: z.number(),
 });
 
-const weaponSchema = z.object({
+const weaponSchema = z.strictObject({
   attack_speed: attackSpeedClassSchema,
   damage: damageSchema,
   dps: attackSpeedClassSchema,
 });
 
-const upgradeItemSchema = z.object({
+const upgradeItemSchema = z.strictObject({
   binding: sourceSchema,
   bonus_list: z.array(z.number()),
   context: z.number(),
@@ -77,7 +77,7 @@ const upgradeItemSchema = z.object({
   weapon: weaponSchema,
 });
 
-const upgradeSchema = z.object({
+const upgradeSchema = z.strictObject({
   item: upgradeItemSchema,
   level: z.number(),
 });

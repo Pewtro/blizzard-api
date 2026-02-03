@@ -2,7 +2,7 @@
 import { z } from 'zod';
 import { characterSchema, responseBaseSchema } from '../core';
 
-const assetSchema = z.object({
+const assetSchema = z.strictObject({
   key: z.string(),
   value: z.string(),
 });
