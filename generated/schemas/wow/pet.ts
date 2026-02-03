@@ -46,10 +46,10 @@ export const petAbilityResponseSchema = nameIdSchema.extend(responseBaseSchema.s
 });
 
 export const petResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
-  abilities: z.array(abilitySchema),
+  abilities: z.array(abilitySchema).optional(),
   battle_pet_type: battlePetTypeSchema,
   creature: nameIdKeySchema,
-  description: z.string(),
+  description: z.string().nullable(),
   icon: z.string(),
   is_alliance_only: z.boolean(),
   is_battlepet: z.boolean(),
@@ -58,6 +58,6 @@ export const petResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).e
   is_random_creature_display: z.boolean(),
   is_tradable: z.boolean(),
   media: mediaSchema,
-  should_exclude_if_uncollected: z.boolean(),
-  source: sourceSchema,
+  should_exclude_if_uncollected: z.boolean().optional(),
+  source: sourceSchema.optional(),
 });

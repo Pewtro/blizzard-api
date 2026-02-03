@@ -59,7 +59,14 @@ const seasonMatchStatisticsSchema = z.strictObject({
 });
 
 export const pvpLeaderboardIndexResponseSchema = responseBaseSchema.extend({
-  leaderboards: z.array(nameIdKeySchema),
+  leaderboards: z.array(
+    keyBaseSchema.and(
+      z.strictObject({
+        id: z.number().optional(),
+        name: z.string(),
+      }),
+    ),
+  ),
   season: seasonSchema,
 });
 

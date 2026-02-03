@@ -19,14 +19,24 @@ describe('wow mount integration', () => {
     }
     expect(parsed.success).toBe(true);
 
-    const first = parsed.success ? parsed.data.mounts[0] : undefined;
-    if (first) {
-      const mount = await client.sendRequest(wow.mount(first.id));
-      const parsedMount = mountResponseSchema.safeParse(mount);
-      if (!parsedMount.success) {
-        console.error('Mount detail validation failed:', treeifyError(parsedMount.error));
+    // Pick up to 5 mounts at random from the index to fetch details
+    const mounts = parsed.success ? parsed.data.mounts : [];
+    const sampleSize = Math.min(500, mounts.length);
+    const sampled =
+      mounts.length > sampleSize
+        ? // eslint-disable-next-line sonarjs/pseudo-random
+          mounts.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
+        : mounts.slice(0, sampleSize);
+
+    for (const t of sampled) {
+      const mount = await client.sendRequest(wow.mount(t.id));
+      const parsedmount = mountResponseSchema.safeParse(mount);
+      if (!parsedmount.success) {
+        console.error('mount detail validation failed for id', t.id, treeifyError(parsedmount.error));
+        console.log('mount', mount);
+        console.log('parsedmount.error', parsedmount.error);
       }
-      expect(parsedMount.success).toBe(true);
+      expect(parsedmount.success).toBe(true);
     }
   }, 30_000);
 });

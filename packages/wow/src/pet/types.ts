@@ -49,10 +49,10 @@ export interface PetMediaResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface PetResponse extends NameId, ResponseBase {
-  abilities: Array<Ability>;
+  abilities?: Array<Ability>;
   battle_pet_type: BattlePetType;
   creature: NameIdKey;
-  description: string;
+  description: null | string;
   icon: string;
   is_alliance_only: boolean;
   is_battlepet: boolean;
@@ -61,8 +61,8 @@ export interface PetResponse extends NameId, ResponseBase {
   is_random_creature_display: boolean;
   is_tradable: boolean;
   media: Media;
-  should_exclude_if_uncollected: boolean;
-  source: Source;
+  should_exclude_if_uncollected?: boolean;
+  source?: Source;
 }
 
 interface Ability {

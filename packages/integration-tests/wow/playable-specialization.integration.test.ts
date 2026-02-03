@@ -28,6 +28,7 @@ describe('wow playable-specialization integration', () => {
       if (!parsedSpec.success) {
         console.error('Playable specialization detail validation failed:', treeifyError(parsedSpec.error));
       }
+
       expect(parsedSpec.success).toBe(true);
     }
   }, 30_000);

@@ -5,7 +5,7 @@ import type { Faction, Factions, KeyBase, NameId, NameIdKey, ResponseBase } from
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface PvpLeaderboardIndexResponse extends ResponseBase {
-  leaderboards: Array<NameIdKey>;
+  leaderboards: Array<KeyBase & { id?: number; name: string }>;
   season: Season;
 }
 

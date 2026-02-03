@@ -2,6 +2,7 @@
 import { z } from 'zod';
 import {
   baseSearchParametersSchema,
+  factionSchema,
   factionsSchema,
   keyBaseSchema,
   localesSchema,
@@ -52,11 +53,19 @@ const mountSearchResponseItemSchema = keyBaseSchema.extend({
 
 export const mountResponseSchema = responseBaseSchema.extend({
   creature_displays: z.array(creatureDisplaySchema),
-  description: z.string(),
+  description: z.string().nullable(),
+  faction: factionSchema.optional(),
   id: z.number(),
   name: z.string(),
-  should_exclude_if_uncollected: z.boolean(),
-  source: sourceSchema,
+  requirements: z
+    .strictObject({
+      classes: z.array(nameIdKeySchema).optional(),
+      faction: factionSchema.optional(),
+      races: z.array(nameIdKeySchema).optional(),
+    })
+    .optional(),
+  should_exclude_if_uncollected: z.boolean().optional(),
+  source: sourceSchema.optional(),
 });
 
 export const mountSearchResponseSchema = searchResponseWithoutResultsSchema.extend({

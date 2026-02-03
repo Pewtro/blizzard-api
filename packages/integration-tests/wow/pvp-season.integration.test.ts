@@ -3,21 +3,31 @@ import * as wow from '@blizzard-api/wow';
 import { describe, it } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
-import { pvpSeasonIndexResponseSchema } from '../../../generated/schemas/wow';
+import {
+  pvpLeaderboardIndexResponseSchema,
+  pvpSeasonIndexResponseSchema,
+} from '../../../generated/schemas/wow/pvp-season';
 
-describe('wow pvp season integration', () => {
-  it('validates pvp season index', async ({ expect }) => {
+describe('wow pvp integration', () => {
+  it('validates pvp leaderboard and season indices', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
-      origin: 'us',
+      origin: 'eu',
       secret: environment.blizzardClientSecret,
     });
 
-    const resp = await client.sendRequest(wow.pvpSeasonIndex());
-    const parsed = pvpSeasonIndexResponseSchema.safeParse(resp);
-    if (!parsed.success) {
-      console.error('PvP season index validation failed:', treeifyError(parsed.error));
+    const season = await client.sendRequest(wow.pvpSeasonIndex());
+    const parsedSeason = pvpSeasonIndexResponseSchema.safeParse(season);
+    if (!parsedSeason.success) {
+      console.error('PVP season index validation failed:', treeifyError(parsedSeason.error));
     }
-    expect(parsed.success).toBe(true);
+    expect(parsedSeason.success).toBe(true);
+
+    const leaderboard = await client.sendRequest(wow.pvpLeaderboardIndex(season.current_season.id));
+    const parsedLeaderboard = pvpLeaderboardIndexResponseSchema.safeParse(leaderboard);
+    if (!parsedLeaderboard.success) {
+      console.error('PVP leaderboard index validation failed:', treeifyError(parsedLeaderboard.error));
+    }
+    expect(parsedLeaderboard.success).toBe(true);
   }, 30_000);
 });

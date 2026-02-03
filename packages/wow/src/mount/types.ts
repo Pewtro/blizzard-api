@@ -1,5 +1,6 @@
 import type {
   BaseSearchParameters,
+  Faction,
   Factions,
   KeyBase,
   Locales,
@@ -22,11 +23,13 @@ export interface MountIndexResponse extends ResponseBase {
  */
 export interface MountResponse extends ResponseBase {
   creature_displays: Array<CreatureDisplay>;
-  description: string;
+  description: null | string;
+  faction?: Faction;
   id: number;
   name: string;
-  should_exclude_if_uncollected: boolean;
-  source: Source;
+  requirements?: { classes?: Array<NameIdKey>; faction?: Faction; races?: Array<NameIdKey> };
+  should_exclude_if_uncollected?: boolean;
+  source?: Source;
 }
 
 /**

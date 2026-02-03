@@ -36,7 +36,7 @@ const spellTooltipSchema = z.strictObject({
   cast_time: z.string(),
   cooldown: z.string().optional(),
   description: z.string(),
-  power_cost: z.string().optional(),
+  power_cost: z.string().optional().nullable(),
   range: z.string().optional(),
 });
 
@@ -47,6 +47,7 @@ const pvpTalentSchema = z.strictObject({
 
 export const playableSpecializationResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   gender_description: genderNameSchema,
+  hero_talent_trees: z.array(nameIdKeySchema),
   media: mediaSchema,
   playable_class: nameIdKeySchema,
   power_type: nameIdKeySchema,
