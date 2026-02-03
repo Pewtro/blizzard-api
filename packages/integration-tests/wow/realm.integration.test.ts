@@ -3,13 +3,13 @@ import * as wow from '@blizzard-api/wow';
 import { describe, it } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
-import { realmIndexResponseSchema } from '../../../generated/schemas/wow';
+import { realmIndexResponseSchema, realmResponseSchema } from '../../../generated/schemas/wow/realm';
 
 describe('wow realm integration', () => {
-  it('validates realm index', async ({ expect }) => {
+  it('validates realm index and fetches realm detail', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
-      origin: 'us',
+      origin: 'eu',
       secret: environment.blizzardClientSecret,
     });
 
@@ -19,5 +19,15 @@ describe('wow realm integration', () => {
       console.error('Realm index validation failed:', treeifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
+
+    const first = parsed.success ? parsed.data.realms[0] : undefined;
+    if (first) {
+      const realm = await client.sendRequest(wow.realm(first.slug));
+      const parsedRealm = realmResponseSchema.safeParse(realm);
+      if (!parsedRealm.success) {
+        console.error('Realm detail validation failed:', treeifyError(parsedRealm.error));
+      }
+      expect(parsedRealm.success).toBe(true);
+    }
   }, 30_000);
 });

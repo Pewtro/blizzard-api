@@ -1,13 +1,18 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import * as wow from '@blizzard-api/wow';
 import { describe, it } from 'vitest';
+import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
+import {
+  auctionHouseCommoditiesResponseSchema,
+  auctionHouseResponseSchema,
+} from '../../../generated/schemas/wow/auction-house';
 
 describe('wow auction-house integration', () => {
-  it('fetches auctions and commodities index', async ({ expect }) => {
+  it('validates auctions and commodities responses', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
-      origin: 'us',
+      origin: 'eu',
       secret: environment.blizzardClientSecret,
     });
 
@@ -20,9 +25,19 @@ describe('wow auction-house integration', () => {
     if (!realmId) {
       throw new Error('No realm ID found for testing auction house');
     }
+
     const auctions = await client.sendRequest(wow.auctions(Number.parseInt(realmId)));
-    expect(auctions).toBeTruthy();
+    const parsedAuctions = auctionHouseResponseSchema.safeParse(auctions);
+    if (!parsedAuctions.success) {
+      console.error('Auctions validation failed:', treeifyError(parsedAuctions.error));
+    }
+    expect(parsedAuctions.success).toBe(true);
+
     const commodities = await client.sendRequest(wow.commodities());
-    expect(commodities).toBeTruthy();
+    const parsedCommodities = auctionHouseCommoditiesResponseSchema.safeParse(commodities);
+    if (!parsedCommodities.success) {
+      console.error('Commodities validation failed:', treeifyError(parsedCommodities.error));
+    }
+    expect(parsedCommodities.success).toBe(true);
   }, 30_000);
 });

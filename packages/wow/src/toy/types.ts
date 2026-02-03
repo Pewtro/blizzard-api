@@ -16,8 +16,9 @@ export interface ToyResponse extends ResponseBase {
   id: number;
   item: NameIdKey;
   media: Media;
+  should_exclude_if_uncollected?: boolean;
   source: Source;
-  source_description: string;
+  source_description?: string;
 }
 
 interface Media extends KeyBase {

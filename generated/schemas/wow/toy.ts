@@ -19,6 +19,7 @@ export const toyResponseSchema = responseBaseSchema.extend({
   id: z.number(),
   item: nameIdKeySchema,
   media: mediaSchema,
+  should_exclude_if_uncollected: z.boolean().optional(),
   source: sourceSchema,
-  source_description: z.string(),
+  source_description: z.string().optional(),
 });

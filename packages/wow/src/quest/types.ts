@@ -51,7 +51,8 @@ export interface QuestIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface QuestResponse extends ResponseBase {
-  area: NameIdKey;
+  area?: NameIdKey;
+  category: NameIdKey;
   description: string;
   id: number;
   requirements: Requirements;
@@ -87,10 +88,16 @@ interface Reputation {
   value: number;
 }
 
+interface ReputationRequirement {
+  faction: NameIdKey;
+  min_reputation: number;
+}
+
 interface Requirements {
   faction: Faction;
   max_character_level: number;
   min_character_level: number;
+  reputations: Array<ReputationRequirement>;
 }
 
 interface Rewards {

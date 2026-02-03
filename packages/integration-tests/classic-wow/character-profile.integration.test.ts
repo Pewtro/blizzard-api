@@ -6,7 +6,7 @@ import { environment } from '../../../environment';
 import { characterProfileSummaryResponseSchema } from '../../../generated/schemas/classic-wow';
 
 describe('classic-wow character profile integration', () => {
-  it('fetches profile summary and uses guild info when available', async ({ expect }) => {
+  it('fetches profile summary', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',
@@ -22,8 +22,5 @@ describe('classic-wow character profile integration', () => {
       console.error('Character profile summary validation failed:', treeifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
-
-    // If the character has a guild, return it to be used by guild tests.
-    return resp;
   }, 30_000);
 });

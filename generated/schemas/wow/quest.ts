@@ -34,12 +34,6 @@ export const questIndexResponseSchema = responseBaseSchema.extend({
   }),
 });
 
-const requirementsSchema = z.strictObject({
-  faction: factionSchema,
-  max_character_level: z.number(),
-  min_character_level: z.number(),
-});
-
 export const questTypeIndexResponseSchema = responseBaseSchema.extend({
   types: z.array(nameIdKeySchema),
 });
@@ -61,6 +55,18 @@ const reputationSchema = z.strictObject({
   value: z.number(),
 });
 
+const reputationRequirementSchema = z.strictObject({
+  faction: nameIdKeySchema,
+  min_reputation: z.number(),
+});
+
+const requirementsSchema = z.strictObject({
+  faction: factionSchema,
+  max_character_level: z.number(),
+  min_character_level: z.number(),
+  reputations: z.array(reputationRequirementSchema),
+});
+
 const moneySchema = z.strictObject({
   units: unitsSchema,
   value: z.number(),
@@ -73,7 +79,8 @@ const rewardsSchema = z.strictObject({
 });
 
 export const questResponseSchema = responseBaseSchema.extend({
-  area: nameIdKeySchema,
+  area: nameIdKeySchema.optional(),
+  category: nameIdKeySchema,
   description: z.string(),
   id: z.number(),
   requirements: requirementsSchema,
