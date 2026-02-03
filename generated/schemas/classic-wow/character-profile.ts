@@ -25,6 +25,7 @@ export const characterProfileSummaryResponseSchema = responseBaseSchema.extend({
   faction: factionSchema,
   gender: genderSchema,
   guild: guildSchema,
+  hunter_pets: hrefSchema.optional(),
   id: z.number(),
   is_ghost: z.boolean().optional(),
   is_self_found: z.boolean().optional(),

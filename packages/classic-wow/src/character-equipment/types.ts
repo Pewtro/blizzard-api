@@ -80,6 +80,7 @@ interface EquippedItem {
   stats?: Array<Stat>;
   transmog?: Transmog;
   unique_equipped?: string;
+  upgrade_id?: number;
   weapon?: Weapon;
 }
 

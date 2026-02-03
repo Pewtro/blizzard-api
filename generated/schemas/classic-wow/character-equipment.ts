@@ -168,6 +168,7 @@ const equippedItemSchema = z.strictObject({
   stats: z.array(statSchema).optional(),
   transmog: transmogSchema.optional(),
   unique_equipped: z.string().optional(),
+  upgrade_id: z.number().optional(),
   weapon: weaponSchema.optional(),
 });
 
