@@ -23,11 +23,13 @@ export const characterProfileSummaryResponseSchema = responseBaseSchema.extend({
   achievements: hrefSchema,
   achievements_statistics: hrefSchema,
   active_spec: nameIdKeySchema,
-  active_title: nameIdKeySchema.and(
-    z.strictObject({
-      display_string: z.string(),
-    }),
-  ),
+  active_title: nameIdKeySchema
+    .and(
+      z.strictObject({
+        display_string: z.string(),
+      }),
+    )
+    .optional(),
   appearance: hrefSchema,
   average_item_level: z.number(),
   character_class: nameIdKeySchema,
@@ -42,6 +44,7 @@ export const characterProfileSummaryResponseSchema = responseBaseSchema.extend({
   guild: guildSchema,
   hunter_pets: hrefSchema,
   id: z.number(),
+  is_remix: z.boolean(),
   last_login_timestamp: z.number(),
   level: z.number(),
   media: hrefSchema,

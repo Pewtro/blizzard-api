@@ -12,7 +12,8 @@ const standingSchema = z.strictObject({
   max: z.number(),
   name: z.string(),
   raw: z.number(),
-  tier: z.number(),
+  renown_level: z.number().optional(),
+  tier: z.number().optional(),
   value: z.number(),
 });
 

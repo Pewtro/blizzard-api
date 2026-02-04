@@ -4,6 +4,7 @@ import { characterSchema, hrefSchema, keyBaseSchema, nameIdKeySchema, responseBa
 
 export const characterCollectionsIndexResponseSchema = responseBaseSchema.extend({
   character: characterSchema,
+  decors: hrefSchema,
   heirlooms: hrefSchema,
   mounts: hrefSchema,
   pets: hrefSchema,
@@ -30,11 +31,6 @@ const toySchema = z.strictObject({
   toy: nameIdKeySchema,
 });
 
-const slotSchema = z.strictObject({
-  name: z.string(),
-  type: z.string(),
-});
-
 const qualitySchema = z.strictObject({
   name: z.union([z.literal('Common'), z.literal('Poor'), z.literal('Rare'), z.literal('Uncommon')]),
   type: z.union([z.literal('COMMON'), z.literal('POOR'), z.literal('RARE'), z.literal('UNCOMMON')]),
@@ -45,6 +41,11 @@ const statsSchema = z.strictObject({
   health: z.number(),
   power: z.number(),
   speed: z.number(),
+});
+
+const slotSlotSchema = z.strictObject({
+  name: z.string(),
+  type: z.string(),
 });
 
 export const characterHeirloomsCollectionSummaryResponseSchema = responseBaseSchema.extend({
@@ -78,12 +79,23 @@ export const characterToysCollectionSummaryResponseSchema = responseBaseSchema.e
   toys: z.array(toySchema),
 });
 
-export const characterTransmogCollectionSummaryResponseSchema = responseBaseSchema.extend({
-  appearance_sets: z.array(nameIdKeySchema),
-  slots: z.array(slotSchema),
+const slotSchema = z.strictObject({
+  appearances: z.array(
+    keyBaseSchema.and(
+      z.strictObject({
+        id: z.number(),
+      }),
+    ),
+  ),
+  slot: slotSlotSchema,
 });
 
 export const characterPetsCollectionSummaryResponseSchema = responseBaseSchema.extend({
   pets: z.array(petSchema),
   unlocked_battle_pet_slots: z.number(),
+});
+
+export const characterTransmogCollectionSummaryResponseSchema = responseBaseSchema.extend({
+  appearance_sets: z.array(nameIdKeySchema),
+  slots: z.array(slotSchema),
 });

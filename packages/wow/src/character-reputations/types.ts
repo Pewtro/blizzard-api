@@ -21,6 +21,7 @@ interface Standing {
   max: number;
   name: string;
   raw: number;
-  tier: number;
+  renown_level?: number;
+  tier?: number;
   value: number;
 }

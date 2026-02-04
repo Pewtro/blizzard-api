@@ -38,8 +38,6 @@ describe('wow mount integration', () => {
       const parsedmount = mountResponseSchema.safeParse(mount);
       if (!parsedmount.success) {
         console.error('mount detail validation failed for id', mount.id, treeifyError(parsedmount.error));
-        console.log('mount', mount);
-        console.log('parsedmount.error', parsedmount.error);
       }
       expect(parsedmount.success).toBe(true);
     }

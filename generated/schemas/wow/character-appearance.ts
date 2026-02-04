@@ -15,12 +15,15 @@ const itemSchema = z.strictObject({
   enchant: z.number(),
   id: z.number(),
   internal_slot_id: z.number(),
-  item_appearance_modifier_id: z.number(),
+  item_appearance_modifier_id: z.number().optional(),
+  secondary_id: z.number().optional(),
+  secondary_item_appearance_modifier_id: z.number().optional(),
+  secondary_subclass: z.number().optional(),
   slot: z.strictObject({
     name: z.string(),
     type: z.string(),
   }),
-  subclass: z.number(),
+  subclass: z.number().optional(),
 });
 
 const rgbWithIdSchema = z.strictObject({

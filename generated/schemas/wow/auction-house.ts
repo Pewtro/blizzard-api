@@ -10,19 +10,25 @@ const auctionHouseTimeLeftSchema = z.union([
 ]);
 
 const auctionHousePostingSchema = z.strictObject({
-  bid: z.number(),
+  bid: z.number().optional(),
   buyout: z.number(),
   id: z.number(),
   item: z.strictObject({
-    bonus_lists: z.array(z.number()),
-    context: z.number(),
+    bonus_lists: z.array(z.number()).optional(),
+    context: z.number().optional(),
     id: z.number(),
-    modifiers: z.array(
-      z.strictObject({
-        type: z.number(),
-        value: z.number(),
-      }),
-    ),
+    modifiers: z
+      .array(
+        z.strictObject({
+          type: z.number(),
+          value: z.number(),
+        }),
+      )
+      .optional(),
+    pet_breed_id: z.number().optional(),
+    pet_level: z.number().optional(),
+    pet_quality_id: z.number().optional(),
+    pet_species_id: z.number().optional(),
   }),
   quantity: z.number(),
   time_left: auctionHouseTimeLeftSchema,

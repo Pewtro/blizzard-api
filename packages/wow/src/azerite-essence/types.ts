@@ -55,8 +55,8 @@ export interface AzeriteEssenceSearchResponse extends SearchResponseWithoutResul
 }
 interface AzeriteEssenceSearchResponseItem extends KeyBase {
   data: {
-    allowed_specializations: Array<NameId>;
-    name: Record<Locales, string>;
+    allowed_specializations: Array<{ id: number; name: Record<Locales, string | undefined> }>;
+    name: Record<Locales, string | undefined>;
   };
 }
 

@@ -34,10 +34,10 @@ const childCriterum3Schema = z.strictObject({
 });
 
 const categorySchema = z.strictObject({
-  id: z.number(),
+  id: z.number().optional(),
   name: z.string(),
-  statistics: z.array(statisticSchema),
-  sub_categories: z.array(subCategorySchema),
+  statistics: z.array(statisticSchema).optional(),
+  sub_categories: z.array(subCategorySchema).optional(),
 });
 
 const childCriterum2Schema = z.strictObject({

@@ -2,6 +2,7 @@ import type { Character, Href, KeyBase, NameIdKey, ResponseBase } from '@blizzar
 
 export interface CharacterCollectionsIndexResponse extends ResponseBase {
   character: Character;
+  decors: Href;
   heirlooms: Href;
   mounts: Href;
   pets: Href;
@@ -63,10 +64,10 @@ interface Quality {
 
 interface Slot {
   appearances: Array<KeyBase & { id: number }>;
-  slot: Slot;
+  slot: SlotSlot;
 }
 
-interface Slot {
+interface SlotSlot {
   name: string;
   type: string;
 }

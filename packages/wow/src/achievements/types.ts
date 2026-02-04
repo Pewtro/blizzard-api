@@ -1,4 +1,4 @@
-import type { KeyBase, MediaAsset, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { Faction, KeyBase, MediaAsset, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * Interface for a response from the achievement category index endpoint.
@@ -54,14 +54,65 @@ export interface AchievementMediaResponse extends ResponseBase {
  */
 export interface AchievementResponse extends NameId, ResponseBase {
   category: NameIdKey;
-  criteria: {
-    amount: number;
-    description: string;
-    id: number;
-  };
+  criteria?: Criteria;
   description: string;
   display_order: number;
+  guild_reward_items?: Array<NameIdKey>;
   is_account_wide: boolean;
-  media: KeyBase;
+  media: KeyBase & { id: number };
+  next_achievement?: NameIdKey;
   points: number;
+  prerequisite_achievement?: NameIdKey;
+  requirements?: { faction: Faction };
+  reward_description?: string;
+  reward_item?: NameIdKey;
+}
+
+interface ChildCriteria {
+  achievement?: NameIdKey;
+  amount: number;
+  child_criteria?: Array<ChildCriteria2>;
+  description: null | string;
+  faction?: Faction;
+  id: number;
+  is_gold?: boolean;
+  operator?: Operator;
+  show_progress_bar?: boolean;
+}
+
+interface ChildCriteria2 {
+  achievement?: NameIdKey;
+  amount: number;
+  child_criteria?: Array<ChildCriteria3>;
+  description: null | string;
+  faction?: Faction;
+  id: number;
+  is_gold?: boolean;
+  operator?: Operator;
+  show_progress_bar?: boolean;
+}
+
+interface ChildCriteria3 {
+  achievement?: NameIdKey;
+  amount: number;
+  description: null | string;
+  faction?: Faction;
+  id: number;
+  is_gold?: boolean;
+  operator?: Operator;
+  show_progress_bar?: boolean;
+}
+
+interface Criteria {
+  amount: number;
+  child_criteria?: Array<ChildCriteria>;
+  description: null | string;
+  faction?: Faction;
+  id: number;
+  operator?: Operator;
+  show_progress_bar?: boolean;
+}
+interface Operator {
+  name: string;
+  type: 'AND' | 'COMPLETE_AT_LEAST';
 }

@@ -59,6 +59,8 @@ const sellPriceSchema = z.strictObject({
 });
 
 const socketSchema = z.strictObject({
+  context: z.number().optional(),
+  display_color: colorSchema.optional(),
   display_string: z.string(),
   item: nameIdKeySchema,
   media: keyBaseSchema.and(
@@ -88,8 +90,9 @@ const transmogSchema = z.strictObject({
   item_modified_appearance_id: z.number(),
 });
 
-const itemElementSchema = nameIdKeySchema.extend({
+const itemElementSchema = z.strictObject({
   is_equipped: z.boolean().optional(),
+  item: nameIdKeySchema,
 });
 
 const playableClassesSchema = z.strictObject({
@@ -149,7 +152,7 @@ const equippedItemSchema = z.strictObject({
   modified_appearance_id: z.number().optional(),
   modified_crafting_stat: z.array(modifiedCraftingStatSchema).optional(),
   name: z.string(),
-  name_description: nameDescriptionSchema,
+  name_description: nameDescriptionSchema.optional(),
   quality: nameTypeSchema,
   quantity: z.number(),
   requirements: requirementsSchema.optional(),

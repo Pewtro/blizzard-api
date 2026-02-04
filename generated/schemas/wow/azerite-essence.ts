@@ -37,8 +37,13 @@ export const azeriteEssenceSearchParametersSchema = baseSearchParametersSchema.e
 
 const azeriteEssenceSearchResponseItemSchema = keyBaseSchema.extend({
   data: z.strictObject({
-    allowed_specializations: z.array(nameIdSchema),
-    name: z.record(localesSchema, z.string()),
+    allowed_specializations: z.array(
+      z.strictObject({
+        id: z.number(),
+        name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
+      }),
+    ),
+    name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
   }),
 });
 
