@@ -9,23 +9,22 @@ describe('classic-wow media search integration', () => {
   it('performs a media search and validates items', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
-      origin: 'us',
+      origin: 'eu',
       secret: environment.blizzardClientSecret,
     });
 
-    // Use a minimal search (skipped by default; may require tuning)
-    const resp = await client.sendRequest(classicWow.mediaSearch('static-classic1x', { _page: 1 }));
-    // `resp` is a SearchResponse; validate first item if present
-    const first = Array.isArray(resp.results) ? resp.results[0] : undefined;
-    if (first) {
-      const parsed = mediaSearchResponseSchema.safeParse(first);
-      if (!parsed.success) {
-        console.error('Media search item validation failed:', treeifyError(parsed.error));
-      }
-      expect(parsed.success).toBe(true);
-    } else {
-      // No results is acceptable for a generic search; assert shape
-      expect(resp).toBeDefined();
+    const search = await client.sendRequest(classicWow.mediaSearch('static-classic', { _page: 1 }));
+    const parsedSearch = mediaSearchResponseSchema.safeParse(search);
+    if (!parsedSearch.success) {
+      console.error('Media search validation failed:', treeifyError(parsedSearch.error));
     }
+    expect(parsedSearch.success).toBe(true);
+
+    const eraSearch = await client.sendRequest(classicWow.mediaSearch('static-classic1x', { _page: 1 }));
+    const parsedEraSearch = mediaSearchResponseSchema.safeParse(eraSearch);
+    if (!parsedEraSearch.success) {
+      console.error('Media search validation failed:', treeifyError(parsedEraSearch.error));
+    }
+    expect(parsedEraSearch.success).toBe(true);
   }, 30_000);
 });

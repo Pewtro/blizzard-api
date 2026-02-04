@@ -5,7 +5,7 @@ import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import { playableClassMediaResponseSchema, playableClassResponseSchema } from '../../../generated/schemas/classic-wow';
 
-describe('classic-wow playable class integration', () => {
+describe.concurrent('classic-wow playable class integration', () => {
   it('fetches playable class and media by id for classic era', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,

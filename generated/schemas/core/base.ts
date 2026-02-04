@@ -34,7 +34,7 @@ export const keyBaseSchema = z.strictObject({
 });
 
 export const mediaAssetSchema = z.strictObject({
-  file_data_id: z.number(),
+  file_data_id: z.number().optional(),
   key: z.string(),
   value: z.string(),
 });

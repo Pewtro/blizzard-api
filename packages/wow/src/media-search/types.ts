@@ -18,9 +18,9 @@ export interface MediaSearchResponse extends SearchResponseWithoutResults {
   results: Array<MediaSearchResponseItem>;
 }
 
-export interface MediaSearchResponseItem extends KeyBase {
+interface MediaSearchResponseItem extends KeyBase {
   data: {
     assets: Array<MediaAsset>;
-    id: number;
+    id?: number;
   };
 }

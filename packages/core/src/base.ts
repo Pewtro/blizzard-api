@@ -108,7 +108,7 @@ export interface KeyBase {
  * The media asset associated with a character or entity in World of Warcraft.
  */
 export interface MediaAsset {
-  file_data_id: number;
+  file_data_id?: number;
   key: string;
   value: string;
 }

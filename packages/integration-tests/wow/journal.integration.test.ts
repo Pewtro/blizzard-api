@@ -8,10 +8,12 @@ import {
   journalEncounterResponseSchema,
   journalExpansionIndexResponseSchema,
   journalExpansionResponseSchema,
+  journalInstanceIndexResponseSchema,
+  journalInstanceResponseSchema,
 } from '../../../generated/schemas/wow/journal';
 
-describe('wow journal integration', () => {
-  it('validates journal encounter index and expansion index with details', async ({ expect }) => {
+describe.concurrent('wow journal integration', () => {
+  it('validates journal encounter index and details', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',
@@ -24,15 +26,39 @@ describe('wow journal integration', () => {
     }
     expect(parsedEnc.success).toBe(true);
 
-    const firstEnc = parsedEnc.success ? parsedEnc.data.encounters[0] : undefined;
-    if (firstEnc) {
-      const encDetail = await client.sendRequest(wow.journalEncounter(firstEnc.id));
-      const parsedEncDetail = journalEncounterResponseSchema.safeParse(encDetail);
-      if (!parsedEncDetail.success) {
-        console.error('Journal encounter detail validation failed:', treeifyError(parsedEncDetail.error));
-      }
-      expect(parsedEncDetail.success).toBe(true);
+    // Pick up to 5 encounters at random from the index to fetch details
+    const encounters = parsedEnc.success ? parsedEnc.data.encounters : [];
+    const sampleSize = Math.min(5, encounters.length);
+    const sampledEncounters =
+      encounters.length > sampleSize
+        ? // eslint-disable-next-line sonarjs/pseudo-random
+          encounters.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
+        : encounters.slice(0, sampleSize);
+
+    const encounterRequests = [];
+
+    for (const encounter of sampledEncounters) {
+      encounterRequests.push(client.sendRequest(wow.journalEncounter(encounter.id)));
     }
+    const encounterResponses = await Promise.all(encounterRequests);
+    for (const encounter of encounterResponses) {
+      const parsedEncounter = journalEncounterResponseSchema.safeParse(encounter);
+      if (!parsedEncounter.success) {
+        console.error(
+          'Journal encounter detail validation failed for id',
+          encounter.id,
+          treeifyError(parsedEncounter.error),
+        );
+      }
+      expect(parsedEncounter.success).toBe(true);
+    }
+  }, 30_000);
+  it('validates journal expansion index and details', async ({ expect }) => {
+    const client = await createBlizzardApiClient({
+      key: environment.blizzardClientId,
+      origin: 'eu',
+      secret: environment.blizzardClientSecret,
+    });
 
     const exp = await client.sendRequest(wow.journalExpansionIndex());
     const parsedExp = journalExpansionIndexResponseSchema.safeParse(exp);
@@ -41,14 +67,73 @@ describe('wow journal integration', () => {
     }
     expect(parsedExp.success).toBe(true);
 
-    const firstExp = parsedExp.success ? parsedExp.data.tiers[0] : undefined;
-    if (firstExp) {
-      const expDetail = await client.sendRequest(wow.journalExpansion(firstExp.id));
-      const parsedExpDetail = journalExpansionResponseSchema.safeParse(expDetail);
-      if (!parsedExpDetail.success) {
-        console.error('Journal expansion detail validation failed:', treeifyError(parsedExpDetail.error));
+    // Pick up to 5 expansions at random from the index to fetch details
+    const expansions = parsedExp.success ? parsedExp.data.tiers : [];
+    const sampleSize = Math.min(5, expansions.length);
+    const sampledExpansions =
+      expansions.length > sampleSize
+        ? // eslint-disable-next-line sonarjs/pseudo-random
+          expansions.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
+        : expansions.slice(0, sampleSize);
+
+    const expansionRequests = [];
+
+    for (const expansion of sampledExpansions) {
+      expansionRequests.push(client.sendRequest(wow.journalExpansion(expansion.id)));
+    }
+    const expansionResponses = await Promise.all(expansionRequests);
+    for (const expansion of expansionResponses) {
+      const parsedExpansion = journalExpansionResponseSchema.safeParse(expansion);
+      if (!parsedExpansion.success) {
+        console.error(
+          'Journal expansion detail validation failed for id',
+          expansion.id,
+          treeifyError(parsedExpansion.error),
+        );
       }
-      expect(parsedExpDetail.success).toBe(true);
+      expect(parsedExpansion.success).toBe(true);
+    }
+  }, 30_000);
+
+  it('validates journal instance index and details', async ({ expect }) => {
+    const client = await createBlizzardApiClient({
+      key: environment.blizzardClientId,
+      origin: 'eu',
+      secret: environment.blizzardClientSecret,
+    });
+
+    const instanceResp = await client.sendRequest(wow.journalInstanceIndex());
+    const parsedExp = journalInstanceIndexResponseSchema.safeParse(instanceResp);
+    if (!parsedExp.success) {
+      console.error('Journal instance index validation failed:', treeifyError(parsedExp.error));
+    }
+    expect(parsedExp.success).toBe(true);
+
+    // Pick up to 5 instances at random from the index to fetch details
+    const instances = parsedExp.success ? parsedExp.data.instances : [];
+    const sampleSize = Math.min(5, instances.length);
+    const sampledInstances =
+      instances.length > sampleSize
+        ? // eslint-disable-next-line sonarjs/pseudo-random
+          instances.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
+        : instances.slice(0, sampleSize);
+
+    const instanceRequests = [];
+
+    for (const instance of sampledInstances) {
+      instanceRequests.push(client.sendRequest(wow.journalInstance(instance.id)));
+    }
+    const instanceResponses = await Promise.all(instanceRequests);
+    for (const instance of instanceResponses) {
+      const parsedInstance = journalInstanceResponseSchema.safeParse(instance);
+      if (!parsedInstance.success) {
+        console.error(
+          'Journal instance detail validation failed for id',
+          instance.id,
+          treeifyError(parsedInstance.error),
+        );
+      }
+      expect(parsedInstance.success).toBe(true);
     }
   }, 30_000);
 });

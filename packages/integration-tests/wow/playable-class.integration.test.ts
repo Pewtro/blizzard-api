@@ -8,7 +8,7 @@ import {
   playableClassResponseSchema,
 } from '../../../generated/schemas/wow/playable-class';
 
-describe('wow playable class integration', () => {
+describe.concurrent('wow playable class integration', () => {
   it('fetches playable class and media by id', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,

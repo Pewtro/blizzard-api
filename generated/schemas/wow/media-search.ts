@@ -11,10 +11,10 @@ export const mediaSearchParametersSchema = baseSearchParametersSchema.extend({
   tags: z.string().optional(),
 });
 
-export const mediaSearchResponseItemSchema = keyBaseSchema.extend({
+const mediaSearchResponseItemSchema = keyBaseSchema.extend({
   data: z.strictObject({
     assets: z.array(mediaAssetSchema),
-    id: z.number(),
+    id: z.number().optional(),
   }),
 });
 
