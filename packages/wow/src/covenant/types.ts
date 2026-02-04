@@ -1,4 +1,4 @@
-import type { KeyBase, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { KeyBase, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * Interface for a response from the conduit index endpoint.
@@ -14,7 +14,7 @@ export interface ConduitIndexResponse extends ResponseBase {
  */
 export interface ConduitResponse extends ResponseBase {
   id: number;
-  item: Item;
+  item: NameIdKey;
   name: string;
   ranks: Array<Rank>;
   socket_type: SocketType;
@@ -48,10 +48,14 @@ export interface CovenantMediaResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface CovenantResponse extends ResponseBase {
+  class_abilities?: Array<ClassAbility>;
   description: string;
   id: number;
+  media?: Media;
   name: string;
   renown_rewards: Array<RenownReward>;
+  signature_ability?: SignatureAbility;
+  soulbinds?: Array<NameIdKey>;
 }
 
 /**
@@ -69,7 +73,7 @@ export interface SoulbindIndexResponse extends ResponseBase {
 export interface SoulbindResponse extends ResponseBase {
   covenant: NameIdKey;
   creature: NameIdKey;
-  follower: NameIdKey;
+  follower: NameId;
   id: number;
   name: string;
   talent_tree: NameIdKey;
@@ -88,10 +92,6 @@ interface ClassAbilitySpellTooltip {
   power_cost?: null | string;
   range?: string;
   spell: NameIdKey;
-}
-
-interface Item extends KeyBase {
-  id: number;
 }
 
 interface Media extends KeyBase {
@@ -116,8 +116,9 @@ interface SignatureAbility {
 
 interface SignatureAbilitySpellTooltip {
   cast_time: string;
-  cooldown: string;
+  cooldown?: string;
   description: string;
+  range?: string;
   spell: NameIdKey;
 }
 
@@ -129,5 +130,5 @@ interface SocketType {
 interface SpellTooltip {
   cast_time: string;
   description: string;
-  spell: Item;
+  spell: NameIdKey;
 }

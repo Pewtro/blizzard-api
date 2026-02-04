@@ -3,11 +3,13 @@ import { z } from 'zod';
 import { characterSchema, nameIdKeySchema, responseBaseSchema } from '../core';
 
 export const characterTitlesSummaryResponseSchema = responseBaseSchema.extend({
-  active_title: nameIdKeySchema.and(
-    z.strictObject({
-      display_string: z.string(),
-    }),
-  ),
+  active_title: nameIdKeySchema
+    .and(
+      z.strictObject({
+        display_string: z.string(),
+      }),
+    )
+    .optional(),
   character: characterSchema,
   titles: z.array(nameIdKeySchema),
 });
