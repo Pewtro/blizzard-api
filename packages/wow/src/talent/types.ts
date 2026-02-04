@@ -16,6 +16,7 @@ export interface PvpTalentResponse extends ResponseBase {
   compatible_slots: Array<number>;
   description: string;
   id: number;
+  overrides_spell?: NameIdKey;
   playable_specialization: NameIdKey;
   spell: NameIdKey;
   unlock_player_level: number;
@@ -35,9 +36,11 @@ export interface TalentIndexResponse extends ResponseBase {
  */
 export interface TalentResponse extends ResponseBase {
   id: number;
-  playable_class: PlayableClass;
-  rank_descriptions: Array<RankDescription>;
-  spell: NameIdKey;
+  overrides_spell?: NameIdKey;
+  playable_class?: KeyBase & { id: number; name?: string };
+  playable_specialization?: NameIdKey;
+  rank_descriptions?: Array<RankDescription>;
+  spell?: NameIdKey;
 }
 
 /**
@@ -46,6 +49,7 @@ export interface TalentResponse extends ResponseBase {
  */
 export interface TalentTreeIndexResponse extends ResponseBase {
   class_talent_trees: Array<TalentTree>;
+  hero_talent_trees: Array<NameIdKey>;
   spec_talent_trees: Array<TalentTree>;
 }
 
@@ -65,7 +69,8 @@ export interface TalentTreeNodesResponse extends ResponseBase {
  */
 export interface TalentTreeResponse extends NameId, ResponseBase {
   class_talent_nodes: Array<ClassTalentNode>;
-  media: { href: string };
+  hero_talent_trees: Array<HeroTalentTree>;
+  media: KeyBase;
   playable_class: NameIdKey;
   playable_specialization: NameIdKey;
   restriction_lines: Array<RestrictionLine>;
@@ -96,13 +101,28 @@ interface ClassTalentNodeRank {
   tooltip?: Tooltip;
 }
 
+interface HeroTalentTree extends NameId {
+  hero_talent_nodes: Array<HeroTalentTreeNode>;
+  media: KeyBase & { id: number };
+  playable_class: NameIdKey;
+  playable_specializations: Array<NameIdKey>;
+}
+
+interface HeroTalentTreeNode {
+  display_col: number;
+  display_row: number;
+  id: number;
+  locked_by?: Array<number>;
+  node_type: { id: number; type: 'ACTIVE' | 'CHOICE' | 'PASSIVE' };
+  ranks: Array<Rank>;
+  raw_position_x: number;
+  raw_position_y: number;
+  unlocks?: Array<number>;
+}
+
 interface NodeType {
   id: number;
   type: 'ACTIVE' | 'CHOICE' | 'PASSIVE';
-}
-
-interface PlayableClass extends KeyBase {
-  id: number;
 }
 
 interface PurpleSpellTooltip {
@@ -113,12 +133,13 @@ interface PurpleSpellTooltip {
 
 interface Rank {
   choice_of_tooltips?: Array<Tooltip>;
+  default_points?: number;
   rank: number;
   tooltip?: Tooltip;
 }
 
 interface RankDescription {
-  description: null;
+  description: null | string;
   rank: number;
 }
 
@@ -154,10 +175,12 @@ interface TalentNode {
   display_col: number;
   display_row: number;
   id: number;
+  locked_by?: Array<number>;
   node_type: NodeType;
   ranks: Array<Rank>;
   raw_position_x: number;
   raw_position_y: number;
+  unlocks?: Array<number>;
 }
 
 interface TalentTree extends KeyBase {

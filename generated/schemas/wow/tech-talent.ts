@@ -14,6 +14,15 @@ const mediaSchema = keyBaseSchema.extend({
   id: z.number(),
 });
 
+const spellTooltipSchema = z.strictObject({
+  cast_time: z.string(),
+  cooldown: z.string().optional(),
+  description: z.string().nullable(),
+  power_cost: z.string().optional().nullable(),
+  range: z.string().optional(),
+  spell: nameIdKeySchema,
+});
+
 const talentTreeSchema = keyBaseSchema.extend({
   id: z.number(),
   name: z.string().optional(),
@@ -22,14 +31,28 @@ const talentTreeSchema = keyBaseSchema.extend({
 export const techTalentTreeResponseSchema = responseBaseSchema.extend({
   id: z.number(),
   max_tiers: z.number(),
-  playable_class: nameIdKeySchema,
+  playable_class: nameIdKeySchema.optional(),
   talents: z.array(nameIdKeySchema),
 });
 
 export const techTalentResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
+  description: z.string().optional(),
   display_order: z.number(),
   media: mediaSchema,
-  talent_tree: mediaSchema,
+  prerequisite_talent: nameIdKeySchema.optional(),
+  socket_type: z
+    .strictObject({
+      name: z.string(),
+      type: z.union([z.literal('ENDURANCE'), z.literal('FINESSE'), z.literal('POTENCY')]),
+    })
+    .optional(),
+  spell_tooltip: spellTooltipSchema.optional(),
+  talent_tree: keyBaseSchema.and(
+    z.strictObject({
+      id: z.number(),
+      name: z.string().optional(),
+    }),
+  ),
   tier: z.number(),
 });
 

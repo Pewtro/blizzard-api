@@ -10,6 +10,7 @@ export const pvpTalentResponseSchema = responseBaseSchema.extend({
   compatible_slots: z.array(z.number()),
   description: z.string(),
   id: z.number(),
+  overrides_spell: nameIdKeySchema.optional(),
   playable_specialization: nameIdKeySchema,
   spell: nameIdKeySchema,
   unlock_player_level: z.number(),
@@ -19,12 +20,8 @@ export const talentIndexResponseSchema = responseBaseSchema.extend({
   talents: z.array(nameIdKeySchema),
 });
 
-const playableClassSchema = keyBaseSchema.extend({
-  id: z.number(),
-});
-
 const rankDescriptionSchema = z.strictObject({
-  description: z.null(),
+  description: z.string().nullable(),
   rank: z.number(),
 });
 
@@ -69,13 +66,23 @@ const tooltipSpellTooltipSchema = z.strictObject({
 
 export const talentResponseSchema = responseBaseSchema.extend({
   id: z.number(),
-  playable_class: playableClassSchema,
-  rank_descriptions: z.array(rankDescriptionSchema),
-  spell: nameIdKeySchema,
+  overrides_spell: nameIdKeySchema.optional(),
+  playable_class: keyBaseSchema
+    .and(
+      z.strictObject({
+        id: z.number(),
+        name: z.string().optional(),
+      }),
+    )
+    .optional(),
+  playable_specialization: nameIdKeySchema.optional(),
+  rank_descriptions: z.array(rankDescriptionSchema).optional(),
+  spell: nameIdKeySchema.optional(),
 });
 
 export const talentTreeIndexResponseSchema = responseBaseSchema.extend({
   class_talent_trees: z.array(talentTreeSchema),
+  hero_talent_trees: z.array(nameIdKeySchema),
   spec_talent_trees: z.array(talentTreeSchema),
 });
 
@@ -86,6 +93,7 @@ const tooltipSchema = z.strictObject({
 
 const rankSchema = z.strictObject({
   choice_of_tooltips: z.array(tooltipSchema).optional(),
+  default_points: z.number().optional(),
   rank: z.number(),
   tooltip: tooltipSchema.optional(),
 });
@@ -100,10 +108,12 @@ const talentNodeSchema = z.strictObject({
   display_col: z.number(),
   display_row: z.number(),
   id: z.number(),
+  locked_by: z.array(z.number()).optional(),
   node_type: nodeTypeSchema,
   ranks: z.array(rankSchema),
   raw_position_x: z.number(),
   raw_position_y: z.number(),
+  unlocks: z.array(z.number()).optional(),
 });
 
 export const talentTreeNodesResponseSchema = responseBaseSchema.extend({
@@ -131,6 +141,21 @@ const classTalentNodeRankSchema = z.strictObject({
   tooltip: tooltipSchema.optional(),
 });
 
+const heroTalentTreeNodeSchema = z.strictObject({
+  display_col: z.number(),
+  display_row: z.number(),
+  id: z.number(),
+  locked_by: z.array(z.number()).optional(),
+  node_type: z.strictObject({
+    id: z.number(),
+    type: z.union([z.literal('ACTIVE'), z.literal('CHOICE'), z.literal('PASSIVE')]),
+  }),
+  ranks: z.array(rankSchema),
+  raw_position_x: z.number(),
+  raw_position_y: z.number(),
+  unlocks: z.array(z.number()).optional(),
+});
+
 const classTalentNodeSchema = z.strictObject({
   display_col: z.number(),
   display_row: z.number(),
@@ -143,11 +168,21 @@ const classTalentNodeSchema = z.strictObject({
   unlocks: z.array(z.number()).optional(),
 });
 
+const heroTalentTreeSchema = nameIdSchema.extend({
+  hero_talent_nodes: z.array(heroTalentTreeNodeSchema),
+  media: keyBaseSchema.and(
+    z.strictObject({
+      id: z.number(),
+    }),
+  ),
+  playable_class: nameIdKeySchema,
+  playable_specializations: z.array(nameIdKeySchema),
+});
+
 export const talentTreeResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   class_talent_nodes: z.array(classTalentNodeSchema),
-  media: z.strictObject({
-    href: z.string(),
-  }),
+  hero_talent_trees: z.array(heroTalentTreeSchema),
+  media: keyBaseSchema,
   playable_class: nameIdKeySchema,
   playable_specialization: nameIdKeySchema,
   restriction_lines: z.array(restrictionLineSchema),
