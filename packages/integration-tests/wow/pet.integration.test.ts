@@ -28,11 +28,16 @@ describe('wow pet integration', () => {
           pets.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
         : pets.slice(0, sampleSize);
 
+    const requests = [];
+
     for (const t of sampled) {
-      const pet = await client.sendRequest(wow.pet(t.id));
+      requests.push(client.sendRequest(wow.pet(t.id)));
+    }
+    const responses = await Promise.all(requests);
+    for (const pet of responses) {
       const parsedPet = petResponseSchema.safeParse(pet);
       if (!parsedPet.success) {
-        console.error('Pet detail validation failed for id', t.id, treeifyError(parsedPet.error));
+        console.error('Pet detail validation failed for id', pet.id, treeifyError(parsedPet.error));
       }
       expect(parsedPet.success).toBe(true);
     }

@@ -21,18 +21,23 @@ describe('wow mount integration', () => {
 
     // Pick up to 5 mounts at random from the index to fetch details
     const mounts = parsed.success ? parsed.data.mounts : [];
-    const sampleSize = Math.min(500, mounts.length);
+    const sampleSize = Math.min(5, mounts.length);
     const sampled =
       mounts.length > sampleSize
         ? // eslint-disable-next-line sonarjs/pseudo-random
           mounts.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
         : mounts.slice(0, sampleSize);
 
+    const requests = [];
+
     for (const t of sampled) {
-      const mount = await client.sendRequest(wow.mount(t.id));
+      requests.push(client.sendRequest(wow.mount(t.id)));
+    }
+    const responses = await Promise.all(requests);
+    for (const mount of responses) {
       const parsedmount = mountResponseSchema.safeParse(mount);
       if (!parsedmount.success) {
-        console.error('mount detail validation failed for id', t.id, treeifyError(parsedmount.error));
+        console.error('mount detail validation failed for id', mount.id, treeifyError(parsedmount.error));
         console.log('mount', mount);
         console.log('parsedmount.error', parsedmount.error);
       }

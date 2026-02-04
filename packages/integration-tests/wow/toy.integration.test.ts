@@ -28,11 +28,16 @@ describe('wow toy integration', () => {
           toys.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
         : toys.slice(0, sampleSize);
 
+    const requests = [];
+
     for (const t of sampled) {
-      const toy = await client.sendRequest(wow.toy(t.id));
+      requests.push(client.sendRequest(wow.toy(t.id)));
+    }
+    const responses = await Promise.all(requests);
+    for (const toy of responses) {
       const parsedToy = toyResponseSchema.safeParse(toy);
       if (!parsedToy.success) {
-        console.error('Toy detail validation failed for id', t.id, treeifyError(parsedToy.error));
+        console.error('Toy detail validation failed for id', toy.id, treeifyError(parsedToy.error));
       }
       expect(parsedToy.success).toBe(true);
     }

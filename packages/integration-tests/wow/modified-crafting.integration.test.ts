@@ -22,9 +22,22 @@ describe('wow modified-crafting integration', () => {
     }
     expect(parsed.success).toBe(true);
 
-    const first = parsed.success ? parsed.data.categories[0] : undefined;
-    if (first) {
-      const category = await client.sendRequest(wow.modifiedCraftingCategory(first.id));
+    // Pick up to 5 categories at random from the index to fetch details
+    const categories = parsed.success ? parsed.data.categories : [];
+    const sampleSize = Math.min(5, categories.length);
+    const sampled =
+      categories.length > sampleSize
+        ? // eslint-disable-next-line sonarjs/pseudo-random
+          categories.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
+        : categories.slice(0, sampleSize);
+
+    const requests = [];
+
+    for (const c of sampled) {
+      requests.push(client.sendRequest(wow.modifiedCraftingCategory(c.id)));
+    }
+    const responses = await Promise.all(requests);
+    for (const category of responses) {
       const parsedCategory = modifiedCraftingCategoryResponseSchema.safeParse(category);
       if (!parsedCategory.success) {
         console.error('Modified crafting category detail validation failed:', treeifyError(parsedCategory.error));

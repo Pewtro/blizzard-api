@@ -1,18 +1,21 @@
-import type { KeyBase, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { KeyBase, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a modified crafting category index.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface ModifiedCraftingCategoryIndexResponse extends ResponseBase {
-  categories: Array<NameIdKey>;
+  categories: Array<KeyBase & { id: number; name?: string }>;
 }
 
 /**
  * The response for a modified crafting category.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface ModifiedCraftingCategoryResponse extends NameId, ResponseBase {}
+export interface ModifiedCraftingCategoryResponse extends ResponseBase {
+  id: number;
+  name?: string;
+}
 
 /**
  * The response for a modified crafting index.

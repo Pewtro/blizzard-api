@@ -22,8 +22,12 @@ describe('wow playable-specialization integration', () => {
     }
     expect(parsed.success).toBe(true);
 
+    const requests = [];
     for (const specialization of index.character_specializations) {
-      const spec = await client.sendRequest(wow.playableSpecialization(specialization.id));
+      requests.push(client.sendRequest(wow.playableSpecialization(specialization.id)));
+    }
+    const responses = await Promise.all(requests);
+    for (const spec of responses) {
       const parsedSpec = playableSpecializationResponseSchema.safeParse(spec);
       if (!parsedSpec.success) {
         console.error('Playable specialization detail validation failed:', treeifyError(parsedSpec.error));

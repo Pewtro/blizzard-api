@@ -28,11 +28,16 @@ describe('wow title integration', () => {
           titles.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
         : titles.slice(0, sampleSize);
 
+    const requests = [];
+
     for (const t of sampled) {
-      const title = await client.sendRequest(wow.title(t.id));
+      requests.push(client.sendRequest(wow.title(t.id)));
+    }
+    const responses = await Promise.all(requests);
+    for (const title of responses) {
       const parsedTitle = titleResponseSchema.safeParse(title);
       if (!parsedTitle.success) {
-        console.error('Title detail validation failed for id', t.id, treeifyError(parsedTitle.error));
+        console.error('Title detail validation failed for id', title.id, treeifyError(parsedTitle.error));
       }
       expect(parsedTitle.success).toBe(true);
     }
