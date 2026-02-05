@@ -3,6 +3,7 @@
 const config = {
   entryPoints: ['packages/*'],
   entryPointStrategy: 'packages',
+  exclude: 'packages/integration-tests',
   navigation: {
     includeGroups: true,
   },
