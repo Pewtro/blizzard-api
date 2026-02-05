@@ -213,13 +213,23 @@ export class BlizzardApiClient {
     const url = this.getRequestUrl(resource, options);
     const config = this.getRequestConfig(resource, options, headers);
 
+    const kyHeaders = {};
+    for (const value of Object.entries(options?.kyOptions?.headers ?? {})) {
+      Object.assign(kyHeaders, value);
+    }
+
+    const kySearchParameters = {};
+    for (const value of Object.entries(options?.kyOptions?.searchParams ?? {})) {
+      Object.assign(kySearchParameters, value);
+    }
+
     const response = await this.ky.get<T>(url, {
       ...options?.kyOptions,
       headers: {
         ...config.headers,
-        ...options?.kyOptions?.headers,
+        ...kyHeaders,
       },
-      searchParams: { ...config.searchParams, ...Object.entries(options?.kyOptions?.searchParams ?? {}) },
+      searchParams: { ...config.searchParams, ...kySearchParameters },
     });
     const data = await response.json();
 
