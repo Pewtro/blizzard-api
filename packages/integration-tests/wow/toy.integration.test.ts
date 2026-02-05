@@ -41,5 +41,5 @@ describe('wow toy integration', () => {
       }
       expect(parsedToy.success).toBe(true);
     }
-  }, 30_000);
+  });
 });

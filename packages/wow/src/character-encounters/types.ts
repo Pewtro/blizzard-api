@@ -16,8 +16,8 @@ export interface CharacterRaidsResponse extends ResponseBase {
 }
 
 interface DungeonDifficulties {
-  name: 'Heroic' | 'Mythic' | 'Mythic+ Dungeons' | 'Normal';
-  type: 'HEROIC' | 'MYTHIC' | 'MYTHIC_KEYSTONE' | 'NORMAL';
+  name?: string;
+  type?: 'HEROIC' | 'MYTHIC' | 'MYTHIC_KEYSTONE' | 'NORMAL';
 }
 
 interface DungeonInstance {
@@ -54,15 +54,7 @@ interface Progress {
 }
 
 interface RaidDifficulties {
-  name:
-    | '10 Player'
-    | '10 Player (Heroic)'
-    | '25 Player'
-    | '25 Player (Heroic)'
-    | 'Heroic'
-    | 'Mythic'
-    | 'Normal'
-    | 'Raid Finder';
+  name: string;
   type:
     | 'HEROIC'
     | 'LEGACY_10_MAN'
@@ -86,6 +78,6 @@ interface RaidMode {
 }
 
 interface Status {
-  name: 'Complete' | 'In Progress';
+  name: string;
   type: 'COMPLETE' | 'IN_PROGRESS';
 }

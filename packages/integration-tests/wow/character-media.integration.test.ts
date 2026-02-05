@@ -22,5 +22,5 @@ describe('wow character media integration', () => {
       console.error('Character media summary validation failed:', treeifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
-  }, 30_000);
+  });
 });

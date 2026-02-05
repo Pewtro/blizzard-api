@@ -31,7 +31,9 @@ export const recipeMediaResponseSchema = responseBaseSchema.extend({
 });
 
 const craftedQuantitySchema = z.strictObject({
-  value: z.number(),
+  maximum: z.number().optional(),
+  minimum: z.number().optional(),
+  value: z.number().optional(),
 });
 
 const reagentSchema = z.strictObject({
@@ -53,8 +55,18 @@ export const professionSkillTierResponseSchema = nameIdSchema.extend(responseBas
 });
 
 export const recipeResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
-  crafted_item: nameIdKeySchema,
-  crafted_quantity: craftedQuantitySchema,
+  crafted_item: nameIdKeySchema.optional(),
+  crafted_quantity: craftedQuantitySchema.optional(),
+  description: z.string().optional(),
   media: mediaSchema,
-  reagents: z.array(reagentSchema),
+  modified_crafting_slots: z
+    .array(
+      z.strictObject({
+        display_order: z.number(),
+        slot_type: nameIdKeySchema,
+      }),
+    )
+    .optional(),
+  rank: z.number().optional(),
+  reagents: z.array(reagentSchema).optional(),
 });

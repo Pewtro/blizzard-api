@@ -1,4 +1,4 @@
-import type { Faction, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { Faction, Href, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a quest area index.
@@ -41,9 +41,9 @@ export interface QuestCategoryResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface QuestIndexResponse extends ResponseBase {
-  areas: { href: string };
-  categories: { href: string };
-  types: { href: string };
+  areas: Href;
+  categories: Href;
+  types: Href;
 }
 
 /**

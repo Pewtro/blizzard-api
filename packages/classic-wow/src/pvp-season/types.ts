@@ -1,4 +1,4 @@
-import type { KeyBase, ResponseBase } from '@blizzard-api/core';
+import type { Href, KeyBase, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a PvP season index.
@@ -15,8 +15,8 @@ export interface PvpSeasonIndexResponse extends ResponseBase {
  */
 export interface PvpSeasonResponse extends ResponseBase {
   id: number;
-  leaderboards: { href: string };
-  rewards: { href: string };
+  leaderboards: Href;
+  rewards: Href;
   season_name?: string;
   season_start_timestamp: number;
 }

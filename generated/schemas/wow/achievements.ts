@@ -28,8 +28,9 @@ export const achievementCategoryResponseSchema = nameIdSchema.extend(responseBas
     }),
   }),
   display_order: z.number(),
-  isGuildCategory: z.boolean(),
-  parent_category: nameIdKeySchema,
+  is_guild_category: z.boolean(),
+  parent_category: nameIdKeySchema.optional(),
+  subcategories: z.array(nameIdKeySchema).optional(),
 });
 
 export const achievementIndexResponseSchema = responseBaseSchema.extend({

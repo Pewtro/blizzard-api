@@ -59,7 +59,7 @@ const bestRunSchema = z.strictObject({
 
 export const characterMythicKeystoneSeasonDetailsResponseSchema = responseBaseSchema.extend({
   best_runs: z.array(bestRunSchema),
-  character: nameIdKeySchema,
+  character: characterSchema,
   mythic_rating: mythicRatingSchema,
   season: keyBaseSchema.and(
     z.strictObject({

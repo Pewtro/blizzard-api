@@ -19,5 +19,5 @@ describe('wow guild crest integration', () => {
       console.error('Guild crest components index validation failed:', treeifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
-  }, 30_000);
+  });
 });

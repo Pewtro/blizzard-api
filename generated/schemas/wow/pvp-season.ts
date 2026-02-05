@@ -3,6 +3,7 @@ import { z } from 'zod';
 import {
   factionSchema,
   factionsSchema,
+  hrefSchema,
   keyBaseSchema,
   nameIdKeySchema,
   nameIdSchema,
@@ -15,7 +16,7 @@ const seasonSchema = keyBaseSchema.extend({
 
 const bracketSchema = z.strictObject({
   id: z.number(),
-  type: z.union([z.literal('ARENA_3v3'), z.literal('BATTLEGROUNDS'), z.literal('SHUFFLE')]),
+  type: z.union([z.literal('ARENA_3v3'), z.literal('BATTLEGROUNDS'), z.literal('BLITZ'), z.literal('SHUFFLE')]),
 });
 
 const rewardSchema = z.strictObject({
@@ -33,13 +34,10 @@ export const pvpSeasonIndexResponseSchema = responseBaseSchema.extend({
 
 export const pvpSeasonResponseSchema = responseBaseSchema.extend({
   id: z.number(),
-  leaderboards: z.strictObject({
-    href: z.string(),
-  }),
-  rewards: z.strictObject({
-    href: z.string(),
-  }),
-  season_name: z.string().optional(),
+  leaderboards: hrefSchema,
+  rewards: hrefSchema,
+  season_end_timestamp: z.number().optional(),
+  season_name: z.string().optional().nullable(),
   season_start_timestamp: z.number(),
 });
 

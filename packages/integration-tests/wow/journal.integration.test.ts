@@ -6,9 +6,11 @@ import { environment } from '../../../environment';
 import {
   journalEncounterIndexResponseSchema,
   journalEncounterResponseSchema,
+  journalEncounterSearchResponseSchema,
   journalExpansionIndexResponseSchema,
   journalExpansionResponseSchema,
   journalInstanceIndexResponseSchema,
+  journalInstanceMediaResponseSchema,
   journalInstanceResponseSchema,
 } from '../../../generated/schemas/wow/journal';
 
@@ -52,7 +54,7 @@ describe.concurrent('wow journal integration', () => {
       }
       expect(parsedEncounter.success).toBe(true);
     }
-  }, 30_000);
+  });
   it('validates journal expansion index and details', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
@@ -93,7 +95,7 @@ describe.concurrent('wow journal integration', () => {
       }
       expect(parsedExpansion.success).toBe(true);
     }
-  }, 30_000);
+  });
 
   it('validates journal instance index and details', async ({ expect }) => {
     const client = await createBlizzardApiClient({
@@ -135,5 +137,47 @@ describe.concurrent('wow journal integration', () => {
       }
       expect(parsedInstance.success).toBe(true);
     }
-  }, 30_000);
+  });
+
+  it('validates journal encounter search', async ({ expect }) => {
+    const client = await createBlizzardApiClient({
+      key: environment.blizzardClientId,
+      origin: 'eu',
+      secret: environment.blizzardClientSecret,
+    });
+
+    const search = await client.sendRequest(
+      wow.journalEncounterSearch({ _page: 1, instanceName: 'raid', locale: 'en_GB' }),
+    );
+    const parsed = journalEncounterSearchResponseSchema.safeParse(search);
+    if (!parsed.success) {
+      console.error('Journal encounter search validation failed:', treeifyError(parsed.error));
+    }
+    expect(parsed.success).toBe(true);
+  });
+
+  it('validates journal instance media', async ({ expect }) => {
+    const client = await createBlizzardApiClient({
+      key: environment.blizzardClientId,
+      origin: 'eu',
+      secret: environment.blizzardClientSecret,
+    });
+
+    const instanceResp = await client.sendRequest(wow.journalInstanceIndex());
+    const parsedExp = journalInstanceIndexResponseSchema.safeParse(instanceResp);
+    if (!parsedExp.success) {
+      console.error('Journal instance index validation failed:', treeifyError(parsedExp.error));
+    }
+    expect(parsedExp.success).toBe(true);
+
+    const instances = parsedExp.success ? parsedExp.data.instances : [];
+    if (instances.length > 0) {
+      const media = await client.sendRequest(wow.journalInstanceMedia(instances[0]!.id));
+      const parsedMedia = journalInstanceMediaResponseSchema.safeParse(media);
+      if (!parsedMedia.success) {
+        console.error('Journal instance media validation failed:', treeifyError(parsedMedia.error));
+      }
+      expect(parsedMedia.success).toBe(true);
+    }
+  });
 });

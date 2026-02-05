@@ -68,20 +68,20 @@ export interface Color {
  * The faction associated with a character or entity in World of Warcraft.
  */
 export interface Faction {
-  name: 'Alliance' | 'Horde';
+  name: string;
   type: Factions;
 }
 
 /**
  * The playable factions in World of Warcraft.
  */
-export type Factions = 'ALLIANCE' | 'HORDE';
+export type Factions = 'ALLIANCE' | 'HORDE' | 'NEUTRAL';
 
 /**
  * The gender associated with a character or entity in World of Warcraft.
  */
 export interface Gender {
-  name: 'Female' | 'Male';
+  name: string;
   type: 'FEMALE' | 'MALE';
 }
 
@@ -129,7 +129,9 @@ export interface NameIdKey extends KeyBase, NameId {}
 /**
  * The standard structure to represent a World of Warcraft Realm.
  */
-export interface Realm extends NameIdKey {
+export interface Realm extends KeyBase {
+  id: number;
+  name?: string;
   slug: string;
 }
 

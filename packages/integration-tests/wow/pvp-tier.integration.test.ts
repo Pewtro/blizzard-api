@@ -56,5 +56,5 @@ describe('wow pvp-tier integration', () => {
       }
       expect(parsed.success).toBe(true);
     }
-  }, 30_000);
+  });
 });

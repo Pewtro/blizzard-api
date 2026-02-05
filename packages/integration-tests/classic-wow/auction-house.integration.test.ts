@@ -60,5 +60,5 @@ describe.skip('classic-wow auction house integration', () => {
       console.error('Auctions validation failed:', treeifyError(parsedAuctions.error));
     }
     expect(parsedAuctions.success).toBe(true);
-  }, 30_000);
+  });
 });

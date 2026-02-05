@@ -41,6 +41,7 @@ const sourceSchema = z.strictObject({
 
 export const petAbilityResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   battle_pet_type: battlePetTypeSchema,
+  cooldown: z.number().optional(),
   media: mediaSchema,
   rounds: z.number(),
 });

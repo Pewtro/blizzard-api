@@ -57,5 +57,5 @@ describe('wow mythic-keystone-affix integration', () => {
       }
       expect(parsed.success).toBe(true);
     }
-  }, 30_000);
+  });
 });

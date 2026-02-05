@@ -2,6 +2,7 @@
 import { z } from 'zod';
 import {
   baseSearchParametersSchema,
+  hrefSchema,
   keyBaseSchema,
   localesSchema,
   nameIdKeySchema,
@@ -57,8 +58,6 @@ export const realmTimezoneSchema = z.union([
   z.literal('Europe/Paris'),
 ]);
 
-export const realmTypeSchema = z.union([z.literal('Normal'), z.literal('Roleplaying')]);
-
 export const realmTypeCapitalizedSchema = z.union([z.literal('NORMAL'), z.literal('RP')]);
 
 export const realmSearchParametersSchema = baseSearchParametersSchema.extend({
@@ -67,19 +66,19 @@ export const realmSearchParametersSchema = baseSearchParametersSchema.extend({
 
 const realmSearchResponseItemSchema = keyBaseSchema.extend({
   data: z.strictObject({
-    category: z.record(localesSchema, z.union([z.string(), z.undefined()])),
+    category: z.record(localesSchema, z.string()),
     id: z.number(),
     is_tournament: z.boolean(),
     locale: realmLocalesSchema,
-    name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
+    name: z.record(localesSchema, z.string()),
     region: z.strictObject({
       id: z.number(),
-      name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
+      name: z.record(localesSchema, z.string()),
     }),
     slug: z.string(),
     timezone: realmTimezoneSchema,
     type: z.strictObject({
-      name: realmTypeSchema,
+      name: z.record(localesSchema, z.string()),
       type: realmTypeCapitalizedSchema,
     }),
   }),
@@ -87,16 +86,14 @@ const realmSearchResponseItemSchema = keyBaseSchema.extend({
 
 export const realmResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   category: realmCategorySchema,
-  connected_realm: z.strictObject({
-    href: z.string(),
-  }),
+  connected_realm: hrefSchema,
   is_tournament: z.boolean(),
   locale: realmLocalesSchema,
   region: nameIdKeySchema,
   slug: z.string(),
   timezone: realmTimezoneSchema,
   type: z.strictObject({
-    name: realmTypeSchema,
+    name: z.string(),
     type: realmTypeCapitalizedSchema,
   }),
 });

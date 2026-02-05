@@ -1,4 +1,4 @@
-import type { NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { Href, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 export interface AuctionHouseIndexResponse extends ResponseBase {
   auctions: Array<NameIdKey>;
@@ -6,7 +6,7 @@ export interface AuctionHouseIndexResponse extends ResponseBase {
 
 export interface AuctionsResponse extends NameId, ResponseBase {
   auctions: Array<Auction>;
-  connected_realm: { href: string };
+  connected_realm: Href;
 }
 
 interface Auction {

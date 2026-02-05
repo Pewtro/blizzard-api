@@ -12,4 +12,5 @@ export const playableRaceResponseSchema = nameIdSchema.extend(responseBaseSchema
   is_allied_race: z.boolean(),
   is_selectable: z.boolean(),
   playable_classes: z.array(nameIdKeySchema),
+  racial_spells: z.array(nameIdKeySchema),
 });

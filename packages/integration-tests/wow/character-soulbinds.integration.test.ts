@@ -20,5 +20,5 @@ describe('wow character-soulbinds integration', () => {
       console.error('Character soulbinds validation failed:', treeifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
-  }, 30_000);
+  });
 });

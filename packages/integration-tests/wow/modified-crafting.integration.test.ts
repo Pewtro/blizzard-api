@@ -6,6 +6,9 @@ import { environment } from '../../../environment';
 import {
   modifiedCraftingCategoryIndexResponseSchema,
   modifiedCraftingCategoryResponseSchema,
+  modifiedCraftingIndexResponseSchema,
+  modifiedCraftingReagentSlotTypeIndexResponseSchema,
+  modifiedCraftingReagentSlotTypeResponseSchema,
 } from '../../../generated/schemas/wow/modified-crafting';
 
 describe('wow modified-crafting integration', () => {
@@ -44,5 +47,43 @@ describe('wow modified-crafting integration', () => {
       }
       expect(parsedCategory.success).toBe(true);
     }
-  }, 30_000);
+  });
+
+  it('validates modified crafting index and reagent slot types', async ({ expect }) => {
+    const client = await createBlizzardApiClient({
+      key: environment.blizzardClientId,
+      origin: 'eu',
+      secret: environment.blizzardClientSecret,
+    });
+
+    const index = await client.sendRequest(wow.modifiedCraftingIndex());
+    const parsed = modifiedCraftingIndexResponseSchema.safeParse(index);
+    if (!parsed.success) {
+      console.error('Modified crafting index validation failed:', treeifyError(parsed.error));
+    }
+    expect(parsed.success).toBe(true);
+
+    const slotTypeIndex = await client.sendRequest(wow.modifiedCraftingReagentSlotTypeIndex());
+    const parsedSlotIndex = modifiedCraftingReagentSlotTypeIndexResponseSchema.safeParse(slotTypeIndex);
+    if (!parsedSlotIndex.success) {
+      console.error(
+        'Modified crafting reagent slot type index validation failed:',
+        treeifyError(parsedSlotIndex.error),
+      );
+    }
+    expect(parsedSlotIndex.success).toBe(true);
+
+    const slotTypes = parsedSlotIndex.success ? parsedSlotIndex.data.slot_types : [];
+    if (slotTypes.length > 0) {
+      const slotType = await client.sendRequest(wow.modifiedCraftingReagentSlotType(slotTypes[0]!.id));
+      const parsedSlotType = modifiedCraftingReagentSlotTypeResponseSchema.safeParse(slotType);
+      if (!parsedSlotType.success) {
+        console.error(
+          'Modified crafting reagent slot type detail validation failed:',
+          treeifyError(parsedSlotType.error),
+        );
+      }
+      expect(parsedSlotType.success).toBe(true);
+    }
+  });
 });

@@ -26,5 +26,5 @@ describe('classic-wow media search integration', () => {
       console.error('Media search validation failed:', treeifyError(parsedEraSearch.error));
     }
     expect(parsedEraSearch.success).toBe(true);
-  }, 30_000);
+  });
 });

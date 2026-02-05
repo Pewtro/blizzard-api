@@ -4,6 +4,7 @@ import {
   characterSchema,
   colorSchema,
   factionSchema,
+  factionsSchema,
   hrefSchema,
   keyBaseSchema,
   nameIdKeySchema,
@@ -30,6 +31,14 @@ const recentEventSchema = z.strictObject({
 const characterAchievementSchema = z.strictObject({
   achievement: nameIdKeySchema,
   character: characterSchema,
+});
+
+const encounterActivitySchema = z.strictObject({
+  encounter: nameIdKeySchema,
+  mode: z.strictObject({
+    name: z.string(),
+    type: z.literal('MYTHIC'),
+  }),
 });
 
 const rgbWithIdSchema = z.strictObject({
@@ -65,6 +74,9 @@ const playableSchema = keyBaseSchema.extend({
 });
 
 const rosterMemberCharacterSchema = characterSchema.extend({
+  faction: z.strictObject({
+    type: factionsSchema,
+  }),
   level: z.number(),
   playable_class: playableSchema,
   playable_race: playableSchema,
@@ -81,7 +93,8 @@ const activityElementSchema = z.strictObject({
   activity: z.strictObject({
     type: z.string(),
   }),
-  character_achievement: characterAchievementSchema,
+  character_achievement: characterAchievementSchema.optional(),
+  encounter_completed: encounterActivitySchema.optional(),
   timestamp: z.number(),
 });
 

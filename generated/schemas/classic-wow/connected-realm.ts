@@ -2,6 +2,7 @@
 import { z } from 'zod';
 import {
   baseSearchParametersSchema,
+  hrefSchema,
   keyBaseSchema,
   localesSchema,
   nameIdKeySchema,
@@ -10,16 +11,13 @@ import {
 } from '../core';
 
 export const connectedRealmIndexResponseSchema = responseBaseSchema.extend({
-  connected_realms: z.array(
-    z.strictObject({
-      href: z.string(),
-    }),
-  ),
+  connected_realms: z.array(hrefSchema),
 });
 
 const realmPopulationCapitalizedSchema = z.union([
   z.literal('FULL'),
   z.literal('HIGH'),
+  z.literal('LOCKED'),
   z.literal('LOW'),
   z.literal('MEDIUM'),
   z.literal('RECOMMENDED'),
@@ -50,15 +48,11 @@ const realmCategorySchema = z.any();
 
 const realmLocalesSchema = z.any();
 
-const realmTypeSchema = z.any();
-
 const realmTypeCapitalizedSchema = z.any();
 
 const realmSchema = z.strictObject({
   category: realmCategorySchema,
-  connected_realm: z.strictObject({
-    href: z.string(),
-  }),
+  connected_realm: hrefSchema,
   id: z.number(),
   is_tournament: z.boolean(),
   locale: realmLocalesSchema,
@@ -67,7 +61,7 @@ const realmSchema = z.strictObject({
   slug: z.string(),
   timezone: realmTimezoneSchema,
   type: z.strictObject({
-    name: realmTypeSchema,
+    name: z.string(),
     type: realmTypeCapitalizedSchema,
   }),
 });
@@ -78,42 +72,32 @@ export const connectedRealmSearchParametersSchema = baseSearchParametersSchema.e
 });
 
 const searchRealmSchema = z.strictObject({
-  category: z.record(localesSchema, z.union([z.string(), z.undefined()])),
+  category: z.record(localesSchema, z.string()),
   id: z.number(),
   is_tournament: z.boolean(),
   locale: realmLocalesSchema,
   name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
   region: z.strictObject({
     id: z.number(),
-    name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
+    name: z.record(localesSchema, z.string()),
   }),
   slug: z.string(),
   timezone: realmTimezoneSchema,
   type: z.strictObject({
-    name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
+    name: z.record(localesSchema, z.string()),
     type: realmTypeCapitalizedSchema,
   }),
 });
 
 export const connectedRealmResponseSchema = responseBaseSchema.extend({
-  auctions: z.strictObject({
-    href: z.string(),
-  }),
+  auctions: hrefSchema,
   has_queue: z.boolean(),
   id: z.number(),
-  mythic_leaderboards: z.strictObject({
-    href: z.string(),
-  }),
   population: z.strictObject({
-    name: z.union([
-      z.literal('Full'),
-      z.literal('High'),
-      z.literal('Low'),
-      z.literal('Medium'),
-      z.literal('New Players'),
-    ]),
+    name: z.string(),
     type: realmPopulationCapitalizedSchema,
   }),
+  pvp_season: hrefSchema.optional(),
   realm_locked_status: realmLockedStatusSchema.optional(),
   realms: z.array(realmSchema),
   status: z.strictObject({

@@ -47,7 +47,7 @@ const creatureSearchResponseItemSchema = keyBaseSchema.extend({
     family: z
       .strictObject({
         id: z.number(),
-        name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
+        name: z.record(localesSchema, z.string()),
       })
       .optional(),
     id: z.number(),
@@ -55,7 +55,7 @@ const creatureSearchResponseItemSchema = keyBaseSchema.extend({
     name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
     type: z.strictObject({
       id: z.number(),
-      name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
+      name: z.record(localesSchema, z.string()),
     }),
   }),
 });

@@ -1,4 +1,4 @@
-import type { Faction, Factions, KeyBase, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { Faction, Factions, Href, KeyBase, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a PvP leaderboard index.
@@ -44,15 +44,16 @@ export interface PvpSeasonIndexResponse extends ResponseBase {
  */
 export interface PvpSeasonResponse extends ResponseBase {
   id: number;
-  leaderboards: { href: string };
-  rewards: { href: string };
-  season_name?: string;
+  leaderboards: Href;
+  rewards: Href;
+  season_end_timestamp?: number;
+  season_name?: null | string;
   season_start_timestamp: number;
 }
 
 interface Bracket {
   id: number;
-  type: 'ARENA_3v3' | 'BATTLEGROUNDS' | 'SHUFFLE';
+  type: 'ARENA_3v3' | 'BATTLEGROUNDS' | 'BLITZ' | 'SHUFFLE';
 }
 
 interface Character extends NameId {

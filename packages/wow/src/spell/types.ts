@@ -53,6 +53,6 @@ interface SpellSearchResponseItem extends KeyBase {
   data: {
     id: number;
     media: { id: number };
-    name: Record<Locales, string | undefined>;
+    name: Record<Locales, string>;
   };
 }

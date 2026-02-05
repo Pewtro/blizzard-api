@@ -18,4 +18,5 @@ export interface PlayableRaceResponse extends NameId, ResponseBase {
   is_allied_race: boolean;
   is_selectable: boolean;
   playable_classes: Array<NameIdKey>;
+  racial_spells: Array<NameIdKey>;
 }

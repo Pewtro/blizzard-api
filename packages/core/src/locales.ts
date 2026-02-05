@@ -10,9 +10,7 @@ export type Locales =
   | 'fr_FR'
   | 'it_IT'
   | 'ko_KR'
-  | 'multi'
   | 'pt_BR'
-  | 'pt_PT'
   | 'ru_RU'
   | 'zh_CN'
   | 'zh_TW';

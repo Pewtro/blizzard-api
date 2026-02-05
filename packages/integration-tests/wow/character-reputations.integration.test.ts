@@ -20,5 +20,5 @@ describe('wow character-reputations integration', () => {
       console.error('Character reputations validation failed:', treeifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
-  }, 30_000);
+  });
 });

@@ -1,5 +1,6 @@
 import type {
   BaseSearchParameters,
+  Href,
   KeyBase,
   Locales,
   NameId,
@@ -56,13 +57,13 @@ export type RealmLocales =
  */
 export interface RealmResponse extends NameId, ResponseBase {
   category: RealmCategory;
-  connected_realm: { href: string };
+  connected_realm: Href;
   is_tournament: boolean;
   locale: RealmLocales;
   region: NameIdKey;
   slug: string;
   timezone: RealmTimezone;
-  type: { name: RealmType; type: RealmTypeCapitalized };
+  type: { name: string; type: RealmTypeCapitalized };
 }
 
 /**
@@ -97,25 +98,20 @@ export type RealmTimezone =
   | 'Europe/Paris';
 
 /**
- * The type of a realm, not capitalized or shortened.
- */
-export type RealmType = 'Normal' | 'Roleplaying';
-
-/**
- * The type of a realm, capitalized and shortended).
+ * The type of a realm, capitalized and shortened).
  */
 export type RealmTypeCapitalized = 'NORMAL' | 'RP';
 
 interface RealmSearchResponseItem extends KeyBase {
   data: {
-    category: Record<Locales, string | undefined>;
+    category: Record<Locales, string>;
     id: number;
     is_tournament: boolean;
     locale: RealmLocales;
-    name: Record<Locales, string | undefined>;
-    region: { id: number; name: Record<Locales, string | undefined> };
+    name: Record<Locales, string>;
+    region: { id: number; name: Record<Locales, string> };
     slug: string;
     timezone: RealmTimezone;
-    type: { name: RealmType; type: RealmTypeCapitalized };
+    type: { name: Record<Locales, string>; type: RealmTypeCapitalized };
   };
 }

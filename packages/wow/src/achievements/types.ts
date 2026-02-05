@@ -27,8 +27,9 @@ export interface AchievementCategoryResponse extends NameId, ResponseBase {
     };
   };
   display_order: number;
-  isGuildCategory: boolean;
-  parent_category: NameIdKey;
+  is_guild_category: boolean;
+  parent_category?: NameIdKey;
+  subcategories?: Array<NameIdKey>;
 }
 
 /**

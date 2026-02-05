@@ -38,7 +38,7 @@ describe.concurrent('classic-wow playable class integration', () => {
       }
       expect(mediaParsed.success).toBe(true);
     }
-  }, 30_000);
+  });
   it('fetches playable class and media by id for classic', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
@@ -71,5 +71,5 @@ describe.concurrent('classic-wow playable class integration', () => {
       }
       expect(mediaParsed.success).toBe(true);
     }
-  }, 30_000);
+  });
 });

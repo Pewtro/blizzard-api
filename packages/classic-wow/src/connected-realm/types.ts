@@ -1,30 +1,31 @@
 import type {
   BaseSearchParameters,
+  Href,
   KeyBase,
   Locales,
   NameIdKey,
   ResponseBase,
   SearchResponseWithoutResults,
 } from '@blizzard-api/core';
-import type { RealmCategory, RealmLocales, RealmTimezone, RealmType, RealmTypeCapitalized } from '../realm/types';
+import type { RealmCategory, RealmLocales, RealmTimezone, RealmTypeCapitalized } from '../realm/types';
 
 /**
  * Connected Realm Index API response.
  * @see https://develop.battle.net/documentation/world-of-warcraft/game-data-apis
  */
 export interface ConnectedRealmIndexResponse extends ResponseBase {
-  connected_realms: Array<{ href: string }>;
+  connected_realms: Array<Href>;
 }
 /**
  * Connected Realm API response.
  * @see https://develop.battle.net/documentation/world-of-warcraft/game-data-apis
  */
 export interface ConnectedRealmResponse extends ResponseBase {
-  auctions: { href: string };
+  auctions: Href;
   has_queue: boolean;
   id: number;
-  mythic_leaderboards: { href: string };
-  population: { name: 'Full' | 'High' | 'Low' | 'Medium' | 'New Players'; type: RealmPopulationCapitalized };
+  population: { name: string; type: RealmPopulationCapitalized };
+  pvp_season?: Href;
   realm_locked_status?: RealmLockedStatus;
   realms: Array<Realm>;
   status: { name: RealmStatus; type: RealmStatusCapitalized };
@@ -60,7 +61,7 @@ interface ConnectedRealmSearchResponseItem extends KeyBase {
 
 interface Realm {
   category: RealmCategory;
-  connected_realm: { href: string };
+  connected_realm: Href;
   id: number;
   is_tournament: boolean;
   locale: RealmLocales;
@@ -68,7 +69,7 @@ interface Realm {
   region: NameIdKey;
   slug: string;
   timezone: RealmTimezone;
-  type: { name: RealmType; type: RealmTypeCapitalized };
+  type: { name: string; type: RealmTypeCapitalized };
 }
 
 interface RealmLockedStatus {
@@ -76,22 +77,22 @@ interface RealmLockedStatus {
   is_locked_for_pct: boolean;
 }
 
-type RealmPopulationCapitalized = 'FULL' | 'HIGH' | 'LOW' | 'MEDIUM' | 'RECOMMENDED';
+type RealmPopulationCapitalized = 'FULL' | 'HIGH' | 'LOCKED' | 'LOW' | 'MEDIUM' | 'RECOMMENDED';
 
 type RealmStatus = 'Down' | 'Up';
 
 type RealmStatusCapitalized = 'DOWN' | 'UP';
 
 interface SearchRealm {
-  category: Record<Locales, string | undefined>;
+  category: Record<Locales, string>;
   id: number;
   is_tournament: boolean;
   locale: RealmLocales;
   name: Record<Locales, string | undefined>;
-  region: { id: number; name: Record<Locales, string | undefined> };
+  region: { id: number; name: Record<Locales, string> };
   slug: string;
   timezone: RealmTimezone;
-  type: { name: Record<Locales, string | undefined>; type: RealmTypeCapitalized };
+  type: { name: Record<Locales, string>; type: RealmTypeCapitalized };
 }
 
 interface SearchRealmPopulation {

@@ -19,5 +19,5 @@ describe('wow media search integration', () => {
       console.error('Media search validation failed:', treeifyError(parsedSearch.error));
     }
     expect(parsedSearch.success).toBe(true);
-  }, 30_000);
+  });
 });

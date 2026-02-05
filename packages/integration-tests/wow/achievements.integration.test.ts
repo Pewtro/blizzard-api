@@ -3,7 +3,13 @@ import * as wow from '@blizzard-api/wow';
 import { describe, it } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
-import { achievementIndexResponseSchema, achievementResponseSchema } from '../../../generated/schemas/wow/achievements';
+import {
+  achievementCategoryIndexResponseSchema,
+  achievementCategoryResponseSchema,
+  achievementIndexResponseSchema,
+  achievementMediaResponseSchema,
+  achievementResponseSchema,
+} from '../../../generated/schemas/wow/achievements';
 
 describe('wow achievements integration', () => {
   it('fetches achievement indices and media', async ({ expect }) => {
@@ -45,6 +51,66 @@ describe('wow achievements integration', () => {
         );
       }
       expect(parsedAchievement.success).toBe(true);
+    }
+  });
+
+  it('validates achievement categories and media', async ({ expect }) => {
+    const client = await createBlizzardApiClient({
+      key: environment.blizzardClientId,
+      origin: 'eu',
+      secret: environment.blizzardClientSecret,
+    });
+
+    const catIndex = await client.sendRequest(wow.achievementCategoryIndex());
+    const parsedCatIndex = achievementCategoryIndexResponseSchema.safeParse(catIndex);
+    if (!parsedCatIndex.success) {
+      console.error('Achievement category index validation failed:', treeifyError(parsedCatIndex.error));
+    }
+    expect(parsedCatIndex.success).toBe(true);
+
+    const categories = parsedCatIndex.success ? parsedCatIndex.data.categories : [];
+    const sampleSize = Math.min(50, categories.length);
+    const sampledCats =
+      categories.length > sampleSize
+        ? // eslint-disable-next-line sonarjs/pseudo-random
+          categories.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
+        : categories.slice(0, sampleSize);
+
+    const catRequests = [];
+    for (const c of sampledCats) {
+      catRequests.push(client.sendRequest(wow.achievementCategory(c.id)));
+    }
+
+    const catResponses = await Promise.all(catRequests);
+    for (const cr of catResponses) {
+      const parsedCat = achievementCategoryResponseSchema.safeParse(cr);
+      if (!parsedCat.success) {
+        console.error('Achievement category validation failed for id', cr.id, treeifyError(parsedCat.error));
+      }
+      expect(parsedCat.success).toBe(true);
+    }
+
+    // Validate media for some achievements from the original index
+    const achievementsList = await client.sendRequest(wow.achievementIndex());
+    const parsedIndexAgain = achievementIndexResponseSchema.safeParse(achievementsList);
+    if (!parsedIndexAgain.success) {
+      console.error('Achievement index revalidation failed:', treeifyError(parsedIndexAgain.error));
+    }
+    expect(parsedIndexAgain.success).toBe(true);
+
+    const achs = parsedIndexAgain.success ? parsedIndexAgain.data.achievements : [];
+    const mediaSample = achs.slice(0, Math.min(5, achs.length));
+    const mediaRequests = [];
+    for (const a of mediaSample) {
+      mediaRequests.push(client.sendRequest(wow.achievementMedia(a.id)));
+    }
+    const mediaResponses = await Promise.all(mediaRequests);
+    for (const m of mediaResponses) {
+      const parsedMedia = achievementMediaResponseSchema.safeParse(m);
+      if (!parsedMedia.success) {
+        console.error('Achievement media validation failed for id', m.id, treeifyError(parsedMedia.error));
+      }
+      expect(parsedMedia.success).toBe(true);
     }
   });
 });

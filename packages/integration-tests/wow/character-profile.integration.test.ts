@@ -31,5 +31,5 @@ describe('wow character-profile integration', () => {
       console.error('Character profile status validation failed:', treeifyError(parsedStatus.error));
     }
     expect(parsedStatus.success).toBe(true);
-  }, 30_000);
+  });
 });

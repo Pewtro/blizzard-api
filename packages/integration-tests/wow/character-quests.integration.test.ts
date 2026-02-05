@@ -3,7 +3,7 @@ import * as wow from '@blizzard-api/wow';
 import { describe, it } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
-import { characterQuestsResponseSchema } from '../../../generated/schemas/wow';
+import { characterCompletedQuestsResponseSchema, characterQuestsResponseSchema } from '../../../generated/schemas/wow';
 
 describe('wow character-quests integration', () => {
   it('validates character quests', async ({ expect }) => {
@@ -20,5 +20,22 @@ describe('wow character-quests integration', () => {
       console.error('Character quests validation failed:', treeifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
-  }, 30_000);
+  });
+
+  it('validates completed quests', async ({ expect }) => {
+    const client = await createBlizzardApiClient({
+      key: environment.blizzardClientId,
+      origin: 'eu',
+      secret: environment.blizzardClientSecret,
+    });
+    const realm = 'laughing-skull';
+    const character = 'putro';
+
+    const completed = await client.sendRequest(wow.characterCompletedQuests(realm, character));
+    const parsedCompleted = characterCompletedQuestsResponseSchema.safeParse(completed);
+    if (!parsedCompleted.success) {
+      console.error('Character completed quests validation failed:', treeifyError(parsedCompleted.error));
+    }
+    expect(parsedCompleted.success).toBe(true);
+  });
 });

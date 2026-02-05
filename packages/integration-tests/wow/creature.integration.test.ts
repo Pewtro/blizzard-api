@@ -5,7 +5,9 @@ import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
   creatureFamilyIndexResponseSchema,
+  creatureFamilyMediaResponseSchema,
   creatureFamilyResponseSchema,
+  creatureSearchResponseSchema,
   creatureTypeIndexResponseSchema,
   creatureTypeResponseSchema,
 } from '../../../generated/schemas/wow/creature';
@@ -33,8 +35,30 @@ describe('wow creature integration', () => {
         console.error('Creature family detail validation failed:', treeifyError(parsedDetail.error));
       }
       expect(parsedDetail.success).toBe(true);
+
+      const media = await client.sendRequest(wow.creatureFamilyMedia(first.id));
+      const parsedMedia = creatureFamilyMediaResponseSchema.safeParse(media);
+      if (!parsedMedia.success) {
+        console.error('Creature family media validation failed:', treeifyError(parsedMedia.error));
+      }
+      expect(parsedMedia.success).toBe(true);
     }
-  }, 30_000);
+  });
+
+  it('validates creature search', async ({ expect }) => {
+    const client = await createBlizzardApiClient({
+      key: environment.blizzardClientId,
+      origin: 'eu',
+      secret: environment.blizzardClientSecret,
+    });
+
+    const search = await client.sendRequest(wow.creatureSearch({ _page: 1, locale: 'en_GB', name: 'dragon' }));
+    const parsed = creatureSearchResponseSchema.safeParse(search);
+    if (!parsed.success) {
+      console.error('Creature search validation failed:', treeifyError(parsed.error));
+    }
+    expect(parsed.success).toBe(true);
+  });
 
   it('validates creature type index', async ({ expect }) => {
     const client = await createBlizzardApiClient({
@@ -59,5 +83,5 @@ describe('wow creature integration', () => {
       }
       expect(parsedDetail.success).toBe(true);
     }
-  }, 30_000);
+  });
 });

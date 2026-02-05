@@ -28,5 +28,5 @@ describe('wow heirloom integration', () => {
       }
       expect(parsedItem.success).toBe(true);
     }
-  }, 30_000);
+  });
 });

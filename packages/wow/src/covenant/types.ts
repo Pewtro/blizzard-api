@@ -1,4 +1,4 @@
-import type { KeyBase, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { KeyBase, MediaAsset, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * Interface for a response from the conduit index endpoint.
@@ -33,14 +33,7 @@ export interface CovenantIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface CovenantMediaResponse extends ResponseBase {
-  class_abilities: Array<ClassAbility>;
-  description: string;
-  id: number;
-  media: Media;
-  name: string;
-  renown_rewards: Array<RenownReward>;
-  signature_ability: SignatureAbility;
-  soulbinds: Array<NameIdKey>;
+  assets?: Array<MediaAsset>;
 }
 
 /**

@@ -37,5 +37,5 @@ describe('wow spell integration', () => {
       console.error('Spell media validation failed:', treeifyError(parsedMedia.error));
     }
     expect(parsedMedia.success).toBe(true);
-  }, 30_000);
+  });
 });

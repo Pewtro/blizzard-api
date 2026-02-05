@@ -19,5 +19,5 @@ describe('classic-wow power type integration', () => {
       console.error('Power type index validation failed:', treeifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
-  }, 30_000);
+  });
 });

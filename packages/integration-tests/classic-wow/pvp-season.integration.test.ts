@@ -19,5 +19,5 @@ describe('classic-wow pvp season integration', () => {
       console.error('PvP season index validation failed:', treeifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
-  }, 30_000);
+  });
 });

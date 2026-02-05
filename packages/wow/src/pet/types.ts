@@ -23,6 +23,7 @@ export interface PetAbilityMediaResponse extends ResponseBase {
  */
 export interface PetAbilityResponse extends NameId, ResponseBase {
   battle_pet_type: BattlePetType;
+  cooldown?: number;
   media: Media;
   rounds: number;
 }

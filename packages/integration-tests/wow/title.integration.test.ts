@@ -41,5 +41,5 @@ describe('wow title integration', () => {
       }
       expect(parsedTitle.success).toBe(true);
     }
-  }, 30_000);
+  });
 });

@@ -42,8 +42,9 @@ export interface ItemMediaResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface ItemResponse extends NameId, ResponseBase {
+  appearances?: Array<KeyBase & { id: number }>;
   description?: string;
-  inventory_type: InventoryType;
+  inventory_type: InventoryTypeName;
   is_equippable: boolean;
   is_stackable: boolean;
   item_class: NameIdKey;
@@ -104,9 +105,9 @@ export interface ItemSetResponse extends ResponseBase {
 export interface ItemSubClassResponse extends ResponseBase {
   class_id: number;
   display_name: string;
-  hide_subclass_in_tooltips: boolean;
+  hide_subclass_in_tooltips?: boolean;
   subclass_id: number;
-  verbose_name: string;
+  verbose_name?: string;
 }
 
 interface Armor {
@@ -139,50 +140,71 @@ interface Effect {
   required_count: number;
 }
 
-interface InventoryType {
-  name: Record<Locales, string | undefined>;
-  type: //Armor
-    | 'BACK'
-    | 'BAG'
-    | 'CHEST'
-    | 'FEET'
-    | 'FINGER'
-    | 'HANDS'
-    | 'HEAD'
-    | 'LEGS'
-    | 'NECK'
-    | 'NON_EQUIP'
-    | 'SHIRT'
-    | 'SHOULDER'
-    | 'TABARD'
-    | 'TRINKET'
-    //Weapons
-    | 'TWOHWEAPON'
-    //Misc
-    | 'WAIST'
-    | 'WRIST';
+type InventoryType =
+  //Armor
+  | 'BACK'
+  | 'CHEST'
+  | 'FEET'
+  | 'FINGER'
+  | 'HAND'
+  | 'HANDS'
+  | 'HEAD'
+  | 'LEGS'
+  | 'NECK'
+  | 'SHOULDER'
+  | 'THROWN'
+  | 'TRINKET'
+  | 'WAIST'
+  | 'WRIST'
+  //Weapons
+  | 'RANGED'
+  | 'TWOHWEAPON'
+  | 'WEAPON'
+  | 'WEAPONMAINHAND'
+  | 'WEAPONOFFHAND'
+  //Misc
+  | 'BAG'
+  | 'NON_EQUIP'
+  | 'SHIRT'
+  | 'TABARD';
+
+interface InventoryTypeName {
+  name: string;
+  type: InventoryType;
+}
+interface InventoryTypeNameFromSearch {
+  name: Record<Locales, string>;
+  type: InventoryType;
 }
 
 interface ItemQuality {
-  name: Record<Locales, string | undefined>;
-  type: 'ARTIFACT' | 'COMMON' | 'EPIC' | 'HEIRLOOM' | 'LEGENDARY' | 'POOR' | 'RARE' | 'UNCOMMON';
+  name: string;
+  type: ItemQualityType;
 }
+
+interface ItemQualityFromSearch {
+  name: Record<Locales, string>;
+  type: ItemQualityType;
+}
+
+type ItemQualityType = 'ARTIFACT' | 'COMMON' | 'EPIC' | 'HEIRLOOM' | 'LEGENDARY' | 'POOR' | 'RARE' | 'UNCOMMON';
 
 interface ItemSearchResponseItem extends KeyBase {
   data: {
+    appearances?: Array<{ id: number }>;
     id: number;
-    inventory_type: InventoryType;
+    inventory_type: InventoryTypeNameFromSearch;
     is_equippable: boolean;
     is_stackable: boolean;
-    item_class: { id: number; name: Record<Locales, string | undefined> };
-    item_subclass: { id: number; name: Record<Locales, string | undefined> };
+    item_class: { id: number; name: Record<Locales, string> };
+    item_subclass: { id: number; name: Record<Locales, string> };
     level: number;
     max_count: number;
     media: { id: number };
     name: Record<Locales, string | undefined>;
     purchase_price: number;
     purchase_quantity: number;
-    quality: ItemQuality;
+    quality: ItemQualityFromSearch;
     required_level: number;
     sell_price: number;
   };
@@ -204,7 +226,7 @@ interface PreviewItem {
   crafting_reagent?: string;
   description?: string;
   durability?: Durability;
-  inventory_type: InventoryType;
+  inventory_type: InventoryTypeName;
   is_subclass_hidden?: boolean;
   item: Media;
   item_class: NameIdKey;
@@ -236,7 +258,7 @@ interface RecipeItem {
     type: string;
   };
   durability: Durability;
-  inventory_type: InventoryType;
+  inventory_type: InventoryTypeName;
   item: Media;
   item_class: NameIdKey;
   item_subclass: NameIdKey;
@@ -270,28 +292,23 @@ interface Stat {
   display: Display;
   is_negated?: boolean;
   type: {
-    name: StatType;
+    name: string;
     type: StatTypeCapitalized;
   };
   value: number;
 }
 
-type StatType =
-  | 'Agility'
-  | 'Critical Strike'
-  | 'Haste'
-  | 'Intellect'
-  | 'Mastery'
-  | 'Stamina'
-  | 'Strength'
-  | 'Versatility';
-
 type StatTypeCapitalized =
   | 'AGILITY'
+  | 'ARCANE_RESISTANCE'
   | 'CRIT_RATING'
+  | 'FIRE_RESISTANCE'
+  | 'FROST_RESISTANCE'
   | 'HASTE_RATING'
   | 'INTELLECT'
   | 'MASTERY'
+  | 'NATURE_RESISTANCE'
+  | 'SHADOW_RESISTANCE'
   | 'STAMINA'
   | 'STRENGTH'
   | 'VERSATILITY';

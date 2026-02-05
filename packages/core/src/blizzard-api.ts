@@ -5,10 +5,10 @@ import type { Locales, Origins } from './locales';
  */
 const _regionLocaleMap = {
   cn: ['zh_CN'],
-  eu: ['en_GB', 'es_ES', 'fr_FR', 'ru_RU', 'de_DE', 'pt_PT', 'it_IT', 'multi'],
-  kr: ['ko_KR', 'en_GB', 'en_US', 'multi'],
-  tw: ['zh_TW', 'en_GB', 'en_US', 'multi'],
-  us: ['en_US', 'es_MX', 'pt_BR', 'multi'],
+  eu: ['en_GB', 'es_ES', 'fr_FR', 'ru_RU', 'de_DE', 'it_IT'],
+  kr: ['ko_KR', 'en_GB', 'en_US'],
+  tw: ['zh_TW', 'en_GB', 'en_US'],
+  us: ['en_US', 'es_MX', 'pt_BR'],
 } as const satisfies Record<Origins, Array<Locales>>;
 
 /**

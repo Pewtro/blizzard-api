@@ -47,7 +47,7 @@ const creatureSearchResponseItemSchema = keyBaseSchema.extend({
     family: z
       .strictObject({
         id: z.number(),
-        name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
+        name: z.record(localesSchema, z.string()),
       })
       .optional(),
     id: z.number(),
@@ -55,7 +55,7 @@ const creatureSearchResponseItemSchema = keyBaseSchema.extend({
     name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
     type: z.strictObject({
       id: z.number(),
-      name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
+      name: z.record(localesSchema, z.string()),
     }),
   }),
 });
@@ -76,9 +76,9 @@ export const creatureDisplayMediaResponseSchema = responseBaseSchema.extend({
 
 export const creatureFamilyResponseSchema = responseBaseSchema.extend({
   id: z.number(),
-  media: mediaSchema,
+  media: mediaSchema.optional(),
   name: z.string(),
-  specialization: nameIdKeySchema,
+  specialization: nameIdKeySchema.optional(),
 });
 
 export const creatureResponseSchema = responseBaseSchema.extend({

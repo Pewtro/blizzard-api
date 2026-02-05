@@ -20,5 +20,5 @@ describe('wow character-appearance integration', () => {
       console.error('Character appearance validation failed:', treeifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
-  }, 30_000);
+  });
 });

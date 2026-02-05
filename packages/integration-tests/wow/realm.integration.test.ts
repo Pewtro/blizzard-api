@@ -3,7 +3,11 @@ import * as wow from '@blizzard-api/wow';
 import { describe, it } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
-import { realmIndexResponseSchema, realmResponseSchema } from '../../../generated/schemas/wow/realm';
+import {
+  realmIndexResponseSchema,
+  realmResponseSchema,
+  realmSearchResponseSchema,
+} from '../../../generated/schemas/wow/realm';
 
 describe('wow realm integration', () => {
   it('validates realm index and fetches realm detail', async ({ expect }) => {
@@ -26,8 +30,25 @@ describe('wow realm integration', () => {
       const parsedRealm = realmResponseSchema.safeParse(realm);
       if (!parsedRealm.success) {
         console.error('Realm detail validation failed:', treeifyError(parsedRealm.error));
+        console.log(parsedRealm.error);
+        console.log('realm', realm);
       }
       expect(parsedRealm.success).toBe(true);
     }
-  }, 30_000);
+  });
+
+  it('validates realm search', async ({ expect }) => {
+    const client = await createBlizzardApiClient({
+      key: environment.blizzardClientId,
+      origin: 'eu',
+      secret: environment.blizzardClientSecret,
+    });
+
+    const search = await client.sendRequest(wow.realmSearch({ _page: 1 }));
+    const parsed = realmSearchResponseSchema.safeParse(search);
+    if (!parsed.success) {
+      console.error('Realm search validation failed:', treeifyError(parsed.error));
+    }
+    expect(parsed.success).toBe(true);
+  });
 });

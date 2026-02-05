@@ -24,7 +24,7 @@ describe('classic-wow character specialization integration', () => {
       console.error('Character specialization summary validation failed:', treeifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
-  }, 30_000);
+  });
   it('fetches specialization summary for a character on classic progression', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
@@ -43,5 +43,5 @@ describe('classic-wow character specialization integration', () => {
       console.error('Character specialization summary validation failed:', treeifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
-  }, 30_000);
+  });
 });

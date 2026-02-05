@@ -30,7 +30,7 @@ const spellSearchResponseItemSchema = keyBaseSchema.extend({
     media: z.strictObject({
       id: z.number(),
     }),
-    name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
+    name: z.record(localesSchema, z.string()),
   }),
 });
 

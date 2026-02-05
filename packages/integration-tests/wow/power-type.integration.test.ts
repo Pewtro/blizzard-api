@@ -3,7 +3,7 @@ import * as wow from '@blizzard-api/wow';
 import { describe, it } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
-import { powerTypeIndexResponseSchema } from '../../../generated/schemas/wow';
+import { powerTypeIndexResponseSchema, powerTypeResponseSchema } from '../../../generated/schemas/wow';
 
 describe('wow power type integration', () => {
   it('validates power type index', async ({ expect }) => {
@@ -19,5 +19,15 @@ describe('wow power type integration', () => {
       console.error('Power type index validation failed:', treeifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
-  }, 30_000);
+
+    const first = parsed.success ? parsed.data.power_types[0] : undefined;
+    if (first) {
+      const type = await client.sendRequest(wow.powerType(first.id));
+      const parsedType = powerTypeResponseSchema.safeParse(type);
+      if (!parsedType.success) {
+        console.error('Power type detail validation failed:', treeifyError(parsedType.error));
+      }
+      expect(parsedType.success).toBe(true);
+    }
+  });
 });

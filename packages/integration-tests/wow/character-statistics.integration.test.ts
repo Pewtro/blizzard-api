@@ -22,5 +22,5 @@ describe('wow character statistics integration', () => {
       console.error('Character statistics summary validation failed:', treeifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
-  }, 30_000);
+  });
 });

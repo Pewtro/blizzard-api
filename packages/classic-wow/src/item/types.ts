@@ -114,7 +114,7 @@ interface Durability {
 }
 
 interface InventoryType {
-  name: Record<Locales, string | undefined>;
+  name: Record<Locales, string>;
   type: //Armor
     | 'BACK'
     | 'BAG'
@@ -138,7 +138,7 @@ interface InventoryType {
 }
 
 interface ItemQuality {
-  name: Record<Locales, string | undefined>;
+  name: Record<Locales, string>;
   type: 'ARTIFACT' | 'COMMON' | 'EPIC' | 'HEIRLOOM' | 'LEGENDARY' | 'POOR' | 'RARE' | 'UNCOMMON';
 }
 
@@ -148,12 +148,12 @@ interface ItemSearchResponseItem extends KeyBase {
     inventory_type: InventoryType;
     is_equippable: boolean;
     is_stackable: boolean;
-    item_class: { id: number; name: Record<Locales, string | undefined> };
-    item_subclass: { id: number; name: Record<Locales, string | undefined> };
+    item_class: { id: number; name: Record<Locales, string> };
+    item_subclass: { id: number; name: Record<Locales, string> };
     level: number;
     max_count: number;
     media: { id: number };
-    name: Record<Locales, string | undefined>;
+    name: Record<Locales, string>;
     purchase_price: number;
     purchase_quantity: number;
     quality: ItemQuality;

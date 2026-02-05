@@ -118,7 +118,7 @@ interface ProtectedStats {
 }
 
 interface Quality {
-  name: 'Common' | 'Poor' | 'Rare' | 'Uncommon';
+  name: string;
   type: 'COMMON' | 'POOR' | 'RARE' | 'UNCOMMON';
 }
 

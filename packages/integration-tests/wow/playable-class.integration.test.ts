@@ -5,7 +5,9 @@ import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
   playableClassIndexResponseSchema,
+  playableClassMediaResponseSchema,
   playableClassResponseSchema,
+  pvpTalentSlotsResponseSchema,
 } from '../../../generated/schemas/wow/playable-class';
 
 describe.concurrent('wow playable class integration', () => {
@@ -31,6 +33,20 @@ describe.concurrent('wow playable class integration', () => {
         console.error('Playable class validation failed:', treeifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
+
+      const media = await client.sendRequest(wow.playableClassMedia(first.id));
+      const parsedMedia = playableClassMediaResponseSchema.safeParse(media);
+      if (!parsedMedia.success) {
+        console.error('Playable class media validation failed:', treeifyError(parsedMedia.error));
+      }
+      expect(parsedMedia.success).toBe(true);
+
+      const pvpSlots = await client.sendRequest(wow.pvpTalentSlots(first.id));
+      const parsedPvpSlots = pvpTalentSlotsResponseSchema.safeParse(pvpSlots);
+      if (!parsedPvpSlots.success) {
+        console.error('Playable class PvP talent slots validation failed:', treeifyError(parsedPvpSlots.error));
+      }
+      expect(parsedPvpSlots.success).toBe(true);
     }
-  }, 30_000);
+  });
 });

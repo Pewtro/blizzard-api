@@ -3,7 +3,11 @@ import * as wow from '@blizzard-api/wow';
 import { describe, it } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
-import { mountIndexResponseSchema, mountResponseSchema } from '../../../generated/schemas/wow/mount';
+import {
+  mountIndexResponseSchema,
+  mountResponseSchema,
+  mountSearchResponseSchema,
+} from '../../../generated/schemas/wow/mount';
 
 describe('wow mount integration', () => {
   it('validates mount index and fetches mount detail', async ({ expect }) => {
@@ -41,5 +45,22 @@ describe('wow mount integration', () => {
       }
       expect(parsedmount.success).toBe(true);
     }
-  }, 30_000);
+  });
+
+  it('validates mount search', async ({ expect }) => {
+    const client = await createBlizzardApiClient({
+      key: environment.blizzardClientId,
+      origin: 'eu',
+      secret: environment.blizzardClientSecret,
+    });
+
+    const search = await client.sendRequest(wow.mountSearch({ _page: 1, locale: 'en_GB', name: 'Horse' }));
+    const parsed = mountSearchResponseSchema.safeParse(search);
+    if (!parsed.success) {
+      console.error('Mount search validation failed:', treeifyError(parsed.error));
+      console.log('search', search);
+      console.log('parsed.error', parsed.error);
+    }
+    expect(parsed.success).toBe(true);
+  });
 });

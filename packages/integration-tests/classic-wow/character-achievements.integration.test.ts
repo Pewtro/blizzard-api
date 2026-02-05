@@ -36,5 +36,5 @@ describe('classic-wow character achievements integration', () => {
       console.error('Character achievement statistics validation failed:', treeifyError(parsedStats.error));
     }
     expect(parsedStats.success).toBe(true);
-  }, 30_000);
+  });
 });

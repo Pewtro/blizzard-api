@@ -7,6 +7,7 @@ import {
   conduitIndexResponseSchema,
   conduitResponseSchema,
   covenantIndexResponseSchema,
+  covenantMediaResponseSchema,
   covenantResponseSchema,
   soulbindIndexResponseSchema,
   soulbindResponseSchema,
@@ -28,7 +29,7 @@ describe.concurrent('wow covenant integration', async () => {
 
     const requests = [];
 
-    for (const cov of parsedCov.success ? parsedCov.data.covenants : []) {
+    for (const cov of covIndex.covenants) {
       requests.push(client.sendRequest(wow.covenant(cov.id)));
     }
     const responses = await Promise.all(requests);
@@ -38,8 +39,15 @@ describe.concurrent('wow covenant integration', async () => {
         console.error('Covenant detail validation failed:', treeifyError(parsedDetail.error));
       }
       expect(parsedDetail.success).toBe(true);
+
+      const media = await client.sendRequest(wow.covenantMedia(covenant.id));
+      const parsedMedia = covenantMediaResponseSchema.safeParse(media);
+      if (!parsedMedia.success) {
+        console.error('Covenant media validation failed:', treeifyError(parsedMedia.error));
+      }
+      expect(parsedMedia.success).toBe(true);
     }
-  }, 30_000);
+  });
   it('validates soulbind index and fetches details', async ({ expect }) => {
     const soulIndex = await client.sendRequest(wow.soulbindIndex());
     const parsedSoul = soulbindIndexResponseSchema.safeParse(soulIndex);
@@ -61,7 +69,7 @@ describe.concurrent('wow covenant integration', async () => {
       }
       expect(parsedDetail.success).toBe(true);
     }
-  }, 30_000);
+  });
 
   it('validates conduit index and fetches details', async ({ expect }) => {
     const conduitIndex = await client.sendRequest(wow.conduitIndex());
@@ -93,5 +101,5 @@ describe.concurrent('wow covenant integration', async () => {
       }
       expect(parsedDetail.success).toBe(true);
     }
-  }, 30_000);
+  });
 });

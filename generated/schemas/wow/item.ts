@@ -27,78 +27,13 @@ export const itemMediaResponseSchema = responseBaseSchema.extend({
   id: z.number(),
 });
 
-const inventoryTypeSchema = z.strictObject({
-  name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
-  type: z.union([
-    z.literal('BACK'),
-    z.literal('BAG'),
-    z.literal('CHEST'),
-    z.literal('FEET'),
-    z.literal('FINGER'),
-    z.literal('HANDS'),
-    z.literal('HEAD'),
-    z.literal('LEGS'),
-    z.literal('NECK'),
-    z.literal('NON_EQUIP'),
-    z.literal('SHIRT'),
-    z.literal('SHOULDER'),
-    z.literal('TABARD'),
-    z.literal('TRINKET'),
-    z.literal('TWOHWEAPON'),
-    z.literal('WAIST'),
-    z.literal('WRIST'),
-  ]),
-});
-
 const mediaSchema = keyBaseSchema.extend({
   id: z.number(),
-});
-
-const itemQualitySchema = z.strictObject({
-  name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
-  type: z.union([
-    z.literal('ARTIFACT'),
-    z.literal('COMMON'),
-    z.literal('EPIC'),
-    z.literal('HEIRLOOM'),
-    z.literal('LEGENDARY'),
-    z.literal('POOR'),
-    z.literal('RARE'),
-    z.literal('UNCOMMON'),
-  ]),
 });
 
 export const itemSearchParametersSchema = baseSearchParametersSchema.extend({
   locale: localesSchema,
   name: z.string(),
-});
-
-const itemSearchResponseItemSchema = keyBaseSchema.extend({
-  data: z.strictObject({
-    id: z.number(),
-    inventory_type: inventoryTypeSchema,
-    is_equippable: z.boolean(),
-    is_stackable: z.boolean(),
-    item_class: z.strictObject({
-      id: z.number(),
-      name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
-    }),
-    item_subclass: z.strictObject({
-      id: z.number(),
-      name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
-    }),
-    level: z.number(),
-    max_count: z.number(),
-    media: z.strictObject({
-      id: z.number(),
-    }),
-    name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
-    purchase_price: z.number(),
-    purchase_quantity: z.number(),
-    quality: itemQualitySchema,
-    required_level: z.number(),
-    sell_price: z.number(),
-  }),
 });
 
 export const itemSetIndexResponseSchema = responseBaseSchema.extend({
@@ -113,9 +48,9 @@ const effectSchema = z.strictObject({
 export const itemSubClassResponseSchema = responseBaseSchema.extend({
   class_id: z.number(),
   display_name: z.string(),
-  hide_subclass_in_tooltips: z.boolean(),
+  hide_subclass_in_tooltips: z.boolean().optional(),
   subclass_id: z.number(),
-  verbose_name: z.string(),
+  verbose_name: z.string().optional(),
 });
 
 const displaySchema = z.strictObject({
@@ -138,9 +73,101 @@ const durabilitySchema = z.strictObject({
   value: z.number(),
 });
 
+const inventoryTypeSchema = z.union([
+  z.literal('BACK'),
+  z.literal('CHEST'),
+  z.literal('FEET'),
+  z.literal('FINGER'),
+  z.literal('HAND'),
+  z.literal('HANDS'),
+  z.literal('HEAD'),
+  z.literal('LEGS'),
+  z.literal('NECK'),
+  z.literal('SHOULDER'),
+  z.literal('THROWN'),
+  z.literal('TRINKET'),
+  z.literal('WAIST'),
+  z.literal('WRIST'),
+  z.literal('RANGED'),
+  z.literal('TWOHWEAPON'),
+  z.literal('WEAPON'),
+  z.literal('WEAPONMAINHAND'),
+  z.literal('WEAPONOFFHAND'),
+  z.literal('BAG'),
+  z.literal('NON_EQUIP'),
+  z.literal('SHIRT'),
+  z.literal('TABARD'),
+]);
+
+const inventoryTypeNameSchema = z.strictObject({
+  name: z.string(),
+  type: inventoryTypeSchema,
+});
+
+const inventoryTypeNameFromSearchSchema = z.strictObject({
+  name: z.record(localesSchema, z.string()),
+  type: inventoryTypeSchema,
+});
+
+const itemQualityTypeSchema = z.union([
+  z.literal('ARTIFACT'),
+  z.literal('COMMON'),
+  z.literal('EPIC'),
+  z.literal('HEIRLOOM'),
+  z.literal('LEGENDARY'),
+  z.literal('POOR'),
+  z.literal('RARE'),
+  z.literal('UNCOMMON'),
+]);
+
+const itemQualityFromSearchSchema = z.strictObject({
+  name: z.record(localesSchema, z.string()),
+  type: itemQualityTypeSchema,
+});
+
+const itemSearchResponseItemSchema = keyBaseSchema.extend({
+  data: z.strictObject({
+    appearances: z
+      .array(
+        z.strictObject({
+          id: z.number(),
+        }),
+      )
+      .optional(),
+    id: z.number(),
+    inventory_type: inventoryTypeNameFromSearchSchema,
+    is_equippable: z.boolean(),
+    is_stackable: z.boolean(),
+    item_class: z.strictObject({
+      id: z.number(),
+      name: z.record(localesSchema, z.string()),
+    }),
+    item_subclass: z.strictObject({
+      id: z.number(),
+      name: z.record(localesSchema, z.string()),
+    }),
+    level: z.number(),
+    max_count: z.number(),
+    media: z.strictObject({
+      id: z.number(),
+    }),
+    name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
+    purchase_price: z.number(),
+    purchase_quantity: z.number(),
+    quality: itemQualityFromSearchSchema,
+    required_level: z.number(),
+    sell_price: z.number(),
+  }),
+});
+
 const armorSchema = z.strictObject({
   display: displaySchema,
   value: z.number(),
+});
+
+const itemQualitySchema = z.strictObject({
+  name: z.string(),
+  type: itemQualityTypeSchema,
 });
 
 const requirementsSchema = z.strictObject({
@@ -165,23 +192,17 @@ const recipeItemDisplayStringsSchema = z.strictObject({
   silver: z.string(),
 });
 
-const statTypeSchema = z.union([
-  z.literal('Agility'),
-  z.literal('Critical Strike'),
-  z.literal('Haste'),
-  z.literal('Intellect'),
-  z.literal('Mastery'),
-  z.literal('Stamina'),
-  z.literal('Strength'),
-  z.literal('Versatility'),
-]);
-
 const statTypeCapitalizedSchema = z.union([
   z.literal('AGILITY'),
+  z.literal('ARCANE_RESISTANCE'),
   z.literal('CRIT_RATING'),
+  z.literal('FIRE_RESISTANCE'),
+  z.literal('FROST_RESISTANCE'),
   z.literal('HASTE_RATING'),
   z.literal('INTELLECT'),
   z.literal('MASTERY'),
+  z.literal('NATURE_RESISTANCE'),
+  z.literal('SHADOW_RESISTANCE'),
   z.literal('STAMINA'),
   z.literal('STRENGTH'),
   z.literal('VERSATILITY'),
@@ -202,7 +223,7 @@ const statSchema = z.strictObject({
   display: displaySchema,
   is_negated: z.boolean().optional(),
   type: z.strictObject({
-    name: statTypeSchema,
+    name: z.string(),
     type: statTypeCapitalizedSchema,
   }),
   value: z.number(),
@@ -215,7 +236,7 @@ const recipeItemSchema = z.strictObject({
     type: z.string(),
   }),
   durability: durabilitySchema,
-  inventory_type: inventoryTypeSchema,
+  inventory_type: inventoryTypeNameSchema,
   item: mediaSchema,
   item_class: nameIdKeySchema,
   item_subclass: nameIdKeySchema,
@@ -258,7 +279,7 @@ const previewItemSchema = z.strictObject({
   crafting_reagent: z.string().optional(),
   description: z.string().optional(),
   durability: durabilitySchema.optional(),
-  inventory_type: inventoryTypeSchema,
+  inventory_type: inventoryTypeNameSchema,
   is_subclass_hidden: z.boolean().optional(),
   item: mediaSchema,
   item_class: nameIdKeySchema,
@@ -278,8 +299,17 @@ const previewItemSchema = z.strictObject({
 });
 
 export const itemResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
+  appearances: z
+    .array(
+      keyBaseSchema.and(
+        z.strictObject({
+          id: z.number(),
+        }),
+      ),
+    )
+    .optional(),
   description: z.string().optional(),
-  inventory_type: inventoryTypeSchema,
+  inventory_type: inventoryTypeNameSchema,
   is_equippable: z.boolean(),
   is_stackable: z.boolean(),
   item_class: nameIdKeySchema,

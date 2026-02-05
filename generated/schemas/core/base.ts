@@ -13,10 +13,10 @@ export const colorSchema = z.strictObject({
   r: z.number(),
 });
 
-export const factionsSchema = z.union([z.literal('ALLIANCE'), z.literal('HORDE')]);
+export const factionsSchema = z.union([z.literal('ALLIANCE'), z.literal('HORDE'), z.literal('NEUTRAL')]);
 
 export const genderSchema = z.strictObject({
-  name: z.union([z.literal('Female'), z.literal('Male')]),
+  name: z.string(),
   type: z.union([z.literal('FEMALE'), z.literal('MALE')]),
 });
 
@@ -46,7 +46,9 @@ export const nameIdSchema = z.strictObject({
 
 export const nameIdKeySchema = keyBaseSchema.extend(nameIdSchema.shape);
 
-export const realmSchema = nameIdKeySchema.extend({
+export const realmSchema = keyBaseSchema.extend({
+  id: z.number(),
+  name: z.string().optional(),
   slug: z.string(),
 });
 
@@ -61,6 +63,6 @@ export const characterSchema = nameIdKeySchema.extend({
 });
 
 export const factionSchema = z.strictObject({
-  name: z.union([z.literal('Alliance'), z.literal('Horde')]),
+  name: z.string(),
   type: factionsSchema,
 });

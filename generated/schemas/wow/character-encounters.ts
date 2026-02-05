@@ -9,12 +9,14 @@ export const characterEncountersSummaryResponseSchema = responseBaseSchema.exten
 });
 
 const dungeonDifficultiesSchema = z.strictObject({
-  name: z.union([z.literal('Heroic'), z.literal('Mythic'), z.literal('Mythic+ Dungeons'), z.literal('Normal')]),
-  type: z.union([z.literal('HEROIC'), z.literal('MYTHIC'), z.literal('MYTHIC_KEYSTONE'), z.literal('NORMAL')]),
+  name: z.string().optional(),
+  type: z
+    .union([z.literal('HEROIC'), z.literal('MYTHIC'), z.literal('MYTHIC_KEYSTONE'), z.literal('NORMAL')])
+    .optional(),
 });
 
 const statusSchema = z.strictObject({
-  name: z.union([z.literal('Complete'), z.literal('In Progress')]),
+  name: z.string(),
   type: z.union([z.literal('COMPLETE'), z.literal('IN_PROGRESS')]),
 });
 
@@ -31,16 +33,7 @@ const progressSchema = z.strictObject({
 });
 
 const raidDifficultiesSchema = z.strictObject({
-  name: z.union([
-    z.literal('10 Player'),
-    z.literal('10 Player (Heroic)'),
-    z.literal('25 Player'),
-    z.literal('25 Player (Heroic)'),
-    z.literal('Heroic'),
-    z.literal('Mythic'),
-    z.literal('Normal'),
-    z.literal('Raid Finder'),
-  ]),
+  name: z.string(),
   type: z.union([
     z.literal('HEROIC'),
     z.literal('LEGACY_10_MAN'),

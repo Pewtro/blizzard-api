@@ -20,5 +20,5 @@ describe('wow character-professions integration', () => {
       console.error('Character professions validation failed:', treeifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
-  }, 30_000);
+  });
 });

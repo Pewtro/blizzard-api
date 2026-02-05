@@ -72,7 +72,7 @@ const characterSchema = z.strictObject({
 });
 
 const qualitySchema = z.strictObject({
-  name: z.union([z.literal('Common'), z.literal('Poor'), z.literal('Rare'), z.literal('Uncommon')]),
+  name: z.string(),
   type: z.union([z.literal('COMMON'), z.literal('POOR'), z.literal('RARE'), z.literal('UNCOMMON')]),
 });
 

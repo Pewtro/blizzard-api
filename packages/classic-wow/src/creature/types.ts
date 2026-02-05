@@ -40,9 +40,9 @@ export interface CreatureFamilyMediaResponse extends ResponseBase {
  */
 export interface CreatureFamilyResponse extends ResponseBase {
   id: number;
-  media: Media;
+  media?: Media;
   name: string;
-  specialization: NameIdKey;
+  specialization?: NameIdKey;
 }
 
 /**
@@ -100,11 +100,11 @@ interface CreatureDisplay extends KeyBase {
 interface CreatureSearchResponseItem extends KeyBase {
   data: {
     creature_displays: Array<{ id: number }>;
-    family?: { id: number; name: Record<Locales, string | undefined> };
+    family?: { id: number; name: Record<Locales, string> };
     id: number;
     is_tameable: boolean;
     name: Record<Locales, string | undefined>;
-    type: { id: number; name: Record<Locales, string | undefined> };
+    type: { id: number; name: Record<Locales, string> };
   };
 }
 

@@ -28,7 +28,7 @@ export const itemMediaResponseSchema = responseBaseSchema.extend({
 });
 
 const inventoryTypeSchema = z.strictObject({
-  name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
+  name: z.record(localesSchema, z.string()),
   type: z.union([
     z.literal('BACK'),
     z.literal('BAG'),
@@ -55,7 +55,7 @@ const mediaSchema = keyBaseSchema.extend({
 });
 
 const itemQualitySchema = z.strictObject({
-  name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
+  name: z.record(localesSchema, z.string()),
   type: z.union([
     z.literal('ARTIFACT'),
     z.literal('COMMON'),
@@ -81,18 +81,18 @@ const itemSearchResponseItemSchema = keyBaseSchema.extend({
     is_stackable: z.boolean(),
     item_class: z.strictObject({
       id: z.number(),
-      name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
+      name: z.record(localesSchema, z.string()),
     }),
     item_subclass: z.strictObject({
       id: z.number(),
-      name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
+      name: z.record(localesSchema, z.string()),
     }),
     level: z.number(),
     max_count: z.number(),
     media: z.strictObject({
       id: z.number(),
     }),
-    name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
+    name: z.record(localesSchema, z.string()),
     purchase_price: z.number(),
     purchase_quantity: z.number(),
     quality: itemQualitySchema,

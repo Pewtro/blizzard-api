@@ -8,7 +8,7 @@ export interface CharacterMythicKeystoneProfileIndexResponse extends ResponseBas
 
 export interface CharacterMythicKeystoneSeasonDetailsResponse extends ResponseBase {
   best_runs: Array<BestRun>;
-  character: NameIdKey;
+  character: Character;
   mythic_rating: MythicRating;
   season: KeyBase & { id: number };
 }

@@ -2,6 +2,7 @@
 import { z } from 'zod';
 import {
   genderNameSchema,
+  hrefSchema,
   keyBaseSchema,
   mediaAssetSchema,
   nameIdKeySchema,
@@ -32,9 +33,7 @@ export const playableClassResponseSchema = nameIdSchema.extend(responseBaseSchem
   media: mediaSchema,
   playable_races: z.array(nameIdKeySchema),
   power_type: nameIdKeySchema,
-  pvp_talent_slots: z.strictObject({
-    href: z.string(),
-  }),
+  pvp_talent_slots: hrefSchema,
   specializations: z.array(nameIdKeySchema),
 });
 

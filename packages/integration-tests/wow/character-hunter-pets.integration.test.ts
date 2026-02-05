@@ -20,5 +20,5 @@ describe('wow character-hunter-pets integration', () => {
       console.error('Character hunter pets validation failed:', treeifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
-  }, 30_000);
+  });
 });

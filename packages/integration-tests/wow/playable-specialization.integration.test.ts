@@ -5,6 +5,7 @@ import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
   playableSpecializationIndexResponseSchema,
+  playableSpecializationMediaResponseSchema,
   playableSpecializationResponseSchema,
 } from '../../../generated/schemas/wow/playable-specialization';
 
@@ -34,6 +35,13 @@ describe('wow playable-specialization integration', () => {
       }
 
       expect(parsedSpec.success).toBe(true);
+
+      const media = await client.sendRequest(wow.playableSpecializationMedia(spec.id));
+      const parsedMedia = playableSpecializationMediaResponseSchema.safeParse(media);
+      if (!parsedMedia.success) {
+        console.error('Playable specialization media validation failed:', treeifyError(parsedMedia.error));
+      }
+      expect(parsedMedia.success).toBe(true);
     }
-  }, 30_000);
+  });
 });

@@ -39,5 +39,5 @@ describe('wow auction-house integration', () => {
       console.error('Commodities validation failed:', treeifyError(parsedCommodities.error));
     }
     expect(parsedCommodities.success).toBe(true);
-  }, 30_000);
+  });
 });

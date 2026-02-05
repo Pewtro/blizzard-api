@@ -44,5 +44,5 @@ describe('wow mythic-keystone-dungeon integration', () => {
       }
       expect(parsedResp.success).toBe(true);
     }
-  }, 30_000);
+  });
 });

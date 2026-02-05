@@ -24,5 +24,5 @@ describe('classic-wow guild integration', () => {
 
     const rosterResp = await client.sendRequest(classicWow.guildRoster('profile-classic', realm, guildSlug));
     expect(rosterResp).toBeDefined();
-  }, 30_000);
+  });
 });
