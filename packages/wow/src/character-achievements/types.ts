@@ -1,4 +1,4 @@
-import type { Character, Href, NameIdKey, ResponseBase } from '../base';
+import type { Character, Href, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 export interface CharacterAchievementsSummaryResponse extends ResponseBase {
   achievements: Array<Achievement>;
@@ -23,10 +23,10 @@ interface Achievement {
 }
 
 interface Category {
-  id: number;
+  id?: number;
   name: string;
-  statistics: Array<Statistic>;
-  sub_categories: Array<SubCategory>;
+  statistics?: Array<Statistic>;
+  sub_categories?: Array<SubCategory>;
 }
 
 interface CategoryProgress {
@@ -35,9 +35,29 @@ interface CategoryProgress {
   quantity: number;
 }
 
+interface ChildCriterum {
+  amount?: number;
+  child_criteria?: Array<ChildCriterum2>;
+  id: number;
+  is_completed: boolean;
+}
+
+interface ChildCriterum2 {
+  amount?: number;
+  child_criteria?: Array<ChildCriterum3>;
+  id: number;
+  is_completed: boolean;
+}
+
+interface ChildCriterum3 {
+  amount?: number;
+  id: number;
+  is_completed: boolean;
+}
+
 interface Criteria {
   amount?: number;
-  child_criteria?: Array<Criteria>;
+  child_criteria?: Array<ChildCriterum>;
   id: number;
   is_completed: boolean;
 }

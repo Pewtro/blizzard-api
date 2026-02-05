@@ -1,4 +1,4 @@
-import type { Color, Factions, KeyBase, NameId, NameIdKey, ResponseBase } from '../base';
+import type { Factions, Href, KeyBase, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a Mythic Keystone leaderboard index.
@@ -13,7 +13,7 @@ export interface MythicKeystoneLeaderboardIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface MythicKeystoneLeaderboardResponse extends ResponseBase {
-  connected_realm: { href: string };
+  connected_realm: Href;
   keystone_affixes: Array<KeystoneAffixElement>;
   leading_groups: Array<LeadingGroup>;
   map: NameId;
@@ -34,19 +34,13 @@ interface LeadingGroup {
   duration: number;
   keystone_level: number;
   members: Array<Member>;
-  mythic_rating: MythicRating;
   ranking: number;
 }
 
 interface Member {
-  faction: { type: keyof typeof Factions };
+  faction: { type: Factions };
   profile: Profile;
   specialization: Specialization;
-}
-
-interface MythicRating {
-  color: Color;
-  rating: number;
 }
 
 interface Profile extends NameId {

@@ -1,5 +1,5 @@
 import type { Resource } from '@blizzard-api/core';
-import { base } from '../base';
+import { wowBasePath } from '@blizzard-api/core';
 import type { TitleIndexResponse, TitleResponse } from './types';
 
 /**
@@ -10,7 +10,7 @@ import type { TitleIndexResponse, TitleResponse } from './types';
 export function title(titleId: number): Resource<TitleResponse> {
   return {
     namespace: 'static',
-    path: `${base}/title/${titleId}`,
+    path: `${wowBasePath}/title/${titleId}`,
   };
 }
 /**
@@ -20,6 +20,6 @@ export function title(titleId: number): Resource<TitleResponse> {
 export function titleIndex(): Resource<TitleIndexResponse> {
   return {
     namespace: 'static',
-    path: `${base}/title/index`,
+    path: `${wowBasePath}/title/index`,
   };
 }

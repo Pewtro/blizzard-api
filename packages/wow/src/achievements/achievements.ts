@@ -1,5 +1,5 @@
+import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
 import type { Resource } from '@blizzard-api/core';
-import { base, mediaBase } from '../base';
 import type {
   AchievementCategoryIndexResponse,
   AchievementCategoryResponse,
@@ -8,8 +8,8 @@ import type {
   AchievementResponse,
 } from './types';
 
-const achievementBase = `${base}/achievement`;
-const achievementCategoryBase = `${base}/achievement-category`;
+const achievementBase = `${wowBasePath}/achievement`;
+const achievementCategoryBase = `${wowBasePath}/achievement-category`;
 
 /**
  * Get an achievement by ID.
@@ -59,5 +59,5 @@ export function achievementIndex(): Resource<AchievementIndexResponse> {
  * @returns The achievement media. See {@link AchievementMediaResponse}.
  */
 export function achievementMedia(achievementId: number): Resource<AchievementMediaResponse> {
-  return { namespace: 'static', path: `${mediaBase}/achievement/${achievementId}` };
+  return { namespace: 'static', path: `${wowMediaBasePath}/achievement/${achievementId}` };
 }

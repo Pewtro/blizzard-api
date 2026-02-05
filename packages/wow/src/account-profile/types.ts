@@ -1,4 +1,4 @@
-import type { Faction, Gender, Href, KeyBase, NameId, NameIdKey, Realm } from '../base';
+import type { Faction, Gender, Href, KeyBase, NameId, NameIdKey, Realm } from '@blizzard-api/core';
 
 export interface AccountCollectionsIndexResponse {
   _links: Links;
@@ -118,7 +118,7 @@ interface ProtectedStats {
 }
 
 interface Quality {
-  name: 'Common' | 'Poor' | 'Rare' | 'Uncommon';
+  name: string;
   type: 'COMMON' | 'POOR' | 'RARE' | 'UNCOMMON';
 }
 

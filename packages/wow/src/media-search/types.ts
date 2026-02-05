@@ -1,5 +1,4 @@
-import type { BaseSearchParameters } from '@blizzard-api/core';
-import type { KeyBase } from '../base';
+import type { BaseSearchParameters, KeyBase, MediaAsset, SearchResponseWithoutResults } from '@blizzard-api/core';
 
 /**
  * The search parameters for media.
@@ -15,15 +14,13 @@ export interface MediaSearchParameters extends BaseSearchParameters {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
  */
-export interface MediaSearchResponseItem extends KeyBase {
-  data: {
-    assets: Array<MediaAsset>;
-    id: number;
-  };
+export interface MediaSearchResponse extends SearchResponseWithoutResults {
+  results: Array<MediaSearchResponseItem>;
 }
 
-interface MediaAsset {
-  file_data_id: number;
-  key: string;
-  value: string;
+interface MediaSearchResponseItem extends KeyBase {
+  data: {
+    assets: Array<MediaAsset>;
+    id?: number;
+  };
 }

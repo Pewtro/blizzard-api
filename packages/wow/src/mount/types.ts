@@ -1,5 +1,13 @@
-import type { BaseSearchParameters, Locales } from '@blizzard-api/core';
-import type { Factions, KeyBase, NameIdKey, ResponseBase } from '../base';
+import type {
+  BaseSearchParameters,
+  Faction,
+  Factions,
+  KeyBase,
+  Locales,
+  NameIdKey,
+  ResponseBase,
+  SearchResponseWithoutResults,
+} from '@blizzard-api/core';
 
 /**
  * The response for a mount index.
@@ -15,11 +23,13 @@ export interface MountIndexResponse extends ResponseBase {
  */
 export interface MountResponse extends ResponseBase {
   creature_displays: Array<CreatureDisplay>;
-  description: string;
+  description: null | string;
+  faction?: Faction;
   id: number;
   name: string;
-  should_exclude_if_uncollected: boolean;
-  source: Source;
+  requirements?: { classes?: Array<NameIdKey>; faction?: Faction; races?: Array<NameIdKey> };
+  should_exclude_if_uncollected?: boolean;
+  source?: Source;
 }
 
 /**
@@ -37,18 +47,22 @@ export interface MountSearchParameters extends BaseSearchParameters {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
  */
-export interface MountSearchResponseItem extends KeyBase {
-  data: {
-    creature_displays: Array<{ id: number }>;
-    faction?: { name: Record<Locales, string>; type: keyof typeof Factions };
-    id: number;
-    name: Record<Locales, string>;
-    source: { name: Record<Locales, string>; type: string };
-  };
+export interface MountSearchResponse extends SearchResponseWithoutResults {
+  results: Array<MountSearchResponseItem>;
 }
 
 interface CreatureDisplay extends KeyBase {
   id: number;
+}
+
+interface MountSearchResponseItem extends KeyBase {
+  data: {
+    creature_displays: Array<{ id: number }>;
+    faction?: { name: Record<Locales, string>; type: Factions };
+    id: number;
+    name: Record<Locales, string>;
+    source: { name: Record<Locales, string>; type: string };
+  };
 }
 
 interface Source {

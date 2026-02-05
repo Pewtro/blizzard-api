@@ -1,5 +1,5 @@
+import { wowBasePath, wowMediaBasePath, wowSearchBasePath } from '@blizzard-api/core';
 import { describe, it } from 'vitest';
-import { base, mediaBase, searchBase } from '../base';
 import {
   journalEncounter,
   journalEncounterIndex,
@@ -15,46 +15,46 @@ describe.concurrent('journalApi', () => {
   it('should return the journal encounter resource for a given journalEncounterId', ({ expect }) => {
     const journalEncounterId = 123;
     const resource = journalEncounter(journalEncounterId);
-    expect(resource.path).toBe(`${base}/journal-encounter/123`);
+    expect(resource.path).toBe(`${wowBasePath}/journal-encounter/123`);
     expect(resource.namespace).toBe('static');
   });
 
   it('should return the journal encounter index resource', ({ expect }) => {
     const resource = journalEncounterIndex();
-    expect(resource.path).toBe(`${base}/journal-encounter/index`);
+    expect(resource.path).toBe(`${wowBasePath}/journal-encounter/index`);
     expect(resource.namespace).toBe('static');
   });
 
   it('should return the journal expansion resource for a given journalExpansionId', ({ expect }) => {
     const journalExpansionId = 456;
     const resource = journalExpansion(journalExpansionId);
-    expect(resource.path).toBe(`${base}/journal-expansion/456`);
+    expect(resource.path).toBe(`${wowBasePath}/journal-expansion/456`);
     expect(resource.namespace).toBe('static');
   });
 
   it('should return the journal expansion index resource', ({ expect }) => {
     const resource = journalExpansionIndex();
-    expect(resource.path).toBe(`${base}/journal-expansion/index`);
+    expect(resource.path).toBe(`${wowBasePath}/journal-expansion/index`);
     expect(resource.namespace).toBe('static');
   });
 
   it('should return the journal instance resource for a given journalInstanceId', ({ expect }) => {
     const journalInstanceId = 789;
     const resource = journalInstance(journalInstanceId);
-    expect(resource.path).toBe(`${base}/journal-instance/789`);
+    expect(resource.path).toBe(`${wowBasePath}/journal-instance/789`);
     expect(resource.namespace).toBe('static');
   });
 
   it('should return the journal instance index resource', ({ expect }) => {
     const resource = journalInstanceIndex();
-    expect(resource.path).toBe(`${base}/journal-instance/index`);
+    expect(resource.path).toBe(`${wowBasePath}/journal-instance/index`);
     expect(resource.namespace).toBe('static');
   });
 
   it('should return the journal instance media resource for a given journalInstanceId', ({ expect }) => {
     const journalInstanceId = 789;
     const resource = journalInstanceMedia(journalInstanceId);
-    expect(resource.path).toBe(`${mediaBase}/journal-instance/789`);
+    expect(resource.path).toBe(`${wowMediaBasePath}/journal-instance/789`);
     expect(resource.namespace).toBe('static');
   });
 
@@ -65,7 +65,7 @@ describe.concurrent('journalApi', () => {
       locale: 'en_US',
       orderby: 'name',
     });
-    expect(resource.path).toBe(`${searchBase}/journal-encounter`);
+    expect(resource.path).toBe(`${wowSearchBasePath}/journal-encounter`);
     expect(resource.namespace).toBe('static');
     expect(resource.parameters).toEqual({
       _page: 1,
@@ -81,7 +81,7 @@ describe.concurrent('journalApi', () => {
       locale: 'en_US',
       orderby: ['name', 'id'],
     });
-    expect(resource.path).toBe(`${searchBase}/journal-encounter`);
+    expect(resource.path).toBe(`${wowSearchBasePath}/journal-encounter`);
     expect(resource.namespace).toBe('static');
     expect(resource.parameters).toEqual({
       _page: 1,

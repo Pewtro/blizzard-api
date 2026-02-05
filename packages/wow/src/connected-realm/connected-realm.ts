@@ -1,10 +1,10 @@
-import type { Resource, SearchResponse } from '@blizzard-api/core';
-import { base } from '../base';
+import type { Resource } from '@blizzard-api/core';
+import { wowBasePath } from '@blizzard-api/core';
 import type {
   ConnectedRealmIndexResponse,
   ConnectedRealmResponse,
   ConnectedRealmSearchParameters,
-  ConnectedRealmSearchResponseItem,
+  ConnectedRealmSearchResponse,
 } from './types';
 
 /**
@@ -15,7 +15,7 @@ import type {
 export function connectedRealm(connectedRealmId: number): Resource<ConnectedRealmResponse> {
   return {
     namespace: 'dynamic',
-    path: `${base}/connected-realm/${connectedRealmId}`,
+    path: `${wowBasePath}/connected-realm/${connectedRealmId}`,
   };
 }
 /**
@@ -25,17 +25,17 @@ export function connectedRealm(connectedRealmId: number): Resource<ConnectedReal
 export function connectedRealmIndex(): Resource<ConnectedRealmIndexResponse> {
   return {
     namespace: 'dynamic',
-    path: `${base}/connected-realm/index`,
+    path: `${wowBasePath}/connected-realm/index`,
   };
 }
 /**
  * Search for connected realms.
  * @param options The search parameters. See {@link ConnectedRealmSearchParameters}.
- * @returns The search results. See {@link SearchResponse} & {@link ConnectedRealmSearchResponseItem}.
+ * @returns The search results. See {@link ConnectedRealmSearchResponse}.
  */
 export function connectedRealmSearch(
   options: ConnectedRealmSearchParameters,
-): Resource<SearchResponse<ConnectedRealmSearchResponseItem>, ConnectedRealmSearchParameters> {
+): Resource<ConnectedRealmSearchResponse, ConnectedRealmSearchParameters> {
   return {
     namespace: 'dynamic',
     parameters: {
@@ -44,6 +44,6 @@ export function connectedRealmSearch(
       'realms.timezone': options['realms.timezone'],
       'status.type': options['status.type'],
     },
-    path: `${base}/search/connected-realm`,
+    path: `${wowBasePath}/search/connected-realm`,
   };
 }

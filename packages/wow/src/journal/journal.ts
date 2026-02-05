@@ -1,10 +1,10 @@
-import type { Resource, SearchResponse } from '@blizzard-api/core';
-import { base, mediaBase, searchBase } from '../base';
+import type { Resource } from '@blizzard-api/core';
+import { wowBasePath, wowMediaBasePath, wowSearchBasePath } from '@blizzard-api/core';
 import type {
   JournalEncounterIndexResponse,
   JournalEncounterResponse,
   JournalEncounterSearchParameters,
-  JournalEncounterSearchResponseItem,
+  JournalEncounterSearchResponse,
   JournalExpansionIndexResponse,
   JournalExpansionResponse,
   JournalInstanceIndexResponse,
@@ -20,7 +20,7 @@ import type {
 export function journalEncounter(journalEncounterId: number): Resource<JournalEncounterResponse> {
   return {
     namespace: 'static',
-    path: `${base}/journal-encounter/${journalEncounterId}`,
+    path: `${wowBasePath}/journal-encounter/${journalEncounterId}`,
   };
 }
 /**
@@ -30,20 +30,17 @@ export function journalEncounter(journalEncounterId: number): Resource<JournalEn
 export function journalEncounterIndex(): Resource<JournalEncounterIndexResponse> {
   return {
     namespace: 'static',
-    path: `${base}/journal-encounter/index`,
+    path: `${wowBasePath}/journal-encounter/index`,
   };
 }
 /**
  * Search for journal encounters.
  * @param options The search parameters. See {@link JournalEncounterSearchParameters}.
- * @returns The search results. See {@link SearchResponse}.
+ * @returns The search results. See {@link JournalEncounterSearchResponse}.
  */
 export function journalEncounterSearch(
   options: JournalEncounterSearchParameters,
-): Resource<
-  SearchResponse<JournalEncounterSearchResponseItem>,
-  Omit<JournalEncounterSearchParameters, 'instanceName' | 'locale'>
-> {
+): Resource<JournalEncounterSearchResponse, Omit<JournalEncounterSearchParameters, 'instanceName' | 'locale'>> {
   return {
     namespace: 'static',
     parameters: {
@@ -51,7 +48,7 @@ export function journalEncounterSearch(
       [`instance.name.${options.locale}`]: options.instanceName,
       orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
     },
-    path: `${searchBase}/journal-encounter`,
+    path: `${wowSearchBasePath}/journal-encounter`,
   };
 }
 /**
@@ -62,7 +59,7 @@ export function journalEncounterSearch(
 export function journalExpansion(journalExpansionId: number): Resource<JournalExpansionResponse> {
   return {
     namespace: 'static',
-    path: `${base}/journal-expansion/${journalExpansionId}`,
+    path: `${wowBasePath}/journal-expansion/${journalExpansionId}`,
   };
 }
 /**
@@ -72,7 +69,7 @@ export function journalExpansion(journalExpansionId: number): Resource<JournalEx
 export function journalExpansionIndex(): Resource<JournalExpansionIndexResponse> {
   return {
     namespace: 'static',
-    path: `${base}/journal-expansion/index`,
+    path: `${wowBasePath}/journal-expansion/index`,
   };
 }
 /**
@@ -83,7 +80,7 @@ export function journalExpansionIndex(): Resource<JournalExpansionIndexResponse>
 export function journalInstance(journalInstanceId: number): Resource<JournalInstanceResponse> {
   return {
     namespace: 'static',
-    path: `${base}/journal-instance/${journalInstanceId}`,
+    path: `${wowBasePath}/journal-instance/${journalInstanceId}`,
   };
 }
 /**
@@ -93,7 +90,7 @@ export function journalInstance(journalInstanceId: number): Resource<JournalInst
 export function journalInstanceIndex(): Resource<JournalInstanceIndexResponse> {
   return {
     namespace: 'static',
-    path: `${base}/journal-instance/index`,
+    path: `${wowBasePath}/journal-instance/index`,
   };
 }
 /**
@@ -104,6 +101,6 @@ export function journalInstanceIndex(): Resource<JournalInstanceIndexResponse> {
 export function journalInstanceMedia(journalInstanceId: number): Resource<JournalInstanceMediaResponse> {
   return {
     namespace: 'static',
-    path: `${mediaBase}/journal-instance/${journalInstanceId}`,
+    path: `${wowMediaBasePath}/journal-instance/${journalInstanceId}`,
   };
 }

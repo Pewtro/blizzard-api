@@ -1,4 +1,4 @@
-import type { KeyBase, MediaAsset, NameId, NameIdKey, ResponseBase } from '../base';
+import type { KeyBase, MediaAsset, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a pet ability index.
@@ -23,6 +23,7 @@ export interface PetAbilityMediaResponse extends ResponseBase {
  */
 export interface PetAbilityResponse extends NameId, ResponseBase {
   battle_pet_type: BattlePetType;
+  cooldown?: number;
   media: Media;
   rounds: number;
 }
@@ -49,10 +50,10 @@ export interface PetMediaResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface PetResponse extends NameId, ResponseBase {
-  abilities: Array<Ability>;
+  abilities?: Array<Ability>;
   battle_pet_type: BattlePetType;
   creature: NameIdKey;
-  description: string;
+  description: null | string;
   icon: string;
   is_alliance_only: boolean;
   is_battlepet: boolean;
@@ -61,8 +62,8 @@ export interface PetResponse extends NameId, ResponseBase {
   is_random_creature_display: boolean;
   is_tradable: boolean;
   media: Media;
-  should_exclude_if_uncollected: boolean;
-  source: Source;
+  should_exclude_if_uncollected?: boolean;
+  source?: Source;
 }
 
 interface Ability {

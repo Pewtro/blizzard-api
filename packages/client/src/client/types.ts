@@ -36,15 +36,6 @@ export interface AccessTokenRequestArguments {
   secret?: string; // The client secret.
 }
 
-export type AxiosCompatability<T> = T & {
-  /**
-   * @deprecated
-   * This property is only here for backward compatibility, it will be removed in the next major version.
-   * All data should be accessed directly from the response object instead of through this property.
-   */
-  data: T;
-};
-
 /**
  * A client configuration object.
  * @example

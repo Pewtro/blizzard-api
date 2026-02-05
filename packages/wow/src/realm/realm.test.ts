@@ -1,5 +1,5 @@
+import { wowBasePath, wowSearchBasePath } from '@blizzard-api/core';
 import { describe, it } from 'vitest';
-import { base, searchBase } from '../base';
 import { realm, realmIndex, realmSearch } from './realm';
 
 describe.concurrent('realmApi', () => {
@@ -7,14 +7,14 @@ describe.concurrent('realmApi', () => {
     const realmSlug = 'my-realm';
     const resource = realm(realmSlug);
 
-    expect(resource.path).toBe(`${base}/realm/${realmSlug}`);
+    expect(resource.path).toBe(`${wowBasePath}/realm/${realmSlug}`);
     expect(resource.namespace).toBe('dynamic');
   });
 
   it('realmIndex should return a resource object with the correct path and namespace', ({ expect }) => {
     const resource = realmIndex();
 
-    expect(resource.path).toBe(`${base}/realm/index`);
+    expect(resource.path).toBe(`${wowBasePath}/realm/index`);
     expect(resource.namespace).toBe('dynamic');
   });
 
@@ -25,7 +25,7 @@ describe.concurrent('realmApi', () => {
       timezone: 'Europe/Paris',
     });
 
-    expect(resource.path).toBe(`${searchBase}/realm`);
+    expect(resource.path).toBe(`${wowSearchBasePath}/realm`);
     expect(resource.namespace).toBe('dynamic');
     expect(resource.parameters).toEqual({
       _page: 1,
@@ -41,7 +41,7 @@ describe.concurrent('realmApi', () => {
       timezone: 'America/Chicago',
     });
 
-    expect(resource.path).toBe(`${searchBase}/realm`);
+    expect(resource.path).toBe(`${wowSearchBasePath}/realm`);
     expect(resource.namespace).toBe('dynamic');
     expect(resource.parameters).toEqual({
       _page: 1,

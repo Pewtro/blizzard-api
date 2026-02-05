@@ -1,5 +1,4 @@
 import type { Locales } from '@blizzard-api/core';
-import type { SearchSortOption } from '../base';
 
 export interface CardBackSearchParameters {
   cardBackCategory?:
@@ -19,7 +18,7 @@ export interface CardBackSearchParameters {
   locale?: Locales;
   page?: number;
   pageSize?: number;
-  sort?: SearchSortOption;
+  sort?: `${SearchOptions}:${SortOptions}`;
   textFilter?: string;
 }
 
@@ -30,6 +29,8 @@ export interface CardBackSearchResponse {
   pageCount: number;
 }
 
+export type SearchOptions = 'attack' | 'class' | 'dataAdded' | 'groupByClass' | 'health' | 'manaCost' | 'name';
+
 export interface SingleCardBackSearchResponse {
   id: number;
   image: string;
@@ -38,3 +39,4 @@ export interface SingleCardBackSearchResponse {
   sortCategory: number;
   text: Record<Locales, string> | string;
 }
+export type SortOptions = 'asc' | 'desc';

@@ -1,4 +1,4 @@
-import type { Character, NameIdKey, ResponseBase } from '../base';
+import type { Character, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 export interface CharacterReputationsSummaryResponse extends ResponseBase {
   character: Character;
@@ -21,6 +21,7 @@ interface Standing {
   max: number;
   name: string;
   raw: number;
-  tier: number;
+  renown_level?: number;
+  tier?: number;
   value: number;
 }

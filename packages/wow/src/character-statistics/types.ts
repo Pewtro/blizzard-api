@@ -1,4 +1,4 @@
-import type { Character, ResponseBase } from '../base';
+import type { Character, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 export interface CharacterStatisticsSummaryResponse extends ResponseBase {
   agility: BaseEffectiveStat;
@@ -27,7 +27,7 @@ export interface CharacterStatisticsSummaryResponse extends ResponseBase {
   off_hand_speed: number;
   parry: RatingWithValue;
   power: number;
-  power_type: Character;
+  power_type: NameIdKey;
   ranged_crit: RatingWithValue;
   ranged_haste: RatingWithValue;
   speed: Rating;
@@ -49,12 +49,12 @@ interface BaseEffectiveStat {
 }
 
 interface Rating {
-  rating: number;
   rating_bonus: number;
+  rating_normalized: number;
 }
 
 interface RatingWithValue {
-  rating: number;
   rating_bonus: number;
+  rating_normalized: number;
   value: number;
 }

@@ -1,4 +1,4 @@
-import type { Faction, Gender, Href, NameIdKey, Realm, ResponseBase } from '../base';
+import type { Faction, Gender, Href, NameIdKey, Realm, ResponseBase } from '@blizzard-api/core';
 
 export interface CharacterProfileStatusResponse extends ResponseBase {
   id: number;
@@ -10,7 +10,7 @@ export interface CharacterProfileSummaryResponse extends ResponseBase {
   achievements: Href;
   achievements_statistics: Href;
   active_spec: NameIdKey;
-  active_title: NameIdKey & { display_string: string };
+  active_title?: NameIdKey & { display_string: string };
   appearance: Href;
   average_item_level: number;
   character_class: NameIdKey;
@@ -25,6 +25,7 @@ export interface CharacterProfileSummaryResponse extends ResponseBase {
   guild: Guild;
   hunter_pets: Href;
   id: number;
+  is_remix: boolean;
   last_login_timestamp: number;
   level: number;
   media: Href;

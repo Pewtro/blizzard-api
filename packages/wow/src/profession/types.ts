@@ -1,4 +1,4 @@
-import type { KeyBase, MediaAsset, NameId, NameIdKey, ResponseBase } from '../base';
+import type { KeyBase, MediaAsset, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a profession index.
@@ -52,10 +52,13 @@ export interface RecipeMediaResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface RecipeResponse extends NameId, ResponseBase {
-  crafted_item: NameIdKey;
-  crafted_quantity: CraftedQuantity;
+  crafted_item?: NameIdKey;
+  crafted_quantity?: CraftedQuantity;
+  description?: string;
   media: Media;
-  reagents: Array<Reagent>;
+  modified_crafting_slots?: Array<{ display_order: number; slot_type: NameIdKey }>;
+  rank?: number;
+  reagents?: Array<Reagent>;
 }
 
 interface Category {
@@ -64,7 +67,9 @@ interface Category {
 }
 
 interface CraftedQuantity {
-  value: number;
+  maximum?: number;
+  minimum?: number;
+  value?: number;
 }
 
 interface Media extends KeyBase {

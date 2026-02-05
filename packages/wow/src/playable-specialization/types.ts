@@ -1,4 +1,4 @@
-import type { GenderName, KeyBase, MediaAsset, NameId, NameIdKey, ResponseBase } from '../base';
+import type { GenderName, KeyBase, MediaAsset, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a playable specialization index.
@@ -24,6 +24,7 @@ export interface PlayableSpecializationMediaResponse extends ResponseBase {
  */
 export interface PlayableSpecializationResponse extends NameId, ResponseBase {
   gender_description: GenderName;
+  hero_talent_trees: Array<NameIdKey>;
   media: Media;
   playable_class: NameIdKey;
   power_type: NameIdKey;
@@ -55,6 +56,6 @@ interface SpellTooltip {
   cast_time: string;
   cooldown?: string;
   description: string;
-  power_cost?: string;
+  power_cost?: null | string;
   range?: string;
 }

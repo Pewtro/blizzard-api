@@ -1,4 +1,4 @@
-import type { Character, Color, KeyBase, NameId, NameIdKey, Realm, ResponseBase } from '../base';
+import type { Character, Color, KeyBase, NameId, NameIdKey, Realm, ResponseBase } from '@blizzard-api/core';
 
 export interface CharacterMythicKeystoneProfileIndexResponse extends ResponseBase {
   character: Character;
@@ -8,7 +8,7 @@ export interface CharacterMythicKeystoneProfileIndexResponse extends ResponseBas
 
 export interface CharacterMythicKeystoneSeasonDetailsResponse extends ResponseBase {
   best_runs: Array<BestRun>;
-  character: NameIdKey;
+  character: Character;
   mythic_rating: MythicRating;
   season: KeyBase & { id: number };
 }

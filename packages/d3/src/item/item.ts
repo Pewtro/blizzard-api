@@ -1,5 +1,5 @@
 import type { Resource } from '@blizzard-api/core';
-import { base } from '../base';
+import { d3BasePath } from '@blizzard-api/core';
 import type { ItemResponse } from './types';
 
 /**
@@ -9,6 +9,6 @@ import type { ItemResponse } from './types';
  */
 export function item(itemSlugAndId: string): Resource<ItemResponse> {
   return {
-    path: `${base}/item/${itemSlugAndId}`,
+    path: `${d3BasePath}/item/${itemSlugAndId}`,
   };
 }

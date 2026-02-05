@@ -1,5 +1,5 @@
 import type { Resource } from '@blizzard-api/core';
-import { base } from '../base';
+import { wowBasePath } from '@blizzard-api/core';
 import type {
   ModifiedCraftingCategoryIndexResponse,
   ModifiedCraftingCategoryResponse,
@@ -18,7 +18,7 @@ export function modifiedCraftingCategory(
 ): Resource<ModifiedCraftingCategoryResponse> {
   return {
     namespace: 'static',
-    path: `${base}/modified-crafting/category/${modifiedCraftingCategoryId}`,
+    path: `${wowBasePath}/modified-crafting/category/${modifiedCraftingCategoryId}`,
   };
 }
 /**
@@ -28,7 +28,7 @@ export function modifiedCraftingCategory(
 export function modifiedCraftingCategoryIndex(): Resource<ModifiedCraftingCategoryIndexResponse> {
   return {
     namespace: 'static',
-    path: `${base}/modified-crafting/category/index`,
+    path: `${wowBasePath}/modified-crafting/category/index`,
   };
 }
 /**
@@ -38,7 +38,7 @@ export function modifiedCraftingCategoryIndex(): Resource<ModifiedCraftingCatego
 export function modifiedCraftingIndex(): Resource<ModifiedCraftingIndexResponse> {
   return {
     namespace: 'static',
-    path: `${base}/modified-crafting/index`,
+    path: `${wowBasePath}/modified-crafting/index`,
   };
 }
 /**
@@ -51,7 +51,7 @@ export function modifiedCraftingReagentSlotType(
 ): Resource<ModifiedCraftingReagentSlotTypeResponse> {
   return {
     namespace: 'static',
-    path: `${base}/modified-crafting/reagent-slot-type/${modifiedCraftingReagentSlotTypeId}`,
+    path: `${wowBasePath}/modified-crafting/reagent-slot-type/${modifiedCraftingReagentSlotTypeId}`,
   };
 }
 /**
@@ -61,6 +61,6 @@ export function modifiedCraftingReagentSlotType(
 export function modifiedCraftingReagentSlotTypeIndex(): Resource<ModifiedCraftingReagentSlotTypeIndexResponse> {
   return {
     namespace: 'static',
-    path: `${base}/modified-crafting/reagent-slot-type/index`,
+    path: `${wowBasePath}/modified-crafting/reagent-slot-type/index`,
   };
 }

@@ -1,5 +1,5 @@
 import type { Resource } from '@blizzard-api/core';
-import { base, mediaBase } from '../base';
+import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
 import type {
   PetAbilityIndexResponse,
   PetAbilityMediaResponse,
@@ -17,7 +17,7 @@ import type {
 export function pet(petId: number): Resource<PetResponse> {
   return {
     namespace: 'static',
-    path: `${base}/pet/${petId}`,
+    path: `${wowBasePath}/pet/${petId}`,
   };
 }
 /**
@@ -28,7 +28,7 @@ export function pet(petId: number): Resource<PetResponse> {
 export function petAbility(petAbilityId: number): Resource<PetAbilityResponse> {
   return {
     namespace: 'static',
-    path: `${base}/pet-ability/${petAbilityId}`,
+    path: `${wowBasePath}/pet-ability/${petAbilityId}`,
   };
 }
 /**
@@ -38,7 +38,7 @@ export function petAbility(petAbilityId: number): Resource<PetAbilityResponse> {
 export function petAbilityIndex(): Resource<PetAbilityIndexResponse> {
   return {
     namespace: 'static',
-    path: `${base}/pet-ability/index`,
+    path: `${wowBasePath}/pet-ability/index`,
   };
 }
 /**
@@ -49,7 +49,7 @@ export function petAbilityIndex(): Resource<PetAbilityIndexResponse> {
 export function petAbilityMedia(petAbilityId: number): Resource<PetAbilityMediaResponse> {
   return {
     namespace: 'static',
-    path: `${mediaBase}/pet-ability/${petAbilityId}`,
+    path: `${wowMediaBasePath}/pet-ability/${petAbilityId}`,
   };
 }
 /**
@@ -59,7 +59,7 @@ export function petAbilityMedia(petAbilityId: number): Resource<PetAbilityMediaR
 export function petIndex(): Resource<PetIndexResponse> {
   return {
     namespace: 'static',
-    path: `${base}/pet/index`,
+    path: `${wowBasePath}/pet/index`,
   };
 }
 /**
@@ -70,6 +70,6 @@ export function petIndex(): Resource<PetIndexResponse> {
 export function petMedia(petId: number): Resource<PetMediaResponse> {
   return {
     namespace: 'static',
-    path: `${mediaBase}/pet/${petId}`,
+    path: `${wowMediaBasePath}/pet/${petId}`,
   };
 }

@@ -1,4 +1,14 @@
-import type { Character, Color, Faction, Href, KeyBase, NameIdKey, Realm, ResponseBase } from '../base';
+import type {
+  Character,
+  Color,
+  Faction,
+  Factions,
+  Href,
+  KeyBase,
+  NameIdKey,
+  Realm,
+  ResponseBase,
+} from '@blizzard-api/core';
 
 export interface GuildAchievementsResponse extends ResponseBase {
   achievements: Array<Achievement>;
@@ -43,7 +53,8 @@ interface Achievement {
 
 interface ActivityElement {
   activity: { type: string };
-  character_achievement: CharacterAchievement;
+  character_achievement?: CharacterAchievement;
+  encounter_completed?: EncounterActivity;
   timestamp: number;
 }
 
@@ -64,6 +75,12 @@ interface CharacterAchievement {
   character: Character;
 }
 
+interface ChildCriterum {
+  amount: number;
+  id: number;
+  is_completed: boolean;
+}
+
 interface Crest {
   background: { color: RgbWithId };
   border: Border;
@@ -72,9 +89,14 @@ interface Crest {
 
 interface Criteria {
   amount?: number;
-  child_criteria?: Array<Criteria>;
+  child_criteria?: Array<ChildCriterum>;
   id: number;
   is_completed: boolean;
+}
+
+interface EncounterActivity {
+  encounter: NameIdKey;
+  mode: { name: string; type: 'MYTHIC' };
 }
 
 interface Guild extends NameIdKey {
@@ -102,6 +124,7 @@ interface RgbWithId {
 }
 
 interface RosterMemberCharacter extends Character {
+  faction: { type: Factions };
   level: number;
   playable_class: Playable;
   playable_race: Playable;

@@ -1,11 +1,11 @@
-import type { KeyBase, MediaAsset, NameId, NameIdKey, ResponseBase } from '../base';
+import type { KeyBase, MediaAsset, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a Mythic Keystone affix index.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface MythicKeystoneAffixIndexResponse extends ResponseBase {
-  affixes: Array<NameIdKey>;
+  affixes: Array<KeyBase & { id: number; name: null | string }>;
 }
 
 /**
@@ -13,7 +13,7 @@ export interface MythicKeystoneAffixIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface MythicKeystoneAffixMediaResponse extends ResponseBase {
-  assets: Array<MediaAsset>;
+  assets?: Array<MediaAsset>;
   id: number;
 }
 
@@ -21,9 +21,11 @@ export interface MythicKeystoneAffixMediaResponse extends ResponseBase {
  * The response for a Mythic Keystone affix.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface MythicKeystoneAffixResponse extends NameId, ResponseBase {
-  description: string;
+export interface MythicKeystoneAffixResponse extends ResponseBase {
+  description: null | string;
+  id: number;
   media: Media;
+  name: null | string;
 }
 
 interface Media extends KeyBase {

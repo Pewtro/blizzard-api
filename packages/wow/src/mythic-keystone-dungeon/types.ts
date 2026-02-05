@@ -1,4 +1,4 @@
-import type { KeyBase, NameId, NameIdKey, ResponseBase } from '../base';
+import type { Href, KeyBase, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a Mythic Keystone dungeon index.
@@ -25,8 +25,8 @@ export interface MythicKeystoneDungeonResponse extends NameId, ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface MythicKeystoneIndexResponse extends ResponseBase {
-  dungeons: { href: string };
-  seasons: { href: string };
+  dungeons: Href;
+  seasons: Href;
 }
 
 /**

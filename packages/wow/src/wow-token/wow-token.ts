@@ -1,5 +1,5 @@
 import type { Resource } from '@blizzard-api/core';
-import { base } from '../base';
+import { wowBasePath } from '@blizzard-api/core';
 import type { WowTokenResponse } from './types';
 
 /**
@@ -9,6 +9,6 @@ import type { WowTokenResponse } from './types';
 export function wowToken(): Resource<WowTokenResponse> {
   return {
     namespace: 'dynamic',
-    path: `${base}/token/index`,
+    path: `${wowBasePath}/token/index`,
   };
 }

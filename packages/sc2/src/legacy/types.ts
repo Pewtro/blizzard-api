@@ -82,7 +82,13 @@ interface Career {
 
 interface Category {
   categoryId: string;
-  children?: Array<Category>;
+  children?: Array<CategoryChild>;
+  featuredAchievementId: string;
+  title: string;
+}
+
+interface CategoryChild {
+  categoryId: string;
   featuredAchievementId: string;
   title: string;
 }

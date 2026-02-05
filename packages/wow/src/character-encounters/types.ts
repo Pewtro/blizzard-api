@@ -1,7 +1,7 @@
-import type { Character, Href, NameIdKey, ResponseBase } from '../base';
+import type { Character, Href, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 export interface CharacterDungeonsResponse extends ResponseBase {
-  expansions: Array<Expansion<DungeonMode>>;
+  expansions: Array<ExpansionWithDungeonInstances>;
 }
 
 export interface CharacterEncountersSummaryResponse extends ResponseBase {
@@ -12,12 +12,17 @@ export interface CharacterEncountersSummaryResponse extends ResponseBase {
 
 export interface CharacterRaidsResponse extends ResponseBase {
   character: Character;
-  expansions: Array<Expansion<RaidMode>>;
+  expansions: Array<ExpansionWithRaidInstances>;
 }
 
 interface DungeonDifficulties {
-  name: 'Heroic' | 'Mythic' | 'Mythic+ Dungeons' | 'Normal';
-  type: 'HEROIC' | 'MYTHIC' | 'MYTHIC_KEYSTONE' | 'NORMAL';
+  name?: string;
+  type?: 'HEROIC' | 'MYTHIC' | 'MYTHIC_KEYSTONE' | 'NORMAL';
+}
+
+interface DungeonInstance {
+  instance: NameIdKey;
+  modes: Array<DungeonMode>;
 }
 
 interface DungeonMode {
@@ -32,14 +37,14 @@ interface Encounter {
   last_kill_timestamp: number;
 }
 
-interface Expansion<T> {
+interface ExpansionWithDungeonInstances {
   expansion: NameIdKey;
-  instances: Array<Instance<T>>;
+  instances: Array<DungeonInstance>;
 }
 
-interface Instance<T> {
-  instance: NameIdKey;
-  modes: Array<T>;
+interface ExpansionWithRaidInstances {
+  expansion: NameIdKey;
+  instances: Array<RaidInstance>;
 }
 
 interface Progress {
@@ -49,15 +54,7 @@ interface Progress {
 }
 
 interface RaidDifficulties {
-  name:
-    | '10 Player'
-    | '10 Player (Heroic)'
-    | '25 Player'
-    | '25 Player (Heroic)'
-    | 'Heroic'
-    | 'Mythic'
-    | 'Normal'
-    | 'Raid Finder';
+  name: string;
   type:
     | 'HEROIC'
     | 'LEGACY_10_MAN'
@@ -69,6 +66,11 @@ interface RaidDifficulties {
     | 'NORMAL';
 }
 
+interface RaidInstance {
+  instance: NameIdKey;
+  modes: Array<RaidMode>;
+}
+
 interface RaidMode {
   difficulty: RaidDifficulties;
   progress: Progress;
@@ -76,6 +78,6 @@ interface RaidMode {
 }
 
 interface Status {
-  name: 'Complete' | 'In Progress';
+  name: string;
   type: 'COMPLETE' | 'IN_PROGRESS';
 }

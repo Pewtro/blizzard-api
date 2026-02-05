@@ -1,12 +1,12 @@
-import type { BlizzardNamespaces, Resource, SearchResponse } from '@blizzard-api/core';
-import { base, mediaBase, searchBase } from '../../../wow/src/base';
+import { wowBasePath, wowMediaBasePath, wowSearchBasePath } from '@blizzard-api/core';
+import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
 import type {
   ItemClassIndexResponse,
   ItemClassResponse,
   ItemMediaResponse,
   ItemResponse,
   ItemSearchParameters,
-  ItemSearchResponseItem,
+  ItemSearchResponse,
   ItemSubClassResponse,
 } from './types';
 
@@ -22,7 +22,7 @@ export function item(
 ): Resource<ItemResponse> {
   return {
     namespace,
-    path: `${base}/item/${itemId}`,
+    path: `${wowBasePath}/item/${itemId}`,
   };
 }
 /**
@@ -37,7 +37,7 @@ export function itemClass(
 ): Resource<ItemClassResponse> {
   return {
     namespace,
-    path: `${base}/item-class/${itemClassId}`,
+    path: `${wowBasePath}/item-class/${itemClassId}`,
   };
 }
 /**
@@ -50,7 +50,7 @@ export function itemClassIndex(
 ): Resource<ItemClassIndexResponse> {
   return {
     namespace,
-    path: `${base}/item-class/index`,
+    path: `${wowBasePath}/item-class/index`,
   };
 }
 /**
@@ -65,19 +65,19 @@ export function itemMedia(
 ): Resource<ItemMediaResponse> {
   return {
     namespace,
-    path: `${mediaBase}/item/${itemId}`,
+    path: `${wowMediaBasePath}/item/${itemId}`,
   };
 }
 /**
  * Search for items.
  * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
  * @param options The search parameters. See {@link ItemSearchParameters}.
- * @returns The search results. See {@link SearchResponse}.
+ * @returns The search results. See {@link ItemSearchResponse}.
  */
 export function itemSearch(
   namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
   options: ItemSearchParameters,
-): Resource<SearchResponse<ItemSearchResponseItem>, Omit<ItemSearchParameters, 'locale' | 'name'>> {
+): Resource<ItemSearchResponse, Omit<ItemSearchParameters, 'locale' | 'name'>> {
   return {
     namespace,
     parameters: {
@@ -85,7 +85,7 @@ export function itemSearch(
       [`name.${options.locale}`]: options.name,
       orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
     },
-    path: `${searchBase}/item`,
+    path: `${wowSearchBasePath}/item`,
   };
 }
 /**
@@ -102,6 +102,6 @@ export function itemSubClass(
 ): Resource<ItemSubClassResponse> {
   return {
     namespace,
-    path: `${base}/item-class/${itemClassId}/item-subclass/${itemSubclassId}`,
+    path: `${wowBasePath}/item-class/${itemClassId}/item-subclass/${itemSubclassId}`,
   };
 }

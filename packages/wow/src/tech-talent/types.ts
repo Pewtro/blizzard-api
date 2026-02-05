@@ -1,4 +1,4 @@
-import type { KeyBase, MediaAsset, NameId, NameIdKey, ResponseBase } from '../base';
+import type { KeyBase, MediaAsset, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a tech talent index.
@@ -21,9 +21,13 @@ export interface TechTalentMediaResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface TechTalentResponse extends NameId, ResponseBase {
+  description?: string;
   display_order: number;
   media: Media;
-  talent_tree: Media;
+  prerequisite_talent?: NameIdKey;
+  socket_type?: { name: string; type: 'ENDURANCE' | 'FINESSE' | 'POTENCY' };
+  spell_tooltip?: SpellTooltip;
+  talent_tree: KeyBase & { id: number; name?: string };
   tier: number;
 }
 
@@ -42,12 +46,21 @@ export interface TechTalentTreeIndexResponse extends ResponseBase {
 export interface TechTalentTreeResponse extends ResponseBase {
   id: number;
   max_tiers: number;
-  playable_class: NameIdKey;
+  playable_class?: NameIdKey;
   talents: Array<NameIdKey>;
 }
 
 interface Media extends KeyBase {
   id: number;
+}
+
+interface SpellTooltip {
+  cast_time: string;
+  cooldown?: string;
+  description: null | string;
+  power_cost?: null | string;
+  range?: string;
+  spell: NameIdKey;
 }
 
 interface TalentTree extends KeyBase {

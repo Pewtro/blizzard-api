@@ -7,9 +7,9 @@
   "repository": "https://github.com/Pewtro/blizzard-api",
   "type": "module",
   "engines": {
-    "node": "^18.18 || >=20.9"
+    "node": "^20.19.0 || ^22.13.0 || >=24"
   },
-  "packageManager": "pnpm@10.24.0",
+  "packageManager": "pnpm@10.28.0",
   "keywords": [
     "blizzard",
     "battlenet",
@@ -30,25 +30,27 @@
   ],
   "devDependencies": {
     "@changesets/cli": "2.29.8",
-    "@putstack/eslint-config-typescript": "4.11.0",
+    "@putstack/eslint-config-typescript": "4.14.0",
     "@putstack/prettier-config": "2.0.0",
-    "@types/node": "24.10.1",
-    "@vitest/coverage-v8": "4.0.15",
-    "@vitest/ui": "4.0.15",
-    "eslint": "9.39.1",
-    "eslint-plugin-jsdoc": "61.4.1",
+    "@types/node": "24.10.10",
+    "@vitest/coverage-v8": "4.0.18",
+    "@vitest/ui": "4.0.18",
+    "eslint": "9.39.2",
+    "eslint-plugin-jsdoc": "62.5.0",
     "husky": "9.1.7",
     "lint-staged": "16.2.7",
     "npm-run-all2": "8.0.4",
-    "prettier": "3.7.4",
-    "tsdown": "0.17.0",
-    "turbo": "2.6.3",
-    "typedoc": "0.28.15",
+    "prettier": "3.8.1",
+    "ts-to-zod": "5.1.0",
+    "tsdown": "0.20.1",
+    "tsx": "4.21.0",
+    "turbo": "2.8.2",
+    "typedoc": "0.28.16",
     "typedoc-github-theme": "0.3.1",
     "typescript": "5.9.3",
-    "typescript-eslint": "8.48.1",
-    "vitest": "4.0.15",
-    "zod": "4.1.13"
+    "typescript-eslint": "8.54.0",
+    "vitest": "4.0.18",
+    "zod": "4.3.6"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
@@ -57,18 +59,21 @@
     ]
   },
   "scripts": {
-    "build": "turbo build",
     "build:docs": "typedoc",
-    "lint": "eslint --format stylish --max-warnings 0 --cache",
+    "build": "turbo build",
+    "generate:zod": "tsx ./scripts/generate-zod.ts",
+    "generate": "npm-run-all -l generate:zod \"prettier:write ./generated\" \"lint:fix ./generated\"",
     "lint:ci": "npm-run-all -p -l typecheck stylecheck \"lint .\"",
     "lint:fix": "pnpm lint --fix",
+    "lint": "eslint --format stylish --max-warnings 0 --cache",
     "prepare": "husky",
+    "prettier:write": "prettier --write",
     "release": "changeset publish",
     "stylecheck": "prettier --check .",
-    "test": "vitest run",
     "test:coverage": "pnpm run test --coverage",
     "test:ui": "vitest --ui --coverage",
     "test:watch": "vitest watch",
+    "test": "vitest run",
     "typecheck": "tsc"
   },
   "lint-staged": {

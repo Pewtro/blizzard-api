@@ -1,4 +1,4 @@
-import type { ResponseBase } from '../base';
+import type { ResponseBase } from '@blizzard-api/core';
 
 /**
  * Interface for a response from the auction house commodities endpoint.
@@ -31,14 +31,18 @@ interface AuctionHouseCommodity {
 }
 
 interface AuctionHousePosting {
-  bid: number;
+  bid?: number;
   buyout: number;
   id: number;
   item: {
-    bonus_lists: Array<number>;
-    context: number;
+    bonus_lists?: Array<number>;
+    context?: number;
     id: number;
-    modifiers: Array<{ type: number; value: number }>;
+    modifiers?: Array<{ type: number; value: number }>;
+    pet_breed_id?: number;
+    pet_level?: number;
+    pet_quality_id?: number;
+    pet_species_id?: number;
   };
   quantity: number;
   time_left: AuctionHouseTimeLeft;

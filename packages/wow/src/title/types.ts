@@ -1,4 +1,4 @@
-import type { GenderName, NameId, NameIdKey, ResponseBase } from '../base';
+import type { GenderName, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a title index.
@@ -14,4 +14,11 @@ export interface TitleIndexResponse extends ResponseBase {
  */
 export interface TitleResponse extends NameId, ResponseBase {
   gender_name: GenderName;
+  source?: TitleSource;
+}
+
+interface TitleSource {
+  achievements?: Array<NameIdKey>;
+  quests?: Array<NameIdKey>;
+  type: { name: 'Achievement'; type: 'ACHIEVEMENT' } | { name: 'Quest'; type: 'QUEST' };
 }

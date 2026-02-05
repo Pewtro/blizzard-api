@@ -1,5 +1,5 @@
+import { d3GameDataBasePath } from '@blizzard-api/core';
 import type { Resource } from '@blizzard-api/core';
-import { gameDataBase } from '../base';
 import type {
   EraIndexResponse,
   EraLeaderboardResponse,
@@ -16,7 +16,7 @@ import type {
  */
 export function era(id: number): Resource<EraResponse> {
   return {
-    path: `${gameDataBase}/era/${id}`,
+    path: `${d3GameDataBasePath}/era/${id}`,
   };
 }
 
@@ -26,7 +26,7 @@ export function era(id: number): Resource<EraResponse> {
  */
 export function eraIndex(): Resource<EraIndexResponse> {
   return {
-    path: `${gameDataBase}/era`,
+    path: `${d3GameDataBasePath}/era`,
   };
 }
 
@@ -38,7 +38,7 @@ export function eraIndex(): Resource<EraIndexResponse> {
  */
 export function eraLeaderboard(id: number, leaderboard: string): Resource<EraLeaderboardResponse> {
   return {
-    path: `${gameDataBase}/era/${id}/leaderboard/${leaderboard}`,
+    path: `${d3GameDataBasePath}/era/${id}/leaderboard/${leaderboard}`,
   };
 }
 
@@ -49,7 +49,7 @@ export function eraLeaderboard(id: number, leaderboard: string): Resource<EraLea
  */
 export function season(id: number): Resource<SeasonResponse> {
   return {
-    path: `${gameDataBase}/season/${id}`,
+    path: `${d3GameDataBasePath}/season/${id}`,
   };
 }
 
@@ -59,7 +59,7 @@ export function season(id: number): Resource<SeasonResponse> {
  */
 export function seasonIndex(): Resource<SeasonIndexResponse> {
   return {
-    path: `${gameDataBase}/season`,
+    path: `${d3GameDataBasePath}/season`,
   };
 }
 
@@ -71,6 +71,6 @@ export function seasonIndex(): Resource<SeasonIndexResponse> {
  */
 export function seasonLeaderboard(id: number, leaderboard: string): Resource<SeasonLeaderboardResponse> {
   return {
-    path: `${gameDataBase}/season/${id}/leaderboard/${leaderboard}`,
+    path: `${d3GameDataBasePath}/season/${id}/leaderboard/${leaderboard}`,
   };
 }

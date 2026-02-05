@@ -1,5 +1,5 @@
 import type { Resource } from '@blizzard-api/core';
-import { base, mediaBase } from '../base';
+import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
 import type {
   PlayableSpecializationIndexResponse,
   PlayableSpecializationMediaResponse,
@@ -14,7 +14,7 @@ import type {
 export function playableSpecialization(specializationId: number): Resource<PlayableSpecializationResponse> {
   return {
     namespace: 'static',
-    path: `${base}/playable-specialization/${specializationId}`,
+    path: `${wowBasePath}/playable-specialization/${specializationId}`,
   };
 }
 /**
@@ -24,7 +24,7 @@ export function playableSpecialization(specializationId: number): Resource<Playa
 export function playableSpecializationIndex(): Resource<PlayableSpecializationIndexResponse> {
   return {
     namespace: 'static',
-    path: `${base}/playable-specialization/index`,
+    path: `${wowBasePath}/playable-specialization/index`,
   };
 }
 /**
@@ -35,6 +35,6 @@ export function playableSpecializationIndex(): Resource<PlayableSpecializationIn
 export function playableSpecializationMedia(specializationId: number): Resource<PlayableSpecializationMediaResponse> {
   return {
     namespace: 'static',
-    path: `${mediaBase}/playable-specialization/${specializationId}`,
+    path: `${wowMediaBasePath}/playable-specialization/${specializationId}`,
   };
 }

@@ -1,6 +1,6 @@
-import type { Resource, SearchResponse } from '@blizzard-api/core';
-import { base, mediaBase, searchBase } from '../base';
-import type { SpellMediaResponse, SpellResponse, SpellSearchParameters, SpellSearchResponseItem } from './types';
+import type { Resource } from '@blizzard-api/core';
+import { wowBasePath, wowMediaBasePath, wowSearchBasePath } from '@blizzard-api/core';
+import type { SpellMediaResponse, SpellResponse, SpellSearchParameters, SpellSearchResponse } from './types';
 
 /**
  * Get a spell by ID.
@@ -10,7 +10,7 @@ import type { SpellMediaResponse, SpellResponse, SpellSearchParameters, SpellSea
 export function spell(spellId: number): Resource<SpellResponse> {
   return {
     namespace: 'static',
-    path: `${base}/spell/${spellId}`,
+    path: `${wowBasePath}/spell/${spellId}`,
   };
 }
 /**
@@ -21,17 +21,17 @@ export function spell(spellId: number): Resource<SpellResponse> {
 export function spellMedia(spellId: number): Resource<SpellMediaResponse> {
   return {
     namespace: 'static',
-    path: `${mediaBase}/spell/${spellId}`,
+    path: `${wowMediaBasePath}/spell/${spellId}`,
   };
 }
 /**
  * Get a spell search.
  * @param options The spell search options. See {@link SpellSearchParameters}.
- * @returns The spell search. See {@link SearchResponse}.
+ * @returns The spell search. See {@link SpellSearchResponse}.
  */
 export function spellSearch(
   options: SpellSearchParameters,
-): Resource<SearchResponse<SpellSearchResponseItem>, Omit<SpellSearchParameters, 'locale' | 'name'>> {
+): Resource<SpellSearchResponse, Omit<SpellSearchParameters, 'locale' | 'name'>> {
   return {
     namespace: 'static',
     parameters: {
@@ -39,6 +39,6 @@ export function spellSearch(
       [`name.${options.locale}`]: options.name,
       orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
     },
-    path: `${searchBase}/spell`,
+    path: `${wowSearchBasePath}/spell`,
   };
 }

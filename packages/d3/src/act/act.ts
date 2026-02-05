@@ -1,5 +1,5 @@
 import type { Resource } from '@blizzard-api/core';
-import { base } from '../base';
+import { d3BasePath } from '@blizzard-api/core';
 import type { ActIndexResponse, ActResponse } from './types';
 
 /**
@@ -9,7 +9,7 @@ import type { ActIndexResponse, ActResponse } from './types';
  */
 export function act(actId: number): Resource<ActResponse> {
   return {
-    path: `${base}/act/${actId}`,
+    path: `${d3BasePath}/act/${actId}`,
   };
 }
 
@@ -19,6 +19,6 @@ export function act(actId: number): Resource<ActResponse> {
  */
 export function actIndex(): Resource<ActIndexResponse> {
   return {
-    path: `${base}/act`,
+    path: `${d3BasePath}/act`,
   };
 }

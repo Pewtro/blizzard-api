@@ -1,4 +1,4 @@
-import type { Character, Color, Faction, Gender, KeyBase, NameId, NameIdKey, ResponseBase } from '../base';
+import type { Character, Color, Faction, Gender, KeyBase, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 export interface CharacterAppearanceResponse extends ResponseBase {
   active_spec: NameIdKey;
@@ -39,9 +39,12 @@ interface Item {
   enchant: number;
   id: number;
   internal_slot_id: number;
-  item_appearance_modifier_id: number;
+  item_appearance_modifier_id?: number;
+  secondary_id?: number;
+  secondary_item_appearance_modifier_id?: number;
+  secondary_subclass?: number;
   slot: { name: string; type: string };
-  subclass: number;
+  subclass?: number;
 }
 
 interface RGBWithId {

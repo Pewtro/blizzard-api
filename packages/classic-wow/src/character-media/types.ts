@@ -1,1 +1,11 @@
-export type { CharacterMediaSummaryResponse } from '../../../wow/src/character-media/types';
+import type { Character, ResponseBase } from '@blizzard-api/core';
+
+export interface CharacterMediaSummaryResponse extends ResponseBase {
+  assets: Array<Asset>;
+  character: Character;
+}
+
+interface Asset {
+  key: string;
+  value: string;
+}

@@ -1,5 +1,5 @@
+import { wowBasePath } from '@blizzard-api/core';
 import { describe, it } from 'vitest';
-import { base } from '../base';
 import { mythicRaidLeaderboard } from './mythic-raid-leaderboard';
 
 describe.concurrent('mythicRaidLeaderboardApi', () => {
@@ -8,7 +8,7 @@ describe.concurrent('mythicRaidLeaderboardApi', () => {
     const faction = 'alliance';
     const resource = mythicRaidLeaderboard(raid, faction);
 
-    expect(resource.path).toBe(`${base}/leaderboard/hall-of-fame/${raid}/${faction}`);
+    expect(resource.path).toBe(`${wowBasePath}/leaderboard/hall-of-fame/${raid}/${faction}`);
     expect(resource.namespace).toBe('dynamic');
   });
 
@@ -19,7 +19,7 @@ describe.concurrent('mythicRaidLeaderboardApi', () => {
     const faction = 'horde';
     const resource = mythicRaidLeaderboard(raid, faction);
 
-    expect(resource.path).toBe(`${base}/leaderboard/hall-of-fame/${raid}/${faction}`);
+    expect(resource.path).toBe(`${wowBasePath}/leaderboard/hall-of-fame/${raid}/${faction}`);
     expect(resource.namespace).toBe('dynamic');
   });
 });

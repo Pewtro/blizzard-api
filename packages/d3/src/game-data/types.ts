@@ -1,8 +1,8 @@
-import type { ResponseBase } from '../base';
+import type { Href, ResponseBase } from '@blizzard-api/core';
 
 export interface EraIndexResponse extends ResponseBase {
   current_era: number;
-  era: Array<{ href: string }>;
+  era: Array<Href>;
   generated_by: string;
   last_update_time: string;
 }
@@ -31,7 +31,7 @@ export interface SeasonIndexResponse extends ResponseBase {
   current_season: number;
   generated_by: string;
   last_update_time: string;
-  season: Array<{ href: string }>;
+  season: Array<Href>;
   service_current_season: number;
   service_season_state: string;
 }
@@ -72,7 +72,7 @@ interface EraLeaderboard {
 interface Leaderboard {
   hardcore?: boolean;
   hero_class_string?: string;
-  ladder: { href: string };
+  ladder: Href;
   team_size?: number;
 }
 

@@ -1,5 +1,5 @@
+import { wowBasePath } from '@blizzard-api/core';
 import { describe, it } from 'vitest';
-import { base } from '../base';
 import { mythicKeystoneLeaderboard, mythicKeystoneLeaderboardIndex } from './mythic-keystone-leaderboard';
 
 describe.concurrent('mythicKeystoneLeaderboardApi', () => {
@@ -10,7 +10,7 @@ describe.concurrent('mythicKeystoneLeaderboardApi', () => {
     const resource = mythicKeystoneLeaderboard(connectedRealmId, dungeonId, period);
 
     expect(resource.path).toBe(
-      `${base}/connected-realm/${connectedRealmId}/mythic-leaderboard/${dungeonId}/period/${period}`,
+      `${wowBasePath}/connected-realm/${connectedRealmId}/mythic-leaderboard/${dungeonId}/period/${period}`,
     );
     expect(resource.namespace).toBe('dynamic');
   });
@@ -21,7 +21,7 @@ describe.concurrent('mythicKeystoneLeaderboardApi', () => {
     const connectedRealmId = 456;
     const resource = mythicKeystoneLeaderboardIndex(connectedRealmId);
 
-    expect(resource.path).toBe(`${base}/connected-realm/${connectedRealmId}/mythic-leaderboard/index`);
+    expect(resource.path).toBe(`${wowBasePath}/connected-realm/${connectedRealmId}/mythic-leaderboard/index`);
     expect(resource.namespace).toBe('dynamic');
   });
 });

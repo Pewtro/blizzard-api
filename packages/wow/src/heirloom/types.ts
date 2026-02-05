@@ -1,4 +1,4 @@
-import type { Color, KeyBase, NameIdKey, ResponseBase } from '../base';
+import type { Color, KeyBase, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for the heirloom index.

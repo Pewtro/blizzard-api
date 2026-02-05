@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
-import type { Locales, Origins } from './blizzard-api';
 import { getBlizzardApi } from './blizzard-api';
+import type { Locales, Origins } from './locales';
 
 describe.concurrent('getBlizzardApi', () => {
   it('should return the correct endpoint for the specified origin and locale', ({ expect }) => {

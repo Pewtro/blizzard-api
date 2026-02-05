@@ -1,6 +1,6 @@
-import type { BlizzardNamespaces, Resource, SearchResponse } from '@blizzard-api/core';
-import { base, searchBase } from '../../../wow/src/base';
-import type { RealmIndexResponse, RealmResponse, RealmSearchParameters, RealmSearchResponseItem } from './types';
+import { wowBasePath, wowSearchBasePath } from '@blizzard-api/core';
+import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
+import type { RealmIndexResponse, RealmResponse, RealmSearchParameters, RealmSearchResponse } from './types';
 
 /**
  * Get a realm by slug.
@@ -14,7 +14,7 @@ export function realm(
 ): Resource<RealmResponse> {
   return {
     namespace,
-    path: `${base}/realm/${realmSlug}`,
+    path: `${wowBasePath}/realm/${realmSlug}`,
   };
 }
 /**
@@ -27,19 +27,19 @@ export function realmIndex(
 ): Resource<RealmIndexResponse> {
   return {
     namespace,
-    path: `${base}/realm/index`,
+    path: `${wowBasePath}/realm/index`,
   };
 }
 /**
  * Search for realms.
  * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
  * @param options The search parameters. See {@link RealmSearchParameters}.
- * @returns The search results. See {@link SearchResponse}.
+ * @returns The search results. See {@link RealmSearchResponse}.
  */
 export function realmSearch(
   namespace: Extract<BlizzardNamespaces, 'dynamic-classic1x' | 'dynamic-classic'>,
   options: RealmSearchParameters,
-): Resource<SearchResponse<RealmSearchResponseItem>, RealmSearchParameters> {
+): Resource<RealmSearchResponse, RealmSearchParameters> {
   return {
     namespace,
     parameters: {
@@ -47,6 +47,6 @@ export function realmSearch(
       orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
       timezone: options.timezone,
     },
-    path: `${searchBase}/realm`,
+    path: `${wowSearchBasePath}/realm`,
   };
 }

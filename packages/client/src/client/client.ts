@@ -5,7 +5,6 @@ import ky from 'ky';
 import type {
   AccessToken,
   AccessTokenRequestArguments,
-  AxiosCompatability,
   ClientOptions,
   ValidateAccessTokenArguments,
   ValidateAccessTokenResponse,
@@ -59,7 +58,7 @@ export class BlizzardApiClient {
    * // => 86399
    * // => 'client-id'
    */
-  public getAccessToken = async (options?: AccessTokenRequestArguments): Promise<AxiosCompatability<AccessToken>> => {
+  public getAccessToken = async (options?: AccessTokenRequestArguments): Promise<AccessToken> => {
     const { key, origin, secret } = { ...this.defaults, ...options };
     const basicAuth = Buffer.from(`${key}:${secret}`).toString('base64');
     const response = await this.ky
@@ -74,10 +73,7 @@ export class BlizzardApiClient {
       })
       .json();
 
-    return {
-      data: response,
-      ...response,
-    };
+    return response;
   };
 
   /**
@@ -101,9 +97,7 @@ export class BlizzardApiClient {
    * // => 86399
    * // => 'client-id'
    */
-  public refreshAccessToken = async (
-    options?: AccessTokenRequestArguments,
-  ): Promise<AxiosCompatability<AccessToken>> => {
+  public refreshAccessToken = async (options?: AccessTokenRequestArguments): Promise<AccessToken> => {
     const response = await this.getAccessToken(options);
     this.setAccessToken(response.access_token);
     return response;
@@ -118,9 +112,7 @@ export class BlizzardApiClient {
    * console.log(response.client_id);
    * // => 'client-id'
    */
-  public validateAccessToken = async (
-    options?: ValidateAccessTokenArguments,
-  ): Promise<AxiosCompatability<ValidateAccessTokenResponse>> => {
+  public validateAccessToken = async (options?: ValidateAccessTokenArguments): Promise<ValidateAccessTokenResponse> => {
     const { origin, token } = { ...this.defaults, ...options };
 
     if (!token) {
@@ -136,10 +128,7 @@ export class BlizzardApiClient {
       })
       .json();
 
-    return {
-      data: response,
-      ...response,
-    };
+    return response;
   };
 
   /**
@@ -220,7 +209,7 @@ export class BlizzardApiClient {
     resource: Resource<T, object, Protected>,
     options?: Partial<ClientOptions>,
     headers?: Record<string, string>,
-  ): ResourceResponse<AxiosCompatability<T>> {
+  ): ResourceResponse<T> {
     const url = this.getRequestUrl(resource, options);
     const config = this.getRequestConfig(resource, options, headers);
 
@@ -234,9 +223,6 @@ export class BlizzardApiClient {
     });
     const data = await response.json();
 
-    return {
-      data,
-      ...data,
-    };
+    return data;
   }
 }

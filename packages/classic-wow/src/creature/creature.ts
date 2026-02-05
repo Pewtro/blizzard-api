@@ -1,5 +1,5 @@
-import type { BlizzardNamespaces, Resource, SearchResponse } from '@blizzard-api/core';
-import { base, mediaBase, searchBase } from '../../../wow/src/base';
+import { wowBasePath, wowMediaBasePath, wowSearchBasePath } from '@blizzard-api/core';
+import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
 import type {
   CreatureDisplayMediaResponse,
   CreatureFamilyIndexResponse,
@@ -7,7 +7,7 @@ import type {
   CreatureFamilyResponse,
   CreatureResponse,
   CreatureSearchParameters,
-  CreatureSearchResponseItem,
+  CreatureSearchResponse,
   CreatureTypeIndexResponse,
   CreatureTypeResponse,
 } from './types';
@@ -24,7 +24,7 @@ export function creature(
 ): Resource<CreatureResponse> {
   return {
     namespace,
-    path: `${base}/creature/${creatureId}`,
+    path: `${wowBasePath}/creature/${creatureId}`,
   };
 }
 /**
@@ -39,7 +39,7 @@ export function creatureDisplayMedia(
 ): Resource<CreatureDisplayMediaResponse> {
   return {
     namespace,
-    path: `${mediaBase}/creature-display/${creatureDisplayId}`,
+    path: `${wowMediaBasePath}/creature-display/${creatureDisplayId}`,
   };
 }
 /**
@@ -54,7 +54,7 @@ export function creatureFamily(
 ): Resource<CreatureFamilyResponse> {
   return {
     namespace,
-    path: `${base}/creature-family/${creatureFamilyId}`,
+    path: `${wowBasePath}/creature-family/${creatureFamilyId}`,
   };
 }
 /**
@@ -67,7 +67,7 @@ export function creatureFamilyIndex(
 ): Resource<CreatureFamilyIndexResponse> {
   return {
     namespace,
-    path: `${base}/creature-family/index`,
+    path: `${wowBasePath}/creature-family/index`,
   };
 }
 /**
@@ -82,19 +82,19 @@ export function creatureFamilyMedia(
 ): Resource<CreatureFamilyMediaResponse> {
   return {
     namespace,
-    path: `${mediaBase}/creature-family/${creatureFamilyId}`,
+    path: `${wowMediaBasePath}/creature-family/${creatureFamilyId}`,
   };
 }
 /**
  * Performs a search of creatures.
  * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
  * @param options The creature search parameters. See {@link CreatureSearchParameters}.
- * @returns The creature search results. See {@link SearchResponse} & {@link CreatureSearchResponseItem}.
+ * @returns The creature search results. See {@link CreatureSearchResponse}.
  */
 export function creatureSearch(
   namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
   options: CreatureSearchParameters,
-): Resource<SearchResponse<CreatureSearchResponseItem>, Omit<CreatureSearchParameters, 'locale' | 'name'>> {
+): Resource<CreatureSearchResponse, Omit<CreatureSearchParameters, 'locale' | 'name'>> {
   return {
     namespace,
     parameters: {
@@ -102,7 +102,7 @@ export function creatureSearch(
       [`name.${options.locale}`]: options.name,
       orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
     },
-    path: `${searchBase}/creature`,
+    path: `${wowSearchBasePath}/creature`,
   };
 }
 /**
@@ -117,7 +117,7 @@ export function creatureType(
 ): Resource<CreatureTypeResponse> {
   return {
     namespace,
-    path: `${base}/creature-type/${creatureTypeId}`,
+    path: `${wowBasePath}/creature-type/${creatureTypeId}`,
   };
 }
 /**
@@ -130,6 +130,6 @@ export function creatureTypeIndex(
 ): Resource<CreatureTypeIndexResponse> {
   return {
     namespace,
-    path: `${base}/creature-type/index`,
+    path: `${wowBasePath}/creature-type/index`,
   };
 }

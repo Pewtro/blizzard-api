@@ -1,5 +1,5 @@
+import { d3ProfileBasePath } from '@blizzard-api/core';
 import type { Resource } from '@blizzard-api/core';
-import { profileBase } from '../base';
 import type { AccountHeroFollowerItemsResponse, AccountHeroResponse, AccountResponse } from './types';
 
 /**
@@ -9,7 +9,7 @@ import type { AccountHeroFollowerItemsResponse, AccountHeroResponse, AccountResp
  */
 export function account(battleTag: string): Resource<AccountResponse> {
   return {
-    path: `${profileBase}/${battleTag}`,
+    path: `${d3ProfileBasePath}/${encodeURIComponent(battleTag)}`,
   };
 }
 
@@ -21,7 +21,7 @@ export function account(battleTag: string): Resource<AccountResponse> {
  */
 export function accountHero(battleTag: string, heroId: number): Resource<AccountHeroResponse> {
   return {
-    path: `${profileBase}/${battleTag}/hero/${heroId}`,
+    path: `${d3ProfileBasePath}/${encodeURIComponent(battleTag)}/hero/${heroId}`,
   };
 }
 
@@ -36,7 +36,7 @@ export function accountHeroFollowerItems(
   heroId: number,
 ): Resource<AccountHeroFollowerItemsResponse> {
   return {
-    path: `${profileBase}/${battleTag}/hero/${heroId}/follower-items`,
+    path: `${d3ProfileBasePath}/${encodeURIComponent(battleTag)}/hero/${heroId}/follower-items`,
   };
 }
 
@@ -48,6 +48,6 @@ export function accountHeroFollowerItems(
  */
 export function accountHeroItems(battleTag: string, heroId: number): Resource<AccountHeroResponse> {
   return {
-    path: `${profileBase}/${battleTag}/hero/${heroId}/items`,
+    path: `${d3ProfileBasePath}/${encodeURIComponent(battleTag)}/hero/${heroId}/items`,
   };
 }

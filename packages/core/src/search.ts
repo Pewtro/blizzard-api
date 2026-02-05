@@ -1,19 +1,4 @@
 /**
- * Base search parameters
- * orderby The field to order results by.
- * _page The page number to return.
- * @example
- * const params: BaseSearchParameters = {
- *  orderby: 'name',
- *  _page: 1,
- * };
- */
-export interface BaseSearchParameters {
-  _page?: number;
-  orderby?: Array<string> | string;
-}
-
-/**
  * Search response
  * page The current page number.
  * pageSize The number of results per page.
@@ -26,14 +11,12 @@ export interface BaseSearchParameters {
  *  pageSize: 20,
  *  maxPageSize: 100,
  *  pageCount: 10,
- *  results: [],
  * };
  */
-export interface SearchResponse<T> {
+export interface SearchResponseWithoutResults {
   maxPageSize: number;
   page: number;
   pageCount: number;
   pageSize: number;
   resultCountCapped?: boolean;
-  results: Array<T>;
 }

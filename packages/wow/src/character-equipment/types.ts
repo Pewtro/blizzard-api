@@ -1,4 +1,4 @@
-import type { Character, Color, KeyBase, NameIdKey, ResponseBase } from '../base';
+import type { Character, Color, KeyBase, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 export interface CharacterEquipmentSummaryResponse extends ResponseBase {
   character: Character;
@@ -67,7 +67,7 @@ interface EquippedItem {
   modified_appearance_id?: number;
   modified_crafting_stat?: Array<ModifiedCraftingStat>;
   name: string;
-  name_description: NameDescription;
+  name_description?: NameDescription;
   quality: NameType;
   quantity: number;
   requirements?: Requirements;
@@ -82,8 +82,9 @@ interface EquippedItem {
   weapon?: Weapon;
 }
 
-interface ItemElement extends NameIdKey {
+interface ItemElement {
   is_equipped?: boolean;
+  item: NameIdKey;
 }
 
 interface ModifiedCraftingStat {
@@ -125,6 +126,8 @@ interface Set {
 }
 
 interface Socket {
+  context?: number;
+  display_color?: Color;
   display_string: string;
   item: NameIdKey;
   media: KeyBase & { id: number };

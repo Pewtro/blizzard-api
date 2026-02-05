@@ -1,5 +1,12 @@
-import type { BaseSearchParameters, Locales } from '@blizzard-api/core';
-import type { KeyBase, MediaAsset, NameIdKey, ResponseBase } from '../base';
+import type {
+  BaseSearchParameters,
+  KeyBase,
+  Locales,
+  MediaAsset,
+  NameIdKey,
+  ResponseBase,
+  SearchResponseWithoutResults,
+} from '@blizzard-api/core';
 
 /**
  * The response for creature display media.
@@ -66,15 +73,8 @@ export interface CreatureSearchParameters extends BaseSearchParameters {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
  */
-export interface CreatureSearchResponseItem extends KeyBase {
-  data: {
-    creature_displays: Array<{ id: number }>;
-    family?: { id: number; name: Record<Locales, string | undefined> };
-    id: number;
-    is_tameable: boolean;
-    name: Record<Locales, string | undefined>;
-    type: { id: number; name: Record<Locales, string | undefined> };
-  };
+export interface CreatureSearchResponse extends SearchResponseWithoutResults {
+  results: Array<CreatureSearchResponseItem>;
 }
 
 /**
@@ -96,6 +96,17 @@ export interface CreatureTypeResponse extends ResponseBase {
 
 interface CreatureDisplay extends KeyBase {
   id: number;
+}
+
+interface CreatureSearchResponseItem extends KeyBase {
+  data: {
+    creature_displays: Array<{ id: number }>;
+    family?: { id: number; name: Record<Locales, string> };
+    id: number;
+    is_tameable: boolean;
+    name: Record<Locales, string | undefined>;
+    type: { id: number; name: Record<Locales, string> };
+  };
 }
 
 interface DisplayMediaAsset {

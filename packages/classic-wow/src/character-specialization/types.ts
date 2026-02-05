@@ -1,20 +1,28 @@
-import type { Character, NameId, ResponseBase } from '../../../wow/src/base';
+import type { Character, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 export interface CharacterSpecializationsSummaryResponse extends ResponseBase {
+  active_specialization?: NameIdKey;
   character: Character;
   specialization_groups: Array<SpecializationGroup>;
+  specializations?: Array<ClassicProgressionSpecialization>;
 }
 
-interface Specialization {
+interface ClassicProgressionSpecialization {
+  specialization: NameIdKey;
   specialization_name: string;
-  spent_points: number;
-  talents: Array<TalentElement>;
+  talents?: Array<TalentElement>;
 }
 
 interface SpecializationGroup {
   glyphs?: Array<NameId>;
   is_active: boolean;
-  specializations?: Array<Specialization>;
+  specializations?: Array<SpecializationGroupItem>;
+}
+
+interface SpecializationGroupItem {
+  specialization_name: string;
+  spent_points: number;
+  talents: Array<TalentElement>;
 }
 
 interface SpellTooltip {
@@ -28,6 +36,6 @@ interface SpellTooltip {
 
 interface TalentElement {
   spell_tooltip: SpellTooltip;
-  talent: { id: number };
-  talent_rank: number;
+  talent: NameId | { id: number };
+  talent_rank?: number;
 }

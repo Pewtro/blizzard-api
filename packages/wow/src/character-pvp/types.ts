@@ -1,4 +1,4 @@
-import type { Character, Faction, KeyBase, NameId, ResponseBase } from '../base';
+import type { Character, Faction, KeyBase, NameId, ResponseBase } from '@blizzard-api/core';
 
 export interface CharacterPvpBracketStatisticsResponse extends ResponseBase {
   bracket: Bracket;

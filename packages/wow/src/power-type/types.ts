@@ -1,4 +1,4 @@
-import type { NameId, NameIdKey, ResponseBase } from '../base';
+import type { NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a power type index.

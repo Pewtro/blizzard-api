@@ -1,7 +1,8 @@
-import type { Character, Href, KeyBase, NameIdKey, ResponseBase } from '../base';
+import type { Character, Href, KeyBase, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 export interface CharacterCollectionsIndexResponse extends ResponseBase {
   character: Character;
+  decors: Href;
   heirlooms: Href;
   mounts: Href;
   pets: Href;
@@ -57,16 +58,16 @@ interface Pet {
 }
 
 interface Quality {
-  name: 'Common' | 'Poor' | 'Rare' | 'Uncommon';
+  name: string;
   type: 'COMMON' | 'POOR' | 'RARE' | 'UNCOMMON';
 }
 
 interface Slot {
   appearances: Array<KeyBase & { id: number }>;
-  slot: Slot;
+  slot: SlotSlot;
 }
 
-interface Slot {
+interface SlotSlot {
   name: string;
   type: string;
 }

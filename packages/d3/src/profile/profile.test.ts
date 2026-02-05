@@ -1,5 +1,5 @@
+import { d3ProfileBasePath } from '@blizzard-api/core';
 import { describe, it } from 'vitest';
-import { profileBase } from '../base';
 import { account, accountHero, accountHeroFollowerItems, accountHeroItems } from './profile';
 
 const battleTag = 'example#1234';
@@ -7,7 +7,7 @@ const heroId = 42;
 
 describe.concurrent('profile', () => {
   it('account should return the correct resource', ({ expect }) => {
-    const expectedPath = `${profileBase}/example#1234`;
+    const expectedPath = `${d3ProfileBasePath}/example%231234`;
 
     const resource = account(battleTag);
 
@@ -15,7 +15,7 @@ describe.concurrent('profile', () => {
   });
 
   it('should return the correct resource path', ({ expect }) => {
-    const expectedPath = `${profileBase}/example#1234/hero/42`;
+    const expectedPath = `${d3ProfileBasePath}/example%231234/hero/42`;
 
     const resource = accountHero(battleTag, heroId);
 
@@ -23,7 +23,7 @@ describe.concurrent('profile', () => {
   });
 
   it('should return the correct resource path', ({ expect }) => {
-    const expectedPath = `${profileBase}/example#1234/hero/42/items`;
+    const expectedPath = `${d3ProfileBasePath}/example%231234/hero/42/items`;
 
     const resource = accountHeroItems(battleTag, heroId);
 
@@ -31,7 +31,7 @@ describe.concurrent('profile', () => {
   });
 
   it('accountHeroFollowerItems should return the correct resource', ({ expect }) => {
-    const expectedPath = `${profileBase}/example#1234/hero/42/follower-items`;
+    const expectedPath = `${d3ProfileBasePath}/example%231234/hero/42/follower-items`;
 
     const resource = accountHeroFollowerItems(battleTag, heroId);
 

@@ -1,5 +1,13 @@
-import type { BaseSearchParameters, Locales } from '@blizzard-api/core';
-import type { KeyBase, MediaAsset, NameId, NameIdKey, ResponseBase } from '../base';
+import type {
+  BaseSearchParameters,
+  KeyBase,
+  Locales,
+  MediaAsset,
+  NameId,
+  NameIdKey,
+  ResponseBase,
+  SearchResponseWithoutResults,
+} from '@blizzard-api/core';
 
 /**
  * Interface for a response from the azerite essence index endpoint.
@@ -42,9 +50,12 @@ export interface AzeriteEssenceSearchParameters extends BaseSearchParameters {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
  */
-export interface AzeriteEssenceSearchResponseItem extends KeyBase {
+export interface AzeriteEssenceSearchResponse extends SearchResponseWithoutResults {
+  results: Array<AzeriteEssenceSearchResponseItem>;
+}
+interface AzeriteEssenceSearchResponseItem extends KeyBase {
   data: {
-    allowed_specializations: Array<NameId>;
+    allowed_specializations: Array<{ id: number; name: Record<Locales, string> }>;
     name: Record<Locales, string>;
   };
 }

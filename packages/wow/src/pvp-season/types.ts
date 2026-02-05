@@ -1,11 +1,11 @@
-import type { Faction, Factions, KeyBase, NameId, NameIdKey, ResponseBase } from '../base';
+import type { Faction, Factions, Href, KeyBase, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a PvP leaderboard index.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface PvpLeaderboardIndexResponse extends ResponseBase {
-  leaderboards: Array<NameIdKey>;
+  leaderboards: Array<KeyBase & { id?: number; name: string }>;
   season: Season;
 }
 
@@ -44,15 +44,16 @@ export interface PvpSeasonIndexResponse extends ResponseBase {
  */
 export interface PvpSeasonResponse extends ResponseBase {
   id: number;
-  leaderboards: { href: string };
-  rewards: { href: string };
-  season_name?: string;
+  leaderboards: Href;
+  rewards: Href;
+  season_end_timestamp?: number;
+  season_name?: null | string;
   season_start_timestamp: number;
 }
 
 interface Bracket {
   id: number;
-  type: 'ARENA_3v3' | 'BATTLEGROUNDS' | 'SHUFFLE';
+  type: 'ARENA_3v3' | 'BATTLEGROUNDS' | 'BLITZ' | 'SHUFFLE';
 }
 
 interface Character extends NameId {
@@ -61,7 +62,7 @@ interface Character extends NameId {
 
 interface Entry {
   character: Character;
-  faction: { type: keyof typeof Factions };
+  faction: { type: Factions };
   rank: number;
   rating: number;
   season_match_statistics: SeasonMatchStatistics;

@@ -1,4 +1,5 @@
-import type { Faction, Gender, Href, NameIdKey, Realm, ResponseBase } from '../../../wow/src/base';
+import type { Faction, Gender, Href, NameIdKey, Realm, ResponseBase } from '@blizzard-api/core';
+
 export type { CharacterProfileStatusResponse } from '../../../wow/src/character-profile/types';
 
 export interface CharacterProfileSummaryResponse extends ResponseBase {
@@ -15,6 +16,7 @@ export interface CharacterProfileSummaryResponse extends ResponseBase {
   faction: Faction;
   gender: Gender;
   guild: Guild;
+  hunter_pets?: Href;
   id: number;
   //Hardcore only
   is_ghost?: boolean;

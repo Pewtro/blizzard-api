@@ -1,12 +1,12 @@
-import type { Resource, SearchResponse } from '@blizzard-api/core';
-import { base, mediaBase, searchBase } from '../base';
+import type { Resource } from '@blizzard-api/core';
+import { wowBasePath, wowMediaBasePath, wowSearchBasePath } from '@blizzard-api/core';
 import type {
   ItemClassIndexResponse,
   ItemClassResponse,
   ItemMediaResponse,
   ItemResponse,
   ItemSearchParameters,
-  ItemSearchResponseItem,
+  ItemSearchResponse,
   ItemSetIndexResponse,
   ItemSetResponse,
   ItemSubClassResponse,
@@ -20,7 +20,7 @@ import type {
 export function item(itemId: number): Resource<ItemResponse> {
   return {
     namespace: 'static',
-    path: `${base}/item/${itemId}`,
+    path: `${wowBasePath}/item/${itemId}`,
   };
 }
 /**
@@ -31,7 +31,7 @@ export function item(itemId: number): Resource<ItemResponse> {
 export function itemClass(itemClassId: number): Resource<ItemClassResponse> {
   return {
     namespace: 'static',
-    path: `${base}/item-class/${itemClassId}`,
+    path: `${wowBasePath}/item-class/${itemClassId}`,
   };
 }
 /**
@@ -41,7 +41,7 @@ export function itemClass(itemClassId: number): Resource<ItemClassResponse> {
 export function itemClassIndex(): Resource<ItemClassIndexResponse> {
   return {
     namespace: 'static',
-    path: `${base}/item-class/index`,
+    path: `${wowBasePath}/item-class/index`,
   };
 }
 /**
@@ -52,17 +52,17 @@ export function itemClassIndex(): Resource<ItemClassIndexResponse> {
 export function itemMedia(itemId: number): Resource<ItemMediaResponse> {
   return {
     namespace: 'static',
-    path: `${mediaBase}/item/${itemId}`,
+    path: `${wowMediaBasePath}/item/${itemId}`,
   };
 }
 /**
  * Search for items.
  * @param options The search parameters. See {@link ItemSearchParameters}.
- * @returns The search results. See {@link SearchResponse}.
+ * @returns The search results. See {@link ItemSearchResponse}.
  */
 export function itemSearch(
   options: ItemSearchParameters,
-): Resource<SearchResponse<ItemSearchResponseItem>, Omit<ItemSearchParameters, 'locale' | 'name'>> {
+): Resource<ItemSearchResponse, Omit<ItemSearchParameters, 'locale' | 'name'>> {
   return {
     namespace: 'static',
     parameters: {
@@ -70,7 +70,7 @@ export function itemSearch(
       [`name.${options.locale}`]: options.name,
       orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
     },
-    path: `${searchBase}/item`,
+    path: `${wowSearchBasePath}/item`,
   };
 }
 /**
@@ -81,7 +81,7 @@ export function itemSearch(
 export function itemSet(itemSetId: number): Resource<ItemSetResponse> {
   return {
     namespace: 'static',
-    path: `${base}/item-set/${itemSetId}`,
+    path: `${wowBasePath}/item-set/${itemSetId}`,
   };
 }
 /**
@@ -91,7 +91,7 @@ export function itemSet(itemSetId: number): Resource<ItemSetResponse> {
 export function itemSetIndex(): Resource<ItemSetIndexResponse> {
   return {
     namespace: 'static',
-    path: `${base}/item-set/index`,
+    path: `${wowBasePath}/item-set/index`,
   };
 }
 /**
@@ -103,6 +103,6 @@ export function itemSetIndex(): Resource<ItemSetIndexResponse> {
 export function itemSubClass(itemClassId: number, itemSubclassId: number): Resource<ItemSubClassResponse> {
   return {
     namespace: 'static',
-    path: `${base}/item-class/${itemClassId}/item-subclass/${itemSubclassId}`,
+    path: `${wowBasePath}/item-class/${itemClassId}/item-subclass/${itemSubclassId}`,
   };
 }

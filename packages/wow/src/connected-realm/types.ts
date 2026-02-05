@@ -1,27 +1,34 @@
-import type { BaseSearchParameters, Locales } from '@blizzard-api/core';
-import type { KeyBase, NameIdKey, ResponseBase } from '../base';
-import type { RealmCategory, RealmTimezone, RealmType, RealmTypeCapitalized, WithoutUnderscore } from '../realm/types';
+import type {
+  BaseSearchParameters,
+  Href,
+  KeyBase,
+  Locales,
+  NameIdKey,
+  ResponseBase,
+  SearchResponseWithoutResults,
+} from '@blizzard-api/core';
+import type { RealmCategory, RealmLocales, RealmTimezone, RealmTypeCapitalized } from '../realm/types';
 
 /**
  * Connected Realm Index API response.
  * @see https://develop.battle.net/documentation/world-of-warcraft/game-data-apis
  */
 export interface ConnectedRealmIndexResponse extends ResponseBase {
-  connected_realms: Array<{ href: string }>;
+  connected_realms: Array<Href>;
 }
 /**
  * Connected Realm API response.
  * @see https://develop.battle.net/documentation/world-of-warcraft/game-data-apis
  */
 export interface ConnectedRealmResponse extends ResponseBase {
-  auctions: { href: string };
+  auctions: Href;
   has_queue: boolean;
   id: number;
-  mythic_leaderboards: { href: string };
-  population: { name: RealmPopulation; type: RealmPopulationCapitalized };
+  mythic_leaderboards: Href;
+  population: { name: string; type: RealmPopulationCapitalized };
   realm_locked_status?: RealmLockedStatus;
   realms: Array<Realm>;
-  status: { name: RealmStatus; type: Uppercase<RealmStatus> };
+  status: { name: RealmStatus; type: RealmStatusCapitalized };
 }
 /**
  * Connected Realm Search API parameters.
@@ -30,7 +37,7 @@ export interface ConnectedRealmResponse extends ResponseBase {
  */
 export interface ConnectedRealmSearchParameters extends BaseSearchParameters {
   'realms.timezone'?: RealmTimezone;
-  'status.type'?: Uppercase<RealmStatus>;
+  'status.type'?: RealmStatusCapitalized;
 }
 
 /**
@@ -38,7 +45,11 @@ export interface ConnectedRealmSearchParameters extends BaseSearchParameters {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
  */
-export interface ConnectedRealmSearchResponseItem extends KeyBase {
+export interface ConnectedRealmSearchResponse extends SearchResponseWithoutResults {
+  results: Array<ConnectedRealmSearchResponseItem>;
+}
+
+interface ConnectedRealmSearchResponseItem extends KeyBase {
   data: {
     has_queue: boolean;
     id: number;
@@ -50,15 +61,15 @@ export interface ConnectedRealmSearchResponseItem extends KeyBase {
 
 interface Realm {
   category: RealmCategory;
-  connected_realm: { href: string };
+  connected_realm: Href;
   id: number;
   is_tournament: boolean;
-  locale: WithoutUnderscore<Locales>;
+  locale: RealmLocales;
   name: string;
   region: NameIdKey;
   slug: string;
   timezone: RealmTimezone;
-  type: { name: RealmType; type: RealmTypeCapitalized };
+  type: { name: string; type: RealmTypeCapitalized };
 }
 
 interface RealmLockedStatus {
@@ -66,22 +77,22 @@ interface RealmLockedStatus {
   is_locked_for_pct: boolean;
 }
 
-type RealmPopulation = 'Full' | 'High' | 'Low' | 'Medium' | 'New Players';
-
 type RealmPopulationCapitalized = 'FULL' | 'HIGH' | 'LOW' | 'MEDIUM' | 'RECOMMENDED';
 
 type RealmStatus = 'Down' | 'Up';
 
+type RealmStatusCapitalized = 'DOWN' | 'UP';
+
 interface SearchRealm {
-  category: Record<Locales, string | undefined>;
+  category: Record<Locales, string>;
   id: number;
   is_tournament: boolean;
-  locale: WithoutUnderscore<Locales>;
-  name: Record<Locales, string | undefined>;
-  region: { id: number; name: Record<Locales, string | undefined> };
+  locale: RealmLocales;
+  name: Record<Locales, string>;
+  region: { id: number; name: Record<Locales, string> };
   slug: string;
   timezone: RealmTimezone;
-  type: { name: Record<Locales, string | undefined>; type: RealmTypeCapitalized };
+  type: { name: Record<Locales, string>; type: RealmTypeCapitalized };
 }
 
 interface SearchRealmPopulation {
@@ -91,5 +102,5 @@ interface SearchRealmPopulation {
 
 interface SearchRealmStatus {
   name: Record<Locales, string>;
-  type: Uppercase<RealmStatus>;
+  type: RealmStatusCapitalized;
 }

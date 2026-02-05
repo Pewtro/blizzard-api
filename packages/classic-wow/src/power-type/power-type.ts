@@ -1,5 +1,5 @@
+import { wowBasePath } from '@blizzard-api/core';
 import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
-import { base } from '../../../wow/src/base';
 import type { PowerTypeIndexResponse, PowerTypeResponse } from './types';
 
 /**
@@ -14,7 +14,7 @@ export function powerType(
 ): Resource<PowerTypeResponse> {
   return {
     namespace,
-    path: `${base}/power-type/${powerTypeId}`,
+    path: `${wowBasePath}/power-type/${powerTypeId}`,
   };
 }
 /**
@@ -27,6 +27,6 @@ export function powerTypeIndex(
 ): Resource<PowerTypeIndexResponse> {
   return {
     namespace,
-    path: `${base}/power-type/index`,
+    path: `${wowBasePath}/power-type/index`,
   };
 }
