@@ -1,5 +1,17 @@
 # @blizzard-api/core
 
+## 3.0.0
+
+### Major Changes
+
+- 7734fe9: Many types have had keys added, removed, made nullable or otherwise edited to better reflect the possible return values of the API. This update is the largest pass of all the response types since the library was first published.
+- 71fd204: Update minimum node version to ^20.19.0 || ^22.13.0 || >=24
+
+### Minor Changes
+
+- 06b75d9: Introduce new types for search results for various WoW APIs
+- 98cbf93: Add a series of base parameters that can be used when dealing with Blizzard API. These are used throughout the game packages.
+
 ## 2.1.1
 
 ### Patch Changes
