@@ -1,5 +1,23 @@
 # @blizzard-api/client
 
+## 3.0.0
+
+### Major Changes
+
+- 71fd204: Update minimum node version to ^20.19.0 || ^22.13.0 || >=24
+- ed263a9: Remove the axios compatability layer that resulted in response existing both directly in the response and in the data. If you face errors after this you likely just need to remove accessing data.
+
+### Patch Changes
+
+- 2902fab: Update ky to 1.14.3
+- f049890: Update ky to 1.14.2
+- 8ef0c64: Update ky to 1.14.1
+- Updated dependencies [06b75d9]
+- Updated dependencies [7734fe9]
+- Updated dependencies [71fd204]
+- Updated dependencies [98cbf93]
+  - @blizzard-api/core@3.0.0
+
 ## 2.3.3
 
 ### Patch Changes

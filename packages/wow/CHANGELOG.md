@@ -1,5 +1,26 @@
 # @blizzard-api/wow
 
+## 3.0.0
+
+### Major Changes
+
+- 7734fe9: Many types have had keys added, removed, made nullable or otherwise edited to better reflect the possible return values of the API. This update is the largest pass of all the response types since the library was first published.
+- 71fd204: Update minimum node version to ^20.19.0 || ^22.13.0 || >=24
+- 98cbf93: Moved a series of base parameters and generic types/interfaces into @blizzard-api/core to better share types between packages. If you can't access a type or interface anymore, it should now be available in @blizzard-api/core.
+
+### Minor Changes
+
+- 06b75d9: Introduce new types for search results for various WoW APIs
+- 7829065: Update some types based on midnight release, mostly related to housing and new transmog system
+
+### Patch Changes
+
+- Updated dependencies [06b75d9]
+- Updated dependencies [7734fe9]
+- Updated dependencies [71fd204]
+- Updated dependencies [98cbf93]
+  - @blizzard-api/core@3.0.0
+
 ## 2.1.0
 
 ### Minor Changes
