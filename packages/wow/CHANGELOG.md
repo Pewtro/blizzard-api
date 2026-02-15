@@ -1,5 +1,14 @@
 # @blizzard-api/wow
 
+## 3.0.1
+
+### Patch Changes
+
+- a3f007a: The title of the first section of a journal entry can be explicitly null
+- 6ae45c4: Re-rerelease for provenance
+- Updated dependencies [6ae45c4]
+  - @blizzard-api/core@3.0.1
+
 ## 3.0.0
 
 ### Major Changes
