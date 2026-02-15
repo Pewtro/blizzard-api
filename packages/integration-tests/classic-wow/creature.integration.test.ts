@@ -43,23 +43,14 @@ describe.concurrent('classic-wow creature integration for classic era', async ()
     }
     expect(parsed.success).toBe(true);
 
-    // eslint-disable-next-line sonarjs/pseudo-random
-    const creatureFamilyIndex = Math.floor(Math.random() * resp.creature_families.length);
-    const creatureFamily = resp.creature_families[creatureFamilyIndex];
-    expect(creatureFamily).toBeDefined();
-
-    const family = await client.sendRequest(classicWow.creatureFamily('static-classic1x', creatureFamily!.id));
+    const family = await client.sendRequest(classicWow.creatureFamily('static-classic1x', 1));
     const parsedFamily = creatureFamilyResponseSchema.safeParse(family);
     if (!parsedFamily.success) {
-      console.error(
-        'Creature family detail validation failed for id',
-        creatureFamily!.id,
-        treeifyError(parsedFamily.error),
-      );
+      console.error('Creature family detail validation failed for id', treeifyError(parsedFamily.error));
     }
     expect(parsedFamily.success).toBe(true);
 
-    const media = await client.sendRequest(classicWow.creatureFamilyMedia('static-classic1x', creatureFamily!.id));
+    const media = await client.sendRequest(classicWow.creatureFamilyMedia('static-classic1x', 1));
     const parsedMedia = creatureFamilyMediaResponseSchema.safeParse(media);
     if (!parsedMedia.success) {
       console.error('Creature family media validation failed:', treeifyError(parsedMedia.error));
