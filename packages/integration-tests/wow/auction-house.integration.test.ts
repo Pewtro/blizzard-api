@@ -40,4 +40,4 @@ describe('wow auction-house integration', () => {
     }
     expect(parsedCommodities.success).toBe(true);
   });
-});
+}, 10_000);
