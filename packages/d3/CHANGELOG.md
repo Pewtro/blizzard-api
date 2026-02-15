@@ -1,5 +1,21 @@
 # @blizzard-api/d3
 
+## 2.0.0
+
+### Major Changes
+
+- 71fd204: Update minimum node version to ^20.19.0 || ^22.13.0 || >=24
+- 98cbf93: Moved a series of base parameters and generic types/interfaces into @blizzard-api/core to better share types between packages. If you can't access a type or interface anymore, it should now be available in @blizzard-api/core.
+
+### Patch Changes
+
+- be6facc: Fix an issue when calling D3 profile APIs where the battletag wasn't encoded properly
+- Updated dependencies [06b75d9]
+- Updated dependencies [7734fe9]
+- Updated dependencies [71fd204]
+- Updated dependencies [98cbf93]
+  - @blizzard-api/core@3.0.0
+
 ## 1.0.5
 
 ### Patch Changes
