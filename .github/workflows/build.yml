@@ -15,7 +15,7 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 env:
   # The node version to release with, generally the latest LTS
-  release_node: 22.x
+  release_node: 24.x
 
 jobs:
   build:
@@ -76,5 +76,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_CONFIG_PROVENANCE: true
-          # Use OIDC for npm authentication instead of NPM_TOKEN
-          NPM_TOKEN: '' # https://github.com/changesets/changesets/issues/1152#issuecomment-3190884868
