@@ -48,6 +48,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           cache: 'pnpm'
+          registry-url: https://registry.npmjs.org
 
       - name: Install Dependencies
         run: pnpm install
@@ -65,10 +66,10 @@ jobs:
           VITE_BLIZZARD_CLIENT_SECRET: ${{ secrets.BLIZZARD_CLIENT_SECRET }}
 
       # Only release with the version set in release_node and on a push to main
-      - if: ${{ matrix.node == env.release_node && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+      - if: ${{ matrix.node == env.release_node && github.event_name == 'push' && github.ref == 'refs/heads/main' && github.repository == 'pewtro/blizzard-api' }}
         name: Create Release Pull Request or Publish to npm
         id: changesets
-        uses: changesets/action@e0145edc7d9d8679003495b11f87bd8ef63c0cba # Commit hash taken from https://github.com/changesets/action/tree/v1/src
+        uses: changesets/action@6a0a831ff30acef54f2c6aa1cbbc1096b066edaf # Commit hash taken from https://github.com/changesets/action/tree/v1/src
         with:
           # This expects you to have a script called release which does a build for your packages and calls changeset publish
           publish: pnpm release
