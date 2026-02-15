@@ -248,7 +248,7 @@ const journalSectionSchema = z.strictObject({
       }),
     )
     .optional(),
-  title: z.string().optional(),
+  title: z.string().optional().nullable(),
 });
 
 const journalEncounterSearchResponseItemSchema = keyBaseSchema.extend({

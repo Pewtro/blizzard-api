@@ -159,7 +159,7 @@ interface JournalSection {
   id: number;
   sections?: Array<JournalSubSection>;
   spell?: KeyBase & { id: number; name?: string };
-  title?: string;
+  title?: null | string;
 }
 
 interface JournalSubSection {
