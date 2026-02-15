@@ -1,5 +1,13 @@
 # @blizzard-api/client
 
+## 3.0.1
+
+### Patch Changes
+
+- 6ae45c4: Re-rerelease for provenance
+- Updated dependencies [6ae45c4]
+  - @blizzard-api/core@3.0.1
+
 ## 3.0.0
 
 ### Major Changes
