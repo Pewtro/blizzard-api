@@ -34,10 +34,10 @@ jobs:
       - uses: pnpm/action-setup@f2b2b233b538f500472c7274c7012f57857d8ce0 # https://github.com/pnpm/action-setup/commit/f2b2b233b538f500472c7274c7012f57857d8ce0
         with:
           version: 10.29.3
-      - name: Setup Node.js 22.x
+      - name: Setup Node.js 24.x
         uses: actions/setup-node@v4
         with:
-          node-version: 22.x
+          node-version: 24.x
           cache: 'pnpm'
       - name: Install Dependencies
         run: pnpm install
