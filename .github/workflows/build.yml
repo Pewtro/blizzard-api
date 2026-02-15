@@ -20,6 +20,7 @@ env:
 jobs:
   build:
     strategy:
+      fail-fast: false
       matrix:
         # Test against multiple node versions
         # Any currently maintained version, e.g. whether they are current, active or maintenance should be included
