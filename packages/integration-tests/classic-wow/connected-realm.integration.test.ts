@@ -35,8 +35,6 @@ describe('classic-wow connected realm integration', () => {
     const parsedSearch = connectedRealmSearchResponseSchema.safeParse(search);
     if (!parsedSearch.success) {
       console.error('Connected realm search validation failed:', treeifyError(parsedSearch.error));
-      console.log('search', search);
-      console.log('parsedSearch.error', parsedSearch.error);
     }
     expect(parsedSearch.success).toBe(true);
   });

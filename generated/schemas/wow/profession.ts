@@ -36,6 +36,16 @@ const craftedQuantitySchema = z.strictObject({
   value: z.number().optional(),
 });
 
+const modifiedCraftSlotSchema = z.strictObject({
+  display_order: z.number(),
+  slot_type: keyBaseSchema.and(
+    z.strictObject({
+      id: z.number(),
+      name: z.string().optional(),
+    }),
+  ),
+});
+
 const reagentSchema = z.strictObject({
   quantity: z.number(),
   reagent: nameIdKeySchema,
@@ -59,14 +69,7 @@ export const recipeResponseSchema = nameIdSchema.extend(responseBaseSchema.shape
   crafted_quantity: craftedQuantitySchema.optional(),
   description: z.string().optional(),
   media: mediaSchema,
-  modified_crafting_slots: z
-    .array(
-      z.strictObject({
-        display_order: z.number(),
-        slot_type: nameIdKeySchema,
-      }),
-    )
-    .optional(),
+  modified_crafting_slots: z.array(modifiedCraftSlotSchema).optional(),
   rank: z.number().optional(),
   reagents: z.array(reagentSchema).optional(),
 });

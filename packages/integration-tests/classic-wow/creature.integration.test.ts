@@ -56,8 +56,6 @@ describe.concurrent('classic-wow creature integration for classic era', async ()
         creatureFamily!.id,
         treeifyError(parsedFamily.error),
       );
-      console.log('family', family);
-      console.log('parsedFamily.error', parsedFamily.error);
     }
     expect(parsedFamily.success).toBe(true);
 
@@ -137,8 +135,6 @@ describe.concurrent('classic-wow creature integration for classic progression', 
         creatureFamily!.id,
         treeifyError(parsedFamily.error),
       );
-      console.log('family', family);
-      console.log('parsedFamily.error', parsedFamily.error);
     }
     expect(parsedFamily.success).toBe(true);
 
@@ -178,8 +174,6 @@ describe.concurrent('classic-wow creature integration for classic progression', 
     const parsed = creatureSearchResponseSchema.safeParse(search);
     if (!parsed.success) {
       console.error('Creature search validation failed:', treeifyError(parsed.error));
-      console.log('search', search);
-      console.log('parsed.error', parsed.error);
     }
     expect(parsed.success).toBe(true);
   });

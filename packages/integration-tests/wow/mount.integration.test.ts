@@ -58,8 +58,6 @@ describe('wow mount integration', () => {
     const parsed = mountSearchResponseSchema.safeParse(search);
     if (!parsed.success) {
       console.error('Mount search validation failed:', treeifyError(parsed.error));
-      console.log('search', search);
-      console.log('parsed.error', parsed.error);
     }
     expect(parsed.success).toBe(true);
   });

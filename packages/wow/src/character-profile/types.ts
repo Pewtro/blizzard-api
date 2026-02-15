@@ -23,6 +23,7 @@ export interface CharacterProfileSummaryResponse extends ResponseBase {
   faction: Faction;
   gender: Gender;
   guild: Guild;
+  houses?: Array<Href>;
   hunter_pets: Href;
   id: number;
   is_remix: boolean;

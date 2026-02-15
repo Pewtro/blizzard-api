@@ -62,8 +62,6 @@ describe.concurrent('classic-wow playable race integration', () => {
       const parsedResult = playableRaceResponseSchema.safeParse(result);
       if (!parsedResult.success) {
         console.error('Race detail validation failed for id', result.id, treeifyError(parsedResult.error));
-        console.log('result', result);
-        console.log('parsedResult.error', parsedResult.error);
       }
       expect(parsedResult.success).toBe(true);
     }

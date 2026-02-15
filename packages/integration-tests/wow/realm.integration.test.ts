@@ -30,8 +30,6 @@ describe('wow realm integration', () => {
       const parsedRealm = realmResponseSchema.safeParse(realm);
       if (!parsedRealm.success) {
         console.error('Realm detail validation failed:', treeifyError(parsedRealm.error));
-        console.log(parsedRealm.error);
-        console.log('realm', realm);
       }
       expect(parsedRealm.success).toBe(true);
     }

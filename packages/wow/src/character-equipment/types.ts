@@ -151,6 +151,8 @@ interface Transmog {
   display_string: string;
   item: NameIdKey;
   item_modified_appearance_id: number;
+  second_item?: NameIdKey;
+  second_item_modified_appearance_id?: number;
 }
 
 interface Weapon {

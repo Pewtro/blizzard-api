@@ -46,8 +46,6 @@ describe('wow character-mythic-keystone-profile integration', () => {
     const parsedDetails = characterMythicKeystoneSeasonDetailsResponseSchema.safeParse(details);
     if (!parsedDetails.success) {
       console.error('Character mythic keystone season details validation failed:', treeifyError(parsedDetails.error));
-      console.log('details', details);
-      console.log('parsedDetails', parsedDetails.error);
     }
     expect(parsedDetails.success).toBe(true);
   });

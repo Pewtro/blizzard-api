@@ -27,22 +27,19 @@ describe('wow creature integration', () => {
     }
     expect(parsed.success).toBe(true);
 
-    const first = parsed.success ? parsed.data.creature_families[0] : undefined;
-    if (first) {
-      const detail = await client.sendRequest(wow.creatureFamily(first.id));
-      const parsedDetail = creatureFamilyResponseSchema.safeParse(detail);
-      if (!parsedDetail.success) {
-        console.error('Creature family detail validation failed:', treeifyError(parsedDetail.error));
-      }
-      expect(parsedDetail.success).toBe(true);
-
-      const media = await client.sendRequest(wow.creatureFamilyMedia(first.id));
-      const parsedMedia = creatureFamilyMediaResponseSchema.safeParse(media);
-      if (!parsedMedia.success) {
-        console.error('Creature family media validation failed:', treeifyError(parsedMedia.error));
-      }
-      expect(parsedMedia.success).toBe(true);
+    const detail = await client.sendRequest(wow.creatureFamily(1));
+    const parsedDetail = creatureFamilyResponseSchema.safeParse(detail);
+    if (!parsedDetail.success) {
+      console.error('Creature family detail validation failed:', treeifyError(parsedDetail.error));
     }
+    expect(parsedDetail.success).toBe(true);
+
+    const media = await client.sendRequest(wow.creatureFamilyMedia(1));
+    const parsedMedia = creatureFamilyMediaResponseSchema.safeParse(media);
+    if (!parsedMedia.success) {
+      console.error('Creature family media validation failed:', treeifyError(parsedMedia.error));
+    }
+    expect(parsedMedia.success).toBe(true);
   });
 
   it('validates creature search', async ({ expect }) => {

@@ -71,8 +71,6 @@ describe('wow reputations integration', async () => {
       const parsed = reputationTiersResponseSchema.safeParse(tr);
       if (!parsed.success) {
         console.error('Reputation tiers validation failed for id', tr.id, treeifyError(parsed.error));
-        console.log('fr', tr);
-        console.log('parsed.error', parsed.error);
       }
       expect(parsed.success).toBe(true);
     }

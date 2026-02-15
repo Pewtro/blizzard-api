@@ -56,7 +56,7 @@ export interface RecipeResponse extends NameId, ResponseBase {
   crafted_quantity?: CraftedQuantity;
   description?: string;
   media: Media;
-  modified_crafting_slots?: Array<{ display_order: number; slot_type: NameIdKey }>;
+  modified_crafting_slots?: Array<ModifiedCraftSlot>;
   rank?: number;
   reagents?: Array<Reagent>;
 }
@@ -74,6 +74,11 @@ interface CraftedQuantity {
 
 interface Media extends KeyBase {
   id: number;
+}
+
+interface ModifiedCraftSlot {
+  display_order: number;
+  slot_type: KeyBase & { id: number; name?: string };
 }
 
 interface Reagent {

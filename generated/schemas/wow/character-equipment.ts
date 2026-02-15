@@ -88,6 +88,8 @@ const transmogSchema = z.strictObject({
   display_string: z.string(),
   item: nameIdKeySchema,
   item_modified_appearance_id: z.number(),
+  second_item: nameIdKeySchema.optional(),
+  second_item_modified_appearance_id: z.number().optional(),
 });
 
 const itemElementSchema = z.strictObject({

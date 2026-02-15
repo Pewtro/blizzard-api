@@ -67,8 +67,6 @@ describe('wow profession integration', () => {
     const parsedRecipe = recipeResponseSchema.safeParse(recipe);
     if (!parsedRecipe.success) {
       console.error('Recipe detail validation failed:', recipeId, treeifyError(parsedRecipe.error));
-      console.log('recipe', recipe);
-      console.log('parsedrecipe.error', parsedRecipe.error);
     }
     expect(parsedRecipe.success).toBe(true);
 

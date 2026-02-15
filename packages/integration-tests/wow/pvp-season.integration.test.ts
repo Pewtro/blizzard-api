@@ -54,8 +54,6 @@ describe('wow pvp integration', () => {
     const parsedLeaderboard = pvpLeaderboardResponseSchema.safeParse(leaderboard);
     if (!parsedLeaderboard.success) {
       console.error('PVP leaderboard detail validation failed:', treeifyError(parsedLeaderboard.error));
-      console.log('leaderboard', leaderboard);
-      console.log('parsedLeaderboard.error', parsedLeaderboard.error);
     }
     expect(parsedLeaderboard.success).toBe(true);
   });
