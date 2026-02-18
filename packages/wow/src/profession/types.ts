@@ -52,9 +52,11 @@ export interface RecipeMediaResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface RecipeResponse extends NameId, ResponseBase {
+  alliance_crafted_item?: NameIdKey;
   crafted_item?: NameIdKey;
   crafted_quantity?: CraftedQuantity;
   description?: string;
+  horde_crafted_item?: NameIdKey;
   media: Media;
   modified_crafting_slots?: Array<ModifiedCraftSlot>;
   rank?: number;
