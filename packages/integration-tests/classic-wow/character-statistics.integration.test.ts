@@ -19,7 +19,7 @@ describe('classic-wow character statistics integration', () => {
     const resp = await client.sendRequest(classicWow.characterStatisticsSummary('profile-classic', realm, character));
     const parsed = characterStatisticsSummaryResponseSchema.safeParse(resp);
     if (!parsed.success) {
-      console.error('Character statistics summary validation failed:', treeifyError(parsed.error));
+      console.error('Character statistics summary validation failed:', realm, character, treeifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
   });

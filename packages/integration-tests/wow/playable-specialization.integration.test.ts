@@ -31,7 +31,7 @@ describe('wow playable-specialization integration', () => {
     for (const spec of responses) {
       const parsedSpec = playableSpecializationResponseSchema.safeParse(spec);
       if (!parsedSpec.success) {
-        console.error('Playable specialization detail validation failed:', treeifyError(parsedSpec.error));
+        console.error('Playable specialization detail validation failed:', spec.id, treeifyError(parsedSpec.error));
       }
 
       expect(parsedSpec.success).toBe(true);
@@ -39,7 +39,7 @@ describe('wow playable-specialization integration', () => {
       const media = await client.sendRequest(wow.playableSpecializationMedia(spec.id));
       const parsedMedia = playableSpecializationMediaResponseSchema.safeParse(media);
       if (!parsedMedia.success) {
-        console.error('Playable specialization media validation failed:', treeifyError(parsedMedia.error));
+        console.error('Playable specialization media validation failed:', spec.id, treeifyError(parsedMedia.error));
       }
       expect(parsedMedia.success).toBe(true);
     }

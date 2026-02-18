@@ -19,7 +19,7 @@ describe('classic-wow character equipment integration', () => {
     const resp = await client.sendRequest(classicWow.characterEquipmentSummary('profile-classic', realm, character));
     const parsed = characterEquipmentSummaryResponseSchema.safeParse(resp);
     if (!parsed.success) {
-      console.error('Character equipment summary validation failed:', treeifyError(parsed.error));
+      console.error('Character equipment summary validation failed:', realm, character, treeifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
   });

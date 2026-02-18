@@ -19,7 +19,7 @@ describe('classic-wow character profile integration', () => {
     const resp = await client.sendRequest(classicWow.characterProfileSummary('profile-classic', realm, character));
     const parsed = characterProfileSummaryResponseSchema.safeParse(resp);
     if (!parsed.success) {
-      console.error('Character profile summary validation failed:', treeifyError(parsed.error));
+      console.error('Character profile summary validation failed:', realm, character, treeifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
   });

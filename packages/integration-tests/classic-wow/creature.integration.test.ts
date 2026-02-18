@@ -74,7 +74,7 @@ describe.concurrent('classic-wow creature integration for classic era', async ()
     const type = await client.sendRequest(classicWow.creatureType('static-classic1x', creatureType!.id));
     const parsedType = creatureTypeResponseSchema.safeParse(type);
     if (!parsedType.success) {
-      console.error('Creature type detail validation failed:', treeifyError(parsedType.error));
+      console.error('Creature type detail validation failed:', creatureType!.id, treeifyError(parsedType.error));
     }
     expect(parsedType.success).toBe(true);
   });
@@ -153,7 +153,7 @@ describe.concurrent('classic-wow creature integration for classic progression', 
     const type = await client.sendRequest(classicWow.creatureType('static-classic', creatureType!.id));
     const parsedType = creatureTypeResponseSchema.safeParse(type);
     if (!parsedType.success) {
-      console.error('Creature type detail validation failed:', treeifyError(parsedType.error));
+      console.error('Creature type detail validation failed:', creatureType!.id, treeifyError(parsedType.error));
     }
     expect(parsedType.success).toBe(true);
   });

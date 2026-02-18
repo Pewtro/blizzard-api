@@ -29,7 +29,7 @@ describe('wow auction-house integration', () => {
     const auctions = await client.sendRequest(wow.auctions(Number.parseInt(realmId)));
     const parsedAuctions = auctionHouseResponseSchema.safeParse(auctions);
     if (!parsedAuctions.success) {
-      console.error('Auctions validation failed:', treeifyError(parsedAuctions.error));
+      console.error('Auctions validation failed:', realmId, treeifyError(parsedAuctions.error));
     }
     expect(parsedAuctions.success).toBe(true);
 

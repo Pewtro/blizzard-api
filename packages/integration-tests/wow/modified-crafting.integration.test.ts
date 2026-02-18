@@ -43,7 +43,11 @@ describe('wow modified-crafting integration', () => {
     for (const category of responses) {
       const parsedCategory = modifiedCraftingCategoryResponseSchema.safeParse(category);
       if (!parsedCategory.success) {
-        console.error('Modified crafting category detail validation failed:', treeifyError(parsedCategory.error));
+        console.error(
+          'Modified crafting category detail validation failed:',
+          category.id,
+          treeifyError(parsedCategory.error),
+        );
       }
       expect(parsedCategory.success).toBe(true);
     }
@@ -80,6 +84,7 @@ describe('wow modified-crafting integration', () => {
       if (!parsedSlotType.success) {
         console.error(
           'Modified crafting reagent slot type detail validation failed:',
+          slotTypes[0]!.id,
           treeifyError(parsedSlotType.error),
         );
       }

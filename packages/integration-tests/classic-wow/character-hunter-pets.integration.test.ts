@@ -19,7 +19,7 @@ describe('classic-wow character hunter pets integration', () => {
     const resp = await client.sendRequest(classicWow.characterHunterPetsSummary('profile-classic', realm, character));
     const parsed = characterHunterPetsSummaryResponseSchema.safeParse(resp);
     if (!parsed.success) {
-      console.error('Character hunter pets summary validation failed:', treeifyError(parsed.error));
+      console.error('Character hunter pets summary validation failed:', realm, character, treeifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
   });

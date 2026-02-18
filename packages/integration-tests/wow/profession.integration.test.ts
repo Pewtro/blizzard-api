@@ -34,14 +34,14 @@ describe('wow profession integration', () => {
     const prof = await client.sendRequest(wow.profession(first!.id));
     const parsedProf = professionResponseSchema.safeParse(prof);
     if (!parsedProf.success) {
-      console.error('Profession detail validation failed:', treeifyError(parsedProf.error));
+      console.error('Profession detail validation failed:', first!.id, treeifyError(parsedProf.error));
     }
     expect(parsedProf.success).toBe(true);
 
     const media = await client.sendRequest(wow.professionMedia(first!.id));
     const parsedMedia = professionMediaResponseSchema.safeParse(media);
     if (!parsedMedia.success) {
-      console.error('Profession media validation failed:', treeifyError(parsedMedia.error));
+      console.error('Profession media validation failed:', first!.id, treeifyError(parsedMedia.error));
     }
     expect(parsedMedia.success).toBe(true);
 
@@ -52,7 +52,12 @@ describe('wow profession integration', () => {
     const tier = await client.sendRequest(wow.professionSkillTier(first!.id, skillTierId!));
     const parsedTier = professionSkillTierResponseSchema.safeParse(tier);
     if (!parsedTier.success) {
-      console.error('Profession skill tier detail validation failed:', treeifyError(parsedTier.error));
+      console.error(
+        'Profession skill tier detail validation failed:',
+        first!.id,
+        skillTierId!,
+        treeifyError(parsedTier.error),
+      );
     }
     expect(parsedTier.success).toBe(true);
 
@@ -73,7 +78,7 @@ describe('wow profession integration', () => {
     const recipeMedia = await client.sendRequest(wow.recipeMedia(recipeId!));
     const parsedRecipeMedia = recipeMediaResponseSchema.safeParse(recipeMedia);
     if (!parsedRecipeMedia.success) {
-      console.error('Recipe media validation failed:', treeifyError(parsedRecipeMedia.error));
+      console.error('Recipe media validation failed:', recipeId, treeifyError(parsedRecipeMedia.error));
     }
     expect(parsedRecipeMedia.success).toBe(true);
   });

@@ -76,7 +76,7 @@ describe('wow creature integration', () => {
       const detail = await client.sendRequest(wow.creatureType(first.id));
       const parsedDetail = creatureTypeResponseSchema.safeParse(detail);
       if (!parsedDetail.success) {
-        console.error('Creature type detail validation failed:', treeifyError(parsedDetail.error));
+        console.error('Creature type detail validation failed:', first.id, treeifyError(parsedDetail.error));
       }
       expect(parsedDetail.success).toBe(true);
     }

@@ -19,7 +19,7 @@ describe('classic-wow character media integration', () => {
     const resp = await client.sendRequest(classicWow.characterMediaSummary('profile-classic', realm, character));
     const parsed = characterMediaSummaryResponseSchema.safeParse(resp);
     if (!parsed.success) {
-      console.error('Character media summary validation failed:', treeifyError(parsed.error));
+      console.error('Character media summary validation failed:', realm, character, treeifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
   });

@@ -21,14 +21,24 @@ describe('wow character-achievements integration', () => {
     const summary = await client.sendRequest(wow.characterAchievementsSummary(realm, character));
     const parsedSummary = characterAchievementsSummaryResponseSchema.safeParse(summary);
     if (!parsedSummary.success) {
-      console.error('Character achievements summary validation failed:', treeifyError(parsedSummary.error));
+      console.error(
+        'Character achievements summary validation failed:',
+        realm,
+        character,
+        treeifyError(parsedSummary.error),
+      );
     }
     expect(parsedSummary.success).toBe(true);
 
     const stats = await client.sendRequest(wow.characterAchievementStatistics(realm, character));
     const parsedStats = characterAchievementStatisticsResponseSchema.safeParse(stats);
     if (!parsedStats.success) {
-      console.error('Character achievement statistics validation failed:', treeifyError(parsedStats.error));
+      console.error(
+        'Character achievement statistics validation failed:',
+        realm,
+        character,
+        treeifyError(parsedStats.error),
+      );
     }
     expect(parsedStats.success).toBe(true);
   });

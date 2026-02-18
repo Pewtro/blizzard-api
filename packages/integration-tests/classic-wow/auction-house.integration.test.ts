@@ -41,7 +41,7 @@ describe.skip('classic-wow auction house integration', () => {
     );
     const parsedAuctionIndex = auctionHouseIndexResponseSchema.safeParse(auctionIndexResponse);
     if (!parsedAuctionIndex.success) {
-      console.error('Auction house index validation failed:', treeifyError(parsedAuctionIndex.error));
+      console.error('Auction house index validation failed:', connectedRealmId, treeifyError(parsedAuctionIndex.error));
     }
     expect(parsedAuctionIndex.success).toBe(true);
 
@@ -57,7 +57,12 @@ describe.skip('classic-wow auction house integration', () => {
     );
     const parsedAuctions = auctionsResponseSchema.safeParse(auctionsResponse);
     if (!parsedAuctions.success) {
-      console.error('Auctions validation failed:', treeifyError(parsedAuctions.error));
+      console.error(
+        'Auctions validation failed:',
+        connectedRealmId,
+        auctionHouseId ?? 0,
+        treeifyError(parsedAuctions.error),
+      );
     }
     expect(parsedAuctions.success).toBe(true);
   });

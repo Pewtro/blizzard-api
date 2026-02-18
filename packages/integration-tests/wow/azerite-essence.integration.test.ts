@@ -41,8 +41,8 @@ describe('wow azerite-essence integration', () => {
           essences.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
         : essences.slice(0, sampleSize);
 
-    const detailRequests: Array<Promise<unknown>> = [];
-    const mediaRequests: Array<Promise<unknown>> = [];
+    const detailRequests = [];
+    const mediaRequests = [];
     for (const essence of sampled) {
       detailRequests.push(client.sendRequest(wow.azeriteEssence(essence.id)));
       mediaRequests.push(client.sendRequest(wow.azeriteEssenceMedia(essence.id)));
@@ -52,7 +52,7 @@ describe('wow azerite-essence integration', () => {
     for (const d of details) {
       const parsed = azeriteEssenceResponseSchema.safeParse(d);
       if (!parsed.success) {
-        console.error('Azerite essence detail validation failed:', treeifyError(parsed.error));
+        console.error('Azerite essence detail validation failed:', d.id, treeifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
     }
@@ -61,7 +61,7 @@ describe('wow azerite-essence integration', () => {
     for (const m of medias) {
       const parsed = azeriteEssenceMediaResponseSchema.safeParse(m);
       if (!parsed.success) {
-        console.error('Azerite essence media validation failed:', treeifyError(parsed.error));
+        console.error('Azerite essence media validation failed:', m.id, treeifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
     }

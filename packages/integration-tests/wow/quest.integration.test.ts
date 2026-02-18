@@ -55,7 +55,7 @@ describe('wow quest integration', () => {
       const area = await client.sendRequest(wow.questArea(areas[0]!.id));
       const parsedArea = questAreaResponseSchema.safeParse(area);
       if (!parsedArea.success) {
-        console.error('Quest area detail validation failed:', treeifyError(parsedArea.error));
+        console.error('Quest area detail validation failed:', areas[0]!.id, treeifyError(parsedArea.error));
       }
       expect(parsedArea.success).toBe(true);
     }
@@ -72,7 +72,11 @@ describe('wow quest integration', () => {
       const category = await client.sendRequest(wow.questCategory(categories[0]!.id));
       const parsedCategory = questCategoryResponseSchema.safeParse(category);
       if (!parsedCategory.success) {
-        console.error('Quest category detail validation failed:', treeifyError(parsedCategory.error));
+        console.error(
+          'Quest category detail validation failed:',
+          categories[0]!.id,
+          treeifyError(parsedCategory.error),
+        );
       }
       expect(parsedCategory.success).toBe(true);
     }
@@ -89,7 +93,7 @@ describe('wow quest integration', () => {
       const type = await client.sendRequest(wow.questType(types[0]!.id));
       const parsedType = questTypeResponseSchema.safeParse(type);
       if (!parsedType.success) {
-        console.error('Quest type detail validation failed:', treeifyError(parsedType.error));
+        console.error('Quest type detail validation failed:', types[0]!.id, treeifyError(parsedType.error));
       }
       expect(parsedType.success).toBe(true);
     }

@@ -52,7 +52,7 @@ describe.concurrent('wow item integration', async () => {
     const detail = await client.sendRequest(wow.itemClass(itemClass!.id));
     const parsedDetail = itemClassResponseSchema.safeParse(detail);
     if (!parsedDetail.success) {
-      console.error('Item class detail validation failed:', treeifyError(parsedDetail.error));
+      console.error('Item class detail validation failed:', itemClass!.id, treeifyError(parsedDetail.error));
     }
     expect(parsedDetail.success).toBe(true);
 
@@ -62,7 +62,12 @@ describe.concurrent('wow item integration', async () => {
     const subDetail = await client.sendRequest(wow.itemSubClass(itemClass!.id, subClass!.id));
     const parsedSubDetail = itemSubClassResponseSchema.safeParse(subDetail);
     if (!parsedSubDetail.success) {
-      console.error('Item subclass detail validation failed:', treeifyError(parsedSubDetail.error));
+      console.error(
+        'Item subclass detail validation failed:',
+        itemClass!.id,
+        subClass!.id,
+        treeifyError(parsedSubDetail.error),
+      );
     }
     expect(parsedSubDetail.success).toBe(true);
   });
@@ -80,7 +85,7 @@ describe.concurrent('wow item integration', async () => {
       const set = await client.sendRequest(wow.itemSet(first.id));
       const parsedSet = itemSetResponseSchema.safeParse(set);
       if (!parsedSet.success) {
-        console.error('Item set detail validation failed:', treeifyError(parsedSet.error));
+        console.error('Item set detail validation failed:', first.id, treeifyError(parsedSet.error));
       }
       expect(parsedSet.success).toBe(true);
     }

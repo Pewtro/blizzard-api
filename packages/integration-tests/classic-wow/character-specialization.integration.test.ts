@@ -21,7 +21,12 @@ describe('classic-wow character specialization integration', () => {
     );
     const parsed = characterSpecializationsSummaryResponseSchema.safeParse(resp);
     if (!parsed.success) {
-      console.error('Character specialization summary validation failed:', treeifyError(parsed.error));
+      console.error(
+        'Character specialization summary validation failed:',
+        realm,
+        character,
+        treeifyError(parsed.error),
+      );
     }
     expect(parsed.success).toBe(true);
   });
@@ -40,7 +45,12 @@ describe('classic-wow character specialization integration', () => {
     );
     const parsed = characterSpecializationsSummaryResponseSchema.safeParse(resp);
     if (!parsed.success) {
-      console.error('Character specialization summary validation failed:', treeifyError(parsed.error));
+      console.error(
+        'Character specialization summary validation failed:',
+        realm,
+        character,
+        treeifyError(parsed.error),
+      );
     }
     expect(parsed.success).toBe(true);
   });

@@ -30,21 +30,25 @@ describe.concurrent('wow playable class integration', () => {
       const resp = await client.sendRequest(wow.playableClass(first.id));
       const parsed = playableClassResponseSchema.safeParse(resp);
       if (!parsed.success) {
-        console.error('Playable class validation failed:', treeifyError(parsed.error));
+        console.error('Playable class validation failed:', first.id, treeifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
 
       const media = await client.sendRequest(wow.playableClassMedia(first.id));
       const parsedMedia = playableClassMediaResponseSchema.safeParse(media);
       if (!parsedMedia.success) {
-        console.error('Playable class media validation failed:', treeifyError(parsedMedia.error));
+        console.error('Playable class media validation failed:', first.id, treeifyError(parsedMedia.error));
       }
       expect(parsedMedia.success).toBe(true);
 
       const pvpSlots = await client.sendRequest(wow.pvpTalentSlots(first.id));
       const parsedPvpSlots = pvpTalentSlotsResponseSchema.safeParse(pvpSlots);
       if (!parsedPvpSlots.success) {
-        console.error('Playable class PvP talent slots validation failed:', treeifyError(parsedPvpSlots.error));
+        console.error(
+          'Playable class PvP talent slots validation failed:',
+          first.id,
+          treeifyError(parsedPvpSlots.error),
+        );
       }
       expect(parsedPvpSlots.success).toBe(true);
     }

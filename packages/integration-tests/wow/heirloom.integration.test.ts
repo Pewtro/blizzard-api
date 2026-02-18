@@ -24,7 +24,7 @@ describe('wow heirloom integration', () => {
       const item = await client.sendRequest(wow.heirloom(first.id));
       const parsedItem = heirloomResponseSchema.safeParse(item);
       if (!parsedItem.success) {
-        console.error('Heirloom detail validation failed:', treeifyError(parsedItem.error));
+        console.error('Heirloom detail validation failed:', first.id, treeifyError(parsedItem.error));
       }
       expect(parsedItem.success).toBe(true);
     }

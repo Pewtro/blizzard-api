@@ -175,7 +175,7 @@ describe.concurrent('wow journal integration', () => {
       const media = await client.sendRequest(wow.journalInstanceMedia(instances[0]!.id));
       const parsedMedia = journalInstanceMediaResponseSchema.safeParse(media);
       if (!parsedMedia.success) {
-        console.error('Journal instance media validation failed:', treeifyError(parsedMedia.error));
+        console.error('Journal instance media validation failed:', instances[0]!.id, treeifyError(parsedMedia.error));
       }
       expect(parsedMedia.success).toBe(true);
     }

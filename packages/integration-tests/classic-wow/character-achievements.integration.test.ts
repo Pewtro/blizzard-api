@@ -24,7 +24,12 @@ describe('classic-wow character achievements integration', () => {
     );
     const parsedSummary = characterAchievementsSummaryResponseSchema.safeParse(summary);
     if (!parsedSummary.success) {
-      console.error('Character achievements summary validation failed:', treeifyError(parsedSummary.error));
+      console.error(
+        'Character achievements summary validation failed:',
+        realm,
+        character,
+        treeifyError(parsedSummary.error),
+      );
     }
     expect(parsedSummary.success).toBe(true);
 
@@ -33,7 +38,12 @@ describe('classic-wow character achievements integration', () => {
     );
     const parsedStats = characterAchievementStatisticsResponseSchema.safeParse(stats);
     if (!parsedStats.success) {
-      console.error('Character achievement statistics validation failed:', treeifyError(parsedStats.error));
+      console.error(
+        'Character achievement statistics validation failed:',
+        realm,
+        character,
+        treeifyError(parsedStats.error),
+      );
     }
     expect(parsedStats.success).toBe(true);
   });

@@ -24,12 +24,13 @@ describe('wow realm integration', () => {
     }
     expect(parsed.success).toBe(true);
 
-    const first = parsed.success ? parsed.data.realms[0] : undefined;
-    if (first) {
-      const realm = await client.sendRequest(wow.realm(first.slug));
+    // eslint-disable-next-line sonarjs/pseudo-random
+    const randomRealm = resp.realms[Math.random() * resp.realms.length];
+    if (randomRealm) {
+      const realm = await client.sendRequest(wow.realm(randomRealm.slug));
       const parsedRealm = realmResponseSchema.safeParse(realm);
       if (!parsedRealm.success) {
-        console.error('Realm detail validation failed:', treeifyError(parsedRealm.error));
+        console.error('Realm detail validation failed:', randomRealm.slug, treeifyError(parsedRealm.error));
       }
       expect(parsedRealm.success).toBe(true);
     }
