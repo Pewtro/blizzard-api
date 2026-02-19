@@ -66,7 +66,7 @@ jobs:
           VITE_BLIZZARD_CLIENT_SECRET: ${{ secrets.BLIZZARD_CLIENT_SECRET }}
 
       # Only release with the version set in release_node and on a push to main
-      - if: ${{ matrix.node == env.release_node && github.event_name == 'push' && github.ref == 'refs/heads/main' && github.repository == 'pewtro/blizzard-api' }}
+      - if: ${{ matrix.node == env.release_node && github.ref == 'refs/heads/main' && github.repository == 'pewtro/blizzard-api' }}
         name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@6a0a831ff30acef54f2c6aa1cbbc1096b066edaf # Commit hash taken from https://github.com/changesets/action/tree/v1/src
