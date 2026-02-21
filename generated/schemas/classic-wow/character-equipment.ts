@@ -26,7 +26,7 @@ const displayStringValueSchema = z.strictObject({
 
 const effectSchema = z.strictObject({
   display_string: z.string(),
-  is_active: z.boolean(),
+  is_active: z.boolean().optional(),
   required_count: z.number(),
 });
 

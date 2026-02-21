@@ -32,7 +32,7 @@ interface DisplayStringValue {
 
 interface Effect {
   display_string: string;
-  is_active: boolean;
+  is_active?: boolean;
   required_count: number;
 }
 
