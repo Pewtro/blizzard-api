@@ -1,5 +1,11 @@
 # @blizzard-api/classic-wow
 
+## 3.0.2
+
+### Patch Changes
+
+- 4e62e8f: Make item set effect is_active optional
+
 ## 3.0.1
 
 ### Patch Changes
