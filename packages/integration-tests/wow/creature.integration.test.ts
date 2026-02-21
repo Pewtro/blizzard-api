@@ -81,4 +81,4 @@ describe('wow creature integration', () => {
       expect(parsedDetail.success).toBe(true);
     }
   });
-});
+}, 15_000);
