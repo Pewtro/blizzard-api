@@ -38,4 +38,4 @@ describe('classic-wow connected realm integration', () => {
     }
     expect(parsedSearch.success).toBe(true);
   });
-});
+}, 15_000);

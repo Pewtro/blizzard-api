@@ -35,4 +35,4 @@ describe('wow connected realm integration', () => {
     }
     expect(parsed.success).toBe(true);
   });
-});
+}, 15_000);
