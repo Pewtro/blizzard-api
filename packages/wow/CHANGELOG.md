@@ -1,5 +1,12 @@
 # @blizzard-api/wow
 
+## 3.0.2
+
+### Patch Changes
+
+- d03aa92: Add alliance_crafted_item and horde_crafted_item to RecipeResponse
+- 4e62e8f: Make item set effect is_active optional
+
 ## 3.0.1
 
 ### Patch Changes
