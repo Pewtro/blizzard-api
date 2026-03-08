@@ -1,5 +1,11 @@
 # @blizzard-api/wow
 
+## 3.0.3
+
+### Patch Changes
+
+- 6596aed: Make equipped_item_sets and some values related to sockets on gear optional
+
 ## 3.0.2
 
 ### Patch Changes
