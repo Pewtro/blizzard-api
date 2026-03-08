@@ -61,13 +61,15 @@ const sellPriceSchema = z.strictObject({
 const socketSchema = z.strictObject({
   context: z.number().optional(),
   display_color: colorSchema.optional(),
-  display_string: z.string(),
-  item: nameIdKeySchema,
-  media: keyBaseSchema.and(
-    z.strictObject({
-      id: z.number(),
-    }),
-  ),
+  display_string: z.string().optional(),
+  item: nameIdKeySchema.optional(),
+  media: keyBaseSchema
+    .and(
+      z.strictObject({
+        id: z.number(),
+      }),
+    )
+    .optional(),
   socket_type: nameTypeSchema,
 });
 
@@ -171,6 +173,6 @@ const equippedItemSchema = z.strictObject({
 
 export const characterEquipmentSummaryResponseSchema = responseBaseSchema.extend({
   character: characterSchema,
-  equipped_item_sets: z.array(setSchema),
+  equipped_item_sets: z.array(setSchema).optional(),
   equipped_items: z.array(equippedItemSchema),
 });

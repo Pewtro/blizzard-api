@@ -2,7 +2,7 @@ import type { Character, Color, KeyBase, NameIdKey, ResponseBase } from '@blizza
 
 export interface CharacterEquipmentSummaryResponse extends ResponseBase {
   character: Character;
-  equipped_item_sets: Array<Set>;
+  equipped_item_sets?: Array<Set>;
   equipped_items: Array<EquippedItem>;
 }
 
@@ -128,9 +128,9 @@ interface Set {
 interface Socket {
   context?: number;
   display_color?: Color;
-  display_string: string;
-  item: NameIdKey;
-  media: KeyBase & { id: number };
+  display_string?: string;
+  item?: NameIdKey;
+  media?: KeyBase & { id: number };
   socket_type: NameType;
 }
 
