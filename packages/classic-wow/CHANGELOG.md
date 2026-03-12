@@ -1,5 +1,11 @@
 # @blizzard-api/classic-wow
 
+## 3.0.3
+
+### Patch Changes
+
+- edc3fb7: Assets in media search are optional
+
 ## 3.0.2
 
 ### Patch Changes
