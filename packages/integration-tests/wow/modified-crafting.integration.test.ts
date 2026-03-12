@@ -1,6 +1,6 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import * as wow from '@blizzard-api/wow';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
@@ -12,7 +12,7 @@ import {
 } from '../../../generated/schemas/wow/modified-crafting';
 
 describe('wow modified-crafting integration', () => {
-  it('validates modified crafting category index and fetches detail', async ({ expect }) => {
+  test('validates modified crafting category index and fetches detail', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',
@@ -53,7 +53,7 @@ describe('wow modified-crafting integration', () => {
     }
   });
 
-  it('validates modified crafting index and reagent slot types', async ({ expect }) => {
+  test('validates modified crafting index and reagent slot types', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',

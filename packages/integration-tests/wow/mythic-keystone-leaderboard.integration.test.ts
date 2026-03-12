@@ -1,6 +1,6 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import * as wow from '@blizzard-api/wow';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
@@ -9,7 +9,7 @@ import {
 } from '../../../generated/schemas/wow/mythic-keystone-leaderboard';
 
 describe('wow mythic-keystone-leaderboard integration', () => {
-  it('fetches leaderboard index and a leaderboard for a connected realm', async ({ expect }) => {
+  test('fetches leaderboard index and a leaderboard for a connected realm', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'us',

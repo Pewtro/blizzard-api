@@ -1,6 +1,6 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import * as wow from '@blizzard-api/wow';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
@@ -10,7 +10,7 @@ import {
 } from '../../../generated/schemas/wow/realm';
 
 describe('wow realm integration', () => {
-  it('validates realm index and fetches realm detail', async ({ expect }) => {
+  test('validates realm index and fetches realm detail', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',
@@ -36,7 +36,7 @@ describe('wow realm integration', () => {
     }
   });
 
-  it('validates realm search', async ({ expect }) => {
+  test('validates realm search', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',

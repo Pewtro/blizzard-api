@@ -1,5 +1,5 @@
 import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import {
   playableSpecialization,
   playableSpecializationIndex,
@@ -7,7 +7,7 @@ import {
 } from './playable-specialization';
 
 describe.concurrent('playableSpecializationApi', () => {
-  it('playableSpecialization should return a resource object with the correct path and namespace', ({ expect }) => {
+  test('playableSpecialization should return a resource object with the correct path and namespace', ({ expect }) => {
     const specializationId = 123;
     const resource = playableSpecialization(specializationId);
 
@@ -15,7 +15,7 @@ describe.concurrent('playableSpecializationApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('playableSpecializationIndex should return a resource object with the correct path and namespace', ({
+  test('playableSpecializationIndex should return a resource object with the correct path and namespace', ({
     expect,
   }) => {
     const resource = playableSpecializationIndex();
@@ -24,7 +24,7 @@ describe.concurrent('playableSpecializationApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('playableSpecializationMedia should return a resource object with the correct path and namespace', ({
+  test('playableSpecializationMedia should return a resource object with the correct path and namespace', ({
     expect,
   }) => {
     const specializationId = 123;

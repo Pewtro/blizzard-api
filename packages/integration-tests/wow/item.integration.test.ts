@@ -1,7 +1,7 @@
 /* eslint-disable sonarjs/pseudo-random */
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import * as wow from '@blizzard-api/wow';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
@@ -21,7 +21,7 @@ describe.concurrent('wow item integration', async () => {
     origin: 'eu',
     secret: environment.blizzardClientSecret,
   });
-  it('validates item and item media', async ({ expect }) => {
+  test('validates item and item media', async ({ expect }) => {
     const resp = await client.sendRequest(wow.item(19_019));
     const parsed = itemResponseSchema.safeParse(resp);
     if (!parsed.success) {
@@ -36,7 +36,7 @@ describe.concurrent('wow item integration', async () => {
     }
     expect(parsedMedia.success).toBe(true);
   });
-  it('validates item class index', async ({ expect }) => {
+  test('validates item class index', async ({ expect }) => {
     const resp = await client.sendRequest(wow.itemClassIndex());
     const parsed = itemClassIndexResponseSchema.safeParse(resp);
     if (!parsed.success) {
@@ -72,7 +72,7 @@ describe.concurrent('wow item integration', async () => {
     expect(parsedSubDetail.success).toBe(true);
   });
 
-  it('validates item sets', async ({ expect }) => {
+  test('validates item sets', async ({ expect }) => {
     const setIndex = await client.sendRequest(wow.itemSetIndex());
     const parsedSetIndex = itemSetIndexResponseSchema.safeParse(setIndex);
     if (!parsedSetIndex.success) {
@@ -91,7 +91,7 @@ describe.concurrent('wow item integration', async () => {
     }
   });
 
-  it('validates item search', async ({ expect }) => {
+  test('validates item search', async ({ expect }) => {
     const search = await client.sendRequest(wow.itemSearch({ _page: 1, locale: 'en_GB', name: 'Glaive' }));
     const parsed = itemSearchResponseSchema.safeParse(search);
     if (!parsed.success) {

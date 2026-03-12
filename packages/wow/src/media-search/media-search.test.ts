@@ -1,16 +1,16 @@
 import { wowSearchBasePath } from '@blizzard-api/core';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { mediaSearch } from './media-search';
 
 describe.concurrent('mediaSearchApi', () => {
-  it('should return the media search resource', ({ expect }) => {
+  test('should return the media search resource', ({ expect }) => {
     const resource = mediaSearch({});
     expect(resource.path).toBe(`${wowSearchBasePath}/media`);
     expect(resource.namespace).toBe('static');
     expect(resource.parameters).toEqual({});
   });
 
-  it('should return the media search resource with parameters', ({ expect }) => {
+  test('should return the media search resource with parameters', ({ expect }) => {
     const resource = mediaSearch({
       _page: 1,
       orderby: 'name',
@@ -25,7 +25,7 @@ describe.concurrent('mediaSearchApi', () => {
     });
   });
 
-  it('should return the media search resource with parameters when orderby is an array', ({ expect }) => {
+  test('should return the media search resource with parameters when orderby is an array', ({ expect }) => {
     const resource = mediaSearch({
       _page: 1,
       orderby: ['name', 'id'],

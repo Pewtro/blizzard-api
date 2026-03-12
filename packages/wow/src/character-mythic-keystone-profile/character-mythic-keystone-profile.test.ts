@@ -1,11 +1,11 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import {
   characterMythicKeystoneProfileIndex,
   characterMythicKeystoneSeasonDetails,
 } from './character-mythic-keystone-profile';
 
 describe('Character Mythic Keystone Profile', () => {
-  it('should return the correct ProtectedResource object for characterMythicKeystoneProfileIndex', () => {
+  test('should return the correct ProtectedResource object for characterMythicKeystoneProfileIndex', () => {
     const realmSlug = 'realm';
     const characterName = 'character';
 
@@ -17,7 +17,7 @@ describe('Character Mythic Keystone Profile', () => {
     });
   });
 
-  it('should return the correct ProtectedResource object for characterMythicKeystoneSeasonDetails', () => {
+  test('should return the correct ProtectedResource object for characterMythicKeystoneSeasonDetails', () => {
     const realmSlug = 'realm';
     const characterName = 'character';
     const seasonId = 123;

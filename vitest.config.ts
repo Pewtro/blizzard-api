@@ -27,6 +27,7 @@ export default defineConfig({
     },
     globals: true,
     projects: ['packages/*'],
-    testTimeout: 30_000,
+    // eslint-disable-next-line unicorn/numeric-separators-style
+    testTimeout: 30000,
   },
 });

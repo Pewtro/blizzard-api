@@ -1,6 +1,6 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import * as wow from '@blizzard-api/wow';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
@@ -15,7 +15,7 @@ import {
 } from '../../../generated/schemas/wow/journal';
 
 describe.concurrent('wow journal integration', () => {
-  it('validates journal encounter index and details', async ({ expect }) => {
+  test('validates journal encounter index and details', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',
@@ -55,7 +55,7 @@ describe.concurrent('wow journal integration', () => {
       expect(parsedEncounter.success).toBe(true);
     }
   });
-  it('validates journal expansion index and details', async ({ expect }) => {
+  test('validates journal expansion index and details', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',
@@ -97,7 +97,7 @@ describe.concurrent('wow journal integration', () => {
     }
   });
 
-  it('validates journal instance index and details', async ({ expect }) => {
+  test('validates journal instance index and details', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',
@@ -139,7 +139,7 @@ describe.concurrent('wow journal integration', () => {
     }
   });
 
-  it('validates journal encounter search', async ({ expect }) => {
+  test('validates journal encounter search', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',
@@ -156,7 +156,7 @@ describe.concurrent('wow journal integration', () => {
     expect(parsed.success).toBe(true);
   });
 
-  it('validates journal instance media', async ({ expect }) => {
+  test('validates journal instance media', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',

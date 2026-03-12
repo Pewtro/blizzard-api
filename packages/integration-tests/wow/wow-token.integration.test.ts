@@ -1,12 +1,12 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import * as wow from '@blizzard-api/wow';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import { wowTokenResponseSchema } from '../../../generated/schemas/wow/wow-token';
 
 describe('wow wow-token integration', () => {
-  it('validates wow token response', async ({ expect }) => {
+  test('validates wow token response', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',

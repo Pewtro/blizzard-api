@@ -1,12 +1,12 @@
 import { wowBasePath, wowSearchBasePath } from '@blizzard-api/core';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { realm, realmIndex, realmSearch } from './realm';
 import type { RealmSearchParameters } from './types';
 
 const namespace = 'dynamic-classic';
 
 describe.concurrent('classicRealmApi', () => {
-  it('should return appropriate realm resource', ({ expect }) => {
+  test('should return appropriate realm resource', ({ expect }) => {
     const realmSlug = 'test-realm';
 
     const result = realm(namespace, realmSlug);
@@ -17,7 +17,7 @@ describe.concurrent('classicRealmApi', () => {
     });
   });
 
-  it('should return appropriate realm index resource', ({ expect }) => {
+  test('should return appropriate realm index resource', ({ expect }) => {
     const result = realmIndex(namespace);
 
     expect(result).toEqual({
@@ -26,7 +26,7 @@ describe.concurrent('classicRealmApi', () => {
     });
   });
 
-  it('should return appropriate realm search when orderby is a single string', ({ expect }) => {
+  test('should return appropriate realm search when orderby is a single string', ({ expect }) => {
     const options = {
       _page: 1,
       orderby: 'name',
@@ -46,7 +46,7 @@ describe.concurrent('classicRealmApi', () => {
     });
   });
 
-  it('should return appropriate realm search when orderby is an array', ({ expect }) => {
+  test('should return appropriate realm search when orderby is an array', ({ expect }) => {
     const options = {
       _page: 1,
       orderby: ['name', 'population'],

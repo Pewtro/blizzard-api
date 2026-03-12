@@ -1,12 +1,12 @@
 import * as classicWow from '@blizzard-api/classic-wow';
 import { createBlizzardApiClient } from '@blizzard-api/client';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import { pvpSeasonIndexResponseSchema } from '../../../generated/schemas/classic-wow';
 
 describe('classic-wow pvp season integration', () => {
-  it('validates pvp season index', async ({ expect }) => {
+  test('validates pvp season index', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'us',

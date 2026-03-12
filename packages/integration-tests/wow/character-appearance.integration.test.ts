@@ -1,12 +1,12 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import * as wow from '@blizzard-api/wow';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import { characterAppearanceResponseSchema } from '../../../generated/schemas/wow';
 
 describe('wow character-appearance integration', () => {
-  it('validates character appearance', async ({ expect }) => {
+  test('validates character appearance', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',

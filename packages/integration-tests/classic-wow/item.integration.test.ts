@@ -1,12 +1,12 @@
 import * as classicWow from '@blizzard-api/classic-wow';
 import { createBlizzardApiClient } from '@blizzard-api/client';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import { itemClassIndexResponseSchema } from '../../../generated/schemas/classic-wow';
 
 describe('classic-wow item integration', () => {
-  it('validates item class index', async ({ expect }) => {
+  test('validates item class index', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'us',

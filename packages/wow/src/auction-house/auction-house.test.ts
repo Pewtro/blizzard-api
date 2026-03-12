@@ -1,8 +1,8 @@
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { auctions, commodities } from './auction-house';
 
 describe.concurrent('auctionHouse', () => {
-  it('should return the correct resource for auctions', ({ expect }) => {
+  test('should return the correct resource for auctions', ({ expect }) => {
     const connectedRealmId = 123;
     const resource = auctions(connectedRealmId);
 
@@ -10,7 +10,7 @@ describe.concurrent('auctionHouse', () => {
     expect(resource.namespace).toBe('dynamic');
   });
 
-  it('should return the correct resource for commodities', ({ expect }) => {
+  test('should return the correct resource for commodities', ({ expect }) => {
     const resource = commodities();
 
     expect(resource.path).toBe('/data/wow/auctions/commodities');

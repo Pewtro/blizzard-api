@@ -1,9 +1,11 @@
 import { wowBasePath } from '@blizzard-api/core';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { mythicKeystoneLeaderboard, mythicKeystoneLeaderboardIndex } from './mythic-keystone-leaderboard';
 
 describe.concurrent('mythicKeystoneLeaderboardApi', () => {
-  it('mythicKeystoneLeaderboard should return a resource object with the correct path and namespace', ({ expect }) => {
+  test('mythicKeystoneLeaderboard should return a resource object with the correct path and namespace', ({
+    expect,
+  }) => {
     const connectedRealmId = 456;
     const dungeonId = 789;
     const period = 123;
@@ -15,7 +17,7 @@ describe.concurrent('mythicKeystoneLeaderboardApi', () => {
     expect(resource.namespace).toBe('dynamic');
   });
 
-  it('mythicKeystoneLeaderboardIndex should return a resource object with the correct path and namespace', ({
+  test('mythicKeystoneLeaderboardIndex should return a resource object with the correct path and namespace', ({
     expect,
   }) => {
     const connectedRealmId = 456;

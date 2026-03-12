@@ -1,9 +1,9 @@
 import { wowBasePath } from '@blizzard-api/core';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { region, regionIndex } from './region';
 
 describe.concurrent('classicRegionApi', () => {
-  it('should return the region resource', ({ expect }) => {
+  test('should return the region resource', ({ expect }) => {
     const namespace = 'dynamic-classic';
     const regionId = 1;
     const resource = region(namespace, regionId);
@@ -11,7 +11,7 @@ describe.concurrent('classicRegionApi', () => {
     expect(resource.namespace).toBe(namespace);
   });
 
-  it('should return the region index resource', ({ expect }) => {
+  test('should return the region index resource', ({ expect }) => {
     const namespace = 'dynamic-classic';
     const resource = regionIndex(namespace);
     expect(resource.path).toBe(`${wowBasePath}/region/index`);

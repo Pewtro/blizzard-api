@@ -1,8 +1,8 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { characterSoulbinds } from './character-soulbinds';
 
 describe('characterSoulbinds', () => {
-  it('returns the correct ProtectedResource object', () => {
+  test('returns the correct ProtectedResource object', () => {
     const realmSlug = 'example-realm';
     const characterName = 'example-character';
 

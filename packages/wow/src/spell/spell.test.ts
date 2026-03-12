@@ -1,9 +1,9 @@
 import { wowBasePath, wowMediaBasePath, wowSearchBasePath } from '@blizzard-api/core';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { spell, spellMedia, spellSearch } from './spell';
 
 describe.concurrent('spellApi', () => {
-  it('spell should return a resource object with the correct path and namespace', ({ expect }) => {
+  test('spell should return a resource object with the correct path and namespace', ({ expect }) => {
     const spellId = 456;
     const resource = spell(spellId);
 
@@ -11,7 +11,7 @@ describe.concurrent('spellApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('spellMedia should return a resource object with the correct path and namespace', ({ expect }) => {
+  test('spellMedia should return a resource object with the correct path and namespace', ({ expect }) => {
     const spellId = 789;
     const resource = spellMedia(spellId);
 
@@ -19,7 +19,7 @@ describe.concurrent('spellApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('spellSearch should return a resource object with the correct path, namespace and parameters', ({ expect }) => {
+  test('spellSearch should return a resource object with the correct path, namespace and parameters', ({ expect }) => {
     const resource = spellSearch({
       _page: 1,
       locale: 'en_US',
@@ -36,7 +36,7 @@ describe.concurrent('spellApi', () => {
     });
   });
 
-  it('spellSearch should return correct resource object when orderby is an array', ({ expect }) => {
+  test('spellSearch should return correct resource object when orderby is an array', ({ expect }) => {
     const resource = spellSearch({
       _page: 1,
       locale: 'en_US',

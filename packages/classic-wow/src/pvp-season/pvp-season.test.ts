@@ -1,6 +1,6 @@
 import { wowBasePath } from '@blizzard-api/core';
 import type { BlizzardNamespaces } from '@blizzard-api/core';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import {
   pvpLeaderboard,
   pvpLeaderboardIndex,
@@ -15,33 +15,33 @@ import {
 const namespace: BlizzardNamespaces = 'dynamic-classic';
 
 describe('classicPvpSeasonApi', () => {
-  it('should return the PvP season index', ({ expect }) => {
+  test('should return the PvP season index', ({ expect }) => {
     const result = pvpSeasonIndex(namespace);
     expect(result.namespace).toBe(namespace);
     expect(result.path).toBe(`${wowBasePath}/pvp-season/index`);
   });
 
-  it('should return the PvP season by ID', ({ expect }) => {
+  test('should return the PvP season by ID', ({ expect }) => {
     const pvpSeasonId = 123;
     const result = pvpSeason(namespace, pvpSeasonId);
     expect(result.namespace).toBe(namespace);
     expect(result.path).toBe(`${wowBasePath}/pvp-season/${pvpSeasonId}`);
   });
 
-  it('should return the PvP region index', ({ expect }) => {
+  test('should return the PvP region index', ({ expect }) => {
     const result = pvpRegionIndex(namespace);
     expect(result.namespace).toBe(namespace);
     expect(result.path).toBe(`${wowBasePath}/pvp-region/index`);
   });
 
-  it('should return the PvP season index in a PvP region', ({ expect }) => {
+  test('should return the PvP season index in a PvP region', ({ expect }) => {
     const pvpRegionId = 456;
     const result = pvpRegionalSeasonIndex(namespace, pvpRegionId);
     expect(result.namespace).toBe(namespace);
     expect(result.path).toBe(`${wowBasePath}/pvp-region/${pvpRegionId}/pvp-season/index`);
   });
 
-  it('should return a PvP season by region ID and season ID', ({ expect }) => {
+  test('should return a PvP season by region ID and season ID', ({ expect }) => {
     const pvpRegionId = 456;
     const pvpSeasonId = 123;
     const result = pvpRegionalSeason(namespace, pvpRegionId, pvpSeasonId);
@@ -49,7 +49,7 @@ describe('classicPvpSeasonApi', () => {
     expect(result.path).toBe(`${wowBasePath}/pvp-region/${pvpRegionId}/pvp-season/${pvpSeasonId}`);
   });
 
-  it('should return the PvP leaderboards for a PvP season in a given PvP region', ({ expect }) => {
+  test('should return the PvP leaderboards for a PvP season in a given PvP region', ({ expect }) => {
     const pvpRegionId = 456;
     const pvpSeasonId = 123;
     const result = pvpLeaderboardIndex(namespace, pvpRegionId, pvpSeasonId);
@@ -59,7 +59,7 @@ describe('classicPvpSeasonApi', () => {
     );
   });
 
-  it('should return a PvP leaderboard by PvP season ID and bracket', ({ expect }) => {
+  test('should return a PvP leaderboard by PvP season ID and bracket', ({ expect }) => {
     const pvpRegionId = 456;
     const pvpSeasonId = 123;
     const pvpBracket = '2v2';
@@ -70,7 +70,7 @@ describe('classicPvpSeasonApi', () => {
     );
   });
 
-  it('should return the PvP rewards for a PvP season in a given PvP region', ({ expect }) => {
+  test('should return the PvP rewards for a PvP season in a given PvP region', ({ expect }) => {
     const pvpRegionId = 456;
     const pvpSeasonId = 123;
     const result = pvpRewardsIndex(namespace, pvpRegionId, pvpSeasonId);

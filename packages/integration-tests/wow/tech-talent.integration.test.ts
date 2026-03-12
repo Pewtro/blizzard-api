@@ -1,6 +1,6 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import * as wow from '@blizzard-api/wow';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
@@ -17,7 +17,7 @@ describe('wow tech-talent integration', async () => {
     origin: 'eu',
     secret: environment.blizzardClientSecret,
   });
-  it('validates tech talent index, detail, and media', async ({ expect }) => {
+  test('validates tech talent index, detail, and media', async ({ expect }) => {
     const index = await client.sendRequest(wow.techTalentIndex());
     const parsedIndex = techTalentIndexResponseSchema.safeParse(index);
     if (!parsedIndex.success) {
@@ -58,7 +58,7 @@ describe('wow tech-talent integration', async () => {
       expect(parsed.success).toBe(true);
     }
   });
-  it('validates tech talent trees', async ({ expect }) => {
+  test('validates tech talent trees', async ({ expect }) => {
     const treeIndex = await client.sendRequest(wow.techTalentTreeIndex());
     const parsedTreeIndex = techTalentTreeIndexResponseSchema.safeParse(treeIndex);
     if (!parsedTreeIndex.success) {

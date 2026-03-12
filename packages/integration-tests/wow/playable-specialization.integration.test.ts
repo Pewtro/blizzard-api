@@ -1,6 +1,6 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import * as wow from '@blizzard-api/wow';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
@@ -10,7 +10,7 @@ import {
 } from '../../../generated/schemas/wow/playable-specialization';
 
 describe('wow playable-specialization integration', () => {
-  it('validates playable specialization index and fetches detail', async ({ expect }) => {
+  test('validates playable specialization index and fetches detail', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',

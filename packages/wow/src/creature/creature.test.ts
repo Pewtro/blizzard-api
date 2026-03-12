@@ -1,5 +1,5 @@
 import { wowBasePath, wowMediaBasePath, wowSearchBasePath } from '@blizzard-api/core';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import {
   creature,
   creatureDisplayMedia,
@@ -12,7 +12,7 @@ import {
 } from './creature';
 
 describe.concurrent('creatureApi', () => {
-  it('should return the correct path and namespace for creature', ({ expect }) => {
+  test('should return the correct path and namespace for creature', ({ expect }) => {
     const creatureId = 123;
     const resource = creature(creatureId);
 
@@ -20,7 +20,7 @@ describe.concurrent('creatureApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('should return the correct path and namespace for creatureDisplayMedia', ({ expect }) => {
+  test('should return the correct path and namespace for creatureDisplayMedia', ({ expect }) => {
     const creatureDisplayId = 123;
     const resource = creatureDisplayMedia(creatureDisplayId);
 
@@ -28,7 +28,7 @@ describe.concurrent('creatureApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('should return the correct path and namespace for creatureFamily', ({ expect }) => {
+  test('should return the correct path and namespace for creatureFamily', ({ expect }) => {
     const creatureFamilyId = 123;
     const resource = creatureFamily(creatureFamilyId);
 
@@ -36,14 +36,14 @@ describe.concurrent('creatureApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('should return the correct path and namespace for creatureFamilyIndex', ({ expect }) => {
+  test('should return the correct path and namespace for creatureFamilyIndex', ({ expect }) => {
     const resource = creatureFamilyIndex();
 
     expect(resource.path).toBe(`${wowBasePath}/creature-family/index`);
     expect(resource.namespace).toBe('static');
   });
 
-  it('should return the correct path and namespace for creatureFamilyMedia', ({ expect }) => {
+  test('should return the correct path and namespace for creatureFamilyMedia', ({ expect }) => {
     const creatureFamilyId = 123;
     const resource = creatureFamilyMedia(creatureFamilyId);
 
@@ -51,7 +51,7 @@ describe.concurrent('creatureApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('should return the correct path and namespace for creatureType', ({ expect }) => {
+  test('should return the correct path and namespace for creatureType', ({ expect }) => {
     const creatureTypeId = 123;
     const resource = creatureType(creatureTypeId);
 
@@ -59,14 +59,14 @@ describe.concurrent('creatureApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('should return the correct path and namespace for creatureTypeIndex', ({ expect }) => {
+  test('should return the correct path and namespace for creatureTypeIndex', ({ expect }) => {
     const resource = creatureTypeIndex();
 
     expect(resource.path).toBe(`${wowBasePath}/creature-type/index`);
     expect(resource.namespace).toBe('static');
   });
 
-  it('should return the correct path and namespace for creatureSearch', ({ expect }) => {
+  test('should return the correct path and namespace for creatureSearch', ({ expect }) => {
     const resource = creatureSearch({
       _page: 1,
       locale: 'en_US',
@@ -81,7 +81,7 @@ describe.concurrent('creatureApi', () => {
     });
   });
 
-  it('should return the correct path and namespace for creatureSearch when orderby is an array', ({ expect }) => {
+  test('should return the correct path and namespace for creatureSearch when orderby is an array', ({ expect }) => {
     const resource = creatureSearch({
       _page: 1,
       locale: 'en_US',

@@ -1,12 +1,12 @@
 import * as classicWow from '@blizzard-api/classic-wow';
 import { createBlizzardApiClient } from '@blizzard-api/client';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import { playableClassMediaResponseSchema, playableClassResponseSchema } from '../../../generated/schemas/classic-wow';
 
 describe.concurrent('classic-wow playable class integration', () => {
-  it('fetches playable class and media by id for classic era', async ({ expect }) => {
+  test('fetches playable class and media by id for classic era', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'us',
@@ -39,7 +39,7 @@ describe.concurrent('classic-wow playable class integration', () => {
       expect(mediaParsed.success).toBe(true);
     }
   });
-  it('fetches playable class and media by id for classic', async ({ expect }) => {
+  test('fetches playable class and media by id for classic', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'us',

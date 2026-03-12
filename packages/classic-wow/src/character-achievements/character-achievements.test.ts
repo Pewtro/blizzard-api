@@ -1,10 +1,10 @@
 import { wowCharacterBasePath } from '@blizzard-api/core';
 import type { BlizzardNamespaces } from '@blizzard-api/core';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { characterAchievementsSummary, characterAchievementStatistics } from './character-achievements';
 
 describe('characterAchievementsSummary', () => {
-  it('should return the correct resource path for character achievements summary', () => {
+  test('should return the correct resource path for character achievements summary', () => {
     const namespace: Extract<BlizzardNamespaces, 'profile-classic'> = 'profile-classic';
     const realmSlug = 'some-realm';
     const characterName = 'some-character';
@@ -18,7 +18,7 @@ describe('characterAchievementsSummary', () => {
 });
 
 describe('characterAchievementStatistics', () => {
-  it('should return the correct resource path for character achievement statistics', () => {
+  test('should return the correct resource path for character achievement statistics', () => {
     const namespace: Extract<BlizzardNamespaces, 'profile-classic'> = 'profile-classic';
     const realmSlug = 'some-realm';
     const characterName = 'some-character';

@@ -1,6 +1,6 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import * as wow from '@blizzard-api/wow';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
@@ -19,7 +19,7 @@ describe.concurrent('wow covenant integration', async () => {
     origin: 'eu',
     secret: environment.blizzardClientSecret,
   });
-  it('validates covenant index and fetches details', async ({ expect }) => {
+  test('validates covenant index and fetches details', async ({ expect }) => {
     const covIndex = await client.sendRequest(wow.covenantIndex());
     const parsedCov = covenantIndexResponseSchema.safeParse(covIndex);
     if (!parsedCov.success) {
@@ -48,7 +48,7 @@ describe.concurrent('wow covenant integration', async () => {
       expect(parsedMedia.success).toBe(true);
     }
   });
-  it('validates soulbind index and fetches details', async ({ expect }) => {
+  test('validates soulbind index and fetches details', async ({ expect }) => {
     const soulIndex = await client.sendRequest(wow.soulbindIndex());
     const parsedSoul = soulbindIndexResponseSchema.safeParse(soulIndex);
     if (!parsedSoul.success) {
@@ -71,7 +71,7 @@ describe.concurrent('wow covenant integration', async () => {
     }
   });
 
-  it('validates conduit index and fetches details', async ({ expect }) => {
+  test('validates conduit index and fetches details', async ({ expect }) => {
     const conduitIndex = await client.sendRequest(wow.conduitIndex());
     const parsedConduit = conduitIndexResponseSchema.safeParse(conduitIndex);
     if (!parsedConduit.success) {

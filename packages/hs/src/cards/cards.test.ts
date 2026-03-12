@@ -1,10 +1,10 @@
 import type { Locales } from '@blizzard-api/core';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { cardSearch, fetchOneCard } from './cards';
 import type { CardSearchParameters } from './types';
 
 describe('cardSearch', () => {
-  it('should return correct parameters for single values', () => {
+  test('should return correct parameters for single values', () => {
     const options: CardSearchParameters = {
       attack: 5,
       defaultMercenary: 1,
@@ -22,7 +22,7 @@ describe('cardSearch', () => {
     expect(result.path).toBe('hearthstone/cards');
   });
 
-  it('should return correct parameters for array values', () => {
+  test('should return correct parameters for array values', () => {
     const options: CardSearchParameters = {
       attack: [1, 2, 3],
       defaultMercenary: [1, 2],
@@ -40,7 +40,7 @@ describe('cardSearch', () => {
     expect(result.path).toBe('hearthstone/cards');
   });
 
-  it('should handle undefined values correctly', () => {
+  test('should handle undefined values correctly', () => {
     const options: CardSearchParameters = {};
     const result = cardSearch(options);
     expect(result.parameters).toEqual({
@@ -55,7 +55,7 @@ describe('cardSearch', () => {
 });
 
 describe('fetchOneCard', () => {
-  it('should return correct parameters with default gameMode', () => {
+  test('should return correct parameters with default gameMode', () => {
     const id = 'card123';
     const options = { locale: 'en_US' as Locales };
     const result = fetchOneCard(id, options);
@@ -66,7 +66,7 @@ describe('fetchOneCard', () => {
     expect(result.path).toBe(`hearthstone/cards/${id}`);
   });
 
-  it('should return correct parameters with specified gameMode', () => {
+  test('should return correct parameters with specified gameMode', () => {
     const id = 'card123';
     const result = fetchOneCard(id, { gameMode: 'battlegrounds', locale: 'en_US' });
     expect(result.parameters).toEqual({
@@ -76,7 +76,7 @@ describe('fetchOneCard', () => {
     expect(result.path).toBe(`hearthstone/cards/${id}`);
   });
 
-  it('should handle undefined locale correctly', () => {
+  test('should handle undefined locale correctly', () => {
     const id = 'card123';
     const result = fetchOneCard(id, { gameMode: 'battlegrounds' });
     expect(result.parameters).toEqual({

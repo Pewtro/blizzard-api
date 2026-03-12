@@ -1,6 +1,6 @@
 import type { Resource } from '@blizzard-api/core';
 import { wow } from '@blizzard-api/wow';
-import { describe, it, vitest } from 'vitest';
+import { describe, test, vitest } from 'vitest';
 import { environment } from '../../../../environment';
 import { createBlizzardApiClient } from '../client/create-client';
 
@@ -11,7 +11,7 @@ describe.concurrent('client', async () => {
     secret: environment.blizzardClientSecret,
   });
 
-  it("should be able to fetch the client's default values", ({ expect }) => {
+  test("should be able to fetch the client's default values", ({ expect }) => {
     const { key, locale, origin, secret, token } = client.defaults;
 
     expect(key).toBe(environment.blizzardClientId);
@@ -21,7 +21,7 @@ describe.concurrent('client', async () => {
     expect(token).toBeDefined();
   });
 
-  it('should be able to authorize with the Blizzard API', async ({ expect }) => {
+  test('should be able to authorize with the Blizzard API', async ({ expect }) => {
     const response = await client.getAccessToken();
 
     const { access_token, expires_in, sub, token_type } = response;
@@ -31,7 +31,7 @@ describe.concurrent('client', async () => {
     expect(sub).length.greaterThan(0);
   });
 
-  it('should be able to validate the access token', async ({ expect }) => {
+  test('should be able to validate the access token', async ({ expect }) => {
     const response = await client.getAccessToken();
 
     const { access_token } = response;
@@ -44,13 +44,13 @@ describe.concurrent('client', async () => {
     expect(validateResponse.client_id).toBe(client.defaults.key);
   });
 
-  it("should be able to provide a client's access token", ({ expect }) => {
+  test("should be able to provide a client's access token", ({ expect }) => {
     client.setAccessToken('test_token');
 
     expect(client.defaults.token).toBe('test_token');
   });
 
-  it('should be able to provide a onTokenRefresh function as the second argument to createBlizzardApiClient', async ({
+  test('should be able to provide a onTokenRefresh function as the second argument to createBlizzardApiClient', async ({
     expect,
   }) => {
     const testFunction = vitest.fn();
@@ -66,7 +66,7 @@ describe.concurrent('client', async () => {
     expect(testFunction).toHaveBeenCalledTimes(1);
   });
 
-  it('should be able to get an accurate url without prefixing the path with a backslash', ({ expect }) => {
+  test('should be able to get an accurate url without prefixing the path with a backslash', ({ expect }) => {
     const resource: Resource<{ name: 'test' }> = {
       path: 'test',
     };
@@ -76,7 +76,7 @@ describe.concurrent('client', async () => {
     expect(url).toBe('https://eu.api.blizzard.com/test');
   });
 
-  it('should be able to get an appropriate request config without passing a namespace', ({ expect }) => {
+  test('should be able to get an appropriate request config without passing a namespace', ({ expect }) => {
     const resource: Resource<{ name: 'test' }> = {
       path: 'test',
     };
@@ -90,11 +90,11 @@ describe.concurrent('client', async () => {
     expect(config.searchParams.locale).toBeDefined();
   });
 
-  it("validateAccessToken should throw an error if the access token isn't valid", async ({ expect }) => {
+  test("validateAccessToken should throw an error if the access token isn't valid", async ({ expect }) => {
     await expect(() => client.validateAccessToken({ token: undefined })).rejects.toThrow();
   });
 
-  it('should be able to manually refresh the token', async ({ expect }) => {
+  test('should be able to manually refresh the token', async ({ expect }) => {
     const response = await client.refreshAccessToken();
 
     const { access_token, expires_in, sub, token_type } = response;
@@ -104,11 +104,11 @@ describe.concurrent('client', async () => {
     expect(sub).length.greaterThan(0);
   });
 
-  it("the client will throw an error when requesting resources that don't exist", async ({ expect }) => {
+  test("the client will throw an error when requesting resources that don't exist", async ({ expect }) => {
     await expect(() => client.sendRequest(wow.connectedRealm(9_999_999_999))).rejects.toThrow();
   });
 
-  it('the client cannot be created without a client id and secret', async ({ expect }) => {
+  test('the client cannot be created without a client id and secret', async ({ expect }) => {
     await expect(() =>
       //@ts-expect-error expect error when key is missing
       createBlizzardApiClient({ origin: 'eu', secret: environment.blizzardClientSecret }),
@@ -118,7 +118,7 @@ describe.concurrent('client', async () => {
     await expect(() => createBlizzardApiClient({ key: environment.blizzardClientId, origin: 'eu' })).rejects.toThrow();
   });
 
-  it("the client can be created without automatic token refresh by setting onTokenRefresh to 'false'", async ({
+  test("the client can be created without automatic token refresh by setting onTokenRefresh to 'false'", async ({
     expect,
   }) => {
     const noRefreshClient = await createBlizzardApiClient(
@@ -139,7 +139,7 @@ describe.concurrent('client', async () => {
     expect(sub).length.greaterThan(0);
   });
 
-  it('the client can be created with a pre-existing token', async ({ expect }) => {
+  test('the client can be created with a pre-existing token', async ({ expect }) => {
     const response = await client.getAccessToken();
     const { access_token } = response;
 
@@ -154,7 +154,7 @@ describe.concurrent('client', async () => {
     expect(tokenResponse.access_token).toBe(access_token);
   });
 
-  it('the client can be created with a pre-existing expired token', async ({ expect }) => {
+  test('the client can be created with a pre-existing expired token', async ({ expect }) => {
     const tokenClient = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',
@@ -166,7 +166,7 @@ describe.concurrent('client', async () => {
     expect(tokenResponse.access_token).toBeDefined();
   });
 
-  it('getRequestConfig should include correct headers and searchParams', ({ expect }) => {
+  test('getRequestConfig should include correct headers and searchParams', ({ expect }) => {
     const resource: Resource<{ foo: string }> = {
       parameters: { bar: 'baz', unused: undefined },
       path: '/foo',

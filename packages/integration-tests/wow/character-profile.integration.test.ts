@@ -1,6 +1,6 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import * as wow from '@blizzard-api/wow';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
@@ -9,7 +9,7 @@ import {
 } from '../../../generated/schemas/wow';
 
 describe('wow character-profile integration', () => {
-  it('validates character profile summary and status', async ({ expect }) => {
+  test('validates character profile summary and status', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',

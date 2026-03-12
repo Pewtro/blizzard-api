@@ -1,6 +1,6 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import * as wow from '@blizzard-api/wow';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
@@ -19,7 +19,7 @@ describe.concurrent('wow talent integration', async () => {
     origin: 'eu',
     secret: environment.blizzardClientSecret,
   });
-  it('validates pvp talents', async ({ expect }) => {
+  test('validates pvp talents', async ({ expect }) => {
     const pvpIndex = await client.sendRequest(wow.pvpTalentIndex());
     const parsedPvpIndex = pvpTalentIndexResponseSchema.safeParse(pvpIndex);
     if (!parsedPvpIndex.success) {
@@ -48,7 +48,7 @@ describe.concurrent('wow talent integration', async () => {
       expect(parsed.success).toBe(true);
     }
   });
-  it('validates talents', async ({ expect }) => {
+  test('validates talents', async ({ expect }) => {
     const talentIndex = await client.sendRequest(wow.talentIndex());
     const parsedTalentIndex = talentIndexResponseSchema.safeParse(talentIndex);
     if (!parsedTalentIndex.success) {
@@ -76,7 +76,7 @@ describe.concurrent('wow talent integration', async () => {
       expect(parsed.success).toBe(true);
     }
   });
-  it('validates talent trees', async ({ expect }) => {
+  test('validates talent trees', async ({ expect }) => {
     const treeIndex = await client.sendRequest(wow.talentTreeIndex());
     const parsedTreeIndex = talentTreeIndexResponseSchema.safeParse(treeIndex);
     if (!parsedTreeIndex.success) {

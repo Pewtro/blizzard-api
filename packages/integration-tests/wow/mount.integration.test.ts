@@ -1,6 +1,6 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import * as wow from '@blizzard-api/wow';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
@@ -10,7 +10,7 @@ import {
 } from '../../../generated/schemas/wow/mount';
 
 describe('wow mount integration', () => {
-  it('validates mount index and fetches mount detail', async ({ expect }) => {
+  test('validates mount index and fetches mount detail', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',
@@ -47,7 +47,7 @@ describe('wow mount integration', () => {
     }
   });
 
-  it('validates mount search', async ({ expect }) => {
+  test('validates mount search', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',

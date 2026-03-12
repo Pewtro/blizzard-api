@@ -1,6 +1,6 @@
 import * as classicWow from '@blizzard-api/classic-wow';
 import { createBlizzardApiClient } from '@blizzard-api/client';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
@@ -11,7 +11,7 @@ import {
 
 //The auction house API is known to be flaky; skip by default.
 describe.skip('classic-wow auction house integration', () => {
-  it('fetches index and validates responses with generated schemas', async ({ expect }) => {
+  test('fetches index and validates responses with generated schemas', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'us',

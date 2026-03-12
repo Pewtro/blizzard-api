@@ -1,10 +1,10 @@
 import type { BlizzardNamespaces } from '@blizzard-api/core';
 import { wowCharacterBasePath } from '@blizzard-api/core';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { characterProfileStatus, characterProfileSummary } from './character-profile';
 
 describe('characterProfileStatus', () => {
-  it('should return the correct resource for character profile status', () => {
+  test('should return the correct resource for character profile status', () => {
     const namespace: Extract<BlizzardNamespaces, 'profile-classic1x' | 'profile-classic'> = 'profile-classic';
     const realmSlug = 'some-realm';
     const characterName = 'some-character';
@@ -19,7 +19,7 @@ describe('characterProfileStatus', () => {
 });
 
 describe('characterProfileSummary', () => {
-  it('should return the correct resource for character profile summary', () => {
+  test('should return the correct resource for character profile summary', () => {
     const namespace: Extract<BlizzardNamespaces, 'profile-classic1x' | 'profile-classic'> = 'profile-classic';
     const realmSlug = 'some-realm';
     const characterName = 'some-character';

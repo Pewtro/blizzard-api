@@ -1,12 +1,12 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import * as wow from '@blizzard-api/wow';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import { titleIndexResponseSchema, titleResponseSchema } from '../../../generated/schemas/wow/title';
 
 describe('wow title integration', () => {
-  it('validates title index and fetches title detail', async ({ expect }) => {
+  test('validates title index and fetches title detail', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',

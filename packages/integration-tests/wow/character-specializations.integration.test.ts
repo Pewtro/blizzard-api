@@ -1,12 +1,12 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import * as wow from '@blizzard-api/wow';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import { characterSpecializationsSummaryResponseSchema } from '../../../generated/schemas/wow';
 
 describe('wow character-specializations integration', () => {
-  it('validates character specializations', async ({ expect }) => {
+  test('validates character specializations', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',

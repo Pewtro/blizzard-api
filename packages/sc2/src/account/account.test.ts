@@ -1,8 +1,8 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { player } from './account';
 
 describe('account', () => {
-  it('should return the correct resource path for a given accountId', () => {
+  test('should return the correct resource path for a given accountId', () => {
     const accountId = '12345';
     const result = player(accountId);
     expect(result).toEqual({

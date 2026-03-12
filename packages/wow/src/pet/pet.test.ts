@@ -1,9 +1,9 @@
 import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { pet, petAbility, petAbilityIndex, petAbilityMedia, petIndex, petMedia } from './pet';
 
 describe.concurrent('petApi', () => {
-  it('pet should return a resource object with the correct path and namespace', ({ expect }) => {
+  test('pet should return a resource object with the correct path and namespace', ({ expect }) => {
     const petId = 123;
     const resource = pet(petId);
 
@@ -11,14 +11,14 @@ describe.concurrent('petApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('petIndex should return a resource object with the correct path and namespace', ({ expect }) => {
+  test('petIndex should return a resource object with the correct path and namespace', ({ expect }) => {
     const resource = petIndex();
 
     expect(resource.path).toBe(`${wowBasePath}/pet/index`);
     expect(resource.namespace).toBe('static');
   });
 
-  it('petMedia should return a resource object with the correct path and namespace', ({ expect }) => {
+  test('petMedia should return a resource object with the correct path and namespace', ({ expect }) => {
     const petId = 123;
     const resource = petMedia(petId);
 
@@ -26,7 +26,7 @@ describe.concurrent('petApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('petAbility should return a resource object with the correct path and namespace', ({ expect }) => {
+  test('petAbility should return a resource object with the correct path and namespace', ({ expect }) => {
     const petAbilityId = 123;
     const resource = petAbility(petAbilityId);
 
@@ -34,14 +34,14 @@ describe.concurrent('petApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('petAbilityIndex should return a resource object with the correct path and namespace', ({ expect }) => {
+  test('petAbilityIndex should return a resource object with the correct path and namespace', ({ expect }) => {
     const resource = petAbilityIndex();
 
     expect(resource.path).toBe(`${wowBasePath}/pet-ability/index`);
     expect(resource.namespace).toBe('static');
   });
 
-  it('petAbilityMedia should return a resource object with the correct path and namespace', ({ expect }) => {
+  test('petAbilityMedia should return a resource object with the correct path and namespace', ({ expect }) => {
     const petAbilityId = 123;
     const resource = petAbilityMedia(petAbilityId);
 

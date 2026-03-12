@@ -1,12 +1,12 @@
 import * as classicWow from '@blizzard-api/classic-wow';
 import { createBlizzardApiClient } from '@blizzard-api/client';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import { mediaSearchResponseSchema } from '../../../generated/schemas/classic-wow';
 
 describe('classic-wow media search integration', () => {
-  it('performs a media search and validates items', async ({ expect }) => {
+  test('performs a media search and validates items', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',

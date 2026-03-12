@@ -1,9 +1,9 @@
 import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { mythicKeystoneAffix, mythicKeystoneAffixIndex, mythicKeystoneAffixMedia } from './mythic-keystone-affix';
 
 describe.concurrent('mythicKeystoneAffixApi', () => {
-  it('mythicKeystoneAffix should return a resource object with the correct path and namespace', ({ expect }) => {
+  test('mythicKeystoneAffix should return a resource object with the correct path and namespace', ({ expect }) => {
     const mythicKeystoneAffixId = 123;
     const resource = mythicKeystoneAffix(mythicKeystoneAffixId);
 
@@ -11,14 +11,14 @@ describe.concurrent('mythicKeystoneAffixApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('mythicKeystoneAffixIndex should return a resource object with the correct path and namespace', ({ expect }) => {
+  test('mythicKeystoneAffixIndex should return a resource object with the correct path and namespace', ({ expect }) => {
     const resource = mythicKeystoneAffixIndex();
 
     expect(resource.path).toBe(`${wowBasePath}/keystone-affix/index`);
     expect(resource.namespace).toBe('static');
   });
 
-  it('mythicKeystoneAffixMedia should return a resource object with the correct path and namespace', ({ expect }) => {
+  test('mythicKeystoneAffixMedia should return a resource object with the correct path and namespace', ({ expect }) => {
     const mythicKeystoneAffixId = 123;
     const resource = mythicKeystoneAffixMedia(mythicKeystoneAffixId);
 

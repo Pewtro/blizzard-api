@@ -1,9 +1,9 @@
 import { wowBasePath, wowMediaBasePath, wowSearchBasePath } from '@blizzard-api/core';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { azeriteEssence, azeriteEssenceIndex, azeriteEssenceMedia, azeriteEssenceSearch } from './azerite-essence';
 
 describe.concurrent('azeriteEssenceApi', () => {
-  it('should return the correct path and namespace for azeriteEssence', ({ expect }) => {
+  test('should return the correct path and namespace for azeriteEssence', ({ expect }) => {
     const azeriteEssenceId = 123;
     const resource = azeriteEssence(azeriteEssenceId);
 
@@ -11,14 +11,14 @@ describe.concurrent('azeriteEssenceApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('should return the correct path and namespace for azeriteEssenceIndex', ({ expect }) => {
+  test('should return the correct path and namespace for azeriteEssenceIndex', ({ expect }) => {
     const resource = azeriteEssenceIndex();
 
     expect(resource.path).toBe(`${wowBasePath}/azerite-essence/index`);
     expect(resource.namespace).toBe('static');
   });
 
-  it('should return the correct path and namespace for azeriteEssenceMedia', ({ expect }) => {
+  test('should return the correct path and namespace for azeriteEssenceMedia', ({ expect }) => {
     const azeriteEssenceId = 123;
     const resource = azeriteEssenceMedia(azeriteEssenceId);
 
@@ -26,7 +26,7 @@ describe.concurrent('azeriteEssenceApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('should return the correct path and namespace for azeriteEssenceSearch', ({ expect }) => {
+  test('should return the correct path and namespace for azeriteEssenceSearch', ({ expect }) => {
     const resource = azeriteEssenceSearch({ _page: 1 });
 
     expect(resource.path).toBe(`${wowSearchBasePath}/azerite-essence`);
@@ -34,7 +34,7 @@ describe.concurrent('azeriteEssenceApi', () => {
     expect(resource.parameters).toEqual({ _page: 1 });
   });
 
-  it('should return the correct path and namespace for azeriteEssenceSearch with parameters', ({ expect }) => {
+  test('should return the correct path and namespace for azeriteEssenceSearch with parameters', ({ expect }) => {
     const resource = azeriteEssenceSearch({
       _page: 1,
       orderby: 'name',
@@ -48,7 +48,7 @@ describe.concurrent('azeriteEssenceApi', () => {
     });
   });
 
-  it('should return the correct path and namespace for azeriteEssenceSearch with multiple orderby values', ({
+  test('should return the correct path and namespace for azeriteEssenceSearch with multiple orderby values', ({
     expect,
   }) => {
     const resource = azeriteEssenceSearch({

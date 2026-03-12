@@ -1,9 +1,9 @@
 import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { playableClass, playableClassIndex, playableClassMedia, pvpTalentSlots } from './playable-class';
 
 describe.concurrent('playableClassApi', () => {
-  it('playableClass should return a resource object with the correct path and namespace', ({ expect }) => {
+  test('playableClass should return a resource object with the correct path and namespace', ({ expect }) => {
     const playableClassId = 123;
     const resource = playableClass(playableClassId);
 
@@ -11,14 +11,14 @@ describe.concurrent('playableClassApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('playableClassIndex should return a resource object with the correct path and namespace', ({ expect }) => {
+  test('playableClassIndex should return a resource object with the correct path and namespace', ({ expect }) => {
     const resource = playableClassIndex();
 
     expect(resource.path).toBe(`${wowBasePath}/playable-class/index`);
     expect(resource.namespace).toBe('static');
   });
 
-  it('playableClassMedia should return a resource object with the correct path and namespace', ({ expect }) => {
+  test('playableClassMedia should return a resource object with the correct path and namespace', ({ expect }) => {
     const playableClassId = 123;
     const resource = playableClassMedia(playableClassId);
 
@@ -26,7 +26,7 @@ describe.concurrent('playableClassApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('pvpTalentSlots should return a resource object with the correct path and namespace', ({ expect }) => {
+  test('pvpTalentSlots should return a resource object with the correct path and namespace', ({ expect }) => {
     const playableClassId = 123;
     const resource = pvpTalentSlots(playableClassId);
 

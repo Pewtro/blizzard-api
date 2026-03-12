@@ -1,12 +1,12 @@
 import * as classicWow from '@blizzard-api/classic-wow';
 import { createBlizzardApiClient } from '@blizzard-api/client';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import { characterMediaSummaryResponseSchema } from '../../../generated/schemas/classic-wow';
 
 describe('classic-wow character media integration', () => {
-  it('fetches media summary for a character', async ({ expect }) => {
+  test('fetches media summary for a character', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',

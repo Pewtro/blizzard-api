@@ -1,12 +1,12 @@
 import * as classicWow from '@blizzard-api/classic-wow';
 import { createBlizzardApiClient } from '@blizzard-api/client';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import { guildCrestComponentsIndexResponseSchema } from '../../../generated/schemas/classic-wow';
 
 describe('classic-wow guild crest integration', () => {
-  it('validates guild crest components index', async ({ expect }) => {
+  test('validates guild crest components index', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'us',

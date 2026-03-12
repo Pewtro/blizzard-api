@@ -1,8 +1,8 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { characterHunterPetsSummary } from './character-hunter-pets';
 
 describe('characterHunterPetsSummary', () => {
-  it('should return the correct ProtectedResource object', () => {
+  test('should return the correct ProtectedResource object', () => {
     const realmSlug = 'testRealm';
     const characterName = 'testCharacter';
 

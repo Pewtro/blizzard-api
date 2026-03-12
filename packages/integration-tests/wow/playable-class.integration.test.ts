@@ -1,6 +1,6 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import * as wow from '@blizzard-api/wow';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
@@ -11,7 +11,7 @@ import {
 } from '../../../generated/schemas/wow/playable-class';
 
 describe.concurrent('wow playable class integration', () => {
-  it('fetches playable class and media by id', async ({ expect }) => {
+  test('fetches playable class and media by id', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',

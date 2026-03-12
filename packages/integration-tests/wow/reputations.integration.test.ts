@@ -1,6 +1,6 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import * as wow from '@blizzard-api/wow';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
@@ -16,7 +16,7 @@ describe('wow reputations integration', async () => {
     origin: 'eu',
     secret: environment.blizzardClientSecret,
   });
-  it('validates reputation factions', async ({ expect }) => {
+  test('validates reputation factions', async ({ expect }) => {
     const factions = await client.sendRequest(wow.reputationFactionIndex());
     const parsedFactions = reputationFactionIndexResponseSchema.safeParse(factions);
     if (!parsedFactions.success) {
@@ -46,7 +46,7 @@ describe('wow reputations integration', async () => {
       expect(parsed.success).toBe(true);
     }
   });
-  it('validates reputation tiers', async ({ expect }) => {
+  test('validates reputation tiers', async ({ expect }) => {
     const tiers = await client.sendRequest(wow.reputationTiersIndex());
     const parsedTiers = reputationTiersIndexResponseSchema.safeParse(tiers);
     if (!parsedTiers.success) {

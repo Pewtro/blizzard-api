@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import {
   characterCollectionsIndex,
   characterHeirloomsCollectionSummary,
@@ -12,7 +12,7 @@ describe('Character Collections', () => {
   const realmSlug = 'realm-slug';
   const characterName = 'character-name';
 
-  it('should generate the correct protected resource for characterCollectionsIndex', () => {
+  test('should generate the correct protected resource for characterCollectionsIndex', () => {
     const expectedResource = {
       namespace: 'profile',
       path: '/profile/wow/character/realm-slug/character-name/collections',
@@ -23,7 +23,7 @@ describe('Character Collections', () => {
     expect(resource).toEqual(expectedResource);
   });
 
-  it('should generate the correct protected resource for characterHeirloomsCollectionSummary', () => {
+  test('should generate the correct protected resource for characterHeirloomsCollectionSummary', () => {
     const expectedResource = {
       namespace: 'profile',
       path: '/profile/wow/character/realm-slug/character-name/collections/heirlooms',
@@ -34,7 +34,7 @@ describe('Character Collections', () => {
     expect(resource).toEqual(expectedResource);
   });
 
-  it('should generate the correct protected resource for characterMountsCollectionSummary', () => {
+  test('should generate the correct protected resource for characterMountsCollectionSummary', () => {
     const expectedResource = {
       namespace: 'profile',
       path: '/profile/wow/character/realm-slug/character-name/collections/mounts',
@@ -45,7 +45,7 @@ describe('Character Collections', () => {
     expect(resource).toEqual(expectedResource);
   });
 
-  it('should generate the correct protected resource for characterPetsCollectionSummary', () => {
+  test('should generate the correct protected resource for characterPetsCollectionSummary', () => {
     const expectedResource = {
       namespace: 'profile',
       path: '/profile/wow/character/realm-slug/character-name/collections/pets',
@@ -56,7 +56,7 @@ describe('Character Collections', () => {
     expect(resource).toEqual(expectedResource);
   });
 
-  it('should generate the correct protected resource for characterToysCollectionSummary', () => {
+  test('should generate the correct protected resource for characterToysCollectionSummary', () => {
     const expectedResource = {
       namespace: 'profile',
       path: '/profile/wow/character/realm-slug/character-name/collections/toys',
@@ -67,7 +67,7 @@ describe('Character Collections', () => {
     expect(resource).toEqual(expectedResource);
   });
 
-  it('should generate the correct protected resource for characterTransmogCollectionSummary', () => {
+  test('should generate the correct protected resource for characterTransmogCollectionSummary', () => {
     const expectedResource = {
       namespace: 'profile',
       path: '/profile/wow/character/realm-slug/character-name/collections/transmogs',

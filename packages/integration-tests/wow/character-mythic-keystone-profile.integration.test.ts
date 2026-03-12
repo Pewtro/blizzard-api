@@ -1,6 +1,6 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import * as wow from '@blizzard-api/wow';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
@@ -9,7 +9,7 @@ import {
 } from '../../../generated/schemas/wow';
 
 describe('wow character-mythic-keystone-profile integration', () => {
-  it('validates mythic keystone profile index', async ({ expect }) => {
+  test('validates mythic keystone profile index', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',
@@ -25,7 +25,7 @@ describe('wow character-mythic-keystone-profile integration', () => {
     expect(parsed.success).toBe(true);
   });
 
-  it('validates mythic keystone season details when available', async ({ expect }) => {
+  test('validates mythic keystone season details when available', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',

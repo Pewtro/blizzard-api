@@ -1,8 +1,8 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { characterProfileStatus, characterProfileSummary } from './character-profile';
 
 describe('characterProfileSummary', () => {
-  it('should return the correct protected resource object', () => {
+  test('should return the correct protected resource object', () => {
     const realmSlug = 'example-realm';
     const characterName = 'example-character';
 
@@ -16,7 +16,7 @@ describe('characterProfileSummary', () => {
 });
 
 describe('characterProfileStatus', () => {
-  it('should return the correct protected resource object', () => {
+  test('should return the correct protected resource object', () => {
     const realmSlug = 'example-realm';
     const characterName = 'example-character';
 

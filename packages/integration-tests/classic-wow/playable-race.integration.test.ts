@@ -1,12 +1,12 @@
 import * as classicWow from '@blizzard-api/classic-wow';
 import { createBlizzardApiClient } from '@blizzard-api/client';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import { playableRaceIndexResponseSchema, playableRaceResponseSchema } from '../../../generated/schemas/classic-wow';
 
 describe.concurrent('classic-wow playable race integration', () => {
-  it('validates playable races for classic era', async ({ expect }) => {
+  test('validates playable races for classic era', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'us',
@@ -36,7 +36,7 @@ describe.concurrent('classic-wow playable race integration', () => {
       expect(parsedResult.success).toBe(true);
     }
   });
-  it('validates playable races for classic progression', async ({ expect }) => {
+  test('validates playable races for classic progression', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'us',

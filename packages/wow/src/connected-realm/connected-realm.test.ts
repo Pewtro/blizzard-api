@@ -1,16 +1,16 @@
 import { wowSearchBasePath } from '@blizzard-api/core';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { connectedRealm, connectedRealmIndex, connectedRealmSearch } from './connected-realm';
 
 describe.concurrent('connectedRealm', () => {
-  it('should return the correct resource for connected realm index', ({ expect }) => {
+  test('should return the correct resource for connected realm index', ({ expect }) => {
     const resource = connectedRealmIndex();
 
     expect(resource.path).toBe('/data/wow/connected-realm/index');
     expect(resource.namespace).toBe('dynamic');
   });
 
-  it('should return the correct resource for a specific connected realm', ({ expect }) => {
+  test('should return the correct resource for a specific connected realm', ({ expect }) => {
     const connectedRealmId = 123;
     const resource = connectedRealm(connectedRealmId);
 
@@ -18,7 +18,7 @@ describe.concurrent('connectedRealm', () => {
     expect(resource.namespace).toBe('dynamic');
   });
 
-  it('should return the correct resource for connected realm search', ({ expect }) => {
+  test('should return the correct resource for connected realm search', ({ expect }) => {
     const resource = connectedRealmSearch({ _page: 1 });
 
     expect(resource.path).toBe(`${wowSearchBasePath}/connected-realm`);
@@ -26,7 +26,7 @@ describe.concurrent('connectedRealm', () => {
     expect(resource.parameters).toEqual({ _page: 1 });
   });
 
-  it('connected realm search should return correct resource object when orderby is an array', ({ expect }) => {
+  test('connected realm search should return correct resource object when orderby is an array', ({ expect }) => {
     const resource = connectedRealmSearch({
       _page: 1,
       orderby: ['name', 'id'],

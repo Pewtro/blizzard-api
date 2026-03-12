@@ -1,6 +1,6 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import * as wow from '@blizzard-api/wow';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
@@ -20,7 +20,7 @@ describe.concurrent('wow character-collections integration', async () => {
   });
   const realm = 'laughing-skull';
   const character = 'putro';
-  it('validates collections indices', async ({ expect }) => {
+  test('validates collections indices', async ({ expect }) => {
     const index = await client.sendRequest(wow.characterCollectionsIndex(realm, character));
     const parsedIndex = characterCollectionsIndexResponseSchema.safeParse(index);
     if (!parsedIndex.success) {
@@ -29,7 +29,7 @@ describe.concurrent('wow character-collections integration', async () => {
     expect(parsedIndex.success).toBe(true);
   });
 
-  it('validates heirlooms collection summary', async ({ expect }) => {
+  test('validates heirlooms collection summary', async ({ expect }) => {
     const heirlooms = await client.sendRequest(wow.characterHeirloomsCollectionSummary(realm, character));
     const parsedHeirlooms = characterHeirloomsCollectionSummaryResponseSchema.safeParse(heirlooms);
     if (!parsedHeirlooms.success) {
@@ -38,7 +38,7 @@ describe.concurrent('wow character-collections integration', async () => {
     expect(parsedHeirlooms.success).toBe(true);
   });
 
-  it('validates mounts collection summary', async ({ expect }) => {
+  test('validates mounts collection summary', async ({ expect }) => {
     const mounts = await client.sendRequest(wow.characterMountsCollectionSummary(realm, character));
     const parsedMounts = characterMountsCollectionSummaryResponseSchema.safeParse(mounts);
     if (!parsedMounts.success) {
@@ -47,7 +47,7 @@ describe.concurrent('wow character-collections integration', async () => {
     expect(parsedMounts.success).toBe(true);
   });
 
-  it('validates pets collection summary', async ({ expect }) => {
+  test('validates pets collection summary', async ({ expect }) => {
     const pets = await client.sendRequest(wow.characterPetsCollectionSummary(realm, character));
     const parsedPets = characterPetsCollectionSummaryResponseSchema.safeParse(pets);
     if (!parsedPets.success) {
@@ -56,7 +56,7 @@ describe.concurrent('wow character-collections integration', async () => {
     expect(parsedPets.success).toBe(true);
   });
 
-  it('validates toys collection summary', async ({ expect }) => {
+  test('validates toys collection summary', async ({ expect }) => {
     const toys = await client.sendRequest(wow.characterToysCollectionSummary(realm, character));
     const parsedToys = characterToysCollectionSummaryResponseSchema.safeParse(toys);
     if (!parsedToys.success) {
@@ -65,7 +65,7 @@ describe.concurrent('wow character-collections integration', async () => {
     expect(parsedToys.success).toBe(true);
   });
 
-  it('validates transmog collection summary', async ({ expect }) => {
+  test('validates transmog collection summary', async ({ expect }) => {
     const transmog = await client.sendRequest(wow.characterTransmogCollectionSummary(realm, character));
     const parsedTransmog = characterTransmogCollectionSummaryResponseSchema.safeParse(transmog);
     if (!parsedTransmog.success) {

@@ -1,10 +1,10 @@
 import * as classicWow from '@blizzard-api/classic-wow';
 import { createBlizzardApiClient } from '@blizzard-api/client';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { environment } from '../../../environment';
 
 describe('classic-wow guild integration', () => {
-  it('fetches guild endpoints for raid-drømmen on shekzeer', async ({ expect }) => {
+  test('fetches guild endpoints for raid-drømmen on shekzeer', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',

@@ -1,10 +1,10 @@
 import type { Resource } from '@blizzard-api/core';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { getDeck } from './decks';
 import type { DeckResponse, DeckSearchParameters } from './types';
 
 describe('getDeck', () => {
-  it('should return a Resource with encoded code parameter when code is provided', () => {
+  test('should return a Resource with encoded code parameter when code is provided', () => {
     const options = { code: 'ABC123' };
     const result: Resource<DeckResponse, DeckSearchParameters> = getDeck(options);
 
@@ -16,7 +16,7 @@ describe('getDeck', () => {
     });
   });
 
-  it('should return a Resource with hero and ids parameters when code is not provided', () => {
+  test('should return a Resource with hero and ids parameters when code is not provided', () => {
     const options = { hero: 'mage', ids: ['1', '2', '3'] };
     const result: Resource<DeckResponse, DeckSearchParameters> = getDeck(options);
 

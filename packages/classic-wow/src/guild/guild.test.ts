@@ -1,5 +1,5 @@
 import type { BlizzardNamespaces } from '@blizzard-api/core';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { guild, guildAchievements, guildActivity, guildRoster } from './guild';
 
 describe('guild API functions', () => {
@@ -7,7 +7,7 @@ describe('guild API functions', () => {
   const realmSlug = 'some-realm';
   const nameSlug = 'some-guild';
 
-  it('should return correct guild resource', () => {
+  test('should return correct guild resource', () => {
     const result = guild(namespace, realmSlug, nameSlug);
     expect(result).toEqual({
       namespace,
@@ -15,7 +15,7 @@ describe('guild API functions', () => {
     });
   });
 
-  it('should return correct guild achievements resource', () => {
+  test('should return correct guild achievements resource', () => {
     const result = guildAchievements(namespace, realmSlug, nameSlug);
     expect(result).toEqual({
       namespace,
@@ -23,7 +23,7 @@ describe('guild API functions', () => {
     });
   });
 
-  it('should return correct guild activity resource', () => {
+  test('should return correct guild activity resource', () => {
     const result = guildActivity(namespace, realmSlug, nameSlug);
     expect(result).toEqual({
       namespace,
@@ -31,7 +31,7 @@ describe('guild API functions', () => {
     });
   });
 
-  it('should return correct guild roster resource', () => {
+  test('should return correct guild roster resource', () => {
     const result = guildRoster(namespace, realmSlug, nameSlug);
     expect(result).toEqual({
       namespace,

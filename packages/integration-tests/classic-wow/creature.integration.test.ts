@@ -1,6 +1,6 @@
 import * as classicWow from '@blizzard-api/classic-wow';
 import { createBlizzardApiClient } from '@blizzard-api/client';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
@@ -22,7 +22,7 @@ describe.concurrent(
       origin: 'us',
       secret: environment.blizzardClientSecret,
     });
-    it('validates creature', async ({ expect }) => {
+    test('validates creature', async ({ expect }) => {
       const resp = await client.sendRequest(classicWow.creature('static-classic1x', 30));
       const parsed = creatureResponseSchema.safeParse(resp);
       if (!parsed.success) {
@@ -37,7 +37,7 @@ describe.concurrent(
       }
       expect(parsedMedia.success).toBe(true);
     });
-    it('validates creature family index', async ({ expect }) => {
+    test('validates creature family index', async ({ expect }) => {
       const resp = await client.sendRequest(classicWow.creatureFamilyIndex('static-classic1x'));
       const parsed = creatureFamilyIndexResponseSchema.safeParse(resp);
       if (!parsed.success) {
@@ -60,7 +60,7 @@ describe.concurrent(
       expect(parsedMedia.success).toBe(true);
     });
 
-    it('validates creature type index and details', async ({ expect }) => {
+    test('validates creature type index and details', async ({ expect }) => {
       const resp = await client.sendRequest(classicWow.creatureTypeIndex('static-classic1x'));
       const parsed = creatureTypeIndexResponseSchema.safeParse(resp);
       if (!parsed.success) {
@@ -81,7 +81,7 @@ describe.concurrent(
       expect(parsedType.success).toBe(true);
     });
 
-    it('validates creature search', async ({ expect }) => {
+    test('validates creature search', async ({ expect }) => {
       const search = await client.sendRequest(
         classicWow.creatureSearch('static-classic1x', { _page: 1, locale: 'en_GB', name: 'wolf' }),
       );
@@ -103,7 +103,7 @@ describe.concurrent(
       origin: 'us',
       secret: environment.blizzardClientSecret,
     });
-    it('validates creature', async ({ expect }) => {
+    test('validates creature', async ({ expect }) => {
       const resp = await client.sendRequest(classicWow.creature('static-classic', 30));
       const parsed = creatureResponseSchema.safeParse(resp);
       if (!parsed.success) {
@@ -111,7 +111,7 @@ describe.concurrent(
       }
       expect(parsed.success).toBe(true);
     });
-    it('validates creature family index', async ({ expect }) => {
+    test('validates creature family index', async ({ expect }) => {
       const resp = await client.sendRequest(classicWow.creatureFamilyIndex('static-classic'));
       const parsed = creatureFamilyIndexResponseSchema.safeParse(resp);
       if (!parsed.success) {
@@ -143,7 +143,7 @@ describe.concurrent(
       expect(parsedMedia.success).toBe(true);
     });
 
-    it('validates creature type index and details', async ({ expect }) => {
+    test('validates creature type index and details', async ({ expect }) => {
       const resp = await client.sendRequest(classicWow.creatureTypeIndex('static-classic'));
       const parsed = creatureTypeIndexResponseSchema.safeParse(resp);
       if (!parsed.success) {
@@ -164,7 +164,7 @@ describe.concurrent(
       expect(parsedType.success).toBe(true);
     });
 
-    it('validates creature search', async ({ expect }) => {
+    test('validates creature search', async ({ expect }) => {
       const search = await client.sendRequest(
         classicWow.creatureSearch('static-classic', { _page: 1, locale: 'en_GB', name: 'wolf' }),
       );

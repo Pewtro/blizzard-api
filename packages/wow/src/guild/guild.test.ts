@@ -1,8 +1,8 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { guild, guildAchievements, guildActivity, guildRoster } from './guild';
 
 describe('guild', () => {
-  it('should return the correct ProtectedResource for guild', () => {
+  test('should return the correct ProtectedResource for guild', () => {
     const realmSlug = 'realm';
     const nameSlug = 'name';
 
@@ -12,7 +12,7 @@ describe('guild', () => {
     expect(result.path).toBe(`/data/wow/guild/${realmSlug}/${nameSlug}`);
   });
 
-  it('should return the correct ProtectedResource for guildActivity', () => {
+  test('should return the correct ProtectedResource for guildActivity', () => {
     const realmSlug = 'realm';
     const nameSlug = 'name';
 
@@ -22,7 +22,7 @@ describe('guild', () => {
     expect(result.path).toBe(`/data/wow/guild/${realmSlug}/${nameSlug}/activity`);
   });
 
-  it('should return the correct ProtectedResource for guildAchievements', () => {
+  test('should return the correct ProtectedResource for guildAchievements', () => {
     const realmSlug = 'realm';
     const nameSlug = 'name';
 
@@ -32,7 +32,7 @@ describe('guild', () => {
     expect(result.path).toBe(`/data/wow/guild/${realmSlug}/${nameSlug}/achievements`);
   });
 
-  it('should return the correct ProtectedResource for guildRoster', () => {
+  test('should return the correct ProtectedResource for guildRoster', () => {
     const realmSlug = 'realm';
     const nameSlug = 'name';
 

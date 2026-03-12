@@ -1,9 +1,9 @@
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { getBlizzardApi } from './blizzard-api';
 import type { Locales, Origins } from './locales';
 
 describe.concurrent('getBlizzardApi', () => {
-  it('should return the correct endpoint for the specified origin and locale', ({ expect }) => {
+  test('should return the correct endpoint for the specified origin and locale', ({ expect }) => {
     const origin: Origins = 'us';
     const locale: Locales = 'es_MX';
 
@@ -16,7 +16,7 @@ describe.concurrent('getBlizzardApi', () => {
     });
   });
 
-  it('should return the default locale if no locale is specified', ({ expect }) => {
+  test('should return the default locale if no locale is specified', ({ expect }) => {
     const origin: Origins = 'eu';
 
     const result = getBlizzardApi(origin);

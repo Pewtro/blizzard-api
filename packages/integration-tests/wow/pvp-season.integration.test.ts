@@ -1,6 +1,6 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import * as wow from '@blizzard-api/wow';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
@@ -12,7 +12,7 @@ import {
 } from '../../../generated/schemas/wow/pvp-season';
 
 describe('wow pvp integration', () => {
-  it('validates pvp leaderboard and season indices', async ({ expect }) => {
+  test('validates pvp leaderboard and season indices', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',

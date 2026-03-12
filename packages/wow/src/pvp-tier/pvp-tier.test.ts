@@ -1,9 +1,9 @@
 import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { pvpTier, pvpTierIndex, pvpTierMedia } from './pvp-tier';
 
 describe.concurrent('pvpTierApi', () => {
-  it('pvpTier should return a resource object with the correct path and namespace', ({ expect }) => {
+  test('pvpTier should return a resource object with the correct path and namespace', ({ expect }) => {
     const pvpTierId = 123;
     const resource = pvpTier(pvpTierId);
 
@@ -11,14 +11,14 @@ describe.concurrent('pvpTierApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('pvpTierIndex should return a resource object with the correct path and namespace', ({ expect }) => {
+  test('pvpTierIndex should return a resource object with the correct path and namespace', ({ expect }) => {
     const resource = pvpTierIndex();
 
     expect(resource.path).toBe(`${wowBasePath}/pvp-tier/index`);
     expect(resource.namespace).toBe('static');
   });
 
-  it('pvpTierMedia should return a resource object with the correct path and namespace', ({ expect }) => {
+  test('pvpTierMedia should return a resource object with the correct path and namespace', ({ expect }) => {
     const pvpTierId = 123;
     const resource = pvpTierMedia(pvpTierId);
 

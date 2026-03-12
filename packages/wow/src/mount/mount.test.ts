@@ -1,9 +1,9 @@
 import { wowBasePath, wowSearchBasePath } from '@blizzard-api/core';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { mount, mountIndex, mountSearch } from './mount';
 
 describe.concurrent('mountApi', () => {
-  it('mount should return a resource object with the correct path and namespace', ({ expect }) => {
+  test('mount should return a resource object with the correct path and namespace', ({ expect }) => {
     const mountId = 123;
     const resource = mount(mountId);
 
@@ -11,14 +11,14 @@ describe.concurrent('mountApi', () => {
     expect(resource.namespace).toBe('static');
   });
 
-  it('mountIndex should return a resource object with the correct path and namespace', ({ expect }) => {
+  test('mountIndex should return a resource object with the correct path and namespace', ({ expect }) => {
     const resource = mountIndex();
 
     expect(resource.path).toBe(`${wowBasePath}/mount/index`);
     expect(resource.namespace).toBe('static');
   });
 
-  it('mountSearch should return a resource object with the correct path and namespace', ({ expect }) => {
+  test('mountSearch should return a resource object with the correct path and namespace', ({ expect }) => {
     const resource = mountSearch({
       _page: 1,
       locale: 'en_US',
@@ -35,7 +35,7 @@ describe.concurrent('mountApi', () => {
     });
   });
 
-  it('mountSearch should return correct resource object when orderby is an array', ({ expect }) => {
+  test('mountSearch should return correct resource object when orderby is an array', ({ expect }) => {
     const resource = mountSearch({
       _page: 1,
       locale: 'en_US',

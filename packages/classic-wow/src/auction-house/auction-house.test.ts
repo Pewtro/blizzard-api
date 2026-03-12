@@ -1,8 +1,8 @@
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { auctionHouseIndex, auctions } from './auction-house';
 
 describe.concurrent('classicAuctionHouseApi', () => {
-  it('should return the correct resource for auctionHouseIndex', ({ expect }) => {
+  test('should return the correct resource for auctionHouseIndex', ({ expect }) => {
     const connectedRealmId = 123;
     const resource = auctionHouseIndex('dynamic-classic', connectedRealmId);
 
@@ -10,7 +10,7 @@ describe.concurrent('classicAuctionHouseApi', () => {
     expect(resource.namespace).toBe('dynamic-classic');
   });
 
-  it('should return the correct resource for auctions', ({ expect }) => {
+  test('should return the correct resource for auctions', ({ expect }) => {
     const connectedRealmId = 123;
     const auctionHouseId = 456;
     const resource = auctions('dynamic-classic1x', connectedRealmId, auctionHouseId);

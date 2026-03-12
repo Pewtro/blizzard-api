@@ -1,8 +1,8 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { characterPvpBracketStatistics, characterPvpSummary } from './character-pvp';
 
 describe('character pvp', () => {
-  it('bracket statistics', () => {
+  test('bracket statistics', () => {
     const realmSlug = 'example-realm';
     const characterName = 'example-character';
     const bracketId = '2v2';
@@ -15,7 +15,7 @@ describe('character pvp', () => {
     const result = characterPvpBracketStatistics(realmSlug, characterName, bracketId);
     expect(result).toEqual(expectedResource);
   });
-  it('summary', () => {
+  test('summary', () => {
     const realmSlug = 'example-realm';
     const characterName = 'example-character';
 

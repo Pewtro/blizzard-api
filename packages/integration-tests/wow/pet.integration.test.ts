@@ -1,6 +1,6 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import * as wow from '@blizzard-api/wow';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
@@ -13,7 +13,7 @@ import {
 } from '../../../generated/schemas/wow/pet';
 
 describe('wow pet integration', () => {
-  it('validates pet index and fetches pet detail', async ({ expect }) => {
+  test('validates pet index and fetches pet detail', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',
@@ -50,7 +50,7 @@ describe('wow pet integration', () => {
     }
   });
 
-  it('validates pet abilities and media', async ({ expect }) => {
+  test('validates pet abilities and media', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',

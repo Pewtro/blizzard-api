@@ -1,11 +1,11 @@
 import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
 import { wowCharacterBasePath } from '@blizzard-api/core';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { characterMediaSummary } from './character-media';
 import type { CharacterMediaSummaryResponse } from './types';
 
 describe('characterMediaSummary', () => {
-  it('should return the correct resource object for profile-classic namespace', () => {
+  test('should return the correct resource object for profile-classic namespace', () => {
     const namespace: Extract<BlizzardNamespaces, 'profile-classic1x' | 'profile-classic'> = 'profile-classic';
     const realmSlug = 'some-realm';
     const characterName = 'some-character';
@@ -18,7 +18,7 @@ describe('characterMediaSummary', () => {
     });
   });
 
-  it('should return the correct resource object for profile-classic1x namespace', () => {
+  test('should return the correct resource object for profile-classic1x namespace', () => {
     const namespace: Extract<BlizzardNamespaces, 'profile-classic1x' | 'profile-classic'> = 'profile-classic1x';
     const realmSlug = 'another-realm';
     const characterName = 'another-character';

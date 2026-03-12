@@ -1,6 +1,6 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import * as wow from '@blizzard-api/wow';
-import { describe, it } from 'vitest';
+import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
@@ -9,7 +9,7 @@ import {
 } from '../../../generated/schemas/wow/mythic-keystone-dungeon';
 
 describe('wow mythic-keystone-dungeon integration', () => {
-  it('validates dungeon index and details', async ({ expect }) => {
+  test('validates dungeon index and details', async ({ expect }) => {
     const client = await createBlizzardApiClient({
       key: environment.blizzardClientId,
       origin: 'eu',
