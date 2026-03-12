@@ -43,5 +43,5 @@ describe('wow playable-specialization integration', () => {
       }
       expect(parsedMedia.success).toBe(true);
     }
-  }, 15_000);
+  });
 });

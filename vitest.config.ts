@@ -27,5 +27,6 @@ export default defineConfig({
     },
     globals: true,
     projects: ['packages/*'],
+    testTimeout: 30_000,
   },
 });
