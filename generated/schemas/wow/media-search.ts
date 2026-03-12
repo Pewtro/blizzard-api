@@ -13,7 +13,7 @@ export const mediaSearchParametersSchema = baseSearchParametersSchema.extend({
 
 const mediaSearchResponseItemSchema = keyBaseSchema.extend({
   data: z.strictObject({
-    assets: z.array(mediaAssetSchema),
+    assets: z.array(mediaAssetSchema).optional(),
     id: z.number().optional(),
   }),
 });
