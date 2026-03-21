@@ -1,5 +1,11 @@
 # @blizzard-api/wow
 
+## 3.0.5
+
+### Patch Changes
+
+- d8d59cd: Add display_color as an optional property on each item in spells property on an equipped item
+
 ## 3.0.4
 
 ### Patch Changes
