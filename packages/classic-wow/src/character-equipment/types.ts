@@ -136,6 +136,7 @@ interface Socket {
 
 interface Spell {
   description: string;
+  display_color?: Color;
   spell: NameIdKey;
 }
 

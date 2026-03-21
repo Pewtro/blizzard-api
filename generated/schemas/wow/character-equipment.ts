@@ -75,6 +75,7 @@ const socketSchema = z.strictObject({
 
 const spellSchema = z.strictObject({
   description: z.string(),
+  display_color: colorSchema.optional(),
   spell: nameIdKeySchema,
 });
 
