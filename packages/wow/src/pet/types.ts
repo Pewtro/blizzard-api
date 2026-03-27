@@ -1,11 +1,11 @@
-import type { KeyBase, MediaAsset, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { KeyBase, MediaAsset, NameId, NameIdKey, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a pet ability index.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface PetAbilityIndexResponse extends ResponseBase {
-  abilities: Array<NameIdKey>;
+  abilities: Array<NullishNameIdKey>;
 }
 
 /**
@@ -33,7 +33,7 @@ export interface PetAbilityResponse extends NameId, ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface PetIndexResponse extends ResponseBase {
-  pets: Array<NameIdKey>;
+  pets: Array<NullishNameIdKey>;
 }
 
 /**
