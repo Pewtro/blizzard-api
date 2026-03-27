@@ -43,18 +43,10 @@ interface Specialization {
 }
 
 interface SpellTooltip {
-  cast_time?: '1.5 sec cast' | '2.5 sec cast' | '3 sec cast' | 'Channeled' | 'Instant' | 'Passive';
+  cast_time?: string;
   cooldown?: string;
   description?: string;
   power_cost?: string;
-  range?:
-    | '8-30 yd range'
-    | '15 yd range'
-    | '30 yd range'
-    | '40 yd range'
-    | '50 yd range'
-    | '55 yd range'
-    | '100 yd range'
-    | 'Melee Range';
+  range?: string;
   spell: KeyBase & { id: number; name?: string };
 }
