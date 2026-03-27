@@ -5,7 +5,7 @@ import type { Href, KeyBase, NameIdKey, ResponseBase } from '@blizzard-api/core'
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface ModifiedCraftingCategoryIndexResponse extends ResponseBase {
-  categories: Array<KeyBase & { id: number; name?: string }>;
+  categories: Array<KeyBase & { id: number; name?: null | string }>;
 }
 
 /**
@@ -46,5 +46,5 @@ export interface ModifiedCraftingReagentSlotTypeResponse extends ResponseBase {
 
 interface SlotType extends KeyBase {
   id: number;
-  name?: string;
+  name?: null | string;
 }

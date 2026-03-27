@@ -7,7 +7,7 @@ export const modifiedCraftingCategoryIndexResponseSchema = responseBaseSchema.ex
     keyBaseSchema.and(
       z.strictObject({
         id: z.number(),
-        name: z.string().optional(),
+        name: z.string().optional().nullable(),
       }),
     ),
   ),
@@ -25,7 +25,7 @@ export const modifiedCraftingIndexResponseSchema = responseBaseSchema.extend({
 
 const slotTypeSchema = keyBaseSchema.extend({
   id: z.number(),
-  name: z.string().optional(),
+  name: z.string().optional().nullable(),
 });
 
 export const modifiedCraftingReagentSlotTypeResponseSchema = responseBaseSchema.extend({
