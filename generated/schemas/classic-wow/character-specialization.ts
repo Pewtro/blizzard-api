@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { characterSchema, nameIdKeySchema, nameIdSchema, responseBaseSchema } from '../core';
 
 const spellTooltipSchema = z.strictObject({
-  cast_time: z.union([z.literal('Channeled'), z.literal('Instant'), z.literal('Instant cast'), z.literal('Passive')]),
+  cast_time: z.string(),
   cooldown: z.string().optional(),
   description: z.string(),
   power_cost: z.string().optional().nullable(),

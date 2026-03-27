@@ -26,7 +26,7 @@ interface SpecializationGroupItem {
 }
 
 interface SpellTooltip {
-  cast_time: 'Channeled' | 'Instant' | 'Instant cast' | 'Passive';
+  cast_time: string;
   cooldown?: string;
   description: string;
   power_cost?: null | string;
