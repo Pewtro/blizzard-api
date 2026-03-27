@@ -8,11 +8,7 @@ const socketSchema = z.strictObject({
 });
 
 const typeClassSchema = z.strictObject({
-  name: z.union([
-    z.literal('Endurance Conduit Slot'),
-    z.literal('Finesse Conduit Slot'),
-    z.literal('Potency Conduit Slot'),
-  ]),
+  name: z.string(),
   type: z.union([z.literal('ENDURANCE'), z.literal('FINESSE'), z.literal('POTENCY')]),
 });
 

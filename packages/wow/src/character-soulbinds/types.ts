@@ -31,6 +31,6 @@ interface Trait {
 }
 
 interface TypeClass {
-  name: 'Endurance Conduit Slot' | 'Finesse Conduit Slot' | 'Potency Conduit Slot';
+  name: string;
   type: 'ENDURANCE' | 'FINESSE' | 'POTENCY';
 }
