@@ -27,7 +27,7 @@ export interface PvpTalentResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface TalentIndexResponse extends ResponseBase {
-  talents: Array<NameIdKey>;
+  talents: Array<Omit<NameIdKey, 'name'> & { name: null | string }>;
 }
 
 /**

@@ -17,7 +17,13 @@ export const pvpTalentResponseSchema = responseBaseSchema.extend({
 });
 
 export const talentIndexResponseSchema = responseBaseSchema.extend({
-  talents: z.array(nameIdKeySchema),
+  talents: z.array(
+    nameIdKeySchema.omit({ name: true }).and(
+      z.strictObject({
+        name: z.string().nullable(),
+      }),
+    ),
+  ),
 });
 
 const rankDescriptionSchema = z.strictObject({
