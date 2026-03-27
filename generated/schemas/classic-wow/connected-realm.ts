@@ -28,8 +28,6 @@ const realmLockedStatusSchema = z.strictObject({
   is_locked_for_pct: z.boolean(),
 });
 
-const realmStatusSchema = z.union([z.literal('Down'), z.literal('Up')]);
-
 const realmStatusCapitalizedSchema = z.union([z.literal('DOWN'), z.literal('UP')]);
 
 const searchRealmPopulationSchema = z.strictObject({
@@ -101,7 +99,7 @@ export const connectedRealmResponseSchema = responseBaseSchema.extend({
   realm_locked_status: realmLockedStatusSchema.optional(),
   realms: z.array(realmSchema),
   status: z.strictObject({
-    name: realmStatusSchema,
+    name: z.string(),
     type: realmStatusCapitalizedSchema,
   }),
 });

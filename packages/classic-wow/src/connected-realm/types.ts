@@ -28,7 +28,7 @@ export interface ConnectedRealmResponse extends ResponseBase {
   pvp_season?: Href;
   realm_locked_status?: RealmLockedStatus;
   realms: Array<Realm>;
-  status: { name: RealmStatus; type: RealmStatusCapitalized };
+  status: { name: string; type: RealmStatusCapitalized };
 }
 /**
  * Connected Realm Search API parameters.
@@ -78,8 +78,6 @@ interface RealmLockedStatus {
 }
 
 type RealmPopulationCapitalized = 'FULL' | 'HIGH' | 'LOCKED' | 'LOW' | 'MEDIUM' | 'RECOMMENDED';
-
-type RealmStatus = 'Down' | 'Up';
 
 type RealmStatusCapitalized = 'DOWN' | 'UP';
 
