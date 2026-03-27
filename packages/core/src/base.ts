@@ -126,6 +126,10 @@ export interface NameId {
  */
 export interface NameIdKey extends KeyBase, NameId {}
 
+export interface NullishNameIdKey extends Omit<NameIdKey, 'name'> {
+  name: null | string;
+}
+
 /**
  * The standard structure to represent a World of Warcraft Realm.
  */

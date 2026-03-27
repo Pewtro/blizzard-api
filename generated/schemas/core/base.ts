@@ -46,6 +46,10 @@ export const nameIdSchema = z.strictObject({
 
 export const nameIdKeySchema = keyBaseSchema.extend(nameIdSchema.shape);
 
+export const nullishNameIdKeySchema = nameIdKeySchema.omit({ name: true }).extend({
+  name: z.string().nullable(),
+});
+
 export const realmSchema = keyBaseSchema.extend({
   id: z.number(),
   name: z.string().optional(),
