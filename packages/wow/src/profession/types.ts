@@ -1,4 +1,4 @@
-import type { KeyBase, MediaAsset, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { KeyBase, MediaAsset, NameId, NameIdKey, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a profession index.
@@ -65,7 +65,7 @@ export interface RecipeResponse extends NameId, ResponseBase {
 
 interface Category {
   name: string;
-  recipes: Array<NameIdKey>;
+  recipes: Array<NullishNameIdKey>;
 }
 
 interface CraftedQuantity {
