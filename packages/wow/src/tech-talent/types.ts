@@ -1,4 +1,4 @@
-import type { KeyBase, MediaAsset, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { KeyBase, MediaAsset, NameId, NameIdKey, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a tech talent index.
@@ -60,7 +60,7 @@ interface SpellTooltip {
   description: null | string;
   power_cost?: null | string;
   range?: string;
-  spell: NameIdKey;
+  spell: NullishNameIdKey;
 }
 
 interface TalentTree extends KeyBase {
