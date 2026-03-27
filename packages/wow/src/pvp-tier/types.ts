@@ -1,11 +1,11 @@
-import type { KeyBase, MediaAsset, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { KeyBase, MediaAsset, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a PvP tier index.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface PvpTierIndexResponse extends ResponseBase {
-  tiers: Array<NameIdKey>;
+  tiers: Array<NullishNameIdKey>;
 }
 
 /**
@@ -21,11 +21,13 @@ export interface PvpTierMediaResponse extends ResponseBase {
  * The response for a PvP tier.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface PvpTierResponse extends NameId, ResponseBase {
+export interface PvpTierResponse extends ResponseBase {
   bracket: Bracket;
+  id: number;
   max_rating: number;
   media: Media;
   min_rating: number;
+  name: null | string;
   rating_type: number;
 }
 
