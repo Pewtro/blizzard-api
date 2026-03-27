@@ -4,12 +4,12 @@ import { factionsSchema, keyBaseSchema, nameIdSchema, originsSchema, responseBas
 
 const journalInstanceSchema = keyBaseSchema.extend({
   id: z.number(),
-  name: z.null(),
+  name: z.string().nullable(),
 });
 
 const realmSchema = z.strictObject({
   id: z.number(),
-  name: z.null(),
+  name: z.string().nullable(),
   slug: z.string(),
 });
 

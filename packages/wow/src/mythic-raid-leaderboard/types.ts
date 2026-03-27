@@ -25,11 +25,11 @@ interface Guild extends NameId {
 
 interface JournalInstance extends KeyBase {
   id: number;
-  name: null;
+  name: null | string;
 }
 
 interface Realm {
   id: number;
-  name: null;
+  name: null | string;
   slug: string;
 }
