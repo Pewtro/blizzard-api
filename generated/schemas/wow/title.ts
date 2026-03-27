@@ -11,11 +11,11 @@ const titleSourceSchema = z.strictObject({
   quests: z.array(nameIdKeySchema).optional(),
   type: z.union([
     z.strictObject({
-      name: z.literal('Achievement'),
+      name: z.string(),
       type: z.literal('ACHIEVEMENT'),
     }),
     z.strictObject({
-      name: z.literal('Quest'),
+      name: z.string(),
       type: z.literal('QUEST'),
     }),
   ]),

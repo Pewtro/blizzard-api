@@ -20,5 +20,5 @@ export interface TitleResponse extends NameId, ResponseBase {
 interface TitleSource {
   achievements?: Array<NameIdKey>;
   quests?: Array<NameIdKey>;
-  type: { name: 'Achievement'; type: 'ACHIEVEMENT' } | { name: 'Quest'; type: 'QUEST' };
+  type: { name: string; type: 'ACHIEVEMENT' } | { name: string; type: 'QUEST' };
 }
