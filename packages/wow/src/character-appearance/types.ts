@@ -21,7 +21,7 @@ interface BorderEmblem {
 interface Choice {
   display_order: number;
   id: number;
-  name?: string;
+  name?: null | string;
 }
 
 interface Customization {

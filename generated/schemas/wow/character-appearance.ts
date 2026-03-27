@@ -34,7 +34,7 @@ const rgbWithIdSchema = z.strictObject({
 const choiceSchema = z.strictObject({
   display_order: z.number(),
   id: z.number(),
-  name: z.string().optional(),
+  name: z.string().optional().nullable(),
 });
 
 const customizationSchema = z.strictObject({
