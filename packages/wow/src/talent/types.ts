@@ -1,4 +1,4 @@
-import type { KeyBase, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { KeyBase, NameId, NameIdKey, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a pvp talent index.
@@ -27,7 +27,7 @@ export interface PvpTalentResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface TalentIndexResponse extends ResponseBase {
-  talents: Array<Omit<NameIdKey, 'name'> & { name: null | string }>;
+  talents: Array<NullishNameIdKey>;
 }
 
 /**

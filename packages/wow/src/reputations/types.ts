@@ -1,11 +1,11 @@
-import type { Faction, KeyBase, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { Faction, KeyBase, NameIdKey, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a reputation faction index.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface ReputationFactionIndexResponse extends ResponseBase {
-  factions: Array<NameIdKey>;
+  factions: Array<NullishNameIdKey>;
   root_factions: Array<NameIdKey>;
 }
 
