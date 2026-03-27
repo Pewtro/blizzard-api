@@ -5,6 +5,7 @@ import type {
   KeyBase,
   Locales,
   NameIdKey,
+  NullishNameIdKey,
   ResponseBase,
   SearchResponseWithoutResults,
 } from '@blizzard-api/core';
@@ -14,7 +15,7 @@ import type {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface MountIndexResponse extends ResponseBase {
-  mounts: Array<NameIdKey>;
+  mounts: Array<NullishNameIdKey>;
 }
 
 /**

@@ -7,12 +7,13 @@ import {
   keyBaseSchema,
   localesSchema,
   nameIdKeySchema,
+  nullishNameIdKeySchema,
   responseBaseSchema,
   searchResponseWithoutResultsSchema,
 } from '../core';
 
 export const mountIndexResponseSchema = responseBaseSchema.extend({
-  mounts: z.array(nameIdKeySchema),
+  mounts: z.array(nullishNameIdKeySchema),
 });
 
 const creatureDisplaySchema = keyBaseSchema.extend({
