@@ -9,6 +9,13 @@
     "isolatedModules": true,
     "verbatimModuleSyntax": true,
 
+    /* Types - no longer auto discovered in v6 */
+    "types": [
+      "node",
+      /* Vite specific settings */
+      "vitest/importMeta"
+    ],
+
     /* Strictness */
     "strict": true,
     "noUncheckedIndexedAccess": true,
@@ -16,9 +23,6 @@
 
     /* Default library settings */
     "lib": ["ESNext"],
-
-    /* Vite specific settings */
-    "types": ["vitest/importMeta"],
 
     /* We transpile with tsdown */
     "noEmit": true,
