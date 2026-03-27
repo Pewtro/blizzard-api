@@ -6,6 +6,7 @@ import {
   mediaAssetSchema,
   nameIdKeySchema,
   nameIdSchema,
+  nullishNameIdKeySchema,
   responseBaseSchema,
 } from '../core';
 
@@ -47,7 +48,7 @@ const pvpTalentSchema = z.strictObject({
 
 export const playableSpecializationResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   gender_description: genderNameSchema,
-  hero_talent_trees: z.array(nameIdKeySchema),
+  hero_talent_trees: z.array(nullishNameIdKeySchema),
   media: mediaSchema,
   playable_class: nameIdKeySchema,
   power_type: nameIdKeySchema,
