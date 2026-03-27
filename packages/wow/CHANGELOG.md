@@ -1,5 +1,32 @@
 # @blizzard-api/wow
 
+## 3.0.5
+
+### Patch Changes
+
+- e3492f1: Name for categories in profession skill tiers can be null in different locales
+- f12dd7a: Name for reputations can be null in different locales when retrieved from index
+- 68d373d: Name for pvp tier can be null in different locales
+- 5bb60b9: journal_instance and realm names can have strings on mythic raid leaderboard responses
+- 6c2cf06: Update conduit names to be strings instead of specific english values to work correctly across locales
+- 8a73d16: Update tech talent spell tooltip spells to have a nullish name in different locales
+- 875a4df: Update title.source names to match different locales
+- ce9162c: Name for talents can be null in different locales
+- 42f0b39: Update spelltooltip cast_time and range to be strings instead of specific english values
+- ec2b897: Add proper difficulty types to guild activities and remove non-translatable entries from journal names for difficulties
+- 906a9d2: Name for playable specialization hero talent trees can be null in different locales when retrieved from index
+- e84c45c: Name for mounts can be null in different locales when retrieved from index
+- 7936fb7: Update crafting index responses to have name be nullish
+- af2dad7: The name property from pet index and pet ability index can be null in non-english locales
+- 7778162: Update realm status to be string to match different locales
+- 0446e53: Name can be null when retrieved from encounter index
+- d8d59cd: Add display_color as an optional property on each item in spells property on an equipped item
+- 1f53f05: Name for quest areas can be null in different locales when retrieved from index
+- 1b509f4: Correct the type of previewItem.uniqueEquipped of an item to just be a string across locales
+- f36a264: Update customization choice name to be strings instead of specific english values to work correctly across locales
+- Updated dependencies [5a8ae86]
+  - @blizzard-api/core@3.0.2
+
 ## 3.0.4
 
 ### Patch Changes

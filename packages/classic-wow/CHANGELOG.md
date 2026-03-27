@@ -1,5 +1,14 @@
 # @blizzard-api/classic-wow
 
+## 3.0.4
+
+### Patch Changes
+
+- 7778162: Update realm status to be string to match different locales
+- 22e701f: Update cast_time in spell tooltips for specialization summary to be strings to match different locales
+- Updated dependencies [5a8ae86]
+  - @blizzard-api/core@3.0.2
+
 ## 3.0.3
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @blizzard-api/core
 
+## 3.0.2
+
+### Patch Changes
+
+- 5a8ae86: Add a version of NameIdKey type that has a name that can be null
+
 ## 3.0.1
 
 ### Patch Changes
