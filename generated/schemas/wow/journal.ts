@@ -7,12 +7,13 @@ import {
   localesSchema,
   nameIdKeySchema,
   nameIdSchema,
+  nullishNameIdKeySchema,
   responseBaseSchema,
   searchResponseWithoutResultsSchema,
 } from '../core';
 
 export const journalEncounterIndexResponseSchema = responseBaseSchema.extend({
-  encounters: z.array(nameIdKeySchema),
+  encounters: z.array(nullishNameIdKeySchema),
 });
 
 const itemSchema = z.strictObject({

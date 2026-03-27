@@ -5,6 +5,7 @@ import type {
   Locales,
   NameId,
   NameIdKey,
+  NullishNameIdKey,
   ResponseBase,
   SearchResponseWithoutResults,
 } from '@blizzard-api/core';
@@ -14,7 +15,7 @@ import type {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface JournalEncounterIndexResponse extends ResponseBase {
-  encounters: Array<NameIdKey>;
+  encounters: Array<NullishNameIdKey>;
 }
 
 /**
