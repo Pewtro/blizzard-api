@@ -96,18 +96,6 @@ const journalSubSection6Schema = z.strictObject({
   title: z.string().optional(),
 });
 
-const modeNameSchema = z.union([
-  z.literal('10 Player'),
-  z.literal('10 Player (Heroic)'),
-  z.literal('25 Player'),
-  z.literal('25 Player (Heroic)'),
-  z.literal('Heroic'),
-  z.literal('Mythic'),
-  z.literal('Mythic+ Dungeons'),
-  z.literal('Normal'),
-  z.literal('Raid Finder'),
-]);
-
 const modeTypeSchema = z.union([
   z.literal('HEROIC'),
   z.literal('LEGACY_10_MAN'),
@@ -121,7 +109,7 @@ const modeTypeSchema = z.union([
 ]);
 
 const modeSchema = z.strictObject({
-  name: modeNameSchema,
+  name: z.string(),
   type: modeTypeSchema,
 });
 

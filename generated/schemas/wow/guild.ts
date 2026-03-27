@@ -33,14 +33,6 @@ const characterAchievementSchema = z.strictObject({
   character: characterSchema,
 });
 
-const encounterActivitySchema = z.strictObject({
-  encounter: nameIdKeySchema,
-  mode: z.strictObject({
-    name: z.string(),
-    type: z.literal('MYTHIC'),
-  }),
-});
-
 const rgbWithIdSchema = z.strictObject({
   id: z.number(),
   rgba: colorSchema,
@@ -69,6 +61,18 @@ const criteriaSchema = z.strictObject({
   is_completed: z.boolean(),
 });
 
+const modeTypeSchema = z.union([
+  z.literal('HEROIC'),
+  z.literal('LEGACY_10_MAN'),
+  z.literal('LEGACY_10_MAN_HEROIC'),
+  z.literal('LEGACY_25_MAN'),
+  z.literal('LEGACY_25_MAN_HEROIC'),
+  z.literal('LFR'),
+  z.literal('MYTHIC'),
+  z.literal('MYTHIC_KEYSTONE'),
+  z.literal('NORMAL'),
+]);
+
 const playableSchema = keyBaseSchema.extend({
   id: z.number(),
 });
@@ -89,15 +93,6 @@ const achievementSchema = z.strictObject({
   id: z.number(),
 });
 
-const activityElementSchema = z.strictObject({
-  activity: z.strictObject({
-    type: z.string(),
-  }),
-  character_achievement: characterAchievementSchema.optional(),
-  encounter_completed: encounterActivitySchema.optional(),
-  timestamp: z.number(),
-});
-
 const crestSchema = z.strictObject({
   background: z.strictObject({
     color: rgbWithIdSchema,
@@ -111,6 +106,14 @@ const memberSchema = z.strictObject({
   rank: z.number(),
 });
 
+const encounterActivitySchema = z.strictObject({
+  encounter: nameIdKeySchema,
+  mode: z.strictObject({
+    name: z.string(),
+    type: modeTypeSchema,
+  }),
+});
+
 export const guildAchievementsResponseSchema = responseBaseSchema.extend({
   achievements: z.array(achievementSchema),
   category_progress: z.array(categoryProgressSchema),
@@ -120,9 +123,13 @@ export const guildAchievementsResponseSchema = responseBaseSchema.extend({
   total_quantity: z.number(),
 });
 
-export const guildActivityResponseSchema = responseBaseSchema.extend({
-  activities: z.array(activityElementSchema),
-  guild: guildSchema,
+const activityElementSchema = z.strictObject({
+  activity: z.strictObject({
+    type: z.string(),
+  }),
+  character_achievement: characterAchievementSchema.optional(),
+  encounter_completed: encounterActivitySchema.optional(),
+  timestamp: z.number(),
 });
 
 export const guildResponseSchema = responseBaseSchema.extend({
@@ -143,4 +150,9 @@ export const guildResponseSchema = responseBaseSchema.extend({
 export const guildRosterResponseSchema = responseBaseSchema.extend({
   guild: guildSchema,
   members: z.array(memberSchema),
+});
+
+export const guildActivityResponseSchema = responseBaseSchema.extend({
+  activities: z.array(activityElementSchema),
+  guild: guildSchema,
 });

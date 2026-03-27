@@ -96,7 +96,7 @@ interface Criteria {
 
 interface EncounterActivity {
   encounter: NameIdKey;
-  mode: { name: string; type: 'MYTHIC' };
+  mode: { name: string; type: ModeType };
 }
 
 interface Guild extends NameIdKey {
@@ -108,6 +108,17 @@ interface Member {
   character: RosterMemberCharacter;
   rank: number;
 }
+
+type ModeType =
+  | 'HEROIC'
+  | 'LEGACY_10_MAN'
+  | 'LEGACY_10_MAN_HEROIC'
+  | 'LEGACY_25_MAN'
+  | 'LEGACY_25_MAN_HEROIC'
+  | 'LFR'
+  | 'MYTHIC'
+  | 'MYTHIC_KEYSTONE'
+  | 'NORMAL';
 
 interface Playable extends KeyBase {
   id: number;

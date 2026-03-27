@@ -220,7 +220,7 @@ interface Media extends KeyBase {
 }
 
 interface Mode {
-  name: ModeName;
+  name: string;
   type: ModeType;
 }
 
@@ -230,17 +230,6 @@ interface ModeElement {
   mode: Mode;
   players: number;
 }
-
-type ModeName =
-  | '10 Player'
-  | '10 Player (Heroic)'
-  | '25 Player'
-  | '25 Player (Heroic)'
-  | 'Heroic'
-  | 'Mythic'
-  | 'Mythic+ Dungeons'
-  | 'Normal'
-  | 'Raid Finder';
 
 type ModeType =
   | 'HEROIC'
