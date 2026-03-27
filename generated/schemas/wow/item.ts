@@ -294,7 +294,7 @@ const previewItemSchema = z.strictObject({
   shield_block: armorSchema.optional(),
   spells: z.array(spellSchema).optional(),
   stats: z.array(statSchema).optional(),
-  unique_equipped: z.literal('Unique').optional(),
+  unique_equipped: z.string().optional(),
   weapon: weaponSchema.optional(),
 });
 
