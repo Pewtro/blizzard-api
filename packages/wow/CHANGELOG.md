@@ -1,5 +1,11 @@
 # @blizzard-api/wow
 
+## 3.0.6
+
+### Patch Changes
+
+- 9f80a2d: Make guild optional on character profile summary
+
 ## 3.0.5
 
 ### Patch Changes
