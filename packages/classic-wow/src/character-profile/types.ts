@@ -15,7 +15,7 @@ export interface CharacterProfileSummaryResponse extends ResponseBase {
   experience: number;
   faction: Faction;
   gender: Gender;
-  guild: Guild;
+  guild?: Guild;
   hunter_pets?: Href;
   id: number;
   //Hardcore only
