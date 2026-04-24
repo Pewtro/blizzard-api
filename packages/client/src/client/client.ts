@@ -1,6 +1,6 @@
 import { stringify } from 'node:querystring';
 import { getBlizzardApi } from '@blizzard-api/core';
-import type { Locales, Origins, Resource, ResourceResponse } from '@blizzard-api/core';
+import type { Locales, Origins, Resource } from '@blizzard-api/core';
 import ky from 'ky';
 import type {
   AccessToken,
@@ -203,13 +203,13 @@ export class BlizzardApiClient {
    * @param resource The resource to fetch. See {@link Resource}.
    * @param options Client options. See {@link ClientOptions}.
    * @param headers Additional headers to include in the request. This is deprecated and should be passed into the kyOptions as part of the client options instead.
-   * @returns The response from the Blizzard API. See {@link ResourceResponse}.
+   * @returns The response from the Blizzard API.
    */
   public async sendRequest<T, Protected extends boolean = false>(
     resource: Resource<T, object, Protected>,
     options?: Partial<ClientOptions>,
     headers?: Record<string, string>,
-  ): ResourceResponse<T> {
+  ): Promise<T> {
     const url = this.getRequestUrl(resource, options);
     const config = this.getRequestConfig(resource, options, headers);
 
@@ -231,6 +231,14 @@ export class BlizzardApiClient {
       },
       searchParams: { ...config.searchParams, ...kySearchParameters },
     });
+
+    // Some endpoints return a 204 status code with no content,
+    // while others return a 200 status code with an empty body.
+    // To handle both cases, we check for a 204 status code or a Content-Length header of 0
+    // before attempting to parse the response as JSON.
+    if (response.status === 204 || response.headers.get('Content-Length') === '0') {
+      return {} as T;
+    }
     const data = await response.json();
 
     return data;
