@@ -7,7 +7,7 @@
   "repository": "https://github.com/Pewtro/blizzard-api/tree/main/packages/client",
   "type": "module",
   "engines": {
-    "node": "^20.19.0 || ^22.13.0 || >=24"
+    "node": "^22.13.0 || >=24"
   },
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -40,7 +40,7 @@
     "hearthstone"
   ],
   "dependencies": {
-    "ky": "1.14.3"
+    "ky": "2.0.2"
   },
   "peerDependencies": {
     "@blizzard-api/core": "3.0.2"

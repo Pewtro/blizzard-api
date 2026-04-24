@@ -210,26 +210,19 @@ export class BlizzardApiClient {
     options?: Partial<ClientOptions>,
     headers?: Record<string, string>,
   ): Promise<T> {
-    const url = this.getRequestUrl(resource, options);
+    const url = new URL(this.getRequestUrl(resource, options));
     const config = this.getRequestConfig(resource, options, headers);
 
-    const kyHeaders = {};
-    for (const value of Object.entries(options?.kyOptions?.headers ?? {})) {
-      Object.assign(kyHeaders, value);
-    }
-
-    const kySearchParameters = {};
-    for (const value of Object.entries(options?.kyOptions?.searchParams ?? {})) {
-      Object.assign(kySearchParameters, value);
+    for (const [key, value] of Object.entries(config.searchParams)) {
+      url.searchParams.set(key, String(value));
     }
 
     const response = await this.ky.get<T>(url, {
       ...options?.kyOptions,
       headers: {
         ...config.headers,
-        ...kyHeaders,
+        ...options?.kyOptions?.headers,
       },
-      searchParams: { ...config.searchParams, ...kySearchParameters },
     });
 
     // Some endpoints return a 204 status code with no content,
