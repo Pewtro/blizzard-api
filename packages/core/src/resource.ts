@@ -41,13 +41,3 @@ export type Resource<
   parameters?: SearchOptions;
   path: string;
 };
-
-/**
- * Represents the response of a resource
- * @param T The response type of the resource
- * @example
- * type response = ResourceResponse<{ id: number }>;
- * const response: response = Promise.resolve({ id: 1 });
- * response.then((data) => console.log(data.id));
- */
-export type ResourceResponse<T = unknown> = Promise<T>;
