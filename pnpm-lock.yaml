@@ -12,8 +12,8 @@ importers:
         specifier: 2.31.0
         version: 2.31.0(@types/node@24.12.2)
       '@putstack/eslint-config-typescript':
-        specifier: 4.17.0
-        version: 4.17.0(@eslint/js@9.39.4)(@typescript-eslint/utils@8.59.0(eslint@10.2.1)(typescript@6.0.3))(eslint@10.2.1)(typescript-eslint@8.59.0(eslint@10.2.1)(typescript@6.0.3))(typescript@6.0.3)
+        specifier: 4.18.0
+        version: 4.18.0(@eslint/js@9.39.4)(@typescript-eslint/utils@8.59.0(eslint@10.2.1)(typescript@6.0.3))(eslint@10.2.1)(typescript-eslint@8.59.0(eslint@10.2.1)(typescript@6.0.3))(typescript@6.0.3)
       '@putstack/prettier-config':
         specifier: 2.0.0
         version: 2.0.0(prettier@3.8.3)
@@ -560,8 +560,8 @@ packages:
   '@polka/url@1.0.0-next.29':
     resolution: {integrity: sha512-wwQAWhWSuHaag8c4q/KN/vCoeOJYshAIvMQwD4GpSb3OiZklFfvAgmj0VCBBImRpuF/aFgIRzllXlVX93Jevww==}
 
-  '@putstack/eslint-config-typescript@4.17.0':
-    resolution: {integrity: sha512-1sAAYqkI5OZtaonChhpvgET6Wx2hhm3YBBBRT0pTQaP/pjYfeDjZn3jk5lZbzOqtKn4Wqe4SwSsP8OhbVTF7aQ==}
+  '@putstack/eslint-config-typescript@4.18.0':
+    resolution: {integrity: sha512-A5FJ9cs4AliuhqtTnzvrEocpT4R6uOdFNWavibmCzE5Af8km6IH0FPTv4iOQDI1bAyB7AjlW3px+fM7PVsdN7w==}
     engines: {node: ^20.9 || >=22}
     peerDependencies:
       '@eslint/js': ^9.20.0 || ^10.0.1
@@ -1404,14 +1404,14 @@ packages:
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0
 
-  eslint-plugin-perfectionist@5.7.0:
-    resolution: {integrity: sha512-WRHj7OZS/INutQ/gKN5C1ZGnMhkQ3oKZQAA2I7rl5yM8keBtSd9oj/qlJaHuwh5873FhMPqYlttcadF0YsTN7g==}
+  eslint-plugin-perfectionist@5.9.0:
+    resolution: {integrity: sha512-8TWzg02zmnBdZwCkWLi8jhzqXI+fE7Z/RwV8SL6xD45tJ8Bp3wGuYL2XtQgfe/Wd0eBqOUX+s6ey73IyszvKTA==}
     engines: {node: ^20.0.0 || >=22.0.0}
     peerDependencies:
       eslint: ^8.45.0 || ^9.0.0 || ^10.0.0
 
-  eslint-plugin-sonarjs@4.0.2:
-    resolution: {integrity: sha512-BTcT1zr1iTbmJtVlcesISwnXzh+9uhf9LEOr+RRNf4kR8xA0HQTPft4oiyOCzCOGKkpSJxjR8ZYF6H7VPyplyw==}
+  eslint-plugin-sonarjs@4.0.3:
+    resolution: {integrity: sha512-5drkJKLC9qQddIiaATV0e8+ygbUc7b0Ti6VB7M2d3jmKNh3X0RaiIJYTs3dr9xnlhlrxo+/s1FoO3Jgv6O/c7g==}
     peerDependencies:
       eslint: ^8.0.0 || ^9.0.0 || ^10.0.0
 
@@ -3089,7 +3089,7 @@ snapshots:
 
   '@polka/url@1.0.0-next.29': {}
 
-  '@putstack/eslint-config-typescript@4.17.0(@eslint/js@9.39.4)(@typescript-eslint/utils@8.59.0(eslint@10.2.1)(typescript@6.0.3))(eslint@10.2.1)(typescript-eslint@8.59.0(eslint@10.2.1)(typescript@6.0.3))(typescript@6.0.3)':
+  '@putstack/eslint-config-typescript@4.18.0(@eslint/js@9.39.4)(@typescript-eslint/utils@8.59.0(eslint@10.2.1)(typescript@6.0.3))(eslint@10.2.1)(typescript-eslint@8.59.0(eslint@10.2.1)(typescript@6.0.3))(typescript@6.0.3)':
     dependencies:
       '@eslint/js': 9.39.4
       '@typescript-eslint/utils': 8.59.0(eslint@10.2.1)(typescript@6.0.3)
@@ -3098,8 +3098,8 @@ snapshots:
       eslint-plugin-de-morgan: 2.1.1(eslint@10.2.1)
       eslint-plugin-depend: 1.5.0(eslint@10.2.1)
       eslint-plugin-import-x: 4.16.2(@typescript-eslint/utils@8.59.0(eslint@10.2.1)(typescript@6.0.3))(eslint@10.2.1)
-      eslint-plugin-perfectionist: 5.7.0(eslint@10.2.1)(typescript@6.0.3)
-      eslint-plugin-sonarjs: 4.0.2(eslint@10.2.1)
+      eslint-plugin-perfectionist: 5.9.0(eslint@10.2.1)(typescript@6.0.3)
+      eslint-plugin-sonarjs: 4.0.3(eslint@10.2.1)
       eslint-plugin-unicorn: 64.0.0(eslint@10.2.1)
       typescript: 6.0.3
       typescript-eslint: 8.59.0(eslint@10.2.1)(typescript@6.0.3)
@@ -3825,7 +3825,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-perfectionist@5.7.0(eslint@10.2.1)(typescript@6.0.3):
+  eslint-plugin-perfectionist@5.9.0(eslint@10.2.1)(typescript@6.0.3):
     dependencies:
       '@typescript-eslint/utils': 8.59.0(eslint@10.2.1)(typescript@6.0.3)
       eslint: 10.2.1
@@ -3834,7 +3834,7 @@ snapshots:
       - supports-color
       - typescript
 
-  eslint-plugin-sonarjs@4.0.2(eslint@10.2.1):
+  eslint-plugin-sonarjs@4.0.3(eslint@10.2.1):
     dependencies:
       '@eslint-community/regexpp': 4.12.2
       builtin-modules: 3.3.0
