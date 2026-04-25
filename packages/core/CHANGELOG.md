@@ -1,5 +1,11 @@
 # @blizzard-api/core
 
+## 3.0.3
+
+### Patch Changes
+
+- cc9dd15: Remove ResourceResponse type as ResourceResponse<T> was equivalent to Promise<T>
+
 ## 3.0.2
 
 ### Patch Changes
