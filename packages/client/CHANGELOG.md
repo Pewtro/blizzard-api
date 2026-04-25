@@ -1,5 +1,21 @@
 # @blizzard-api/client
 
+## 4.0.0
+
+### Major Changes
+
+- bbc9b55: Update ky to v2. This means dropping node 20 support.
+
+### Minor Changes
+
+- bbc9b55: Adjust how headers and search parameters are passed along to the request in sendReqest
+- 1214671: Return an empty object if the API returns 204 or has a content-length header with 0. This is preparation for ky 2.0 where calling .json() on those would result in an error being thrown.
+
+### Patch Changes
+
+- Updated dependencies [cc9dd15]
+  - @blizzard-api/core@3.0.3
+
 ## 3.0.2
 
 ### Patch Changes
