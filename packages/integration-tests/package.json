@@ -4,7 +4,11 @@
   "license": "MIT",
   "author": "Putro",
   "description": "Integration tests for the Blizzard Battle.net API client",
-  "repository": "https://github.com/Pewtro/blizzard-api/tree/main/packages/integration-tests",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pewtro/blizzard-api.git",
+    "directory": "packages/integration-tests"
+  },
   "type": "module",
   "engines": {
     "node": "^20.19.0 || ^22.13.0 || >=24"

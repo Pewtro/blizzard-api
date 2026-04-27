@@ -4,7 +4,11 @@
   "license": "MIT",
   "author": "Putro",
   "description": "A series of helpers to interact with the World of Warcraft Classic Blizzard API",
-  "repository": "https://github.com/Pewtro/blizzard-api/tree/main/packages/classic-wow",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pewtro/blizzard-api.git",
+    "directory": "packages/classic-wow"
+  },
   "type": "module",
   "engines": {
     "node": "^20.19.0 || ^22.13.0 || >=24"

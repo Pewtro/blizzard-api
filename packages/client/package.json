@@ -4,7 +4,11 @@
   "license": "MIT",
   "author": "Putro",
   "description": "A node.js client to integrate with the blizzard battle.net api.",
-  "repository": "https://github.com/Pewtro/blizzard-api/tree/main/packages/client",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pewtro/blizzard-api.git",
+    "directory": "packages/client"
+  },
   "type": "module",
   "engines": {
     "node": "^22.13.0 || >=24"
