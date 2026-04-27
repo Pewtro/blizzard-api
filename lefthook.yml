@@ -1,0 +1,8 @@
+pre-commit:
+  parallel: true
+  jobs:
+    - run: pnpm --silent lint:fix {staged_files}
+      glob: '*.{ts,tsx,js,jsx,mjs}'
+
+    - run: pnpm prettier --write {staged_files}
+      glob: '*.{ts,tsx,js,jsx,mjs,md,mdx,yaml,yml,json}'

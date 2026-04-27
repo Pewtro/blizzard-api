@@ -39,7 +39,7 @@
     "eslint": "10.2.1",
     "eslint-plugin-jsdoc": "62.9.0",
     "husky": "9.1.7",
-    "lint-staged": "16.4.0",
+    "lefthook": "2.1.6",
     "npm-run-all2": "8.0.4",
     "prettier": "3.8.3",
     "publint": "0.3.18",
@@ -57,6 +57,7 @@
   "pnpm": {
     "onlyBuiltDependencies": [
       "esbuild",
+      "lefthook",
       "unrs-resolver"
     ]
   },
@@ -77,13 +78,5 @@
     "test:watch": "vitest watch",
     "test": "vitest run --testTimeout 15000",
     "typecheck": "tsc"
-  },
-  "lint-staged": {
-    "*.{ts,tsx,js,jsx,mjs,md,mdx,yaml,yml,json}": [
-      "prettier --write"
-    ],
-    "*.{ts,tsx,js,jsx,mjs}": [
-      "pnpm --silent lint:fix"
-    ]
   }
 }
