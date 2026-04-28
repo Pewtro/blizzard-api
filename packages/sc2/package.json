@@ -17,7 +17,7 @@
   "types": "./dist/index.d.ts",
   "exports": {
     "import": {
-      "@blizzard-api/sc2-local": "./src/index.ts",
+      "@blizzard-api/source": "./src/index.ts",
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
     }
