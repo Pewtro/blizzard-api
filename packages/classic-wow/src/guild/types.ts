@@ -1,4 +1,14 @@
-import type { Character, Color, Faction, Href, KeyBase, NameIdKey, Realm, ResponseBase } from '@blizzard-api/core';
+import type {
+  Character,
+  Color,
+  Faction,
+  Factions,
+  Href,
+  KeyBase,
+  NameIdKey,
+  Realm,
+  ResponseBase,
+} from '@blizzard-api/core';
 
 export interface GuildAchievementsClassicEraResponse extends ResponseBase {
   guild: Guild;
@@ -111,6 +121,7 @@ interface RgbWithId {
 }
 
 interface RosterMemberCharacter extends Character {
+  faction: { type: Factions };
   level: number;
   playable_class: Playable;
   playable_race: Playable;

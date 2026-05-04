@@ -4,6 +4,7 @@ import {
   characterSchema,
   colorSchema,
   factionSchema,
+  factionsSchema,
   hrefSchema,
   keyBaseSchema,
   nameIdKeySchema,
@@ -65,6 +66,9 @@ const playableSchema = keyBaseSchema.extend({
 });
 
 const rosterMemberCharacterSchema = characterSchema.extend({
+  faction: z.strictObject({
+    type: factionsSchema,
+  }),
   level: z.number(),
   playable_class: playableSchema,
   playable_race: playableSchema,
