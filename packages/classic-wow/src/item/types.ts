@@ -24,7 +24,7 @@ export interface ItemClassIndexResponse extends ResponseBase {
  */
 export interface ItemClassResponse extends ResponseBase {
   class_id: number;
-  item_subclasses: Array<NameIdKey>;
+  item_subclasses?: Array<NameIdKey>;
   name: string;
 }
 

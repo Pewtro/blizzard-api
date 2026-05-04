@@ -57,16 +57,16 @@ describe('classic-wow item integration', async () => {
       expect(parsedDetail.success).toBe(true);
 
       // eslint-disable-next-line sonarjs/pseudo-random
-      const subClassIndex = Math.floor(Math.random() * detail.item_subclasses.length);
-      const subClass = detail.item_subclasses[subClassIndex];
+      const subClassIndex = Math.floor(Math.random() * (detail.item_subclasses?.length ?? 0));
+      const subClass = detail.item_subclasses?.[subClassIndex] ?? { id: 0 };
 
-      const subDetail = await client.sendRequest(itemSubClass('static-classic1x', foundItemClass!.id, subClass!.id));
+      const subDetail = await client.sendRequest(itemSubClass('static-classic1x', foundItemClass!.id, subClass?.id));
       const parsedSubDetail = itemSubClassResponseSchema.safeParse(subDetail);
       if (!parsedSubDetail.success) {
         console.error(
           'Item subclass detail validation failed:',
           foundItemClass!.id,
-          subClass!.id,
+          subClass.id,
           treeifyError(parsedSubDetail.error),
         );
       }
@@ -123,16 +123,16 @@ describe('classic-wow item integration', async () => {
       expect(parsedDetail.success).toBe(true);
 
       // eslint-disable-next-line sonarjs/pseudo-random
-      const subClassIndex = Math.floor(Math.random() * detail.item_subclasses.length);
-      const subClass = detail.item_subclasses[subClassIndex];
+      const subClassIndex = Math.floor(Math.random() * (detail.item_subclasses?.length ?? 0));
+      const subClass = detail.item_subclasses?.[subClassIndex] ?? { id: 0 };
 
-      const subDetail = await client.sendRequest(itemSubClass('static-classic', foundItemClass!.id, subClass!.id));
+      const subDetail = await client.sendRequest(itemSubClass('static-classic', foundItemClass!.id, subClass.id));
       const parsedSubDetail = itemSubClassResponseSchema.safeParse(subDetail);
       if (!parsedSubDetail.success) {
         console.error(
           'Item subclass detail validation failed:',
           foundItemClass!.id,
-          subClass!.id,
+          subClass.id,
           treeifyError(parsedSubDetail.error),
         );
       }

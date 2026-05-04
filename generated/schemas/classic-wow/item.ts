@@ -18,7 +18,7 @@ export const itemClassIndexResponseSchema = responseBaseSchema.extend({
 
 export const itemClassResponseSchema = responseBaseSchema.extend({
   class_id: z.number(),
-  item_subclasses: z.array(nameIdKeySchema),
+  item_subclasses: z.array(nameIdKeySchema).optional(),
   name: z.string(),
 });
 
