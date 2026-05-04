@@ -41,8 +41,9 @@ export interface ItemMediaResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface ItemResponse extends NameId, ResponseBase {
+  appearances?: Array<KeyBase & { id: number }>;
   description?: string;
-  inventory_type: InventoryType;
+  inventory_type: InventoryTypeName;
   is_equippable: boolean;
   is_stackable: boolean;
   item_class: NameIdKey;
@@ -83,9 +84,9 @@ export interface ItemSearchResponse extends SearchResponseWithoutResults {
 export interface ItemSubClassResponse extends ResponseBase {
   class_id: number;
   display_name: string;
-  hide_subclass_in_tooltips: boolean;
+  hide_subclass_in_tooltips?: boolean;
   subclass_id: number;
-  verbose_name: string;
+  verbose_name?: string;
 }
 
 interface Armor {
@@ -113,39 +114,58 @@ interface Durability {
   value: number;
 }
 
-interface InventoryType {
+type InventoryType = //Armor
+  | 'BACK'
+  | 'CHEST'
+  | 'FEET'
+  | 'FINGER'
+  | 'HANDS'
+  | 'HEAD'
+  | 'LEGS'
+  | 'NECK'
+  | 'SHOULDER'
+  | 'TRINKET'
+  | 'WAIST'
+  | 'WRIST'
+  //Weapons
+  | 'RANGED'
+  | 'THROWN'
+  | 'TWOHWEAPON'
+  | 'WEAPON'
+  | 'WEAPONMAINHAND'
+  | 'WEAPONOFFHAND'
+  //Misc
+  | 'BAG'
+  | 'NON_EQUIP'
+  | 'SHIRT'
+  | 'TABARD';
+
+interface InventoryTypeName {
+  name: string;
+  type: InventoryType;
+}
+
+interface InventoryTypeNameFromSearch {
   name: Record<Locales, string>;
-  type: //Armor
-    | 'BACK'
-    | 'BAG'
-    | 'CHEST'
-    | 'FEET'
-    | 'FINGER'
-    | 'HANDS'
-    | 'HEAD'
-    | 'LEGS'
-    | 'NECK'
-    | 'NON_EQUIP'
-    | 'SHIRT'
-    | 'SHOULDER'
-    | 'TABARD'
-    | 'TRINKET'
-    //Weapons
-    | 'TWOHWEAPON'
-    //Misc
-    | 'WAIST'
-    | 'WRIST';
+  type: InventoryType;
 }
 
 interface ItemQuality {
-  name: Record<Locales, string>;
-  type: 'ARTIFACT' | 'COMMON' | 'EPIC' | 'HEIRLOOM' | 'LEGENDARY' | 'POOR' | 'RARE' | 'UNCOMMON';
+  name: string;
+  type: ItemQualityType;
 }
+interface ItemQualityFromSearch {
+  name: Record<Locales, string>;
+  type: ItemQualityType;
+}
+
+type ItemQualityType = 'ARTIFACT' | 'COMMON' | 'EPIC' | 'HEIRLOOM' | 'LEGENDARY' | 'POOR' | 'RARE' | 'UNCOMMON';
 
 interface ItemSearchResponseItem extends KeyBase {
   data: {
+    appearances?: Array<{ id: number }>;
     id: number;
-    inventory_type: InventoryType;
+    inventory_type: InventoryTypeNameFromSearch;
     is_equippable: boolean;
     is_stackable: boolean;
     item_class: { id: number; name: Record<Locales, string> };
@@ -153,10 +173,10 @@ interface ItemSearchResponseItem extends KeyBase {
     level: number;
     max_count: number;
     media: { id: number };
-    name: Record<Locales, string>;
+    name: Record<Locales, string | undefined>;
     purchase_price: number;
     purchase_quantity: number;
-    quality: ItemQuality;
+    quality: ItemQualityFromSearch;
     required_level: number;
     sell_price: number;
   };
@@ -178,7 +198,7 @@ interface PreviewItem {
   crafting_reagent?: string;
   description?: string;
   durability?: Durability;
-  inventory_type: InventoryType;
+  inventory_type: InventoryTypeName;
   is_subclass_hidden?: boolean;
   item: Media;
   item_class: NameIdKey;
@@ -189,7 +209,7 @@ interface PreviewItem {
   quality: ItemQuality;
   recipe?: Recipe;
   requirements?: Requirements;
-  sell_price?: number;
+  sell_price?: { display_strings: RecipeItemDisplayStrings; value: number };
   shield_block?: Armor;
   spells?: Array<Spell>;
   stats?: Array<Stat>;
@@ -210,7 +230,7 @@ interface RecipeItem {
     type: string;
   };
   durability: Durability;
-  inventory_type: InventoryType;
+  inventory_type: InventoryTypeName;
   item: Media;
   item_class: NameIdKey;
   item_subclass: NameIdKey;
@@ -243,33 +263,29 @@ interface Stat {
   display: Display;
   is_negated?: boolean;
   type: {
-    name: StatType;
+    name: string;
     type: StatTypeCapitalized;
   };
   value: number;
 }
 
-type StatType =
-  | 'Agility'
-  | 'Critical Strike'
-  | 'Haste'
-  | 'Intellect'
-  | 'Mastery'
-  | 'Stamina'
-  | 'Strength'
-  | 'Versatility';
-
 type StatTypeCapitalized =
   | 'AGILITY'
+  | 'ARCANE_RESISTANCE'
   | 'CRIT_RATING'
+  | 'FIRE_RESISTANCE'
+  | 'FROST_RESISTANCE'
   | 'HASTE_RATING'
   | 'INTELLECT'
   | 'MASTERY'
+  | 'NATURE_RESISTANCE'
+  | 'SHADOW_RESISTANCE'
   | 'STAMINA'
   | 'STRENGTH'
   | 'VERSATILITY';
 
 interface Weapon {
+  additional_damage?: Array<Damage>;
   attack_speed: Durability;
   damage: Damage;
   dps: Durability;
