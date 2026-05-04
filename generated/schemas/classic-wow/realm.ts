@@ -58,7 +58,12 @@ export const realmTimezoneSchema = z.union([
   z.literal('Europe/Paris'),
 ]);
 
-export const realmTypeCapitalizedSchema = z.union([z.literal('NORMAL'), z.literal('RP')]);
+export const realmTypeCapitalizedSchema = z.union([
+  z.literal('NORMAL'),
+  z.literal('PVP'),
+  z.literal('PVP_RP'),
+  z.literal('RP'),
+]);
 
 export const realmSearchParametersSchema = baseSearchParametersSchema.extend({
   timezone: realmTimezoneSchema.optional(),
@@ -70,7 +75,7 @@ const realmSearchResponseItemSchema = keyBaseSchema.extend({
     id: z.number(),
     is_tournament: z.boolean(),
     locale: realmLocalesSchema,
-    name: z.record(localesSchema, z.string()),
+    name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
     region: z.strictObject({
       id: z.number(),
       name: z.record(localesSchema, z.string()),
@@ -78,7 +83,7 @@ const realmSearchResponseItemSchema = keyBaseSchema.extend({
     slug: z.string(),
     timezone: realmTimezoneSchema,
     type: z.strictObject({
-      name: z.string(),
+      name: z.record(localesSchema, z.string()),
       type: realmTypeCapitalizedSchema,
     }),
   }),

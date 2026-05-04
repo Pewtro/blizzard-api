@@ -97,7 +97,7 @@ export type RealmTimezone =
   | 'Australia/Melbourne'
   | 'Europe/Paris';
 
-export type RealmTypeCapitalized = 'NORMAL' | 'RP';
+export type RealmTypeCapitalized = 'NORMAL' | 'PVP' | 'PVP_RP' | 'RP';
 
 /**
  * The type of a realm, capitalized and shortended).
@@ -109,10 +109,10 @@ interface RealmSearchResponseItem extends KeyBase {
     id: number;
     is_tournament: boolean;
     locale: RealmLocales;
-    name: Record<Locales, string>;
+    name: Record<Locales, string | undefined>;
     region: { id: number; name: Record<Locales, string> };
     slug: string;
     timezone: RealmTimezone;
-    type: { name: string; type: RealmTypeCapitalized };
+    type: { name: Record<Locales, string>; type: RealmTypeCapitalized };
   };
 }
