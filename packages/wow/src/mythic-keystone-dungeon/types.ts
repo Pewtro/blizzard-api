@@ -62,7 +62,7 @@ export interface MythicKeystoneSeasonIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface MythicKeystoneSeasonResponse extends ResponseBase {
-  end_timestamp: number;
+  end_timestamp?: number;
   id: number;
   periods: Array<Period>;
   season_name: null | string;

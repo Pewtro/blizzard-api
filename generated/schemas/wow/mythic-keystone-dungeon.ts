@@ -36,7 +36,7 @@ export const mythicKeystoneSeasonIndexResponseSchema = responseBaseSchema.extend
 });
 
 export const mythicKeystoneSeasonResponseSchema = responseBaseSchema.extend({
-  end_timestamp: z.number(),
+  end_timestamp: z.number().optional(),
   id: z.number(),
   periods: z.array(periodSchema),
   season_name: z.string().nullable(),
