@@ -1,7 +1,7 @@
 import type { Resource } from '@blizzard-api/core';
 import { describe, expect, test } from 'vitest';
-import { getDeck } from './decks';
 import type { DeckResponse, DeckSearchParameters } from './types';
+import { getDeck } from './index';
 
 describe('getDeck', () => {
   test('should return a Resource with encoded code parameter when code is provided', () => {

@@ -1,7 +1,7 @@
-import { cardBackSearch, fetchOneCardBack } from './card-backs/card-backs';
-import { cardSearch, fetchOneCard } from './cards/cards';
-import { getDeck } from './decks/decks';
-import { allMetadata, specificMetadata } from './metadata/metadata';
+import { cardBackSearch, fetchOneCardBack } from './card-backs/index';
+import { cardSearch, fetchOneCard } from './cards/index';
+import { getDeck } from './decks/index';
+import { allMetadata, specificMetadata } from './metadata/index';
 
 const hs = {
   //Card Backs
@@ -20,14 +20,14 @@ export default hs;
 export { hs };
 
 //Card Backs
-export * from './card-backs/card-backs';
+export * from './card-backs/index';
 export type * from './card-backs/types';
 //Cards
-export * from './cards/cards';
+export * from './cards/index';
 export type * from './cards/types';
 //Decks
-export * from './decks/decks';
+export * from './decks/index';
 export type * from './decks/types';
 //Metadata
-export * from './metadata/metadata';
+export * from './metadata/index';
 export type * from './metadata/types';

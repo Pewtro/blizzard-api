@@ -1,7 +1,7 @@
 import type { Locales } from '@blizzard-api/core';
 import { describe, expect, test } from 'vitest';
-import { cardBackSearch, fetchOneCardBack } from './card-backs';
 import type { CardBackSearchParameters } from './types';
+import { cardBackSearch, fetchOneCardBack } from './index';
 
 describe('cardBackSearch', () => {
   test('should return the correct resource object for card back search', () => {

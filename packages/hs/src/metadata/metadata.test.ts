@@ -1,7 +1,7 @@
 import type { Resource } from '@blizzard-api/core';
 import { describe, expect, test } from 'vitest';
-import { allMetadata, specificMetadata } from './metadata';
 import type { AllMetadataResponse, SpecificMetadataResponse } from './types';
+import { allMetadata, specificMetadata } from './index';
 
 describe('metadata', () => {
   describe('allMetadata', () => {

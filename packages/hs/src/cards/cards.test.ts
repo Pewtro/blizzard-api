@@ -1,7 +1,7 @@
 import type { Locales } from '@blizzard-api/core';
 import { describe, expect, test } from 'vitest';
-import { cardSearch, fetchOneCard } from './cards';
 import type { CardSearchParameters } from './types';
+import { cardSearch, fetchOneCard } from './index';
 
 describe('cardSearch', () => {
   test('should return correct parameters for single values', () => {
