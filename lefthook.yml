@@ -3,6 +3,8 @@ pre-commit:
   jobs:
     - run: pnpm --silent lint:fix {staged_files}
       glob: '*.{ts,tsx,js,jsx,mjs}'
+      stage_fixed: true
 
     - run: pnpm prettier --write {staged_files}
       glob: '*.{ts,tsx,js,jsx,mjs,md,mdx,yaml,yml,json}'
+      stage_fixed: true
