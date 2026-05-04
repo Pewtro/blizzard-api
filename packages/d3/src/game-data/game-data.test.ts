@@ -1,6 +1,6 @@
 import { d3GameDataBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
-import { era, eraIndex, eraLeaderboard, season, seasonIndex, seasonLeaderboard } from '../game-data/game-data';
+import { era, eraIndex, eraLeaderboard, season, seasonIndex, seasonLeaderboard } from './index';
 
 describe.concurrent('game-data', () => {
   test('seasonIndex should return the correct resource path', ({ expect }) => {

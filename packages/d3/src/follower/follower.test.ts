@@ -1,6 +1,6 @@
 import { d3BasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
-import { follower } from './follower';
+import { follower } from './index';
 
 describe.concurrent('follower', () => {
   test('should return the correct resource path', ({ expect }) => {

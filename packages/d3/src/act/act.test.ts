@@ -1,6 +1,6 @@
 import { d3BasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
-import { act, actIndex } from './act';
+import { act, actIndex } from './index';
 
 describe.concurrent('act', () => {
   test('should return the act resource', ({ expect }) => {

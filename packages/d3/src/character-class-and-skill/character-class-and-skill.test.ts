@@ -1,6 +1,6 @@
 import { d3BasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
-import { characterClass, skill } from './character-class-and-skill';
+import { characterClass, skill } from './index';
 
 describe.concurrent('characterClass', () => {
   test('returns the correct resource path', ({ expect }) => {

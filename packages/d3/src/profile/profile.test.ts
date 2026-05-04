@@ -1,6 +1,6 @@
 import { d3ProfileBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
-import { account, accountHero, accountHeroFollowerItems, accountHeroItems } from './profile';
+import { account, accountHero, accountHeroFollowerItems, accountHeroItems } from './index';
 
 const battleTag = 'example#1234';
 const heroId = 42;

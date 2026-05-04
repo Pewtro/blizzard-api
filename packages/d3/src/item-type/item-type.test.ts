@@ -1,6 +1,6 @@
 import { d3BasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
-import { itemType, itemTypeIndex } from './item-type';
+import { itemType, itemTypeIndex } from './index';
 
 describe.concurrent('itemTypeIndex', () => {
   test('should return the correct resource path', ({ expect }) => {

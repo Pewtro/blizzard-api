@@ -1,6 +1,6 @@
 import { d3BasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
-import { artisan, recipe } from './artisan-and-recipe';
+import { artisan, recipe } from './index';
 
 describe.concurrent('artisan and recipe', () => {
   test('should return the correct resource path', ({ expect }) => {
