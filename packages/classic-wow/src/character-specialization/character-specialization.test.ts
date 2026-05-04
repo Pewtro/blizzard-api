@@ -1,8 +1,8 @@
 import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
 import { wowCharacterBasePath } from '@blizzard-api/core';
 import { describe, expect, test } from 'vitest';
-import { characterSpecializationsSummary } from './character-specialization';
 import type { CharacterSpecializationsSummaryResponse } from './types';
+import { characterSpecializationsSummary } from './index';
 
 describe('characterSpecializationsSummary', () => {
   test('should return the correct resource object for profile-classic namespace', () => {

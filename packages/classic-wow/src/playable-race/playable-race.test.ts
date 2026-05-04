@@ -1,7 +1,7 @@
 import { wowBasePath } from '@blizzard-api/core';
 import type { BlizzardNamespaces } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
-import { playableRace, playableRaceIndex } from './playable-race';
+import { playableRace, playableRaceIndex } from './index';
 
 const namespace: BlizzardNamespaces = 'static-classic1x';
 describe.concurrent('playableRaceApi', () => {

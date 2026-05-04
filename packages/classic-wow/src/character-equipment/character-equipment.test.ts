@@ -1,7 +1,7 @@
 import type { BlizzardNamespaces } from '@blizzard-api/core';
 import { wowCharacterBasePath } from '@blizzard-api/core';
 import { describe, expect, test } from 'vitest';
-import { characterEquipmentSummary } from './character-equipment';
+import { characterEquipmentSummary } from './index';
 
 describe('characterEquipmentSummary', () => {
   test('should return the correct resource for profile-classic namespace', () => {

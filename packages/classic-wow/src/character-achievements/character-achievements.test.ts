@@ -1,7 +1,7 @@
 import { wowCharacterBasePath } from '@blizzard-api/core';
 import type { BlizzardNamespaces } from '@blizzard-api/core';
 import { describe, expect, test } from 'vitest';
-import { characterAchievementsSummary, characterAchievementStatistics } from './character-achievements';
+import { characterAchievementsSummary, characterAchievementStatistics } from './index';
 
 describe('characterAchievementsSummary', () => {
   test('should return the correct resource path for character achievements summary', () => {

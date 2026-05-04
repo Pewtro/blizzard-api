@@ -1,6 +1,6 @@
 import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
-import { guildCrestBorder, guildCrestComponentsIndex, guildCrestEmblem } from './guild-crest';
+import { guildCrestBorder, guildCrestComponentsIndex, guildCrestEmblem } from './index';
 
 const namespace = 'static-classic';
 describe.concurrent('classicGuildCrestApi', () => {

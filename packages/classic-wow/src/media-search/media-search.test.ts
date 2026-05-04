@@ -1,6 +1,6 @@
 import { wowSearchBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
-import { mediaSearch } from './media-search';
+import { mediaSearch } from './index';
 
 const namespace = 'static-classic';
 

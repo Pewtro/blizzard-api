@@ -10,7 +10,7 @@ import {
   pvpRewardsIndex,
   pvpSeason,
   pvpSeasonIndex,
-} from './pvp-season';
+} from './index';
 
 const namespace: BlizzardNamespaces = 'dynamic-classic';
 

@@ -1,7 +1,7 @@
 import type { BlizzardNamespaces } from '@blizzard-api/core';
 import { wowCharacterBasePath } from '@blizzard-api/core';
 import { describe, expect, test } from 'vitest';
-import { characterHunterPetsSummary } from './character-hunter-pets';
+import { characterHunterPetsSummary } from './index';
 
 describe('characterHunterPetsSummary', () => {
   test('should return the correct resource path for profile-classic namespace', () => {

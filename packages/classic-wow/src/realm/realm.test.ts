@@ -1,7 +1,7 @@
 import { wowBasePath, wowSearchBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
-import { realm, realmIndex, realmSearch } from './realm';
 import type { RealmSearchParameters } from './types';
+import { realm, realmIndex, realmSearch } from './index';
 
 const namespace = 'dynamic-classic';
 

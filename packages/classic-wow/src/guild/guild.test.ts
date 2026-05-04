@@ -1,6 +1,6 @@
 import type { BlizzardNamespaces } from '@blizzard-api/core';
 import { describe, expect, test } from 'vitest';
-import { guild, guildAchievements, guildActivity, guildRoster } from './guild';
+import { guild, guildAchievements, guildActivity, guildRoster } from './index';
 
 describe('guild API functions', () => {
   const namespace: Extract<BlizzardNamespaces, 'profile-classic1x' | 'profile-classic'> = 'profile-classic';

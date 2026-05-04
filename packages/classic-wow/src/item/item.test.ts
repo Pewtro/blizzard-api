@@ -1,7 +1,7 @@
 import { wowBasePath, wowMediaBasePath, wowSearchBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
-import { item, itemClass, itemClassIndex, itemMedia, itemSearch, itemSubClass } from './item';
 import type { ItemSearchParameters } from './types';
+import { item, itemClass, itemClassIndex, itemMedia, itemSearch, itemSubClass } from './index';
 
 const namespace = 'static-classic';
 

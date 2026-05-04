@@ -9,7 +9,7 @@ import {
   creatureSearch,
   creatureType,
   creatureTypeIndex,
-} from './creature';
+} from './index';
 
 describe.concurrent('classicCreatureApi', () => {
   const namespace = 'static-classic';

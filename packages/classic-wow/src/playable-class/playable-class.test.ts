@@ -1,6 +1,6 @@
 import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
-import { playableClass, playableClassIndex, playableClassMedia } from './playable-class';
+import { playableClass, playableClassIndex, playableClassMedia } from './index';
 
 const namespace = 'static-classic';
 

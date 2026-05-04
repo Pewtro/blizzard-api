@@ -1,7 +1,7 @@
 import type { BlizzardNamespaces } from '@blizzard-api/core';
 import { wowCharacterBasePath } from '@blizzard-api/core';
 import { describe, expect, test } from 'vitest';
-import { characterStatisticsSummary } from './character-statistics';
+import { characterStatisticsSummary } from './index';
 
 describe('characterStatisticsSummary', () => {
   test('should return the correct resource for given parameters', () => {

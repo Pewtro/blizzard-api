@@ -1,7 +1,7 @@
 import type { BlizzardNamespaces } from '@blizzard-api/core';
 import { wowCharacterBasePath } from '@blizzard-api/core';
 import { describe, expect, test } from 'vitest';
-import { characterProfileStatus, characterProfileSummary } from './character-profile';
+import { characterProfileStatus, characterProfileSummary } from './index';
 
 describe('characterProfileStatus', () => {
   test('should return the correct resource for character profile status', () => {

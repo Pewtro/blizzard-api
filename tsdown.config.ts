@@ -6,9 +6,7 @@ export default defineConfig(({ watch = false }) => ({
   },
   clean: true,
   dts: true,
-  entry: {
-    index: './src/index.ts',
-  },
+  entry: ['./src/index.ts', './src/*/index.ts'],
   fixedExtension: false,
   format: 'esm',
   outDir: 'dist',

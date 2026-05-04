@@ -1,8 +1,8 @@
 import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
 import { wowCharacterBasePath } from '@blizzard-api/core';
 import { describe, expect, test } from 'vitest';
-import { characterMediaSummary } from './character-media';
 import type { CharacterMediaSummaryResponse } from './types';
+import { characterMediaSummary } from './index';
 
 describe('characterMediaSummary', () => {
   test('should return the correct resource object for profile-classic namespace', () => {
