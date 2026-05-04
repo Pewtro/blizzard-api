@@ -1,8 +1,8 @@
 import type { Resource } from '@blizzard-api/core';
 import { describe, expect, test } from 'vitest';
 import type { StarcraftRegion } from '../regions';
-import { grandmasterLeaderboard, season } from './ladder';
 import type { GrandmasterLeaderboardResponse, SeasonResponse } from './types';
+import { grandmasterLeaderboard, season } from './index';
 
 describe('ladder', () => {
   describe('grandmasterLeaderboard', () => {

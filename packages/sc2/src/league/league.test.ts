@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest';
-import { getLeagueData } from './league';
 import type { StarcraftLeagueId, StarcraftLeagueQueue, StarcraftLeagueTeamType } from './types';
+import { getLeagueData } from './index';
 
 describe('league', () => {
   test('should return the correct path for grandmaster league', () => {

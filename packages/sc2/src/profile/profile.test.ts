@@ -2,8 +2,8 @@ import type { Resource } from '@blizzard-api/core';
 import { describe, expect, test } from 'vitest';
 import { starcraftRegion } from '../regions';
 import type { StarcraftRegion } from '../regions';
-import { ladder, ladderSummary, metadata, profile, staticProfile } from './profile';
 import type { LadderResponse, LadderSummaryResponse, MetadataResponse, StaticProfileResponse } from './types';
+import { ladder, ladderSummary, metadata, profile, staticProfile } from './index';
 
 describe('profile', () => {
   const regionId: StarcraftRegion = 'us';

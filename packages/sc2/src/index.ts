@@ -1,6 +1,6 @@
-import { player } from './account/account';
-import { grandmasterLeaderboard, season } from './ladder/ladder';
-import { getLeagueData } from './league/league';
+import { player } from './account/index';
+import { grandmasterLeaderboard, season } from './ladder/index';
+import { getLeagueData } from './league/index';
 import {
   legacyAchievements,
   legacyLadder,
@@ -8,8 +8,8 @@ import {
   legacyMatchHistory,
   legacyProfile,
   legacyRewards,
-} from './legacy/legacy';
-import { ladder, ladderSummary, metadata, profile, staticProfile } from './profile/profile';
+} from './legacy/index';
+import { ladder, ladderSummary, metadata, profile, staticProfile } from './profile/index';
 
 const sc2 = {
   //Account
@@ -37,16 +37,16 @@ export default sc2;
 export { sc2 };
 
 //Account
-export * from './account/account';
+export * from './account/index';
 //Ladder
-export * from './ladder/ladder';
+export * from './ladder/index';
 export type * from './ladder/types';
 //League
-export * from './league/league';
+export * from './league/index';
 export type * from './league/types';
 //Legacy
-export * from './legacy/legacy';
+export * from './legacy/index';
 export type * from './legacy/types';
 //Profile
-export * from './profile/profile';
+export * from './profile/index';
 export type * from './profile/types';

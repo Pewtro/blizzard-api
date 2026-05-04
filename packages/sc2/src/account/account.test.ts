@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { player } from './account';
+import { player } from './index';
 
 describe('account', () => {
   test('should return the correct resource path for a given accountId', () => {

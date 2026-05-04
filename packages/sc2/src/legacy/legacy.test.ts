@@ -6,7 +6,7 @@ import {
   legacyMatchHistory,
   legacyProfile,
   legacyRewards,
-} from './legacy';
+} from './index';
 
 describe('legacy', () => {
   test('should generate correct path for legacyProfile', () => {
