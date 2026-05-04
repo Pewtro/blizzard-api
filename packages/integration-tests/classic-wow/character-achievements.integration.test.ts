@@ -1,4 +1,7 @@
-import * as classicWow from '@blizzard-api/classic-wow';
+import {
+  characterAchievementsSummary,
+  characterAchievementStatistics,
+} from '@blizzard-api/classic-wow/character-achievements';
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
@@ -8,20 +11,17 @@ import {
   characterAchievementStatisticsResponseSchema,
 } from '../../../generated/schemas/classic-wow';
 
-describe('classic-wow character achievements integration', () => {
+describe('classic-wow character achievements integration', async () => {
+  const client = await createBlizzardApiClient({
+    key: environment.blizzardClientId,
+    origin: 'eu',
+    secret: environment.blizzardClientSecret,
+  });
   test('fetches achievements summary and statistics for a character', async ({ expect }) => {
-    const client = await createBlizzardApiClient({
-      key: environment.blizzardClientId,
-      origin: 'eu',
-      secret: environment.blizzardClientSecret,
-    });
-
     const realm = 'shekzeer';
     const character = 'putro';
 
-    const summary = await client.sendRequest(
-      classicWow.characterAchievementsSummary('profile-classic', realm, character),
-    );
+    const summary = await client.sendRequest(characterAchievementsSummary('profile-classic', realm, character));
     const parsedSummary = characterAchievementsSummaryResponseSchema.safeParse(summary);
     if (!parsedSummary.success) {
       console.error(
@@ -33,9 +33,7 @@ describe('classic-wow character achievements integration', () => {
     }
     expect(parsedSummary.success).toBe(true);
 
-    const stats = await client.sendRequest(
-      classicWow.characterAchievementStatistics('profile-classic', realm, character),
-    );
+    const stats = await client.sendRequest(characterAchievementStatistics('profile-classic', realm, character));
     const parsedStats = characterAchievementStatisticsResponseSchema.safeParse(stats);
     if (!parsedStats.success) {
       console.error(

@@ -1,5 +1,11 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
-import * as wow from '@blizzard-api/wow';
+import {
+  modifiedCraftingCategory,
+  modifiedCraftingCategoryIndex,
+  modifiedCraftingIndex,
+  modifiedCraftingReagentSlotType,
+  modifiedCraftingReagentSlotTypeIndex,
+} from '@blizzard-api/wow/modified-crafting';
 import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
@@ -11,14 +17,14 @@ import {
   modifiedCraftingReagentSlotTypeResponseSchema,
 } from '../../../generated/schemas/wow/modified-crafting';
 
-describe('wow modified-crafting integration', () => {
+describe('wow modified-crafting integration', async () => {
+  const client = await createBlizzardApiClient({
+    key: environment.blizzardClientId,
+    origin: 'eu',
+    secret: environment.blizzardClientSecret,
+  });
   test('validates modified crafting category index and fetches detail', async ({ expect }) => {
-    const client = await createBlizzardApiClient({
-      key: environment.blizzardClientId,
-      origin: 'eu',
-      secret: environment.blizzardClientSecret,
-    });
-    const index = await client.sendRequest(wow.modifiedCraftingCategoryIndex());
+    const index = await client.sendRequest(modifiedCraftingCategoryIndex());
     const parsed = modifiedCraftingCategoryIndexResponseSchema.safeParse(index);
     if (!parsed.success) {
       console.error('Modified crafting category index validation failed:', treeifyError(parsed.error));
@@ -37,7 +43,7 @@ describe('wow modified-crafting integration', () => {
     const requests = [];
 
     for (const c of sampled) {
-      requests.push(client.sendRequest(wow.modifiedCraftingCategory(c.id)));
+      requests.push(client.sendRequest(modifiedCraftingCategory(c.id)));
     }
     const responses = await Promise.all(requests);
     for (const category of responses) {
@@ -54,20 +60,14 @@ describe('wow modified-crafting integration', () => {
   });
 
   test('validates modified crafting index and reagent slot types', async ({ expect }) => {
-    const client = await createBlizzardApiClient({
-      key: environment.blizzardClientId,
-      origin: 'eu',
-      secret: environment.blizzardClientSecret,
-    });
-
-    const index = await client.sendRequest(wow.modifiedCraftingIndex());
+    const index = await client.sendRequest(modifiedCraftingIndex());
     const parsed = modifiedCraftingIndexResponseSchema.safeParse(index);
     if (!parsed.success) {
       console.error('Modified crafting index validation failed:', treeifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
 
-    const slotTypeIndex = await client.sendRequest(wow.modifiedCraftingReagentSlotTypeIndex());
+    const slotTypeIndex = await client.sendRequest(modifiedCraftingReagentSlotTypeIndex());
     const parsedSlotIndex = modifiedCraftingReagentSlotTypeIndexResponseSchema.safeParse(slotTypeIndex);
     if (!parsedSlotIndex.success) {
       console.error(
@@ -79,7 +79,7 @@ describe('wow modified-crafting integration', () => {
 
     const slotTypes = parsedSlotIndex.success ? parsedSlotIndex.data.slot_types : [];
     if (slotTypes.length > 0) {
-      const slotType = await client.sendRequest(wow.modifiedCraftingReagentSlotType(slotTypes[0]!.id));
+      const slotType = await client.sendRequest(modifiedCraftingReagentSlotType(slotTypes[0]!.id));
       const parsedSlotType = modifiedCraftingReagentSlotTypeResponseSchema.safeParse(slotType);
       if (!parsedSlotType.success) {
         console.error(

@@ -1,6 +1,13 @@
 /* eslint-disable sonarjs/pseudo-random */
 import { createBlizzardApiClient } from '@blizzard-api/client';
-import * as wow from '@blizzard-api/wow';
+import {
+  profession,
+  professionIndex,
+  professionMedia,
+  professionSkillTier,
+  recipe,
+  recipeMedia,
+} from '@blizzard-api/wow/profession';
 import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
@@ -13,14 +20,14 @@ import {
   recipeResponseSchema,
 } from '../../../generated/schemas/wow/profession';
 
-describe('wow profession integration', () => {
+describe('wow profession integration', async () => {
+  const client = await createBlizzardApiClient({
+    key: environment.blizzardClientId,
+    origin: 'eu',
+    secret: environment.blizzardClientSecret,
+  });
   test('validates profession index and fetches profession detail', async ({ expect }) => {
-    const client = await createBlizzardApiClient({
-      key: environment.blizzardClientId,
-      origin: 'eu',
-      secret: environment.blizzardClientSecret,
-    });
-    const index = await client.sendRequest(wow.professionIndex());
+    const index = await client.sendRequest(professionIndex());
     const parsedIndex = professionIndexResponseSchema.safeParse(index);
     if (!parsedIndex.success) {
       console.error('Profession index validation failed:', treeifyError(parsedIndex.error));
@@ -31,14 +38,14 @@ describe('wow profession integration', () => {
 
     expect(first).toBeDefined();
 
-    const prof = await client.sendRequest(wow.profession(first!.id));
+    const prof = await client.sendRequest(profession(first!.id));
     const parsedProf = professionResponseSchema.safeParse(prof);
     if (!parsedProf.success) {
       console.error('Profession detail validation failed:', first!.id, treeifyError(parsedProf.error));
     }
     expect(parsedProf.success).toBe(true);
 
-    const media = await client.sendRequest(wow.professionMedia(first!.id));
+    const media = await client.sendRequest(professionMedia(first!.id));
     const parsedMedia = professionMediaResponseSchema.safeParse(media);
     if (!parsedMedia.success) {
       console.error('Profession media validation failed:', first!.id, treeifyError(parsedMedia.error));
@@ -49,7 +56,7 @@ describe('wow profession integration', () => {
       parsedProf.data?.skill_tiers[Math.floor(Math.random() * parsedProf.data?.skill_tiers.length)]?.id;
 
     expect(skillTierId).toBeDefined();
-    const tier = await client.sendRequest(wow.professionSkillTier(first!.id, skillTierId!));
+    const tier = await client.sendRequest(professionSkillTier(first!.id, skillTierId!));
     const parsedTier = professionSkillTierResponseSchema.safeParse(tier);
     if (!parsedTier.success) {
       console.error(
@@ -68,15 +75,15 @@ describe('wow profession integration', () => {
 
     expect(recipeId).toBeDefined();
 
-    const recipe = await client.sendRequest(wow.recipe(recipeId!));
-    const parsedRecipe = recipeResponseSchema.safeParse(recipe);
+    const recipeResp = await client.sendRequest(recipe(recipeId!));
+    const parsedRecipe = recipeResponseSchema.safeParse(recipeResp);
     if (!parsedRecipe.success) {
       console.error('Recipe detail validation failed:', recipeId, treeifyError(parsedRecipe.error));
     }
     expect(parsedRecipe.success).toBe(true);
 
-    const recipeMedia = await client.sendRequest(wow.recipeMedia(recipeId!));
-    const parsedRecipeMedia = recipeMediaResponseSchema.safeParse(recipeMedia);
+    const recipeMediaResp = await client.sendRequest(recipeMedia(recipeId!));
+    const parsedRecipeMedia = recipeMediaResponseSchema.safeParse(recipeMediaResp);
     if (!parsedRecipeMedia.success) {
       console.error('Recipe media validation failed:', recipeId, treeifyError(parsedRecipeMedia.error));
     }

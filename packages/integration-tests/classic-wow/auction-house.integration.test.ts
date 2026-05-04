@@ -1,4 +1,5 @@
-import * as classicWow from '@blizzard-api/classic-wow';
+import { auctionHouseIndex, auctions } from '@blizzard-api/classic-wow/auction-house';
+import { connectedRealmIndex } from '@blizzard-api/classic-wow/connected-realm';
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
@@ -10,16 +11,15 @@ import {
 } from '../../../generated/schemas/classic-wow';
 
 //The auction house API is known to be flaky; skip by default.
-describe.skip('classic-wow auction house integration', () => {
+describe.skip('classic-wow auction house integration', async () => {
+  const client = await createBlizzardApiClient({
+    key: environment.blizzardClientId,
+    origin: 'eu',
+    secret: environment.blizzardClientSecret,
+  });
   test('fetches index and validates responses with generated schemas', async ({ expect }) => {
-    const client = await createBlizzardApiClient({
-      key: environment.blizzardClientId,
-      origin: 'us',
-      secret: environment.blizzardClientSecret,
-    });
-
     // 1) Get connected realm index and validate
-    const realmIndexResponse = await client.sendRequest(classicWow.connectedRealmIndex('dynamic-classic1x'));
+    const realmIndexResponse = await client.sendRequest(connectedRealmIndex('dynamic-classic1x'));
     const parsedRealmIndex = connectedRealmIndexResponseSchema.safeParse(realmIndexResponse);
     if (!parsedRealmIndex.success) {
       console.error('Connected realm index validation failed:', treeifyError(parsedRealmIndex.error));
@@ -36,9 +36,7 @@ describe.skip('classic-wow auction house integration', () => {
     const connectedRealmId = Number(match?.[1]);
 
     // 2) Fetch auction house index for that connected realm and validate
-    const auctionIndexResponse = await client.sendRequest(
-      classicWow.auctionHouseIndex('dynamic-classic1x', connectedRealmId),
-    );
+    const auctionIndexResponse = await client.sendRequest(auctionHouseIndex('dynamic-classic1x', connectedRealmId));
     const parsedAuctionIndex = auctionHouseIndexResponseSchema.safeParse(auctionIndexResponse);
     if (!parsedAuctionIndex.success) {
       console.error('Auction house index validation failed:', connectedRealmId, treeifyError(parsedAuctionIndex.error));
@@ -53,7 +51,7 @@ describe.skip('classic-wow auction house integration', () => {
 
     // 3) Fetch auctions for that auction house and validate (may be large)
     const auctionsResponse = await client.sendRequest(
-      classicWow.auctions('dynamic-classic1x', connectedRealmId, auctionHouseId ?? 0),
+      auctions('dynamic-classic1x', connectedRealmId, auctionHouseId ?? 0),
     );
     const parsedAuctions = auctionsResponseSchema.safeParse(auctionsResponse);
     if (!parsedAuctions.success) {

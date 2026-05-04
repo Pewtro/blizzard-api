@@ -1,6 +1,15 @@
 /* eslint-disable sonarjs/pseudo-random */
 import { createBlizzardApiClient } from '@blizzard-api/client';
-import * as wow from '@blizzard-api/wow';
+import {
+  item,
+  itemClass,
+  itemClassIndex,
+  itemMedia,
+  itemSearch,
+  itemSet,
+  itemSetIndex,
+  itemSubClass,
+} from '@blizzard-api/wow/item';
 import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
@@ -22,14 +31,14 @@ describe.concurrent('wow item integration', async () => {
     secret: environment.blizzardClientSecret,
   });
   test('validates item and item media', async ({ expect }) => {
-    const resp = await client.sendRequest(wow.item(19_019));
+    const resp = await client.sendRequest(item(19_019));
     const parsed = itemResponseSchema.safeParse(resp);
     if (!parsed.success) {
       console.error('Item validation failed', treeifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
 
-    const respMedia = await client.sendRequest(wow.itemMedia(19_019));
+    const respMedia = await client.sendRequest(itemMedia(19_019));
     const parsedMedia = itemMediaResponseSchema.safeParse(respMedia);
     if (!parsedMedia.success) {
       console.error('Item media validation failed', treeifyError(parsedMedia.error));
@@ -37,34 +46,34 @@ describe.concurrent('wow item integration', async () => {
     expect(parsedMedia.success).toBe(true);
   });
   test('validates item class index', async ({ expect }) => {
-    const resp = await client.sendRequest(wow.itemClassIndex());
+    const resp = await client.sendRequest(itemClassIndex());
     const parsed = itemClassIndexResponseSchema.safeParse(resp);
     if (!parsed.success) {
       console.error('Item class index validation failed:', treeifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
 
-    const itemClassIndex = Math.floor(Math.random() * resp.item_classes.length);
-    const itemClass = resp.item_classes[itemClassIndex];
+    const randomItemClassIndex = Math.floor(Math.random() * resp.item_classes.length);
+    const foundItemClass = resp.item_classes[randomItemClassIndex];
 
-    expect(itemClass).toBeDefined();
+    expect(foundItemClass).toBeDefined();
 
-    const detail = await client.sendRequest(wow.itemClass(itemClass!.id));
+    const detail = await client.sendRequest(itemClass(foundItemClass!.id));
     const parsedDetail = itemClassResponseSchema.safeParse(detail);
     if (!parsedDetail.success) {
-      console.error('Item class detail validation failed:', itemClass!.id, treeifyError(parsedDetail.error));
+      console.error('Item class detail validation failed:', foundItemClass!.id, treeifyError(parsedDetail.error));
     }
     expect(parsedDetail.success).toBe(true);
 
     const subClassIndex = Math.floor(Math.random() * detail.item_subclasses.length);
     const subClass = detail.item_subclasses[subClassIndex];
 
-    const subDetail = await client.sendRequest(wow.itemSubClass(itemClass!.id, subClass!.id));
+    const subDetail = await client.sendRequest(itemSubClass(foundItemClass!.id, subClass!.id));
     const parsedSubDetail = itemSubClassResponseSchema.safeParse(subDetail);
     if (!parsedSubDetail.success) {
       console.error(
         'Item subclass detail validation failed:',
-        itemClass!.id,
+        foundItemClass!.id,
         subClass!.id,
         treeifyError(parsedSubDetail.error),
       );
@@ -73,7 +82,7 @@ describe.concurrent('wow item integration', async () => {
   });
 
   test('validates item sets', async ({ expect }) => {
-    const setIndex = await client.sendRequest(wow.itemSetIndex());
+    const setIndex = await client.sendRequest(itemSetIndex());
     const parsedSetIndex = itemSetIndexResponseSchema.safeParse(setIndex);
     if (!parsedSetIndex.success) {
       console.error('Item set index validation failed:', treeifyError(parsedSetIndex.error));
@@ -82,7 +91,7 @@ describe.concurrent('wow item integration', async () => {
 
     const first = parsedSetIndex.success ? parsedSetIndex.data.item_sets[0] : undefined;
     if (first) {
-      const set = await client.sendRequest(wow.itemSet(first.id));
+      const set = await client.sendRequest(itemSet(first.id));
       const parsedSet = itemSetResponseSchema.safeParse(set);
       if (!parsedSet.success) {
         console.error('Item set detail validation failed:', first.id, treeifyError(parsedSet.error));
@@ -92,7 +101,7 @@ describe.concurrent('wow item integration', async () => {
   });
 
   test('validates item search', async ({ expect }) => {
-    const search = await client.sendRequest(wow.itemSearch({ _page: 1, locale: 'en_GB', name: 'Glaive' }));
+    const search = await client.sendRequest(itemSearch({ _page: 1, locale: 'en_GB', name: 'Glaive' }));
     const parsed = itemSearchResponseSchema.safeParse(search);
     if (!parsed.success) {
       console.error('Item search validation failed:', treeifyError(parsed.error));

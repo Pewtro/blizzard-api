@@ -1,5 +1,5 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
-import * as wow from '@blizzard-api/wow';
+import { pvpTier, pvpTierIndex, pvpTierMedia } from '@blizzard-api/wow/pvp-tier';
 import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
@@ -9,15 +9,14 @@ import {
   pvpTierResponseSchema,
 } from '../../../generated/schemas/wow/pvp-tier';
 
-describe('wow pvp-tier integration', () => {
+describe('wow pvp-tier integration', async () => {
+  const client = await createBlizzardApiClient({
+    key: environment.blizzardClientId,
+    origin: 'eu',
+    secret: environment.blizzardClientSecret,
+  });
   test('validates pvp tier index, detail and media', async ({ expect }) => {
-    const client = await createBlizzardApiClient({
-      key: environment.blizzardClientId,
-      origin: 'eu',
-      secret: environment.blizzardClientSecret,
-    });
-
-    const index = await client.sendRequest(wow.pvpTierIndex());
+    const index = await client.sendRequest(pvpTierIndex());
     const parsedIndex = pvpTierIndexResponseSchema.safeParse(index);
     if (!parsedIndex.success) {
       console.error('PvP tier index validation failed:', treeifyError(parsedIndex.error));
@@ -35,8 +34,8 @@ describe('wow pvp-tier integration', () => {
     const detailRequests = [];
     const mediaRequests = [];
     for (const t of sampled) {
-      detailRequests.push(client.sendRequest(wow.pvpTier(t.id)));
-      mediaRequests.push(client.sendRequest(wow.pvpTierMedia(t.id)));
+      detailRequests.push(client.sendRequest(pvpTier(t.id)));
+      mediaRequests.push(client.sendRequest(pvpTierMedia(t.id)));
     }
 
     const details = await Promise.all(detailRequests);

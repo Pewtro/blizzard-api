@@ -1,5 +1,13 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
-import * as wow from '@blizzard-api/wow';
+import {
+  conduit,
+  conduitIndex,
+  covenant,
+  covenantIndex,
+  covenantMedia,
+  soulbind,
+  soulbindIndex,
+} from '@blizzard-api/wow/covenant';
 import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
@@ -20,7 +28,7 @@ describe.concurrent('wow covenant integration', async () => {
     secret: environment.blizzardClientSecret,
   });
   test('validates covenant index and fetches details', async ({ expect }) => {
-    const covIndex = await client.sendRequest(wow.covenantIndex());
+    const covIndex = await client.sendRequest(covenantIndex());
     const parsedCov = covenantIndexResponseSchema.safeParse(covIndex);
     if (!parsedCov.success) {
       console.error('Covenant index validation failed:', treeifyError(parsedCov.error));
@@ -30,26 +38,26 @@ describe.concurrent('wow covenant integration', async () => {
     const requests = [];
 
     for (const cov of covIndex.covenants) {
-      requests.push(client.sendRequest(wow.covenant(cov.id)));
+      requests.push(client.sendRequest(covenant(cov.id)));
     }
     const responses = await Promise.all(requests);
-    for (const covenant of responses) {
-      const parsedDetail = covenantResponseSchema.safeParse(covenant);
+    for (const covenantResp of responses) {
+      const parsedDetail = covenantResponseSchema.safeParse(covenantResp);
       if (!parsedDetail.success) {
-        console.error('Covenant detail validation failed:', covenant.id, treeifyError(parsedDetail.error));
+        console.error('Covenant detail validation failed:', covenantResp.id, treeifyError(parsedDetail.error));
       }
       expect(parsedDetail.success).toBe(true);
 
-      const media = await client.sendRequest(wow.covenantMedia(covenant.id));
+      const media = await client.sendRequest(covenantMedia(covenantResp.id));
       const parsedMedia = covenantMediaResponseSchema.safeParse(media);
       if (!parsedMedia.success) {
-        console.error('Covenant media validation failed:', covenant.id, treeifyError(parsedMedia.error));
+        console.error('Covenant media validation failed:', covenantResp.id, treeifyError(parsedMedia.error));
       }
       expect(parsedMedia.success).toBe(true);
     }
   });
   test('validates soulbind index and fetches details', async ({ expect }) => {
-    const soulIndex = await client.sendRequest(wow.soulbindIndex());
+    const soulIndex = await client.sendRequest(soulbindIndex());
     const parsedSoul = soulbindIndexResponseSchema.safeParse(soulIndex);
     if (!parsedSoul.success) {
       console.error('Soulbind index validation failed:', treeifyError(parsedSoul.error));
@@ -58,22 +66,22 @@ describe.concurrent('wow covenant integration', async () => {
 
     const requests = [];
     for (const soul of parsedSoul.success ? parsedSoul.data.soulbinds : []) {
-      requests.push(client.sendRequest(wow.soulbind(soul.id)));
+      requests.push(client.sendRequest(soulbind(soul.id)));
     }
     const responses = await Promise.all(requests);
 
-    for (const soulbind of responses) {
-      const parsedDetail = soulbindResponseSchema.safeParse(soulbind);
+    for (const soulbindResp of responses) {
+      const parsedDetail = soulbindResponseSchema.safeParse(soulbindResp);
       if (!parsedDetail.success) {
-        console.error('Soulbind detail validation failed:', soulbind.id, treeifyError(parsedDetail.error));
+        console.error('Soulbind detail validation failed:', soulbindResp.id, treeifyError(parsedDetail.error));
       }
       expect(parsedDetail.success).toBe(true);
     }
   });
 
   test('validates conduit index and fetches details', async ({ expect }) => {
-    const conduitIndex = await client.sendRequest(wow.conduitIndex());
-    const parsedConduit = conduitIndexResponseSchema.safeParse(conduitIndex);
+    const conduitIndexResp = await client.sendRequest(conduitIndex());
+    const parsedConduit = conduitIndexResponseSchema.safeParse(conduitIndexResp);
     if (!parsedConduit.success) {
       console.error('Conduit index validation failed:', treeifyError(parsedConduit.error));
     }
@@ -89,15 +97,15 @@ describe.concurrent('wow covenant integration', async () => {
         : conduits.slice(0, sampleSize);
 
     const requests = [];
-    for (const conduit of sampled) {
-      requests.push(client.sendRequest(wow.conduit(conduit.id)));
+    for (const conduitResp of sampled) {
+      requests.push(client.sendRequest(conduit(conduitResp.id)));
     }
     const responses = await Promise.all(requests);
 
-    for (const conduit of responses) {
-      const parsedDetail = conduitResponseSchema.safeParse(conduit);
+    for (const conduitResp of responses) {
+      const parsedDetail = conduitResponseSchema.safeParse(conduitResp);
       if (!parsedDetail.success) {
-        console.error('Conduit detail validation failed:', conduit.id, treeifyError(parsedDetail.error));
+        console.error('Conduit detail validation failed:', conduitResp.id, treeifyError(parsedDetail.error));
       }
       expect(parsedDetail.success).toBe(true);
     }

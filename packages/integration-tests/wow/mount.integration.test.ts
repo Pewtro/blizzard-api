@@ -1,5 +1,5 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
-import * as wow from '@blizzard-api/wow';
+import { mount, mountIndex, mountSearch } from '@blizzard-api/wow/mount';
 import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
@@ -9,14 +9,14 @@ import {
   mountSearchResponseSchema,
 } from '../../../generated/schemas/wow/mount';
 
-describe('wow mount integration', () => {
+describe('wow mount integration', async () => {
+  const client = await createBlizzardApiClient({
+    key: environment.blizzardClientId,
+    origin: 'eu',
+    secret: environment.blizzardClientSecret,
+  });
   test('validates mount index and fetches mount detail', async ({ expect }) => {
-    const client = await createBlizzardApiClient({
-      key: environment.blizzardClientId,
-      origin: 'eu',
-      secret: environment.blizzardClientSecret,
-    });
-    const index = await client.sendRequest(wow.mountIndex());
+    const index = await client.sendRequest(mountIndex());
     const parsed = mountIndexResponseSchema.safeParse(index);
     if (!parsed.success) {
       console.error('Mount index validation failed:', treeifyError(parsed.error));
@@ -35,26 +35,20 @@ describe('wow mount integration', () => {
     const requests = [];
 
     for (const t of sampled) {
-      requests.push(client.sendRequest(wow.mount(t.id)));
+      requests.push(client.sendRequest(mount(t.id)));
     }
     const responses = await Promise.all(requests);
-    for (const mount of responses) {
-      const parsedmount = mountResponseSchema.safeParse(mount);
+    for (const mountResp of responses) {
+      const parsedmount = mountResponseSchema.safeParse(mountResp);
       if (!parsedmount.success) {
-        console.error('mount detail validation failed for id', mount.id, treeifyError(parsedmount.error));
+        console.error('mount detail validation failed for id', mountResp.id, treeifyError(parsedmount.error));
       }
       expect(parsedmount.success).toBe(true);
     }
   });
 
   test('validates mount search', async ({ expect }) => {
-    const client = await createBlizzardApiClient({
-      key: environment.blizzardClientId,
-      origin: 'eu',
-      secret: environment.blizzardClientSecret,
-    });
-
-    const search = await client.sendRequest(wow.mountSearch({ _page: 1, locale: 'en_GB', name: 'Horse' }));
+    const search = await client.sendRequest(mountSearch({ _page: 1, locale: 'en_GB', name: 'Horse' }));
     const parsed = mountSearchResponseSchema.safeParse(search);
     if (!parsed.success) {
       console.error('Mount search validation failed:', treeifyError(parsed.error));

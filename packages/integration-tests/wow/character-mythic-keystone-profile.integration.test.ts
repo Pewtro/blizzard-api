@@ -1,5 +1,8 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
-import * as wow from '@blizzard-api/wow';
+import {
+  characterMythicKeystoneProfileIndex,
+  characterMythicKeystoneSeasonDetails,
+} from '@blizzard-api/wow/character-mythic-keystone-profile';
 import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
@@ -8,16 +11,16 @@ import {
   characterMythicKeystoneSeasonDetailsResponseSchema,
 } from '../../../generated/schemas/wow';
 
-describe('wow character-mythic-keystone-profile integration', () => {
+describe('wow character-mythic-keystone-profile integration', async () => {
+  const client = await createBlizzardApiClient({
+    key: environment.blizzardClientId,
+    origin: 'eu',
+    secret: environment.blizzardClientSecret,
+  });
   test('validates mythic keystone profile index', async ({ expect }) => {
-    const client = await createBlizzardApiClient({
-      key: environment.blizzardClientId,
-      origin: 'eu',
-      secret: environment.blizzardClientSecret,
-    });
     const realm = 'laughing-skull';
     const character = 'putro';
-    const index = await client.sendRequest(wow.characterMythicKeystoneProfileIndex(realm, character));
+    const index = await client.sendRequest(characterMythicKeystoneProfileIndex(realm, character));
     const parsed = characterMythicKeystoneProfileIndexResponseSchema.safeParse(index);
     if (!parsed.success) {
       console.error('Character mythic keystone profile index validation failed:', treeifyError(parsed.error));
@@ -26,15 +29,10 @@ describe('wow character-mythic-keystone-profile integration', () => {
   });
 
   test('validates mythic keystone season details when available', async ({ expect }) => {
-    const client = await createBlizzardApiClient({
-      key: environment.blizzardClientId,
-      origin: 'eu',
-      secret: environment.blizzardClientSecret,
-    });
     const realm = 'laughing-skull';
     const character = 'putro';
 
-    const index = await client.sendRequest(wow.characterMythicKeystoneProfileIndex(realm, character));
+    const index = await client.sendRequest(characterMythicKeystoneProfileIndex(realm, character));
     const parsedIndex = characterMythicKeystoneProfileIndexResponseSchema.safeParse(index);
     if (!parsedIndex.success) {
       console.error('Character mythic keystone profile index validation failed:', treeifyError(parsedIndex.error));
@@ -42,7 +40,7 @@ describe('wow character-mythic-keystone-profile integration', () => {
     expect(parsedIndex.success).toBe(true);
 
     const seasonId = index.seasons.at(0)?.id;
-    const details = await client.sendRequest(wow.characterMythicKeystoneSeasonDetails(realm, character, seasonId!));
+    const details = await client.sendRequest(characterMythicKeystoneSeasonDetails(realm, character, seasonId!));
     const parsedDetails = characterMythicKeystoneSeasonDetailsResponseSchema.safeParse(details);
     if (!parsedDetails.success) {
       console.error('Character mythic keystone season details validation failed:', treeifyError(parsedDetails.error));

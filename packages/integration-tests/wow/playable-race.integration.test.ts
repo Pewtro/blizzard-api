@@ -1,19 +1,18 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
-import * as wow from '@blizzard-api/wow';
+import { playableRace, playableRaceIndex } from '@blizzard-api/wow/playable-race';
 import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import { playableRaceIndexResponseSchema, playableRaceResponseSchema } from '../../../generated/schemas/wow';
 
-describe('wow playable race integration', () => {
+describe('wow playable race integration', async () => {
+  const client = await createBlizzardApiClient({
+    key: environment.blizzardClientId,
+    origin: 'eu',
+    secret: environment.blizzardClientSecret,
+  });
   test('validates playable races', async ({ expect }) => {
-    const client = await createBlizzardApiClient({
-      key: environment.blizzardClientId,
-      origin: 'us',
-      secret: environment.blizzardClientSecret,
-    });
-
-    const resp = await client.sendRequest(wow.playableRaceIndex());
+    const resp = await client.sendRequest(playableRaceIndex());
     const parsed = playableRaceIndexResponseSchema.safeParse(resp);
     if (!parsed.success) {
       console.error('Playable race index validation failed:', treeifyError(parsed.error));
@@ -23,7 +22,7 @@ describe('wow playable race integration', () => {
     const requests = [];
 
     for (const race of resp.races) {
-      requests.push(client.sendRequest(wow.playableRace(race.id)));
+      requests.push(client.sendRequest(playableRace(race.id)));
     }
 
     const results = await Promise.all(requests);

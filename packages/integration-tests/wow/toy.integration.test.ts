@@ -1,18 +1,18 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
-import * as wow from '@blizzard-api/wow';
+import { toy, toyIndex } from '@blizzard-api/wow/toy';
 import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import { toyIndexResponseSchema, toyResponseSchema } from '../../../generated/schemas/wow/toy';
 
-describe('wow toy integration', () => {
+describe('wow toy integration', async () => {
+  const client = await createBlizzardApiClient({
+    key: environment.blizzardClientId,
+    origin: 'eu',
+    secret: environment.blizzardClientSecret,
+  });
   test('validates toy index and fetches toy detail', async ({ expect }) => {
-    const client = await createBlizzardApiClient({
-      key: environment.blizzardClientId,
-      origin: 'eu',
-      secret: environment.blizzardClientSecret,
-    });
-    const index = await client.sendRequest(wow.toyIndex());
+    const index = await client.sendRequest(toyIndex());
     const parsed = toyIndexResponseSchema.safeParse(index);
     if (!parsed.success) {
       console.error('Toy index validation failed:', treeifyError(parsed.error));
@@ -31,13 +31,13 @@ describe('wow toy integration', () => {
     const requests = [];
 
     for (const t of sampled) {
-      requests.push(client.sendRequest(wow.toy(t.id)));
+      requests.push(client.sendRequest(toy(t.id)));
     }
     const responses = await Promise.all(requests);
-    for (const toy of responses) {
-      const parsedToy = toyResponseSchema.safeParse(toy);
+    for (const toyResp of responses) {
+      const parsedToy = toyResponseSchema.safeParse(toyResp);
       if (!parsedToy.success) {
-        console.error('Toy detail validation failed for id', toy.id, treeifyError(parsedToy.error));
+        console.error('Toy detail validation failed for id', toyResp.id, treeifyError(parsedToy.error));
       }
       expect(parsedToy.success).toBe(true);
     }

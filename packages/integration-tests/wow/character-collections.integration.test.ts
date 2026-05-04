@@ -1,5 +1,12 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
-import * as wow from '@blizzard-api/wow';
+import {
+  characterCollectionsIndex,
+  characterHeirloomsCollectionSummary,
+  characterMountsCollectionSummary,
+  characterPetsCollectionSummary,
+  characterToysCollectionSummary,
+  characterTransmogCollectionSummary,
+} from '@blizzard-api/wow/character-collections';
 import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
@@ -21,7 +28,7 @@ describe.concurrent('wow character-collections integration', async () => {
   const realm = 'laughing-skull';
   const character = 'putro';
   test('validates collections indices', async ({ expect }) => {
-    const index = await client.sendRequest(wow.characterCollectionsIndex(realm, character));
+    const index = await client.sendRequest(characterCollectionsIndex(realm, character));
     const parsedIndex = characterCollectionsIndexResponseSchema.safeParse(index);
     if (!parsedIndex.success) {
       console.error('Character collections index validation failed:', treeifyError(parsedIndex.error));
@@ -30,7 +37,7 @@ describe.concurrent('wow character-collections integration', async () => {
   });
 
   test('validates heirlooms collection summary', async ({ expect }) => {
-    const heirlooms = await client.sendRequest(wow.characterHeirloomsCollectionSummary(realm, character));
+    const heirlooms = await client.sendRequest(characterHeirloomsCollectionSummary(realm, character));
     const parsedHeirlooms = characterHeirloomsCollectionSummaryResponseSchema.safeParse(heirlooms);
     if (!parsedHeirlooms.success) {
       console.error('Character heirlooms collection validation failed:', treeifyError(parsedHeirlooms.error));
@@ -39,7 +46,7 @@ describe.concurrent('wow character-collections integration', async () => {
   });
 
   test('validates mounts collection summary', async ({ expect }) => {
-    const mounts = await client.sendRequest(wow.characterMountsCollectionSummary(realm, character));
+    const mounts = await client.sendRequest(characterMountsCollectionSummary(realm, character));
     const parsedMounts = characterMountsCollectionSummaryResponseSchema.safeParse(mounts);
     if (!parsedMounts.success) {
       console.error('Character mounts collection validation failed:', treeifyError(parsedMounts.error));
@@ -48,7 +55,7 @@ describe.concurrent('wow character-collections integration', async () => {
   });
 
   test('validates pets collection summary', async ({ expect }) => {
-    const pets = await client.sendRequest(wow.characterPetsCollectionSummary(realm, character));
+    const pets = await client.sendRequest(characterPetsCollectionSummary(realm, character));
     const parsedPets = characterPetsCollectionSummaryResponseSchema.safeParse(pets);
     if (!parsedPets.success) {
       console.error('Character pets collection validation failed:', treeifyError(parsedPets.error));
@@ -57,7 +64,7 @@ describe.concurrent('wow character-collections integration', async () => {
   });
 
   test('validates toys collection summary', async ({ expect }) => {
-    const toys = await client.sendRequest(wow.characterToysCollectionSummary(realm, character));
+    const toys = await client.sendRequest(characterToysCollectionSummary(realm, character));
     const parsedToys = characterToysCollectionSummaryResponseSchema.safeParse(toys);
     if (!parsedToys.success) {
       console.error('Character toys collection validation failed:', treeifyError(parsedToys.error));
@@ -66,7 +73,7 @@ describe.concurrent('wow character-collections integration', async () => {
   });
 
   test('validates transmog collection summary', async ({ expect }) => {
-    const transmog = await client.sendRequest(wow.characterTransmogCollectionSummary(realm, character));
+    const transmog = await client.sendRequest(characterTransmogCollectionSummary(realm, character));
     const parsedTransmog = characterTransmogCollectionSummaryResponseSchema.safeParse(transmog);
     if (!parsedTransmog.success) {
       console.error('Character transmog collection validation failed:', treeifyError(parsedTransmog.error));

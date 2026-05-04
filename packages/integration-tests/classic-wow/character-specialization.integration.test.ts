@@ -1,24 +1,21 @@
-import * as classicWow from '@blizzard-api/classic-wow';
+import { characterSpecializationsSummary } from '@blizzard-api/classic-wow/character-specialization';
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import { characterSpecializationsSummaryResponseSchema } from '../../../generated/schemas/classic-wow';
 
-describe('classic-wow character specialization integration', () => {
+describe('classic-wow character specialization integration', async () => {
+  const client = await createBlizzardApiClient({
+    key: environment.blizzardClientId,
+    origin: 'eu',
+    secret: environment.blizzardClientSecret,
+  });
   test('fetches specialization summary for a character on classic era', async ({ expect }) => {
-    const client = await createBlizzardApiClient({
-      key: environment.blizzardClientId,
-      origin: 'eu',
-      secret: environment.blizzardClientSecret,
-    });
-
     const realm = 'soulseeker';
     const character = 'reonwar';
 
-    const resp = await client.sendRequest(
-      classicWow.characterSpecializationsSummary('profile-classic1x', realm, character),
-    );
+    const resp = await client.sendRequest(characterSpecializationsSummary('profile-classic1x', realm, character));
     const parsed = characterSpecializationsSummaryResponseSchema.safeParse(resp);
     if (!parsed.success) {
       console.error(
@@ -31,18 +28,10 @@ describe('classic-wow character specialization integration', () => {
     expect(parsed.success).toBe(true);
   });
   test('fetches specialization summary for a character on classic progression', async ({ expect }) => {
-    const client = await createBlizzardApiClient({
-      key: environment.blizzardClientId,
-      origin: 'eu',
-      secret: environment.blizzardClientSecret,
-    });
-
     const realm = 'shekzeer';
     const character = 'putro';
 
-    const resp = await client.sendRequest(
-      classicWow.characterSpecializationsSummary('profile-classic', realm, character),
-    );
+    const resp = await client.sendRequest(characterSpecializationsSummary('profile-classic', realm, character));
     const parsed = characterSpecializationsSummaryResponseSchema.safeParse(resp);
     if (!parsed.success) {
       console.error(

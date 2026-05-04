@@ -1,22 +1,21 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
-import * as wow from '@blizzard-api/wow';
+import { characterEquipmentSummary } from '@blizzard-api/wow/character-equipment';
 import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import { characterEquipmentSummaryResponseSchema } from '../../../generated/schemas/wow';
 
-describe('wow character equipment integration', () => {
+describe('wow character equipment integration', async () => {
+  const client = await createBlizzardApiClient({
+    key: environment.blizzardClientId,
+    origin: 'eu',
+    secret: environment.blizzardClientSecret,
+  });
   test('fetches equipment summary for a character', async ({ expect }) => {
-    const client = await createBlizzardApiClient({
-      key: environment.blizzardClientId,
-      origin: 'eu',
-      secret: environment.blizzardClientSecret,
-    });
-
     const realm = 'laughing-skull';
     const character = 'putro';
 
-    const resp = await client.sendRequest(wow.characterEquipmentSummary(realm, character));
+    const resp = await client.sendRequest(characterEquipmentSummary(realm, character));
     const parsed = characterEquipmentSummaryResponseSchema.safeParse(resp);
     if (!parsed.success) {
       console.error('Character equipment summary validation failed:', treeifyError(parsed.error));

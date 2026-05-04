@@ -1,5 +1,10 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
-import * as wow from '@blizzard-api/wow';
+import {
+  reputationFaction,
+  reputationFactionIndex,
+  reputationTiers,
+  reputationTiersIndex,
+} from '@blizzard-api/wow/reputations';
 import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
@@ -17,7 +22,7 @@ describe('wow reputations integration', async () => {
     secret: environment.blizzardClientSecret,
   });
   test('validates reputation factions', async ({ expect }) => {
-    const factions = await client.sendRequest(wow.reputationFactionIndex());
+    const factions = await client.sendRequest(reputationFactionIndex());
     const parsedFactions = reputationFactionIndexResponseSchema.safeParse(factions);
     if (!parsedFactions.success) {
       console.error('Reputation faction index validation failed:', treeifyError(parsedFactions.error));
@@ -34,7 +39,7 @@ describe('wow reputations integration', async () => {
 
     const factionRequests = [];
     for (const f of sampled) {
-      factionRequests.push(client.sendRequest(wow.reputationFaction(f.id)));
+      factionRequests.push(client.sendRequest(reputationFaction(f.id)));
     }
 
     const factionResponses = await Promise.all(factionRequests);
@@ -47,7 +52,7 @@ describe('wow reputations integration', async () => {
     }
   });
   test('validates reputation tiers', async ({ expect }) => {
-    const tiers = await client.sendRequest(wow.reputationTiersIndex());
+    const tiers = await client.sendRequest(reputationTiersIndex());
     const parsedTiers = reputationTiersIndexResponseSchema.safeParse(tiers);
     if (!parsedTiers.success) {
       console.error('Reputation tiers index validation failed:', treeifyError(parsedTiers.error));
@@ -64,7 +69,7 @@ describe('wow reputations integration', async () => {
 
     const tierRequests = [];
     for (const t of sampled) {
-      tierRequests.push(client.sendRequest(wow.reputationTiers(t.id)));
+      tierRequests.push(client.sendRequest(reputationTiers(t.id)));
     }
     const tierResponses = await Promise.all(tierRequests);
     for (const tr of tierResponses) {

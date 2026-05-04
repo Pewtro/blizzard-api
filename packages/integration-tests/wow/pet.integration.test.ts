@@ -1,5 +1,5 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
-import * as wow from '@blizzard-api/wow';
+import { pet, petAbility, petAbilityIndex, petAbilityMedia, petIndex, petMedia } from '@blizzard-api/wow/pet';
 import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
@@ -12,14 +12,14 @@ import {
   petResponseSchema,
 } from '../../../generated/schemas/wow/pet';
 
-describe('wow pet integration', () => {
+describe('wow pet integration', async () => {
+  const client = await createBlizzardApiClient({
+    key: environment.blizzardClientId,
+    origin: 'eu',
+    secret: environment.blizzardClientSecret,
+  });
   test('validates pet index and fetches pet detail', async ({ expect }) => {
-    const client = await createBlizzardApiClient({
-      key: environment.blizzardClientId,
-      origin: 'eu',
-      secret: environment.blizzardClientSecret,
-    });
-    const index = await client.sendRequest(wow.petIndex());
+    const index = await client.sendRequest(petIndex());
     const parsed = petIndexResponseSchema.safeParse(index);
     if (!parsed.success) {
       console.error('Pet index validation failed:', treeifyError(parsed.error));
@@ -38,26 +38,20 @@ describe('wow pet integration', () => {
     const requests = [];
 
     for (const t of sampled) {
-      requests.push(client.sendRequest(wow.pet(t.id)));
+      requests.push(client.sendRequest(pet(t.id)));
     }
     const responses = await Promise.all(requests);
-    for (const pet of responses) {
-      const parsedPet = petResponseSchema.safeParse(pet);
+    for (const petResp of responses) {
+      const parsedPet = petResponseSchema.safeParse(petResp);
       if (!parsedPet.success) {
-        console.error('Pet detail validation failed for id', pet.id, treeifyError(parsedPet.error));
+        console.error('Pet detail validation failed for id', petResp.id, treeifyError(parsedPet.error));
       }
       expect(parsedPet.success).toBe(true);
     }
   });
 
   test('validates pet abilities and media', async ({ expect }) => {
-    const client = await createBlizzardApiClient({
-      key: environment.blizzardClientId,
-      origin: 'eu',
-      secret: environment.blizzardClientSecret,
-    });
-
-    const abilityIndex = await client.sendRequest(wow.petAbilityIndex());
+    const abilityIndex = await client.sendRequest(petAbilityIndex());
     const parsedAbilityIndex = petAbilityIndexResponseSchema.safeParse(abilityIndex);
     if (!parsedAbilityIndex.success) {
       console.error('Pet ability index validation failed:', treeifyError(parsedAbilityIndex.error));
@@ -73,14 +67,14 @@ describe('wow pet integration', () => {
         : abilities.slice(0, sampleSize);
 
     for (const ability of sampled) {
-      const detail = await client.sendRequest(wow.petAbility(ability.id));
+      const detail = await client.sendRequest(petAbility(ability.id));
       const parsedDetail = petAbilityResponseSchema.safeParse(detail);
       if (!parsedDetail.success) {
         console.error('Pet ability detail validation failed for id', ability.id, treeifyError(parsedDetail.error));
       }
       expect(parsedDetail.success).toBe(true);
 
-      const media = await client.sendRequest(wow.petAbilityMedia(ability.id));
+      const media = await client.sendRequest(petAbilityMedia(ability.id));
       const parsedMedia = petAbilityMediaResponseSchema.safeParse(media);
       if (!parsedMedia.success) {
         console.error('Pet ability media validation failed for id', ability.id, treeifyError(parsedMedia.error));
@@ -88,15 +82,15 @@ describe('wow pet integration', () => {
       expect(parsedMedia.success).toBe(true);
     }
 
-    const petIndex = await client.sendRequest(wow.petIndex());
-    const parsedPetIndex = petIndexResponseSchema.safeParse(petIndex);
+    const petIndexResp = await client.sendRequest(petIndex());
+    const parsedPetIndex = petIndexResponseSchema.safeParse(petIndexResp);
     if (!parsedPetIndex.success) {
       console.error('Pet index validation failed:', treeifyError(parsedPetIndex.error));
     }
     expect(parsedPetIndex.success).toBe(true);
 
     // Pick up to 5 pets at random from the index to fetch details
-    const pets = petIndex.pets;
+    const pets = petIndexResp.pets;
     const petSampleSize = Math.min(5, pets.length);
     const petSampled =
       pets.length > petSampleSize
@@ -106,15 +100,15 @@ describe('wow pet integration', () => {
 
     const requests = [];
 
-    for (const pet of petSampled) {
-      requests.push(client.sendRequest(wow.petMedia(pet.id)));
+    for (const petResp of petSampled) {
+      requests.push(client.sendRequest(petMedia(petResp.id)));
     }
     const responses = await Promise.all(requests);
 
-    for (const pet of responses) {
-      const parsedPetMedia = petMediaResponseSchema.safeParse(pet);
+    for (const petResp of responses) {
+      const parsedPetMedia = petMediaResponseSchema.safeParse(petResp);
       if (!parsedPetMedia.success) {
-        console.error('Pet media validation failed for id', pet.id, treeifyError(parsedPetMedia.error));
+        console.error('Pet media validation failed for id', petResp.id, treeifyError(parsedPetMedia.error));
       }
       expect(parsedPetMedia.success).toBe(true);
     }

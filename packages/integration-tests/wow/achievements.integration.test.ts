@@ -1,5 +1,11 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
-import * as wow from '@blizzard-api/wow';
+import {
+  achievement,
+  achievementCategory,
+  achievementCategoryIndex,
+  achievementIndex,
+  achievementMedia,
+} from '@blizzard-api/wow/achievements';
 import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
@@ -11,14 +17,14 @@ import {
   achievementResponseSchema,
 } from '../../../generated/schemas/wow/achievements';
 
-describe('wow achievements integration', () => {
+describe('wow achievements integration', async () => {
+  const client = await createBlizzardApiClient({
+    key: environment.blizzardClientId,
+    origin: 'eu',
+    secret: environment.blizzardClientSecret,
+  });
   test('fetches achievement indices and media', async ({ expect }) => {
-    const client = await createBlizzardApiClient({
-      key: environment.blizzardClientId,
-      origin: 'eu',
-      secret: environment.blizzardClientSecret,
-    });
-    const index = await client.sendRequest(wow.achievementIndex());
+    const index = await client.sendRequest(achievementIndex());
     const parsed = achievementIndexResponseSchema.safeParse(index);
     if (!parsed.success) {
       console.error('Achievement index validation failed:', treeifyError(parsed.error));
@@ -35,33 +41,23 @@ describe('wow achievements integration', () => {
         : achievements.slice(0, sampleSize);
 
     const requests = [];
-    for (const achievement of sampled) {
-      requests.push(client.sendRequest(wow.achievement(achievement.id)));
+    for (const achi of sampled) {
+      requests.push(client.sendRequest(achievement(achi.id)));
     }
 
     const responses = await Promise.all(requests);
 
-    for (const achievement of responses) {
-      const parsedAchievement = achievementResponseSchema.safeParse(achievement);
+    for (const achi of responses) {
+      const parsedAchievement = achievementResponseSchema.safeParse(achi);
       if (!parsedAchievement.success) {
-        console.error(
-          'Achievement detail validation failed for id',
-          achievement.id,
-          treeifyError(parsedAchievement.error),
-        );
+        console.error('Achievement detail validation failed for id', achi.id, treeifyError(parsedAchievement.error));
       }
       expect(parsedAchievement.success).toBe(true);
     }
   });
 
   test('validates achievement categories and media', async ({ expect }) => {
-    const client = await createBlizzardApiClient({
-      key: environment.blizzardClientId,
-      origin: 'eu',
-      secret: environment.blizzardClientSecret,
-    });
-
-    const catIndex = await client.sendRequest(wow.achievementCategoryIndex());
+    const catIndex = await client.sendRequest(achievementCategoryIndex());
     const parsedCatIndex = achievementCategoryIndexResponseSchema.safeParse(catIndex);
     if (!parsedCatIndex.success) {
       console.error('Achievement category index validation failed:', treeifyError(parsedCatIndex.error));
@@ -78,7 +74,7 @@ describe('wow achievements integration', () => {
 
     const catRequests = [];
     for (const c of sampledCats) {
-      catRequests.push(client.sendRequest(wow.achievementCategory(c.id)));
+      catRequests.push(client.sendRequest(achievementCategory(c.id)));
     }
 
     const catResponses = await Promise.all(catRequests);
@@ -91,7 +87,7 @@ describe('wow achievements integration', () => {
     }
 
     // Validate media for some achievements from the original index
-    const achievementsList = await client.sendRequest(wow.achievementIndex());
+    const achievementsList = await client.sendRequest(achievementIndex());
     const parsedIndexAgain = achievementIndexResponseSchema.safeParse(achievementsList);
     if (!parsedIndexAgain.success) {
       console.error('Achievement index revalidation failed:', treeifyError(parsedIndexAgain.error));
@@ -102,7 +98,7 @@ describe('wow achievements integration', () => {
     const mediaSample = achs.slice(0, Math.min(5, achs.length));
     const mediaRequests = [];
     for (const a of mediaSample) {
-      mediaRequests.push(client.sendRequest(wow.achievementMedia(a.id)));
+      mediaRequests.push(client.sendRequest(achievementMedia(a.id)));
     }
     const mediaResponses = await Promise.all(mediaRequests);
     for (const m of mediaResponses) {

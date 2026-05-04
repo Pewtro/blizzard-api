@@ -1,5 +1,13 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
-import * as wow from '@blizzard-api/wow';
+import {
+  pvpTalent,
+  pvpTalentIndex,
+  talent,
+  talentIndex,
+  talentTree,
+  talentTreeIndex,
+  talentTreeNodes,
+} from '@blizzard-api/wow/talent';
 import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
@@ -20,7 +28,7 @@ describe.concurrent('wow talent integration', async () => {
     secret: environment.blizzardClientSecret,
   });
   test('validates pvp talents', async ({ expect }) => {
-    const pvpIndex = await client.sendRequest(wow.pvpTalentIndex());
+    const pvpIndex = await client.sendRequest(pvpTalentIndex());
     const parsedPvpIndex = pvpTalentIndexResponseSchema.safeParse(pvpIndex);
     if (!parsedPvpIndex.success) {
       console.error('PvP talent index validation failed:', treeifyError(parsedPvpIndex.error));
@@ -37,7 +45,7 @@ describe.concurrent('wow talent integration', async () => {
 
     const requests = [];
     for (const t of sampled) {
-      requests.push(client.sendRequest(wow.pvpTalent(t.id)));
+      requests.push(client.sendRequest(pvpTalent(t.id)));
     }
     const responses = await Promise.all(requests);
     for (const resp of responses) {
@@ -49,8 +57,8 @@ describe.concurrent('wow talent integration', async () => {
     }
   });
   test('validates talents', async ({ expect }) => {
-    const talentIndex = await client.sendRequest(wow.talentIndex());
-    const parsedTalentIndex = talentIndexResponseSchema.safeParse(talentIndex);
+    const talentIndexResp = await client.sendRequest(talentIndex());
+    const parsedTalentIndex = talentIndexResponseSchema.safeParse(talentIndexResp);
     if (!parsedTalentIndex.success) {
       console.error('Talent index validation failed:', treeifyError(parsedTalentIndex.error));
     }
@@ -65,7 +73,7 @@ describe.concurrent('wow talent integration', async () => {
         : talents.slice(0, sampleSize);
     const requests = [];
     for (const t of sampled) {
-      requests.push(client.sendRequest(wow.talent(t.id)));
+      requests.push(client.sendRequest(talent(t.id)));
     }
     const responses = await Promise.all(requests);
     for (const resp of responses) {
@@ -77,7 +85,7 @@ describe.concurrent('wow talent integration', async () => {
     }
   });
   test('validates talent trees', async ({ expect }) => {
-    const treeIndex = await client.sendRequest(wow.talentTreeIndex());
+    const treeIndex = await client.sendRequest(talentTreeIndex());
     const parsedTreeIndex = talentTreeIndexResponseSchema.safeParse(treeIndex);
     if (!parsedTreeIndex.success) {
       console.error('Talent tree index validation failed:', treeifyError(parsedTreeIndex.error));
@@ -91,14 +99,14 @@ describe.concurrent('wow talent integration', async () => {
     ];
 
     for (const combo of hunterSpecHeroCombinations) {
-      const talentTree = await client.sendRequest(wow.talentTree(combo.treeId, combo.specId));
-      const parsedTrees = talentTreeResponseSchema.safeParse(talentTree);
+      const talentTreeResp = await client.sendRequest(talentTree(combo.treeId, combo.specId));
+      const parsedTrees = talentTreeResponseSchema.safeParse(talentTreeResp);
       if (!parsedTrees.success) {
         console.error('Talent tree validation failed for combo', combo, treeifyError(parsedTrees.error));
       }
       expect(parsedTrees.success).toBe(true);
 
-      const nodes = await client.sendRequest(wow.talentTreeNodes(combo.treeId));
+      const nodes = await client.sendRequest(talentTreeNodes(combo.treeId));
       const parsedNodes = talentTreeNodesResponseSchema.safeParse(nodes);
       if (!parsedNodes.success) {
         console.error('Talent tree nodes validation failed for treeId', combo.treeId, treeifyError(parsedNodes.error));

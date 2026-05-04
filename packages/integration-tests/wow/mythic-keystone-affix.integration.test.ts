@@ -1,5 +1,9 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
-import * as wow from '@blizzard-api/wow';
+import {
+  mythicKeystoneAffix,
+  mythicKeystoneAffixIndex,
+  mythicKeystoneAffixMedia,
+} from '@blizzard-api/wow/mythic-keystone-affix';
 import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
@@ -9,15 +13,14 @@ import {
   mythicKeystoneAffixResponseSchema,
 } from '../../../generated/schemas/wow/mythic-keystone-affix';
 
-describe('wow mythic-keystone-affix integration', () => {
+describe('wow mythic-keystone-affix integration', async () => {
+  const client = await createBlizzardApiClient({
+    key: environment.blizzardClientId,
+    origin: 'eu',
+    secret: environment.blizzardClientSecret,
+  });
   test('validates index, detail and media', async ({ expect }) => {
-    const client = await createBlizzardApiClient({
-      key: environment.blizzardClientId,
-      origin: 'eu',
-      secret: environment.blizzardClientSecret,
-    });
-
-    const index = await client.sendRequest(wow.mythicKeystoneAffixIndex());
+    const index = await client.sendRequest(mythicKeystoneAffixIndex());
     const parsedIndex = mythicKeystoneAffixIndexResponseSchema.safeParse(index);
     if (!parsedIndex.success) {
       console.error('Mythic keystone affix index validation failed:', treeifyError(parsedIndex.error));
@@ -36,8 +39,8 @@ describe('wow mythic-keystone-affix integration', () => {
     const mediaRequests = [];
 
     for (const a of sampled) {
-      detailRequests.push(client.sendRequest(wow.mythicKeystoneAffix(a.id)));
-      mediaRequests.push(client.sendRequest(wow.mythicKeystoneAffixMedia(a.id)));
+      detailRequests.push(client.sendRequest(mythicKeystoneAffix(a.id)));
+      mediaRequests.push(client.sendRequest(mythicKeystoneAffixMedia(a.id)));
     }
 
     const details = await Promise.all(detailRequests);

@@ -1,5 +1,5 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
-import * as wow from '@blizzard-api/wow';
+import { characterAchievementsSummary, characterAchievementStatistics } from '@blizzard-api/wow/character-achievements';
 import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
@@ -8,17 +8,17 @@ import {
   characterAchievementStatisticsResponseSchema,
 } from '../../../generated/schemas/wow';
 
-describe('wow character-achievements integration', () => {
+describe('wow character-achievements integration', async () => {
+  const client = await createBlizzardApiClient({
+    key: environment.blizzardClientId,
+    origin: 'eu',
+    secret: environment.blizzardClientSecret,
+  });
   test('validates character achievements summary and statistics', async ({ expect }) => {
-    const client = await createBlizzardApiClient({
-      key: environment.blizzardClientId,
-      origin: 'eu',
-      secret: environment.blizzardClientSecret,
-    });
     const realm = 'laughing-skull';
     const character = 'putro';
 
-    const summary = await client.sendRequest(wow.characterAchievementsSummary(realm, character));
+    const summary = await client.sendRequest(characterAchievementsSummary(realm, character));
     const parsedSummary = characterAchievementsSummaryResponseSchema.safeParse(summary);
     if (!parsedSummary.success) {
       console.error(
@@ -30,7 +30,7 @@ describe('wow character-achievements integration', () => {
     }
     expect(parsedSummary.success).toBe(true);
 
-    const stats = await client.sendRequest(wow.characterAchievementStatistics(realm, character));
+    const stats = await client.sendRequest(characterAchievementStatistics(realm, character));
     const parsedStats = characterAchievementStatisticsResponseSchema.safeParse(stats);
     if (!parsedStats.success) {
       console.error(

@@ -1,5 +1,5 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
-import * as wow from '@blizzard-api/wow';
+import { characterPvpBracketStatistics, characterPvpSummary } from '@blizzard-api/wow/character-pvp';
 import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
@@ -8,16 +8,16 @@ import {
   characterPvpSummaryResponseSchema,
 } from '../../../generated/schemas/wow';
 
-describe('wow character-pvp integration', () => {
+describe('wow character-pvp integration', async () => {
+  const client = await createBlizzardApiClient({
+    key: environment.blizzardClientId,
+    origin: 'eu',
+    secret: environment.blizzardClientSecret,
+  });
   test('validates character pvp summary', async ({ expect }) => {
-    const client = await createBlizzardApiClient({
-      key: environment.blizzardClientId,
-      origin: 'eu',
-      secret: environment.blizzardClientSecret,
-    });
     const realm = 'laughing-skull';
     const character = 'putro';
-    const resp = await client.sendRequest(wow.characterPvpSummary(realm, character));
+    const resp = await client.sendRequest(characterPvpSummary(realm, character));
     const parsed = characterPvpSummaryResponseSchema.safeParse(resp);
     if (!parsed.success) {
       console.error('Character pvp summary validation failed:', treeifyError(parsed.error));
@@ -26,15 +26,10 @@ describe('wow character-pvp integration', () => {
   });
 
   test('validates character pvp bracket statistics', async ({ expect }) => {
-    const client = await createBlizzardApiClient({
-      key: environment.blizzardClientId,
-      origin: 'eu',
-      secret: environment.blizzardClientSecret,
-    });
     const realm = 'laughing-skull';
     const character = 'voidshuffle';
 
-    const bracketResp = await client.sendRequest(wow.characterPvpBracketStatistics(realm, character, '2v2'));
+    const bracketResp = await client.sendRequest(characterPvpBracketStatistics(realm, character, '2v2'));
     const parsedBracket = characterPvpBracketStatisticsResponseSchema.safeParse(bracketResp);
     if (!parsedBracket.success) {
       console.error('Character pvp bracket validation failed:', treeifyError(parsedBracket.error));

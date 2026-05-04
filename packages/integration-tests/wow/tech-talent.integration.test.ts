@@ -1,5 +1,11 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
-import * as wow from '@blizzard-api/wow';
+import {
+  techTalent,
+  techTalentIndex,
+  techTalentMedia,
+  techTalentTree,
+  techTalentTreeIndex,
+} from '@blizzard-api/wow/tech-talent';
 import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
@@ -18,7 +24,7 @@ describe('wow tech-talent integration', async () => {
     secret: environment.blizzardClientSecret,
   });
   test('validates tech talent index, detail, and media', async ({ expect }) => {
-    const index = await client.sendRequest(wow.techTalentIndex());
+    const index = await client.sendRequest(techTalentIndex());
     const parsedIndex = techTalentIndexResponseSchema.safeParse(index);
     if (!parsedIndex.success) {
       console.error('Tech talent index validation failed:', treeifyError(parsedIndex.error));
@@ -36,8 +42,8 @@ describe('wow tech-talent integration', async () => {
     const detailRequests = [];
     const mediaRequests = [];
     for (const t of sampled) {
-      detailRequests.push(client.sendRequest(wow.techTalent(t.id)));
-      mediaRequests.push(client.sendRequest(wow.techTalentMedia(t.id)));
+      detailRequests.push(client.sendRequest(techTalent(t.id)));
+      mediaRequests.push(client.sendRequest(techTalentMedia(t.id)));
     }
 
     const details = await Promise.all(detailRequests);
@@ -59,7 +65,7 @@ describe('wow tech-talent integration', async () => {
     }
   });
   test('validates tech talent trees', async ({ expect }) => {
-    const treeIndex = await client.sendRequest(wow.techTalentTreeIndex());
+    const treeIndex = await client.sendRequest(techTalentTreeIndex());
     const parsedTreeIndex = techTalentTreeIndexResponseSchema.safeParse(treeIndex);
     if (!parsedTreeIndex.success) {
       console.error('Tech talent tree index validation failed:', treeifyError(parsedTreeIndex.error));
@@ -78,7 +84,7 @@ describe('wow tech-talent integration', async () => {
     const detailRequests = [];
 
     for (const t of sampled) {
-      detailRequests.push(client.sendRequest(wow.techTalentTree(t.id)));
+      detailRequests.push(client.sendRequest(techTalentTree(t.id)));
     }
 
     const details = await Promise.all(detailRequests);

@@ -1,5 +1,14 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
-import * as wow from '@blizzard-api/wow';
+import {
+  journalEncounter,
+  journalEncounterIndex,
+  journalEncounterSearch,
+  journalExpansion,
+  journalExpansionIndex,
+  journalInstance,
+  journalInstanceIndex,
+  journalInstanceMedia,
+} from '@blizzard-api/wow/journal';
 import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
@@ -14,14 +23,14 @@ import {
   journalInstanceResponseSchema,
 } from '../../../generated/schemas/wow/journal';
 
-describe.concurrent('wow journal integration', () => {
+describe.concurrent('wow journal integration', async () => {
+  const client = await createBlizzardApiClient({
+    key: environment.blizzardClientId,
+    origin: 'eu',
+    secret: environment.blizzardClientSecret,
+  });
   test('validates journal encounter index and details', async ({ expect }) => {
-    const client = await createBlizzardApiClient({
-      key: environment.blizzardClientId,
-      origin: 'eu',
-      secret: environment.blizzardClientSecret,
-    });
-    const enc = await client.sendRequest(wow.journalEncounterIndex());
+    const enc = await client.sendRequest(journalEncounterIndex());
     const parsedEnc = journalEncounterIndexResponseSchema.safeParse(enc);
     if (!parsedEnc.success) {
       console.error('Journal encounter index validation failed:', treeifyError(parsedEnc.error));
@@ -40,7 +49,7 @@ describe.concurrent('wow journal integration', () => {
     const encounterRequests = [];
 
     for (const encounter of sampledEncounters) {
-      encounterRequests.push(client.sendRequest(wow.journalEncounter(encounter.id)));
+      encounterRequests.push(client.sendRequest(journalEncounter(encounter.id)));
     }
     const encounterResponses = await Promise.all(encounterRequests);
     for (const encounter of encounterResponses) {
@@ -56,13 +65,7 @@ describe.concurrent('wow journal integration', () => {
     }
   });
   test('validates journal expansion index and details', async ({ expect }) => {
-    const client = await createBlizzardApiClient({
-      key: environment.blizzardClientId,
-      origin: 'eu',
-      secret: environment.blizzardClientSecret,
-    });
-
-    const exp = await client.sendRequest(wow.journalExpansionIndex());
+    const exp = await client.sendRequest(journalExpansionIndex());
     const parsedExp = journalExpansionIndexResponseSchema.safeParse(exp);
     if (!parsedExp.success) {
       console.error('Journal expansion index validation failed:', treeifyError(parsedExp.error));
@@ -81,7 +84,7 @@ describe.concurrent('wow journal integration', () => {
     const expansionRequests = [];
 
     for (const expansion of sampledExpansions) {
-      expansionRequests.push(client.sendRequest(wow.journalExpansion(expansion.id)));
+      expansionRequests.push(client.sendRequest(journalExpansion(expansion.id)));
     }
     const expansionResponses = await Promise.all(expansionRequests);
     for (const expansion of expansionResponses) {
@@ -98,13 +101,7 @@ describe.concurrent('wow journal integration', () => {
   });
 
   test('validates journal instance index and details', async ({ expect }) => {
-    const client = await createBlizzardApiClient({
-      key: environment.blizzardClientId,
-      origin: 'eu',
-      secret: environment.blizzardClientSecret,
-    });
-
-    const instanceResp = await client.sendRequest(wow.journalInstanceIndex());
+    const instanceResp = await client.sendRequest(journalInstanceIndex());
     const parsedExp = journalInstanceIndexResponseSchema.safeParse(instanceResp);
     if (!parsedExp.success) {
       console.error('Journal instance index validation failed:', treeifyError(parsedExp.error));
@@ -123,7 +120,7 @@ describe.concurrent('wow journal integration', () => {
     const instanceRequests = [];
 
     for (const instance of sampledInstances) {
-      instanceRequests.push(client.sendRequest(wow.journalInstance(instance.id)));
+      instanceRequests.push(client.sendRequest(journalInstance(instance.id)));
     }
     const instanceResponses = await Promise.all(instanceRequests);
     for (const instance of instanceResponses) {
@@ -140,14 +137,8 @@ describe.concurrent('wow journal integration', () => {
   });
 
   test('validates journal encounter search', async ({ expect }) => {
-    const client = await createBlizzardApiClient({
-      key: environment.blizzardClientId,
-      origin: 'eu',
-      secret: environment.blizzardClientSecret,
-    });
-
     const search = await client.sendRequest(
-      wow.journalEncounterSearch({ _page: 1, instanceName: 'raid', locale: 'en_GB' }),
+      journalEncounterSearch({ _page: 1, instanceName: 'raid', locale: 'en_GB' }),
     );
     const parsed = journalEncounterSearchResponseSchema.safeParse(search);
     if (!parsed.success) {
@@ -157,13 +148,7 @@ describe.concurrent('wow journal integration', () => {
   });
 
   test('validates journal instance media', async ({ expect }) => {
-    const client = await createBlizzardApiClient({
-      key: environment.blizzardClientId,
-      origin: 'eu',
-      secret: environment.blizzardClientSecret,
-    });
-
-    const instanceResp = await client.sendRequest(wow.journalInstanceIndex());
+    const instanceResp = await client.sendRequest(journalInstanceIndex());
     const parsedExp = journalInstanceIndexResponseSchema.safeParse(instanceResp);
     if (!parsedExp.success) {
       console.error('Journal instance index validation failed:', treeifyError(parsedExp.error));
@@ -172,7 +157,7 @@ describe.concurrent('wow journal integration', () => {
 
     const instances = parsedExp.success ? parsedExp.data.instances : [];
     if (instances.length > 0) {
-      const media = await client.sendRequest(wow.journalInstanceMedia(instances[0]!.id));
+      const media = await client.sendRequest(journalInstanceMedia(instances[0]!.id));
       const parsedMedia = journalInstanceMediaResponseSchema.safeParse(media);
       if (!parsedMedia.success) {
         console.error('Journal instance media validation failed:', instances[0]!.id, treeifyError(parsedMedia.error));

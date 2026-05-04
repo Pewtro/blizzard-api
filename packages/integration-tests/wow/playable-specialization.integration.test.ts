@@ -1,5 +1,9 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
-import * as wow from '@blizzard-api/wow';
+import {
+  playableSpecialization,
+  playableSpecializationIndex,
+  playableSpecializationMedia,
+} from '@blizzard-api/wow/playable-specialization';
 import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
@@ -9,14 +13,14 @@ import {
   playableSpecializationResponseSchema,
 } from '../../../generated/schemas/wow/playable-specialization';
 
-describe('wow playable-specialization integration', () => {
+describe('wow playable-specialization integration', async () => {
+  const client = await createBlizzardApiClient({
+    key: environment.blizzardClientId,
+    origin: 'eu',
+    secret: environment.blizzardClientSecret,
+  });
   test('validates playable specialization index and fetches detail', async ({ expect }) => {
-    const client = await createBlizzardApiClient({
-      key: environment.blizzardClientId,
-      origin: 'eu',
-      secret: environment.blizzardClientSecret,
-    });
-    const index = await client.sendRequest(wow.playableSpecializationIndex());
+    const index = await client.sendRequest(playableSpecializationIndex());
     const parsed = playableSpecializationIndexResponseSchema.safeParse(index);
     if (!parsed.success) {
       console.error('Playable specialization index validation failed:', treeifyError(parsed.error));
@@ -25,7 +29,7 @@ describe('wow playable-specialization integration', () => {
 
     const requests = [];
     for (const specialization of index.character_specializations) {
-      requests.push(client.sendRequest(wow.playableSpecialization(specialization.id)));
+      requests.push(client.sendRequest(playableSpecialization(specialization.id)));
     }
 
     const responses = await Promise.all(requests);
@@ -37,7 +41,7 @@ describe('wow playable-specialization integration', () => {
 
       expect(parsedSpec.success).toBe(true);
 
-      const media = await client.sendRequest(wow.playableSpecializationMedia(spec.id));
+      const media = await client.sendRequest(playableSpecializationMedia(spec.id));
       const parsedMedia = playableSpecializationMediaResponseSchema.safeParse(media);
       if (!parsedMedia.success) {
         console.error('Playable specialization media validation failed:', spec.id, treeifyError(parsedMedia.error));

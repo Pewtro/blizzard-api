@@ -1,5 +1,10 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
-import * as wow from '@blizzard-api/wow';
+import {
+  azeriteEssence,
+  azeriteEssenceIndex,
+  azeriteEssenceMedia,
+  azeriteEssenceSearch,
+} from '@blizzard-api/wow/azerite-essence';
 import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
@@ -10,22 +15,21 @@ import {
   azeriteEssenceSearchResponseSchema,
 } from '../../../generated/schemas/wow/azerite-essence';
 
-describe('wow azerite-essence integration', () => {
+describe('wow azerite-essence integration', async () => {
+  const client = await createBlizzardApiClient({
+    key: environment.blizzardClientId,
+    origin: 'eu',
+    secret: environment.blizzardClientSecret,
+  });
   test('validates azerite essence index and search', async ({ expect }) => {
-    const client = await createBlizzardApiClient({
-      key: environment.blizzardClientId,
-      origin: 'eu',
-      secret: environment.blizzardClientSecret,
-    });
-
-    const index = await client.sendRequest(wow.azeriteEssenceIndex());
+    const index = await client.sendRequest(azeriteEssenceIndex());
     const parsedIndex = azeriteEssenceIndexResponseSchema.safeParse(index);
     if (!parsedIndex.success) {
       console.error('Azerite essence index validation failed:', treeifyError(parsedIndex.error));
     }
     expect(parsedIndex.success).toBe(true);
 
-    const search = await client.sendRequest(wow.azeriteEssenceSearch({ _page: 1 }));
+    const search = await client.sendRequest(azeriteEssenceSearch({ _page: 1 }));
     const parsedSearch = azeriteEssenceSearchResponseSchema.safeParse(search);
     if (!parsedSearch.success) {
       console.error('Azerite essence search validation failed:', treeifyError(parsedSearch.error));
@@ -44,8 +48,8 @@ describe('wow azerite-essence integration', () => {
     const detailRequests = [];
     const mediaRequests = [];
     for (const essence of sampled) {
-      detailRequests.push(client.sendRequest(wow.azeriteEssence(essence.id)));
-      mediaRequests.push(client.sendRequest(wow.azeriteEssenceMedia(essence.id)));
+      detailRequests.push(client.sendRequest(azeriteEssence(essence.id)));
+      mediaRequests.push(client.sendRequest(azeriteEssenceMedia(essence.id)));
     }
 
     const details = await Promise.all(detailRequests);

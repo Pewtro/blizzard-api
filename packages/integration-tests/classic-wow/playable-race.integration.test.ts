@@ -1,19 +1,18 @@
-import * as classicWow from '@blizzard-api/classic-wow';
+import { playableRace, playableRaceIndex } from '@blizzard-api/classic-wow/playable-race';
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import { playableRaceIndexResponseSchema, playableRaceResponseSchema } from '../../../generated/schemas/classic-wow';
 
-describe.concurrent('classic-wow playable race integration', () => {
+describe.concurrent('classic-wow playable race integration', async () => {
+  const client = await createBlizzardApiClient({
+    key: environment.blizzardClientId,
+    origin: 'eu',
+    secret: environment.blizzardClientSecret,
+  });
   test('validates playable races for classic era', async ({ expect }) => {
-    const client = await createBlizzardApiClient({
-      key: environment.blizzardClientId,
-      origin: 'us',
-      secret: environment.blizzardClientSecret,
-    });
-
-    const resp = await client.sendRequest(classicWow.playableRaceIndex('static-classic1x'));
+    const resp = await client.sendRequest(playableRaceIndex('static-classic1x'));
     const parsed = playableRaceIndexResponseSchema.safeParse(resp);
     if (!parsed.success) {
       console.error('Playable race index validation failed:', treeifyError(parsed.error));
@@ -23,7 +22,7 @@ describe.concurrent('classic-wow playable race integration', () => {
     const requests = [];
 
     for (const race of resp.races) {
-      requests.push(client.sendRequest(classicWow.playableRace('static-classic1x', race.id)));
+      requests.push(client.sendRequest(playableRace('static-classic1x', race.id)));
     }
 
     const results = await Promise.all(requests);
@@ -37,13 +36,7 @@ describe.concurrent('classic-wow playable race integration', () => {
     }
   });
   test('validates playable races for classic progression', async ({ expect }) => {
-    const client = await createBlizzardApiClient({
-      key: environment.blizzardClientId,
-      origin: 'us',
-      secret: environment.blizzardClientSecret,
-    });
-
-    const resp = await client.sendRequest(classicWow.playableRaceIndex('static-classic'));
+    const resp = await client.sendRequest(playableRaceIndex('static-classic'));
     const parsed = playableRaceIndexResponseSchema.safeParse(resp);
     if (!parsed.success) {
       console.error('Playable race index validation failed:', treeifyError(parsed.error));
@@ -53,7 +46,7 @@ describe.concurrent('classic-wow playable race integration', () => {
     const requests = [];
 
     for (const race of resp.races) {
-      requests.push(client.sendRequest(classicWow.playableRace('static-classic', race.id)));
+      requests.push(client.sendRequest(playableRace('static-classic', race.id)));
     }
 
     const results = await Promise.all(requests);
