@@ -8,7 +8,7 @@ import {
   accountToysCollectionSummary,
   accountTransmogsCollectionSummary,
   protectedCharacterProfileSummary,
-} from './account-profile';
+} from './index';
 
 describe('Account Profile', () => {
   const token = 'your_token_here';

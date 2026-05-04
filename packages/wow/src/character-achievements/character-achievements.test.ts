@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { characterAchievementsSummary, characterAchievementStatistics } from './character-achievements';
+import { characterAchievementsSummary, characterAchievementStatistics } from './index';
 
 describe('characterAchievementsSummary', () => {
   test('should return the correct ProtectedResource object', () => {
@@ -8,8 +8,10 @@ describe('characterAchievementsSummary', () => {
 
     const result = characterAchievementsSummary(realmSlug, characterName);
 
-    expect(result.namespace).toBe('profile');
-    expect(result.path).toBe('/profile/wow/character/realm/character/achievements');
+    expect(result).toEqual({
+      namespace: 'profile',
+      path: '/profile/wow/character/realm/character/achievements',
+    });
   });
 });
 
@@ -20,7 +22,9 @@ describe('characterAchievementStatistics', () => {
 
     const result = characterAchievementStatistics(realmSlug, characterName);
 
-    expect(result.namespace).toBe('profile');
-    expect(result.path).toBe('/profile/wow/character/realm/character/achievements/statistics');
+    expect(result).toEqual({
+      namespace: 'profile',
+      path: '/profile/wow/character/realm/character/achievements/statistics',
+    });
   });
 });

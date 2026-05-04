@@ -1,6 +1,6 @@
 import { wowBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
-import { toy, toyIndex } from './toy';
+import { toy, toyIndex } from './index';
 
 describe.concurrent('toyApi', () => {
   test('should return the correct path for toy', ({ expect }) => {

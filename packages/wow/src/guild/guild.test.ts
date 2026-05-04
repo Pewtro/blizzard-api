@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { guild, guildAchievements, guildActivity, guildRoster } from './guild';
+import { guild, guildAchievements, guildActivity, guildRoster } from './index';
 
 describe('guild', () => {
   test('should return the correct ProtectedResource for guild', () => {

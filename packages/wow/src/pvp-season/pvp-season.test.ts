@@ -1,6 +1,6 @@
 import { wowBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
-import { pvpLeaderboard, pvpLeaderboardIndex, pvpRewardsIndex, pvpSeason, pvpSeasonIndex } from './pvp-season';
+import { pvpLeaderboard, pvpLeaderboardIndex, pvpRewardsIndex, pvpSeason, pvpSeasonIndex } from './index';
 
 describe.concurrent('pvpSeasonApi', () => {
   const pvpSeasonId = 123;

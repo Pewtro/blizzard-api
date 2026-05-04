@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { characterStatisticsSummary } from './character-statistics';
+import { characterStatisticsSummary } from './index';
 
 describe('characterStatisticsSummary', () => {
   test('should return the correct protected resource object', () => {

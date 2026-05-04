@@ -1,6 +1,6 @@
 import { wowBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
-import { mythicKeystoneLeaderboard, mythicKeystoneLeaderboardIndex } from './mythic-keystone-leaderboard';
+import { mythicKeystoneLeaderboard, mythicKeystoneLeaderboardIndex } from './index';
 
 describe.concurrent('mythicKeystoneLeaderboardApi', () => {
   test('mythicKeystoneLeaderboard should return a resource object with the correct path and namespace', ({

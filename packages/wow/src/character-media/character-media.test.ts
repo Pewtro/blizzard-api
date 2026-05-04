@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { characterMediaSummary } from './character-media';
+import { characterMediaSummary } from './index';
 
 describe('characterMediaSummary', () => {
   test('should return the correct ProtectedResource object', () => {

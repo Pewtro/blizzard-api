@@ -1,6 +1,6 @@
 import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
-import { playableClass, playableClassIndex, playableClassMedia, pvpTalentSlots } from './playable-class';
+import { playableClass, playableClassIndex, playableClassMedia, pvpTalentSlots } from './index';
 
 describe.concurrent('playableClassApi', () => {
   test('playableClass should return a resource object with the correct path and namespace', ({ expect }) => {

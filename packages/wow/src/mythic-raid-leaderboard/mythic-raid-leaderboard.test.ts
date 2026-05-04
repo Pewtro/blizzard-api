@@ -1,6 +1,6 @@
 import { wowBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
-import { mythicRaidLeaderboard } from './mythic-raid-leaderboard';
+import { mythicRaidLeaderboard } from './index';
 
 describe.concurrent('mythicRaidLeaderboardApi', () => {
   test('mythicRaidLeaderboard should return a resource object with the correct path and namespace', ({ expect }) => {

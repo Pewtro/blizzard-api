@@ -1,6 +1,6 @@
 import { wowBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
-import { title, titleIndex } from './title';
+import { title, titleIndex } from './index';
 
 describe.concurrent('titleApi', () => {
   test('should return the correct path for title', ({ expect }) => {

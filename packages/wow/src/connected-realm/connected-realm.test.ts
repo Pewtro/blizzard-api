@@ -1,6 +1,6 @@
 import { wowSearchBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
-import { connectedRealm, connectedRealmIndex, connectedRealmSearch } from './connected-realm';
+import { connectedRealm, connectedRealmIndex, connectedRealmSearch } from './index';
 
 describe.concurrent('connectedRealm', () => {
   test('should return the correct resource for connected realm index', ({ expect }) => {

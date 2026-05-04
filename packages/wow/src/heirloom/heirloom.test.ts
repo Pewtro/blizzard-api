@@ -1,6 +1,6 @@
 import { wowBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
-import { heirloom, heirloomIndex } from './heirloom';
+import { heirloom, heirloomIndex } from './index';
 
 describe.concurrent('heirloomApi', () => {
   test('should return the heirloom resource for a given heirloomId', ({ expect }) => {

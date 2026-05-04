@@ -1,6 +1,6 @@
 import { wowBasePath, wowMediaBasePath, wowSearchBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
-import { spell, spellMedia, spellSearch } from './spell';
+import { spell, spellMedia, spellSearch } from './index';
 
 describe.concurrent('spellApi', () => {
   test('spell should return a resource object with the correct path and namespace', ({ expect }) => {

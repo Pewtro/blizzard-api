@@ -1,6 +1,6 @@
 import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
-import { techTalent, techTalentIndex, techTalentMedia, techTalentTree, techTalentTreeIndex } from './tech-talent';
+import { techTalent, techTalentIndex, techTalentMedia, techTalentTree, techTalentTreeIndex } from './index';
 
 describe.concurrent('techTalentApi', () => {
   test('should return the correct path for techTalent', ({ expect }) => {

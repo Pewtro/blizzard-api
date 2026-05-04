@@ -1,6 +1,6 @@
 import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
-import { pet, petAbility, petAbilityIndex, petAbilityMedia, petIndex, petMedia } from './pet';
+import { pet, petAbility, petAbilityIndex, petAbilityMedia, petIndex, petMedia } from './index';
 
 describe.concurrent('petApi', () => {
   test('pet should return a resource object with the correct path and namespace', ({ expect }) => {

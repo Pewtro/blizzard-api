@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { characterPvpBracketStatistics, characterPvpSummary } from './character-pvp';
+import { characterPvpBracketStatistics, characterPvpSummary } from './index';
 
 describe('character pvp', () => {
   test('bracket statistics', () => {

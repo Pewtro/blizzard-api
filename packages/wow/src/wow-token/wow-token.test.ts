@@ -1,6 +1,6 @@
 import { wowBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
-import { wowToken } from './wow-token';
+import { wowToken } from './index';
 
 describe.concurrent('wowTokenApi', () => {
   test('should return the wow token resource', ({ expect }) => {

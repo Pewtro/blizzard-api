@@ -1,6 +1,6 @@
 import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
-import { pvpTier, pvpTierIndex, pvpTierMedia } from './pvp-tier';
+import { pvpTier, pvpTierIndex, pvpTierMedia } from './index';
 
 describe.concurrent('pvpTierApi', () => {
   test('pvpTier should return a resource object with the correct path and namespace', ({ expect }) => {

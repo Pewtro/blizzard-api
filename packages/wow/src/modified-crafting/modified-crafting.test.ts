@@ -6,7 +6,7 @@ import {
   modifiedCraftingIndex,
   modifiedCraftingReagentSlotType,
   modifiedCraftingReagentSlotTypeIndex,
-} from './modified-crafting';
+} from './index';
 
 describe.concurrent('modifiedCraftingApi', () => {
   test('should return the correct path for modifiedCraftingCategory', ({ expect }) => {

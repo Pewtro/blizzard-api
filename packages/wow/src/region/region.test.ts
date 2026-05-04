@@ -1,6 +1,6 @@
 import { wowBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
-import { region, regionIndex } from './region';
+import { region, regionIndex } from './index';
 
 describe.concurrent('regionApi', () => {
   test('region should return a resource object with the correct path and namespace', ({ expect }) => {

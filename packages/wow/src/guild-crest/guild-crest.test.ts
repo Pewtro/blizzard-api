@@ -1,6 +1,6 @@
 import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
-import { guildCrestBorder, guildCrestComponentsIndex, guildCrestEmblem } from './guild-crest';
+import { guildCrestBorder, guildCrestComponentsIndex, guildCrestEmblem } from './index';
 
 describe.concurrent('guildCrestApi', () => {
   test('should return the guild crest components index resource', ({ expect }) => {

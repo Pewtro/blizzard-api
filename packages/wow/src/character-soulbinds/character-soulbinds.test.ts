@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { characterSoulbinds } from './character-soulbinds';
+import { characterSoulbinds } from './index';
 
 describe('characterSoulbinds', () => {
   test('returns the correct ProtectedResource object', () => {

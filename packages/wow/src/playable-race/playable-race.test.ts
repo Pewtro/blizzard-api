@@ -1,6 +1,6 @@
 import { wowBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
-import { playableRace, playableRaceIndex } from './playable-race';
+import { playableRace, playableRaceIndex } from './index';
 
 describe.concurrent('playableRaceApi', () => {
   test('playableRace should return a resource object with the correct path and namespace', ({ expect }) => {

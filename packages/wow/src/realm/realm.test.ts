@@ -1,6 +1,6 @@
 import { wowBasePath, wowSearchBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
-import { realm, realmIndex, realmSearch } from './realm';
+import { realm, realmIndex, realmSearch } from './index';
 
 describe.concurrent('realmApi', () => {
   test('realm should return a resource object with the correct path and namespace', ({ expect }) => {

@@ -1,6 +1,6 @@
 import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
-import { conduit, conduitIndex, covenant, covenantIndex, covenantMedia, soulbind, soulbindIndex } from './covenant';
+import { conduit, conduitIndex, covenant, covenantIndex, covenantMedia, soulbind, soulbindIndex } from './index';
 
 describe.concurrent('covenantApi', () => {
   test('should return the correct path and namespace for conduit', ({ expect }) => {

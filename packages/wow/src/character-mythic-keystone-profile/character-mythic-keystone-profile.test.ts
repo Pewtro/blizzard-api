@@ -1,8 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import {
-  characterMythicKeystoneProfileIndex,
-  characterMythicKeystoneSeasonDetails,
-} from './character-mythic-keystone-profile';
+import { characterMythicKeystoneProfileIndex, characterMythicKeystoneSeasonDetails } from './index';
 
 describe('Character Mythic Keystone Profile', () => {
   test('should return the correct ProtectedResource object for characterMythicKeystoneProfileIndex', () => {

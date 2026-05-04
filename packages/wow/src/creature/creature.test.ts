@@ -9,7 +9,7 @@ import {
   creatureSearch,
   creatureType,
   creatureTypeIndex,
-} from './creature';
+} from './index';
 
 describe.concurrent('creatureApi', () => {
   test('should return the correct path and namespace for creature', ({ expect }) => {

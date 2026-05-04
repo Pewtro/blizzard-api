@@ -9,7 +9,7 @@ import {
   journalInstance,
   journalInstanceIndex,
   journalInstanceMedia,
-} from './journal';
+} from './index';
 
 describe.concurrent('journalApi', () => {
   test('should return the journal encounter resource for a given journalEncounterId', ({ expect }) => {

@@ -6,7 +6,7 @@ import {
   characterPetsCollectionSummary,
   characterToysCollectionSummary,
   characterTransmogCollectionSummary,
-} from './character-collections';
+} from './index';
 
 describe('Character Collections', () => {
   const realmSlug = 'realm-slug';

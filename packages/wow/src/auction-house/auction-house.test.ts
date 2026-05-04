@@ -1,5 +1,5 @@
 import { describe, test } from 'vitest';
-import { auctions, commodities } from './auction-house';
+import { auctions, commodities } from './index';
 
 describe.concurrent('auctionHouse', () => {
   test('should return the correct resource for auctions', ({ expect }) => {

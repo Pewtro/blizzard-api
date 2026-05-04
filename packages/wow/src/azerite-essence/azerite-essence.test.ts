@@ -1,6 +1,6 @@
 import { wowBasePath, wowMediaBasePath, wowSearchBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
-import { azeriteEssence, azeriteEssenceIndex, azeriteEssenceMedia, azeriteEssenceSearch } from './azerite-essence';
+import { azeriteEssence, azeriteEssenceIndex, azeriteEssenceMedia, azeriteEssenceSearch } from './index';
 
 describe.concurrent('azeriteEssenceApi', () => {
   test('should return the correct path and namespace for azeriteEssence', ({ expect }) => {

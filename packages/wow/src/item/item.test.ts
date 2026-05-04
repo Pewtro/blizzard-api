@@ -1,6 +1,6 @@
 import { wowBasePath, wowMediaBasePath, wowSearchBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
-import { item, itemClass, itemClassIndex, itemMedia, itemSearch, itemSet, itemSetIndex, itemSubClass } from './item';
+import { item, itemClass, itemClassIndex, itemMedia, itemSearch, itemSet, itemSetIndex, itemSubClass } from './index';
 
 describe.concurrent('itemApi', () => {
   test('should return the item resource for a given itemId', ({ expect }) => {

@@ -1,6 +1,6 @@
 import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
-import { profession, professionIndex, professionMedia, professionSkillTier, recipe, recipeMedia } from './profession';
+import { profession, professionIndex, professionMedia, professionSkillTier, recipe, recipeMedia } from './index';
 
 describe.concurrent('professionApi', () => {
   test('profession should return a resource object with the correct path and namespace', ({ expect }) => {

@@ -6,7 +6,7 @@ import {
   achievementCategoryIndex,
   achievementIndex,
   achievementMedia,
-} from './achievements';
+} from './index';
 
 describe.concurrent('Achievements', () => {
   test('should return correct path and namespace for achievementCategory', ({ expect }) => {

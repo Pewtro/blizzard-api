@@ -1,6 +1,6 @@
 import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
-import { mythicKeystoneAffix, mythicKeystoneAffixIndex, mythicKeystoneAffixMedia } from './mythic-keystone-affix';
+import { mythicKeystoneAffix, mythicKeystoneAffixIndex, mythicKeystoneAffixMedia } from './index';
 
 describe.concurrent('mythicKeystoneAffixApi', () => {
   test('mythicKeystoneAffix should return a resource object with the correct path and namespace', ({ expect }) => {

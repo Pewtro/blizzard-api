@@ -8,7 +8,7 @@ import {
   mythicKeystonePeriodIndex,
   mythicKeystoneSeason,
   mythicKeystoneSeasonIndex,
-} from './mythic-keystone-dungeon';
+} from './index';
 
 describe.concurrent('mythicKeystoneDungeonApi', () => {
   test('mythicKeystoneDungeon should return a resource object with the correct path and namespace', ({ expect }) => {

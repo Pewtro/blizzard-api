@@ -9,7 +9,7 @@ import {
   questIndex,
   questType,
   questTypeIndex,
-} from './quest';
+} from './index';
 
 describe.concurrent('questApi', () => {
   test('quest should return a resource object with the correct path and namespace', ({ expect }) => {

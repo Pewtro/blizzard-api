@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { characterDungeons, characterEncountersSummary, characterRaids } from './character-encounters';
+import { characterDungeons, characterEncountersSummary, characterRaids } from './index';
 
 describe('Character Encounters', () => {
   test('should return the correct ProtectedResource object for character encounters', () => {

@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { characterSpecializationsSummary } from './character-specializations';
+import { characterSpecializationsSummary } from './index';
 
 describe('characterSpecializationsSummary', () => {
   test('should return the correct ProtectedResource object', () => {

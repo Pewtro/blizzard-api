@@ -1,6 +1,6 @@
 import { wowBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
-import { pvpTalent, pvpTalentIndex, talent, talentIndex, talentTree, talentTreeIndex, talentTreeNodes } from './talent';
+import { pvpTalent, pvpTalentIndex, talent, talentIndex, talentTree, talentTreeIndex, talentTreeNodes } from './index';
 
 describe.concurrent('talentApi', () => {
   test('should return the correct path for pvpTalent', ({ expect }) => {
