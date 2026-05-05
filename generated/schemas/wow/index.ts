@@ -25,6 +25,7 @@ export * from './creature';
 export * from './guild';
 export * from './guild-crest';
 export * from './heirloom';
+export * from './housing-decor';
 export * from './item';
 export * from './journal';
 export * from './media-search';

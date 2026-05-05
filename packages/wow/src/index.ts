@@ -73,6 +73,20 @@ import { guildCrestBorder, guildCrestComponentsIndex, guildCrestEmblem } from '.
 import { guild, guildAchievements, guildActivity, guildRoster } from './guild/index';
 import { heirloom, heirloomIndex } from './heirloom/index';
 import {
+  decor,
+  decorIndex,
+  decorSearch,
+  fixture,
+  fixtureHook,
+  fixtureHookIndex,
+  fixtureHookSearch,
+  fixtureIndex,
+  fixtureSearch,
+  room,
+  roomIndex,
+  roomSearch,
+} from './housing-decor/index';
+import {
   item,
   itemClass,
   itemClassIndex,
@@ -259,6 +273,19 @@ const wow = {
   //Heirloom
   heirloom,
   heirloomIndex,
+  //Housing Decor
+  decor,
+  decorIndex,
+  decorSearch,
+  fixture,
+  fixtureHook,
+  fixtureHookIndex,
+  fixtureHookSearch,
+  fixtureIndex,
+  fixtureSearch,
+  room,
+  roomIndex,
+  roomSearch,
   //Item
   item,
   itemClass,
@@ -476,6 +503,9 @@ export type * from './guild-crest/types';
 //Heirloom
 export * from './heirloom/index';
 export type * from './heirloom/types';
+//Housing Decor
+export * from './housing-decor/index';
+export type * from './housing-decor/types';
 //Item
 export * from './item/index';
 export type * from './item/types';
