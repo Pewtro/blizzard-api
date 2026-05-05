@@ -7,7 +7,7 @@
   "repository": "https://github.com/Pewtro/blizzard-api",
   "type": "module",
   "engines": {
-    "node": "^22.13.0 || ^24 <26 || ^26"
+    "node": "^22.13.0 || ^24 || ^26"
   },
   "packageManager": "pnpm@10.33.2",
   "keywords": [
