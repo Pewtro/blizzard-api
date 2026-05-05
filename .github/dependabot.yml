@@ -1,0 +1,34 @@
+version: 2
+updates:
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+      time: '09:00'
+      timezone: 'UTC'
+    open-pull-requests-limit: 10
+    reviewers:
+      - 'Pewtro'
+    assignees:
+      - 'Pewtro'
+    commit-message:
+      prefix: 'deps'
+      include: 'scope'
+    groups:
+      minor-and-patch:
+        update-types:
+          - 'minor'
+          - 'patch'
+      typescript-eslint:
+        patterns:
+          - '@typescript-eslint/*'
+          - 'eslint'
+      vitest:
+        patterns:
+          - 'vitest'
+          - '@vitest/*'
+      typescript:
+        patterns:
+          - 'typescript'
+          - '@types/*'
