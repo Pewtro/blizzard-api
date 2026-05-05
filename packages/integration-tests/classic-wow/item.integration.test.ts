@@ -44,7 +44,10 @@ describe('classic-wow item integration', async () => {
       expect(parsed.success).toBe(true);
 
       // eslint-disable-next-line sonarjs/pseudo-random
-      const randomItemClassIndex = Math.floor(Math.random() * resp.item_classes.length);
+      let randomItemClassIndex = Math.floor(Math.random() * resp.item_classes.length);
+      if (randomItemClassIndex === 18) {
+        randomItemClassIndex = 1; // Avoid the "WoW Token" class which has no subclasses and causes the subclass test to fail
+      }
       const foundItemClass = resp.item_classes[randomItemClassIndex];
 
       expect(foundItemClass).toBeDefined();
@@ -110,7 +113,10 @@ describe('classic-wow item integration', async () => {
       expect(parsed.success).toBe(true);
 
       // eslint-disable-next-line sonarjs/pseudo-random
-      const randomItemClassIndex = Math.floor(Math.random() * resp.item_classes.length);
+      let randomItemClassIndex = Math.floor(Math.random() * resp.item_classes.length);
+      if (randomItemClassIndex === 18) {
+        randomItemClassIndex = 1; // Avoid the "WoW Token" class which has no subclasses and causes the subclass test to fail
+      }
       const foundItemClass = resp.item_classes[randomItemClassIndex];
 
       expect(foundItemClass).toBeDefined();
