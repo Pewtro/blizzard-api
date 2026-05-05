@@ -56,6 +56,9 @@ jobs:
       - name: Turbo build
         run: pnpm build
 
+      - name: Bundle size check
+        run: pnpm size
+
       - name: Lint, Prettier, and Typecheck
         run: pnpm lint:ci
 

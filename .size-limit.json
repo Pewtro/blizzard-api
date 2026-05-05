@@ -1,0 +1,44 @@
+[
+  {
+    "name": "@blizzard-api/core",
+    "path": "packages/core/dist/index.js",
+    "limit": "2 KB",
+    "gzip": true
+  },
+  {
+    "name": "@blizzard-api/client",
+    "path": "packages/client/dist/index.js",
+    "limit": "15 KB",
+    "gzip": true
+  },
+  {
+    "name": "@blizzard-api/wow",
+    "path": "packages/wow/dist/index.js",
+    "limit": "7.5 KB",
+    "gzip": true
+  },
+  {
+    "name": "@blizzard-api/classic-wow",
+    "path": "packages/classic-wow/dist/index.js",
+    "limit": "5 KB",
+    "gzip": true
+  },
+  {
+    "name": "@blizzard-api/d3",
+    "path": "packages/d3/dist/index.js",
+    "limit": "2 KB",
+    "gzip": true
+  },
+  {
+    "name": "@blizzard-api/hs",
+    "path": "packages/hs/dist/index.js",
+    "limit": "2 KB",
+    "gzip": true
+  },
+  {
+    "name": "@blizzard-api/sc2",
+    "path": "packages/sc2/dist/index.js",
+    "limit": "2 KB",
+    "gzip": true
+  }
+]
