@@ -95,7 +95,7 @@ const criteriaSchema = z.strictObject({
 export const achievementResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   category: nameIdKeySchema,
   criteria: criteriaSchema.optional(),
-  description: z.string(),
+  description: z.string().nullable(),
   display_order: z.number(),
   guild_reward_items: z.array(nameIdKeySchema).optional(),
   is_account_wide: z.boolean(),

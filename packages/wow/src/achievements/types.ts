@@ -56,7 +56,7 @@ export interface AchievementMediaResponse extends ResponseBase {
 export interface AchievementResponse extends NameId, ResponseBase {
   category: NameIdKey;
   criteria?: Criteria;
-  description: string;
+  description: null | string;
   display_order: number;
   guild_reward_items?: Array<NameIdKey>;
   is_account_wide: boolean;
