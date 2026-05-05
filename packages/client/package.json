@@ -11,7 +11,7 @@
   },
   "type": "module",
   "engines": {
-    "node": "^22.13.0 || >=24"
+    "node": "^22.13.0 || ^24 <26 || ^26"
   },
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
