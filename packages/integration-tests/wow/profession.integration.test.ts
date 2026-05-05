@@ -68,9 +68,9 @@ describe('wow profession integration', async () => {
     }
     expect(parsedTier.success).toBe(true);
 
-    const categoryIndex = Math.floor(Math.random() * (parsedTier.data?.categories.length ?? 0));
+    const categoryIndex = Math.floor(Math.random() * (parsedTier.data?.categories.length ?? 1));
     const recipeLength = parsedTier.data?.categories[categoryIndex]?.recipes.length;
-    const recipeIndex = Math.floor(Math.random() * (recipeLength ?? 0));
+    const recipeIndex = Math.floor(Math.random() * (recipeLength ?? 1));
     const recipeId = parsedTier.data?.categories[categoryIndex]?.recipes[recipeIndex]?.id;
 
     expect(recipeId).toBeDefined();
