@@ -58,7 +58,7 @@ describe('classic-wow item integration', async () => {
 
       // eslint-disable-next-line sonarjs/pseudo-random
       const subClassIndex = Math.floor(Math.random() * (detail.item_subclasses?.length ?? 1));
-      const subClass = detail.item_subclasses?.[subClassIndex] ?? { id: 0 };
+      const subClass = detail.item_subclasses?.[subClassIndex] ?? { id: 1 };
 
       const subDetail = await client.sendRequest(itemSubClass('static-classic1x', foundItemClass!.id, subClass?.id));
       const parsedSubDetail = itemSubClassResponseSchema.safeParse(subDetail);
@@ -124,7 +124,7 @@ describe('classic-wow item integration', async () => {
 
       // eslint-disable-next-line sonarjs/pseudo-random
       const subClassIndex = Math.floor(Math.random() * (detail.item_subclasses?.length ?? 1));
-      const subClass = detail.item_subclasses?.[subClassIndex] ?? { id: 0 };
+      const subClass = detail.item_subclasses?.[subClassIndex] ?? { id: 1 };
 
       const subDetail = await client.sendRequest(itemSubClass('static-classic', foundItemClass!.id, subClass.id));
       const parsedSubDetail = itemSubClassResponseSchema.safeParse(subDetail);
