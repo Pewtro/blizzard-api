@@ -1,5 +1,23 @@
 # @blizzard-api/hs
 
+## 3.0.0
+
+### Major Changes
+
+- 100c1e8: Add support for node v26 and drop support for node v25.
+- 4dac137: Drop support for node v20 as it is EOL
+
+### Minor Changes
+
+- 02eafb0: Improve treeshaking by allowing subpath imports (e.g. `@blizzard-api/hs/decks`)
+
+### Patch Changes
+
+- Updated dependencies [100c1e8]
+- Updated dependencies [cc9dd15]
+- Updated dependencies [4dac137]
+  - @blizzard-api/core@4.0.0
+
 ## 2.0.2
 
 ### Patch Changes

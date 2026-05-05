@@ -1,5 +1,16 @@
 # @blizzard-api/core
 
+## 4.0.0
+
+### Major Changes
+
+- 100c1e8: Add support for node v26 and drop support for node v25.
+- 4dac137: Drop support for node v20 as it is EOL
+
+### Patch Changes
+
+- cc9dd15: Remove ResourceResponse type as ResourceResponse<T> was equivalent to Promise<T>
+
 ## 3.0.2
 
 ### Patch Changes
