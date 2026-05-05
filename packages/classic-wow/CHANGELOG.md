@@ -1,5 +1,28 @@
 # @blizzard-api/classic-wow
 
+## 4.0.0
+
+### Major Changes
+
+- 100c1e8: Add support for node v26 and drop support for node v25.
+- 4dac137: Drop support for node v20 as it is EOL
+
+### Minor Changes
+
+- 6620c0b: Add faction property to characters in the guild roster response
+- f60c949: Update various responses from the Item API
+- 707158b: Correct the type for realm search responses to have an object of localized names in the type property and to have sometimes missing names for certain localizations
+- 26fe484: Improve treeshaking by allowing subpath imports (e.g. `@blizzard-api/classic-wow/guild`)
+
+### Patch Changes
+
+- c9a2300: Mark season_name from PvP Season API as sometimes returning null
+- b4deb91: Mark item_subclasses in Item Class API as optional as it does not exist for the WoW Token item
+- Updated dependencies [100c1e8]
+- Updated dependencies [cc9dd15]
+- Updated dependencies [4dac137]
+  - @blizzard-api/core@4.0.0
+
 ## 3.0.5
 
 ### Patch Changes

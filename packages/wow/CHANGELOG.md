@@ -1,5 +1,26 @@
 # @blizzard-api/wow
 
+## 4.0.0
+
+### Major Changes
+
+- 100c1e8: Add support for node v26 and drop support for node v25.
+- 4dac137: Drop support for node v20 as it is EOL
+
+### Minor Changes
+
+- 5f4912a: Add support for housing decor APIs
+- 89f2d82: Improve treeshaking by allowing subpath imports (e.g. `@blizzard-api/wow/guild`)
+
+### Patch Changes
+
+- a1981e0: Mark description in Achievement response as nullable
+- ad70e7b: Mark end_timestamp from Mythic Keystone Season API as nullable
+- Updated dependencies [100c1e8]
+- Updated dependencies [cc9dd15]
+- Updated dependencies [4dac137]
+  - @blizzard-api/core@4.0.0
+
 ## 3.0.6
 
 ### Patch Changes
