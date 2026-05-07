@@ -1,5 +1,11 @@
 # @blizzard-api/wow
 
+## 4.0.1
+
+### Patch Changes
+
+- ec61f80: Add quests as a potential source for decor
+
 ## 4.0.0
 
 ### Major Changes
