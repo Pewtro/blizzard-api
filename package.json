@@ -56,13 +56,6 @@
     "vitest": "4.1.5",
     "zod": "4.4.3"
   },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "lefthook",
-      "unrs-resolver"
-    ]
-  },
   "scripts": {
     "build:docs": "typedoc",
     "build": "turbo build",
