@@ -81,6 +81,7 @@ interface DecorSearchResponseItem extends KeyBase {
 
 interface DecorSource {
   achievements?: Array<NameIdKey>;
+  quests?: Array<NameIdKey>;
   recipes?: Array<NameIdKey>;
 }
 

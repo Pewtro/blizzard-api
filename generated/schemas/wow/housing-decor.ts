@@ -21,6 +21,7 @@ const dyeSlotSchema = z.strictObject({
 
 const decorSourceSchema = z.strictObject({
   achievements: z.array(nameIdKeySchema).optional(),
+  quests: z.array(nameIdKeySchema).optional(),
   recipes: z.array(nameIdKeySchema).optional(),
 });
 
