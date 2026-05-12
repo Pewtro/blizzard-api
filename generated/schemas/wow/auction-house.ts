@@ -11,7 +11,7 @@ const auctionHouseTimeLeftSchema = z.union([
 
 const auctionHousePostingSchema = z.strictObject({
   bid: z.number().optional(),
-  buyout: z.number(),
+  buyout: z.number().optional(),
   id: z.number(),
   item: z.strictObject({
     bonus_lists: z.array(z.number()).optional(),

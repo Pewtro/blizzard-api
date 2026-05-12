@@ -32,7 +32,7 @@ interface AuctionHouseCommodity {
 
 interface AuctionHousePosting {
   bid?: number;
-  buyout: number;
+  buyout?: number;
   id: number;
   item: {
     bonus_lists?: Array<number>;
