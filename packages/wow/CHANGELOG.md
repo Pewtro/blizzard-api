@@ -1,5 +1,12 @@
 # @blizzard-api/wow
 
+## 4.0.2
+
+### Patch Changes
+
+- e9724b2: Mark descriptions of recipes as nullable
+- 2195a15: Mark buyout as optional in a auction house posting
+
 ## 4.0.1
 
 ### Patch Changes
