@@ -75,7 +75,7 @@ export const recipeResponseSchema = nameIdSchema.extend(responseBaseSchema.shape
   alliance_crafted_item: nameIdKeySchema.optional(),
   crafted_item: nameIdKeySchema.optional(),
   crafted_quantity: craftedQuantitySchema.optional(),
-  description: z.string().optional(),
+  description: z.string().optional().nullable(),
   horde_crafted_item: nameIdKeySchema.optional(),
   media: mediaSchema,
   modified_crafting_slots: z.array(modifiedCraftSlotSchema).optional(),

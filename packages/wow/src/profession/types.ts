@@ -55,7 +55,7 @@ export interface RecipeResponse extends NameId, ResponseBase {
   alliance_crafted_item?: NameIdKey;
   crafted_item?: NameIdKey;
   crafted_quantity?: CraftedQuantity;
-  description?: string;
+  description?: null | string;
   horde_crafted_item?: NameIdKey;
   media: Media;
   modified_crafting_slots?: Array<ModifiedCraftSlot>;
