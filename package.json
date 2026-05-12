@@ -36,7 +36,7 @@
     "@size-limit/preset-small-lib": "12.1.0",
     "@types/node": "24.12.2",
     "@vitest/coverage-v8": "4.1.5",
-    "@vitest/ui": "4.1.5",
+    "@vitest/ui": "4.1.6",
     "eslint": "10.3.0",
     "eslint-plugin-jsdoc": "62.9.0",
     "lefthook": "2.1.6",
