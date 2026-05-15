@@ -5,6 +5,8 @@ permissions:
   pull-requests: write
 
 on:
+  schedule:
+    - cron: '0 12 * * 6'
   pull_request:
   push:
     branches:
