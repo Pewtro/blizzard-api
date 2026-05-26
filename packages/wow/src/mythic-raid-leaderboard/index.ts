@@ -1,6 +1,6 @@
 import type { NonNeutralFactions, Resource } from '@blizzard-api/core';
 import { wowBasePath } from '@blizzard-api/core';
-import type { MythicRaidLeaderboardResponse } from './types';
+import type { KnownRaidSlugs, MythicRaidLeaderboardResponse } from './types';
 
 /**
  * Get a Mythic Raid leaderboard by raid and faction.
@@ -9,7 +9,7 @@ import type { MythicRaidLeaderboardResponse } from './types';
  * @returns The Mythic Raid leaderboard. See {@link MythicRaidLeaderboardResponse}.
  */
 export function mythicRaidLeaderboard(
-  raid: string,
+  raid: KnownRaidSlugs,
   faction: Lowercase<NonNeutralFactions>,
 ): Resource<MythicRaidLeaderboardResponse> {
   return {

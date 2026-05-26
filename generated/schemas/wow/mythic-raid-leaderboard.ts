@@ -2,6 +2,27 @@
 import { z } from 'zod';
 import { keyBaseSchema, nameIdSchema, nonNeutralFactionsSchema, originsSchema, responseBaseSchema } from '../core';
 
+export const knownRaidSlugsSchema = z.union([
+  z.literal('battle-of-dazaralor'),
+  z.literal('crucible-of-storms'),
+  z.literal('nyalotha-the-waking-city'),
+  z.literal('the-eternal-palace'),
+  z.literal('uldir'),
+  z.literal('castle-nathria'),
+  z.literal('sanctum-of-domination'),
+  z.literal('sepulcher-of-the-first-ones'),
+  z.literal('aberrus-the-shadowed-crucible'),
+  z.literal('amirdrassil-the-dreams-hope'),
+  z.literal('vault-of-the-incarnates'),
+  z.literal('liberation-of-undermine'),
+  z.literal('manaforge-omega'),
+  z.literal('nerubar-palace'),
+  z.literal('march-on-queldanas'),
+  z.literal('the-dreamrift'),
+  z.literal('the-voidspire'),
+  z.string().and(z.strictObject({})),
+]);
+
 const journalInstanceSchema = keyBaseSchema.extend({
   id: z.number(),
   name: z.string().nullable(),

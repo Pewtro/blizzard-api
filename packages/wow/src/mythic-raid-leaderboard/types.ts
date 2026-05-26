@@ -1,5 +1,32 @@
 import type { KeyBase, NameId, NonNeutralFactions, Origins, ResponseBase } from '@blizzard-api/core';
 
+export type KnownRaidSlugs =
+  //Battle for Azeroth
+  | 'battle-of-dazaralor'
+  | 'crucible-of-storms'
+  | 'nyalotha-the-waking-city'
+  | 'the-eternal-palace'
+  | 'uldir'
+  //Shadowlands
+  | 'castle-nathria'
+  | 'sanctum-of-domination'
+  | 'sepulcher-of-the-first-ones'
+  //Dragonflight
+  | 'aberrus-the-shadowed-crucible'
+  | 'amirdrassil-the-dreams-hope'
+  | 'vault-of-the-incarnates'
+  //The War Within
+  | 'liberation-of-undermine'
+  | 'manaforge-omega'
+  | 'nerubar-palace'
+  //Midnight
+  | 'march-on-queldanas'
+  | 'the-dreamrift'
+  | 'the-voidspire'
+  //The Last Titan
+  //Typescript hack
+  | (string & {});
+
 /**
  * The response for a Mythic Raid leaderboard.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
