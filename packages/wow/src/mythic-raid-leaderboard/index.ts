@@ -1,4 +1,4 @@
-import type { Factions, Resource } from '@blizzard-api/core';
+import type { NonNeutralFactions, Resource } from '@blizzard-api/core';
 import { wowBasePath } from '@blizzard-api/core';
 import type { MythicRaidLeaderboardResponse } from './types';
 
@@ -10,7 +10,7 @@ import type { MythicRaidLeaderboardResponse } from './types';
  */
 export function mythicRaidLeaderboard(
   raid: string,
-  faction: Lowercase<Factions>,
+  faction: Lowercase<NonNeutralFactions>,
 ): Resource<MythicRaidLeaderboardResponse> {
   return {
     namespace: 'dynamic',

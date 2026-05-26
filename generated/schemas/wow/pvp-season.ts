@@ -2,11 +2,11 @@
 import { z } from 'zod';
 import {
   factionSchema,
-  factionsSchema,
   hrefSchema,
   keyBaseSchema,
   nameIdKeySchema,
   nameIdSchema,
+  nonNeutralFactionsSchema,
   responseBaseSchema,
 } from '../core';
 
@@ -71,7 +71,7 @@ export const pvpLeaderboardIndexResponseSchema = responseBaseSchema.extend({
 const entrySchema = z.strictObject({
   character: characterSchema,
   faction: z.strictObject({
-    type: factionsSchema,
+    type: nonNeutralFactionsSchema,
   }),
   rank: z.number(),
   rating: z.number(),

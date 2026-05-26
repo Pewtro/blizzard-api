@@ -78,6 +78,11 @@ export interface Faction {
 export type Factions = 'ALLIANCE' | 'HORDE' | 'NEUTRAL';
 
 /**
+ * The playable factions at max level in World of Warcraft.
+ */
+export type NonNeutralFactions = 'ALLIANCE' | 'HORDE';
+
+/**
  * The gender associated with a character or entity in World of Warcraft.
  */
 export interface Gender {

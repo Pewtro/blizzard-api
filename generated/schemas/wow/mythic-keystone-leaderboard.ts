@@ -2,11 +2,11 @@
 import { z } from 'zod';
 import {
   colorSchema,
-  factionsSchema,
   hrefSchema,
   keyBaseSchema,
   nameIdKeySchema,
   nameIdSchema,
+  nonNeutralFactionsSchema,
   responseBaseSchema,
 } from '../core';
 
@@ -40,7 +40,7 @@ const profileSchema = nameIdSchema.extend({
 
 const memberSchema = z.strictObject({
   faction: z.strictObject({
-    type: factionsSchema,
+    type: nonNeutralFactionsSchema,
   }),
   profile: profileSchema,
   specialization: specializationSchema,

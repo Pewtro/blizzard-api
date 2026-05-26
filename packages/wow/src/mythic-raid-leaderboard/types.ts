@@ -1,4 +1,4 @@
-import type { Factions, KeyBase, NameId, Origins, ResponseBase } from '@blizzard-api/core';
+import type { KeyBase, NameId, NonNeutralFactions, Origins, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a Mythic Raid leaderboard.
@@ -12,7 +12,7 @@ export interface MythicRaidLeaderboardResponse extends ResponseBase {
 }
 
 interface Entry {
-  faction: { type: Factions };
+  faction: { type: NonNeutralFactions };
   guild: Guild;
   rank: number;
   region: Origins;

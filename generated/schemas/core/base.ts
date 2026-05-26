@@ -15,6 +15,8 @@ export const colorSchema = z.strictObject({
 
 export const factionsSchema = z.union([z.literal('ALLIANCE'), z.literal('HORDE'), z.literal('NEUTRAL')]);
 
+export const nonNeutralFactionsSchema = z.union([z.literal('ALLIANCE'), z.literal('HORDE')]);
+
 export const genderSchema = z.strictObject({
   name: z.string(),
   type: z.union([z.literal('FEMALE'), z.literal('MALE')]),

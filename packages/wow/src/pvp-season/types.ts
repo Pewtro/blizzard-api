@@ -1,4 +1,4 @@
-import type { Faction, Factions, Href, KeyBase, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { Faction, Href, KeyBase, NameId, NameIdKey, NonNeutralFactions, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a PvP leaderboard index.
@@ -62,7 +62,7 @@ interface Character extends NameId {
 
 interface Entry {
   character: Character;
-  faction: { type: Factions };
+  faction: { type: NonNeutralFactions };
   rank: number;
   rating: number;
   season_match_statistics: SeasonMatchStatistics;
