@@ -1,5 +1,17 @@
 # @blizzard-api/wow
 
+## 4.0.3
+
+### Patch Changes
+
+- d12ccea: Add max_level as an optional value for keystone affix on mythic keystone leaderboard response
+- 83c3763: Adjust various responses to use the new NonNeutralFactions type to remove the potential response of NEUTRAL as a faction
+- d12ccea: Add mythic_rating object to leading_group elements on mythic keystone leaderboard response
+- 035e44b: Add autocomplete for raid slugs for the mythic raid leaderboard request
+- 83c3763: Don't allow neutral as a valid faction for input to mythic raid leaderboard
+- Updated dependencies [83c3763]
+  - @blizzard-api/core@4.1.0
+
 ## 4.0.2
 
 ### Patch Changes

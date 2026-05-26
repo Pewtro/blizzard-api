@@ -1,5 +1,11 @@
 # @blizzard-api/core
 
+## 4.1.0
+
+### Minor Changes
+
+- 83c3763: Add a NonNeutralFactions type which is a subset of Factions - simply excluding the NEUTRAL faction to indicate character factions at max level participating in raid, mythic+ or other end-game systems
+
 ## 4.0.0
 
 ### Major Changes
