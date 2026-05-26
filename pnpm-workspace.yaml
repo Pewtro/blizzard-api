@@ -5,3 +5,6 @@ allowBuilds:
   esbuild: true
   lefthook: true
   unrs-resolver: true
+
+# 3 day cooldown
+minimumReleaseAge: 4320
