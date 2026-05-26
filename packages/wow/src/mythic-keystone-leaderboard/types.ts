@@ -1,4 +1,4 @@
-import type { Factions, Href, KeyBase, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { Color, Factions, Href, KeyBase, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a Mythic Keystone leaderboard index.
@@ -26,6 +26,7 @@ export interface MythicKeystoneLeaderboardResponse extends ResponseBase {
 
 interface KeystoneAffixElement {
   keystone_affix: NameIdKey;
+  max_level?: number;
   starting_level: number;
 }
 
@@ -34,6 +35,7 @@ interface LeadingGroup {
   duration: number;
   keystone_level: number;
   members: Array<Member>;
+  mythic_rating: MythicRating;
   ranking: number;
 }
 
@@ -41,6 +43,10 @@ interface Member {
   faction: { type: Factions };
   profile: Profile;
   specialization: Specialization;
+}
+interface MythicRating {
+  color: Color;
+  rating: number;
 }
 
 interface Profile extends NameId {
