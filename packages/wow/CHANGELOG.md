@@ -1,5 +1,11 @@
 # @blizzard-api/wow
 
+## 4.0.4
+
+### Patch Changes
+
+- f55ccd7: Update journal encounter search to have a more accurate title property
+
 ## 4.0.3
 
 ### Patch Changes
