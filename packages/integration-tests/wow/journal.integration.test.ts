@@ -138,7 +138,7 @@ describe.concurrent('wow journal integration', async () => {
 
   test('validates journal encounter search', async ({ expect }) => {
     const search = await client.sendRequest(
-      journalEncounterSearch({ _page: 1, instanceName: 'raid', locale: 'en_GB' }),
+      journalEncounterSearch({ _page: 1, instanceName: 'siege of orgrimmar', locale: 'en_GB' }),
     );
     const parsed = journalEncounterSearchResponseSchema.safeParse(search);
     if (!parsed.success) {

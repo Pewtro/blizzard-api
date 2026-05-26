@@ -3,6 +3,8 @@ import { z } from 'zod';
 import {
   baseSearchParametersSchema,
   factionSchema,
+  factionsSchema,
+  hrefSchema,
   keyBaseSchema,
   localesSchema,
   nameIdKeySchema,
@@ -56,11 +58,18 @@ const encounterCategorySchema = z.union([
   z.literal('WORLD_BOSS'),
 ]);
 
-const creatureDisplaySchema = keyBaseSchema.extend({
+const creatureDisplaySchema = z.strictObject({
   id: z.number(),
+  key: hrefSchema.optional(),
 });
 
-const encounterModeSchema = z.union([z.literal('HEROIC'), z.literal('LFR'), z.literal('MYTHIC'), z.literal('NORMAL')]);
+const encounterModeSchema = z.union([
+  z.literal('HEROIC'),
+  z.literal('LFR'),
+  z.literal('MYTHIC'),
+  z.literal('MYTHIC_KEYSTONE'),
+  z.literal('NORMAL'),
+]);
 
 const journalEncounterSearchCreatureSchema = z.strictObject({
   creature_display: z.strictObject({
@@ -83,6 +92,21 @@ const categorySchema = z.strictObject({
 });
 
 const journalSubSection6Schema = z.strictObject({
+  body_text: z.string().optional().nullable(),
+  creature_display: creatureDisplaySchema.optional(),
+  id: z.number(),
+  spell: keyBaseSchema
+    .and(
+      z.strictObject({
+        id: z.number(),
+        name: z.string().optional(),
+      }),
+    )
+    .optional(),
+  title: z.string().optional(),
+});
+
+const journalSubSectionSearch6Schema = z.strictObject({
   body_text: z.string().optional().nullable(),
   creature_display: creatureDisplaySchema.optional(),
   id: z.number(),
@@ -146,6 +170,22 @@ const journalSubSection5Schema = z.strictObject({
   title: z.string().optional(),
 });
 
+const journalSubSectionSearch5Schema = z.strictObject({
+  body_text: z.string().optional().nullable(),
+  creature_display: creatureDisplaySchema.optional(),
+  id: z.number(),
+  sections: z.array(journalSubSectionSearch6Schema).optional(),
+  spell: keyBaseSchema
+    .and(
+      z.strictObject({
+        id: z.number(),
+        name: z.string().optional(),
+      }),
+    )
+    .optional(),
+  title: z.record(localesSchema, z.string()).optional(),
+});
+
 export const journalInstanceResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   area: nameIdSchema.optional(),
   category: categorySchema,
@@ -176,6 +216,22 @@ const journalSubSection4Schema = z.strictObject({
   title: z.string().optional(),
 });
 
+const journalSubSectionSearch4Schema = z.strictObject({
+  body_text: z.string().optional().nullable(),
+  creature_display: creatureDisplaySchema.optional(),
+  id: z.number(),
+  sections: z.array(journalSubSectionSearch5Schema).optional(),
+  spell: keyBaseSchema
+    .and(
+      z.strictObject({
+        id: z.number(),
+        name: z.string().optional(),
+      }),
+    )
+    .optional(),
+  title: z.record(localesSchema, z.string()).optional(),
+});
+
 const journalSubSection3Schema = z.strictObject({
   body_text: z.string().optional().nullable(),
   creature_display: creatureDisplaySchema.optional(),
@@ -190,6 +246,22 @@ const journalSubSection3Schema = z.strictObject({
     )
     .optional(),
   title: z.string().optional(),
+});
+
+const journalSubSectionSearch3Schema = z.strictObject({
+  body_text: z.string().optional().nullable(),
+  creature_display: creatureDisplaySchema.optional(),
+  id: z.number(),
+  sections: z.array(journalSubSectionSearch4Schema).optional(),
+  spell: keyBaseSchema
+    .and(
+      z.strictObject({
+        id: z.number(),
+        name: z.string().optional(),
+      }),
+    )
+    .optional(),
+  title: z.record(localesSchema, z.string()).optional(),
 });
 
 const journalSubSection2Schema = z.strictObject({
@@ -208,6 +280,22 @@ const journalSubSection2Schema = z.strictObject({
   title: z.string().optional(),
 });
 
+const journalSubSectionSearch2Schema = z.strictObject({
+  body_text: z.string().optional().nullable(),
+  creature_display: creatureDisplaySchema.optional(),
+  id: z.number(),
+  sections: z.array(journalSubSectionSearch3Schema).optional(),
+  spell: keyBaseSchema
+    .and(
+      z.strictObject({
+        id: z.number(),
+        name: z.string().optional(),
+      }),
+    )
+    .optional(),
+  title: z.record(localesSchema, z.string()).optional(),
+});
+
 const journalSubSectionSchema = z.strictObject({
   body_text: z.string().optional().nullable(),
   creature_display: creatureDisplaySchema.optional(),
@@ -222,6 +310,22 @@ const journalSubSectionSchema = z.strictObject({
     )
     .optional(),
   title: z.string().optional(),
+});
+
+const journalSubSectionSearchSchema = z.strictObject({
+  body_text: z.string().optional().nullable(),
+  creature_display: creatureDisplaySchema.optional(),
+  id: z.number(),
+  sections: z.array(journalSubSectionSearch2Schema).optional(),
+  spell: keyBaseSchema
+    .and(
+      z.strictObject({
+        id: z.number(),
+        name: z.string().optional(),
+      }),
+    )
+    .optional(),
+  title: z.record(localesSchema, z.string()).optional(),
 });
 
 const journalSectionSchema = z.strictObject({
@@ -240,27 +344,20 @@ const journalSectionSchema = z.strictObject({
   title: z.string().optional().nullable(),
 });
 
-const journalEncounterSearchResponseItemSchema = keyBaseSchema.extend({
-  data: z.strictObject({
-    category: categorySchema,
-    creatures: z.array(journalEncounterSearchCreatureSchema),
-    id: z.number(),
-    instance: z.strictObject({
-      id: z.number(),
-      name: z.record(localesSchema, z.string()).optional(),
-    }),
-    items: z.array(journalEncounterSearchItemSchema).optional(),
-    modes: z
-      .array(
-        z.strictObject({
-          name: z.record(localesSchema, z.string()),
-          type: encounterModeSchema,
-        }),
-      )
-      .optional(),
-    name: z.record(localesSchema, z.string()),
-    sections: z.array(journalSectionSchema).optional(),
-  }),
+const journalSectionSearchSchema = z.strictObject({
+  body_text: z.string().optional().nullable(),
+  creature_display: creatureDisplaySchema.optional(),
+  id: z.number(),
+  sections: z.array(journalSubSectionSearchSchema).optional(),
+  spell: keyBaseSchema
+    .and(
+      z.strictObject({
+        id: z.number(),
+        name: z.string().optional(),
+      }),
+    )
+    .optional(),
+  title: z.record(localesSchema, z.string()).optional(),
 });
 
 export const journalEncounterResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
@@ -277,6 +374,35 @@ export const journalEncounterResponseSchema = nameIdSchema.extend(responseBaseSc
   items: z.array(itemSchema).optional(),
   modes: z.array(modeSchema).optional(),
   sections: z.array(journalSectionSchema).optional(),
+});
+
+const journalEncounterSearchResponseItemSchema = keyBaseSchema.extend({
+  data: z.strictObject({
+    category: categorySchema,
+    creatures: z.array(journalEncounterSearchCreatureSchema),
+    faction: z
+      .strictObject({
+        name: z.record(localesSchema, z.string()),
+        type: factionsSchema,
+      })
+      .optional(),
+    id: z.number(),
+    instance: z.strictObject({
+      id: z.number(),
+      name: z.record(localesSchema, z.string()).optional(),
+    }),
+    items: z.array(journalEncounterSearchItemSchema).optional(),
+    modes: z
+      .array(
+        z.strictObject({
+          name: z.record(localesSchema, z.string()),
+          type: encounterModeSchema,
+        }),
+      )
+      .optional(),
+    name: z.record(localesSchema, z.string()),
+    sections: z.array(journalSectionSearchSchema).optional(),
+  }),
 });
 
 export const journalEncounterSearchResponseSchema = searchResponseWithoutResultsSchema.extend({

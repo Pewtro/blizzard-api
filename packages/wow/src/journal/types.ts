@@ -1,6 +1,8 @@
 import type {
   BaseSearchParameters,
   Faction,
+  Factions,
+  Href,
   KeyBase,
   Locales,
   NameId,
@@ -117,13 +119,14 @@ interface Creature extends NameId {
   description?: string;
 }
 
-interface CreatureDisplay extends KeyBase {
+interface CreatureDisplay {
   id: number;
+  key?: Href;
 }
 
 type EncounterCategory = 'DUNGEON' | 'EVENT' | 'RAID' | 'WORLD_BOSS';
 
-type EncounterMode = 'HEROIC' | 'LFR' | 'MYTHIC' | 'NORMAL';
+type EncounterMode = 'HEROIC' | 'LFR' | 'MYTHIC' | 'MYTHIC_KEYSTONE' | 'NORMAL';
 
 interface Item {
   id: number;
@@ -145,12 +148,13 @@ interface JournalEncounterSearchResponseItem extends KeyBase {
   data: {
     category: Category;
     creatures: Array<JournalEncounterSearchCreature>;
+    faction?: { name: Record<Locales, string>; type: Factions };
     id: number;
     instance: { id: number; name?: Record<Locales, string> };
     items?: Array<JournalEncounterSearchItem>;
     modes?: Array<{ name: Record<Locales, string>; type: EncounterMode }>;
     name: Record<Locales, string>;
-    sections?: Array<JournalSection>;
+    sections?: Array<JournalSectionSearch>;
   };
 }
 
@@ -161,6 +165,15 @@ interface JournalSection {
   sections?: Array<JournalSubSection>;
   spell?: KeyBase & { id: number; name?: string };
   title?: null | string;
+}
+
+interface JournalSectionSearch {
+  body_text?: null | string;
+  creature_display?: CreatureDisplay;
+  id: number;
+  sections?: Array<JournalSubSectionSearch>;
+  spell?: KeyBase & { id: number; name?: string };
+  title?: Record<Locales, string>;
 }
 
 interface JournalSubSection {
@@ -209,6 +222,59 @@ interface JournalSubSection5 {
 }
 
 interface JournalSubSection6 {
+  body_text?: null | string;
+  creature_display?: CreatureDisplay;
+  id: number;
+  spell?: KeyBase & { id: number; name?: string };
+  title?: string;
+}
+
+interface JournalSubSectionSearch {
+  body_text?: null | string;
+  creature_display?: CreatureDisplay;
+  id: number;
+  sections?: Array<JournalSubSectionSearch2>;
+  spell?: KeyBase & { id: number; name?: string };
+  title?: Record<Locales, string>;
+}
+
+interface JournalSubSectionSearch2 {
+  body_text?: null | string;
+  creature_display?: CreatureDisplay;
+  id: number;
+  sections?: Array<JournalSubSectionSearch3>;
+  spell?: KeyBase & { id: number; name?: string };
+  title?: Record<Locales, string>;
+}
+
+interface JournalSubSectionSearch3 {
+  body_text?: null | string;
+  creature_display?: CreatureDisplay;
+  id: number;
+  sections?: Array<JournalSubSectionSearch4>;
+  spell?: KeyBase & { id: number; name?: string };
+  title?: Record<Locales, string>;
+}
+
+interface JournalSubSectionSearch4 {
+  body_text?: null | string;
+  creature_display?: CreatureDisplay;
+  id: number;
+  sections?: Array<JournalSubSectionSearch5>;
+  spell?: KeyBase & { id: number; name?: string };
+  title?: Record<Locales, string>;
+}
+
+interface JournalSubSectionSearch5 {
+  body_text?: null | string;
+  creature_display?: CreatureDisplay;
+  id: number;
+  sections?: Array<JournalSubSectionSearch6>;
+  spell?: KeyBase & { id: number; name?: string };
+  title?: Record<Locales, string>;
+}
+
+interface JournalSubSectionSearch6 {
   body_text?: null | string;
   creature_display?: CreatureDisplay;
   id: number;
