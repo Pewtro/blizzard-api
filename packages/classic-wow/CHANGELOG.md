@@ -1,5 +1,11 @@
 # @blizzard-api/classic-wow
 
+## 4.0.2
+
+### Minor Changes
+
+- 577f37c: Add season_end_timestamp to pvp season response
+
 ## 4.0.1
 
 ### Patch Changes
