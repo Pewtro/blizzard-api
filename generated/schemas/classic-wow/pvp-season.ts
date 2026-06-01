@@ -10,6 +10,7 @@ export const pvpSeasonResponseSchema = responseBaseSchema.extend({
   id: z.number(),
   leaderboards: hrefSchema,
   rewards: hrefSchema,
+  season_end_timestamp: z.number().optional(),
   season_name: z.string().optional().nullable(),
   season_start_timestamp: z.number(),
 });

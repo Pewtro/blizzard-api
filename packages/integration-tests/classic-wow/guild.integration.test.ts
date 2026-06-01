@@ -38,8 +38,6 @@ describe('classic-wow guild integration', () => {
     const rosterResp = await client.sendRequest(guildRoster('profile-classic', realm, guildSlug));
     const parsedRosterResp = guildRosterResponseSchema.safeParse(rosterResp);
     if (!parsedRosterResp.success) {
-      console.log('Parsed roster resp', parsedRosterResp.error);
-      console.log('roster', rosterResp.members[0]);
       console.error('Guild roster response validation failed:', treeifyError(parsedRosterResp.error));
     }
     expect(parsedRosterResp.success).toBe(true);

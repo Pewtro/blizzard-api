@@ -23,8 +23,6 @@ describe('classic-wow pvp season integration', async () => {
     const seasonDetail = await client.sendRequest(pvpSeason('dynamic-classic', seasonId));
     const parsedSeasonDetail = pvpSeasonResponseSchema.safeParse(seasonDetail);
     if (!parsedSeasonDetail.success) {
-      console.log('seasonDetail', seasonDetail);
-      console.log('parsedSeasonDetail.error', parsedSeasonDetail.error);
       console.error('PVP season detail validation failed:', seasonId, treeifyError(parsedSeasonDetail.error));
     }
     expect(parsedSeasonDetail.success).toBe(true);

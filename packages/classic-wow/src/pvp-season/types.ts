@@ -17,6 +17,7 @@ export interface PvpSeasonResponse extends ResponseBase {
   id: number;
   leaderboards: Href;
   rewards: Href;
+  season_end_timestamp?: number;
   season_name?: null | string;
   season_start_timestamp: number;
 }
