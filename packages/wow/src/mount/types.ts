@@ -61,7 +61,7 @@ interface MountSearchResponseItem extends KeyBase {
     creature_displays: Array<{ id: number }>;
     faction?: { name: Record<Locales, string>; type: Factions };
     id: number;
-    name: Record<Locales, string>;
+    name: Record<Locales, string | undefined>;
     source: { name: Record<Locales, string>; type: string };
   };
 }

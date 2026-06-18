@@ -44,7 +44,7 @@ const mountSearchResponseItemSchema = keyBaseSchema.extend({
       })
       .optional(),
     id: z.number(),
-    name: z.record(localesSchema, z.string()),
+    name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
     source: z.strictObject({
       name: z.record(localesSchema, z.string()),
       type: z.string(),
