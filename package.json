@@ -34,7 +34,7 @@
     "@putstack/eslint-config-typescript": "4.18.1",
     "@putstack/prettier-config": "2.0.0",
     "@size-limit/preset-small-lib": "12.1.0",
-    "@types/node": "24.13.2",
+    "@types/node": "26.0.0",
     "@vitest/coverage-v8": "4.1.9",
     "@vitest/ui": "4.1.9",
     "eslint": "10.5.0",
