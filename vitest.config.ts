@@ -18,6 +18,8 @@ export default defineConfig({
       reporter: ['html', 'lcov'],
     },
     globals: true,
+    // Limit the number of concurrent test runs to avoid overwhelming the blizzard API with requests that could cause 429.
+    maxConcurrency: 2,
     projects: ['packages/*'],
   },
 });
