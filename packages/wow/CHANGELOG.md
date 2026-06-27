@@ -1,5 +1,12 @@
 # @blizzard-api/wow
 
+## 4.0.5
+
+### Patch Changes
+
+- 9a1c90b: Rename ItemSubClass* variants to ItemSubclass* to match Blizzard's naming scheme.
+- 7d0a2eb: Mark the locale based name of a searched mount as optional
+
 ## 4.0.4
 
 ### Patch Changes

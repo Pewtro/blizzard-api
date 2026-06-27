@@ -1,5 +1,11 @@
 # @blizzard-api/classic-wow
 
+## 4.0.3
+
+### Patch Changes
+
+- 9a1c90b: Rename ItemSubClass* variants to ItemSubclass* to match Blizzard's naming scheme.
+
 ## 4.0.2
 
 ### Minor Changes
