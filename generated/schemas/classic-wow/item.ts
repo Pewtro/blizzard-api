@@ -36,7 +36,7 @@ export const itemSearchParametersSchema = baseSearchParametersSchema.extend({
   name: z.string(),
 });
 
-export const itemSubClassResponseSchema = responseBaseSchema.extend({
+export const itemSubclassResponseSchema = responseBaseSchema.extend({
   class_id: z.number(),
   display_name: z.string(),
   hide_subclass_in_tooltips: z.boolean().optional(),

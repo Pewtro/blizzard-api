@@ -3,7 +3,7 @@ import { describe, test } from 'vitest';
 import { artisan, recipe } from './index';
 
 describe.concurrent('artisan and recipe', () => {
-  test('should return the correct resource path', ({ expect }) => {
+  test('artisan should return the correct resource path', ({ expect }) => {
     const artisanSlug = 'blacksmith';
     const expectedPath = `${d3BasePath}/artisan/blacksmith`;
 
@@ -11,7 +11,7 @@ describe.concurrent('artisan and recipe', () => {
 
     expect(resource.path).toBe(expectedPath);
   });
-  test('should return the correct resource path', ({ expect }) => {
+  test('recipe should return the correct resource path', ({ expect }) => {
     const artisanSlug = 'blacksmith';
     const recipeSlug = 'sword';
 

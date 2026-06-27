@@ -13,24 +13,24 @@ import type {
  * @returns The card search resource. See {@link CardSearchResponse}.
  */
 export function cardSearch(options: CardSearchParameters): Resource<CardSearchResponse, BlizzardCardSearchParameters> {
-  let attack: string | undefined = undefined;
-  let defaultMercenary: string | undefined = undefined;
-  let health: string | undefined = undefined;
-  let mercenaryId: string | undefined = undefined;
+  let attack: string | undefined;
+  let defaultMercenary: string | undefined;
+  let health: string | undefined;
+  let mercenaryId: string | undefined;
 
   if (options.attack) {
-    attack = Array.isArray(options.attack) ? options.attack.join(',') : `${options.attack}`;
+    attack = Array.isArray(options.attack) ? options.attack.join(',') : String(options.attack);
   }
   if (options.defaultMercenary) {
     defaultMercenary = Array.isArray(options.defaultMercenary)
       ? options.defaultMercenary.join(',')
-      : `${options.defaultMercenary}`;
+      : String(options.defaultMercenary);
   }
   if (options.health) {
-    health = Array.isArray(options.health) ? options.health.join(',') : `${options.health}`;
+    health = Array.isArray(options.health) ? options.health.join(',') : String(options.health);
   }
   if (options.mercenaryId) {
-    mercenaryId = Array.isArray(options.mercenaryId) ? options.mercenaryId.join(',') : `${options.mercenaryId}`;
+    mercenaryId = Array.isArray(options.mercenaryId) ? options.mercenaryId.join(',') : String(options.mercenaryId);
   }
 
   return {

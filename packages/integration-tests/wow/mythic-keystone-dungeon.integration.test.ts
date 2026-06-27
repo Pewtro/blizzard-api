@@ -44,10 +44,7 @@ describe('wow mythic-keystone-dungeon integration', async () => {
           dungeons.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
         : dungeons.slice(0, sampleSize);
 
-    const requests = [];
-    for (const d of sampled) {
-      requests.push(client.sendRequest(mythicKeystoneDungeon(d.id)));
-    }
+    const requests = Array.from(sampled, (d) => client.sendRequest(mythicKeystoneDungeon(d.id)));
 
     const responses = await Promise.all(requests);
     for (const r of responses) {
@@ -83,10 +80,7 @@ describe('wow mythic-keystone-dungeon integration', async () => {
           periods.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
         : periods.slice(0, sampleSize);
 
-    const requests = [];
-    for (const p of sampled) {
-      requests.push(client.sendRequest(mythicKeystonePeriod(p.id)));
-    }
+    const requests = Array.from(sampled, (p) => client.sendRequest(mythicKeystonePeriod(p.id)));
     const responses = await Promise.all(requests);
     for (const r of responses) {
       const parsedResp = mythicKeystonePeriodResponseSchema.safeParse(r);
@@ -112,10 +106,7 @@ describe('wow mythic-keystone-dungeon integration', async () => {
           seasons.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
         : seasons.slice(0, sampleSize);
 
-    const requests = [];
-    for (const s of sampled) {
-      requests.push(client.sendRequest(mythicKeystoneSeason(s.id)));
-    }
+    const requests = Array.from(sampled, (s) => client.sendRequest(mythicKeystoneSeason(s.id)));
 
     const responses = await Promise.all(requests);
     for (const r of responses) {

@@ -45,7 +45,7 @@ const effectSchema = z.strictObject({
   required_count: z.number(),
 });
 
-export const itemSubClassResponseSchema = responseBaseSchema.extend({
+export const itemSubclassResponseSchema = responseBaseSchema.extend({
   class_id: z.number(),
   display_name: z.string(),
   hide_subclass_in_tooltips: z.boolean().optional(),

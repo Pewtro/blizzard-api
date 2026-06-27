@@ -3,7 +3,7 @@ import { describe, test } from 'vitest';
 import { characterClass, skill } from './index';
 
 describe.concurrent('characterClass', () => {
-  test('returns the correct resource path', ({ expect }) => {
+  test('characterClass should return the correct resource path', ({ expect }) => {
     const characterClassSlug = 'warrior';
     const expectedPath = `${d3BasePath}/character-class/warrior`;
 
@@ -11,7 +11,7 @@ describe.concurrent('characterClass', () => {
 
     expect(resource.path).toEqual(expectedPath);
   });
-  test('returns the correct resource path', ({ expect }) => {
+  test('skill should return the correct resource path', ({ expect }) => {
     const characterClassSlug = 'warrior';
     const skillSlug = 'charge';
     const expectedPath = `${d3BasePath}/hero/warrior/skill/charge`;

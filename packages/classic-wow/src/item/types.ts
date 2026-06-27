@@ -81,7 +81,7 @@ export interface ItemSearchResponse extends SearchResponseWithoutResults {
  * The response for an item subclass.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface ItemSubClassResponse extends ResponseBase {
+export interface ItemSubclassResponse extends ResponseBase {
   class_id: number;
   display_name: string;
   hide_subclass_in_tooltips?: boolean;

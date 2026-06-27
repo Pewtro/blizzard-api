@@ -16,4 +16,11 @@ export default defineConfig(
   },
   jsdocEslint.configs['flat/recommended-typescript'],
   putstackConfigs.recommended,
+  {
+    files: ['generated/schemas/**'],
+    rules: {
+      'unicorn/max-nested-calls': 'off',
+      'unicorn/no-non-function-verb-prefix': 'off',
+    },
+  },
 );

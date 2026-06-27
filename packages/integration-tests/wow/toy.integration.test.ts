@@ -28,11 +28,7 @@ describe('wow toy integration', async () => {
           toys.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
         : toys.slice(0, sampleSize);
 
-    const requests = [];
-
-    for (const t of sampled) {
-      requests.push(client.sendRequest(toy(t.id)));
-    }
+    const requests = Array.from(sampled, (t) => client.sendRequest(toy(t.id)));
     const responses = await Promise.all(requests);
     for (const toyResp of responses) {
       const parsedToy = toyResponseSchema.safeParse(toyResp);

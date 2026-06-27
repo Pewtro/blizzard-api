@@ -27,10 +27,9 @@ describe('wow playable-specialization integration', async () => {
     }
     expect(parsed.success).toBe(true);
 
-    const requests = [];
-    for (const specialization of index.character_specializations) {
-      requests.push(client.sendRequest(playableSpecialization(specialization.id)));
-    }
+    const requests = Array.from(index.character_specializations, (specialization) =>
+      client.sendRequest(playableSpecialization(specialization.id)),
+    );
 
     const responses = await Promise.all(requests);
     for (const spec of responses) {

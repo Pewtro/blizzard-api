@@ -94,7 +94,7 @@ import {
   itemSearch,
   itemSet,
   itemSetIndex,
-  itemSubClass,
+  itemSubclass,
 } from './item/index';
 import {
   journalEncounter,
@@ -294,7 +294,7 @@ const wow = {
   itemSearch,
   itemSet,
   itemSetIndex,
-  itemSubClass,
+  itemSubclass,
   //Journal
   journalEncounter,
   journalEncounterIndex,

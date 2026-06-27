@@ -1,7 +1,7 @@
 import { wowBasePath, wowMediaBasePath, wowSearchBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
 import type { ItemSearchParameters } from './types';
-import { item, itemClass, itemClassIndex, itemMedia, itemSearch, itemSubClass } from './index';
+import { item, itemClass, itemClassIndex, itemMedia, itemSearch, itemSubclass } from './index';
 
 const namespace = 'static-classic';
 
@@ -19,11 +19,11 @@ describe.concurrent('classicItemApi', () => {
     expect(resource.namespace).toBe(namespace);
   });
 
-  test('should return the item sub class resource for a given itemClassId and itemSubClassId', ({ expect }) => {
+  test('should return the item sub class resource for a given itemClassId and itemSubclassId', ({ expect }) => {
     const itemClassId = 123;
-    const itemSubClassId = 456;
-    const resource = itemSubClass(namespace, itemClassId, itemSubClassId);
-    expect(resource.path).toBe(`${wowBasePath}/item-class/${itemClassId}/item-subclass/${itemSubClassId}`);
+    const itemSubclassId = 456;
+    const resource = itemSubclass(namespace, itemClassId, itemSubclassId);
+    expect(resource.path).toBe(`${wowBasePath}/item-class/${itemClassId}/item-subclass/${itemSubclassId}`);
     expect(resource.namespace).toBe(namespace);
   });
 

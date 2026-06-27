@@ -53,11 +53,7 @@ describe('wow housing-decor integration', async () => {
         ? index.decor_items.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
         : index.decor_items;
 
-    const requests = [];
-
-    for (const item of sampledDecors) {
-      requests.push(client.sendRequest(decor(item.id)));
-    }
+    const requests = Array.from(sampledDecors, (item) => client.sendRequest(decor(item.id)));
 
     const details = await Promise.all(requests);
 
@@ -94,11 +90,7 @@ describe('wow housing-decor integration', async () => {
         ? index.fixtures.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
         : index.fixtures;
 
-    const requests = [];
-
-    for (const item of sampledFixtures) {
-      requests.push(client.sendRequest(fixture(item.id)));
-    }
+    const requests = Array.from(sampledFixtures, (item) => client.sendRequest(fixture(item.id)));
     const details = await Promise.all(requests);
 
     for (const detail of details) {
@@ -133,11 +125,7 @@ describe('wow housing-decor integration', async () => {
         ? index.fixture_hooks.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
         : index.fixture_hooks;
 
-    const requests = [];
-
-    for (const item of sampledHooks) {
-      requests.push(client.sendRequest(fixtureHook(item.id)));
-    }
+    const requests = Array.from(sampledHooks, (item) => client.sendRequest(fixtureHook(item.id)));
 
     const details = await Promise.all(requests);
 
@@ -173,11 +161,7 @@ describe('wow housing-decor integration', async () => {
         ? index.rooms.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
         : index.rooms;
 
-    const requests = [];
-
-    for (const item of sampledRooms) {
-      requests.push(client.sendRequest(room(item.id)));
-    }
+    const requests = Array.from(sampledRooms, (item) => client.sendRequest(room(item.id)));
     const details = await Promise.all(requests);
 
     for (const detail of details) {

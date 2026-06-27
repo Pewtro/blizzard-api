@@ -37,10 +37,7 @@ describe('wow reputations integration', async () => {
           factionItems.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
         : factionItems.slice(0, sampleSize);
 
-    const factionRequests = [];
-    for (const f of sampled) {
-      factionRequests.push(client.sendRequest(reputationFaction(f.id)));
-    }
+    const factionRequests = Array.from(sampled, (f) => client.sendRequest(reputationFaction(f.id)));
 
     const factionResponses = await Promise.all(factionRequests);
     for (const fr of factionResponses) {
@@ -67,10 +64,7 @@ describe('wow reputations integration', async () => {
           tierItems.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
         : tierItems.slice(0, sampleSize);
 
-    const tierRequests = [];
-    for (const t of sampled) {
-      tierRequests.push(client.sendRequest(reputationTiers(t.id)));
-    }
+    const tierRequests = Array.from(sampled, (t) => client.sendRequest(reputationTiers(t.id)));
     const tierResponses = await Promise.all(tierRequests);
     for (const tr of tierResponses) {
       const parsed = reputationTiersResponseSchema.safeParse(tr);

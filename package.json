@@ -31,7 +31,7 @@
   "devDependencies": {
     "@arethetypeswrong/core": "0.18.3",
     "@changesets/cli": "2.31.0",
-    "@putstack/eslint-config-typescript": "4.18.1",
+    "@putstack/eslint-config-typescript": "5.0.2",
     "@putstack/prettier-config": "2.0.0",
     "@size-limit/preset-small-lib": "12.1.0",
     "@types/node": "26.0.0",

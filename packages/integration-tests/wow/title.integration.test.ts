@@ -28,11 +28,7 @@ describe('wow title integration', async () => {
           titles.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
         : titles.slice(0, sampleSize);
 
-    const requests = [];
-
-    for (const t of sampled) {
-      requests.push(client.sendRequest(title(t.id)));
-    }
+    const requests = Array.from(sampled, (t) => client.sendRequest(title(t.id)));
     const responses = await Promise.all(requests);
     for (const titleResp of responses) {
       const parsedTitle = titleResponseSchema.safeParse(titleResp);

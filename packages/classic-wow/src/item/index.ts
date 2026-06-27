@@ -7,7 +7,7 @@ import type {
   ItemResponse,
   ItemSearchParameters,
   ItemSearchResponse,
-  ItemSubClassResponse,
+  ItemSubclassResponse,
 } from './types';
 
 /**
@@ -93,13 +93,13 @@ export function itemSearch(
  * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
  * @param itemClassId The item class ID.
  * @param itemSubclassId The item subclass ID.
- * @returns The item subclass. See {@link ItemSubClassResponse}.
+ * @returns The item subclass. See {@link ItemSubclassResponse}.
  */
-export function itemSubClass(
+export function itemSubclass(
   namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
   itemClassId: number,
   itemSubclassId: number,
-): Resource<ItemSubClassResponse> {
+): Resource<ItemSubclassResponse> {
   return {
     namespace,
     path: `${wowBasePath}/item-class/${itemClassId}/item-subclass/${itemSubclassId}`,

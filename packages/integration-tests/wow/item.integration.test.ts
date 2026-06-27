@@ -8,7 +8,7 @@ import {
   itemSearch,
   itemSet,
   itemSetIndex,
-  itemSubClass,
+  itemSubclass,
 } from '@blizzard-api/wow/item';
 import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
@@ -21,7 +21,7 @@ import {
   itemSearchResponseSchema,
   itemSetIndexResponseSchema,
   itemSetResponseSchema,
-  itemSubClassResponseSchema,
+  itemSubclassResponseSchema,
 } from '../../../generated/schemas/wow/item';
 
 describe.concurrent('wow item integration', async () => {
@@ -65,16 +65,16 @@ describe.concurrent('wow item integration', async () => {
     }
     expect(parsedDetail.success).toBe(true);
 
-    const subClassIndex = Math.floor(Math.random() * detail.item_subclasses.length);
-    const subClass = detail.item_subclasses[subClassIndex];
+    const subclassIndex = Math.floor(Math.random() * detail.item_subclasses.length);
+    const subclass = detail.item_subclasses[subclassIndex];
 
-    const subDetail = await client.sendRequest(itemSubClass(foundItemClass!.id, subClass!.id));
-    const parsedSubDetail = itemSubClassResponseSchema.safeParse(subDetail);
+    const subDetail = await client.sendRequest(itemSubclass(foundItemClass!.id, subclass!.id));
+    const parsedSubDetail = itemSubclassResponseSchema.safeParse(subDetail);
     if (!parsedSubDetail.success) {
       console.error(
         'Item subclass detail validation failed:',
         foundItemClass!.id,
-        subClass!.id,
+        subclass!.id,
         treeifyError(parsedSubDetail.error),
       );
     }
@@ -82,8 +82,8 @@ describe.concurrent('wow item integration', async () => {
   });
 
   test('validates item sets', async ({ expect }) => {
-    const setIndex = await client.sendRequest(itemSetIndex());
-    const parsedSetIndex = itemSetIndexResponseSchema.safeParse(setIndex);
+    const itemSetIndexResp = await client.sendRequest(itemSetIndex());
+    const parsedSetIndex = itemSetIndexResponseSchema.safeParse(itemSetIndexResp);
     if (!parsedSetIndex.success) {
       console.error('Item set index validation failed:', treeifyError(parsedSetIndex.error));
     }

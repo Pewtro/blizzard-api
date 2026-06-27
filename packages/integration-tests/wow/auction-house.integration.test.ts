@@ -21,7 +21,7 @@ describe('wow auction-house integration', async () => {
     if (!firstConnectedRealm) {
       throw new Error('No connected realms found for testing auction house');
     }
-    const realmId = firstConnectedRealm.href.split('/').at(-1)?.split('?')[0];
+    const realmId = firstConnectedRealm.href.split('/').at(-1)?.split('?', 1)[0];
     if (!realmId) {
       throw new Error('No realm ID found for testing auction house');
     }

@@ -43,10 +43,7 @@ describe.concurrent('wow talent integration', async () => {
           pvpTalents.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
         : pvpTalents.slice(0, sampleSize);
 
-    const requests = [];
-    for (const t of sampled) {
-      requests.push(client.sendRequest(pvpTalent(t.id)));
-    }
+    const requests = Array.from(sampled, (t) => client.sendRequest(pvpTalent(t.id)));
     const responses = await Promise.all(requests);
     for (const resp of responses) {
       const parsed = pvpTalentResponseSchema.safeParse(resp);
@@ -71,10 +68,7 @@ describe.concurrent('wow talent integration', async () => {
         ? // eslint-disable-next-line sonarjs/pseudo-random
           talents.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
         : talents.slice(0, sampleSize);
-    const requests = [];
-    for (const t of sampled) {
-      requests.push(client.sendRequest(talent(t.id)));
-    }
+    const requests = Array.from(sampled, (t) => client.sendRequest(talent(t.id)));
     const responses = await Promise.all(requests);
     for (const resp of responses) {
       const parsed = talentResponseSchema.safeParse(resp);

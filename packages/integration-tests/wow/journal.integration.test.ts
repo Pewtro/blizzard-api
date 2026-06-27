@@ -46,11 +46,9 @@ describe.concurrent('wow journal integration', async () => {
           encounters.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
         : encounters.slice(0, sampleSize);
 
-    const encounterRequests = [];
-
-    for (const encounter of sampledEncounters) {
-      encounterRequests.push(client.sendRequest(journalEncounter(encounter.id)));
-    }
+    const encounterRequests = Array.from(sampledEncounters, (encounter) =>
+      client.sendRequest(journalEncounter(encounter.id)),
+    );
     const encounterResponses = await Promise.all(encounterRequests);
     for (const encounter of encounterResponses) {
       const parsedEncounter = journalEncounterResponseSchema.safeParse(encounter);
@@ -81,11 +79,9 @@ describe.concurrent('wow journal integration', async () => {
           expansions.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
         : expansions.slice(0, sampleSize);
 
-    const expansionRequests = [];
-
-    for (const expansion of sampledExpansions) {
-      expansionRequests.push(client.sendRequest(journalExpansion(expansion.id)));
-    }
+    const expansionRequests = Array.from(sampledExpansions, (expansion) =>
+      client.sendRequest(journalExpansion(expansion.id)),
+    );
     const expansionResponses = await Promise.all(expansionRequests);
     for (const expansion of expansionResponses) {
       const parsedExpansion = journalExpansionResponseSchema.safeParse(expansion);
@@ -117,11 +113,9 @@ describe.concurrent('wow journal integration', async () => {
           instances.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
         : instances.slice(0, sampleSize);
 
-    const instanceRequests = [];
-
-    for (const instance of sampledInstances) {
-      instanceRequests.push(client.sendRequest(journalInstance(instance.id)));
-    }
+    const instanceRequests = Array.from(sampledInstances, (instance) =>
+      client.sendRequest(journalInstance(instance.id)),
+    );
     const instanceResponses = await Promise.all(instanceRequests);
     for (const instance of instanceResponses) {
       const parsedInstance = journalInstanceResponseSchema.safeParse(instance);

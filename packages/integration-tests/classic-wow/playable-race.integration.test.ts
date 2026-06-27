@@ -19,11 +19,7 @@ describe.concurrent('classic-wow playable race integration', async () => {
     }
     expect(parsed.success).toBe(true);
 
-    const requests = [];
-
-    for (const race of resp.races) {
-      requests.push(client.sendRequest(playableRace('static-classic1x', race.id)));
-    }
+    const requests = Array.from(resp.races, (race) => client.sendRequest(playableRace('static-classic1x', race.id)));
 
     const results = await Promise.all(requests);
 
@@ -43,11 +39,7 @@ describe.concurrent('classic-wow playable race integration', async () => {
     }
     expect(parsed.success).toBe(true);
 
-    const requests = [];
-
-    for (const race of resp.races) {
-      requests.push(client.sendRequest(playableRace('static-classic', race.id)));
-    }
+    const requests = Array.from(resp.races, (race) => client.sendRequest(playableRace('static-classic', race.id)));
 
     const results = await Promise.all(requests);
 

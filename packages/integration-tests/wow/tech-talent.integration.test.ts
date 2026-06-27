@@ -81,11 +81,7 @@ describe('wow tech-talent integration', async () => {
           techTalentTrees.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
         : techTalentTrees.slice(0, sampleSize);
 
-    const detailRequests = [];
-
-    for (const t of sampled) {
-      detailRequests.push(client.sendRequest(techTalentTree(t.id)));
-    }
+    const detailRequests = Array.from(sampled, (t) => client.sendRequest(techTalentTree(t.id)));
 
     const details = await Promise.all(detailRequests);
     for (const d of details) {

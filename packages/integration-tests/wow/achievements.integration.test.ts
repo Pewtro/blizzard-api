@@ -40,10 +40,7 @@ describe('wow achievements integration', async () => {
           achievements.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
         : achievements.slice(0, sampleSize);
 
-    const requests = [];
-    for (const achi of sampled) {
-      requests.push(client.sendRequest(achievement(achi.id)));
-    }
+    const requests = Array.from(sampled, (achi) => client.sendRequest(achievement(achi.id)));
 
     const responses = await Promise.all(requests);
 
@@ -72,10 +69,7 @@ describe('wow achievements integration', async () => {
           categories.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
         : categories.slice(0, sampleSize);
 
-    const catRequests = [];
-    for (const c of sampledCats) {
-      catRequests.push(client.sendRequest(achievementCategory(c.id)));
-    }
+    const catRequests = Array.from(sampledCats, (c) => client.sendRequest(achievementCategory(c.id)));
 
     const catResponses = await Promise.all(catRequests);
     for (const cr of catResponses) {
@@ -96,10 +90,7 @@ describe('wow achievements integration', async () => {
 
     const achs = parsedIndexAgain.success ? parsedIndexAgain.data.achievements : [];
     const mediaSample = achs.slice(0, Math.min(5, achs.length));
-    const mediaRequests = [];
-    for (const a of mediaSample) {
-      mediaRequests.push(client.sendRequest(achievementMedia(a.id)));
-    }
+    const mediaRequests = Array.from(mediaSample, (a) => client.sendRequest(achievementMedia(a.id)));
     const mediaResponses = await Promise.all(mediaRequests);
     for (const m of mediaResponses) {
       const parsedMedia = achievementMediaResponseSchema.safeParse(m);

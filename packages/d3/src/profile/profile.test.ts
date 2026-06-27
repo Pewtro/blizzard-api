@@ -14,7 +14,7 @@ describe.concurrent('profile', () => {
     expect(resource.path).toBe(expectedPath);
   });
 
-  test('should return the correct resource path', ({ expect }) => {
+  test('accountHero should return the correct resource path', ({ expect }) => {
     const expectedPath = `${d3ProfileBasePath}/example%231234/hero/42`;
 
     const resource = accountHero(battleTag, heroId);
@@ -22,7 +22,7 @@ describe.concurrent('profile', () => {
     expect(resource.path).toBe(expectedPath);
   });
 
-  test('should return the correct resource path', ({ expect }) => {
+  test('accountHeroItems should return the correct resource path', ({ expect }) => {
     const expectedPath = `${d3ProfileBasePath}/example%231234/hero/42/items`;
 
     const resource = accountHeroItems(battleTag, heroId);

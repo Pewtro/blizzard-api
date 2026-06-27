@@ -26,7 +26,7 @@ describe('wow connected realm integration', async () => {
       .find((realm) => realm.href)
       ?.href.split('/')
       .pop()
-      ?.split('?')[0];
+      ?.split('?', 1)[0];
     if (!id) {
       throw new Error('No connected realms found in index response');
     }

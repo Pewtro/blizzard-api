@@ -6,14 +6,14 @@ const namespace: BlizzardNamespaces = 'dynamic-classic';
 const namespace1x: BlizzardNamespaces = 'dynamic-classic1x';
 
 describe.concurrent('classicConnectedRealmApi', () => {
-  test('should return the connected realm index', ({ expect }) => {
+  test('connectedRealmIndex should return the correct resource path', ({ expect }) => {
     const result = connectedRealmIndex(namespace);
     expect(result).toBeDefined();
     expect(result.path).toBe('/data/wow/connected-realm/index');
     expect(result.namespace).toBe(namespace);
   });
 
-  test('should return the connected realm', ({ expect }) => {
+  test('connectedRealm should return the correct resource path', ({ expect }) => {
     const connectedRealmId = 123;
     const result = connectedRealm(namespace1x, connectedRealmId);
     expect(result).toBeDefined();
@@ -21,7 +21,9 @@ describe.concurrent('classicConnectedRealmApi', () => {
     expect(result.namespace).toBe(namespace1x);
   });
 
-  test('should return the proper search resource when orderby is an array', ({ expect }) => {
+  test('connectedRealmSearch should return the proper search resource when orderby is an array with a single value', ({
+    expect,
+  }) => {
     const result = connectedRealmSearch(namespace1x, {
       _page: 1,
       orderby: 'name',
@@ -39,7 +41,9 @@ describe.concurrent('classicConnectedRealmApi', () => {
     });
   });
 
-  test('should return the proper search resource when orderby is an array', ({ expect }) => {
+  test('connectedRealmSearch should return the proper search resource when orderby is an array with multiple values', ({
+    expect,
+  }) => {
     const result = connectedRealmSearch(namespace, {
       _page: 1,
       orderby: ['name', 'id'],

@@ -40,11 +40,7 @@ describe('wow modified-crafting integration', async () => {
           categories.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
         : categories.slice(0, sampleSize);
 
-    const requests = [];
-
-    for (const c of sampled) {
-      requests.push(client.sendRequest(modifiedCraftingCategory(c.id)));
-    }
+    const requests = Array.from(sampled, (c) => client.sendRequest(modifiedCraftingCategory(c.id)));
     const responses = await Promise.all(requests);
     for (const category of responses) {
       const parsedCategory = modifiedCraftingCategoryResponseSchema.safeParse(category);

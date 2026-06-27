@@ -19,11 +19,7 @@ describe('wow playable race integration', async () => {
     }
     expect(parsed.success).toBe(true);
 
-    const requests = [];
-
-    for (const race of resp.races) {
-      requests.push(client.sendRequest(playableRace(race.id)));
-    }
+    const requests = Array.from(resp.races, (race) => client.sendRequest(playableRace(race.id)));
 
     const results = await Promise.all(requests);
 

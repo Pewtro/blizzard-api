@@ -9,7 +9,7 @@ import type {
   ItemSearchResponse,
   ItemSetIndexResponse,
   ItemSetResponse,
-  ItemSubClassResponse,
+  ItemSubclassResponse,
 } from './types';
 
 /**
@@ -98,9 +98,9 @@ export function itemSetIndex(): Resource<ItemSetIndexResponse> {
  * Get an item subclass by ID.
  * @param itemClassId The item class ID.
  * @param itemSubclassId The item subclass ID.
- * @returns The item subclass. See {@link ItemSubClassResponse}.
+ * @returns The item subclass. See {@link ItemSubclassResponse}.
  */
-export function itemSubClass(itemClassId: number, itemSubclassId: number): Resource<ItemSubClassResponse> {
+export function itemSubclass(itemClassId: number, itemSubclassId: number): Resource<ItemSubclassResponse> {
   return {
     namespace: 'static',
     path: `${wowBasePath}/item-class/${itemClassId}/item-subclass/${itemSubclassId}`,

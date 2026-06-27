@@ -11,6 +11,7 @@ export const d3ProfileBasePath = `d3/profile`;
 /**
  * The base request path for game data APIs in the D3 API.
  */
+// eslint-disable-next-line unicorn/consistent-compound-words
 export const d3GameDataBasePath = `data/d3`;
 
 /**

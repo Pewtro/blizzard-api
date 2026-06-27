@@ -8,3 +8,5 @@ allowBuilds:
 
 # 3 day cooldown
 minimumReleaseAge: 4320
+minimumReleaseAgeExclude:
+  - '@putstack/eslint-config-typescript'

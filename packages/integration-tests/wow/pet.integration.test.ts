@@ -35,11 +35,7 @@ describe('wow pet integration', async () => {
           pets.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
         : pets.slice(0, sampleSize);
 
-    const requests = [];
-
-    for (const t of sampled) {
-      requests.push(client.sendRequest(pet(t.id)));
-    }
+    const requests = Array.from(sampled, (t) => client.sendRequest(pet(t.id)));
     const responses = await Promise.all(requests);
     for (const petResp of responses) {
       const parsedPet = petResponseSchema.safeParse(petResp);
@@ -98,11 +94,7 @@ describe('wow pet integration', async () => {
           pets.toSorted(() => 0.5 - Math.random()).slice(0, petSampleSize)
         : pets.slice(0, petSampleSize);
 
-    const requests = [];
-
-    for (const petResp of petSampled) {
-      requests.push(client.sendRequest(petMedia(petResp.id)));
-    }
+    const requests = Array.from(petSampled, (petResp) => client.sendRequest(petMedia(petResp.id)));
     const responses = await Promise.all(requests);
 
     for (const petResp of responses) {

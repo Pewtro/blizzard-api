@@ -76,7 +76,7 @@ export function accountPetsCollectionSummary(token: string): ProtectedResource<A
 export function accountProfileSummary(token: string): ProtectedResource<AccountProfileSummaryResponse> {
   return {
     namespace: 'profile',
-    path: `${accountProfileBase}`,
+    path: accountProfileBase,
     token,
   };
 }

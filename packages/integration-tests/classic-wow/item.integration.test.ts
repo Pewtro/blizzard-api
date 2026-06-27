@@ -1,4 +1,4 @@
-import { item, itemClass, itemClassIndex, itemMedia, itemSearch, itemSubClass } from '@blizzard-api/classic-wow/item';
+import { item, itemClass, itemClassIndex, itemMedia, itemSearch, itemSubclass } from '@blizzard-api/classic-wow/item';
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
@@ -9,7 +9,7 @@ import {
   itemMediaResponseSchema,
   itemResponseSchema,
   itemSearchResponseSchema,
-  itemSubClassResponseSchema,
+  itemSubclassResponseSchema,
 } from '../../../generated/schemas/classic-wow';
 
 describe('classic-wow item integration', async () => {
@@ -62,16 +62,16 @@ describe('classic-wow item integration', async () => {
       expect(parsedDetail.success).toBe(true);
 
       // eslint-disable-next-line sonarjs/pseudo-random
-      const subClassIndex = Math.floor(Math.random() * (detail.item_subclasses?.length ?? 1));
-      const subClass = detail.item_subclasses?.[subClassIndex] ?? { id: 1 };
+      const subclassIndex = Math.floor(Math.random() * (detail.item_subclasses?.length ?? 1));
+      const subclass = detail.item_subclasses?.[subclassIndex] ?? { id: 1 };
 
-      const subDetail = await client.sendRequest(itemSubClass('static-classic1x', foundItemClass!.id, subClass?.id));
-      const parsedSubDetail = itemSubClassResponseSchema.safeParse(subDetail);
+      const subDetail = await client.sendRequest(itemSubclass('static-classic1x', foundItemClass!.id, subclass?.id));
+      const parsedSubDetail = itemSubclassResponseSchema.safeParse(subDetail);
       if (!parsedSubDetail.success) {
         console.error(
           'Item subclass detail validation failed:',
           foundItemClass!.id,
-          subClass.id,
+          subclass.id,
           treeifyError(parsedSubDetail.error),
         );
       }
@@ -133,16 +133,16 @@ describe('classic-wow item integration', async () => {
       expect(parsedDetail.success).toBe(true);
 
       // eslint-disable-next-line sonarjs/pseudo-random
-      const subClassIndex = Math.floor(Math.random() * (detail.item_subclasses?.length ?? 1));
-      const subClass = detail.item_subclasses?.[subClassIndex] ?? { id: 1 };
+      const subclassIndex = Math.floor(Math.random() * (detail.item_subclasses?.length ?? 1));
+      const subclass = detail.item_subclasses?.[subclassIndex] ?? { id: 1 };
 
-      const subDetail = await client.sendRequest(itemSubClass('static-classic', foundItemClass!.id, subClass.id));
-      const parsedSubDetail = itemSubClassResponseSchema.safeParse(subDetail);
+      const subDetail = await client.sendRequest(itemSubclass('static-classic', foundItemClass!.id, subclass.id));
+      const parsedSubDetail = itemSubclassResponseSchema.safeParse(subDetail);
       if (!parsedSubDetail.success) {
         console.error(
           'Item subclass detail validation failed:',
           foundItemClass!.id,
-          subClass.id,
+          subclass.id,
           treeifyError(parsedSubDetail.error),
         );
       }

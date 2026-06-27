@@ -19,7 +19,7 @@ import {
 } from './creature/index';
 import { guildCrestBorder, guildCrestComponentsIndex, guildCrestEmblem } from './guild-crest/index';
 import { guild, guildAchievements, guildActivity, guildRoster } from './guild/index';
-import { item, itemClass, itemClassIndex, itemMedia, itemSearch, itemSubClass } from './item/index';
+import { item, itemClass, itemClassIndex, itemMedia, itemSearch, itemSubclass } from './item/index';
 import { mediaSearch } from './media-search/index';
 import { playableClass, playableClassIndex, playableClassMedia } from './playable-class/index';
 import { playableRace, playableRaceIndex } from './playable-race/index';
@@ -85,7 +85,7 @@ const classicWow = {
   itemClassIndex,
   itemMedia,
   itemSearch,
-  itemSubClass,
+  itemSubclass,
   //Media Search
   mediaSearch,
   //Playable Class

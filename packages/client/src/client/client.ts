@@ -60,7 +60,7 @@ export class BlizzardApiClient {
    */
   public getAccessToken = async (options?: AccessTokenRequestArguments): Promise<AccessToken> => {
     const { key, origin, secret } = { ...this.defaults, ...options };
-    const basicAuth = Buffer.from(`${key}:${secret}`).toString('base64');
+    const basicAuth = Buffer.from(`${key}:${secret}`).toBase64();
     const response = await this.ky
       .post<AccessToken>(`https://${origin}.battle.net/oauth/token`, {
         headers: {
@@ -69,61 +69,6 @@ export class BlizzardApiClient {
         },
         searchParams: {
           grant_type: 'client_credentials',
-        },
-      })
-      .json();
-
-    return response;
-  };
-
-  /**
-   * Set the access token.
-   * @param token The access token.
-   */
-  public setAccessToken = (token: string): void => {
-    this.defaults.token = token;
-  };
-
-  /**
-   * Refresh the access token.
-   * @param options The access token request arguments. See {@link AccessTokenRequestArguments}.
-   * @returns The access token. See {@link AccessToken}.
-   * @example
-   * const response = await client.refreshAccessToken();
-   * const { access_token, token_type, expires_in, sub } = response;
-   * console.log(access_token, token_type, expires_in, sub);
-   * // => 'access'
-   * // => 'bearer'
-   * // => 86399
-   * // => 'client-id'
-   */
-  public refreshAccessToken = async (options?: AccessTokenRequestArguments): Promise<AccessToken> => {
-    const response = await this.getAccessToken(options);
-    this.setAccessToken(response.access_token);
-    return response;
-  };
-
-  /**
-   * Validate an access token.
-   * @param options The validate access token arguments. See {@link ValidateAccessTokenArguments}.
-   * @returns The response from the Blizzard API. See {@link ValidateAccessTokenResponse}.
-   * @example
-   * const response = await client.validateAccessToken({ token: 'access' });
-   * console.log(response.client_id);
-   * // => 'client-id'
-   */
-  public validateAccessToken = async (options?: ValidateAccessTokenArguments): Promise<ValidateAccessTokenResponse> => {
-    const { origin, token } = { ...this.defaults, ...options };
-
-    if (!token) {
-      throw new Error('No token has been set previously or been passed to the validateAccessToken method.');
-    }
-
-    const response = await this.ky
-      .post<ValidateAccessTokenResponse>(`https://${origin}.battle.net/oauth/check_token`, {
-        body: stringify({ token }),
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
         },
       })
       .json();
@@ -199,6 +144,24 @@ export class BlizzardApiClient {
   }
 
   /**
+   * Refresh the access token.
+   * @param options The access token request arguments. See {@link AccessTokenRequestArguments}.
+   * @returns The access token. See {@link AccessToken}.
+   * @example
+   * const response = await client.refreshAccessToken();
+   * const { access_token, token_type, expires_in, sub } = response;
+   * console.log(access_token, token_type, expires_in, sub);
+   * // => 'access'
+   * // => 'bearer'
+   * // => 86399
+   * // => 'client-id'
+   */
+  public refreshAccessToken = async (options?: AccessTokenRequestArguments): Promise<AccessToken> => {
+    const response = await this.getAccessToken(options);
+    this.setAccessToken(response.access_token);
+    return response;
+  };
+  /**
    * Send a request to the Blizzard API.
    * @param resource The resource to fetch. See {@link Resource}.
    * @param options Client options. See {@link ClientOptions}.
@@ -236,4 +199,40 @@ export class BlizzardApiClient {
 
     return data;
   }
+
+  /**
+   * Set the access token.
+   * @param token The access token.
+   */
+  public setAccessToken = (token: string): void => {
+    this.defaults.token = token;
+  };
+
+  /**
+   * Validate an access token.
+   * @param options The validate access token arguments. See {@link ValidateAccessTokenArguments}.
+   * @returns The response from the Blizzard API. See {@link ValidateAccessTokenResponse}.
+   * @example
+   * const response = await client.validateAccessToken({ token: 'access' });
+   * console.log(response.client_id);
+   * // => 'client-id'
+   */
+  public validateAccessToken = async (options?: ValidateAccessTokenArguments): Promise<ValidateAccessTokenResponse> => {
+    const { origin, token } = { ...this.defaults, ...options };
+
+    if (!token) {
+      throw new Error('No token has been set previously or been passed to the validateAccessToken method.');
+    }
+
+    const response = await this.ky
+      .post<ValidateAccessTokenResponse>(`https://${origin}.battle.net/oauth/check_token`, {
+        body: stringify({ token }),
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      })
+      .json();
+
+    return response;
+  };
 }

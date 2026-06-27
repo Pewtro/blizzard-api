@@ -35,11 +35,7 @@ describe.concurrent('wow covenant integration', async () => {
     }
     expect(parsedCov.success).toBe(true);
 
-    const requests = [];
-
-    for (const cov of covIndex.covenants) {
-      requests.push(client.sendRequest(covenant(cov.id)));
-    }
+    const requests = Array.from(covIndex.covenants, (cov) => client.sendRequest(covenant(cov.id)));
     const responses = await Promise.all(requests);
     for (const covenantResp of responses) {
       const parsedDetail = covenantResponseSchema.safeParse(covenantResp);
@@ -64,10 +60,9 @@ describe.concurrent('wow covenant integration', async () => {
     }
     expect(parsedSoul.success).toBe(true);
 
-    const requests = [];
-    for (const soul of parsedSoul.success ? parsedSoul.data.soulbinds : []) {
-      requests.push(client.sendRequest(soulbind(soul.id)));
-    }
+    const requests = Array.from(parsedSoul.success ? parsedSoul.data.soulbinds : [], (soul) =>
+      client.sendRequest(soulbind(soul.id)),
+    );
     const responses = await Promise.all(requests);
 
     for (const soulbindResp of responses) {
@@ -96,10 +91,7 @@ describe.concurrent('wow covenant integration', async () => {
           conduits.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
         : conduits.slice(0, sampleSize);
 
-    const requests = [];
-    for (const conduitResp of sampled) {
-      requests.push(client.sendRequest(conduit(conduitResp.id)));
-    }
+    const requests = Array.from(sampled, (conduitResp) => client.sendRequest(conduit(conduitResp.id)));
     const responses = await Promise.all(requests);
 
     for (const conduitResp of responses) {
