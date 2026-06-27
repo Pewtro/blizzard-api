@@ -60,7 +60,9 @@ export class BlizzardApiClient {
    */
   public getAccessToken = async (options?: AccessTokenRequestArguments): Promise<AccessToken> => {
     const { key, origin, secret } = { ...this.defaults, ...options };
-    const basicAuth = Buffer.from(`${key}:${secret}`).toBase64();
+    // Swap to toBase64() when Node.js 26 is the minimum supported version.
+    // eslint-disable-next-line unicorn/prefer-uint8array-base64
+    const basicAuth = Buffer.from(`${key}:${secret}`).toString('base64');
     const response = await this.ky
       .post<AccessToken>(`https://${origin}.battle.net/oauth/token`, {
         headers: {
