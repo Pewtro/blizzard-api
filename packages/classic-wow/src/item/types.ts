@@ -114,7 +114,8 @@ interface Durability {
   value: number;
 }
 
-type InventoryType = //Armor
+type InventoryType =
+  //Armor
   | 'BACK'
   | 'CHEST'
   | 'FEET'

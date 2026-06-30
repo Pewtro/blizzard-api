@@ -55,14 +55,7 @@ interface BaseSearchParameters {
   page?: number;
   pageSize?: number;
   sort?:
-    | 'attack:asc'
-    | 'attack:desc'
-    | 'health:asc'
-    | 'health:desc'
-    | 'name:asc'
-    | 'name:desc'
-    | 'tier:asc'
-    | 'tier:desc';
+    'attack:asc' | 'attack:desc' | 'health:asc' | 'health:desc' | 'name:asc' | 'name:desc' | 'tier:asc' | 'tier:desc';
   textFilter?: string;
   tier?: 1 | 2 | 3 | 4 | 5 | 6 | 'hero';
 }
