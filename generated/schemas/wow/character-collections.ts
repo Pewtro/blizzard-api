@@ -96,6 +96,6 @@ export const characterPetsCollectionSummaryResponseSchema = responseBaseSchema.e
 });
 
 export const characterTransmogCollectionSummaryResponseSchema = responseBaseSchema.extend({
-  appearance_sets: z.array(nameIdKeySchema),
-  slots: z.array(slotSchema),
+  appearance_sets: z.array(nameIdKeySchema).optional(),
+  slots: z.array(slotSchema).optional(),
 });

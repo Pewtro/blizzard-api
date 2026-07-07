@@ -28,8 +28,8 @@ export interface CharacterToysCollectionSummaryResponse extends ResponseBase {
 }
 
 export interface CharacterTransmogCollectionSummaryResponse extends ResponseBase {
-  appearance_sets: Array<NameIdKey>;
-  slots: Array<Slot>;
+  appearance_sets?: Array<NameIdKey>;
+  slots?: Array<Slot>;
 }
 
 interface Heirloom {
