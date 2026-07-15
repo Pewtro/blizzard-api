@@ -26,7 +26,7 @@ describe.skip('classic-wow auction house integration', async () => {
     }
     expect(parsedRealmIndex.success).toBe(true);
 
-    const firstRealm = realmIndexResponse.connected_realms?.[0];
+    const firstRealm = realmIndexResponse?.connected_realms?.[0];
     expect(firstRealm).toBeDefined();
 
     // Extract connected realm id from the href (e.g. /data/wow/connected-realm/123)
@@ -43,7 +43,7 @@ describe.skip('classic-wow auction house integration', async () => {
     }
     expect(parsedAuctionIndex.success).toBe(true);
 
-    const firstAuctionHouse = auctionIndexResponse.auctions?.[0];
+    const firstAuctionHouse = auctionIndexResponse?.auctions?.[0];
     expect(firstAuctionHouse).toBeDefined();
 
     const auctionHouseId = firstAuctionHouse?.id;

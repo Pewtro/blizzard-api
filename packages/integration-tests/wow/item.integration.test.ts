@@ -53,8 +53,8 @@ describe.concurrent('wow item integration', async () => {
     }
     expect(parsed.success).toBe(true);
 
-    const randomItemClassIndex = Math.floor(Math.random() * resp.item_classes.length);
-    const foundItemClass = resp.item_classes[randomItemClassIndex];
+    const randomItemClassIndex = Math.floor(Math.random() * resp!.item_classes.length);
+    const foundItemClass = resp!.item_classes[randomItemClassIndex];
 
     expect(foundItemClass).toBeDefined();
 
@@ -65,8 +65,8 @@ describe.concurrent('wow item integration', async () => {
     }
     expect(parsedDetail.success).toBe(true);
 
-    const subclassIndex = Math.floor(Math.random() * detail.item_subclasses.length);
-    const subclass = detail.item_subclasses[subclassIndex];
+    const subclassIndex = Math.floor(Math.random() * detail!.item_subclasses.length);
+    const subclass = detail!.item_subclasses[subclassIndex];
 
     const subDetail = await client.sendRequest(itemSubclass(foundItemClass!.id, subclass!.id));
     const parsedSubDetail = itemSubclassResponseSchema.safeParse(subDetail);

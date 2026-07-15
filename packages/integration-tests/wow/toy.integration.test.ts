@@ -33,7 +33,7 @@ describe('wow toy integration', async () => {
     for (const toyResp of responses) {
       const parsedToy = toyResponseSchema.safeParse(toyResp);
       if (!parsedToy.success) {
-        console.error('Toy detail validation failed for id', toyResp.id, treeifyError(parsedToy.error));
+        console.error('Toy detail validation failed for id', toyResp?.id, treeifyError(parsedToy.error));
       }
       expect(parsedToy.success).toBe(true);
     }

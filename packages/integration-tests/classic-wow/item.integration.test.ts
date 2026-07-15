@@ -44,13 +44,13 @@ describe('classic-wow item integration', async () => {
       expect(parsed.success).toBe(true);
 
       // eslint-disable-next-line sonarjs/pseudo-random
-      const randomItemClassIndex = Math.floor(Math.random() * resp.item_classes.length);
+      const randomItemClassIndex = Math.floor(Math.random() * resp!.item_classes.length);
 
       // Avoid the "WoW Token" class which has no subclasses and causes the subclass test to fail
       const foundItemClass =
-        resp.item_classes[randomItemClassIndex]?.id === 18
-          ? resp.item_classes[1]
-          : resp.item_classes[randomItemClassIndex];
+        resp!.item_classes[randomItemClassIndex]?.id === 18
+          ? resp!.item_classes[1]
+          : resp!.item_classes[randomItemClassIndex];
 
       expect(foundItemClass).toBeDefined();
 
@@ -62,8 +62,8 @@ describe('classic-wow item integration', async () => {
       expect(parsedDetail.success).toBe(true);
 
       // eslint-disable-next-line sonarjs/pseudo-random
-      const subclassIndex = Math.floor(Math.random() * (detail.item_subclasses?.length ?? 1));
-      const subclass = detail.item_subclasses?.[subclassIndex] ?? { id: 1 };
+      const subclassIndex = Math.floor(Math.random() * (detail!.item_subclasses?.length ?? 1));
+      const subclass = detail!.item_subclasses?.[subclassIndex] ?? { id: 1 };
 
       const subDetail = await client.sendRequest(itemSubclass('static-classic1x', foundItemClass!.id, subclass?.id));
       const parsedSubDetail = itemSubclassResponseSchema.safeParse(subDetail);
@@ -115,13 +115,13 @@ describe('classic-wow item integration', async () => {
       expect(parsed.success).toBe(true);
 
       // eslint-disable-next-line sonarjs/pseudo-random
-      const randomItemClassIndex = Math.floor(Math.random() * resp.item_classes.length);
+      const randomItemClassIndex = Math.floor(Math.random() * resp!.item_classes.length);
 
       // Avoid the "WoW Token" class which has no subclasses and causes the subclass test to fail
       const foundItemClass =
-        resp.item_classes[randomItemClassIndex]?.id === 18
-          ? resp.item_classes[1]
-          : resp.item_classes[randomItemClassIndex];
+        resp!.item_classes[randomItemClassIndex]?.id === 18
+          ? resp!.item_classes[1]
+          : resp!.item_classes[randomItemClassIndex];
 
       expect(foundItemClass).toBeDefined();
 
@@ -133,8 +133,8 @@ describe('classic-wow item integration', async () => {
       expect(parsedDetail.success).toBe(true);
 
       // eslint-disable-next-line sonarjs/pseudo-random
-      const subclassIndex = Math.floor(Math.random() * (detail.item_subclasses?.length ?? 1));
-      const subclass = detail.item_subclasses?.[subclassIndex] ?? { id: 1 };
+      const subclassIndex = Math.floor(Math.random() * (detail!.item_subclasses?.length ?? 1));
+      const subclass = detail!.item_subclasses?.[subclassIndex] ?? { id: 1 };
 
       const subDetail = await client.sendRequest(itemSubclass('static-classic', foundItemClass!.id, subclass.id));
       const parsedSubDetail = itemSubclassResponseSchema.safeParse(subDetail);

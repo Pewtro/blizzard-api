@@ -11,8 +11,7 @@ describe('wow mythic-raid-leaderboard integration', async () => {
     origin: 'eu',
     secret: environment.blizzardClientSecret,
   });
-  //TODO This seems completely broken even on newer raid slugs. Something is up.
-  test.skip('fetches a raid leaderboard for a known instance slug', async ({ expect }) => {
+  test('fetches a raid leaderboard for a known instance slug', async ({ expect }) => {
     const resp = await client.sendRequest(mythicRaidLeaderboard('uldir', 'alliance'));
     const parsedResp = mythicRaidLeaderboardResponseSchema.safeParse(resp);
     if (!parsedResp.success) {

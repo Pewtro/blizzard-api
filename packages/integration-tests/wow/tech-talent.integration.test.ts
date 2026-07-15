@@ -50,7 +50,7 @@ describe('wow tech-talent integration', async () => {
     for (const d of details) {
       const parsed = techTalentResponseSchema.safeParse(d);
       if (!parsed.success) {
-        console.error('Tech talent detail validation failed for id', d.id, treeifyError(parsed.error));
+        console.error('Tech talent detail validation failed for id', d?.id, treeifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
     }
@@ -87,7 +87,7 @@ describe('wow tech-talent integration', async () => {
     for (const d of details) {
       const parsed = techTalentTreeResponseSchema.safeParse(d);
       if (!parsed.success) {
-        console.error('Tech talent tree validation failed for id', d.id, treeifyError(parsed.error));
+        console.error('Tech talent tree validation failed for id', d?.id, treeifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
     }

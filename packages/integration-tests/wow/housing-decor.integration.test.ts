@@ -49,9 +49,9 @@ describe('wow housing-decor integration', async () => {
 
     const sampleSize = 3;
     const sampledDecors =
-      index.decor_items.length > sampleSize
-        ? index.decor_items.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
-        : index.decor_items;
+      index!.decor_items.length > sampleSize
+        ? index!.decor_items.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
+        : index!.decor_items;
 
     const requests = Array.from(sampledDecors, (item) => client.sendRequest(decor(item.id)));
 
@@ -60,7 +60,7 @@ describe('wow housing-decor integration', async () => {
     for (const detail of details) {
       const parsed = decorResponseSchema.safeParse(detail);
       if (!parsed.success) {
-        console.error('Decor detail validation failed:', detail.id, treeifyError(parsed.error));
+        console.error('Decor detail validation failed:', detail?.id, treeifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
     }
@@ -86,9 +86,9 @@ describe('wow housing-decor integration', async () => {
     const sampleSize = 3;
 
     const sampledFixtures =
-      index.fixtures.length > sampleSize
-        ? index.fixtures.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
-        : index.fixtures;
+      index!.fixtures.length > sampleSize
+        ? index!.fixtures.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
+        : index!.fixtures;
 
     const requests = Array.from(sampledFixtures, (item) => client.sendRequest(fixture(item.id)));
     const details = await Promise.all(requests);
@@ -96,7 +96,7 @@ describe('wow housing-decor integration', async () => {
     for (const detail of details) {
       const parsed = fixtureResponseSchema.safeParse(detail);
       if (!parsed.success) {
-        console.error('Fixture detail validation failed:', detail.id, treeifyError(parsed.error));
+        console.error('Fixture detail validation failed:', detail?.id, treeifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
     }
@@ -121,9 +121,9 @@ describe('wow housing-decor integration', async () => {
 
     const sampleSize = 3;
     const sampledHooks =
-      index.fixture_hooks.length > sampleSize
-        ? index.fixture_hooks.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
-        : index.fixture_hooks;
+      index!.fixture_hooks.length > sampleSize
+        ? index!.fixture_hooks.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
+        : index!.fixture_hooks;
 
     const requests = Array.from(sampledHooks, (item) => client.sendRequest(fixtureHook(item.id)));
 
@@ -132,7 +132,7 @@ describe('wow housing-decor integration', async () => {
     for (const detail of details) {
       const parsed = fixtureHookResponseSchema.safeParse(detail);
       if (!parsed.success) {
-        console.error('Fixture hook detail validation failed:', detail.id, treeifyError(parsed.error));
+        console.error('Fixture hook detail validation failed:', detail?.id, treeifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
     }
@@ -157,9 +157,9 @@ describe('wow housing-decor integration', async () => {
 
     const sampleSize = 3;
     const sampledRooms =
-      index.rooms.length > sampleSize
-        ? index.rooms.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
-        : index.rooms;
+      index!.rooms.length > sampleSize
+        ? index!.rooms.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
+        : index!.rooms;
 
     const requests = Array.from(sampledRooms, (item) => client.sendRequest(room(item.id)));
     const details = await Promise.all(requests);
@@ -167,7 +167,7 @@ describe('wow housing-decor integration', async () => {
     for (const detail of details) {
       const parsed = roomResponseSchema.safeParse(detail);
       if (!parsed.success) {
-        console.error('Room detail validation failed:', detail.id, treeifyError(parsed.error));
+        console.error('Room detail validation failed:', detail?.id, treeifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
     }

@@ -40,7 +40,7 @@ describe('wow pet integration', async () => {
     for (const petResp of responses) {
       const parsedPet = petResponseSchema.safeParse(petResp);
       if (!parsedPet.success) {
-        console.error('Pet detail validation failed for id', petResp.id, treeifyError(parsedPet.error));
+        console.error('Pet detail validation failed for id', petResp?.id, treeifyError(parsedPet.error));
       }
       expect(parsedPet.success).toBe(true);
     }
@@ -86,7 +86,7 @@ describe('wow pet integration', async () => {
     expect(parsedPetIndex.success).toBe(true);
 
     // Pick up to 5 pets at random from the index to fetch details
-    const pets = petIndexResp.pets;
+    const pets = petIndexResp!.pets;
     const petSampleSize = Math.min(5, pets.length);
     const petSampled =
       pets.length > petSampleSize
@@ -100,7 +100,7 @@ describe('wow pet integration', async () => {
     for (const petResp of responses) {
       const parsedPetMedia = petMediaResponseSchema.safeParse(petResp);
       if (!parsedPetMedia.success) {
-        console.error('Pet media validation failed for id', petResp.id, treeifyError(parsedPetMedia.error));
+        console.error('Pet media validation failed for id', petResp?.id, treeifyError(parsedPetMedia.error));
       }
       expect(parsedPetMedia.success).toBe(true);
     }

@@ -17,7 +17,7 @@ describe('wow auction-house integration', async () => {
   });
   test('validates auctions and commodities responses', async ({ expect }) => {
     const realms = await client.sendRequest(connectedRealmIndex());
-    const firstConnectedRealm = realms.connected_realms.find((cr) => cr.href);
+    const firstConnectedRealm = realms?.connected_realms.find((cr) => cr.href);
     if (!firstConnectedRealm) {
       throw new Error('No connected realms found for testing auction house');
     }

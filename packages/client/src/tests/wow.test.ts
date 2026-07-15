@@ -19,54 +19,54 @@ describe.concurrent('smoketest some wow api responses', async () => {
     const response = await client.sendRequest(wow.connectedRealmIndex());
 
     expect(response).toBeDefined();
-    expect(response.connected_realms.length).toBeGreaterThan(0);
+    expect(response?.connected_realms.length).toBeGreaterThan(0);
   });
   test('should be able to fetch a connected realm', async ({ expect }) => {
     const response = await client.sendRequest(wow.connectedRealm(3692));
 
     expect(response).toBeDefined();
-    expect(response.id).toBe(3692);
+    expect(response?.id).toBe(3692);
   });
 
   test('should be able to fetch realm index', async ({ expect }) => {
     const response = await client.sendRequest(wow.realmIndex());
 
     expect(response).toBeDefined();
-    expect(response.realms.length).toBeGreaterThan(0);
+    expect(response?.realms.length).toBeGreaterThan(0);
   });
 
   test('should be able to fetch a specific realm', async ({ expect }) => {
     const response = await client.sendRequest(wow.realm('soulflayer'));
 
     expect(response).toBeDefined();
-    expect(response.name).toBe('Soulflayer');
+    expect(response?.name).toBe('Soulflayer');
   });
 
   test('should be able to fetch a specific item', async ({ expect }) => {
     const response = await client.sendRequest(wow.item(18_803));
 
     expect(response).toBeDefined();
-    expect(response.id).toBe(18_803);
+    expect(response?.id).toBe(18_803);
   });
   test('should be able to fetch a creature family', async ({ expect }) => {
     const response = await client.sendRequest(wow.creatureFamily(1));
 
     expect(response).toBeDefined();
-    expect(response.id).toBe(1);
+    expect(response?.id).toBe(1);
   });
 
   test('should be able to fetch a creature type', async ({ expect }) => {
     const response = await client.sendRequest(wow.creatureType(1));
 
     expect(response).toBeDefined();
-    expect(response.id).toBe(1);
+    expect(response?.id).toBe(1);
   });
 
   test('should be able to fetch a creature', async ({ expect }) => {
     const response = await client.sendRequest(wow.creature(42_722));
 
     expect(response).toBeDefined();
-    expect(response.id).toBe(42_722);
+    expect(response?.id).toBe(42_722);
   });
 
   test('can search for an azerite essence', async ({ expect }) => {
@@ -81,21 +81,21 @@ describe.concurrent('smoketest some wow api responses', async () => {
     const response = await client.sendRequest(wow.connectedRealmSearch({ _page: 1 }));
 
     expect(response).toBeDefined();
-    expect(response.results.length).toBeGreaterThan(0);
+    expect(response?.results.length).toBeGreaterThan(0);
   });
 
   test('can search for a creature', async ({ expect }) => {
     const response = await client.sendRequest(wow.creatureSearch({ _page: 1, locale: 'en_US', name: 'Dragon' }));
 
     expect(response).toBeDefined();
-    expect(response.results.length).toBeGreaterThan(0);
+    expect(response?.results.length).toBeGreaterThan(0);
   });
 
   test('can search for an item', async ({ expect }) => {
     const response = await client.sendRequest(wow.itemSearch({ _page: 1, locale: 'en_US', name: '' }));
 
     expect(response).toBeDefined();
-    expect(response.results.length).toBeGreaterThan(0);
+    expect(response?.results.length).toBeGreaterThan(0);
   });
 
   test('can search for a journal encounter', async ({ expect }) => {
@@ -104,7 +104,7 @@ describe.concurrent('smoketest some wow api responses', async () => {
     );
 
     expect(response).toBeDefined();
-    expect(response.results.length).toBeGreaterThan(0);
+    expect(response?.results.length).toBeGreaterThan(0);
   });
 
   test('can look up a specific encounter', async ({ expect }) => {
@@ -115,28 +115,28 @@ describe.concurrent('smoketest some wow api responses', async () => {
   test('can search for a media asset', async ({ expect }) => {
     const response = await client.sendRequest(wow.mediaSearch({ _page: 1 }));
     expect(response).toBeDefined();
-    expect(response.results.length).toBeGreaterThan(0);
+    expect(response?.results.length).toBeGreaterThan(0);
   });
 
   test('can search for a mount', async ({ expect }) => {
     const response = await client.sendRequest(wow.mountSearch({ _page: 1, locale: 'en_US', name: 'Turtle' }));
 
     expect(response).toBeDefined();
-    expect(response.results.length).toBeGreaterThan(0);
+    expect(response?.results.length).toBeGreaterThan(0);
   });
 
   test('can search for a regular realm', async ({ expect }) => {
     const response = await client.sendRequest(wow.realmSearch({ _page: 1 }));
 
     expect(response).toBeDefined();
-    expect(response.results.length).toBeGreaterThan(0);
+    expect(response?.results.length).toBeGreaterThan(0);
   });
 
   test('can search for a spell', async ({ expect }) => {
     const response = await client.sendRequest(wow.spellSearch({ _page: 1, locale: 'en_US', name: 'Fireball' }));
 
     expect(response).toBeDefined();
-    expect(response.results.length).toBeGreaterThan(0);
+    expect(response?.results.length).toBeGreaterThan(0);
   });
 
   const defaultRealm = 'laughing-skull';

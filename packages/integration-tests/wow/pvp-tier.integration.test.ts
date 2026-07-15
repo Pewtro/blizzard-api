@@ -42,7 +42,7 @@ describe('wow pvp-tier integration', async () => {
     for (const d of details) {
       const parsed = pvpTierResponseSchema.safeParse(d);
       if (!parsed.success) {
-        console.error('PvP tier detail validation failed for id', d.id, treeifyError(parsed.error));
+        console.error('PvP tier detail validation failed for id', d?.id, treeifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
     }
@@ -51,7 +51,7 @@ describe('wow pvp-tier integration', async () => {
     for (const m of medias) {
       const parsed = pvpTierMediaResponseSchema.safeParse(m);
       if (!parsed.success) {
-        console.error('PvP tier media validation failed for id', m.id, treeifyError(parsed.error));
+        console.error('PvP tier media validation failed for id', m?.id, treeifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
     }

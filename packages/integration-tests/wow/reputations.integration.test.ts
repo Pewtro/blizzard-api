@@ -43,7 +43,7 @@ describe('wow reputations integration', async () => {
     for (const fr of factionResponses) {
       const parsed = reputationFactionResponseSchema.safeParse(fr);
       if (!parsed.success) {
-        console.error('Reputation faction validation failed for id', fr.id, treeifyError(parsed.error));
+        console.error('Reputation faction validation failed for id', fr?.id, treeifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
     }
@@ -69,7 +69,7 @@ describe('wow reputations integration', async () => {
     for (const tr of tierResponses) {
       const parsed = reputationTiersResponseSchema.safeParse(tr);
       if (!parsed.success) {
-        console.error('Reputation tiers validation failed for id', tr.id, treeifyError(parsed.error));
+        console.error('Reputation tiers validation failed for id', tr?.id, treeifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
     }

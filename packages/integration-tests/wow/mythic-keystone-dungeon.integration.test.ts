@@ -50,7 +50,7 @@ describe('wow mythic-keystone-dungeon integration', async () => {
     for (const r of responses) {
       const parsedResp = mythicKeystoneDungeonResponseSchema.safeParse(r);
       if (!parsedResp.success) {
-        console.error('Mythic keystone dungeon detail validation failed for id', r.id, treeifyError(parsedResp.error));
+        console.error('Mythic keystone dungeon detail validation failed for id', r?.id, treeifyError(parsedResp.error));
       }
       expect(parsedResp.success).toBe(true);
     }
@@ -85,7 +85,7 @@ describe('wow mythic-keystone-dungeon integration', async () => {
     for (const r of responses) {
       const parsedResp = mythicKeystonePeriodResponseSchema.safeParse(r);
       if (!parsedResp.success) {
-        console.error('Mythic keystone period detail validation failed for id', r.id, treeifyError(parsedResp.error));
+        console.error('Mythic keystone period detail validation failed for id', r?.id, treeifyError(parsedResp.error));
       }
       expect(parsedResp.success).toBe(true);
     }
@@ -112,7 +112,7 @@ describe('wow mythic-keystone-dungeon integration', async () => {
     for (const r of responses) {
       const parsedResp = mythicKeystoneSeasonResponseSchema.safeParse(r);
       if (!parsedResp.success) {
-        console.error('Mythic keystone season detail validation failed for id', r.id, treeifyError(parsedResp.error));
+        console.error('Mythic keystone season detail validation failed for id', r?.id, treeifyError(parsedResp.error));
       }
       expect(parsedResp.success).toBe(true);
     }

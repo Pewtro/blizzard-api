@@ -39,7 +39,7 @@ describe('wow character-mythic-keystone-profile integration', async () => {
     }
     expect(parsedIndex.success).toBe(true);
 
-    const seasonId = index.seasons.at(0)?.id;
+    const seasonId = index?.seasons.at(0)?.id;
     const details = await client.sendRequest(characterMythicKeystoneSeasonDetails(realm, character, seasonId!));
     const parsedDetails = characterMythicKeystoneSeasonDetailsResponseSchema.safeParse(details);
     if (!parsedDetails.success) {

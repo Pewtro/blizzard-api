@@ -27,7 +27,7 @@ describe('wow playable-specialization integration', async () => {
     }
     expect(parsed.success).toBe(true);
 
-    const requests = Array.from(index.character_specializations, (specialization) =>
+    const requests = Array.from(index!.character_specializations, (specialization) =>
       client.sendRequest(playableSpecialization(specialization.id)),
     );
 
@@ -35,15 +35,15 @@ describe('wow playable-specialization integration', async () => {
     for (const spec of responses) {
       const parsedSpec = playableSpecializationResponseSchema.safeParse(spec);
       if (!parsedSpec.success) {
-        console.error('Playable specialization detail validation failed:', spec.id, treeifyError(parsedSpec.error));
+        console.error('Playable specialization detail validation failed:', spec?.id, treeifyError(parsedSpec.error));
       }
 
       expect(parsedSpec.success).toBe(true);
 
-      const media = await client.sendRequest(playableSpecializationMedia(spec.id));
+      const media = await client.sendRequest(playableSpecializationMedia(spec!.id));
       const parsedMedia = playableSpecializationMediaResponseSchema.safeParse(media);
       if (!parsedMedia.success) {
-        console.error('Playable specialization media validation failed:', spec.id, treeifyError(parsedMedia.error));
+        console.error('Playable specialization media validation failed:', spec!.id, treeifyError(parsedMedia.error));
       }
       expect(parsedMedia.success).toBe(true);
     }

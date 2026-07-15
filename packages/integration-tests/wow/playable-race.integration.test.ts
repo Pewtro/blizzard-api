@@ -19,14 +19,14 @@ describe('wow playable race integration', async () => {
     }
     expect(parsed.success).toBe(true);
 
-    const requests = Array.from(resp.races, (race) => client.sendRequest(playableRace(race.id)));
+    const requests = Array.from(resp!.races, (race) => client.sendRequest(playableRace(race.id)));
 
     const results = await Promise.all(requests);
 
     for (const result of results) {
       const parsedResult = playableRaceResponseSchema.safeParse(result);
       if (!parsedResult.success) {
-        console.error('Race detail validation failed for id', result.id, treeifyError(parsedResult.error));
+        console.error('Race detail validation failed for id', result?.id, treeifyError(parsedResult.error));
       }
       expect(parsedResult.success).toBe(true);
     }

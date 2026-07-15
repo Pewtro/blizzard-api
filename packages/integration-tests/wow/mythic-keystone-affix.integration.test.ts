@@ -47,7 +47,7 @@ describe('wow mythic-keystone-affix integration', async () => {
     for (const d of details) {
       const parsed = mythicKeystoneAffixResponseSchema.safeParse(d);
       if (!parsed.success) {
-        console.error('Mythic keystone affix detail validation failed for id', d.id, treeifyError(parsed.error));
+        console.error('Mythic keystone affix detail validation failed for id', d?.id, treeifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
     }
@@ -56,7 +56,7 @@ describe('wow mythic-keystone-affix integration', async () => {
     for (const m of medias) {
       const parsed = mythicKeystoneAffixMediaResponseSchema.safeParse(m);
       if (!parsed.success) {
-        console.error('Mythic keystone affix media validation failed for id', m.id, treeifyError(parsed.error));
+        console.error('Mythic keystone affix media validation failed for id', m?.id, treeifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
     }

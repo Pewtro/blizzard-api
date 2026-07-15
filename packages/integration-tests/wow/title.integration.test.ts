@@ -33,7 +33,7 @@ describe('wow title integration', async () => {
     for (const titleResp of responses) {
       const parsedTitle = titleResponseSchema.safeParse(titleResp);
       if (!parsedTitle.success) {
-        console.error('Title detail validation failed for id', titleResp.id, treeifyError(parsedTitle.error));
+        console.error('Title detail validation failed for id', titleResp?.id, treeifyError(parsedTitle.error));
       }
       expect(parsedTitle.success).toBe(true);
     }

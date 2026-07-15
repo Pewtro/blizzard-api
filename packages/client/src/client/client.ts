@@ -172,7 +172,7 @@ export class BlizzardApiClient {
     resource: Resource<T, object, Protected>,
     options?: Partial<ClientOptions>,
     headers?: Record<string, string>,
-  ): Promise<T> {
+  ): Promise<T | undefined> {
     const url = new URL(this.getRequestUrl(resource, options));
     const config = this.getRequestConfig(resource, options, headers);
 
@@ -193,7 +193,7 @@ export class BlizzardApiClient {
     // To handle both cases, we check for a 204 status code or a Content-Length header of 0
     // before attempting to parse the response as JSON.
     if (response.status === 204 || response.headers.get('Content-Length') === '0') {
-      return {} as T;
+      return;
     }
     const data = await response.json();
 

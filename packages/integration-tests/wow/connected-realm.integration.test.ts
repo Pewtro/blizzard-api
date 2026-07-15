@@ -22,7 +22,7 @@ describe('wow connected realm integration', async () => {
       console.error('Connected realm index validation failed:', treeifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
-    const id = resp.connected_realms
+    const id = resp!.connected_realms
       .find((realm) => realm.href)
       ?.href.split('/')
       .pop()

@@ -55,7 +55,7 @@ describe.concurrent('wow journal integration', async () => {
       if (!parsedEncounter.success) {
         console.error(
           'Journal encounter detail validation failed for id',
-          encounter.id,
+          encounter?.id,
           treeifyError(parsedEncounter.error),
         );
       }
@@ -88,7 +88,7 @@ describe.concurrent('wow journal integration', async () => {
       if (!parsedExpansion.success) {
         console.error(
           'Journal expansion detail validation failed for id',
-          expansion.id,
+          expansion?.id,
           treeifyError(parsedExpansion.error),
         );
       }
@@ -122,7 +122,7 @@ describe.concurrent('wow journal integration', async () => {
       if (!parsedInstance.success) {
         console.error(
           'Journal instance detail validation failed for id',
-          instance.id,
+          instance?.id,
           treeifyError(parsedInstance.error),
         );
       }

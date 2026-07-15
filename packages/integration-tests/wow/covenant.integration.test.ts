@@ -35,19 +35,19 @@ describe.concurrent('wow covenant integration', async () => {
     }
     expect(parsedCov.success).toBe(true);
 
-    const requests = Array.from(covIndex.covenants, (cov) => client.sendRequest(covenant(cov.id)));
+    const requests = Array.from(covIndex?.covenants ?? [], (cov) => client.sendRequest(covenant(cov.id)));
     const responses = await Promise.all(requests);
     for (const covenantResp of responses) {
       const parsedDetail = covenantResponseSchema.safeParse(covenantResp);
       if (!parsedDetail.success) {
-        console.error('Covenant detail validation failed:', covenantResp.id, treeifyError(parsedDetail.error));
+        console.error('Covenant detail validation failed:', covenantResp?.id, treeifyError(parsedDetail.error));
       }
       expect(parsedDetail.success).toBe(true);
 
-      const media = await client.sendRequest(covenantMedia(covenantResp.id));
+      const media = await client.sendRequest(covenantMedia(covenantResp!.id));
       const parsedMedia = covenantMediaResponseSchema.safeParse(media);
       if (!parsedMedia.success) {
-        console.error('Covenant media validation failed:', covenantResp.id, treeifyError(parsedMedia.error));
+        console.error('Covenant media validation failed:', covenantResp!.id, treeifyError(parsedMedia.error));
       }
       expect(parsedMedia.success).toBe(true);
     }
@@ -68,7 +68,7 @@ describe.concurrent('wow covenant integration', async () => {
     for (const soulbindResp of responses) {
       const parsedDetail = soulbindResponseSchema.safeParse(soulbindResp);
       if (!parsedDetail.success) {
-        console.error('Soulbind detail validation failed:', soulbindResp.id, treeifyError(parsedDetail.error));
+        console.error('Soulbind detail validation failed:', soulbindResp?.id, treeifyError(parsedDetail.error));
       }
       expect(parsedDetail.success).toBe(true);
     }
@@ -97,7 +97,7 @@ describe.concurrent('wow covenant integration', async () => {
     for (const conduitResp of responses) {
       const parsedDetail = conduitResponseSchema.safeParse(conduitResp);
       if (!parsedDetail.success) {
-        console.error('Conduit detail validation failed:', conduitResp.id, treeifyError(parsedDetail.error));
+        console.error('Conduit detail validation failed:', conduitResp?.id, treeifyError(parsedDetail.error));
       }
       expect(parsedDetail.success).toBe(true);
     }

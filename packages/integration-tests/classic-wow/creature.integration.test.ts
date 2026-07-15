@@ -78,8 +78,8 @@ describe.concurrent(
       expect(parsed.success).toBe(true);
 
       // eslint-disable-next-line sonarjs/pseudo-random
-      const creatureTypeIndexResp = Math.floor(Math.random() * resp.creature_types.length);
-      const creatureTypeFromIndex = resp.creature_types[creatureTypeIndexResp];
+      const creatureTypeIndexResp = Math.floor(Math.random() * resp!.creature_types.length);
+      const creatureTypeFromIndex = resp!.creature_types[creatureTypeIndexResp];
       expect(creatureTypeFromIndex).toBeDefined();
 
       const type = await client.sendRequest(creatureType('static-classic1x', creatureTypeFromIndex!.id));
@@ -133,8 +133,8 @@ describe.concurrent(
       expect(parsed.success).toBe(true);
 
       // eslint-disable-next-line sonarjs/pseudo-random
-      const creatureFamilyIndexResp = Math.floor(Math.random() * resp.creature_families.length);
-      const creatureFamilyFromIndex = resp.creature_families[creatureFamilyIndexResp];
+      const creatureFamilyIndexResp = Math.floor(Math.random() * resp!.creature_families.length);
+      const creatureFamilyFromIndex = resp!.creature_families[creatureFamilyIndexResp];
       expect(creatureFamilyFromIndex).toBeDefined();
 
       const family = await client.sendRequest(creatureFamily('static-classic', creatureFamilyFromIndex!.id));
@@ -165,8 +165,8 @@ describe.concurrent(
       expect(parsed.success).toBe(true);
 
       // eslint-disable-next-line sonarjs/pseudo-random
-      const creatureTypeIndexResp = Math.floor(Math.random() * resp.creature_types.length);
-      const creatureTypeFromIndex = resp.creature_types[creatureTypeIndexResp];
+      const creatureTypeIndexResp = Math.floor(Math.random() * resp!.creature_types.length);
+      const creatureTypeFromIndex = resp!.creature_types[creatureTypeIndexResp];
       expect(creatureTypeFromIndex).toBeDefined();
 
       const type = await client.sendRequest(creatureType('static-classic', creatureTypeFromIndex!.id));

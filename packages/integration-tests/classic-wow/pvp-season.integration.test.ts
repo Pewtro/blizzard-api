@@ -19,7 +19,7 @@ describe('classic-wow pvp season integration', async () => {
     }
     expect(parsed.success).toBe(true);
 
-    const seasonId = season.current_season.id;
+    const seasonId = season!.current_season.id;
     const seasonDetail = await client.sendRequest(pvpSeason('dynamic-classic', seasonId));
     const parsedSeasonDetail = pvpSeasonResponseSchema.safeParse(seasonDetail);
     if (!parsedSeasonDetail.success) {

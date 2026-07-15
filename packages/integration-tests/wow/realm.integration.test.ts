@@ -24,7 +24,7 @@ describe('wow realm integration', async () => {
     expect(parsed.success).toBe(true);
 
     // eslint-disable-next-line sonarjs/pseudo-random
-    const randomRealm = resp.realms[Math.random() * resp.realms.length];
+    const randomRealm = resp!.realms[Math.random() * resp!.realms.length];
     if (randomRealm) {
       const realmResp = await client.sendRequest(realm(randomRealm.slug));
       const parsedRealm = realmResponseSchema.safeParse(realmResp);

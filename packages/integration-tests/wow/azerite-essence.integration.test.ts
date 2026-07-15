@@ -56,7 +56,7 @@ describe('wow azerite-essence integration', async () => {
     for (const d of details) {
       const parsed = azeriteEssenceResponseSchema.safeParse(d);
       if (!parsed.success) {
-        console.error('Azerite essence detail validation failed:', d.id, treeifyError(parsed.error));
+        console.error('Azerite essence detail validation failed:', d?.id, treeifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
     }
@@ -65,7 +65,7 @@ describe('wow azerite-essence integration', async () => {
     for (const m of medias) {
       const parsed = azeriteEssenceMediaResponseSchema.safeParse(m);
       if (!parsed.success) {
-        console.error('Azerite essence media validation failed:', m.id, treeifyError(parsed.error));
+        console.error('Azerite essence media validation failed:', m?.id, treeifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
     }

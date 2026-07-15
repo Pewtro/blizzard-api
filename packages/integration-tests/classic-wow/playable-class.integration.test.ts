@@ -17,7 +17,8 @@ describe.concurrent('classic-wow playable class integration', async () => {
 
     const classRequests = [];
     const mediaRequests = [];
-    for (const playerClass of indices.classes) {
+    const classIndices = indices?.classes ?? [];
+    for (const playerClass of classIndices) {
       classRequests.push(client.sendRequest(playableClass('static-classic1x', playerClass.id)));
       mediaRequests.push(client.sendRequest(playableClassMedia('static-classic1x', playerClass.id)));
     }
@@ -44,7 +45,8 @@ describe.concurrent('classic-wow playable class integration', async () => {
 
     const classRequests = [];
     const mediaRequests = [];
-    for (const playerClass of indices.classes) {
+    const classIndices = indices?.classes ?? [];
+    for (const playerClass of classIndices) {
       classRequests.push(client.sendRequest(playableClass('static-classic', playerClass.id)));
       mediaRequests.push(client.sendRequest(playableClassMedia('static-classic', playerClass.id)));
     }

@@ -47,7 +47,7 @@ describe('wow achievements integration', async () => {
     for (const achi of responses) {
       const parsedAchievement = achievementResponseSchema.safeParse(achi);
       if (!parsedAchievement.success) {
-        console.error('Achievement detail validation failed for id', achi.id, treeifyError(parsedAchievement.error));
+        console.error('Achievement detail validation failed for id', achi?.id, treeifyError(parsedAchievement.error));
       }
       expect(parsedAchievement.success).toBe(true);
     }
@@ -75,7 +75,7 @@ describe('wow achievements integration', async () => {
     for (const cr of catResponses) {
       const parsedCat = achievementCategoryResponseSchema.safeParse(cr);
       if (!parsedCat.success) {
-        console.error('Achievement category validation failed for id', cr.id, treeifyError(parsedCat.error));
+        console.error('Achievement category validation failed for id', cr?.id, treeifyError(parsedCat.error));
       }
       expect(parsedCat.success).toBe(true);
     }
@@ -95,7 +95,7 @@ describe('wow achievements integration', async () => {
     for (const m of mediaResponses) {
       const parsedMedia = achievementMediaResponseSchema.safeParse(m);
       if (!parsedMedia.success) {
-        console.error('Achievement media validation failed for id', m.id, treeifyError(parsedMedia.error));
+        console.error('Achievement media validation failed for id', m?.id, treeifyError(parsedMedia.error));
       }
       expect(parsedMedia.success).toBe(true);
     }

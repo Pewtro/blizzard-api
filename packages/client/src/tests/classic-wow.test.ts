@@ -14,7 +14,7 @@ describe.concurrent('smoketest some classic wow api responses', async () => {
   test.skip('should be able to fetch the auction house index', async ({ expect }) => {
     const response = await client.sendRequest(classicWow.auctionHouseIndex('dynamic-classic1x', 4440));
 
-    expect(response.auctions).toBeDefined();
+    expect(response?.auctions).toBeDefined();
   });
 
   //TODO This is not working, it returns a 404 - it does the same in the official documentation
@@ -22,13 +22,13 @@ describe.concurrent('smoketest some classic wow api responses', async () => {
   test.skip('should be able to fetch the auction house data', { timeout: 20_000 }, async ({ expect }) => {
     const response = await client.sendRequest(classicWow.auctions('dynamic-classic', 4440, 2));
 
-    expect(response.auctions).toBeDefined();
+    expect(response?.auctions).toBeDefined();
   });
 
   test('should be able to fetch the classic wow realms', async ({ expect }) => {
     const response = await client.sendRequest(classicWow.realmIndex('dynamic-classic'));
 
-    expect(response.realms).toBeDefined();
+    expect(response?.realms).toBeDefined();
   });
 
   test("should be able to fetch a guild's achievements", async ({ expect }) => {
@@ -36,12 +36,12 @@ describe.concurrent('smoketest some classic wow api responses', async () => {
       classicWow.guildAchievements('profile-classic', 'firemaw', 'raid-drømmen'),
     );
 
-    expect(response.achievements).toBeDefined();
+    expect(response?.achievements).toBeDefined();
   });
   test('should be able to fetch some information on a guild', async ({ expect }) => {
     const response = await client.sendRequest(classicWow.guild('profile-classic', 'firemaw', 'raid-drømmen'));
 
-    expect(response.name).toBeDefined();
-    expect(response.name).toBe('Raid Drømmen');
+    expect(response?.name).toBeDefined();
+    expect(response?.name).toBe('Raid Drømmen');
   });
 });

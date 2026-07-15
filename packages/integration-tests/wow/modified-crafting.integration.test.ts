@@ -47,7 +47,7 @@ describe('wow modified-crafting integration', async () => {
       if (!parsedCategory.success) {
         console.error(
           'Modified crafting category detail validation failed:',
-          category.id,
+          category?.id,
           treeifyError(parsedCategory.error),
         );
       }

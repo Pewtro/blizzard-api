@@ -48,7 +48,7 @@ describe.concurrent('wow talent integration', async () => {
     for (const resp of responses) {
       const parsed = pvpTalentResponseSchema.safeParse(resp);
       if (!parsed.success) {
-        console.error('PvP talent validation failed for id', resp.id, treeifyError(parsed.error));
+        console.error('PvP talent validation failed for id', resp?.id, treeifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
     }
@@ -73,7 +73,7 @@ describe.concurrent('wow talent integration', async () => {
     for (const resp of responses) {
       const parsed = talentResponseSchema.safeParse(resp);
       if (!parsed.success) {
-        console.error('Talent validation failed for id', resp.id, treeifyError(parsed.error));
+        console.error('Talent validation failed for id', resp?.id, treeifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
     }
