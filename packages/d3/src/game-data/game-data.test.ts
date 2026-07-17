@@ -2,7 +2,7 @@ import { d3GameDataBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
 import { era, eraIndex, eraLeaderboard, season, seasonIndex, seasonLeaderboard } from './index';
 
-describe.concurrent('game-data', () => {
+describe('game-data', () => {
   test('seasonIndex should return the correct resource path', ({ expect }) => {
     const resource = seasonIndex();
     expect(resource.path).toBe(`${d3GameDataBasePath}/season`);

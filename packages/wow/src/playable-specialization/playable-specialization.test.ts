@@ -2,7 +2,7 @@ import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
 import { playableSpecialization, playableSpecializationIndex, playableSpecializationMedia } from './index';
 
-describe.concurrent('playableSpecializationApi', () => {
+describe('playableSpecializationApi', () => {
   test('playableSpecialization should return a resource object with the correct path and namespace', ({ expect }) => {
     const specializationId = 123;
     const resource = playableSpecialization(specializationId);

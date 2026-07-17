@@ -11,7 +11,7 @@ import {
   creatureTypeIndex,
 } from './index';
 
-describe.concurrent('classicCreatureApi', () => {
+describe('classicCreatureApi', () => {
   const namespace = 'static-classic';
   const creatureId = 123;
   const creatureDisplayId = 456;

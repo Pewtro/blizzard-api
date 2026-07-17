@@ -15,7 +15,7 @@ import {
   pvpTalentSlotsResponseSchema,
 } from '../../../generated/schemas/wow/playable-class';
 
-describe.concurrent('wow playable class integration', async () => {
+describe('wow playable class integration', async () => {
   const client = await createBlizzardApiClient({
     key: environment.blizzardClientId,
     origin: 'eu',

@@ -2,7 +2,7 @@ import { wowBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
 import { wowToken } from './index';
 
-describe.concurrent('wowTokenApi', () => {
+describe('wowTokenApi', () => {
   test('should return the wow token resource', ({ expect }) => {
     const resource = wowToken();
     expect(resource.path).toBe(`${wowBasePath}/token/index`);

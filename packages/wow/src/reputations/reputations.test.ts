@@ -2,7 +2,7 @@ import { wowBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
 import { reputationFaction, reputationFactionIndex, reputationTiers, reputationTiersIndex } from './index';
 
-describe.concurrent('reputationApi', () => {
+describe('reputationApi', () => {
   test('reputationFaction should return a resource object with the correct path and namespace', ({ expect }) => {
     const reputationFactionId = 123;
     const resource = reputationFaction(reputationFactionId);

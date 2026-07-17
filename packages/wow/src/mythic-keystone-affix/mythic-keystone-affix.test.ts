@@ -2,7 +2,7 @@ import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
 import { mythicKeystoneAffix, mythicKeystoneAffixIndex, mythicKeystoneAffixMedia } from './index';
 
-describe.concurrent('mythicKeystoneAffixApi', () => {
+describe('mythicKeystoneAffixApi', () => {
   test('mythicKeystoneAffix should return a resource object with the correct path and namespace', ({ expect }) => {
     const mythicKeystoneAffixId = 123;
     const resource = mythicKeystoneAffix(mythicKeystoneAffixId);

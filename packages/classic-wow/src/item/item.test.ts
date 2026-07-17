@@ -5,7 +5,7 @@ import { item, itemClass, itemClassIndex, itemMedia, itemSearch, itemSubclass } 
 
 const namespace = 'static-classic';
 
-describe.concurrent('classicItemApi', () => {
+describe('classicItemApi', () => {
   test('should return the item class index resource', ({ expect }) => {
     const resource = itemClassIndex(namespace);
     expect(resource.path).toBe(`${wowBasePath}/item-class/index`);

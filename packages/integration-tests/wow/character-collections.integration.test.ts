@@ -19,7 +19,7 @@ import {
   characterTransmogCollectionSummaryResponseSchema,
 } from '../../../generated/schemas/wow';
 
-describe.concurrent('wow character-collections integration', async () => {
+describe('wow character-collections integration', async () => {
   const client = await createBlizzardApiClient({
     key: environment.blizzardClientId,
     origin: 'eu',

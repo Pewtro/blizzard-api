@@ -2,7 +2,7 @@ import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
 import { profession, professionIndex, professionMedia, professionSkillTier, recipe, recipeMedia } from './index';
 
-describe.concurrent('professionApi', () => {
+describe('professionApi', () => {
   test('profession should return a resource object with the correct path and namespace', ({ expect }) => {
     const professionId = 123;
     const resource = profession(professionId);

@@ -2,7 +2,7 @@ import { describe, test } from 'vitest';
 import { getBlizzardApi } from './blizzard-api';
 import type { Locales, Origins } from './locales';
 
-describe.concurrent('getBlizzardApi', () => {
+describe('getBlizzardApi', () => {
   test('should return the correct endpoint for the specified origin and locale', ({ expect }) => {
     const origin: Origins = 'us';
     const locale: Locales = 'es_MX';

@@ -21,7 +21,7 @@ import {
   talentTreeResponseSchema,
 } from '../../../generated/schemas/wow/talent';
 
-describe.concurrent('wow talent integration', async () => {
+describe('wow talent integration', async () => {
   const client = await createBlizzardApiClient({
     key: environment.blizzardClientId,
     origin: 'eu',

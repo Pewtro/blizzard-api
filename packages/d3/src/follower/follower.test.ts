@@ -2,7 +2,7 @@ import { d3BasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
 import { follower } from './index';
 
-describe.concurrent('follower', () => {
+describe('follower', () => {
   test('should return the correct resource path', ({ expect }) => {
     const followerSlug = 'some-follower-slug';
     const expectedPath = `${d3BasePath}/follower/some-follower-slug`;

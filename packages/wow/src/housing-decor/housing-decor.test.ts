@@ -15,7 +15,7 @@ import {
   roomSearch,
 } from './index';
 
-describe.concurrent('housingDecor', () => {
+describe('housingDecor', () => {
   test('should return the correct resource for decor index', ({ expect }) => {
     const resource = decorIndex();
 

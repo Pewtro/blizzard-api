@@ -3,7 +3,7 @@ import { describe, test } from 'vitest';
 import { guildCrestBorder, guildCrestComponentsIndex, guildCrestEmblem } from './index';
 
 const namespace = 'static-classic';
-describe.concurrent('classicGuildCrestApi', () => {
+describe('classicGuildCrestApi', () => {
   test('should return the guild crest components index resource', ({ expect }) => {
     const resource = guildCrestComponentsIndex(namespace);
     expect(resource.path).toBe(`${wowBasePath}/guild-crest/index`);

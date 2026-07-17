@@ -2,7 +2,7 @@ import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
 import { techTalent, techTalentIndex, techTalentMedia, techTalentTree, techTalentTreeIndex } from './index';
 
-describe.concurrent('techTalentApi', () => {
+describe('techTalentApi', () => {
   test('should return the correct path for techTalent', ({ expect }) => {
     const techTalentId = 123;
     const resource = techTalent(techTalentId);

@@ -8,7 +8,7 @@ import {
   modifiedCraftingReagentSlotTypeIndex,
 } from './index';
 
-describe.concurrent('modifiedCraftingApi', () => {
+describe('modifiedCraftingApi', () => {
   test('should return the correct path for modifiedCraftingCategory', ({ expect }) => {
     const modifiedCraftingCategoryId = 123;
     const resource = modifiedCraftingCategory(modifiedCraftingCategoryId);

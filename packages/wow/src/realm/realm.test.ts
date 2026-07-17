@@ -2,7 +2,7 @@ import { wowBasePath, wowSearchBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
 import { realm, realmIndex, realmSearch } from './index';
 
-describe.concurrent('realmApi', () => {
+describe('realmApi', () => {
   test('realm should return a resource object with the correct path and namespace', ({ expect }) => {
     const realmSlug = 'my-realm';
     const resource = realm(realmSlug);

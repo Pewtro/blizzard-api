@@ -2,7 +2,7 @@ import { wowBasePath, wowMediaBasePath, wowSearchBasePath } from '@blizzard-api/
 import { describe, test } from 'vitest';
 import { item, itemClass, itemClassIndex, itemMedia, itemSearch, itemSet, itemSetIndex, itemSubclass } from './index';
 
-describe.concurrent('itemApi', () => {
+describe('itemApi', () => {
   test('should return the item resource for a given itemId', ({ expect }) => {
     const itemId = 123;
     const resource = item(itemId);

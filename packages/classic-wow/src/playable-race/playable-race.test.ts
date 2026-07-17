@@ -4,7 +4,7 @@ import { describe, test } from 'vitest';
 import { playableRace, playableRaceIndex } from './index';
 
 const namespace: BlizzardNamespaces = 'static-classic1x';
-describe.concurrent('playableRaceApi', () => {
+describe('playableRaceApi', () => {
   test('playableRace should return a resource object with the correct path and namespace', ({ expect }) => {
     const playableRaceId = 456;
     const resource = playableRace(namespace, playableRaceId);

@@ -23,7 +23,7 @@ import {
   journalInstanceResponseSchema,
 } from '../../../generated/schemas/wow/journal';
 
-describe.concurrent('wow journal integration', async () => {
+describe('wow journal integration', async () => {
   const client = await createBlizzardApiClient({
     key: environment.blizzardClientId,
     origin: 'eu',

@@ -2,7 +2,7 @@ import { wowBasePath, wowMediaBasePath, wowSearchBasePath } from '@blizzard-api/
 import { describe, test } from 'vitest';
 import { azeriteEssence, azeriteEssenceIndex, azeriteEssenceMedia, azeriteEssenceSearch } from './index';
 
-describe.concurrent('azeriteEssenceApi', () => {
+describe('azeriteEssenceApi', () => {
   test('should return the correct path and namespace for azeriteEssence', ({ expect }) => {
     const azeriteEssenceId = 123;
     const resource = azeriteEssence(azeriteEssenceId);

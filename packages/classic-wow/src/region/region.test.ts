@@ -2,7 +2,7 @@ import { wowBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
 import { region, regionIndex } from './index';
 
-describe.concurrent('classicRegionApi', () => {
+describe('classicRegionApi', () => {
   test('should return the region resource', ({ expect }) => {
     const namespace = 'dynamic-classic';
     const regionId = 1;

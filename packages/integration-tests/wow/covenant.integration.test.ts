@@ -21,7 +21,7 @@ import {
   soulbindResponseSchema,
 } from '../../../generated/schemas/wow/covenant';
 
-describe.concurrent('wow covenant integration', async () => {
+describe('wow covenant integration', async () => {
   const client = await createBlizzardApiClient({
     key: environment.blizzardClientId,
     origin: 'eu',

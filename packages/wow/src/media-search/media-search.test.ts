@@ -2,7 +2,7 @@ import { wowSearchBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
 import { mediaSearch } from './index';
 
-describe.concurrent('mediaSearchApi', () => {
+describe('mediaSearchApi', () => {
   test('should return the media search resource', ({ expect }) => {
     const resource = mediaSearch({});
     expect(resource.path).toBe(`${wowSearchBasePath}/media`);

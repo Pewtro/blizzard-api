@@ -2,7 +2,7 @@ import { wowBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
 import { title, titleIndex } from './index';
 
-describe.concurrent('titleApi', () => {
+describe('titleApi', () => {
   test('should return the correct path for title', ({ expect }) => {
     const titleId = 123;
     const resource = title(titleId);

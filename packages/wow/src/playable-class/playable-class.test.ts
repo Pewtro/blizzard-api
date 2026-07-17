@@ -2,7 +2,7 @@ import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
 import { playableClass, playableClassIndex, playableClassMedia, pvpTalentSlots } from './index';
 
-describe.concurrent('playableClassApi', () => {
+describe('playableClassApi', () => {
   test('playableClass should return a resource object with the correct path and namespace', ({ expect }) => {
     const playableClassId = 123;
     const resource = playableClass(playableClassId);

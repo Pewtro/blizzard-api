@@ -2,7 +2,7 @@ import { wowBasePath, wowMediaBasePath, wowSearchBasePath } from '@blizzard-api/
 import { describe, test } from 'vitest';
 import { spell, spellMedia, spellSearch } from './index';
 
-describe.concurrent('spellApi', () => {
+describe('spellApi', () => {
   test('spell should return a resource object with the correct path and namespace', ({ expect }) => {
     const spellId = 456;
     const resource = spell(spellId);

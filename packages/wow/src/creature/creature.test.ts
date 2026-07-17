@@ -11,7 +11,7 @@ import {
   creatureTypeIndex,
 } from './index';
 
-describe.concurrent('creatureApi', () => {
+describe('creatureApi', () => {
   test('should return the correct path and namespace for creature', ({ expect }) => {
     const creatureId = 123;
     const resource = creature(creatureId);

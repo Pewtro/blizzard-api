@@ -2,7 +2,7 @@ import { wowBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
 import { pvpTalent, pvpTalentIndex, talent, talentIndex, talentTree, talentTreeIndex, talentTreeNodes } from './index';
 
-describe.concurrent('talentApi', () => {
+describe('talentApi', () => {
   test('should return the correct path for pvpTalent', ({ expect }) => {
     const pvpTalentId = 123;
     const resource = pvpTalent(pvpTalentId);

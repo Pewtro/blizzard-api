@@ -2,7 +2,7 @@ import { wowBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
 import { powerType, powerTypeIndex } from './index';
 
-describe.concurrent('powerTypeApi', () => {
+describe('powerTypeApi', () => {
   test('powerType should return a resource object with the correct path and namespace', ({ expect }) => {
     const powerTypeId = 123;
     const resource = powerType(powerTypeId);

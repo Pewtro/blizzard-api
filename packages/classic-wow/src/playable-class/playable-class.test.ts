@@ -4,7 +4,7 @@ import { playableClass, playableClassIndex, playableClassMedia } from './index';
 
 const namespace = 'static-classic';
 
-describe.concurrent('classicPlayableClassApi', () => {
+describe('classicPlayableClassApi', () => {
   test('should return a playable class resource', ({ expect }) => {
     const playableClassId = 1;
 

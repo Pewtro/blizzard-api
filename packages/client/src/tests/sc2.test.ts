@@ -4,7 +4,7 @@ import { environment } from '../../../../environment';
 import { createBlizzardApiClient } from '../client/create-client';
 
 //Some of the starcraft APIs are highly unstable and may not work as expected
-describe.concurrent('smoketest some sc2 api responses', async () => {
+describe('smoketest some sc2 api responses', async () => {
   const client = await createBlizzardApiClient({
     key: environment.blizzardClientId,
     origin: 'eu',

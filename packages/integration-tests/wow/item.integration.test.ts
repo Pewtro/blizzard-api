@@ -24,7 +24,7 @@ import {
   itemSubclassResponseSchema,
 } from '../../../generated/schemas/wow/item';
 
-describe.concurrent('wow item integration', async () => {
+describe('wow item integration', async () => {
   const client = await createBlizzardApiClient({
     key: environment.blizzardClientId,
     origin: 'eu',

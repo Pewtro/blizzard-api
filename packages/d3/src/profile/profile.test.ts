@@ -5,7 +5,7 @@ import { account, accountHero, accountHeroFollowerItems, accountHeroItems } from
 const battleTag = 'example#1234';
 const heroId = 42;
 
-describe.concurrent('profile', () => {
+describe('profile', () => {
   test('account should return the correct resource', ({ expect }) => {
     const expectedPath = `${d3ProfileBasePath}/example%231234`;
 

@@ -2,7 +2,7 @@ import { wowBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
 import { region, regionIndex } from './index';
 
-describe.concurrent('regionApi', () => {
+describe('regionApi', () => {
   test('region should return a resource object with the correct path and namespace', ({ expect }) => {
     const regionId = 123;
     const resource = region(regionId);

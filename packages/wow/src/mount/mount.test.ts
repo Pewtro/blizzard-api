@@ -2,7 +2,7 @@ import { wowBasePath, wowSearchBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
 import { mount, mountIndex, mountSearch } from './index';
 
-describe.concurrent('mountApi', () => {
+describe('mountApi', () => {
   test('mount should return a resource object with the correct path and namespace', ({ expect }) => {
     const mountId = 123;
     const resource = mount(mountId);

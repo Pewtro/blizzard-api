@@ -2,7 +2,7 @@ import { wowBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
 import { pvpLeaderboard, pvpLeaderboardIndex, pvpRewardsIndex, pvpSeason, pvpSeasonIndex } from './index';
 
-describe.concurrent('pvpSeasonApi', () => {
+describe('pvpSeasonApi', () => {
   const pvpSeasonId = 123;
   const bracket = '2v2';
 

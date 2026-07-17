@@ -2,7 +2,7 @@ import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
 import { pet, petAbility, petAbilityIndex, petAbilityMedia, petIndex, petMedia } from './index';
 
-describe.concurrent('petApi', () => {
+describe('petApi', () => {
   test('pet should return a resource object with the correct path and namespace', ({ expect }) => {
     const petId = 123;
     const resource = pet(petId);

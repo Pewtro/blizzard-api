@@ -1,7 +1,7 @@
 import { describe, test } from 'vitest';
 import { auctionHouseIndex, auctions } from './index';
 
-describe.concurrent('classicAuctionHouseApi', () => {
+describe('classicAuctionHouseApi', () => {
   test('should return the correct resource for auctionHouseIndex', ({ expect }) => {
     const connectedRealmId = 123;
     const resource = auctionHouseIndex('dynamic-classic', connectedRealmId);

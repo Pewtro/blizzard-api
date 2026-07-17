@@ -11,7 +11,7 @@ import {
   journalInstanceMedia,
 } from './index';
 
-describe.concurrent('journalApi', () => {
+describe('journalApi', () => {
   test('should return the journal encounter resource for a given journalEncounterId', ({ expect }) => {
     const journalEncounterId = 123;
     const resource = journalEncounter(journalEncounterId);

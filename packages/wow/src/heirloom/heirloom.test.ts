@@ -2,7 +2,7 @@ import { wowBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
 import { heirloom, heirloomIndex } from './index';
 
-describe.concurrent('heirloomApi', () => {
+describe('heirloomApi', () => {
   test('should return the heirloom resource for a given heirloomId', ({ expect }) => {
     const heirloomId = 123;
     const resource = heirloom(heirloomId);

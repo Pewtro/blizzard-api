@@ -2,7 +2,7 @@ import { wowBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
 import { mythicRaidLeaderboard } from './index';
 
-describe.concurrent('mythicRaidLeaderboardApi', () => {
+describe('mythicRaidLeaderboardApi', () => {
   test('mythicRaidLeaderboard should return a resource object with the correct path and namespace', ({ expect }) => {
     const raid = 'castle-nathria';
     const faction = 'alliance';

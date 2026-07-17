@@ -5,7 +5,7 @@ import { connectedRealm, connectedRealmIndex, connectedRealmSearch } from './ind
 const namespace: BlizzardNamespaces = 'dynamic-classic';
 const namespace1x: BlizzardNamespaces = 'dynamic-classic1x';
 
-describe.concurrent('classicConnectedRealmApi', () => {
+describe('classicConnectedRealmApi', () => {
   test('connectedRealmIndex should return the correct resource path', ({ expect }) => {
     const result = connectedRealmIndex(namespace);
     expect(result).toBeDefined();

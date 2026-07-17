@@ -2,7 +2,7 @@ import { wowBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
 import { toy, toyIndex } from './index';
 
-describe.concurrent('toyApi', () => {
+describe('toyApi', () => {
   test('should return the correct path for toy', ({ expect }) => {
     const toyId = 123;
     const resource = toy(toyId);

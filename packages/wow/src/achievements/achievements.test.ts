@@ -8,7 +8,7 @@ import {
   achievementMedia,
 } from './index';
 
-describe.concurrent('Achievements', () => {
+describe('Achievements', () => {
   test('should return correct path and namespace for achievementCategory', ({ expect }) => {
     const resource = achievementCategory(1);
     expect(resource.path).toBe(`${wowBasePath}/achievement-category/1`);

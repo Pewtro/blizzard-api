@@ -11,7 +11,7 @@ import {
   questTypeIndex,
 } from './index';
 
-describe.concurrent('questApi', () => {
+describe('questApi', () => {
   test('quest should return a resource object with the correct path and namespace', ({ expect }) => {
     const questId = 123;
     const resource = quest(questId);

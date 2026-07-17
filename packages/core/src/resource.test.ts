@@ -1,7 +1,7 @@
 import { describe, expectTypeOf, test } from 'vitest';
 import type { ExtractResourceType, Resource } from './resource';
 
-describe.concurrent('Resource', () => {
+describe('Resource', () => {
   test('should have the correct properties without search options', ({ expect }) => {
     type MyResource = Resource<{ id: number }>;
     const resource: MyResource = {

@@ -2,7 +2,7 @@ import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
 import { pvpTier, pvpTierIndex, pvpTierMedia } from './index';
 
-describe.concurrent('pvpTierApi', () => {
+describe('pvpTierApi', () => {
   test('pvpTier should return a resource object with the correct path and namespace', ({ expect }) => {
     const pvpTierId = 123;
     const resource = pvpTier(pvpTierId);

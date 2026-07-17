@@ -2,7 +2,7 @@ import { d3BasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
 import { characterClass, skill } from './index';
 
-describe.concurrent('characterClass', () => {
+describe('characterClass', () => {
   test('characterClass should return the correct resource path', ({ expect }) => {
     const characterClassSlug = 'warrior';
     const expectedPath = `${d3BasePath}/character-class/warrior`;

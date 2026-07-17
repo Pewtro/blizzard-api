@@ -4,7 +4,7 @@ import { mediaSearch } from './index';
 
 const namespace = 'static-classic';
 
-describe.concurrent('mediaSearchApi', () => {
+describe('mediaSearchApi', () => {
   test('should return the media search resource', ({ expect }) => {
     const resource = mediaSearch(namespace, {});
     expect(resource.path).toBe(`${wowSearchBasePath}/media`);

@@ -1,7 +1,7 @@
 import { describe, test } from 'vitest';
 import { auctions, commodities } from './index';
 
-describe.concurrent('auctionHouse', () => {
+describe('auctionHouse', () => {
   test('should return the correct resource for auctions', ({ expect }) => {
     const connectedRealmId = 123;
     const resource = auctions(connectedRealmId);

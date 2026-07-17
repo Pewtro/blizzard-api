@@ -2,7 +2,7 @@ import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
 import { guildCrestBorder, guildCrestComponentsIndex, guildCrestEmblem } from './index';
 
-describe.concurrent('guildCrestApi', () => {
+describe('guildCrestApi', () => {
   test('should return the guild crest components index resource', ({ expect }) => {
     const resource = guildCrestComponentsIndex();
     expect(resource.path).toBe(`${wowBasePath}/guild-crest/index`);

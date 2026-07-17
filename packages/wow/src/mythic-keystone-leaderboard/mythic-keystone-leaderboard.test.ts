@@ -2,7 +2,7 @@ import { wowBasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
 import { mythicKeystoneLeaderboard, mythicKeystoneLeaderboardIndex } from './index';
 
-describe.concurrent('mythicKeystoneLeaderboardApi', () => {
+describe('mythicKeystoneLeaderboardApi', () => {
   test('mythicKeystoneLeaderboard should return a resource object with the correct path and namespace', ({
     expect,
   }) => {

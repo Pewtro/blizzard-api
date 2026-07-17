@@ -5,7 +5,7 @@ import { treeifyError } from 'zod';
 import { environment } from '../../../environment';
 import { playableRaceIndexResponseSchema, playableRaceResponseSchema } from '../../../generated/schemas/classic-wow';
 
-describe.concurrent('classic-wow playable race integration', async () => {
+describe('classic-wow playable race integration', async () => {
   const client = await createBlizzardApiClient({
     key: environment.blizzardClientId,
     origin: 'eu',

@@ -2,7 +2,7 @@ import { d3BasePath } from '@blizzard-api/core';
 import { describe, test } from 'vitest';
 import { act, actIndex } from './index';
 
-describe.concurrent('act', () => {
+describe('act', () => {
   test('should return the act resource', ({ expect }) => {
     const resource = act(1);
     expect(resource.path).toBe(`${d3BasePath}/act/1`);

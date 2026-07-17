@@ -5,7 +5,7 @@ import { powerType, powerTypeIndex } from './index';
 
 const namespace: BlizzardNamespaces = 'static-classic1x';
 
-describe.concurrent('powerTypeApi', () => {
+describe('powerTypeApi', () => {
   test('powerType should return a resource object with the correct path and namespace', ({ expect }) => {
     const powerTypeId = 123;
     const resource = powerType(namespace, powerTypeId);

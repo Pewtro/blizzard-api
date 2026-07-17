@@ -5,7 +5,7 @@ import { realm, realmIndex, realmSearch } from './index';
 
 const namespace = 'dynamic-classic';
 
-describe.concurrent('classicRealmApi', () => {
+describe('classicRealmApi', () => {
   test('should return appropriate realm resource', ({ expect }) => {
     const realmSlug = 'test-realm';
 

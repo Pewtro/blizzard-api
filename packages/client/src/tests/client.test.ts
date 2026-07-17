@@ -4,7 +4,7 @@ import { describe, test, vitest } from 'vitest';
 import { environment } from '../../../../environment';
 import { createBlizzardApiClient } from '../client/create-client';
 
-describe.concurrent('client', async () => {
+describe('client', async () => {
   const client = await createBlizzardApiClient({
     key: environment.blizzardClientId,
     origin: 'eu',
