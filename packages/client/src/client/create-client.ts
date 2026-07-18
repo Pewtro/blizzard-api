@@ -3,7 +3,31 @@ import { setTimeout } from 'node:timers';
 import { BlizzardApiClient } from './client';
 import type { AccessToken, ClientOptions } from './types';
 
-const getTokenExpiration = (expiresIn: number) => expiresIn * 1000 - 60_000;
+/**
+ * How long before a token's actual expiry it should be refreshed, in milliseconds.
+ * This buffer avoids using a token that could expire mid-request.
+ */
+const REFRESH_BUFFER_MS = 60_000;
+
+/**
+ * Calculate the delay (in milliseconds) to wait before refreshing a token, based on the
+ * token's remaining lifetime.
+ * @param lifetimeInSeconds The token's lifetime in seconds, as returned in the `expires_in`
+ * field when requesting a new access token.
+ * @returns The delay in milliseconds before the token should be refreshed.
+ */
+const getRefreshDelayFromLifetime = (lifetimeInSeconds: number): number => lifetimeInSeconds * 1000 - REFRESH_BUFFER_MS;
+
+/**
+ * Calculate the delay (in milliseconds) to wait before refreshing a token, based on the
+ * token's absolute expiry time.
+ * @param expiryInSeconds The token's expiry as a Unix timestamp in seconds, as returned in the
+ * `exp` field when validating an existing access token.
+ * @returns The delay in milliseconds before the token should be refreshed. May be negative if the
+ * token is already within its refresh buffer or expired.
+ */
+const getRefreshDelayFromExpiry = (expiryInSeconds: number): number =>
+  expiryInSeconds * 1000 - REFRESH_BUFFER_MS - Date.now();
 
 /**
  * Create a new Blizzard API client.
@@ -25,6 +49,13 @@ export const createBlizzardApiClient = async (
 
   const client = new BlizzardApiClient(options);
 
+  //Schedule a token refresh after the given delay, without keeping the process alive.
+  const scheduleRefresh = (delayInMilliseconds: number) => {
+    const timeout = setTimeout(() => void refreshToken(), delayInMilliseconds);
+    //Unref the timeout so the process can exit while a refresh is pending.
+    timeout.unref();
+  };
+
   const refreshToken = async () => {
     const response = await client.refreshAccessToken();
 
@@ -32,9 +63,7 @@ export const createBlizzardApiClient = async (
       onTokenRefresh(response);
     }
 
-    //Schedule a refresh of the token
-    const timeout = setTimeout(() => void refreshToken(), getTokenExpiration(response.expires_in));
-    timeout.unref();
+    scheduleRefresh(getRefreshDelayFromLifetime(response.expires_in));
   };
 
   //If tokenRefresh is false, return the client without refreshing the token
@@ -46,15 +75,13 @@ export const createBlizzardApiClient = async (
     try {
       //If token is set, validate the token
       const validatedToken = await client.validateAccessToken({ token });
-      const expiry = getTokenExpiration(validatedToken.exp);
-      //If token is expiring in less than 60 seconds, refresh the token
-      if (expiry - Date.now() < 60_000) {
+      const refreshDelay = getRefreshDelayFromExpiry(validatedToken.exp);
+      //If the token is already within its refresh buffer, refresh it now
+      if (refreshDelay < REFRESH_BUFFER_MS) {
         await refreshToken();
       } else {
-        //If token is not expiring, schedule a refresh
-        const timeout = setTimeout(() => void refreshToken(), expiry - Date.now());
-        //Unref the timeout so the process can exit
-        timeout.unref();
+        //Otherwise schedule a refresh for when the token nears expiry
+        scheduleRefresh(refreshDelay);
       }
     } catch {
       //If token is invalid, refresh the token
