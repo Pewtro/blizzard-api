@@ -80,13 +80,11 @@ export class BlizzardApiClient {
    * Get the request configuration.
    * @param resource The resource to fetch. See {@link Resource}.
    * @param options Client options. See {@link ClientOptions}.
-   * @param headers Additional headers to include in the request. This is deprecated and should be passed into the kyOptions as part of the client options instead.
    * @returns The request configuration.
    */
   public getRequestConfig<T, Protected extends boolean = false>(
     resource: Resource<T, object, Protected>,
     options?: Partial<ClientOptions>,
-    headers?: Record<string, string>,
   ): {
     headers: Record<string, string> & {
       Authorization: `Bearer ${string}`;
@@ -115,7 +113,6 @@ export class BlizzardApiClient {
 
     return {
       headers: {
-        ...headers,
         ...namespace,
         Authorization: `Bearer ${config.token}`,
         'Content-Type': 'application/json',
@@ -167,16 +164,14 @@ export class BlizzardApiClient {
    * Send a request to the Blizzard API.
    * @param resource The resource to fetch. See {@link Resource}.
    * @param options Client options. See {@link ClientOptions}.
-   * @param headers Additional headers to include in the request. This is deprecated and should be passed into the kyOptions as part of the client options instead.
    * @returns The response from the Blizzard API.
    */
   public async sendRequest<T, Protected extends boolean = false>(
     resource: Resource<T, object, Protected>,
     options?: Partial<ClientOptions>,
-    headers?: Record<string, string>,
   ): Promise<T | undefined> {
     const url = new URL(this.getRequestUrl(resource, options));
-    const config = this.getRequestConfig(resource, options, headers);
+    const config = this.getRequestConfig(resource, options);
 
     for (const [key, value] of Object.entries(config.searchParams)) {
       url.searchParams.set(key, String(value));

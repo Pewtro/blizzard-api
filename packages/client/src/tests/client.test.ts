@@ -171,11 +171,10 @@ describe('client', async () => {
       parameters: { bar: 'baz', unused: undefined },
       path: '/foo',
     };
-    const config = client.getRequestConfig(resource, undefined, { 'X-Test': 'yes' });
+    const config = client.getRequestConfig(resource);
 
     expect(config.headers.Authorization).toBeDefined();
     expect(config.headers['Content-Type']).toBe('application/json');
-    expect(config.headers['X-Test']).toBe('yes');
     expect(config.searchParams.locale).toBeDefined();
     expect(config.searchParams.bar).toBe('baz');
     expect(config.searchParams.unused).toBeUndefined();
