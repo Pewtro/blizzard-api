@@ -26,12 +26,10 @@ export const createBlizzardApiClient = async (
   const client = new BlizzardApiClient(options);
 
   const refreshToken = async () => {
-    const response = await client.getAccessToken();
-
-    client.setAccessToken(response.access_token);
+    const response = await client.refreshAccessToken();
 
     if (typeof onTokenRefresh === 'function') {
-      onTokenRefresh?.(response);
+      onTokenRefresh(response);
     }
 
     //Schedule a refresh of the token

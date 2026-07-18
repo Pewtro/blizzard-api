@@ -102,11 +102,13 @@ export class BlizzardApiClient {
       ? { 'Battlenet-Namespace': `${resource.namespace}-${endpoint.origin}` }
       : undefined;
 
-    const parameters = resource.parameters as Record<string, unknown>;
-    if (parameters) {
-      for (const key of Object.keys(parameters)) {
-        if (parameters[key] === undefined) {
-          delete parameters[key];
+    // Build a new object with the defined parameters so we never mutate the
+    // caller's resource, which may be reused across requests.
+    const parameters: Record<string, unknown> = {};
+    if (resource.parameters) {
+      for (const [key, value] of Object.entries(resource.parameters as Record<string, unknown>)) {
+        if (value !== undefined) {
+          parameters[key] = value;
         }
       }
     }
