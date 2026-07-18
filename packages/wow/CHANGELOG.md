@@ -1,5 +1,11 @@
 # @blizzard-api/wow
 
+## 4.0.6
+
+### Patch Changes
+
+- be7df5a: Mark appearance_sets and slots as optional in CharacterTransmogCollectionSummaryResponse
+
 ## 4.0.5
 
 ### Patch Changes

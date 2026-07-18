@@ -1,5 +1,32 @@
 # @blizzard-api/client
 
+## 5.0.0
+
+### Major Changes
+
+- a66c947: Remove the deprecated `headers` parameter from `BlizzardApiClient.getRequestConfig` and `BlizzardApiClient.sendRequest`. Custom headers should now be provided exclusively through `kyOptions.headers` in the client options. This removes a redundant, weakly-typed code path and clarifies header precedence.
+
+  Migration: replace any third-argument `headers` usage with `kyOptions`.
+
+  ```ts
+  // Before
+  await client.sendRequest(resource, options, { 'X-Custom': 'value' });
+
+  // After
+  await client.sendRequest(resource, { ...options, kyOptions: { headers: { 'X-Custom': 'value' } } });
+  ```
+
+- d57973a: Mark responses as potentially undefined to better reflect reality of some 200 responses as well as 204 from the Blizzard API
+
+### Minor Changes
+
+- 2b99c0e: Improve token refresh in the client
+- 2b99c0e: Improve parameter handling in the client
+
+### Patch Changes
+
+- 962d552: Clarify the internal token-refresh scheduling in `createBlizzardApiClient`. The single ambiguous `getTokenExpiration` helper has been split into two clearly-named functions — `getRefreshDelayFromLifetime` (for the `expires_in` duration returned when requesting a token) and `getRefreshDelayFromExpiry` (for the `exp` absolute timestamp returned when validating a token) — backed by a shared `REFRESH_BUFFER_MS` constant. The repeated `setTimeout`/`unref` logic is now a single `scheduleRefresh` helper. This is an internal refactor with no change to runtime behavior or the public API.
+
 ## 4.0.1
 
 ### Patch Changes
