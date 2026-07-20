@@ -30,6 +30,7 @@
   "files": [
     "dist"
   ],
+  "sideEffects": false,
   "keywords": [
     "blizzard",
     "battlenet",
