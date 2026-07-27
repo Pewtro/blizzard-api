@@ -35,8 +35,8 @@
     "@putstack/prettier-config": "2.0.0",
     "@size-limit/preset-small-lib": "13.0.1",
     "@types/node": "26.1.1",
-    "@vitest/coverage-v8": "4.1.10",
-    "@vitest/ui": "4.1.10",
+    "@vitest/coverage-v8": "5.0.0-beta.7",
+    "@vitest/ui": "5.0.0-beta.7",
     "eslint": "10.7.0",
     "eslint-plugin-jsdoc": "63.2.2",
     "lefthook": "2.1.10",
@@ -53,7 +53,7 @@
     "typedoc-github-theme": "0.4.0",
     "typescript": "6.0.3",
     "typescript-eslint": "8.65.0",
-    "vitest": "4.1.10",
+    "vitest": "5.0.0-beta.7",
     "zod": "4.4.3"
   },
   "scripts": {
