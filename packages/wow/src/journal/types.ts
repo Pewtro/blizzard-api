@@ -105,6 +105,24 @@ export interface JournalInstanceResponse extends NameId, ResponseBase {
   order_index?: number;
 }
 
+export interface JournalSection {
+  body_text?: null | string;
+  creature_display?: CreatureDisplay;
+  id: number;
+  sections?: Array<JournalSection>;
+  spell?: KeyBase & { id: number; name?: string };
+  title?: null | string;
+}
+
+export interface JournalSectionSearch {
+  body_text?: null | string;
+  creature_display?: CreatureDisplay;
+  id: number;
+  sections?: Array<JournalSectionSearch>;
+  spell?: KeyBase & { id: number; name?: string };
+  title?: Record<Locales, string>;
+}
+
 interface Asset {
   key: string;
   value: string;
@@ -156,130 +174,6 @@ interface JournalEncounterSearchResponseItem extends KeyBase {
     name: Record<Locales, string>;
     sections?: Array<JournalSectionSearch>;
   };
-}
-
-interface JournalSection {
-  body_text?: null | string;
-  creature_display?: CreatureDisplay;
-  id: number;
-  sections?: Array<JournalSubSection>;
-  spell?: KeyBase & { id: number; name?: string };
-  title?: null | string;
-}
-
-interface JournalSectionSearch {
-  body_text?: null | string;
-  creature_display?: CreatureDisplay;
-  id: number;
-  sections?: Array<JournalSubSectionSearch>;
-  spell?: KeyBase & { id: number; name?: string };
-  title?: Record<Locales, string>;
-}
-
-interface JournalSubSection {
-  body_text?: null | string;
-  creature_display?: CreatureDisplay;
-  id: number;
-  sections?: Array<JournalSubSection2>;
-  spell?: KeyBase & { id: number; name?: string };
-  title?: string;
-}
-
-interface JournalSubSection2 {
-  body_text?: null | string;
-  creature_display?: CreatureDisplay;
-  id: number;
-  sections?: Array<JournalSubSection3>;
-  spell?: KeyBase & { id: number; name?: string };
-  title?: string;
-}
-
-interface JournalSubSection3 {
-  body_text?: null | string;
-  creature_display?: CreatureDisplay;
-  id: number;
-  sections?: Array<JournalSubSection4>;
-  spell?: KeyBase & { id: number; name?: string };
-  title?: string;
-}
-
-interface JournalSubSection4 {
-  body_text?: null | string;
-  creature_display?: CreatureDisplay;
-  id: number;
-  sections?: Array<JournalSubSection5>;
-  spell?: KeyBase & { id: number; name?: string };
-  title?: string;
-}
-
-interface JournalSubSection5 {
-  body_text?: null | string;
-  creature_display?: CreatureDisplay;
-  id: number;
-  sections?: Array<JournalSubSection6>;
-  spell?: KeyBase & { id: number; name?: string };
-  title?: string;
-}
-
-interface JournalSubSection6 {
-  body_text?: null | string;
-  creature_display?: CreatureDisplay;
-  id: number;
-  spell?: KeyBase & { id: number; name?: string };
-  title?: string;
-}
-
-interface JournalSubSectionSearch {
-  body_text?: null | string;
-  creature_display?: CreatureDisplay;
-  id: number;
-  sections?: Array<JournalSubSectionSearch2>;
-  spell?: KeyBase & { id: number; name?: string };
-  title?: Record<Locales, string>;
-}
-
-interface JournalSubSectionSearch2 {
-  body_text?: null | string;
-  creature_display?: CreatureDisplay;
-  id: number;
-  sections?: Array<JournalSubSectionSearch3>;
-  spell?: KeyBase & { id: number; name?: string };
-  title?: Record<Locales, string>;
-}
-
-interface JournalSubSectionSearch3 {
-  body_text?: null | string;
-  creature_display?: CreatureDisplay;
-  id: number;
-  sections?: Array<JournalSubSectionSearch4>;
-  spell?: KeyBase & { id: number; name?: string };
-  title?: Record<Locales, string>;
-}
-
-interface JournalSubSectionSearch4 {
-  body_text?: null | string;
-  creature_display?: CreatureDisplay;
-  id: number;
-  sections?: Array<JournalSubSectionSearch5>;
-  spell?: KeyBase & { id: number; name?: string };
-  title?: Record<Locales, string>;
-}
-
-interface JournalSubSectionSearch5 {
-  body_text?: null | string;
-  creature_display?: CreatureDisplay;
-  id: number;
-  sections?: Array<JournalSubSectionSearch6>;
-  spell?: KeyBase & { id: number; name?: string };
-  title?: Record<Locales, string>;
-}
-
-interface JournalSubSectionSearch6 {
-  body_text?: null | string;
-  creature_display?: CreatureDisplay;
-  id: number;
-  spell?: KeyBase & { id: number; name?: string };
-  title?: string;
 }
 
 interface Media extends KeyBase {

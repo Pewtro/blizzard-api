@@ -32,6 +32,18 @@ export interface AchievementCategoryResponse extends NameId, ResponseBase {
   subcategories?: Array<NameIdKey>;
 }
 
+export interface AchievementCriteria {
+  achievement?: NameIdKey;
+  amount: number;
+  child_criteria?: Array<AchievementCriteria>;
+  description: null | string;
+  faction?: Faction;
+  id: number;
+  is_gold?: boolean;
+  operator?: Operator;
+  show_progress_bar?: boolean;
+}
+
 /**
  * Interface for a response from the achievement index endpoint.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
@@ -55,7 +67,7 @@ export interface AchievementMediaResponse extends ResponseBase {
  */
 export interface AchievementResponse extends NameId, ResponseBase {
   category: NameIdKey;
-  criteria?: Criteria;
+  criteria?: AchievementCriteria;
   description: null | string;
   display_order: number;
   guild_reward_items?: Array<NameIdKey>;
@@ -67,51 +79,6 @@ export interface AchievementResponse extends NameId, ResponseBase {
   requirements?: { faction: Faction };
   reward_description?: string;
   reward_item?: NameIdKey;
-}
-
-interface ChildCriteria {
-  achievement?: NameIdKey;
-  amount: number;
-  child_criteria?: Array<ChildCriteria2>;
-  description: null | string;
-  faction?: Faction;
-  id: number;
-  is_gold?: boolean;
-  operator?: Operator;
-  show_progress_bar?: boolean;
-}
-
-interface ChildCriteria2 {
-  achievement?: NameIdKey;
-  amount: number;
-  child_criteria?: Array<ChildCriteria3>;
-  description: null | string;
-  faction?: Faction;
-  id: number;
-  is_gold?: boolean;
-  operator?: Operator;
-  show_progress_bar?: boolean;
-}
-
-interface ChildCriteria3 {
-  achievement?: NameIdKey;
-  amount: number;
-  description: null | string;
-  faction?: Faction;
-  id: number;
-  is_gold?: boolean;
-  operator?: Operator;
-  show_progress_bar?: boolean;
-}
-
-interface Criteria {
-  amount: number;
-  child_criteria?: Array<ChildCriteria>;
-  description: null | string;
-  faction?: Faction;
-  id: number;
-  operator?: Operator;
-  show_progress_bar?: boolean;
 }
 interface Operator {
   name: string;
