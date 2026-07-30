@@ -4,6 +4,7 @@
 import { existsSync } from 'node:fs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { generate } from 'ts-to-zod';
 import { inputOutputMappings } from './input-output-mapping';
 
@@ -21,6 +22,34 @@ async function main() {
     console.error(error);
     process.exit(1);
   }
+}
+
+function rewriteImportPaths(content: string, outputFilePath: string): string {
+  const importRegex = /(\b(?:import|export)\b[^'"\n]*?\bfrom\s+)(['"])([^'"]+)\2/;
+
+  return content
+    .split('\n')
+    .map((line) =>
+      line.replace(importRegex, (_match, prefix, quote, specifier) => {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+        if (!path.isAbsolute(specifier)) {
+          return `${prefix}${quote}${specifier}${quote}`;
+        }
+
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+        const resolvedImportPath = path.resolve(specifier);
+        const relativeImportPath = path
+          .relative(path.dirname(outputFilePath), resolvedImportPath)
+          .split(path.sep)
+          .join('/');
+        const normalizedImportPath = relativeImportPath.startsWith('.')
+          ? relativeImportPath
+          : `./${relativeImportPath}`;
+
+        return `${prefix}${quote}${normalizedImportPath}${quote}`.replace('.ts', '');
+      }),
+    )
+    .join('\n');
 }
 
 async function run(): Promise<void> {
@@ -62,7 +91,17 @@ async function run(): Promise<void> {
           sourceText: content,
         });
 
-        const schema = generator.getZodSchemasFile(file).replaceAll('z.object', 'z.strictObject');
+        const parentName = path.basename(path.dirname(file));
+        // For the packages where we only handle `types.ts`, use the parent folder name as output file name.
+        // E.g. `packages/wow/src/character-hunter-pets/types.ts` -> `generated/wow/character-hunter-pets.ts`
+        // For other packages (like `core`), we use the original file name.
+        const outName = HANDLE_ALL_FILE_FOLDERS.has(packageName) ? path.basename(file) : `${parentName}.ts`;
+        const outPath = path.join(packageOut, outName);
+
+        const schema = rewriteImportPaths(
+          generator.getZodSchemasFile(file).replaceAll('z.object', 'z.strictObject'),
+          outPath,
+        );
 
         if (generator.errors.length > 0) {
           for (const error of generator.errors) {
@@ -70,12 +109,6 @@ async function run(): Promise<void> {
           }
         }
 
-        const parentName = path.basename(path.dirname(file));
-        // For the packages where we only handle `types.ts`, use the parent folder name as output file name.
-        // E.g. `packages/wow/src/character-hunter-pets/types.ts` -> `generated/wow/character-hunter-pets.ts`
-        // For other packages (like `core`), we use the original file name.
-        const outName = HANDLE_ALL_FILE_FOLDERS.has(packageName) ? path.basename(file) : `${parentName}.ts`;
-        const outPath = path.join(packageOut, outName);
         await fs.writeFile(outPath, schema, 'utf8');
       } catch (error) {
         console.error('Failed to generate for', file, (error as Error)?.message ?? error);
@@ -114,4 +147,9 @@ async function walk(directory: string, filelist: Array<string> = []): Promise<Ar
   return filelist;
 }
 
-await main();
+const entryPoint = process.argv[1] ? path.resolve(process.argv[1]) : undefined;
+const isDirectExecution = entryPoint !== undefined && import.meta.url === pathToFileURL(entryPoint).href;
+
+if (isDirectExecution) {
+  await main();
+}

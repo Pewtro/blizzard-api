@@ -60,7 +60,7 @@
     "build:docs": "typedoc",
     "build": "turbo build",
     "generate:zod": "tsx ./scripts/generate-zod.ts",
-    "generate": "npm-run-all -l generate:zod \"prettier:write ./generated\" \"lint:fix ./generated\"",
+    "generate": "npm-run-all -l generate:zod \"lint:fix ./generated\" \"prettier:write ./generated\"",
     "lint:ci": "npm-run-all -p -l typecheck stylecheck \"lint .\"",
     "lint:fix": "pnpm lint --fix",
     "lint": "eslint --format stylish --max-warnings 0 --cache",
