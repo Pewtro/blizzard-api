@@ -19,7 +19,7 @@ export default defineConfig({
     },
     globals: true,
     // Limit the number of concurrent test runs to avoid overwhelming the blizzard API with requests that could cause 429.
-    maxConcurrency: 2,
+    maxWorkers: '50%',
     projects: ['packages/*'],
   },
 });
