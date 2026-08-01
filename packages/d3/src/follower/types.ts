@@ -1,9 +1,11 @@
+export type Follower = 'enchantress' | 'scoundrel' | 'templar';
+
 export interface FollowerResponse {
   name: string;
   portrait: string;
   realName: string;
   skills: Array<Skill>;
-  slug: string;
+  slug: Follower;
 }
 
 interface Skill {
