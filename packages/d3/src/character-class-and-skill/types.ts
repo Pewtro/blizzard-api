@@ -1,3 +1,6 @@
+export type CharacterClass =
+  'barbarian' | 'crusader' | 'demon-hunter' | 'monk' | 'necromancer' | 'witch-doctor' | 'wizard';
+
 export interface CharacterClassResponse {
   femaleName: string;
   icon: string;
@@ -5,7 +8,7 @@ export interface CharacterClassResponse {
   name: string;
   skillCategories: Array<SkillCategory>;
   skills: Record<'active' | 'passive', Array<Skill>>;
-  slug: string;
+  slug: CharacterClass;
 }
 
 export interface SkillResponse {

@@ -1,9 +1,11 @@
 export interface ArtisanResponse {
   name: string;
   portrait: string;
-  slug: string;
+  slug: Artisans;
   training: Training;
 }
+
+export type Artisans = 'blacksmith' | 'jeweler' | 'mystic';
 
 export interface RecipeResponse {
   cost: number;
