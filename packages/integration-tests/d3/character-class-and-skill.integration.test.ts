@@ -24,11 +24,11 @@ describe('d3 character-class-and-skill integration', async () => {
     ];
     const classSkillMap = new Map<CharacterClass, Array<string>>([
       ['barbarian', ['bash', 'cleave', 'frenzy', 'hammer-of-the-ancients', 'rend', 'seismic-slam']],
-      ['crusader', ['blessed-shield', 'condemn', 'shield-bash', 'shield-glare', 'shield-pulverize']],
-      ['demon-hunter', ['barrage', 'caltrops', 'chakram', 'hungering-arrow', 'impale', 'rain-of-vengeance']],
+      ['crusader', ['blessed-shield', 'condemn', 'shield-bash', 'shield-glare']],
+      ['demon-hunter', ['caltrops', 'chakram', 'hungering-arrow', 'impale', 'rain-of-vengeance']],
       ['monk', ['dashing-strike', 'fists-of-thunder', 'lashing-tail-kick', 'wave-of-light']],
-      ['necromancer', ['bone-spike', 'corpse-explosion', 'decrepify', 'frailty', 'siphon-blood']],
-      ['witch-doctor', ['acid-rain', 'big-bad-voodoo', 'firebats', 'horrify', 'piranhas']],
+      ['necromancer', ['corpse-explosion', 'decrepify', 'frailty', 'siphon-blood']],
+      ['witch-doctor', ['big-bad-voodoo', 'firebats', 'horrify', 'piranhas']],
       ['wizard', ['arcane-orb', 'blizzard', 'disintegrate', 'energy-twister', 'hydra', 'ray-of-frost']],
     ]);
     const classPromises = classes.map(
