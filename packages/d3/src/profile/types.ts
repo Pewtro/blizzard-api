@@ -71,6 +71,16 @@ export interface AccountResponse {
   timePlayed: TimePlayed;
 }
 
+export interface Item {
+  displayColor?: DisplayColor;
+  dyeColor?: Dye;
+  icon: string;
+  id: string;
+  name: string;
+  tooltipParams: string;
+  transmogItem?: Item;
+}
+
 interface AccountHeroItem {
   accountBound: boolean;
   armor: number;
@@ -252,15 +262,6 @@ interface HeroProgression {
   act3: Act;
   act4: Act;
   act5: Act;
-}
-
-interface Item {
-  displayColor?: DisplayColor;
-  dyeColor?: Dye;
-  icon: string;
-  id: string;
-  name: string;
-  tooltipParams: string;
 }
 
 interface ItemProduced {
