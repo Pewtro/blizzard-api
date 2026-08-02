@@ -7,7 +7,7 @@ import type { ItemTypeIndexResponse, ItemTypeResponse } from './types';
  * @param itemTypeSlug The slug of the item type, example: "sword2h"
  * @returns The item type resource. See {@link ItemTypeResponse}.
  */
-export function itemType(itemTypeSlug: string): Resource<Array<ItemTypeResponse>> {
+export function itemType(itemTypeSlug: string): Resource<ItemTypeResponse> {
   return {
     path: `${d3BasePath}/item-type/${itemTypeSlug}`,
   };
@@ -17,7 +17,7 @@ export function itemType(itemTypeSlug: string): Resource<Array<ItemTypeResponse>
  * Returns the item type index.
  * @returns The item type index resource. See {@link ItemTypeIndexResponse}.
  */
-export function itemTypeIndex(): Resource<Array<ItemTypeIndexResponse>> {
+export function itemTypeIndex(): Resource<ItemTypeIndexResponse> {
   return {
     path: `${d3BasePath}/item-type`,
   };

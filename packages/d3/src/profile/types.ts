@@ -1,38 +1,23 @@
 export interface AccountHeroFollowerItemsResponse {
-  enchantress: Record<string, FollowerItem>;
-  scoundrel: Record<string, FollowerItem>;
-  templar: Record<string, FollowerItem>;
+  enchantress?: Record<string, FollowerItem>;
+  scoundrel?: Record<string, FollowerItem>;
+  templar?: Record<string, FollowerItem>;
 }
 
 export interface AccountHeroItemsResponse {
-  accountBound: boolean;
-  armor: number;
-  attacksPerSecond: number;
-  attributes: Attributes;
-  attributesHtml: Attributes;
-  craftedBy?: CraftedBy;
-  damage?: string;
-  displayColor: DisplayColor;
-  dps?: string;
-  elementalType?: string;
-  flavorText: string;
-  gems?: Array<Gem>;
-  icon: string;
-  id: string;
-  isSeasonRequiredToDrop: boolean;
-  itemLevel: number;
-  maxDamage: number;
-  minDamage: number;
-  name: string;
-  openSockets: number;
-  requiredLevel: number;
-  seasonRequiredToDrop: number;
-  set?: Set;
-  slots: string;
-  stackSizeMax: number;
-  tooltipParams: string;
-  type: Record<string, boolean | string>;
-  typeName: string;
+  bracers?: AccountHeroItem;
+  feet?: AccountHeroItem;
+  hands?: AccountHeroItem;
+  head?: AccountHeroItem;
+  leftFinger?: AccountHeroItem;
+  legs?: AccountHeroItem;
+  mainHand?: AccountHeroItem;
+  neck?: AccountHeroItem;
+  offHand?: AccountHeroItem;
+  rightFinger?: AccountHeroItem;
+  shoulders?: AccountHeroItem;
+  torso?: AccountHeroItem;
+  waist?: AccountHeroItem;
 }
 
 export interface AccountHeroResponse {
@@ -87,11 +72,37 @@ export interface AccountResponse {
 }
 
 interface AccountHeroItem {
+  accountBound: boolean;
+  armor: number;
+  attacksPerSecond: number;
+  attributes?: Attributes;
+  attributesHtml?: Attributes;
+  augmentation?: string;
+  blockChance?: string;
+  craftedBy?: CraftedBy;
+  damage?: string;
+  displayColor: DisplayColor;
+  dps?: string;
+  elementalType?: string;
+  flavorText?: string;
+  gems?: Array<Gem>;
   icon: string;
   id: string;
+  isSeasonRequiredToDrop: boolean;
+  itemLevel: number;
+  maxDamage: number;
+  minDamage: number;
   name: string;
-  path: string;
-  slug: string;
+  openSockets: number;
+  requiredLevel: number;
+  seasonRequiredToDrop: number;
+  set?: Set;
+  slots: string;
+  stackSizeMax: number;
+  tooltipParams: string;
+  transmog?: Item;
+  type: Record<string, boolean | string>;
+  typeName: string;
 }
 
 interface AccountResponseKills {
@@ -106,7 +117,7 @@ interface Act {
 }
 
 interface Active {
-  rune: Rune;
+  rune?: Rune;
   skill: Skill;
 }
 
@@ -144,15 +155,11 @@ interface Dye {
 }
 
 interface Enchantress {
-  items: EnchantressItems;
+  items: FollowerItems;
   level: number;
   skills: Array<unknown>;
   slug: string;
   stats: Stats;
-}
-
-interface EnchantressItems {
-  mainHand: Item;
 }
 
 interface FollowerItem {
@@ -167,7 +174,9 @@ interface FollowerItem {
   displayColor: string;
   dps?: string;
   dye?: Dye;
+  elementalType?: string;
   flavorText?: string;
+  gems?: Array<Gem>;
   icon: string;
   id: string;
   isSeasonRequiredToDrop: boolean;
@@ -186,6 +195,23 @@ interface FollowerItem {
   typeName: string;
 }
 
+interface FollowerItems {
+  bracers?: Item;
+  feet?: Item;
+  hands?: Item;
+  head?: Item;
+  leftFinger?: Item;
+  legs?: Item;
+  mainHand?: Item;
+  neck?: Item;
+  offHand?: Item;
+  rightFinger?: Item;
+  shoulders?: Item;
+  special?: Item;
+  torso?: Item;
+  waist?: Item;
+}
+
 interface Followers {
   enchantress: Enchantress;
   scoundrel: Scoundrel;
@@ -196,7 +222,7 @@ interface Gem {
   attributes: Array<string>;
   isGem: boolean;
   isJewel: boolean;
-  item: AccountHeroItem;
+  item: ReagentItem;
   jewelRank?: number;
   jewelSecondaryUnlockRank?: number;
 }
@@ -259,8 +285,16 @@ interface Progression {
 }
 
 interface Reagent {
-  item: AccountHeroItem;
+  item: ReagentItem;
   quantity: number;
+}
+
+interface ReagentItem {
+  icon: string;
+  id: string;
+  name: string;
+  path: string;
+  slug: string;
 }
 
 interface Rune {
@@ -273,7 +307,7 @@ interface Rune {
 }
 
 interface Scoundrel {
-  items: Record<string, Item>;
+  items: FollowerItems;
   level: number;
   skills: Array<Skill>;
   slug: string;
@@ -319,23 +353,11 @@ interface Stats {
 }
 
 interface Templar {
-  items: TemplarItems;
+  items: FollowerItems;
   level: number;
   skills: Array<Skill>;
   slug: string;
   stats: Stats;
-}
-
-interface TemplarItems {
-  bracers: Item;
-  feet: Item;
-  hands: Item;
-  head: Item;
-  mainHand: Item;
-  offHand: Item;
-  shoulders: Item;
-  torso: Item;
-  waist: Item;
 }
 
 interface TimePlayed {

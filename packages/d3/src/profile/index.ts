@@ -1,6 +1,11 @@
 import { d3ProfileBasePath } from '@blizzard-api/core';
 import type { Resource } from '@blizzard-api/core';
-import type { AccountHeroFollowerItemsResponse, AccountHeroResponse, AccountResponse } from './types';
+import type {
+  AccountHeroFollowerItemsResponse,
+  AccountHeroItemsResponse,
+  AccountHeroResponse,
+  AccountResponse,
+} from './types';
 
 /**
  * Returns the account information for the specified battle tag.
@@ -9,7 +14,7 @@ import type { AccountHeroFollowerItemsResponse, AccountHeroResponse, AccountResp
  */
 export function account(battleTag: string): Resource<AccountResponse> {
   return {
-    path: `${d3ProfileBasePath}/${encodeURIComponent(battleTag)}`,
+    path: `${d3ProfileBasePath}/${encodeURIComponent(battleTag)}/`,
   };
 }
 
@@ -44,9 +49,9 @@ export function accountHeroFollowerItems(
  * Returns the items for the specified battle tag and hero ID.
  * @param battleTag The battle tag of the account.
  * @param heroId The ID of the hero.
- * @returns The hero items resource. See {@link AccountHeroResponse}.
+ * @returns The hero items resource. See {@link AccountHeroItemsResponse}.
  */
-export function accountHeroItems(battleTag: string, heroId: number): Resource<AccountHeroResponse> {
+export function accountHeroItems(battleTag: string, heroId: number): Resource<AccountHeroItemsResponse> {
   return {
     path: `${d3ProfileBasePath}/${encodeURIComponent(battleTag)}/hero/${heroId}/items`,
   };
