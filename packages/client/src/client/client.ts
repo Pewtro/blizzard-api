@@ -178,6 +178,7 @@ export class BlizzardApiClient {
     }
 
     const response = await this.ky.get<T>(url, {
+      timeout: 15_000,
       ...options?.kyOptions,
       headers: {
         ...config.headers,
