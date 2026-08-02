@@ -26,7 +26,7 @@ export function era(id: number): Resource<EraResponse> {
  */
 export function eraIndex(): Resource<EraIndexResponse> {
   return {
-    path: `${d3GameDataBasePath}/era`,
+    path: `${d3GameDataBasePath}/era/`,
   };
 }
 
@@ -59,7 +59,7 @@ export function season(id: number): Resource<SeasonResponse> {
  */
 export function seasonIndex(): Resource<SeasonIndexResponse> {
   return {
-    path: `${d3GameDataBasePath}/season`,
+    path: `${d3GameDataBasePath}/season/`,
   };
 }
 

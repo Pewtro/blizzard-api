@@ -56,9 +56,9 @@ const rowDataSchema = z.strictObject({
 });
 
 const playerSchema = z.strictObject({
-  accountId: z.number(),
+  accountId: z.number().optional(),
   data: z.array(rowDataSchema),
-  key: z.string(),
+  key: z.string().optional(),
 });
 
 const columnSchema = z.strictObject({
@@ -66,7 +66,7 @@ const columnSchema = z.strictObject({
   id: leaderboardIdSchema,
   label: z.string().nullable(),
   order: z.number().optional(),
-  type: z.union([z.literal('DATETIME'), z.literal('NUMBER'), z.literal('STRING')]),
+  type: z.union([z.literal('DATETIME'), z.literal('NUMBER'), z.literal('SPAN_MS'), z.literal('STRING')]),
 });
 
 const rowSchema = z.strictObject({
@@ -83,9 +83,18 @@ const eraLeaderboardSchema = z.strictObject({
 });
 
 export const seasonLeaderboardResponseSchema = responseBaseSchema.extend({
-  achievement_points: z.boolean(),
+  achievement_points: z.boolean().optional(),
   column: z.array(columnSchema),
+  conquest: z.boolean().optional(),
+  conquest_desc: z.string().optional(),
+  conquest_icon_id: z.string().optional(),
+  conquest_id: z.number().optional(),
+  conquest_name: z.string().optional(),
   generated_by: z.string(),
+  greater_rift: z.boolean().optional(),
+  greater_rift_solo_class: z.string().optional(),
+  greater_rift_team_size: z.number().optional(),
+  hardcore: z.boolean().optional(),
   key: z.string(),
   last_update_time: z.string(),
   row: z.array(rowSchema),
@@ -105,7 +114,9 @@ export const eraLeaderboardResponseSchema = responseBaseSchema.extend({
   era: z.number(),
   generated_by: z.string(),
   greater_rift: z.boolean(),
-  greater_rift_solo_class: z.string(),
+  greater_rift_solo_class: z.string().optional(),
+  greater_rift_team_size: z.number().optional(),
+  hardcore: z.boolean().optional(),
   key: z.string(),
   last_update_time: z.string(),
   row: z.array(rowSchema),

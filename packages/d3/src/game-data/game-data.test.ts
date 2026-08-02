@@ -5,7 +5,7 @@ import { era, eraIndex, eraLeaderboard, season, seasonIndex, seasonLeaderboard }
 describe('game-data', () => {
   test('seasonIndex should return the correct resource path', ({ expect }) => {
     const resource = seasonIndex();
-    expect(resource.path).toBe(`${d3GameDataBasePath}/season`);
+    expect(resource.path).toBe(`${d3GameDataBasePath}/season/`);
   });
 
   test('season should return the correct resource path', ({ expect }) => {
@@ -23,7 +23,7 @@ describe('game-data', () => {
 
   test('eraIndex should return the correct resource path', ({ expect }) => {
     const resource = eraIndex();
-    expect(resource.path).toBe(`${d3GameDataBasePath}/era`);
+    expect(resource.path).toBe(`${d3GameDataBasePath}/era/`);
   });
 
   test('era should return the correct resource path', ({ expect }) => {

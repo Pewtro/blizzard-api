@@ -12,7 +12,9 @@ export interface EraLeaderboardResponse extends ResponseBase {
   era: number;
   generated_by: string;
   greater_rift: boolean;
-  greater_rift_solo_class: string;
+  greater_rift_solo_class?: string;
+  greater_rift_team_size?: number;
+  hardcore?: boolean;
   key: string;
   last_update_time: string;
   row: Array<Row>;
@@ -37,9 +39,18 @@ export interface SeasonIndexResponse extends ResponseBase {
 }
 
 export interface SeasonLeaderboardResponse extends ResponseBase {
-  achievement_points: boolean;
+  achievement_points?: boolean;
   column: Array<Column>;
+  conquest?: boolean;
+  conquest_desc?: string;
+  conquest_icon_id?: string;
+  conquest_id?: number;
+  conquest_name?: string;
   generated_by: string;
+  greater_rift?: boolean;
+  greater_rift_solo_class?: string;
+  greater_rift_team_size?: number;
+  hardcore?: boolean;
   key: string;
   last_update_time: string;
   row: Array<Row>;
@@ -59,7 +70,7 @@ interface Column {
   id: LeaderboardId;
   label: null | string;
   order?: number;
-  type: 'DATETIME' | 'NUMBER' | 'STRING';
+  type: 'DATETIME' | 'NUMBER' | 'SPAN_MS' | 'STRING';
 }
 
 interface EraLeaderboard {
@@ -95,9 +106,9 @@ type LeaderboardId =
   | 'RiftTime';
 
 interface Player {
-  accountId: number;
+  accountId?: number;
   data: Array<RowData>;
-  key: string;
+  key?: string;
 }
 
 interface Row {
