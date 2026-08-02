@@ -2,7 +2,13 @@ import type { Resource } from '@blizzard-api/core';
 import { describe, expect, test } from 'vitest';
 import { starcraftRegion } from '../regions';
 import type { StarcraftRegion } from '../regions';
-import type { LadderResponse, LadderSummaryResponse, MetadataResponse, StaticProfileResponse } from './types';
+import type {
+  LadderResponse,
+  LadderSummaryResponse,
+  MetadataResponse,
+  ProfileResponse,
+  StaticProfileResponse,
+} from './types';
 import { ladder, ladderSummary, metadata, profile, staticProfile } from './index';
 
 describe('profile', () => {
@@ -22,7 +28,7 @@ describe('profile', () => {
   });
 
   test('should generate correct path for profile', () => {
-    const result: Resource<MetadataResponse> = profile(regionId, realmId, profileId);
+    const result: Resource<ProfileResponse> = profile(regionId, realmId, profileId);
     expect(result.path).toBe(`/sc2/profile/${starcraftRegion[regionId]}/${realmId}/${profileId}`);
   });
 

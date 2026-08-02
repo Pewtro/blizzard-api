@@ -7,7 +7,7 @@ const heroId = 42;
 
 describe('profile', () => {
   test('account should return the correct resource', ({ expect }) => {
-    const expectedPath = `${d3ProfileBasePath}/example%231234`;
+    const expectedPath = `${d3ProfileBasePath}/example%231234/`;
 
     const resource = account(battleTag);
 
