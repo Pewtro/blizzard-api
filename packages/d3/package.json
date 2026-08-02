@@ -1,6 +1,6 @@
 {
   "name": "@blizzard-api/d3",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "license": "MIT",
   "author": "Putro",
   "description": "A series of helpers to interact with the Diablo 3 Blizzard API",
@@ -44,7 +44,7 @@
   ],
   "dependencies": {},
   "peerDependencies": {
-    "@blizzard-api/core": "4.1.0"
+    "@blizzard-api/core": "4.1.1"
   },
   "devDependencies": {
     "@blizzard-api/core": "workspace:*"

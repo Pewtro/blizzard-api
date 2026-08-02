@@ -1,5 +1,23 @@
 # @blizzard-api/hs
 
+## 3.1.0
+
+### Minor Changes
+
+- 77a1f70: A large increase of possible metadata responses
+- 4a3bb58: Add multiTypeIds to some deck and card responses
+- ae6f3ad: Further improve Decks responses
+- 77a1f70: Allow for numbers to be passed into fetchOneCardBack as the id
+- 77a1f70: Allow for numbers to be passed in as the hero in getDeck
+- 77a1f70: Expand amount of types that can be passed into specificMetadata
+- 77a1f70: Improve search and search response for cards
+
+### Patch Changes
+
+- 3e3d29f: Mark package as not having any side effects to improve tree shakeability
+- Updated dependencies [3e3d29f]
+  - @blizzard-api/core@4.1.1
+
 ## 3.0.1
 
 ### Patch Changes

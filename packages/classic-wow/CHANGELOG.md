@@ -1,5 +1,14 @@
 # @blizzard-api/classic-wow
 
+## 4.0.4
+
+### Patch Changes
+
+- da60607: Let the criteria key of achievement and journal responses infinitely loop itself to avoid having to manually guess how many layers Blizzard will add
+- 3e3d29f: Mark package as not having any side effects to improve tree shakeability
+- Updated dependencies [3e3d29f]
+  - @blizzard-api/core@4.1.1
+
 ## 4.0.3
 
 ### Patch Changes

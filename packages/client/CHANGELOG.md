@@ -1,5 +1,19 @@
 # @blizzard-api/client
 
+## 5.1.0
+
+### Minor Changes
+
+- d309a75: Default timeout to 15s to accomodate some slower blizzard API endpoints
+
+  This can be overriden with the ky options when creating the client
+
+### Patch Changes
+
+- 3e3d29f: Mark package as not having any side effects to improve tree shakeability
+- Updated dependencies [3e3d29f]
+  - @blizzard-api/core@4.1.1
+
 ## 5.0.0
 
 ### Major Changes
