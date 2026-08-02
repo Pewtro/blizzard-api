@@ -1,5 +1,17 @@
 # @blizzard-api/sc2
 
+## 3.1.0
+
+### Minor Changes
+
+- e98c114: Improve the legacy and profile endpoints
+
+### Patch Changes
+
+- 3e3d29f: Mark package as not having any side effects to improve tree shakeability
+- Updated dependencies [3e3d29f]
+  - @blizzard-api/core@4.1.1
+
 ## 3.0.1
 
 ### Patch Changes

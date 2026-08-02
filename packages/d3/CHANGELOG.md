@@ -1,5 +1,22 @@
 # @blizzard-api/d3
 
+## 3.1.0
+
+### Minor Changes
+
+- ec751c5: Update and improve types for profile types
+- e15604a: Add transmogItem as an optional arg to Item type
+- 018c383: Correct an issue with the endpoint for characterClass endpoint
+- ef8fd8d: Fix issues with eraIndex and seasonIndex as well as improve types of game-data endpoint responses
+- 018c383: Add new types for the different character classes and artisans
+- d1990ab: Add a type for followers and improve typing of the follower endpoint
+
+### Patch Changes
+
+- 3e3d29f: Mark package as not having any side effects to improve tree shakeability
+- Updated dependencies [3e3d29f]
+  - @blizzard-api/core@4.1.1
+
 ## 3.0.1
 
 ### Patch Changes

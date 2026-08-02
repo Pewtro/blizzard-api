@@ -1,5 +1,11 @@
 # @blizzard-api/core
 
+## 4.1.1
+
+### Patch Changes
+
+- 3e3d29f: Mark package as not having any side effects to improve tree shakeability
+
 ## 4.1.0
 
 ### Minor Changes
