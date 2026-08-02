@@ -56,6 +56,7 @@ const heroSchema = z.strictObject({
   isZilliaxFunctionalModule: z.boolean(),
   manaCost: z.number(),
   multiClassIds: z.array(z.number()),
+  multiTypeIds: z.array(z.number()).optional(),
   name: z.string(),
   parentId: z.number().optional(),
   rarityId: z.number().nullable(),

@@ -65,6 +65,7 @@ interface Hero {
   isZilliaxFunctionalModule: boolean;
   manaCost: number;
   multiClassIds: Array<number>;
+  multiTypeIds?: Array<number>;
   name: string;
   parentId?: number;
   rarityId: null | number;

@@ -168,6 +168,7 @@ export const fetchOneCardResponseSchema = z.strictObject({
   mercenaryHero: mercenaryHeroSchema.optional(),
   minionTypeId: z.number().optional(),
   multiClassIds: z.array(z.number()),
+  multiTypeIds: z.array(z.number()).optional(),
   name: z.union([z.record(localesSchema, z.string()), z.string()]),
   parentId: z.number().optional(),
   rarityId: z.number().optional().nullable(),

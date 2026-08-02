@@ -50,6 +50,7 @@ export interface FetchOneCardResponse {
   mercenaryHero?: MercenaryHero;
   minionTypeId?: number;
   multiClassIds: Array<number>;
+  multiTypeIds?: Array<number>;
   name: Record<Locales, string> | string;
   parentId?: number;
   rarityId?: null | number;
