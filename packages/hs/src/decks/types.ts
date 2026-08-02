@@ -20,6 +20,7 @@ interface Card {
   childIds?: Array<number>;
   classId: number;
   collectible: number;
+  copyOfCardId?: Array<number>;
   cropImage: string;
   flavorText: string;
   health?: number;
@@ -32,6 +33,7 @@ interface Card {
   manaCost: number;
   minionTypeId?: number;
   multiClassIds: Array<number>;
+  multiTypeIds?: Array<number>;
   name: string;
   rarityId: number;
   slug: string;
@@ -49,9 +51,11 @@ interface Hero {
   artistName: null | string;
   cardSetId: number;
   cardTypeId: number;
+  childIds?: Array<number>;
   classId: number;
   collectible: number;
-  cropImage: null;
+  copyOfCardId?: Array<number>;
+  cropImage: null | string;
   flavorText: string;
   health?: number;
   id: number;
@@ -62,7 +66,7 @@ interface Hero {
   manaCost: number;
   multiClassIds: Array<number>;
   name: string;
-  parentId: number;
+  parentId?: number;
   rarityId: null | number;
   slug: string;
   text: string;

@@ -7,17 +7,23 @@ describe('cardSearch', () => {
   test('should return correct parameters for single values', () => {
     const options: CardSearchParameters = {
       attack: 5,
+      collectible: 'collectible',
       defaultMercenary: 1,
       health: 10,
+      manaCost: 2,
       mercenaryId: 123,
+      tier: 1,
     };
     const result = cardSearch(options);
     expect(result.parameters).toEqual({
       ...options,
       attack: '5',
+      collectible: '1',
       defaultMercenary: '1',
       health: '10',
+      manaCost: '2',
       mercenaryId: '123',
+      tier: '1',
     });
     expect(result.path).toBe('hearthstone/cards');
   });
@@ -25,17 +31,23 @@ describe('cardSearch', () => {
   test('should return correct parameters for array values', () => {
     const options: CardSearchParameters = {
       attack: [1, 2, 3],
+      collectible: 'both',
       defaultMercenary: [1, 2],
       health: [5, 10],
+      manaCost: [2, 10],
       mercenaryId: [123, 456],
+      tier: [2, 'hero'],
     };
     const result = cardSearch(options);
     expect(result.parameters).toEqual({
       ...options,
       attack: '1,2,3',
+      collectible: '0,1',
       defaultMercenary: '1,2',
       health: '5,10',
+      manaCost: '2,10',
       mercenaryId: '123,456',
+      tier: '2,hero',
     });
     expect(result.path).toBe('hearthstone/cards');
   });
@@ -46,9 +58,12 @@ describe('cardSearch', () => {
     expect(result.parameters).toEqual({
       ...options,
       attack: undefined,
+      collectible: '0,1',
       defaultMercenary: undefined,
       health: undefined,
+      manaCost: undefined,
       mercenaryId: undefined,
+      tier: undefined,
     });
     expect(result.path).toBe('hearthstone/cards');
   });
