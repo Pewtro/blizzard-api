@@ -5,6 +5,7 @@ export interface AllMetadataResponse {
   bgGameModes: Array<GameMode>;
   cardBackCategories: Array<GameMode>;
   classes: Array<Class>;
+  factions: Array<GameMode>;
   filterableFields: Array<string>;
   gameModes: Array<GameMode>;
   keywords: Array<Keyword>;
@@ -19,15 +20,21 @@ export interface AllMetadataResponse {
   types: Array<GameMode>;
 }
 
-export interface SpecificMetadataResponse extends NameId {
-  aliasSetIds?: Array<number>;
-  collectibleCount: number;
-  collectibleRevealedCount: number;
-  hyped: boolean;
-  nonCollectibleCount: number;
-  nonCollectibleRevealedCount: number;
+export type SpecificMetadataResponse =
+  | Array<CardbackMetadataResponse>
+  | Array<CraftingCostMetadataResponse>
+  | Array<DetailedMetadataResponse>
+  | Array<number>
+  | Array<ReferenceTextMetadataResponse>
+  | Array<SetGroupsMetadataResponse>
+  | Array<SlugNameIdMetadataResponse>
+  | Array<string>;
+
+interface CardbackMetadataResponse extends NameId {
+  alternateHeroCardIds?: Array<number>;
+  cardId?: number;
+  heroPowerCardId?: number;
   slug: string;
-  type: SetType;
 }
 
 interface Class {
@@ -37,6 +44,23 @@ interface Class {
   id: number;
   name: string;
   slug: string;
+}
+
+interface CraftingCostMetadataResponse extends NameId {
+  craftingCost: Array<null | number>;
+  dustValue: Array<null | number>;
+  slug: string;
+}
+
+interface DetailedMetadataResponse extends NameId {
+  aliasSetIds?: Array<number>;
+  collectibleCount: number;
+  collectibleRevealedCount: number;
+  hyped: boolean;
+  nonCollectibleCount: number;
+  nonCollectibleRevealedCount: number;
+  slug: string;
+  type: SetType;
 }
 
 interface GameMode extends NameId {
@@ -55,6 +79,13 @@ interface Rarity extends NameId {
   craftingCost: Array<null | number>;
   dustValue: Array<null | number>;
   slug: string;
+}
+
+interface ReferenceTextMetadataResponse extends NameId {
+  gameModes: Array<number>;
+  refText: string;
+  slug: string;
+  text: string;
 }
 
 interface Set extends NameId {
@@ -79,4 +110,20 @@ interface SetGroup {
   yearRange?: string;
 }
 
+interface SetGroupsMetadataResponse {
+  cardSets: Array<string>;
+  icon?: string;
+  name: string;
+  slug: string;
+  standard?: boolean;
+  svg?: null | string;
+  year?: number;
+  yearRange?: string;
+}
+
 type SetType = '' | 'adventure' | 'base' | 'expansion';
+
+interface SlugNameIdMetadataResponse extends NameId {
+  gameModes?: Array<number>;
+  slug: string;
+}

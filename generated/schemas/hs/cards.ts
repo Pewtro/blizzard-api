@@ -2,29 +2,21 @@
 import { z } from 'zod';
 import { localesSchema } from '../core';
 
-export const fetchOneCardResponseSchema = z.strictObject({
-  artistName: z.string(),
-  attack: z.number(),
-  cardSetId: z.number(),
-  cardTypeId: z.number(),
-  classId: z.number(),
-  collectible: z.number(),
-  cropImage: z.string(),
-  flavorText: z.union([z.record(localesSchema, z.string()), z.string()]),
-  health: z.number(),
-  id: z.number(),
-  image: z.union([z.record(localesSchema, z.string()), z.string()]),
-  imageGold: z.union([z.record(localesSchema, z.string()), z.string()]),
-  isZilliaxCosmeticModule: z.boolean(),
-  isZilliaxFunctionalModule: z.boolean(),
-  keywordIds: z.array(z.number()),
-  manaCost: z.number(),
-  multiClassIds: z.array(z.number()),
-  name: z.union([z.record(localesSchema, z.string()), z.string()]),
-  rarityId: z.number(),
-  slug: z.string(),
-  text: z.union([z.record(localesSchema, z.string()), z.string()]),
-});
+const multipleValueCardSearchParameterSchema = z.union([
+  z.array(z.union([z.number(), z.string()])),
+  z.number(),
+  z.string(),
+]);
+
+const tierSchema = z.union([
+  z.literal(1),
+  z.literal(2),
+  z.literal(3),
+  z.literal(4),
+  z.literal(5),
+  z.literal(6),
+  z.literal('hero'),
+]);
 
 export const gameModeSchema = z.union([
   z.literal('arena'),
@@ -37,12 +29,16 @@ export const gameModeSchema = z.union([
 ]);
 
 const baseSearchParametersSchema = z.strictObject({
+  class: z.string().optional(),
   gameMode: gameModeSchema.optional(),
+  keyword: z.string().optional(),
   locale: localesSchema.optional(),
   mercenaryRole: z.string().optional(),
   minionType: z.string().optional(),
   page: z.number().optional(),
   pageSize: z.number().optional(),
+  rarity: z.string().optional(),
+  set: z.string().optional(),
   sort: z
     .union([
       z.literal('attack:asc'),
@@ -55,10 +51,22 @@ const baseSearchParametersSchema = z.strictObject({
       z.literal('tier:desc'),
     ])
     .optional(),
+  spellSchool: z.string().optional(),
   textFilter: z.string().optional(),
-  tier: z
-    .union([z.literal(1), z.literal(2), z.literal(3), z.literal(4), z.literal(5), z.literal(6), z.literal('hero')])
-    .optional(),
+  type: z.string().optional(),
+});
+
+const battlegroundsSchema = z.strictObject({
+  duosOnly: z.boolean(),
+  hero: z.boolean(),
+  image: z.string(),
+  imageGold: z.string(),
+  quest: z.boolean(),
+  reward: z.boolean(),
+  solosOnly: z.boolean(),
+  subsetTribes: z.array(z.number()),
+  tier: tierSchema,
+  upgradeId: z.number(),
 });
 
 const statsByLevelSchema = z.strictObject({
@@ -68,16 +76,22 @@ const statsByLevelSchema = z.strictObject({
 
 export const blizzardCardSearchParametersSchema = baseSearchParametersSchema.extend({
   attack: z.string().optional(),
+  collectible: z.union([z.literal('0'), z.literal('0,1'), z.literal('1')]),
   defaultMercenary: z.string().optional(),
   health: z.string().optional(),
+  manaCost: z.string().optional(),
   mercenaryId: z.string().optional(),
+  tier: z.string().optional(),
 });
 
 export const cardSearchParametersSchema = baseSearchParametersSchema.extend({
-  attack: z.union([z.array(z.number()), z.number()]).optional(),
-  defaultMercenary: z.union([z.array(z.number()), z.number()]).optional(),
-  health: z.union([z.array(z.number()), z.number()]).optional(),
-  mercenaryId: z.union([z.array(z.number()), z.number()]).optional(),
+  attack: multipleValueCardSearchParameterSchema.optional(),
+  collectible: z.union([z.literal('both'), z.literal('collectible'), z.literal('non-collectible')]).optional(),
+  defaultMercenary: multipleValueCardSearchParameterSchema.optional(),
+  health: multipleValueCardSearchParameterSchema.optional(),
+  manaCost: multipleValueCardSearchParameterSchema.optional(),
+  mercenaryId: multipleValueCardSearchParameterSchema.optional(),
+  tier: z.union([z.array(tierSchema), tierSchema]).optional(),
 });
 
 const mercenaryHeroSchema = z.strictObject({
@@ -92,28 +106,35 @@ const mercenaryHeroSchema = z.strictObject({
 });
 
 const cardSchema = z.strictObject({
+  armor: z.number().optional(),
   artistName: z.string().nullable(),
-  attack: z.number(),
+  attack: z.number().optional(),
+  battlegrounds: battlegroundsSchema.optional(),
   cardSetId: z.number(),
   cardTypeId: z.number(),
+  childIds: z.array(z.number()).optional(),
   classId: z.number().nullable(),
   collectible: z.number(),
+  copyOfCardId: z.array(z.number()).optional(),
   cropImage: z.string().nullable(),
   flavorText: z.string(),
-  health: z.number(),
+  health: z.number().optional(),
   id: z.number(),
   image: z.string(),
   imageGold: z.string(),
   isZilliaxCosmeticModule: z.boolean(),
   isZilliaxFunctionalModule: z.boolean(),
+  keywordIds: z.array(z.number()).optional(),
   manaCost: z.number(),
-  mercenaryHero: mercenaryHeroSchema,
-  minionTypeId: z.number(),
+  mercenaryHero: mercenaryHeroSchema.optional(),
+  minionTypeId: z.number().optional(),
   multiClassIds: z.array(z.number()),
   multiTypeIds: z.array(z.number()).optional(),
   name: z.string(),
-  rarityId: z.number(),
+  parentId: z.number().optional(),
+  rarityId: z.number().nullable(),
   slug: z.string(),
+  spellSchoolId: z.number().optional(),
   text: z.string(),
 });
 
@@ -122,4 +143,35 @@ export const cardSearchResponseSchema = z.strictObject({
   cards: z.array(cardSchema),
   page: z.number(),
   pageCount: z.number(),
+});
+
+export const fetchOneCardResponseSchema = z.strictObject({
+  armor: z.number().optional(),
+  artistName: z.string().nullable(),
+  attack: z.number().optional(),
+  cardSetId: z.number(),
+  cardTypeId: z.number(),
+  childIds: z.array(z.number()).optional(),
+  classId: z.number().nullable(),
+  collectible: z.number(),
+  copyOfCardId: z.array(z.number()).optional(),
+  cropImage: z.string().nullable(),
+  flavorText: z.union([z.record(localesSchema, z.string()), z.string()]),
+  health: z.number().optional(),
+  id: z.number(),
+  image: z.union([z.record(localesSchema, z.string()), z.string()]),
+  imageGold: z.union([z.record(localesSchema, z.string()), z.string()]),
+  isZilliaxCosmeticModule: z.boolean(),
+  isZilliaxFunctionalModule: z.boolean(),
+  keywordIds: z.array(z.number()).optional(),
+  manaCost: z.number(),
+  mercenaryHero: mercenaryHeroSchema.optional(),
+  minionTypeId: z.number().optional(),
+  multiClassIds: z.array(z.number()),
+  name: z.union([z.record(localesSchema, z.string()), z.string()]),
+  parentId: z.number().optional(),
+  rarityId: z.number().optional().nullable(),
+  slug: z.string(),
+  spellSchoolId: z.number().optional(),
+  text: z.union([z.record(localesSchema, z.string()), z.string()]),
 });

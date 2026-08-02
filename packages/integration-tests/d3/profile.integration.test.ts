@@ -47,7 +47,6 @@ describe('d3 profile integration', async () => {
     );
     const parsedHeroItemsResponse = accountHeroItemsResponseSchema.safeParse(heroItemsResponse);
     if (!parsedHeroItemsResponse.success) {
-      console.log('Hero items response:', heroItemsResponse);
       console.error('Hero items validation failed:', randomHero!.id, parsedHeroItemsResponse.error);
     }
     expect(parsedHeroItemsResponse.success).toBe(true);
@@ -57,7 +56,6 @@ describe('d3 profile integration', async () => {
     );
     const parsedHeroFollowerItemsResponse = accountHeroFollowerItemsResponseSchema.safeParse(heroFollowerItemsResponse);
     if (!parsedHeroFollowerItemsResponse.success) {
-      console.log('Hero follower items response:', heroFollowerItemsResponse);
       console.error(
         'Hero follower items validation failed:',
         randomHero!.id,

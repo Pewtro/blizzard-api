@@ -16,9 +16,7 @@ export function allMetadata(): Resource<AllMetadataResponse> {
  * @param type The type of metadata to retrieve.
  * @returns The specific metadata resource. See {@link SpecificMetadataResponse}.
  */
-export function specificMetadata(
-  type: 'classes' | 'keywords' | 'minionTypes' | 'rarities' | 'setGroups' | 'sets' | 'types',
-): Resource<SpecificMetadataResponse> {
+export function specificMetadata(type: keyof AllMetadataResponse): Resource<SpecificMetadataResponse> {
   return {
     path: `hearthstone/metadata/${type}`,
   };

@@ -103,7 +103,6 @@ describe('d3 follower integration', async () => {
     );
     const parsedEraLeaderboardResponse = eraLeaderboardResponseSchema.safeParse(eraLeaderboardResponse);
     if (!parsedEraLeaderboardResponse.success) {
-      console.log('eraLeaderboardResponse', eraLeaderboardResponse);
       console.error(
         'Era leaderboard response validation failed:',
         Number(extractedEraId),

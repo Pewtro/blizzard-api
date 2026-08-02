@@ -22,7 +22,7 @@ export function cardBackSearch(
  * @returns The card back resource. See {@link SingleCardBackSearchResponse}.
  */
 export function fetchOneCardBack(
-  id: string,
+  id: number | string,
   locale?: Locales,
 ): Resource<SingleCardBackSearchResponse, { locale?: Locales }> {
   return {

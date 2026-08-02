@@ -40,6 +40,42 @@ const setGroupSchema = z.strictObject({
   yearRange: z.string().optional(),
 });
 
+const cardbackMetadataResponseSchema = nameIdSchema.extend({
+  alternateHeroCardIds: z.array(z.number()).optional(),
+  cardId: z.number().optional(),
+  heroPowerCardId: z.number().optional(),
+  slug: z.string(),
+});
+
+const craftingCostMetadataResponseSchema = nameIdSchema.extend({
+  craftingCost: z.array(z.number().nullable()),
+  dustValue: z.array(z.number().nullable()),
+  slug: z.string(),
+});
+
+const referenceTextMetadataResponseSchema = nameIdSchema.extend({
+  gameModes: z.array(z.number()),
+  refText: z.string(),
+  slug: z.string(),
+  text: z.string(),
+});
+
+const setGroupsMetadataResponseSchema = z.strictObject({
+  cardSets: z.array(z.string()),
+  icon: z.string().optional(),
+  name: z.string(),
+  slug: z.string(),
+  standard: z.boolean().optional(),
+  svg: z.string().optional().nullable(),
+  year: z.number().optional(),
+  yearRange: z.string().optional(),
+});
+
+const slugNameIdMetadataResponseSchema = nameIdSchema.extend({
+  gameModes: z.array(z.number()).optional(),
+  slug: z.string(),
+});
+
 const setTypeSchema = z.union([z.literal(''), z.literal('adventure'), z.literal('base'), z.literal('expansion')]);
 
 const setSchema = nameIdSchema.extend({
@@ -58,6 +94,7 @@ export const allMetadataResponseSchema = z.strictObject({
   bgGameModes: z.array(gameModeSchema),
   cardBackCategories: z.array(gameModeSchema),
   classes: z.array(classSchema),
+  factions: z.array(gameModeSchema),
   filterableFields: z.array(z.string()),
   gameModes: z.array(gameModeSchema),
   keywords: z.array(keywordSchema),
@@ -72,7 +109,7 @@ export const allMetadataResponseSchema = z.strictObject({
   types: z.array(gameModeSchema),
 });
 
-export const specificMetadataResponseSchema = nameIdSchema.extend({
+const detailedMetadataResponseSchema = nameIdSchema.extend({
   aliasSetIds: z.array(z.number()).optional(),
   collectibleCount: z.number(),
   collectibleRevealedCount: z.number(),
@@ -82,3 +119,14 @@ export const specificMetadataResponseSchema = nameIdSchema.extend({
   slug: z.string(),
   type: setTypeSchema,
 });
+
+export const specificMetadataResponseSchema = z.union([
+  z.array(cardbackMetadataResponseSchema),
+  z.array(craftingCostMetadataResponseSchema),
+  z.array(detailedMetadataResponseSchema),
+  z.array(z.number()),
+  z.array(referenceTextMetadataResponseSchema),
+  z.array(setGroupsMetadataResponseSchema),
+  z.array(slugNameIdMetadataResponseSchema),
+  z.array(z.string()),
+]);

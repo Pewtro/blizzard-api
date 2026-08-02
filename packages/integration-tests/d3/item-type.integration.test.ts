@@ -15,8 +15,6 @@ describe('d3 item-type integration', async () => {
     const response = await client.sendRequest(d3.itemTypeIndex());
     const parsedResponse = itemTypeIndexResponseSchema.safeParse(response);
     if (!parsedResponse.success) {
-      console.log(response);
-      console.log(parsedResponse.error);
       console.error('Item type index validation failed:', parsedResponse.error);
     }
     expect(parsedResponse.success).toBe(true);

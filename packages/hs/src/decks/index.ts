@@ -7,7 +7,7 @@ import type { DeckResponse, DeckSearchParameters } from './types';
  * @returns The deck resource. See {@link DeckResponse}.
  */
 export function getDeck(
-  options: { code: string } | { hero?: string; ids: Array<string> },
+  options: { code: string } | { hero?: number | string; ids: Array<number | string> },
 ): Resource<DeckResponse, DeckSearchParameters> {
   if ('code' in options) {
     return {
@@ -20,7 +20,7 @@ export function getDeck(
 
   return {
     parameters: {
-      hero: options.hero,
+      hero: options.hero?.toString(),
       ids: options.ids?.join(','),
     },
     path: 'hearthstone/deck',
