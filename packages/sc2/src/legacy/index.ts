@@ -26,7 +26,7 @@ export function legacyAchievements(regionId: StarcraftRegion): Resource<LegacyAc
  * @param ladderId The ID of the ladder.
  * @returns A resource representing the ladder. See {@link LadderResponse}
  */
-export function legacyLadder(regionId: StarcraftRegion, ladderId: number): Resource<unknown> {
+export function legacyLadder(regionId: StarcraftRegion, ladderId: number): Resource<LegacyLaddersResponse> {
   return {
     path: `/sc2/legacy/ladder/${starcraftRegion[regionId]}/${ladderId}`,
   };

@@ -1,7 +1,13 @@
 import type { Resource } from '@blizzard-api/core';
 import { starcraftRegion } from '../regions';
 import type { StarcraftRegion } from '../regions';
-import type { LadderResponse, LadderSummaryResponse, MetadataResponse, StaticProfileResponse } from './types';
+import type {
+  LadderResponse,
+  LadderSummaryResponse,
+  MetadataResponse,
+  ProfileResponse,
+  StaticProfileResponse,
+} from './types';
 
 /**
  * Returns the ladder information for the specified profile and ladder.
@@ -59,7 +65,7 @@ export function metadata(regionId: StarcraftRegion, realmId: 1 | 2, profileId: n
  * @param profileId The ID of the profile.
  * @returns A resource representing the profile. See {@link MetadataResponse}
  */
-export function profile(regionId: StarcraftRegion, realmId: 1 | 2, profileId: number): Resource<MetadataResponse> {
+export function profile(regionId: StarcraftRegion, realmId: 1 | 2, profileId: number): Resource<ProfileResponse> {
   return {
     path: `/sc2/profile/${starcraftRegion[regionId]}/${realmId}/${profileId}`,
   };

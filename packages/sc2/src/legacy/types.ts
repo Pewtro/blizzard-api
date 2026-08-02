@@ -5,7 +5,7 @@ export interface LegacyAchievementsResponse {
 
 export interface LegacyLaddersResponse {
   currentSeason: Array<unknown>;
-  previousSeason: Array<unknown>;
+  previousSeason: Array<LegacySeason>;
   showcasePlacement: Array<unknown>;
 }
 
@@ -38,6 +38,10 @@ export interface LegacyRewardsResponse {
   zergDecals: Array<Animation>;
 }
 
+export interface SingleLegacyLadderResponse {
+  ladderMembers: Array<LegacyLadderMember>;
+}
+
 interface Achievement {
   achievementId: string;
   categoryId: string;
@@ -66,6 +70,7 @@ interface Animation {
 
 interface Campaign {
   hots: string;
+  lotv: string;
   wol: string;
 }
 
@@ -102,12 +107,61 @@ interface Icon {
   y: number;
 }
 
+interface LegacyLadderMember {
+  character: LegacyLadderMemberCharacter;
+  favoriteRaceP1: 'PROTOSS' | 'RANDOM' | 'TERRAN' | 'ZERG';
+  highestRank: number;
+  joinTimestamp: number;
+  losses: number;
+  points: number;
+  previousRank: number;
+  wins: number;
+}
+
+interface LegacyLadderMemberCharacter {
+  clanName: string;
+  clanTag: string;
+  displayName: string;
+  id: string;
+  profilePath: string;
+  realm: number;
+  region: number;
+}
+
+interface LegacySeason {
+  characters: Array<LegacySeasonCharacter>;
+  ladder: Array<LegacySeasonLadder>;
+  nonRanked: Array<unknown>;
+}
+
+interface LegacySeasonCharacter {
+  clanName: string;
+  clanTag: string;
+  displayName: string;
+  id: string;
+  profilePath: string;
+  realm: number;
+  region: number;
+}
+
+interface LegacySeasonLadder {
+  division: number;
+  ladderId: string;
+  ladderName: string;
+  league: string;
+  losses: number;
+  matchMakingQueue: string;
+  rank: number;
+  showcase: false;
+  wins: number;
+}
+
 interface Match {
   date: number;
-  decision: 'Left' | 'Loss' | 'Win';
+  decision: string;
   map: string;
-  speed: 'Fast' | 'Faster';
-  type: '2v2' | '3v3' | 'Co-Op' | 'Custom';
+  speed: string;
+  type: string;
 }
 
 interface Points {

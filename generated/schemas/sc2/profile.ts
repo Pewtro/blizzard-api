@@ -22,6 +22,38 @@ export const metadataResponseSchema = z.strictObject({
   regionId: z.number(),
 });
 
+const profileCampaignsSchema = z.strictObject({
+  difficultyCompleted: z.strictObject({
+    'heart-of-the-swarm': z.string(),
+    'legacy-of-the-void': z.string(),
+    'wings-of-liberty': z.string(),
+  }),
+});
+
+const profileCategoryPointProgressSchema = z.strictObject({
+  categoryId: z.string(),
+  pointsEarned: z.number(),
+});
+
+const profileEarnedRewardsSchema = z.strictObject({
+  achievementId: z.string().optional(),
+  category: z.string().optional(),
+  rewardId: z.string(),
+  selected: z.boolean(),
+});
+
+const profileSummarySchema = z.strictObject({
+  decalProtoss: z.string(),
+  decalTerran: z.string(),
+  decalZerg: z.string(),
+  displayName: z.string(),
+  id: z.string(),
+  portrait: z.string(),
+  realm: z.number(),
+  totalAchievementPoints: z.number(),
+  totalSwarmLevel: z.number(),
+});
+
 const achievementSchema = z.strictObject({
   categoryId: z.string(),
   chainAchievementIds: z.array(z.string()),
@@ -76,9 +108,93 @@ const rewardSchema = z.strictObject({
   unlockableType: z.string(),
 });
 
+const profileCareerFinishSchema = z.strictObject({
+  leagueName: z.string(),
+  timesAchieved: z.number(),
+});
+
+const profileEarnedAchievementsCriteriaSchema = z.strictObject({
+  criterionId: z.string(),
+  earned: z
+    .strictObject({
+      quantity: z.number(),
+      startTime: z.number(),
+    })
+    .optional(),
+});
+
+const seasonSnapshotSchema = z.strictObject({
+  leagueName: z.string().nullable(),
+  rank: z.number(),
+  totalGames: z.number(),
+  totalWins: z.number(),
+});
+
+const profileSeasonSnapshotSchema = z.strictObject({
+  '1v1': seasonSnapshotSchema,
+  '2v2': seasonSnapshotSchema,
+  '3v3': seasonSnapshotSchema,
+  '4v4': seasonSnapshotSchema,
+  Archon: seasonSnapshotSchema,
+});
+
+const profileSwarmLevelByRaceSchema = z.strictObject({
+  currentLevelPoints: z.number(),
+  level: z.number(),
+  maxLevelPoints: z.number(),
+});
+
+const profileSwarmLevelsSchema = z.strictObject({
+  level: z.number(),
+  protoss: profileSwarmLevelByRaceSchema,
+  terran: profileSwarmLevelByRaceSchema,
+  zerg: profileSwarmLevelByRaceSchema,
+});
+
+const profileCareerSchema = z.strictObject({
+  best1v1Finish: profileCareerFinishSchema,
+  bestTeamFinish: profileCareerFinishSchema,
+  current1v1LeagueName: z.string().optional().nullable(),
+  currentBestTeamLeagueName: z.string().optional().nullable(),
+  protossWins: z.number(),
+  terranWins: z.number(),
+  totalCareerGames: z.number(),
+  totalGamesThisSeason: z.number(),
+  zergWins: z.number(),
+});
+
+const profileEarnedAchiementsSchema = z.strictObject({
+  achievementId: z.string(),
+  completionDate: z.number(),
+  criteria: z.array(profileEarnedAchievementsCriteriaSchema),
+  inProgress: z.boolean(),
+  isComplete: z.boolean(),
+  nextProgressEarnedQuantity: z.number().optional(),
+  nextProgressRequiredQuantity: z.number().optional(),
+  numCompletedAchievementsInSeries: z.number(),
+  totalAchievementsInSeries: z.number(),
+});
+
+const profileSnapshotSchema = z.strictObject({
+  seasonSnapshot: profileSeasonSnapshotSchema,
+  totalRankedSeasonGamesPlayed: z.number(),
+});
+
 export const staticProfileResponseSchema = z.strictObject({
   achievements: z.array(achievementSchema),
   categories: z.array(categorySchema),
   criteria: z.array(criterionSchema),
   rewards: z.array(rewardSchema),
+});
+
+export const profileResponseSchema = z.strictObject({
+  achievementShowcase: z.array(z.unknown()),
+  campaign: profileCampaignsSchema,
+  career: profileCareerSchema,
+  categoryPointProgress: z.array(profileCategoryPointProgressSchema),
+  earnedAchievements: z.array(profileEarnedAchiementsSchema),
+  earnedRewards: z.array(profileEarnedRewardsSchema),
+  snapshot: profileSnapshotSchema,
+  summary: profileSummarySchema,
+  swarmLevels: profileSwarmLevelsSchema,
 });
