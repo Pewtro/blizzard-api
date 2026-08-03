@@ -102,7 +102,7 @@ describe('classic-wow creature integration for classic era', async () => {
     }
     expect(parsed.success).toBe(true);
   });
-}, 15_000);
+});
 
 describe('classic-wow creature integration for classic progression', async () => {
   const client = await createBlizzardApiClient({
@@ -185,4 +185,4 @@ describe('classic-wow creature integration for classic progression', async () =>
     }
     expect(parsed.success).toBe(true);
   });
-}, 15_000);
+});

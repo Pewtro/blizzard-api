@@ -21,5 +21,6 @@ export default defineConfig({
     // Limit the number of concurrent test runs to avoid overwhelming the blizzard API with requests that could cause 429.
     maxWorkers: '50%',
     projects: ['packages/*'],
+    testTimeout: 20_000,
   },
 });

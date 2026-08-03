@@ -72,7 +72,7 @@
     "test:coverage": "pnpm run test --coverage",
     "test:ui": "vitest --ui --coverage",
     "test:watch": "vitest watch",
-    "test": "vitest run --testTimeout 15000",
+    "test": "vitest run",
     "typecheck": "tsc"
   }
 }
