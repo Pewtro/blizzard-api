@@ -12,7 +12,7 @@ export const seasonResponseSchema = z.strictObject({
 const teamMemberSchema = z.strictObject({
   clanTag: z.string().optional(),
   displayName: z.string(),
-  favoriteRace: z.union([z.literal('protoss'), z.literal('random'), z.literal('terran'), z.literal('zerg')]),
+  favoriteRace: z.union([z.literal('protoss'), z.literal('random'), z.literal('terran'), z.literal('zerg')]).optional(),
   id: z.string(),
   realm: z.number(),
   region: z.number(),
@@ -21,7 +21,7 @@ const teamMemberSchema = z.strictObject({
 const ladderTeamSchema = z.strictObject({
   joinTimestamp: z.number(),
   losses: z.number(),
-  mmr: z.number(),
+  mmr: z.number().optional(),
   points: z.number(),
   previousRank: z.number(),
   teamMembers: z.array(teamMemberSchema),

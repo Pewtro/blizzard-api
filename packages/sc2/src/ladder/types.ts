@@ -13,7 +13,7 @@ export interface SeasonResponse {
 interface LadderTeam {
   joinTimestamp: number;
   losses: number;
-  mmr: number;
+  mmr?: number;
   points: number;
   previousRank: number;
   teamMembers: Array<TeamMember>;
@@ -23,7 +23,7 @@ interface LadderTeam {
 interface TeamMember {
   clanTag?: string;
   displayName: string;
-  favoriteRace: 'protoss' | 'random' | 'terran' | 'zerg';
+  favoriteRace?: 'protoss' | 'random' | 'terran' | 'zerg';
   id: string;
   realm: number;
   region: number;
