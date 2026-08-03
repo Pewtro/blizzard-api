@@ -1,5 +1,11 @@
 # @blizzard-api/sc2
 
+## 3.1.1
+
+### Patch Changes
+
+- 899f613: Mark mmr and favoriteRace of the grandmaster leaderboard ladder teams as optional
+
 ## 3.1.0
 
 ### Minor Changes
