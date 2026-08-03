@@ -67,6 +67,7 @@ jobs:
       - name: Test packages
         run: pnpm test
         env:
+          VITE_BLIZZARD_BNET_ACCOUNT_ID: ${{ secrets.VITE_BLIZZARD_BNET_ACCOUNT_ID }}
           VITE_BLIZZARD_CLIENT_ID: ${{ secrets.BLIZZARD_CLIENT_ID }}
           VITE_BLIZZARD_CLIENT_SECRET: ${{ secrets.BLIZZARD_CLIENT_SECRET }}
 
