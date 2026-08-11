@@ -1,5 +1,5 @@
 import { configs as putstackConfigs } from '@putstack/eslint-config-typescript';
-import jsdocEslint from 'eslint-plugin-jsdoc';
+import { configs as jsdocConfigs } from 'eslint-plugin-jsdoc';
 import { defineConfig } from 'eslint/config';
 
 export default defineConfig(
@@ -14,7 +14,7 @@ export default defineConfig(
       },
     },
   },
-  jsdocEslint.configs['flat/recommended-typescript'],
+  jsdocConfigs['flat/recommended-typescript'],
   putstackConfigs.recommended,
   {
     files: ['generated/schemas/**'],
