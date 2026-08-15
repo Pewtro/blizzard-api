@@ -75,9 +75,9 @@ jobs:
       - if: ${{ matrix.node == env.release_node && github.ref == 'refs/heads/main' && github.repository == 'pewtro/blizzard-api' }}
         name: Create Release Pull Request or Publish to npm
         id: changesets
-        uses: changesets/action@6a0a831ff30acef54f2c6aa1cbbc1096b066edaf # v1.7.0 Commit hash taken from https://github.com/changesets/action/tree/v1/src
+        uses: changesets/action@198f833dd7d863100ea6e28967bc9a9fdefadb0a # v2.1.0 Commit hash taken from https://github.com/changesets/action/tree/v2
         with:
-          publish: pnpm release
+          publish-script: pnpm release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_CONFIG_PROVENANCE: true
