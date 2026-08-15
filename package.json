@@ -38,7 +38,7 @@
     "@vitest/coverage-v8": "5.0.0-beta.7",
     "@vitest/ui": "5.0.0-beta.7",
     "eslint": "10.8.0",
-    "eslint-plugin-jsdoc": "64.0.1",
+    "eslint-plugin-jsdoc": "64.1.0",
     "lefthook": "2.1.10",
     "npm-run-all2": "9.0.3",
     "prettier": "3.9.6",
