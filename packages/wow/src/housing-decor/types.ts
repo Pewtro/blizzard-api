@@ -4,6 +4,7 @@ import type {
   Locales,
   NameId,
   NameIdKey,
+  NullishNameIdKey,
   ResponseBase,
   SearchResponseWithoutResults,
 } from '@blizzard-api/core';
@@ -40,7 +41,7 @@ export interface FixtureHookSearchResponse extends SearchResponseWithoutResults 
 }
 
 export interface FixtureIndexResponse extends ResponseBase {
-  fixtures: Array<NameIdKey>;
+  fixtures: Array<NullishNameIdKey>;
 }
 
 export interface FixtureResponse extends NameId, ResponseBase {
