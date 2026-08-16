@@ -127,6 +127,11 @@ export interface NameId {
   name: string;
 }
 
+export interface NullishNameId {
+  id: number;
+  name: null | string;
+}
+
 /**
  * Base record containing both {@link KeyBase} and {@link NameId} interfaces.
  */

@@ -46,6 +46,11 @@ export const nameIdSchema = z.strictObject({
   name: z.string(),
 });
 
+export const nullishNameIdSchema = z.strictObject({
+  id: z.number(),
+  name: z.string().nullable(),
+});
+
 export const nameIdKeySchema = keyBaseSchema.extend(nameIdSchema.shape);
 
 export const nullishNameIdKeySchema = nameIdKeySchema.omit({ name: true }).extend({
