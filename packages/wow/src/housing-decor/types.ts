@@ -4,6 +4,7 @@ import type {
   Locales,
   NameId,
   NameIdKey,
+  NullishNameId,
   NullishNameIdKey,
   ResponseBase,
   SearchResponseWithoutResults,
@@ -44,7 +45,7 @@ export interface FixtureIndexResponse extends ResponseBase {
   fixtures: Array<NullishNameIdKey>;
 }
 
-export interface FixtureResponse extends NameId, ResponseBase {
+export interface FixtureResponse extends NullishNameId, ResponseBase {
   hooks?: Array<NameIdKey>;
 }
 

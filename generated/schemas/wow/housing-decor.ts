@@ -7,6 +7,7 @@ import {
   nameIdKeySchema,
   nameIdSchema,
   nullishNameIdKeySchema,
+  nullishNameIdSchema,
   responseBaseSchema,
   searchResponseWithoutResultsSchema,
 } from '../core';
@@ -55,7 +56,7 @@ export const fixtureIndexResponseSchema = responseBaseSchema.extend({
   fixtures: z.array(nullishNameIdKeySchema),
 });
 
-export const fixtureResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
+export const fixtureResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
   hooks: z.array(nameIdKeySchema).optional(),
 });
 
