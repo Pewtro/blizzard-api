@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /* eslint-disable sonarjs/cognitive-complexity */
 /* eslint-disable jsdoc/require-jsdoc */
 import { existsSync } from 'node:fs';
@@ -19,8 +18,7 @@ async function main() {
   try {
     await run();
   } catch (error) {
-    console.error(error);
-    process.exit(1);
+    throw new Error('Something bad happened!', { cause: error });
   }
 }
 
