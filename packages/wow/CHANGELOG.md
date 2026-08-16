@@ -1,5 +1,14 @@
 # @blizzard-api/wow
 
+## 4.0.8
+
+### Patch Changes
+
+- c4948c6: Update housing decor fixtures to have a nullable name
+- 496b6d0: Mark name as nullable for Fixtures
+- Updated dependencies [d65a67e]
+  - @blizzard-api/core@4.1.2
+
 ## 4.0.7
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @blizzard-api/core
 
+## 4.1.2
+
+### Patch Changes
+
+- d65a67e: Add NullishNameId as an alternative to NameId
+
 ## 4.1.1
 
 ### Patch Changes
