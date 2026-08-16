@@ -1,6 +1,6 @@
 {
   "name": "@blizzard-api/client",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "license": "MIT",
   "author": "Putro",
   "description": "A node.js client to integrate with the blizzard battle.net api.",
@@ -48,7 +48,7 @@
     "ky": "2.0.2"
   },
   "peerDependencies": {
-    "@blizzard-api/core": "4.1.1"
+    "@blizzard-api/core": "4.1.2"
   },
   "devDependencies": {
     "@blizzard-api/classic-wow": "workspace:*",

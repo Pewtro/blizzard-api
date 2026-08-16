@@ -1,6 +1,6 @@
 {
   "name": "@blizzard-api/hs",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "license": "MIT",
   "author": "Putro",
   "description": "A series of helpers to interact with the Hearthstone Blizzard API",
@@ -42,7 +42,7 @@
   ],
   "dependencies": {},
   "peerDependencies": {
-    "@blizzard-api/core": "4.1.1"
+    "@blizzard-api/core": "4.1.2"
   },
   "devDependencies": {
     "@blizzard-api/core": "workspace:*"

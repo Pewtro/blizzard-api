@@ -1,5 +1,12 @@
 # @blizzard-api/sc2
 
+## 3.1.2
+
+### Patch Changes
+
+- Updated dependencies [d65a67e]
+  - @blizzard-api/core@4.1.2
+
 ## 3.1.1
 
 ### Patch Changes

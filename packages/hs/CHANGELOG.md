@@ -1,5 +1,12 @@
 # @blizzard-api/hs
 
+## 3.1.1
+
+### Patch Changes
+
+- Updated dependencies [d65a67e]
+  - @blizzard-api/core@4.1.2
+
 ## 3.1.0
 
 ### Minor Changes

@@ -1,6 +1,6 @@
 {
   "name": "@blizzard-api/wow",
-  "version": "4.0.7",
+  "version": "4.0.8",
   "license": "MIT",
   "author": "Putro",
   "description": "A series of helpers to interact with the World of Warcraft Blizzard API",
@@ -44,7 +44,7 @@
   ],
   "dependencies": {},
   "peerDependencies": {
-    "@blizzard-api/core": "4.1.1"
+    "@blizzard-api/core": "4.1.2"
   },
   "devDependencies": {
     "@blizzard-api/core": "workspace:*"
