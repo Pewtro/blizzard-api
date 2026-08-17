@@ -63,7 +63,7 @@
     "generate": "npm-run-all -l generate:zod \"lint:fix ./generated\" \"prettier:write ./generated\"",
     "lint:ci": "npm-run-all -p -l typecheck stylecheck \"lint .\"",
     "lint:fix": "pnpm lint --fix",
-    "lint": "eslint --format stylish --max-warnings 0 --cache",
+    "lint": "eslint --format stylish --max-warnings 0",
     "prepare": "lefthook install",
     "prettier:write": "prettier --write",
     "release": "changeset publish",

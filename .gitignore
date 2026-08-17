@@ -8,9 +8,6 @@ node_modules
 # turbo 
 .turbo
 
-# eslint 
-.eslintcache
-
 # testing
 coverage
 
