@@ -33,7 +33,7 @@ export interface FixtureHookIndexResponse extends ResponseBase {
 
 export interface FixtureHookResponse extends ResponseBase {
   id: number;
-  parent_fixture: NameIdKey;
+  parent_fixture: NullishNameIdKey;
   type_name: string;
 }
 

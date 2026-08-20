@@ -44,7 +44,7 @@ export const fixtureHookIndexResponseSchema = responseBaseSchema.extend({
 
 export const fixtureHookResponseSchema = responseBaseSchema.extend({
   id: z.number(),
-  parent_fixture: nameIdKeySchema,
+  parent_fixture: nullishNameIdKeySchema,
   type_name: z.string(),
 });
 
