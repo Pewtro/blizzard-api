@@ -31,7 +31,8 @@ describe('wow pvp integration', async () => {
     }
     expect(parsedSeason.success).toBe(true);
 
-    const seasonId = season!.current_season.id;
+    //Get the 2nd latest pvp season id because the latest can have issues with reward APIs for a while after season launch
+    const seasonId = season!.seasons.at(-2)!.id;
     const seasonDetail = await client.sendRequest(pvpSeason(seasonId));
     const parsedSeasonDetail = pvpSeasonResponseSchema.safeParse(seasonDetail);
     if (!parsedSeasonDetail.success) {
