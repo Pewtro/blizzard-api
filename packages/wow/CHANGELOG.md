@@ -1,5 +1,11 @@
 # @blizzard-api/wow
 
+## 4.0.9
+
+### Patch Changes
+
+- b986ddf: Mark parent_fixture name as nullable for Fixture responses
+
 ## 4.0.8
 
 ### Patch Changes
