@@ -4,9 +4,12 @@ import { describe, test } from 'vitest';
 import { environment } from '../../../environment';
 import { grandmasterLeaderboardResponseSchema, seasonResponseSchema } from '../../../generated/schemas/sc2';
 
-describe('sc2 ladder integration', async () => {
+describe('sc2 ladder integration', { timeout: 30_000 }, async () => {
   const client = await createBlizzardApiClient({
     key: environment.blizzardClientId,
+    kyOptions: {
+      timeout: 30_000,
+    },
     origin: 'eu',
     secret: environment.blizzardClientSecret,
   });
