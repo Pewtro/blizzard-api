@@ -42,7 +42,11 @@ export class BlizzardApiClient {
       secret: options.secret,
       token: options.token,
     };
-    this.ky = ky.create(options.kyOptions);
+    const kyOptions = {
+      timeout: 15_000,
+      ...options.kyOptions,
+    };
+    this.ky = ky.create(kyOptions);
   }
 
   /**
@@ -160,6 +164,7 @@ export class BlizzardApiClient {
     this.setAccessToken(response.access_token);
     return response;
   };
+
   /**
    * Send a request to the Blizzard API.
    * @param resource The resource to fetch. See {@link Resource}.
@@ -178,7 +183,6 @@ export class BlizzardApiClient {
     }
 
     const response = await this.ky.get<T>(url, {
-      timeout: 15_000,
       ...options?.kyOptions,
       headers: {
         ...config.headers,
