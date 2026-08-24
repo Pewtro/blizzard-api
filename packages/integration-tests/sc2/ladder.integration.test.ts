@@ -7,15 +7,16 @@ import { grandmasterLeaderboardResponseSchema, seasonResponseSchema } from '../.
 describe('sc2 ladder integration', { timeout: 30_000 }, async () => {
   const client = await createBlizzardApiClient({
     key: environment.blizzardClientId,
-    kyOptions: {
-      timeout: 30_000,
-    },
     origin: 'eu',
     secret: environment.blizzardClientSecret,
   });
 
   test('fetches the grandmaster leaderboard', async ({ expect }) => {
-    const response = await client.sendRequest(sc2.grandmasterLeaderboard('eu'));
+    const response = await client.sendRequest(sc2.grandmasterLeaderboard('eu'), {
+      kyOptions: {
+        timeout: 30_000,
+      },
+    });
     const parsedResponse = grandmasterLeaderboardResponseSchema.safeParse(response);
     if (!parsedResponse.success) {
       console.error('Grandmaster Leaderboard failed', parsedResponse.error);
