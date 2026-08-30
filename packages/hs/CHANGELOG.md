@@ -1,5 +1,11 @@
 # @blizzard-api/hs
 
+## 3.1.2
+
+### Patch Changes
+
+- 0342aa1: Add the undocumented parameter used for sideboard cards for cards like Zilliax Deluxe 3000 and E.T.C., Band Manager.
+
 ## 3.1.1
 
 ### Patch Changes

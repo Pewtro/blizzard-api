@@ -1,5 +1,11 @@
 # @blizzard-api/client
 
+## 5.3.0
+
+### Minor Changes
+
+- abddb6b: Use the new generic oauth endpoint for tokens instead of region specific ones
+
 ## 5.2.0
 
 ### Minor Changes
