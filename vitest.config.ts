@@ -25,7 +25,8 @@ export default defineConfig({
     projects: [
       {
         test: {
-          include: ['packages/**/*.test.ts', '!packages/integration-tests'],
+          exclude: [...defaultExclude, 'packages/integration-tests'],
+          include: ['packages/**/*.test.ts'],
           name: 'unit',
         },
       },
