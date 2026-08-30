@@ -1,6 +1,6 @@
 {
   "name": "@blizzard-api/hs",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "license": "MIT",
   "author": "Putro",
   "description": "A series of helpers to interact with the Hearthstone Blizzard API",
