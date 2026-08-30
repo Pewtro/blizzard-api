@@ -1,6 +1,6 @@
 {
   "name": "@blizzard-api/wow",
-  "version": "4.0.8",
+  "version": "4.1.0",
   "license": "MIT",
   "author": "Putro",
   "description": "A series of helpers to interact with the World of Warcraft Blizzard API",

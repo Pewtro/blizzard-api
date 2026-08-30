@@ -1,5 +1,15 @@
 # @blizzard-api/wow
 
+## 4.1.0
+
+### Minor Changes
+
+- e8d522d: Update ItemClassResponse and ItemSubclassResponse to match new returns from the API
+
+### Patch Changes
+
+- b986ddf: Mark parent_fixture name as nullable for Fixture responses
+
 ## 4.0.8
 
 ### Patch Changes
