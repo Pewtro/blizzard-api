@@ -45,7 +45,7 @@ describe('wow item integration', async () => {
     }
     expect(parsedMedia.success).toBe(true);
   });
-  test('validates item class index', async ({ expect }) => {
+  test('validates item class index and item details', async ({ expect }) => {
     const resp = await client.sendRequest(itemClassIndex());
     const parsed = itemClassIndexResponseSchema.safeParse(resp);
     if (!parsed.success) {

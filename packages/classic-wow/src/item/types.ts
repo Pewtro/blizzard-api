@@ -23,7 +23,7 @@ export interface ItemClassIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface ItemClassResponse extends ResponseBase {
-  class_id: number;
+  id: number;
   item_subclasses?: Array<NameIdKey>;
   name: string;
 }
@@ -82,10 +82,10 @@ export interface ItemSearchResponse extends SearchResponseWithoutResults {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface ItemSubclassResponse extends ResponseBase {
-  class_id: number;
   display_name: string;
   hide_subclass_in_tooltips?: boolean;
-  subclass_id: number;
+  id: number;
+  item_class: NameIdKey;
   verbose_name?: string;
 }
 

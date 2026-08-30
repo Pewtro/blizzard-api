@@ -17,7 +17,7 @@ export const itemClassIndexResponseSchema = responseBaseSchema.extend({
 });
 
 export const itemClassResponseSchema = responseBaseSchema.extend({
-  class_id: z.number(),
+  id: z.number(),
   item_subclasses: z.array(nameIdKeySchema).optional(),
   name: z.string(),
 });
@@ -37,10 +37,10 @@ export const itemSearchParametersSchema = baseSearchParametersSchema.extend({
 });
 
 export const itemSubclassResponseSchema = responseBaseSchema.extend({
-  class_id: z.number(),
   display_name: z.string(),
   hide_subclass_in_tooltips: z.boolean().optional(),
-  subclass_id: z.number(),
+  id: z.number(),
+  item_class: nameIdKeySchema,
   verbose_name: z.string().optional(),
 });
 
