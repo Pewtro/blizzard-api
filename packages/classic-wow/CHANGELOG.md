@@ -1,5 +1,11 @@
 # @blizzard-api/classic-wow
 
+## 4.1.0
+
+### Minor Changes
+
+- e8d522d: Update ItemClassResponse and ItemSubclassResponse to match new returns from the API
+
 ## 4.0.5
 
 ### Patch Changes

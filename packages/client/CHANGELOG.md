@@ -1,5 +1,12 @@
 # @blizzard-api/client
 
+## 5.2.0
+
+### Minor Changes
+
+- 9c4a121: Moved the default extended timeout to the client instead of per request.
+  This lets you override the entire client in one place if you want all requests to have longer/smaller timeout periods.
+
 ## 5.1.1
 
 ### Patch Changes
