@@ -8,7 +8,7 @@ export interface DeckResponse {
   heroPower: Hero;
   version: number;
 }
-export type DeckSearchParameters = { code: string } | { hero?: string; ids: string };
+export type DeckSearchParameters = { code: string } | { hero?: string; ids: string; sideboardCards?: string };
 
 interface Card {
   armor?: number;

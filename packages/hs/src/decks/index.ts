@@ -7,7 +7,14 @@ import type { DeckResponse, DeckSearchParameters } from './types';
  * @returns The deck resource. See {@link DeckResponse}.
  */
 export function getDeck(
-  options: { code: string } | { hero?: number | string; ids: Array<number | string> },
+  options:
+    | { code: string }
+    | {
+        hero?: number | string;
+        ids: Array<number | string>;
+        //Undocumented parameter used for sideboard cards for Zilliax Deluxe 3000 and E.T.C., Band Manager.
+        sideboardCards?: `${number}:${number}` | Array<`${number}:${number}`>;
+      },
 ): Resource<DeckResponse, DeckSearchParameters> {
   if ('code' in options) {
     return {
@@ -22,6 +29,7 @@ export function getDeck(
     parameters: {
       hero: options.hero?.toString(),
       ids: options.ids?.join(','),
+      sideboardCards: Array.isArray(options.sideboardCards) ? options.sideboardCards.join(',') : options.sideboardCards,
     },
     path: 'hearthstone/deck',
   };
