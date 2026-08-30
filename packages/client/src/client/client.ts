@@ -63,10 +63,10 @@ export class BlizzardApiClient {
    * // => 'client-id'
    */
   public getAccessToken = async (options?: AccessTokenRequestArguments): Promise<AccessToken> => {
-    const { key, origin, secret } = { ...this.defaults, ...options };
+    const { key, secret } = { ...this.defaults, ...options };
     const basicAuth = Buffer.from(`${key}:${secret}`).toString('base64');
     const response = await this.ky
-      .post<AccessToken>(`https://${origin}.battle.net/oauth/token`, {
+      .post<AccessToken>(`https://oauth.battle.net/token`, {
         headers: {
           Authorization: `Basic ${basicAuth}`,
           'Content-Type': 'application/json',
