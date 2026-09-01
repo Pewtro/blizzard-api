@@ -192,14 +192,18 @@ export class BlizzardApiClient {
 
     // Some endpoints return a 204 status code with no content,
     // while others return a 200 status code with an empty body.
-    // To handle both cases, we check for a 204 status code or a Content-Length header of 0
-    // before attempting to parse the response as JSON.
+    // We must check for empty responses before trying to parse JSON, otherwise
+    // a valid empty payload can be treated as invalid JSON and crash the client.
     if (response.status === 204 || response.headers.get('Content-Length') === '0') {
       return;
     }
-    const data = await response.json();
 
-    return data;
+    const text = await response.text();
+    if (!text.trim()) {
+      return;
+    }
+
+    return JSON.parse(text) as T;
   }
 
   /**

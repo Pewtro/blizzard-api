@@ -166,6 +166,63 @@ describe('client', async () => {
     expect(tokenResponse.access_token).toBeDefined();
   });
 
+  test('sendRequest should return undefined for empty 200 responses', async ({ expect }) => {
+    const resource: Resource<{ name: 'test' }> = {
+      path: 'test',
+    };
+
+    const emptyResponse = {
+      headers: {
+        get: () => '',
+      },
+      status: 200,
+      text: () => Promise.resolve(''),
+    };
+
+    const clientWithEmptyBody = client as unknown as {
+      ky: {
+        get: () => Promise<typeof emptyResponse>;
+      };
+    };
+
+    clientWithEmptyBody.ky = {
+      get: () => Promise.resolve(emptyResponse),
+    };
+
+    await expect(client.sendRequest(resource)).resolves.toBeUndefined();
+  });
+
+  test('sendRequest should return undefined for 204 responses', async ({ expect }) => {
+    const resource: Resource<{ name: 'test' }> = {
+      path: 'test',
+    };
+
+    const clientWithEmptyBody = client as unknown as {
+      ky: {
+        get: () => Promise<{
+          headers: {
+            get: (key: string) => string;
+          };
+          status: 204;
+          text: () => Promise<string>;
+        }>;
+      };
+    };
+
+    clientWithEmptyBody.ky = {
+      get: () =>
+        Promise.resolve({
+          headers: {
+            get: () => '',
+          },
+          status: 204,
+          text: () => Promise.resolve(''),
+        }),
+    };
+
+    await expect(client.sendRequest(resource)).resolves.toBeUndefined();
+  });
+
   test('getRequestConfig should include correct headers and searchParams', ({ expect }) => {
     const resource: Resource<{ foo: string }> = {
       parameters: { bar: 'baz', unused: undefined },
