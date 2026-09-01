@@ -98,6 +98,10 @@ export class BlizzardApiClient {
     searchParams: Record<string, unknown> & { locale: ReturnType<typeof getBlizzardApi>['locale'] };
   } {
     const config = { ...this.defaults, ...options };
+    if (!config.token) {
+      throw new Error('No token has been set for this client.');
+    }
+
     const endpoint = getBlizzardApi(config.origin, config.locale);
 
     const namespace = resource.namespace

@@ -2,6 +2,7 @@ import type { Resource } from '@blizzard-api/core';
 import { wow } from '@blizzard-api/wow';
 import { describe, test, vitest } from 'vitest';
 import { environment } from '../../../../environment';
+import { BlizzardApiClient } from './client';
 import { createBlizzardApiClient } from './create-client';
 
 describe('client', async () => {
@@ -221,6 +222,18 @@ describe('client', async () => {
     };
 
     await expect(client.sendRequest(resource)).resolves.toBeUndefined();
+  });
+
+  test('sendRequest should throw an error when no access token is available', async ({ expect }) => {
+    const unauthedClient = new BlizzardApiClient({
+      key: environment.blizzardClientId,
+      origin: 'eu',
+      secret: environment.blizzardClientSecret,
+    });
+
+    await expect(() => unauthedClient.sendRequest(wow.achievementIndex())).rejects.toThrow(
+      'No token has been set for this client.',
+    );
   });
 
   test('getRequestConfig should include correct headers and searchParams', ({ expect }) => {
