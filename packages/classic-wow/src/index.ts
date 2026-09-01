@@ -4,7 +4,7 @@ import { characterEquipmentSummary } from './character-equipment/index';
 import { characterHunterPetsSummary } from './character-hunter-pets/index';
 import { characterMediaSummary } from './character-media/index';
 import { characterProfileStatus, characterProfileSummary } from './character-profile/index';
-import { characterSpecializationsSummary } from './character-specialization/index';
+import { characterSpecializationsSummary } from './character-specializations/index';
 import { characterStatisticsSummary } from './character-statistics/index';
 import { connectedRealm, connectedRealmIndex, connectedRealmSearch } from './connected-realm/index';
 import {
@@ -137,8 +137,8 @@ export type * from './character-media/types';
 export * from './character-profile/index';
 export type * from './character-profile/types';
 //Character Specialization
-export * from './character-specialization/index';
-export type * from './character-specialization/types';
+export * from './character-specializations/index';
+export type * from './character-specializations/types';
 //Character Statistics
 export * from './character-statistics/index';
 export type * from './character-statistics/types';

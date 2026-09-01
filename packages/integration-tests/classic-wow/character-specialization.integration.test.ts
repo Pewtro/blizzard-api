@@ -1,4 +1,4 @@
-import { characterSpecializationsSummary } from '@blizzard-api/classic-wow/character-specialization';
+import { characterSpecializationsSummary } from '@blizzard-api/classic-wow/character-specializations';
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { describe, test } from 'vitest';
 import { treeifyError } from 'zod';
