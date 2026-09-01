@@ -1,5 +1,11 @@
 # @blizzard-api/classic-wow
 
+## 4.1.1
+
+### Patch Changes
+
+- 99b6d66: Align character-specialization export with the wow path called character-specializations
+
 ## 4.1.0
 
 ### Minor Changes
