@@ -45,7 +45,7 @@
     "hearthstone"
   ],
   "dependencies": {
-    "ky": "2.0.2"
+    "ky": "2.1.0"
   },
   "peerDependencies": {
     "@blizzard-api/core": "4.1.2"
