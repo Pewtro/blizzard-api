@@ -109,7 +109,7 @@ describe('client', async () => {
     await expect(() => client.sendRequest(wow.connectedRealm(9_999_999_999))).rejects.toThrow();
   });
 
-  test('the client cannot be created without a client id and secret', async ({ expect }) => {
+  test('the client cannot be created without a client id, secret, or origin', async ({ expect }) => {
     await expect(() =>
       //@ts-expect-error expect error when key is missing
       createBlizzardApiClient({ origin: 'eu', secret: environment.blizzardClientSecret }),
@@ -117,9 +117,14 @@ describe('client', async () => {
 
     //@ts-expect-error expect error when secret is missing
     await expect(() => createBlizzardApiClient({ key: environment.blizzardClientId, origin: 'eu' })).rejects.toThrow();
+
+    await expect(() =>
+      //@ts-expect-error expect error when origin is missing
+      createBlizzardApiClient({ key: environment.blizzardClientId, secret: environment.blizzardClientSecret }),
+    ).rejects.toThrow();
   });
 
-  test('the client constructor should also reject missing key and secret values', ({ expect }) => {
+  test('the client constructor should also reject missing key, secret, and origin values', ({ expect }) => {
     expect(
       () =>
         //@ts-expect-error expect error when key is missing
@@ -130,6 +135,12 @@ describe('client', async () => {
       () =>
         //@ts-expect-error expect error when secret is missing
         new BlizzardApiClient({ key: environment.blizzardClientId, origin: 'eu' }),
+    ).toThrow();
+
+    expect(
+      () =>
+        //@ts-expect-error expect error when origin is missing
+        new BlizzardApiClient({ key: environment.blizzardClientId, secret: environment.blizzardClientSecret }),
     ).toThrow();
   });
 

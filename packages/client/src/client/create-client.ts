@@ -2,6 +2,7 @@
 import { setTimeout } from 'node:timers';
 import { BlizzardApiClient } from './client';
 import type { AccessToken, ClientOptions } from './types';
+import { validateClientOptions } from './utilities';
 
 /**
  * How long before a token's actual expiry it should be refreshed, in milliseconds.
@@ -39,13 +40,8 @@ export const createBlizzardApiClient = async (
   options: ClientOptions,
   onTokenRefresh: ((token: AccessToken) => void) | boolean = true,
 ): Promise<BlizzardApiClient> => {
-  const { key, secret, token } = options;
-  if (!key) {
-    throw new Error(`Client missing 'key' parameter`);
-  }
-  if (!secret) {
-    throw new Error(`Client missing 'secret' parameter`);
-  }
+  const { token } = options;
+  validateClientOptions(options);
 
   const client = new BlizzardApiClient(options);
 

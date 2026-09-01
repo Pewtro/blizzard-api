@@ -9,6 +9,7 @@ import type {
   ValidateAccessTokenArguments,
   ValidateAccessTokenResponse,
 } from './types';
+import { validateClientOptions } from './utilities';
 
 /**
  * A Blizzard API client.
@@ -34,12 +35,7 @@ export class BlizzardApiClient {
   private ky;
 
   constructor(options: ClientOptions) {
-    if (!options.key) {
-      throw new Error(`Client missing 'key' parameter`);
-    }
-    if (!options.secret) {
-      throw new Error(`Client missing 'secret' parameter`);
-    }
+    validateClientOptions(options);
 
     const { locale, origin } = getBlizzardApi(options.origin, options.locale);
     this.defaults = {
