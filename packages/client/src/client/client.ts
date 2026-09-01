@@ -34,6 +34,13 @@ export class BlizzardApiClient {
   private ky;
 
   constructor(options: ClientOptions) {
+    if (!options.key) {
+      throw new Error(`Client missing 'key' parameter`);
+    }
+    if (!options.secret) {
+      throw new Error(`Client missing 'secret' parameter`);
+    }
+
     const { locale, origin } = getBlizzardApi(options.origin, options.locale);
     this.defaults = {
       key: options.key,

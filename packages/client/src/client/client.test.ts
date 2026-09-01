@@ -119,6 +119,20 @@ describe('client', async () => {
     await expect(() => createBlizzardApiClient({ key: environment.blizzardClientId, origin: 'eu' })).rejects.toThrow();
   });
 
+  test('the client constructor should also reject missing key and secret values', ({ expect }) => {
+    expect(
+      () =>
+        //@ts-expect-error expect error when key is missing
+        new BlizzardApiClient({ origin: 'eu', secret: environment.blizzardClientSecret }),
+    ).toThrow();
+
+    expect(
+      () =>
+        //@ts-expect-error expect error when secret is missing
+        new BlizzardApiClient({ key: environment.blizzardClientId, origin: 'eu' }),
+    ).toThrow();
+  });
+
   test("the client can be created without automatic token refresh by setting onTokenRefresh to 'false'", async ({
     expect,
   }) => {
