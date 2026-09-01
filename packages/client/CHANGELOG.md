@@ -1,5 +1,19 @@
 # @blizzard-api/client
 
+## 5.4.0
+
+### Minor Changes
+
+- 906029d: Update ky to 2.1.0
+
+### Patch Changes
+
+- 7015570: Add retry and backoff handling for 429 rate-limit responses from the Blizzard API
+- 8c9579b: Fix the client token refresh timing so it refreshes only when the token is actually within the refresh window
+- 246215f: Handle empty 200 and 204 responses gracefully in the client request flow
+- 23cde75: Guard against missing access tokens before requests are sent
+- 5053ad0: Enforce client key, secret, and origin validation consistently across client creation paths
+
 ## 5.3.0
 
 ### Minor Changes
