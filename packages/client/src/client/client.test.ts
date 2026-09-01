@@ -249,6 +249,35 @@ describe('client', async () => {
     await expect(client.sendRequest(resource)).resolves.toBeUndefined();
   });
 
+  test('sendRequest should not retry 429 responses when retryOnRateLimit is false', async ({ expect }) => {
+    const rateLimitedClient = new BlizzardApiClient({
+      key: environment.blizzardClientId,
+      origin: 'eu',
+      retryOnRateLimit: false,
+      secret: environment.blizzardClientSecret,
+    });
+    rateLimitedClient.setAccessToken('test-token');
+
+    const get = vitest.fn().mockRejectedValue({
+      response: {
+        headers: new Headers({ 'Retry-After': '0' }),
+        status: 429,
+      },
+    });
+
+    const rateLimitedClientWithKy = rateLimitedClient as unknown as {
+      ky: {
+        get: typeof get;
+      };
+    };
+    rateLimitedClientWithKy.ky = { get };
+
+    await expect(rateLimitedClient.sendRequest(wow.achievementIndex())).rejects.toMatchObject({
+      response: { status: 429 },
+    });
+    expect(get).toHaveBeenCalledTimes(1);
+  });
+
   test('sendRequest should throw an error when no access token is available', async ({ expect }) => {
     const unauthedClient = new BlizzardApiClient({
       key: environment.blizzardClientId,

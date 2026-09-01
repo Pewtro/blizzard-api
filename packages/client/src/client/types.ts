@@ -52,7 +52,9 @@ export interface ClientOptions {
   key: string; // The client ID.
   kyOptions?: KyOptions; // The options to pass to the ky client.
   locale?: Locales; // The locale of the Blizzard API.
+  maxAttempts?: number; // The maximum number of attempts for 429 retry/backoff handling.
   origin: Origins; // The region of the Blizzard API.
+  retryOnRateLimit?: boolean; // Retry requests automatically after 429 rate-limit responses.
   secret: string; // The client secret.
   token?: string; // The access token.
 }
