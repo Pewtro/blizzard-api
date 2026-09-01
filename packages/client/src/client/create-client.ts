@@ -76,11 +76,11 @@ export const createBlizzardApiClient = async (
       //If token is set, validate the token
       const validatedToken = await client.validateAccessToken({ token });
       const refreshDelay = getRefreshDelayFromExpiry(validatedToken.exp);
-      //If the token is already within its refresh buffer, refresh it now
-      if (refreshDelay < REFRESH_BUFFER_MS) {
+      //If the token is already within its refresh buffer, refresh it now.
+      if (refreshDelay <= 0) {
         await refreshToken();
       } else {
-        //Otherwise schedule a refresh for when the token nears expiry
+        //Otherwise schedule a refresh for when the token nears expiry.
         scheduleRefresh(refreshDelay);
       }
     } catch {
