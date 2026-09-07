@@ -71,6 +71,7 @@ export const deckSearchParametersSchema = z.union([
   z.strictObject({
     hero: z.string().optional(),
     ids: z.string(),
+    sideboardCards: z.string().optional(),
   }),
 ]);
 

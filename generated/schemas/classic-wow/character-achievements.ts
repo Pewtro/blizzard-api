@@ -14,7 +14,7 @@ const recentEventSchema = z.strictObject({
   timestamp: z.number(),
 });
 
-export const criteriaSchema: z.ZodSchema<Criteria> = z.lazy(() =>
+export const criteriaSchema: z.ZodType<Criteria> = z.lazy(() =>
   z.strictObject({
     amount: z.number().optional(),
     child_criteria: z.array(criteriaSchema).optional(),

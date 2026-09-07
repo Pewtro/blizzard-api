@@ -50,7 +50,7 @@ const dyeSchema = z.strictObject({
   tooltipParams: z.string(),
 });
 
-export const itemSchema: z.ZodSchema<Item> = z.lazy(() =>
+export const itemSchema: z.ZodType<Item> = z.lazy(() =>
   z.strictObject({
     displayColor: displayColorSchema.optional(),
     dyeColor: dyeSchema.optional(),

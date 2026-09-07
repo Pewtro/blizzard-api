@@ -3,7 +3,7 @@ import { z } from 'zod';
 import type { CharacterAchievementCriteria } from '../../../packages/wow/src/character-achievements/types';
 import { characterSchema, hrefSchema, nameIdKeySchema, responseBaseSchema } from '../core';
 
-export const characterAchievementCriteriaSchema: z.ZodSchema<CharacterAchievementCriteria> = z.lazy(() =>
+export const characterAchievementCriteriaSchema: z.ZodType<CharacterAchievementCriteria> = z.lazy(() =>
   z.strictObject({
     amount: z.number().optional(),
     child_criteria: z.array(characterAchievementCriteriaSchema).optional(),

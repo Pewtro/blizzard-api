@@ -4,7 +4,7 @@ export * from './character-equipment';
 export * from './character-hunter-pets';
 export * from './character-media';
 export * from './character-profile';
-export * from './character-specialization';
+export * from './character-specializations';
 export * from './character-statistics';
 export * from './connected-realm';
 export * from './creature';

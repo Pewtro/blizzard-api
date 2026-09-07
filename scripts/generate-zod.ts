@@ -97,7 +97,12 @@ async function run(): Promise<void> {
         const outPath = path.join(packageOut, outName);
 
         const schema = rewriteImportPaths(
-          generator.getZodSchemasFile(file).replaceAll('z.object', 'z.strictObject'),
+          generator
+            .getZodSchemasFile(file)
+            // Replace `z.object` with `z.strictObject` to enforce strict object validation.
+            .replaceAll('z.object', 'z.strictObject')
+            //ZodSchema is deprecated in favor of ZodType, so we replace it here to avoid deprecation warnings.
+            .replaceAll('z.ZodSchema', 'z.ZodType'),
           outPath,
         );
 

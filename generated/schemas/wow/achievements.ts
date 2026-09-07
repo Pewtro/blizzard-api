@@ -48,7 +48,7 @@ export const achievementMediaResponseSchema = responseBaseSchema.extend({
   id: z.number(),
 });
 
-export const achievementCriteriaSchema: z.ZodSchema<AchievementCriteria> = z.lazy(() =>
+export const achievementCriteriaSchema: z.ZodType<AchievementCriteria> = z.lazy(() =>
   z.strictObject({
     achievement: nameIdKeySchema.optional(),
     amount: z.number(),

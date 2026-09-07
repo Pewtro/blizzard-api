@@ -54,7 +54,7 @@
     "typescript": "6.0.3",
     "typescript-eslint": "8.68.0",
     "vitest": "5.0.0-rc.1",
-    "zod": "4.4.3"
+    "zod": "4.5.4"
   },
   "scripts": {
     "build:docs": "typedoc",

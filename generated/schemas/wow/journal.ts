@@ -57,7 +57,7 @@ const creatureDisplaySchema = z.strictObject({
   key: hrefSchema.optional(),
 });
 
-export const journalSectionSchema: z.ZodSchema<JournalSection> = z.lazy(() =>
+export const journalSectionSchema: z.ZodType<JournalSection> = z.lazy(() =>
   z.strictObject({
     body_text: z.string().optional().nullable(),
     creature_display: creatureDisplaySchema.optional(),
@@ -75,7 +75,7 @@ export const journalSectionSchema: z.ZodSchema<JournalSection> = z.lazy(() =>
   }),
 );
 
-export const journalSectionSearchSchema: z.ZodSchema<JournalSectionSearch> = z.lazy(() =>
+export const journalSectionSearchSchema: z.ZodType<JournalSectionSearch> = z.lazy(() =>
   z.strictObject({
     body_text: z.string().optional().nullable(),
     creature_display: creatureDisplaySchema.optional(),
