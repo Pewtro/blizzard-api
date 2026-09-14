@@ -1,7 +1,7 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { mythicRaidLeaderboard } from '@blizzard-api/wow/mythic-raid-leaderboard';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import { mythicRaidLeaderboardResponseSchema } from '../../../generated/schemas/wow/mythic-raid-leaderboard';
 
@@ -15,7 +15,7 @@ describe('wow mythic-raid-leaderboard integration', async () => {
     const resp = await client.sendRequest(mythicRaidLeaderboard('uldir', 'alliance'));
     const parsedResp = mythicRaidLeaderboardResponseSchema.safeParse(resp);
     if (!parsedResp.success) {
-      console.error('Mythic raid leaderboard validation failed for uldir', treeifyError(parsedResp.error));
+      console.error('Mythic raid leaderboard validation failed for uldir', prettifyError(parsedResp.error));
     }
     expect(parsedResp.success).toBe(true);
   });

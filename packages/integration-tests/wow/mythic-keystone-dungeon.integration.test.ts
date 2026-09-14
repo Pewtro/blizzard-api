@@ -9,7 +9,7 @@ import {
   mythicKeystoneSeasonIndex,
 } from '@blizzard-api/wow/mythic-keystone-dungeon';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
   mythicKeystoneDungeonIndexResponseSchema,
@@ -32,7 +32,7 @@ describe('wow mythic-keystone-dungeon integration', async () => {
     const index = await client.sendRequest(mythicKeystoneDungeonIndex());
     const parsed = mythicKeystoneDungeonIndexResponseSchema.safeParse(index);
     if (!parsed.success) {
-      console.error('Mythic keystone dungeon index validation failed:', treeifyError(parsed.error));
+      console.error('Mythic keystone dungeon index validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
 
@@ -50,7 +50,11 @@ describe('wow mythic-keystone-dungeon integration', async () => {
     for (const r of responses) {
       const parsedResp = mythicKeystoneDungeonResponseSchema.safeParse(r);
       if (!parsedResp.success) {
-        console.error('Mythic keystone dungeon detail validation failed for id', r?.id, treeifyError(parsedResp.error));
+        console.error(
+          'Mythic keystone dungeon detail validation failed for id',
+          r?.id,
+          prettifyError(parsedResp.error),
+        );
       }
       expect(parsedResp.success).toBe(true);
     }
@@ -60,7 +64,7 @@ describe('wow mythic-keystone-dungeon integration', async () => {
     const index = await client.sendRequest(mythicKeystoneIndex());
     const parsed = mythicKeystoneIndexResponseSchema.safeParse(index);
     if (!parsed.success) {
-      console.error('Mythic keystone index validation failed:', treeifyError(parsed.error));
+      console.error('Mythic keystone index validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
   });
@@ -68,7 +72,7 @@ describe('wow mythic-keystone-dungeon integration', async () => {
     const index = await client.sendRequest(mythicKeystonePeriodIndex());
     const parsed = mythicKeystonePeriodIndexResponseSchema.safeParse(index);
     if (!parsed.success) {
-      console.error('Mythic keystone period index validation failed:', treeifyError(parsed.error));
+      console.error('Mythic keystone period index validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
 
@@ -85,7 +89,7 @@ describe('wow mythic-keystone-dungeon integration', async () => {
     for (const r of responses) {
       const parsedResp = mythicKeystonePeriodResponseSchema.safeParse(r);
       if (!parsedResp.success) {
-        console.error('Mythic keystone period detail validation failed for id', r?.id, treeifyError(parsedResp.error));
+        console.error('Mythic keystone period detail validation failed for id', r?.id, prettifyError(parsedResp.error));
       }
       expect(parsedResp.success).toBe(true);
     }
@@ -94,7 +98,7 @@ describe('wow mythic-keystone-dungeon integration', async () => {
     const index = await client.sendRequest(mythicKeystoneSeasonIndex());
     const parsed = mythicKeystoneSeasonIndexResponseSchema.safeParse(index);
     if (!parsed.success) {
-      console.error('Mythic keystone season index validation failed:', treeifyError(parsed.error));
+      console.error('Mythic keystone season index validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
 
@@ -112,7 +116,7 @@ describe('wow mythic-keystone-dungeon integration', async () => {
     for (const r of responses) {
       const parsedResp = mythicKeystoneSeasonResponseSchema.safeParse(r);
       if (!parsedResp.success) {
-        console.error('Mythic keystone season detail validation failed for id', r?.id, treeifyError(parsedResp.error));
+        console.error('Mythic keystone season detail validation failed for id', r?.id, prettifyError(parsedResp.error));
       }
       expect(parsedResp.success).toBe(true);
     }

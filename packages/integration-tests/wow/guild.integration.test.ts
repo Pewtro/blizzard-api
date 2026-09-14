@@ -1,7 +1,7 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { guild, guildAchievements, guildActivity, guildRoster } from '@blizzard-api/wow/guild';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
   guildAchievementsResponseSchema,
@@ -23,28 +23,28 @@ describe('wow guild integration', async () => {
     const guildResp = await client.sendRequest(guild(realm, guildSlug));
     const parsedGuild = guildResponseSchema.safeParse(guildResp);
     if (!parsedGuild.success) {
-      console.error('Guild validation failed:', treeifyError(parsedGuild.error));
+      console.error('Guild validation failed:', prettifyError(parsedGuild.error));
     }
     expect(parsedGuild.success).toBe(true);
 
     const achievementsResp = await client.sendRequest(guildAchievements(realm, guildSlug));
     const parsedAchievements = guildAchievementsResponseSchema.safeParse(achievementsResp);
     if (!parsedAchievements.success) {
-      console.error('Guild achievements validation failed:', treeifyError(parsedAchievements.error));
+      console.error('Guild achievements validation failed:', prettifyError(parsedAchievements.error));
     }
     expect(parsedAchievements.success).toBe(true);
 
     const rosterResp = await client.sendRequest(guildRoster(realm, guildSlug));
     const parsedRoster = guildRosterResponseSchema.safeParse(rosterResp);
     if (!parsedRoster.success) {
-      console.error('Guild roster validation failed:', treeifyError(parsedRoster.error));
+      console.error('Guild roster validation failed:', prettifyError(parsedRoster.error));
     }
     expect(parsedRoster.success).toBe(true);
 
     const activityResp = await client.sendRequest(guildActivity(realm, guildSlug));
     const parsedActivity = guildActivityResponseSchema.safeParse(activityResp);
     if (!parsedActivity.success) {
-      console.error('Guild activity validation failed:', treeifyError(parsedActivity.error));
+      console.error('Guild activity validation failed:', prettifyError(parsedActivity.error));
     }
     expect(parsedActivity.success).toBe(true);
   });

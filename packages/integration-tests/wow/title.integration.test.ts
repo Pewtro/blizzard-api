@@ -1,7 +1,7 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { title, titleIndex } from '@blizzard-api/wow/title';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import { titleIndexResponseSchema, titleResponseSchema } from '../../../generated/schemas/wow/title';
 
@@ -15,7 +15,7 @@ describe('wow title integration', async () => {
     const index = await client.sendRequest(titleIndex());
     const parsed = titleIndexResponseSchema.safeParse(index);
     if (!parsed.success) {
-      console.error('Title index validation failed:', treeifyError(parsed.error));
+      console.error('Title index validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
 
@@ -33,7 +33,7 @@ describe('wow title integration', async () => {
     for (const titleResp of responses) {
       const parsedTitle = titleResponseSchema.safeParse(titleResp);
       if (!parsedTitle.success) {
-        console.error('Title detail validation failed for id', titleResp?.id, treeifyError(parsedTitle.error));
+        console.error('Title detail validation failed for id', titleResp?.id, prettifyError(parsedTitle.error));
       }
       expect(parsedTitle.success).toBe(true);
     }

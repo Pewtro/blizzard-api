@@ -9,7 +9,7 @@ import {
   recipeMedia,
 } from '@blizzard-api/wow/profession';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
   professionIndexResponseSchema,
@@ -30,7 +30,7 @@ describe('wow profession integration', async () => {
     const index = await client.sendRequest(professionIndex());
     const parsedIndex = professionIndexResponseSchema.safeParse(index);
     if (!parsedIndex.success) {
-      console.error('Profession index validation failed:', treeifyError(parsedIndex.error));
+      console.error('Profession index validation failed:', prettifyError(parsedIndex.error));
     }
     expect(parsedIndex.success).toBe(true);
 
@@ -41,14 +41,14 @@ describe('wow profession integration', async () => {
     const prof = await client.sendRequest(profession(first!.id));
     const parsedProf = professionResponseSchema.safeParse(prof);
     if (!parsedProf.success) {
-      console.error('Profession detail validation failed:', first!.id, treeifyError(parsedProf.error));
+      console.error('Profession detail validation failed:', first!.id, prettifyError(parsedProf.error));
     }
     expect(parsedProf.success).toBe(true);
 
     const media = await client.sendRequest(professionMedia(first!.id));
     const parsedMedia = professionMediaResponseSchema.safeParse(media);
     if (!parsedMedia.success) {
-      console.error('Profession media validation failed:', first!.id, treeifyError(parsedMedia.error));
+      console.error('Profession media validation failed:', first!.id, prettifyError(parsedMedia.error));
     }
     expect(parsedMedia.success).toBe(true);
 
@@ -63,7 +63,7 @@ describe('wow profession integration', async () => {
         'Profession skill tier detail validation failed:',
         first!.id,
         skillTierId!,
-        treeifyError(parsedTier.error),
+        prettifyError(parsedTier.error),
       );
     }
     expect(parsedTier.success).toBe(true);
@@ -78,14 +78,14 @@ describe('wow profession integration', async () => {
     const recipeResp = await client.sendRequest(recipe(recipeId!));
     const parsedRecipe = recipeResponseSchema.safeParse(recipeResp);
     if (!parsedRecipe.success) {
-      console.error('Recipe detail validation failed:', recipeId, treeifyError(parsedRecipe.error));
+      console.error('Recipe detail validation failed:', recipeId, prettifyError(parsedRecipe.error));
     }
     expect(parsedRecipe.success).toBe(true);
 
     const recipeMediaResp = await client.sendRequest(recipeMedia(recipeId!));
     const parsedRecipeMedia = recipeMediaResponseSchema.safeParse(recipeMediaResp);
     if (!parsedRecipeMedia.success) {
-      console.error('Recipe media validation failed:', recipeId, treeifyError(parsedRecipeMedia.error));
+      console.error('Recipe media validation failed:', recipeId, prettifyError(parsedRecipeMedia.error));
     }
     expect(parsedRecipeMedia.success).toBe(true);
   });

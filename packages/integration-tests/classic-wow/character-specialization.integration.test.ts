@@ -1,7 +1,7 @@
 import { characterSpecializationsSummary } from '@blizzard-api/classic-wow/character-specializations';
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import { characterSpecializationsSummaryResponseSchema } from '../../../generated/schemas/classic-wow';
 
@@ -22,7 +22,7 @@ describe('classic-wow character specialization integration', async () => {
         'Character specialization summary validation failed:',
         realm,
         character,
-        treeifyError(parsed.error),
+        prettifyError(parsed.error),
       );
     }
     expect(parsed.success).toBe(true);
@@ -38,7 +38,7 @@ describe('classic-wow character specialization integration', async () => {
         'Character specialization summary validation failed:',
         realm,
         character,
-        treeifyError(parsed.error),
+        prettifyError(parsed.error),
       );
     }
     expect(parsed.success).toBe(true);

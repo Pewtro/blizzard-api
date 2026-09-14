@@ -6,7 +6,7 @@ import {
   pvpTalentSlots,
 } from '@blizzard-api/wow/playable-class';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
   playableClassIndexResponseSchema,
@@ -25,7 +25,7 @@ describe('wow playable class integration', async () => {
     const index = await client.sendRequest(playableClassIndex());
     const parsedIndex = playableClassIndexResponseSchema.safeParse(index);
     if (!parsedIndex.success) {
-      console.error('Playable class index validation failed:', treeifyError(parsedIndex.error));
+      console.error('Playable class index validation failed:', prettifyError(parsedIndex.error));
     }
     expect(parsedIndex.success).toBe(true);
 
@@ -34,14 +34,14 @@ describe('wow playable class integration', async () => {
       const resp = await client.sendRequest(playableClass(first.id));
       const parsed = playableClassResponseSchema.safeParse(resp);
       if (!parsed.success) {
-        console.error('Playable class validation failed:', first.id, treeifyError(parsed.error));
+        console.error('Playable class validation failed:', first.id, prettifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
 
       const media = await client.sendRequest(playableClassMedia(first.id));
       const parsedMedia = playableClassMediaResponseSchema.safeParse(media);
       if (!parsedMedia.success) {
-        console.error('Playable class media validation failed:', first.id, treeifyError(parsedMedia.error));
+        console.error('Playable class media validation failed:', first.id, prettifyError(parsedMedia.error));
       }
       expect(parsedMedia.success).toBe(true);
 
@@ -51,7 +51,7 @@ describe('wow playable class integration', async () => {
         console.error(
           'Playable class PvP talent slots validation failed:',
           first.id,
-          treeifyError(parsedPvpSlots.error),
+          prettifyError(parsedPvpSlots.error),
         );
       }
       expect(parsedPvpSlots.success).toBe(true);

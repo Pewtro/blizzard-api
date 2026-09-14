@@ -7,7 +7,7 @@ import {
   achievementMedia,
 } from '@blizzard-api/wow/achievements';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
   achievementCategoryIndexResponseSchema,
@@ -27,7 +27,7 @@ describe('wow achievements integration', async () => {
     const index = await client.sendRequest(achievementIndex());
     const parsed = achievementIndexResponseSchema.safeParse(index);
     if (!parsed.success) {
-      console.error('Achievement index validation failed:', treeifyError(parsed.error));
+      console.error('Achievement index validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
 
@@ -47,7 +47,7 @@ describe('wow achievements integration', async () => {
     for (const achi of responses) {
       const parsedAchievement = achievementResponseSchema.safeParse(achi);
       if (!parsedAchievement.success) {
-        console.error('Achievement detail validation failed for id', achi?.id, treeifyError(parsedAchievement.error));
+        console.error('Achievement detail validation failed for id', achi?.id, prettifyError(parsedAchievement.error));
       }
       expect(parsedAchievement.success).toBe(true);
     }
@@ -57,7 +57,7 @@ describe('wow achievements integration', async () => {
     const catIndex = await client.sendRequest(achievementCategoryIndex());
     const parsedCatIndex = achievementCategoryIndexResponseSchema.safeParse(catIndex);
     if (!parsedCatIndex.success) {
-      console.error('Achievement category index validation failed:', treeifyError(parsedCatIndex.error));
+      console.error('Achievement category index validation failed:', prettifyError(parsedCatIndex.error));
     }
     expect(parsedCatIndex.success).toBe(true);
 
@@ -75,7 +75,7 @@ describe('wow achievements integration', async () => {
     for (const cr of catResponses) {
       const parsedCat = achievementCategoryResponseSchema.safeParse(cr);
       if (!parsedCat.success) {
-        console.error('Achievement category validation failed for id', cr?.id, treeifyError(parsedCat.error));
+        console.error('Achievement category validation failed for id', cr?.id, prettifyError(parsedCat.error));
       }
       expect(parsedCat.success).toBe(true);
     }
@@ -84,7 +84,7 @@ describe('wow achievements integration', async () => {
     const achievementsList = await client.sendRequest(achievementIndex());
     const parsedIndexAgain = achievementIndexResponseSchema.safeParse(achievementsList);
     if (!parsedIndexAgain.success) {
-      console.error('Achievement index revalidation failed:', treeifyError(parsedIndexAgain.error));
+      console.error('Achievement index revalidation failed:', prettifyError(parsedIndexAgain.error));
     }
     expect(parsedIndexAgain.success).toBe(true);
 
@@ -95,7 +95,7 @@ describe('wow achievements integration', async () => {
     for (const m of mediaResponses) {
       const parsedMedia = achievementMediaResponseSchema.safeParse(m);
       if (!parsedMedia.success) {
-        console.error('Achievement media validation failed for id', m?.id, treeifyError(parsedMedia.error));
+        console.error('Achievement media validation failed for id', m?.id, prettifyError(parsedMedia.error));
       }
       expect(parsedMedia.success).toBe(true);
     }

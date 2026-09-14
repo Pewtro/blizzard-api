@@ -1,6 +1,7 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { d3 } from '@blizzard-api/d3';
 import { describe, test } from 'vitest';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
   eraIndexResponseSchema,
@@ -22,7 +23,7 @@ describe('d3 follower integration', async () => {
     const seasonIndexResponse = await client.sendRequest(d3.seasonIndex());
     const parsedSeasonIndexResponse = seasonIndexResponseSchema.safeParse(seasonIndexResponse);
     if (!parsedSeasonIndexResponse.success) {
-      console.error('Season index response validation failed:', parsedSeasonIndexResponse.error);
+      console.error('Season index response validation failed:', prettifyError(parsedSeasonIndexResponse.error));
     }
     expect(parsedSeasonIndexResponse.success).toBe(true);
 
@@ -37,7 +38,11 @@ describe('d3 follower integration', async () => {
     const seasonResponse = await client.sendRequest(d3.season(Number(extractedSeasonId)));
     const parsedSeasonResponse = seasonResponseSchema.safeParse(seasonResponse);
     if (!parsedSeasonResponse.success) {
-      console.error('Season response validation failed:', Number(extractedSeasonId), parsedSeasonResponse.error);
+      console.error(
+        'Season response validation failed:',
+        Number(extractedSeasonId),
+        prettifyError(parsedSeasonResponse.error),
+      );
     }
     expect(parsedSeasonResponse.success).toBe(true);
 
@@ -59,7 +64,7 @@ describe('d3 follower integration', async () => {
         'Season leaderboard response validation failed:',
         Number(extractedSeasonId),
         extractedLeaderboardName!,
-        parsedSeasonLeaderboardResponse.error,
+        prettifyError(parsedSeasonLeaderboardResponse.error),
       );
     }
     expect(parsedSeasonLeaderboardResponse.success).toBe(true);
@@ -69,7 +74,7 @@ describe('d3 follower integration', async () => {
     const eraIndexResponse = await client.sendRequest(d3.eraIndex());
     const parsedEraIndexResponse = eraIndexResponseSchema.safeParse(eraIndexResponse);
     if (!parsedEraIndexResponse.success) {
-      console.error('Era index response validation failed:', parsedEraIndexResponse.error);
+      console.error('Era index response validation failed:', prettifyError(parsedEraIndexResponse.error));
     }
     expect(parsedEraIndexResponse.success).toBe(true);
 
@@ -84,7 +89,7 @@ describe('d3 follower integration', async () => {
     const eraResponse = await client.sendRequest(d3.era(Number(extractedEraId)));
     const parsedEraResponse = eraResponseSchema.safeParse(eraResponse);
     if (!parsedEraResponse.success) {
-      console.error('Era response validation failed:', Number(extractedEraId), parsedEraResponse.error);
+      console.error('Era response validation failed:', Number(extractedEraId), prettifyError(parsedEraResponse.error));
     }
     expect(parsedEraResponse.success).toBe(true);
 
@@ -107,7 +112,7 @@ describe('d3 follower integration', async () => {
         'Era leaderboard response validation failed:',
         Number(extractedEraId),
         extractedLeaderboardName!,
-        parsedEraLeaderboardResponse.error,
+        prettifyError(parsedEraLeaderboardResponse.error),
       );
     }
     expect(parsedEraLeaderboardResponse.success).toBe(true);

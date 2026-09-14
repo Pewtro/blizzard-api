@@ -2,6 +2,7 @@ import { createBlizzardApiClient } from '@blizzard-api/client';
 import { d3 } from '@blizzard-api/d3';
 import type { CharacterClass } from '@blizzard-api/d3';
 import { describe, test } from 'vitest';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import { characterClassResponseSchema, skillResponseSchema } from '../../../generated/schemas/d3';
 
@@ -38,7 +39,11 @@ describe('d3 character-class-and-skill integration', async () => {
     for (const classResponse of classResponses) {
       const classResponseParsed = characterClassResponseSchema.safeParse(classResponse);
       if (!classResponseParsed.success) {
-        console.error('Character class response validation failed:', classResponse?.slug, classResponseParsed.error);
+        console.error(
+          'Character class response validation failed:',
+          classResponse?.slug,
+          prettifyError(classResponseParsed.error),
+        );
       }
       expect(classResponseParsed.success).toBe(true);
 
@@ -58,7 +63,7 @@ describe('d3 character-class-and-skill integration', async () => {
           'Skill response validation failed:',
           classResponse?.slug,
           randomSkillSlug,
-          parsedSkillResponse.error,
+          prettifyError(parsedSkillResponse.error),
         );
       }
       expect(parsedSkillResponse.success).toBe(true);

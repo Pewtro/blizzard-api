@@ -7,7 +7,7 @@ import {
   techTalentTreeIndex,
 } from '@blizzard-api/wow/tech-talent';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
   techTalentIndexResponseSchema,
@@ -27,7 +27,7 @@ describe('wow tech-talent integration', async () => {
     const index = await client.sendRequest(techTalentIndex());
     const parsedIndex = techTalentIndexResponseSchema.safeParse(index);
     if (!parsedIndex.success) {
-      console.error('Tech talent index validation failed:', treeifyError(parsedIndex.error));
+      console.error('Tech talent index validation failed:', prettifyError(parsedIndex.error));
     }
     expect(parsedIndex.success).toBe(true);
 
@@ -50,7 +50,7 @@ describe('wow tech-talent integration', async () => {
     for (const d of details) {
       const parsed = techTalentResponseSchema.safeParse(d);
       if (!parsed.success) {
-        console.error('Tech talent detail validation failed for id', d?.id, treeifyError(parsed.error));
+        console.error('Tech talent detail validation failed for id', d?.id, prettifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
     }
@@ -59,7 +59,7 @@ describe('wow tech-talent integration', async () => {
     for (const m of medias) {
       const parsed = techTalentMediaResponseSchema.safeParse(m);
       if (!parsed.success) {
-        console.error('Tech talent media validation failed for id', m, treeifyError(parsed.error));
+        console.error('Tech talent media validation failed for id', m, prettifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
     }
@@ -68,7 +68,7 @@ describe('wow tech-talent integration', async () => {
     const treeIndex = await client.sendRequest(techTalentTreeIndex());
     const parsedTreeIndex = techTalentTreeIndexResponseSchema.safeParse(treeIndex);
     if (!parsedTreeIndex.success) {
-      console.error('Tech talent tree index validation failed:', treeifyError(parsedTreeIndex.error));
+      console.error('Tech talent tree index validation failed:', prettifyError(parsedTreeIndex.error));
     }
     expect(parsedTreeIndex.success).toBe(true);
 
@@ -87,7 +87,7 @@ describe('wow tech-talent integration', async () => {
     for (const d of details) {
       const parsed = techTalentTreeResponseSchema.safeParse(d);
       if (!parsed.success) {
-        console.error('Tech talent tree validation failed for id', d?.id, treeifyError(parsed.error));
+        console.error('Tech talent tree validation failed for id', d?.id, prettifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
     }

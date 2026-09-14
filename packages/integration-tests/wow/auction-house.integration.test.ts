@@ -2,7 +2,7 @@ import { createBlizzardApiClient } from '@blizzard-api/client';
 import { auctions, commodities } from '@blizzard-api/wow/auction-house';
 import { connectedRealmIndex } from '@blizzard-api/wow/connected-realm';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
   auctionHouseCommoditiesResponseSchema,
@@ -29,14 +29,14 @@ describe('wow auction-house integration', async () => {
     const auctionsResult = await client.sendRequest(auctions(Number.parseInt(realmId)));
     const parsedAuctions = auctionHouseResponseSchema.safeParse(auctionsResult);
     if (!parsedAuctions.success) {
-      console.error('Auctions validation failed:', realmId, treeifyError(parsedAuctions.error));
+      console.error('Auctions validation failed:', realmId, prettifyError(parsedAuctions.error));
     }
     expect(parsedAuctions.success).toBe(true);
 
     const commoditiesResult = await client.sendRequest(commodities());
     const parsedCommodities = auctionHouseCommoditiesResponseSchema.safeParse(commoditiesResult);
     if (!parsedCommodities.success) {
-      console.error('Commodities validation failed:', treeifyError(parsedCommodities.error));
+      console.error('Commodities validation failed:', prettifyError(parsedCommodities.error));
     }
     expect(parsedCommodities.success).toBe(true);
   });

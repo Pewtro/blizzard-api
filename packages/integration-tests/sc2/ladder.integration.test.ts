@@ -1,6 +1,7 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { sc2 } from '@blizzard-api/sc2';
 import { describe, test } from 'vitest';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import { grandmasterLeaderboardResponseSchema, seasonResponseSchema } from '../../../generated/schemas/sc2';
 
@@ -19,7 +20,7 @@ describe('sc2 ladder integration', { timeout: 30_000 }, async () => {
     });
     const parsedResponse = grandmasterLeaderboardResponseSchema.safeParse(response);
     if (!parsedResponse.success) {
-      console.error('Grandmaster Leaderboard failed', parsedResponse.error);
+      console.error('Grandmaster Leaderboard failed', prettifyError(parsedResponse.error));
     }
     expect(parsedResponse.success).toBe(true);
   });
@@ -28,7 +29,7 @@ describe('sc2 ladder integration', { timeout: 30_000 }, async () => {
     const response = await client.sendRequest(sc2.season('eu'));
     const parsedResponse = seasonResponseSchema.safeParse(response);
     if (!parsedResponse.success) {
-      console.error('Season Leaderboard failed', parsedResponse.error);
+      console.error('Season Leaderboard failed', prettifyError(parsedResponse.error));
     }
     expect(parsedResponse.success).toBe(true);
   });

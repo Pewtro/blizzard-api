@@ -15,7 +15,7 @@ import {
   roomSearch,
 } from '@blizzard-api/wow/housing-decor';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
   decorIndexResponseSchema,
@@ -43,7 +43,7 @@ describe('wow housing-decor integration', async () => {
     const index = await client.sendRequest(decorIndex());
     const parsedIndex = decorIndexResponseSchema.safeParse(index);
     if (!parsedIndex.success) {
-      console.error('Decor index validation failed:', treeifyError(parsedIndex.error));
+      console.error('Decor index validation failed:', prettifyError(parsedIndex.error));
     }
     expect(parsedIndex.success).toBe(true);
 
@@ -60,7 +60,7 @@ describe('wow housing-decor integration', async () => {
     for (const detail of details) {
       const parsed = decorResponseSchema.safeParse(detail);
       if (!parsed.success) {
-        console.error('Decor detail validation failed:', detail?.id, treeifyError(parsed.error));
+        console.error('Decor detail validation failed:', detail?.id, prettifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
     }
@@ -70,7 +70,7 @@ describe('wow housing-decor integration', async () => {
     const response = await client.sendRequest(decorSearch({ _page: 1, locale: 'en_US', name: 'chair' }));
     const parsed = decorSearchResponseSchema.safeParse(response);
     if (!parsed.success) {
-      console.error('Decor search validation failed:', treeifyError(parsed.error));
+      console.error('Decor search validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
   });
@@ -79,7 +79,7 @@ describe('wow housing-decor integration', async () => {
     const index = await client.sendRequest(fixtureIndex());
     const parsedIndex = fixtureIndexResponseSchema.safeParse(index);
     if (!parsedIndex.success) {
-      console.error('Fixture index validation failed:', treeifyError(parsedIndex.error));
+      console.error('Fixture index validation failed:', prettifyError(parsedIndex.error));
     }
     expect(parsedIndex.success).toBe(true);
 
@@ -96,7 +96,7 @@ describe('wow housing-decor integration', async () => {
     for (const detail of details) {
       const parsed = fixtureResponseSchema.safeParse(detail);
       if (!parsed.success) {
-        console.error('Fixture detail validation failed:', detail?.id, treeifyError(parsed.error));
+        console.error('Fixture detail validation failed:', detail?.id, prettifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
     }
@@ -106,7 +106,7 @@ describe('wow housing-decor integration', async () => {
     const response = await client.sendRequest(fixtureSearch({ _page: 1, locale: 'en_US', name: 'table' }));
     const parsed = fixtureSearchResponseSchema.safeParse(response);
     if (!parsed.success) {
-      console.error('Fixture search validation failed:', treeifyError(parsed.error));
+      console.error('Fixture search validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
   });
@@ -115,7 +115,7 @@ describe('wow housing-decor integration', async () => {
     const index = await client.sendRequest(fixtureHookIndex());
     const parsedIndex = fixtureHookIndexResponseSchema.safeParse(index);
     if (!parsedIndex.success) {
-      console.error('Fixture hook index validation failed:', treeifyError(parsedIndex.error));
+      console.error('Fixture hook index validation failed:', prettifyError(parsedIndex.error));
     }
     expect(parsedIndex.success).toBe(true);
 
@@ -132,7 +132,7 @@ describe('wow housing-decor integration', async () => {
     for (const detail of details) {
       const parsed = fixtureHookResponseSchema.safeParse(detail);
       if (!parsed.success) {
-        console.error('Fixture hook detail validation failed:', detail?.id, treeifyError(parsed.error));
+        console.error('Fixture hook detail validation failed:', detail?.id, prettifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
     }
@@ -142,7 +142,7 @@ describe('wow housing-decor integration', async () => {
     const response = await client.sendRequest(fixtureHookSearch({ _page: 1, locale: 'en_US', name: 'hook' }));
     const parsed = fixtureHookSearchResponseSchema.safeParse(response);
     if (!parsed.success) {
-      console.error('Fixture hook search validation failed:', treeifyError(parsed.error));
+      console.error('Fixture hook search validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
   });
@@ -151,7 +151,7 @@ describe('wow housing-decor integration', async () => {
     const index = await client.sendRequest(roomIndex());
     const parsedIndex = roomIndexReponseSchema.safeParse(index);
     if (!parsedIndex.success) {
-      console.error('Room index validation failed:', treeifyError(parsedIndex.error));
+      console.error('Room index validation failed:', prettifyError(parsedIndex.error));
     }
     expect(parsedIndex.success).toBe(true);
 
@@ -167,7 +167,7 @@ describe('wow housing-decor integration', async () => {
     for (const detail of details) {
       const parsed = roomResponseSchema.safeParse(detail);
       if (!parsed.success) {
-        console.error('Room detail validation failed:', detail?.id, treeifyError(parsed.error));
+        console.error('Room detail validation failed:', detail?.id, prettifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
     }
@@ -177,7 +177,7 @@ describe('wow housing-decor integration', async () => {
     const response = await client.sendRequest(roomSearch({ _page: 1, locale: 'en_US', name: 'living' }));
     const parsed = roomSearchResponseSchema.safeParse(response);
     if (!parsed.success) {
-      console.error('Room search validation failed:', treeifyError(parsed.error));
+      console.error('Room search validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
   });

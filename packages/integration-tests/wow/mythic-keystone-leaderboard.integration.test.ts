@@ -5,7 +5,7 @@ import {
   mythicKeystoneLeaderboardIndex,
 } from '@blizzard-api/wow/mythic-keystone-leaderboard';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
   mythicKeystoneLeaderboardIndexResponseSchema,
@@ -23,7 +23,7 @@ describe('wow mythic-keystone-leaderboard integration', async () => {
     const index = await client.sendRequest(mythicKeystoneLeaderboardIndex(realmId));
     const parsedIndex = mythicKeystoneLeaderboardIndexResponseSchema.safeParse(index);
     if (!parsedIndex.success) {
-      console.error('Mythic keystone leaderboard index validation failed:', treeifyError(parsedIndex.error));
+      console.error('Mythic keystone leaderboard index validation failed:', prettifyError(parsedIndex.error));
     }
     expect(parsedIndex.success).toBe(true);
 
@@ -36,7 +36,7 @@ describe('wow mythic-keystone-leaderboard integration', async () => {
     if (!parsedLeaderboard.success) {
       console.error(
         `Mythic keystone leaderboard validation failed for realm: ${realmId}, dungeon: ${dungeonId} and period: ${mythicKeyStonePeriods?.current_period?.id}`,
-        treeifyError(parsedLeaderboard.error),
+        prettifyError(parsedLeaderboard.error),
       );
     }
     expect(parsedLeaderboard.success).toBe(true);

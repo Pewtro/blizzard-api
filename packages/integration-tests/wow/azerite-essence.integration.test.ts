@@ -6,7 +6,7 @@ import {
   azeriteEssenceSearch,
 } from '@blizzard-api/wow/azerite-essence';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
   azeriteEssenceIndexResponseSchema,
@@ -25,14 +25,14 @@ describe('wow azerite-essence integration', async () => {
     const index = await client.sendRequest(azeriteEssenceIndex());
     const parsedIndex = azeriteEssenceIndexResponseSchema.safeParse(index);
     if (!parsedIndex.success) {
-      console.error('Azerite essence index validation failed:', treeifyError(parsedIndex.error));
+      console.error('Azerite essence index validation failed:', prettifyError(parsedIndex.error));
     }
     expect(parsedIndex.success).toBe(true);
 
     const search = await client.sendRequest(azeriteEssenceSearch({ _page: 1 }));
     const parsedSearch = azeriteEssenceSearchResponseSchema.safeParse(search);
     if (!parsedSearch.success) {
-      console.error('Azerite essence search validation failed:', treeifyError(parsedSearch.error));
+      console.error('Azerite essence search validation failed:', prettifyError(parsedSearch.error));
     }
     expect(parsedSearch.success).toBe(true);
 
@@ -56,7 +56,7 @@ describe('wow azerite-essence integration', async () => {
     for (const d of details) {
       const parsed = azeriteEssenceResponseSchema.safeParse(d);
       if (!parsed.success) {
-        console.error('Azerite essence detail validation failed:', d?.id, treeifyError(parsed.error));
+        console.error('Azerite essence detail validation failed:', d?.id, prettifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
     }
@@ -65,7 +65,7 @@ describe('wow azerite-essence integration', async () => {
     for (const m of medias) {
       const parsed = azeriteEssenceMediaResponseSchema.safeParse(m);
       if (!parsed.success) {
-        console.error('Azerite essence media validation failed:', m?.id, treeifyError(parsed.error));
+        console.error('Azerite essence media validation failed:', m?.id, prettifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
     }

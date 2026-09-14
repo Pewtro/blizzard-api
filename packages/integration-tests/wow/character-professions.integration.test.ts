@@ -1,7 +1,7 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { characterProfessionsSummary } from '@blizzard-api/wow/character-professions';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import { characterProfessionsSummaryResponseSchema } from '../../../generated/schemas/wow';
 
@@ -17,7 +17,7 @@ describe('wow character-professions integration', async () => {
     const resp = await client.sendRequest(characterProfessionsSummary(realm, character));
     const parsed = characterProfessionsSummaryResponseSchema.safeParse(resp);
     if (!parsed.success) {
-      console.error('Character professions validation failed:', treeifyError(parsed.error));
+      console.error('Character professions validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
   });

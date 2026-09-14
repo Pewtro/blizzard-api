@@ -2,6 +2,7 @@ import { createBlizzardApiClient } from '@blizzard-api/client';
 import { hs } from '@blizzard-api/hs';
 import type { AllMetadataResponse } from '@blizzard-api/hs';
 import { describe, test } from 'vitest';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import { allMetadataResponseSchema, specificMetadataResponseSchema } from '../../../generated/schemas/hs';
 
@@ -16,7 +17,7 @@ describe('hs metadata integration', async () => {
     const response = await client.sendRequest(hs.allMetadata());
     const parsedResponse = allMetadataResponseSchema.safeParse(response);
     if (!parsedResponse.success) {
-      console.error('Failed to parse response:', parsedResponse.error);
+      console.error('Failed to parse response:', prettifyError(parsedResponse.error));
     }
     expect(parsedResponse.success).toBe(true);
 
@@ -44,7 +45,7 @@ describe('hs metadata integration', async () => {
     for (const metadata of metadataResponses) {
       const parsedMetadata = specificMetadataResponseSchema.safeParse(metadata);
       if (!parsedMetadata.success) {
-        console.error('Failed to parse specific metadata response:', metadata, parsedMetadata.error);
+        console.error('Failed to parse specific metadata response:', metadata, prettifyError(parsedMetadata.error));
       }
       expect(parsedMetadata.success).toBe(true);
     }

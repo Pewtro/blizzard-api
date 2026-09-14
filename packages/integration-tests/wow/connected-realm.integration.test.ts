@@ -1,7 +1,7 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { connectedRealm, connectedRealmIndex, connectedRealmSearch } from '@blizzard-api/wow/connected-realm';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
   connectedRealmIndexResponseSchema,
@@ -19,7 +19,7 @@ describe('wow connected realm integration', async () => {
     const resp = await client.sendRequest(connectedRealmIndex());
     const parsed = connectedRealmIndexResponseSchema.safeParse(resp);
     if (!parsed.success) {
-      console.error('Connected realm index validation failed:', treeifyError(parsed.error));
+      console.error('Connected realm index validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
     const id = resp!.connected_realms
@@ -33,7 +33,7 @@ describe('wow connected realm integration', async () => {
     const realmResp = await client.sendRequest(connectedRealm(Number.parseInt(id)));
     const realmParsed = connectedRealmResponseSchema.safeParse(realmResp);
     if (!realmParsed.success) {
-      console.error('Connected realm by ID validation failed:', treeifyError(realmParsed.error));
+      console.error('Connected realm by ID validation failed:', prettifyError(realmParsed.error));
     }
     expect(realmParsed.success).toBe(true);
   });
@@ -42,7 +42,7 @@ describe('wow connected realm integration', async () => {
     const search = await client.sendRequest(connectedRealmSearch({ _page: 1 }));
     const parsed = connectedRealmSearchResponseSchema.safeParse(search);
     if (!parsed.success) {
-      console.error('Connected realm search validation failed:', treeifyError(parsed.error));
+      console.error('Connected realm search validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
   });

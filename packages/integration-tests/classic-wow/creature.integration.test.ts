@@ -10,7 +10,7 @@ import {
 } from '@blizzard-api/classic-wow/creature';
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
   creatureDisplayMediaResponseSchema,
@@ -33,14 +33,14 @@ describe('classic-wow creature integration for classic era', async () => {
     const resp = await client.sendRequest(creature('static-classic1x', 30));
     const parsed = creatureResponseSchema.safeParse(resp);
     if (!parsed.success) {
-      console.error('Creature validation failed', treeifyError(parsed.error));
+      console.error('Creature validation failed', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
 
     const respMedia = await client.sendRequest(creatureDisplayMedia('static-classic1x', 30));
     const parsedMedia = creatureDisplayMediaResponseSchema.safeParse(respMedia);
     if (!parsedMedia.success) {
-      console.error('Creature validation failed', treeifyError(parsedMedia.error));
+      console.error('Creature validation failed', prettifyError(parsedMedia.error));
     }
     expect(parsedMedia.success).toBe(true);
   });
@@ -48,21 +48,21 @@ describe('classic-wow creature integration for classic era', async () => {
     const resp = await client.sendRequest(creatureFamilyIndex('static-classic1x'));
     const parsed = creatureFamilyIndexResponseSchema.safeParse(resp);
     if (!parsed.success) {
-      console.error('Creature family index validation failed:', treeifyError(parsed.error));
+      console.error('Creature family index validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
 
     const family = await client.sendRequest(creatureFamily('static-classic1x', 1));
     const parsedFamily = creatureFamilyResponseSchema.safeParse(family);
     if (!parsedFamily.success) {
-      console.error('Creature family detail validation failed for id', treeifyError(parsedFamily.error));
+      console.error('Creature family detail validation failed for id', prettifyError(parsedFamily.error));
     }
     expect(parsedFamily.success).toBe(true);
 
     const media = await client.sendRequest(creatureFamilyMedia('static-classic1x', 1));
     const parsedMedia = creatureFamilyMediaResponseSchema.safeParse(media);
     if (!parsedMedia.success) {
-      console.error('Creature family media validation failed:', treeifyError(parsedMedia.error));
+      console.error('Creature family media validation failed:', prettifyError(parsedMedia.error));
     }
     expect(parsedMedia.success).toBe(true);
   });
@@ -71,7 +71,7 @@ describe('classic-wow creature integration for classic era', async () => {
     const resp = await client.sendRequest(creatureTypeIndex('static-classic1x'));
     const parsed = creatureTypeIndexResponseSchema.safeParse(resp);
     if (!parsed.success) {
-      console.error('Creature type index validation failed:', treeifyError(parsed.error));
+      console.error('Creature type index validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
 
@@ -86,7 +86,7 @@ describe('classic-wow creature integration for classic era', async () => {
       console.error(
         'Creature type detail validation failed:',
         creatureTypeFromIndex!.id,
-        treeifyError(parsedType.error),
+        prettifyError(parsedType.error),
       );
     }
     expect(parsedType.success).toBe(true);
@@ -98,7 +98,7 @@ describe('classic-wow creature integration for classic era', async () => {
     );
     const parsed = creatureSearchResponseSchema.safeParse(search);
     if (!parsed.success) {
-      console.error('Creature search validation failed:', treeifyError(parsed.error));
+      console.error('Creature search validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
   });
@@ -114,7 +114,7 @@ describe('classic-wow creature integration for classic progression', async () =>
     const resp = await client.sendRequest(creature('static-classic', 30));
     const parsed = creatureResponseSchema.safeParse(resp);
     if (!parsed.success) {
-      console.error('Creature validation failed', treeifyError(parsed.error));
+      console.error('Creature validation failed', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
   });
@@ -122,7 +122,7 @@ describe('classic-wow creature integration for classic progression', async () =>
     const resp = await client.sendRequest(creatureFamilyIndex('static-classic'));
     const parsed = creatureFamilyIndexResponseSchema.safeParse(resp);
     if (!parsed.success) {
-      console.error('Creature family index validation failed:', treeifyError(parsed.error));
+      console.error('Creature family index validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
 
@@ -137,7 +137,7 @@ describe('classic-wow creature integration for classic progression', async () =>
       console.error(
         'Creature family detail validation failed for id',
         creatureFamilyFromIndex!.id,
-        treeifyError(parsedFamily.error),
+        prettifyError(parsedFamily.error),
       );
     }
     expect(parsedFamily.success).toBe(true);
@@ -145,7 +145,7 @@ describe('classic-wow creature integration for classic progression', async () =>
     const media = await client.sendRequest(creatureFamilyMedia('static-classic', 1));
     const parsedMedia = creatureFamilyMediaResponseSchema.safeParse(media);
     if (!parsedMedia.success) {
-      console.error('Creature family media validation failed:', treeifyError(parsedMedia.error));
+      console.error('Creature family media validation failed:', prettifyError(parsedMedia.error));
     }
     expect(parsedMedia.success).toBe(true);
   });
@@ -154,7 +154,7 @@ describe('classic-wow creature integration for classic progression', async () =>
     const resp = await client.sendRequest(creatureTypeIndex('static-classic'));
     const parsed = creatureTypeIndexResponseSchema.safeParse(resp);
     if (!parsed.success) {
-      console.error('Creature type index validation failed:', treeifyError(parsed.error));
+      console.error('Creature type index validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
 
@@ -169,7 +169,7 @@ describe('classic-wow creature integration for classic progression', async () =>
       console.error(
         'Creature type detail validation failed:',
         creatureTypeFromIndex!.id,
-        treeifyError(parsedType.error),
+        prettifyError(parsedType.error),
       );
     }
     expect(parsedType.success).toBe(true);
@@ -181,7 +181,7 @@ describe('classic-wow creature integration for classic progression', async () =>
     );
     const parsed = creatureSearchResponseSchema.safeParse(search);
     if (!parsed.success) {
-      console.error('Creature search validation failed:', treeifyError(parsed.error));
+      console.error('Creature search validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
   });

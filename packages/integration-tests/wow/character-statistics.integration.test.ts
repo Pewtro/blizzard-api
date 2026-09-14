@@ -1,7 +1,7 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { characterStatisticsSummary } from '@blizzard-api/wow/character-statistics';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import { characterStatisticsSummaryResponseSchema } from '../../../generated/schemas/wow';
 
@@ -18,7 +18,7 @@ describe('wow character statistics integration', async () => {
     const resp = await client.sendRequest(characterStatisticsSummary(realm, character));
     const parsed = characterStatisticsSummaryResponseSchema.safeParse(resp);
     if (!parsed.success) {
-      console.error('Character statistics summary validation failed:', treeifyError(parsed.error));
+      console.error('Character statistics summary validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
   });

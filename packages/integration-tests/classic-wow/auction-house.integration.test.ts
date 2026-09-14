@@ -2,7 +2,7 @@ import { auctionHouseIndex, auctions } from '@blizzard-api/classic-wow/auction-h
 import { connectedRealmIndex } from '@blizzard-api/classic-wow/connected-realm';
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
   auctionHouseIndexResponseSchema,
@@ -22,7 +22,7 @@ describe.skip('classic-wow auction house integration', async () => {
     const realmIndexResponse = await client.sendRequest(connectedRealmIndex('dynamic-classic1x'));
     const parsedRealmIndex = connectedRealmIndexResponseSchema.safeParse(realmIndexResponse);
     if (!parsedRealmIndex.success) {
-      console.error('Connected realm index validation failed:', treeifyError(parsedRealmIndex.error));
+      console.error('Connected realm index validation failed:', prettifyError(parsedRealmIndex.error));
     }
     expect(parsedRealmIndex.success).toBe(true);
 
@@ -39,7 +39,11 @@ describe.skip('classic-wow auction house integration', async () => {
     const auctionIndexResponse = await client.sendRequest(auctionHouseIndex('dynamic-classic1x', connectedRealmId));
     const parsedAuctionIndex = auctionHouseIndexResponseSchema.safeParse(auctionIndexResponse);
     if (!parsedAuctionIndex.success) {
-      console.error('Auction house index validation failed:', connectedRealmId, treeifyError(parsedAuctionIndex.error));
+      console.error(
+        'Auction house index validation failed:',
+        connectedRealmId,
+        prettifyError(parsedAuctionIndex.error),
+      );
     }
     expect(parsedAuctionIndex.success).toBe(true);
 
@@ -59,7 +63,7 @@ describe.skip('classic-wow auction house integration', async () => {
         'Auctions validation failed:',
         connectedRealmId,
         auctionHouseId ?? 0,
-        treeifyError(parsedAuctions.error),
+        prettifyError(parsedAuctions.error),
       );
     }
     expect(parsedAuctions.success).toBe(true);

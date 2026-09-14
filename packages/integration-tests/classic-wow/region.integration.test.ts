@@ -1,7 +1,7 @@
 import { region, regionIndex } from '@blizzard-api/classic-wow/region';
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import { regionIndexResponseSchema, regionResponseSchema } from '../../../generated/schemas/classic-wow';
 
@@ -16,7 +16,7 @@ describe('classic-wow region integration', async () => {
     const resp = await client.sendRequest(regionIndex('dynamic-classic1x'));
     const parsed = regionIndexResponseSchema.safeParse(resp);
     if (!parsed.success) {
-      console.error('Region index validation failed:', treeifyError(parsed.error));
+      console.error('Region index validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
   });
@@ -25,7 +25,7 @@ describe('classic-wow region integration', async () => {
     const resp = await client.sendRequest(region('dynamic-classic1x', 83));
     const parsed = regionResponseSchema.safeParse(resp);
     if (!parsed.success) {
-      console.error('Region validation failed:', treeifyError(parsed.error));
+      console.error('Region validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
   });

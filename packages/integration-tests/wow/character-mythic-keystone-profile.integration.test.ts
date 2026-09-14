@@ -4,7 +4,7 @@ import {
   characterMythicKeystoneSeasonDetails,
 } from '@blizzard-api/wow/character-mythic-keystone-profile';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
   characterMythicKeystoneProfileIndexResponseSchema,
@@ -23,7 +23,7 @@ describe('wow character-mythic-keystone-profile integration', async () => {
     const index = await client.sendRequest(characterMythicKeystoneProfileIndex(realm, character));
     const parsed = characterMythicKeystoneProfileIndexResponseSchema.safeParse(index);
     if (!parsed.success) {
-      console.error('Character mythic keystone profile index validation failed:', treeifyError(parsed.error));
+      console.error('Character mythic keystone profile index validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
   });
@@ -35,7 +35,7 @@ describe('wow character-mythic-keystone-profile integration', async () => {
     const index = await client.sendRequest(characterMythicKeystoneProfileIndex(realm, character));
     const parsedIndex = characterMythicKeystoneProfileIndexResponseSchema.safeParse(index);
     if (!parsedIndex.success) {
-      console.error('Character mythic keystone profile index validation failed:', treeifyError(parsedIndex.error));
+      console.error('Character mythic keystone profile index validation failed:', prettifyError(parsedIndex.error));
     }
     expect(parsedIndex.success).toBe(true);
 
@@ -43,7 +43,7 @@ describe('wow character-mythic-keystone-profile integration', async () => {
     const details = await client.sendRequest(characterMythicKeystoneSeasonDetails(realm, character, seasonId!));
     const parsedDetails = characterMythicKeystoneSeasonDetailsResponseSchema.safeParse(details);
     if (!parsedDetails.success) {
-      console.error('Character mythic keystone season details validation failed:', treeifyError(parsedDetails.error));
+      console.error('Character mythic keystone season details validation failed:', prettifyError(parsedDetails.error));
     }
     expect(parsedDetails.success).toBe(true);
   });

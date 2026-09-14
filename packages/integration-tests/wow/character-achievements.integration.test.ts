@@ -1,7 +1,7 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { characterAchievementsSummary, characterAchievementStatistics } from '@blizzard-api/wow/character-achievements';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
   characterAchievementsSummaryResponseSchema,
@@ -25,7 +25,7 @@ describe('wow character-achievements integration', async () => {
         'Character achievements summary validation failed:',
         realm,
         character,
-        treeifyError(parsedSummary.error),
+        prettifyError(parsedSummary.error),
       );
     }
     expect(parsedSummary.success).toBe(true);
@@ -37,7 +37,7 @@ describe('wow character-achievements integration', async () => {
         'Character achievement statistics validation failed:',
         realm,
         character,
-        treeifyError(parsedStats.error),
+        prettifyError(parsedStats.error),
       );
     }
     expect(parsedStats.success).toBe(true);

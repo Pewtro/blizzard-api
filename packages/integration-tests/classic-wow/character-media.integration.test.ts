@@ -1,7 +1,7 @@
 import { characterMediaSummary } from '@blizzard-api/classic-wow/character-media';
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import { characterMediaSummaryResponseSchema } from '../../../generated/schemas/classic-wow';
 
@@ -18,7 +18,7 @@ describe('classic-wow character media integration', async () => {
     const resp = await client.sendRequest(characterMediaSummary('profile-classic', realm, character));
     const parsed = characterMediaSummaryResponseSchema.safeParse(resp);
     if (!parsed.success) {
-      console.error('Character media summary validation failed:', realm, character, treeifyError(parsed.error));
+      console.error('Character media summary validation failed:', realm, character, prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
   });

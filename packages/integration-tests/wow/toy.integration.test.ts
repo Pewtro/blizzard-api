@@ -1,7 +1,7 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { toy, toyIndex } from '@blizzard-api/wow/toy';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import { toyIndexResponseSchema, toyResponseSchema } from '../../../generated/schemas/wow/toy';
 
@@ -15,7 +15,7 @@ describe('wow toy integration', async () => {
     const index = await client.sendRequest(toyIndex());
     const parsed = toyIndexResponseSchema.safeParse(index);
     if (!parsed.success) {
-      console.error('Toy index validation failed:', treeifyError(parsed.error));
+      console.error('Toy index validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
 
@@ -33,7 +33,7 @@ describe('wow toy integration', async () => {
     for (const toyResp of responses) {
       const parsedToy = toyResponseSchema.safeParse(toyResp);
       if (!parsedToy.success) {
-        console.error('Toy detail validation failed for id', toyResp?.id, treeifyError(parsedToy.error));
+        console.error('Toy detail validation failed for id', toyResp?.id, prettifyError(parsedToy.error));
       }
       expect(parsedToy.success).toBe(true);
     }

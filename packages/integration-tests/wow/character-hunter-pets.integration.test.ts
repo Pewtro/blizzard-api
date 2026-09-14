@@ -1,7 +1,7 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { characterHunterPetsSummary } from '@blizzard-api/wow/character-hunter-pets';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import { characterHunterPetsSummaryResponseSchema } from '../../../generated/schemas/wow';
 
@@ -17,7 +17,7 @@ describe('wow character-hunter-pets integration', async () => {
     const resp = await client.sendRequest(characterHunterPetsSummary(realm, character));
     const parsed = characterHunterPetsSummaryResponseSchema.safeParse(resp);
     if (!parsed.success) {
-      console.error('Character hunter pets validation failed:', treeifyError(parsed.error));
+      console.error('Character hunter pets validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
   });

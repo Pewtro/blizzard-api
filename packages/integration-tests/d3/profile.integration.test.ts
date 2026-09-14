@@ -1,7 +1,7 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { d3 } from '@blizzard-api/d3';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod/v4/core';
+import { prettifyError } from 'zod/v4/core';
 import { environment } from '../../../environment';
 import {
   accountHeroFollowerItemsResponseSchema,
@@ -25,7 +25,7 @@ describe('d3 profile integration', async () => {
     const response = await client.sendRequest(d3.account(environment.blizzardBnetAccountId));
     const parsedResponse = accountResponseSchema.safeParse(response);
     if (!parsedResponse.success) {
-      console.error('Account validation failed:', treeifyError(parsedResponse.error));
+      console.error('Account validation failed:', prettifyError(parsedResponse.error));
     }
     expect(parsedResponse.success).toBe(true);
 
@@ -38,7 +38,7 @@ describe('d3 profile integration', async () => {
     const heroResponse = await client.sendRequest(d3.accountHero(environment.blizzardBnetAccountId, randomHero!.id));
     const parsedHeroResponse = accountHeroResponseSchema.safeParse(heroResponse);
     if (!parsedHeroResponse.success) {
-      console.error('Hero validation failed:', randomHero!.id, treeifyError(parsedHeroResponse.error));
+      console.error('Hero validation failed:', randomHero!.id, prettifyError(parsedHeroResponse.error));
     }
     expect(parsedHeroResponse.success).toBe(true);
 
@@ -59,7 +59,7 @@ describe('d3 profile integration', async () => {
       console.error(
         'Hero follower items validation failed:',
         randomHero!.id,
-        treeifyError(parsedHeroFollowerItemsResponse.error),
+        prettifyError(parsedHeroFollowerItemsResponse.error),
       );
     }
     expect(parsedHeroFollowerItemsResponse.success).toBe(true);

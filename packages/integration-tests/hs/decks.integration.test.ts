@@ -1,6 +1,7 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { hs } from '@blizzard-api/hs';
 import { describe, test } from 'vitest';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import { deckResponseSchema } from '../../../generated/schemas/hs';
 
@@ -17,7 +18,7 @@ describe('hs decks integration', async () => {
     );
     const parsedResponse = deckResponseSchema.safeParse(response);
     if (!parsedResponse.success) {
-      console.error('Failed to parse response:', parsedResponse.error);
+      console.error('Failed to parse response:', prettifyError(parsedResponse.error));
     }
     expect(parsedResponse.success).toBe(true);
   });
@@ -35,7 +36,7 @@ describe('hs decks integration', async () => {
     );
     const parsedResponse = deckResponseSchema.safeParse(response);
     if (!parsedResponse.success) {
-      console.error('Failed to parse response:', parsedResponse.error);
+      console.error('Failed to parse response:', prettifyError(parsedResponse.error));
     }
     expect(parsedResponse.success).toBe(true);
   });

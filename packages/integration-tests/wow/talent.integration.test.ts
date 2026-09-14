@@ -9,7 +9,7 @@ import {
   talentTreeNodes,
 } from '@blizzard-api/wow/talent';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
   pvpTalentIndexResponseSchema,
@@ -31,7 +31,7 @@ describe('wow talent integration', async () => {
     const pvpIndex = await client.sendRequest(pvpTalentIndex());
     const parsedPvpIndex = pvpTalentIndexResponseSchema.safeParse(pvpIndex);
     if (!parsedPvpIndex.success) {
-      console.error('PvP talent index validation failed:', treeifyError(parsedPvpIndex.error));
+      console.error('PvP talent index validation failed:', prettifyError(parsedPvpIndex.error));
     }
     expect(parsedPvpIndex.success).toBe(true);
 
@@ -48,7 +48,7 @@ describe('wow talent integration', async () => {
     for (const resp of responses) {
       const parsed = pvpTalentResponseSchema.safeParse(resp);
       if (!parsed.success) {
-        console.error('PvP talent validation failed for id', resp?.id, treeifyError(parsed.error));
+        console.error('PvP talent validation failed for id', resp?.id, prettifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
     }
@@ -57,7 +57,7 @@ describe('wow talent integration', async () => {
     const talentIndexResp = await client.sendRequest(talentIndex());
     const parsedTalentIndex = talentIndexResponseSchema.safeParse(talentIndexResp);
     if (!parsedTalentIndex.success) {
-      console.error('Talent index validation failed:', treeifyError(parsedTalentIndex.error));
+      console.error('Talent index validation failed:', prettifyError(parsedTalentIndex.error));
     }
     expect(parsedTalentIndex.success).toBe(true);
 
@@ -73,7 +73,7 @@ describe('wow talent integration', async () => {
     for (const resp of responses) {
       const parsed = talentResponseSchema.safeParse(resp);
       if (!parsed.success) {
-        console.error('Talent validation failed for id', resp?.id, treeifyError(parsed.error));
+        console.error('Talent validation failed for id', resp?.id, prettifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
     }
@@ -82,7 +82,7 @@ describe('wow talent integration', async () => {
     const treeIndex = await client.sendRequest(talentTreeIndex());
     const parsedTreeIndex = talentTreeIndexResponseSchema.safeParse(treeIndex);
     if (!parsedTreeIndex.success) {
-      console.error('Talent tree index validation failed:', treeifyError(parsedTreeIndex.error));
+      console.error('Talent tree index validation failed:', prettifyError(parsedTreeIndex.error));
     }
     expect(parsedTreeIndex.success).toBe(true);
 
@@ -96,14 +96,14 @@ describe('wow talent integration', async () => {
       const talentTreeResp = await client.sendRequest(talentTree(combo.treeId, combo.specId));
       const parsedTrees = talentTreeResponseSchema.safeParse(talentTreeResp);
       if (!parsedTrees.success) {
-        console.error('Talent tree validation failed for combo', combo, treeifyError(parsedTrees.error));
+        console.error('Talent tree validation failed for combo', combo, prettifyError(parsedTrees.error));
       }
       expect(parsedTrees.success).toBe(true);
 
       const nodes = await client.sendRequest(talentTreeNodes(combo.treeId));
       const parsedNodes = talentTreeNodesResponseSchema.safeParse(nodes);
       if (!parsedNodes.success) {
-        console.error('Talent tree nodes validation failed for treeId', combo.treeId, treeifyError(parsedNodes.error));
+        console.error('Talent tree nodes validation failed for treeId', combo.treeId, prettifyError(parsedNodes.error));
       }
       expect(parsedNodes.success).toBe(true);
     }

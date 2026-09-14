@@ -1,6 +1,7 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { hs } from '@blizzard-api/hs';
 import { describe, test } from 'vitest';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import { cardSearchResponseSchema, fetchOneCardResponseSchema } from '../../../generated/schemas/hs';
 
@@ -29,7 +30,11 @@ describe('hs cards integration', async () => {
     const specificCardResponse = await client.sendRequest(hs.fetchOneCard(randomCard!.slug, { locale: 'en_GB' }));
     const parsedSpecificCardresponse = fetchOneCardResponseSchema.safeParse(specificCardResponse);
     if (!parsedSpecificCardresponse.success) {
-      console.error('Fetch one card failed from card search', randomCard!.slug, parsedSpecificCardresponse.error);
+      console.error(
+        'Fetch one card failed from card search',
+        randomCard!.slug,
+        prettifyError(parsedSpecificCardresponse.error),
+      );
     }
     expect(parsedSpecificCardresponse.success).toBe(true);
   });
@@ -74,7 +79,7 @@ describe('hs cards integration', async () => {
       console.error(
         'Fetch one card failed from detailed card search',
         randomCard!.slug,
-        parsedSpecificCardresponse.error,
+        prettifyError(parsedSpecificCardresponse.error),
       );
     }
     expect(parsedSpecificCardresponse.success).toBe(true);
@@ -106,7 +111,7 @@ describe('hs cards integration', async () => {
       console.error(
         'Fetch one card failed from battleground card search',
         randomCard!.slug,
-        parsedSpecificCardresponse.error,
+        prettifyError(parsedSpecificCardresponse.error),
       );
     }
     expect(parsedSpecificCardresponse.success).toBe(true);
@@ -137,7 +142,7 @@ describe('hs cards integration', async () => {
       console.error(
         'Fetch one card failed from mercenaries card search',
         randomCard!.slug,
-        parsedSpecificCardresponse.error,
+        prettifyError(parsedSpecificCardresponse.error),
       );
     }
     expect(parsedSpecificCardresponse.success).toBe(true);

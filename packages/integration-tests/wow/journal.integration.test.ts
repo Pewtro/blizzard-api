@@ -10,7 +10,7 @@ import {
   journalInstanceMedia,
 } from '@blizzard-api/wow/journal';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
   journalEncounterIndexResponseSchema,
@@ -33,7 +33,7 @@ describe('wow journal integration', async () => {
     const enc = await client.sendRequest(journalEncounterIndex());
     const parsedEnc = journalEncounterIndexResponseSchema.safeParse(enc);
     if (!parsedEnc.success) {
-      console.error('Journal encounter index validation failed:', treeifyError(parsedEnc.error));
+      console.error('Journal encounter index validation failed:', prettifyError(parsedEnc.error));
     }
     expect(parsedEnc.success).toBe(true);
 
@@ -56,7 +56,7 @@ describe('wow journal integration', async () => {
         console.error(
           'Journal encounter detail validation failed for id',
           encounter?.id,
-          treeifyError(parsedEncounter.error),
+          prettifyError(parsedEncounter.error),
         );
       }
       expect(parsedEncounter.success).toBe(true);
@@ -66,7 +66,7 @@ describe('wow journal integration', async () => {
     const exp = await client.sendRequest(journalExpansionIndex());
     const parsedExp = journalExpansionIndexResponseSchema.safeParse(exp);
     if (!parsedExp.success) {
-      console.error('Journal expansion index validation failed:', treeifyError(parsedExp.error));
+      console.error('Journal expansion index validation failed:', prettifyError(parsedExp.error));
     }
     expect(parsedExp.success).toBe(true);
 
@@ -89,7 +89,7 @@ describe('wow journal integration', async () => {
         console.error(
           'Journal expansion detail validation failed for id',
           expansion?.id,
-          treeifyError(parsedExpansion.error),
+          prettifyError(parsedExpansion.error),
         );
       }
       expect(parsedExpansion.success).toBe(true);
@@ -100,7 +100,7 @@ describe('wow journal integration', async () => {
     const instanceResp = await client.sendRequest(journalInstanceIndex());
     const parsedExp = journalInstanceIndexResponseSchema.safeParse(instanceResp);
     if (!parsedExp.success) {
-      console.error('Journal instance index validation failed:', treeifyError(parsedExp.error));
+      console.error('Journal instance index validation failed:', prettifyError(parsedExp.error));
     }
     expect(parsedExp.success).toBe(true);
 
@@ -123,7 +123,7 @@ describe('wow journal integration', async () => {
         console.error(
           'Journal instance detail validation failed for id',
           instance?.id,
-          treeifyError(parsedInstance.error),
+          prettifyError(parsedInstance.error),
         );
       }
       expect(parsedInstance.success).toBe(true);
@@ -136,7 +136,7 @@ describe('wow journal integration', async () => {
     );
     const parsed = journalEncounterSearchResponseSchema.safeParse(search);
     if (!parsed.success) {
-      console.error('Journal encounter search validation failed:', treeifyError(parsed.error));
+      console.error('Journal encounter search validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
   });
@@ -145,7 +145,7 @@ describe('wow journal integration', async () => {
     const instanceResp = await client.sendRequest(journalInstanceIndex());
     const parsedExp = journalInstanceIndexResponseSchema.safeParse(instanceResp);
     if (!parsedExp.success) {
-      console.error('Journal instance index validation failed:', treeifyError(parsedExp.error));
+      console.error('Journal instance index validation failed:', prettifyError(parsedExp.error));
     }
     expect(parsedExp.success).toBe(true);
 
@@ -154,7 +154,7 @@ describe('wow journal integration', async () => {
       const media = await client.sendRequest(journalInstanceMedia(instances[0]!.id));
       const parsedMedia = journalInstanceMediaResponseSchema.safeParse(media);
       if (!parsedMedia.success) {
-        console.error('Journal instance media validation failed:', instances[0]!.id, treeifyError(parsedMedia.error));
+        console.error('Journal instance media validation failed:', instances[0]!.id, prettifyError(parsedMedia.error));
       }
       expect(parsedMedia.success).toBe(true);
     }

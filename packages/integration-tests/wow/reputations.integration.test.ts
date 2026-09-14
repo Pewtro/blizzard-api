@@ -6,7 +6,7 @@ import {
   reputationTiersIndex,
 } from '@blizzard-api/wow/reputations';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
   reputationFactionIndexResponseSchema,
@@ -25,7 +25,7 @@ describe('wow reputations integration', async () => {
     const factions = await client.sendRequest(reputationFactionIndex());
     const parsedFactions = reputationFactionIndexResponseSchema.safeParse(factions);
     if (!parsedFactions.success) {
-      console.error('Reputation faction index validation failed:', treeifyError(parsedFactions.error));
+      console.error('Reputation faction index validation failed:', prettifyError(parsedFactions.error));
     }
     expect(parsedFactions.success).toBe(true);
 
@@ -43,7 +43,7 @@ describe('wow reputations integration', async () => {
     for (const fr of factionResponses) {
       const parsed = reputationFactionResponseSchema.safeParse(fr);
       if (!parsed.success) {
-        console.error('Reputation faction validation failed for id', fr?.id, treeifyError(parsed.error));
+        console.error('Reputation faction validation failed for id', fr?.id, prettifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
     }
@@ -52,7 +52,7 @@ describe('wow reputations integration', async () => {
     const tiers = await client.sendRequest(reputationTiersIndex());
     const parsedTiers = reputationTiersIndexResponseSchema.safeParse(tiers);
     if (!parsedTiers.success) {
-      console.error('Reputation tiers index validation failed:', treeifyError(parsedTiers.error));
+      console.error('Reputation tiers index validation failed:', prettifyError(parsedTiers.error));
     }
     expect(parsedTiers.success).toBe(true);
 
@@ -69,7 +69,7 @@ describe('wow reputations integration', async () => {
     for (const tr of tierResponses) {
       const parsed = reputationTiersResponseSchema.safeParse(tr);
       if (!parsed.success) {
-        console.error('Reputation tiers validation failed for id', tr?.id, treeifyError(parsed.error));
+        console.error('Reputation tiers validation failed for id', tr?.id, prettifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
     }

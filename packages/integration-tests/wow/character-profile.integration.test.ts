@@ -1,7 +1,7 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { characterProfileStatus, characterProfileSummary } from '@blizzard-api/wow/character-profile';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
   characterProfileStatusResponseSchema,
@@ -21,14 +21,14 @@ describe('wow character-profile integration', async () => {
     const summary = await client.sendRequest(characterProfileSummary(realm, character));
     const parsedSummary = characterProfileSummaryResponseSchema.safeParse(summary);
     if (!parsedSummary.success) {
-      console.error('Character profile summary validation failed:', treeifyError(parsedSummary.error));
+      console.error('Character profile summary validation failed:', prettifyError(parsedSummary.error));
     }
     expect(parsedSummary.success).toBe(true);
 
     const status = await client.sendRequest(characterProfileStatus(realm, character));
     const parsedStatus = characterProfileStatusResponseSchema.safeParse(status);
     if (!parsedStatus.success) {
-      console.error('Character profile status validation failed:', treeifyError(parsedStatus.error));
+      console.error('Character profile status validation failed:', prettifyError(parsedStatus.error));
     }
     expect(parsedStatus.success).toBe(true);
   });

@@ -10,7 +10,7 @@ import {
   questTypeIndex,
 } from '@blizzard-api/wow/quest';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
   questAreaIndexResponseSchema,
@@ -33,14 +33,14 @@ describe('wow quest integration', async () => {
     const index = await client.sendRequest(questIndex());
     const parsed = questIndexResponseSchema.safeParse(index);
     if (!parsed.success) {
-      console.error('Quest index validation failed:', treeifyError(parsed.error));
+      console.error('Quest index validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
 
     const questResp = await client.sendRequest(quest(32_370));
     const parsedQuest = questResponseSchema.safeParse(questResp);
     if (!parsedQuest.success) {
-      console.error('Quest detail validation failed:', treeifyError(parsedQuest.error));
+      console.error('Quest detail validation failed:', prettifyError(parsedQuest.error));
     }
     expect(parsedQuest.success).toBe(true);
   });
@@ -49,7 +49,7 @@ describe('wow quest integration', async () => {
     const areaIndex = await client.sendRequest(questAreaIndex());
     const parsedAreaIndex = questAreaIndexResponseSchema.safeParse(areaIndex);
     if (!parsedAreaIndex.success) {
-      console.error('Quest area index validation failed:', treeifyError(parsedAreaIndex.error));
+      console.error('Quest area index validation failed:', prettifyError(parsedAreaIndex.error));
     }
     expect(parsedAreaIndex.success).toBe(true);
 
@@ -58,7 +58,7 @@ describe('wow quest integration', async () => {
       const area = await client.sendRequest(questArea(areas[0]!.id));
       const parsedArea = questAreaResponseSchema.safeParse(area);
       if (!parsedArea.success) {
-        console.error('Quest area detail validation failed:', areas[0]!.id, treeifyError(parsedArea.error));
+        console.error('Quest area detail validation failed:', areas[0]!.id, prettifyError(parsedArea.error));
       }
       expect(parsedArea.success).toBe(true);
     }
@@ -66,7 +66,7 @@ describe('wow quest integration', async () => {
     const categoryIndex = await client.sendRequest(questCategoryIndex());
     const parsedCategoryIndex = questCategoryIndexResponseSchema.safeParse(categoryIndex);
     if (!parsedCategoryIndex.success) {
-      console.error('Quest category index validation failed:', treeifyError(parsedCategoryIndex.error));
+      console.error('Quest category index validation failed:', prettifyError(parsedCategoryIndex.error));
     }
     expect(parsedCategoryIndex.success).toBe(true);
 
@@ -78,7 +78,7 @@ describe('wow quest integration', async () => {
         console.error(
           'Quest category detail validation failed:',
           categories[0]!.id,
-          treeifyError(parsedCategory.error),
+          prettifyError(parsedCategory.error),
         );
       }
       expect(parsedCategory.success).toBe(true);
@@ -87,7 +87,7 @@ describe('wow quest integration', async () => {
     const typeIndex = await client.sendRequest(questTypeIndex());
     const parsedTypeIndex = questTypeIndexResponseSchema.safeParse(typeIndex);
     if (!parsedTypeIndex.success) {
-      console.error('Quest type index validation failed:', treeifyError(parsedTypeIndex.error));
+      console.error('Quest type index validation failed:', prettifyError(parsedTypeIndex.error));
     }
     expect(parsedTypeIndex.success).toBe(true);
 
@@ -96,7 +96,7 @@ describe('wow quest integration', async () => {
       const type = await client.sendRequest(questType(types[0]!.id));
       const parsedType = questTypeResponseSchema.safeParse(type);
       if (!parsedType.success) {
-        console.error('Quest type detail validation failed:', types[0]!.id, treeifyError(parsedType.error));
+        console.error('Quest type detail validation failed:', types[0]!.id, prettifyError(parsedType.error));
       }
       expect(parsedType.success).toBe(true);
     }

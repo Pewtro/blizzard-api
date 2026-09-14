@@ -1,7 +1,7 @@
 import { playableRace, playableRaceIndex } from '@blizzard-api/classic-wow/playable-race';
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import { playableRaceIndexResponseSchema, playableRaceResponseSchema } from '../../../generated/schemas/classic-wow';
 
@@ -15,7 +15,7 @@ describe('classic-wow playable race integration', async () => {
     const resp = await client.sendRequest(playableRaceIndex('static-classic1x'));
     const parsed = playableRaceIndexResponseSchema.safeParse(resp);
     if (!parsed.success) {
-      console.error('Playable race index validation failed:', treeifyError(parsed.error));
+      console.error('Playable race index validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
 
@@ -26,7 +26,7 @@ describe('classic-wow playable race integration', async () => {
     for (const result of results) {
       const parsedResult = playableRaceResponseSchema.safeParse(result);
       if (!parsedResult.success) {
-        console.error('Race detail validation failed for id', result!.id, treeifyError(parsedResult.error));
+        console.error('Race detail validation failed for id', result!.id, prettifyError(parsedResult.error));
       }
       expect(parsedResult.success).toBe(true);
     }
@@ -35,7 +35,7 @@ describe('classic-wow playable race integration', async () => {
     const resp = await client.sendRequest(playableRaceIndex('static-classic'));
     const parsed = playableRaceIndexResponseSchema.safeParse(resp);
     if (!parsed.success) {
-      console.error('Playable race index validation failed:', treeifyError(parsed.error));
+      console.error('Playable race index validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
 
@@ -46,7 +46,7 @@ describe('classic-wow playable race integration', async () => {
     for (const result of results) {
       const parsedResult = playableRaceResponseSchema.safeParse(result);
       if (!parsedResult.success) {
-        console.error('Race detail validation failed for id', result!.id, treeifyError(parsedResult.error));
+        console.error('Race detail validation failed for id', result!.id, prettifyError(parsedResult.error));
       }
       expect(parsedResult.success).toBe(true);
     }

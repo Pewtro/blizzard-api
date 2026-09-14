@@ -8,7 +8,7 @@ import {
   characterTransmogCollectionSummary,
 } from '@blizzard-api/wow/character-collections';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
   characterCollectionsIndexResponseSchema,
@@ -31,7 +31,7 @@ describe('wow character-collections integration', async () => {
     const index = await client.sendRequest(characterCollectionsIndex(realm, character));
     const parsedIndex = characterCollectionsIndexResponseSchema.safeParse(index);
     if (!parsedIndex.success) {
-      console.error('Character collections index validation failed:', treeifyError(parsedIndex.error));
+      console.error('Character collections index validation failed:', prettifyError(parsedIndex.error));
     }
     expect(parsedIndex.success).toBe(true);
   });
@@ -40,7 +40,7 @@ describe('wow character-collections integration', async () => {
     const heirlooms = await client.sendRequest(characterHeirloomsCollectionSummary(realm, character));
     const parsedHeirlooms = characterHeirloomsCollectionSummaryResponseSchema.safeParse(heirlooms);
     if (!parsedHeirlooms.success) {
-      console.error('Character heirlooms collection validation failed:', treeifyError(parsedHeirlooms.error));
+      console.error('Character heirlooms collection validation failed:', prettifyError(parsedHeirlooms.error));
     }
     expect(parsedHeirlooms.success).toBe(true);
   });
@@ -49,7 +49,7 @@ describe('wow character-collections integration', async () => {
     const mounts = await client.sendRequest(characterMountsCollectionSummary(realm, character));
     const parsedMounts = characterMountsCollectionSummaryResponseSchema.safeParse(mounts);
     if (!parsedMounts.success) {
-      console.error('Character mounts collection validation failed:', treeifyError(parsedMounts.error));
+      console.error('Character mounts collection validation failed:', prettifyError(parsedMounts.error));
     }
     expect(parsedMounts.success).toBe(true);
   });
@@ -58,7 +58,7 @@ describe('wow character-collections integration', async () => {
     const pets = await client.sendRequest(characterPetsCollectionSummary(realm, character));
     const parsedPets = characterPetsCollectionSummaryResponseSchema.safeParse(pets);
     if (!parsedPets.success) {
-      console.error('Character pets collection validation failed:', treeifyError(parsedPets.error));
+      console.error('Character pets collection validation failed:', prettifyError(parsedPets.error));
     }
     expect(parsedPets.success).toBe(true);
   });
@@ -67,7 +67,7 @@ describe('wow character-collections integration', async () => {
     const toys = await client.sendRequest(characterToysCollectionSummary(realm, character));
     const parsedToys = characterToysCollectionSummaryResponseSchema.safeParse(toys);
     if (!parsedToys.success) {
-      console.error('Character toys collection validation failed:', treeifyError(parsedToys.error));
+      console.error('Character toys collection validation failed:', prettifyError(parsedToys.error));
     }
     expect(parsedToys.success).toBe(true);
   });
@@ -76,7 +76,7 @@ describe('wow character-collections integration', async () => {
     const transmog = await client.sendRequest(characterTransmogCollectionSummary(realm, character));
     const parsedTransmog = characterTransmogCollectionSummaryResponseSchema.safeParse(transmog);
     if (!parsedTransmog.success) {
-      console.error('Character transmog collection validation failed:', treeifyError(parsedTransmog.error));
+      console.error('Character transmog collection validation failed:', prettifyError(parsedTransmog.error));
     }
     expect(parsedTransmog.success).toBe(true);
   });

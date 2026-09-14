@@ -1,7 +1,7 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { region, regionIndex } from '@blizzard-api/wow/region';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import { regionIndexResponseSchema, regionResponseSchema } from '../../../generated/schemas/wow';
 
@@ -15,14 +15,14 @@ describe('wow region integration', async () => {
     const resp = await client.sendRequest(regionIndex());
     const parsed = regionIndexResponseSchema.safeParse(resp);
     if (!parsed.success) {
-      console.error('Region index validation failed:', treeifyError(parsed.error));
+      console.error('Region index validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
 
     const regionResp = await client.sendRequest(region(3));
     const parsedRegion = regionResponseSchema.safeParse(regionResp);
     if (!parsedRegion.success) {
-      console.error('Region detail validation failed:', treeifyError(parsedRegion.error));
+      console.error('Region detail validation failed:', prettifyError(parsedRegion.error));
     }
     expect(parsedRegion.success).toBe(true);
   });

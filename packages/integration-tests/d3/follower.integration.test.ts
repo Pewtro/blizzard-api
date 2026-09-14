@@ -2,6 +2,7 @@ import { createBlizzardApiClient } from '@blizzard-api/client';
 import { d3 } from '@blizzard-api/d3';
 import type { Follower } from '@blizzard-api/d3';
 import { describe, test } from 'vitest';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import { followerResponseSchema } from '../../../generated/schemas/d3';
 
@@ -20,7 +21,11 @@ describe('d3 follower integration', async () => {
     for (const followerResponse of followerResponses) {
       const parsedFollowerResponse = followerResponseSchema.safeParse(followerResponse);
       if (!parsedFollowerResponse.success) {
-        console.error('Follower response validation failed:', followerResponse?.slug, parsedFollowerResponse.error);
+        console.error(
+          'Follower response validation failed:',
+          followerResponse?.slug,
+          prettifyError(parsedFollowerResponse.error),
+        );
       }
       expect(parsedFollowerResponse.success).toBe(true);
     }

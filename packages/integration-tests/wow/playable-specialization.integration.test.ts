@@ -5,7 +5,7 @@ import {
   playableSpecializationMedia,
 } from '@blizzard-api/wow/playable-specialization';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
   playableSpecializationIndexResponseSchema,
@@ -23,7 +23,7 @@ describe('wow playable-specialization integration', async () => {
     const index = await client.sendRequest(playableSpecializationIndex());
     const parsed = playableSpecializationIndexResponseSchema.safeParse(index);
     if (!parsed.success) {
-      console.error('Playable specialization index validation failed:', treeifyError(parsed.error));
+      console.error('Playable specialization index validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
 
@@ -35,7 +35,7 @@ describe('wow playable-specialization integration', async () => {
     for (const spec of responses) {
       const parsedSpec = playableSpecializationResponseSchema.safeParse(spec);
       if (!parsedSpec.success) {
-        console.error('Playable specialization detail validation failed:', spec?.id, treeifyError(parsedSpec.error));
+        console.error('Playable specialization detail validation failed:', spec?.id, prettifyError(parsedSpec.error));
       }
 
       expect(parsedSpec.success).toBe(true);
@@ -43,7 +43,7 @@ describe('wow playable-specialization integration', async () => {
       const media = await client.sendRequest(playableSpecializationMedia(spec!.id));
       const parsedMedia = playableSpecializationMediaResponseSchema.safeParse(media);
       if (!parsedMedia.success) {
-        console.error('Playable specialization media validation failed:', spec!.id, treeifyError(parsedMedia.error));
+        console.error('Playable specialization media validation failed:', spec!.id, prettifyError(parsedMedia.error));
       }
       expect(parsedMedia.success).toBe(true);
     }

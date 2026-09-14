@@ -2,6 +2,7 @@ import { createBlizzardApiClient } from '@blizzard-api/client';
 import { d3 } from '@blizzard-api/d3';
 import type { Artisans } from '@blizzard-api/d3';
 import { describe, test } from 'vitest';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import { artisanResponseSchema, recipeResponseSchema } from '../../../generated/schemas/d3';
 
@@ -19,7 +20,11 @@ describe('d3 artisan-and-recipe integration', async () => {
     for (const artisanResponse of artisanResponses) {
       const parsedResponse = artisanResponseSchema.safeParse(artisanResponse);
       if (!parsedResponse.success) {
-        console.error('Artisan response validation failed:', artisanResponse?.slug, parsedResponse.error);
+        console.error(
+          'Artisan response validation failed:',
+          artisanResponse?.slug,
+          prettifyError(parsedResponse.error),
+        );
       }
       expect(parsedResponse.success).toBe(true);
 
@@ -33,7 +38,11 @@ describe('d3 artisan-and-recipe integration', async () => {
       for (const recipeResponse of recipeResponses) {
         const parsedRecipeResponse = recipeResponseSchema.safeParse(recipeResponse);
         if (!parsedRecipeResponse.success) {
-          console.error('Recipe response validation failed:', recipeResponse?.slug, parsedRecipeResponse.error);
+          console.error(
+            'Recipe response validation failed:',
+            recipeResponse?.slug,
+            prettifyError(parsedRecipeResponse.error),
+          );
         }
         expect(parsedRecipeResponse.success).toBe(true);
       }

@@ -1,7 +1,7 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { pvpTier, pvpTierIndex, pvpTierMedia } from '@blizzard-api/wow/pvp-tier';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
   pvpTierIndexResponseSchema,
@@ -19,7 +19,7 @@ describe('wow pvp-tier integration', async () => {
     const index = await client.sendRequest(pvpTierIndex());
     const parsedIndex = pvpTierIndexResponseSchema.safeParse(index);
     if (!parsedIndex.success) {
-      console.error('PvP tier index validation failed:', treeifyError(parsedIndex.error));
+      console.error('PvP tier index validation failed:', prettifyError(parsedIndex.error));
     }
     expect(parsedIndex.success).toBe(true);
 
@@ -42,7 +42,7 @@ describe('wow pvp-tier integration', async () => {
     for (const d of details) {
       const parsed = pvpTierResponseSchema.safeParse(d);
       if (!parsed.success) {
-        console.error('PvP tier detail validation failed for id', d?.id, treeifyError(parsed.error));
+        console.error('PvP tier detail validation failed for id', d?.id, prettifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
     }
@@ -51,7 +51,7 @@ describe('wow pvp-tier integration', async () => {
     for (const m of medias) {
       const parsed = pvpTierMediaResponseSchema.safeParse(m);
       if (!parsed.success) {
-        console.error('PvP tier media validation failed for id', m?.id, treeifyError(parsed.error));
+        console.error('PvP tier media validation failed for id', m?.id, prettifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
     }

@@ -7,7 +7,7 @@ import {
   modifiedCraftingReagentSlotTypeIndex,
 } from '@blizzard-api/wow/modified-crafting';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
   modifiedCraftingCategoryIndexResponseSchema,
@@ -27,7 +27,7 @@ describe('wow modified-crafting integration', async () => {
     const index = await client.sendRequest(modifiedCraftingCategoryIndex());
     const parsed = modifiedCraftingCategoryIndexResponseSchema.safeParse(index);
     if (!parsed.success) {
-      console.error('Modified crafting category index validation failed:', treeifyError(parsed.error));
+      console.error('Modified crafting category index validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
 
@@ -48,7 +48,7 @@ describe('wow modified-crafting integration', async () => {
         console.error(
           'Modified crafting category detail validation failed:',
           category?.id,
-          treeifyError(parsedCategory.error),
+          prettifyError(parsedCategory.error),
         );
       }
       expect(parsedCategory.success).toBe(true);
@@ -59,7 +59,7 @@ describe('wow modified-crafting integration', async () => {
     const index = await client.sendRequest(modifiedCraftingIndex());
     const parsed = modifiedCraftingIndexResponseSchema.safeParse(index);
     if (!parsed.success) {
-      console.error('Modified crafting index validation failed:', treeifyError(parsed.error));
+      console.error('Modified crafting index validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
 
@@ -68,7 +68,7 @@ describe('wow modified-crafting integration', async () => {
     if (!parsedSlotIndex.success) {
       console.error(
         'Modified crafting reagent slot type index validation failed:',
-        treeifyError(parsedSlotIndex.error),
+        prettifyError(parsedSlotIndex.error),
       );
     }
     expect(parsedSlotIndex.success).toBe(true);
@@ -81,7 +81,7 @@ describe('wow modified-crafting integration', async () => {
         console.error(
           'Modified crafting reagent slot type detail validation failed:',
           slotTypes[0]!.id,
-          treeifyError(parsedSlotType.error),
+          prettifyError(parsedSlotType.error),
         );
       }
       expect(parsedSlotType.success).toBe(true);

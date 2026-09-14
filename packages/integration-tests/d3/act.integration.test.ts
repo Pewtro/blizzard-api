@@ -1,6 +1,7 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { d3 } from '@blizzard-api/d3';
 import { describe, test } from 'vitest';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import { actIndexResponseSchema, actResponseSchema } from '../../../generated/schemas/d3';
 
@@ -15,7 +16,7 @@ describe('d3 act integration', async () => {
     const response = await client.sendRequest(d3.actIndex());
     const parsedResponse = actIndexResponseSchema.safeParse(response);
     if (!parsedResponse.success) {
-      console.error('Act index response validation failed:', parsedResponse.error);
+      console.error('Act index response validation failed:', prettifyError(parsedResponse.error));
     }
     expect(parsedResponse.success).toBe(true);
 
@@ -25,7 +26,11 @@ describe('d3 act integration', async () => {
     for (const actDetails of actDetailsResponses) {
       const parsedActDetails = actResponseSchema.safeParse(actDetails);
       if (!parsedActDetails.success) {
-        console.error('Act details validation failed for act id', actDetails?.number, parsedActDetails.error);
+        console.error(
+          'Act details validation failed for act id',
+          actDetails?.number,
+          prettifyError(parsedActDetails.error),
+        );
       }
       expect(parsedActDetails.success).toBe(true);
     }

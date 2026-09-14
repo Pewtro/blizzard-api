@@ -1,6 +1,7 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { d3 } from '@blizzard-api/d3';
 import { describe, test } from 'vitest';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import { itemTypeIndexResponseSchema, itemTypeResponseSchema } from '../../../generated/schemas/d3';
 
@@ -15,7 +16,7 @@ describe('d3 item-type integration', async () => {
     const response = await client.sendRequest(d3.itemTypeIndex());
     const parsedResponse = itemTypeIndexResponseSchema.safeParse(response);
     if (!parsedResponse.success) {
-      console.error('Item type index validation failed:', parsedResponse.error);
+      console.error('Item type index validation failed:', prettifyError(parsedResponse.error));
     }
     expect(parsedResponse.success).toBe(true);
 
@@ -28,7 +29,11 @@ describe('d3 item-type integration', async () => {
     const itemTypeResponse = await client.sendRequest(d3.itemType(randomItemTypeSlug!));
     const itemTypeParsedResponse = itemTypeResponseSchema.safeParse(itemTypeResponse);
     if (!itemTypeParsedResponse.success) {
-      console.error('Item type validation failed for slug:', randomItemTypeSlug, itemTypeParsedResponse.error);
+      console.error(
+        'Item type validation failed for slug:',
+        randomItemTypeSlug,
+        prettifyError(itemTypeParsedResponse.error),
+      );
     }
     expect(itemTypeParsedResponse.success).toBe(true);
   });

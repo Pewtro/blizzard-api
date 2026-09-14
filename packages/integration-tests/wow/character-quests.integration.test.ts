@@ -1,7 +1,7 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { characterCompletedQuests, characterQuests } from '@blizzard-api/wow/character-quests';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import { characterCompletedQuestsResponseSchema, characterQuestsResponseSchema } from '../../../generated/schemas/wow';
 
@@ -17,7 +17,7 @@ describe('wow character-quests integration', async () => {
     const resp = await client.sendRequest(characterQuests(realm, character));
     const parsed = characterQuestsResponseSchema.safeParse(resp);
     if (!parsed.success) {
-      console.error('Character quests validation failed:', treeifyError(parsed.error));
+      console.error('Character quests validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
   });
@@ -26,7 +26,7 @@ describe('wow character-quests integration', async () => {
     const completed = await client.sendRequest(characterCompletedQuests(realm, character));
     const parsedCompleted = characterCompletedQuestsResponseSchema.safeParse(completed);
     if (!parsedCompleted.success) {
-      console.error('Character completed quests validation failed:', treeifyError(parsedCompleted.error));
+      console.error('Character completed quests validation failed:', prettifyError(parsedCompleted.error));
     }
     expect(parsedCompleted.success).toBe(true);
   });

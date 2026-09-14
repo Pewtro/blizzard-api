@@ -1,6 +1,7 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { sc2 } from '@blizzard-api/sc2';
 import { describe, test } from 'vitest';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
   legacyAchievementsResponseSchema,
@@ -22,7 +23,7 @@ describe('sc2 legacy integration', async () => {
     const response = await client.sendRequest(sc2.legacyAchievements('eu'));
     const parsedResponse = legacyAchievementsResponseSchema.safeParse(response);
     if (!parsedResponse.success) {
-      console.error('Legacy Achievements failed', parsedResponse.error);
+      console.error('Legacy Achievements failed', prettifyError(parsedResponse.error));
     }
     expect(parsedResponse.success).toBe(true);
   });
@@ -31,7 +32,7 @@ describe('sc2 legacy integration', async () => {
     const response = await client.sendRequest(sc2.legacyLadder('eu', 235_782));
     const parsedResponse = singleLegacyLadderResponseSchema.safeParse(response);
     if (!parsedResponse.success) {
-      console.error('Legacy Ladder failed', parsedResponse.error);
+      console.error('Legacy Ladder failed', prettifyError(parsedResponse.error));
     }
     expect(parsedResponse.success).toBe(true);
     expect(response).toBeDefined();
@@ -41,7 +42,7 @@ describe('sc2 legacy integration', async () => {
     const response = await client.sendRequest(sc2.legacyLadders('eu', 1, 9_500_381));
     const parsedResponse = legacyLaddersResponseSchema.safeParse(response);
     if (!parsedResponse.success) {
-      console.error('Legacy Ladders failed', parsedResponse.error);
+      console.error('Legacy Ladders failed', prettifyError(parsedResponse.error));
     }
     expect(parsedResponse.success).toBe(true);
   });
@@ -50,7 +51,7 @@ describe('sc2 legacy integration', async () => {
     const response = await client.sendRequest(sc2.legacyMatchHistory('eu', 1, 9_500_381));
     const parsedResponse = legacyMatchHistoryResponseSchema.safeParse(response);
     if (!parsedResponse.success) {
-      console.error('Legacy Match History failed', parsedResponse.error);
+      console.error('Legacy Match History failed', prettifyError(parsedResponse.error));
     }
     expect(parsedResponse.success).toBe(true);
   });
@@ -59,7 +60,7 @@ describe('sc2 legacy integration', async () => {
     const response = await client.sendRequest(sc2.legacyProfile('eu', 1, 9_500_381));
     const parsedResponse = legacyProfileResponseSchema.safeParse(response);
     if (!parsedResponse.success) {
-      console.error('Legacy Profile failed', parsedResponse.error);
+      console.error('Legacy Profile failed', prettifyError(parsedResponse.error));
     }
     expect(parsedResponse.success).toBe(true);
   });
@@ -68,7 +69,7 @@ describe('sc2 legacy integration', async () => {
     const response = await client.sendRequest(sc2.legacyRewards('eu'));
     const parsedResponse = legacyRewardsResponseSchema.safeParse(response);
     if (!parsedResponse.success) {
-      console.error('Legacy Rewards failed', parsedResponse.error);
+      console.error('Legacy Rewards failed', prettifyError(parsedResponse.error));
     }
     expect(parsedResponse.success).toBe(true);
   });

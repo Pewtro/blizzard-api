@@ -1,7 +1,7 @@
 import { characterStatisticsSummary } from '@blizzard-api/classic-wow/character-statistics';
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import { characterStatisticsSummaryResponseSchema } from '../../../generated/schemas/classic-wow';
 
@@ -19,7 +19,7 @@ describe('classic-wow character statistics integration', async () => {
     const resp = await client.sendRequest(characterStatisticsSummary('profile-classic', realm, character));
     const parsed = characterStatisticsSummaryResponseSchema.safeParse(resp);
     if (!parsed.success) {
-      console.error('Character statistics summary validation failed:', realm, character, treeifyError(parsed.error));
+      console.error('Character statistics summary validation failed:', realm, character, prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
   });

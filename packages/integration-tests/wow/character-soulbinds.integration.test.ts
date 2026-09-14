@@ -1,7 +1,7 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { characterSoulbinds } from '@blizzard-api/wow/character-soulbinds';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import { characterSoulbindsResponseSchema } from '../../../generated/schemas/wow';
 
@@ -17,7 +17,7 @@ describe('wow character-soulbinds integration', async () => {
     const resp = await client.sendRequest(characterSoulbinds(realm, character));
     const parsed = characterSoulbindsResponseSchema.safeParse(resp);
     if (!parsed.success) {
-      console.error('Character soulbinds validation failed:', treeifyError(parsed.error));
+      console.error('Character soulbinds validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
   });

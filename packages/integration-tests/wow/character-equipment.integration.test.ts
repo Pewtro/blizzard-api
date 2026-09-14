@@ -1,7 +1,7 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { characterEquipmentSummary } from '@blizzard-api/wow/character-equipment';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import { characterEquipmentSummaryResponseSchema } from '../../../generated/schemas/wow';
 
@@ -18,7 +18,7 @@ describe('wow character equipment integration', async () => {
     const resp = await client.sendRequest(characterEquipmentSummary(realm, character));
     const parsed = characterEquipmentSummaryResponseSchema.safeParse(resp);
     if (!parsed.success) {
-      console.error('Character equipment summary validation failed:', treeifyError(parsed.error));
+      console.error('Character equipment summary validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
   });

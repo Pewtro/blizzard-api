@@ -1,7 +1,7 @@
 import { characterHunterPetsSummary } from '@blizzard-api/classic-wow/character-hunter-pets';
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import { characterHunterPetsSummaryResponseSchema } from '../../../generated/schemas/classic-wow';
 
@@ -19,7 +19,7 @@ describe('classic-wow character hunter pets integration', async () => {
     const resp = await client.sendRequest(characterHunterPetsSummary('profile-classic', realm, character));
     const parsed = characterHunterPetsSummaryResponseSchema.safeParse(resp);
     if (!parsed.success) {
-      console.error('Character hunter pets summary validation failed:', realm, character, treeifyError(parsed.error));
+      console.error('Character hunter pets summary validation failed:', realm, character, prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
   });

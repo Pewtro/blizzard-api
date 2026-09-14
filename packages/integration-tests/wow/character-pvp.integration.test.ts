@@ -1,7 +1,7 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { characterPvpBracketStatistics, characterPvpSummary } from '@blizzard-api/wow/character-pvp';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
   characterPvpBracketStatisticsResponseSchema,
@@ -20,7 +20,7 @@ describe('wow character-pvp integration', async () => {
     const resp = await client.sendRequest(characterPvpSummary(realm, character));
     const parsed = characterPvpSummaryResponseSchema.safeParse(resp);
     if (!parsed.success) {
-      console.error('Character pvp summary validation failed:', treeifyError(parsed.error));
+      console.error('Character pvp summary validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
   });
@@ -32,7 +32,7 @@ describe('wow character-pvp integration', async () => {
     const bracketResp = await client.sendRequest(characterPvpBracketStatistics(realm, character, '2v2'));
     const parsedBracket = characterPvpBracketStatisticsResponseSchema.safeParse(bracketResp);
     if (!parsedBracket.success) {
-      console.error('Character pvp bracket validation failed:', treeifyError(parsedBracket.error));
+      console.error('Character pvp bracket validation failed:', prettifyError(parsedBracket.error));
     }
     expect(parsedBracket.success).toBe(true);
   });

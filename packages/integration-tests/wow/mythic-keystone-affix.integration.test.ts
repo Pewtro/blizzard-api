@@ -5,7 +5,7 @@ import {
   mythicKeystoneAffixMedia,
 } from '@blizzard-api/wow/mythic-keystone-affix';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
   mythicKeystoneAffixIndexResponseSchema,
@@ -23,7 +23,7 @@ describe('wow mythic-keystone-affix integration', async () => {
     const index = await client.sendRequest(mythicKeystoneAffixIndex());
     const parsedIndex = mythicKeystoneAffixIndexResponseSchema.safeParse(index);
     if (!parsedIndex.success) {
-      console.error('Mythic keystone affix index validation failed:', treeifyError(parsedIndex.error));
+      console.error('Mythic keystone affix index validation failed:', prettifyError(parsedIndex.error));
     }
     expect(parsedIndex.success).toBe(true);
 
@@ -47,7 +47,7 @@ describe('wow mythic-keystone-affix integration', async () => {
     for (const d of details) {
       const parsed = mythicKeystoneAffixResponseSchema.safeParse(d);
       if (!parsed.success) {
-        console.error('Mythic keystone affix detail validation failed for id', d?.id, treeifyError(parsed.error));
+        console.error('Mythic keystone affix detail validation failed for id', d?.id, prettifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
     }
@@ -56,7 +56,7 @@ describe('wow mythic-keystone-affix integration', async () => {
     for (const m of medias) {
       const parsed = mythicKeystoneAffixMediaResponseSchema.safeParse(m);
       if (!parsed.success) {
-        console.error('Mythic keystone affix media validation failed for id', m?.id, treeifyError(parsed.error));
+        console.error('Mythic keystone affix media validation failed for id', m?.id, prettifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
     }

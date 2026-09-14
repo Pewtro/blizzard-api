@@ -1,7 +1,7 @@
 import { playableClass, playableClassIndex, playableClassMedia } from '@blizzard-api/classic-wow/playable-class';
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { describe, test } from 'vitest';
-import { treeifyError } from 'zod';
+import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import { playableClassMediaResponseSchema, playableClassResponseSchema } from '../../../generated/schemas/classic-wow';
 
@@ -26,7 +26,7 @@ describe('classic-wow playable class integration', async () => {
     for (const resp of responses) {
       const parsed = playableClassResponseSchema.safeParse(resp);
       if (!parsed.success) {
-        console.error('Playable class validation failed:', treeifyError(parsed.error));
+        console.error('Playable class validation failed:', prettifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
     }
@@ -35,7 +35,7 @@ describe('classic-wow playable class integration', async () => {
       const mediaParsed = playableClassMediaResponseSchema.safeParse(mediaResp);
 
       if (!mediaParsed.success) {
-        console.error('Playable class media validation failed:', treeifyError(mediaParsed.error));
+        console.error('Playable class media validation failed:', prettifyError(mediaParsed.error));
       }
       expect(mediaParsed.success).toBe(true);
     }
@@ -54,7 +54,7 @@ describe('classic-wow playable class integration', async () => {
     for (const resp of responses) {
       const parsed = playableClassResponseSchema.safeParse(resp);
       if (!parsed.success) {
-        console.error('Playable class validation failed:', treeifyError(parsed.error));
+        console.error('Playable class validation failed:', prettifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
     }
@@ -63,7 +63,7 @@ describe('classic-wow playable class integration', async () => {
       const mediaParsed = playableClassMediaResponseSchema.safeParse(mediaResp);
 
       if (!mediaParsed.success) {
-        console.error('Playable class media validation failed:', treeifyError(mediaParsed.error));
+        console.error('Playable class media validation failed:', prettifyError(mediaParsed.error));
       }
       expect(mediaParsed.success).toBe(true);
     }
