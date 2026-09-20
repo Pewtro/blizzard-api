@@ -45,8 +45,8 @@
   "devDependencies": {
     "@arethetypeswrong/core": "0.18.5",
     "@changesets/cli": "3.0.2",
-    "@putstack/eslint-config-typescript": "5.3.1",
-    "@putstack/oxfmt-config": "^0.1.0",
+    "@putstack/eslint-config-typescript": "5.4.0",
+    "@putstack/oxfmt-config": "0.2.0",
     "@types/node": "26.5.1",
     "@vitest/coverage-v8": "5.0.0",
     "@vitest/ui": "5.0.0",
