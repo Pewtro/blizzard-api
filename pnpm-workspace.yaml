@@ -6,6 +6,8 @@ allowBuilds:
   lefthook: true
   unrs-resolver: true
 
+saveExact: true
+
 # 3 day cooldown
 minimumReleaseAge: 4320
 minimumReleaseAgeExclude:

@@ -54,7 +54,7 @@
     "eslint-plugin-jsdoc": "64.3.9",
     "lefthook": "2.1.12",
     "npm-run-all2": "9.0.3",
-    "oxfmt": "^0.68.0",
+    "oxfmt": "0.68.0",
     "publint": "0.3.24",
     "ts-to-zod": "5.1.0",
     "tsdown": "0.23.0",
