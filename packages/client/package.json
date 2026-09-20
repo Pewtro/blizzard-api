@@ -1,18 +1,37 @@
 {
   "name": "@blizzard-api/client",
   "version": "5.4.0",
+  "description": "A node.js client to integrate with the blizzard battle.net api.",
+  "keywords": [
+    "api",
+    "battle.net",
+    "battlenet",
+    "blizzard",
+    "bnet",
+    "classic",
+    "d3",
+    "diablo",
+    "hearthstone",
+    "hs",
+    "retail",
+    "sc2",
+    "starcraft",
+    "warcraft",
+    "world of warcraft",
+    "wow"
+  ],
   "license": "MIT",
   "author": "Putro",
-  "description": "A node.js client to integrate with the blizzard battle.net api.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Pewtro/blizzard-api.git",
     "directory": "packages/client"
   },
+  "files": [
+    "dist"
+  ],
   "type": "module",
-  "engines": {
-    "node": "^22.13.0 || ^24 || ^26"
-  },
+  "sideEffects": false,
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
@@ -22,33 +41,15 @@
       "default": "./dist/index.js"
     }
   },
-  "files": [
-    "dist"
-  ],
-  "sideEffects": false,
-  "keywords": [
-    "blizzard",
-    "battlenet",
-    "battle.net",
-    "bnet",
-    "api",
-    "world of warcraft",
-    "warcraft",
-    "wow",
-    "classic",
-    "retail",
-    "starcraft",
-    "sc2",
-    "diablo",
-    "d3",
-    "hs",
-    "hearthstone"
-  ],
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "test": "vitest run",
+    "test:coverage": "pnpm test -- --coverage",
+    "test:watch": "vitest watch"
+  },
   "dependencies": {
     "ky": "2.1.0"
-  },
-  "peerDependencies": {
-    "@blizzard-api/core": "4.1.2"
   },
   "devDependencies": {
     "@blizzard-api/classic-wow": "workspace:*",
@@ -58,11 +59,10 @@
     "@blizzard-api/sc2": "workspace:*",
     "@blizzard-api/wow": "workspace:*"
   },
-  "scripts": {
-    "build": "tsdown",
-    "dev": "tsdown --watch",
-    "test": "vitest run",
-    "test:coverage": "pnpm test -- --coverage",
-    "test:watch": "vitest watch"
+  "peerDependencies": {
+    "@blizzard-api/core": "4.1.2"
+  },
+  "engines": {
+    "node": "^22.13.0 || ^24 || ^26"
   }
 }

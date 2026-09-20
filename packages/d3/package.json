@@ -1,18 +1,29 @@
 {
   "name": "@blizzard-api/d3",
   "version": "3.1.1",
+  "description": "A series of helpers to interact with the Diablo 3 Blizzard API",
+  "keywords": [
+    "api",
+    "battle.net",
+    "battlenet",
+    "blizzard",
+    "bnet",
+    "diablo",
+    "diablo 3",
+    "diablo III"
+  ],
   "license": "MIT",
   "author": "Putro",
-  "description": "A series of helpers to interact with the Diablo 3 Blizzard API",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Pewtro/blizzard-api.git",
     "directory": "packages/d3"
   },
+  "files": [
+    "dist"
+  ],
   "type": "module",
-  "engines": {
-    "node": "^22.13.0 || ^24 || ^26"
-  },
+  "sideEffects": false,
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
@@ -27,33 +38,21 @@
       "default": "./dist/*/index.js"
     }
   },
-  "files": [
-    "dist"
-  ],
-  "sideEffects": false,
-  "keywords": [
-    "blizzard",
-    "battlenet",
-    "battle.net",
-    "bnet",
-    "api",
-    "diablo",
-    "diablo",
-    "diablo 3",
-    "diablo III"
-  ],
-  "dependencies": {},
-  "peerDependencies": {
-    "@blizzard-api/core": "4.1.2"
-  },
-  "devDependencies": {
-    "@blizzard-api/core": "workspace:*"
-  },
   "scripts": {
     "build": "tsdown",
     "dev": "tsdown --watch",
     "test": "vitest run",
     "test:coverage": "pnpm test -- --coverage",
     "test:watch": "vitest watch"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@blizzard-api/core": "workspace:*"
+  },
+  "peerDependencies": {
+    "@blizzard-api/core": "4.1.2"
+  },
+  "engines": {
+    "node": "^22.13.0 || ^24 || ^26"
   }
 }

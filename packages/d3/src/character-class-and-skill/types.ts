@@ -1,5 +1,11 @@
 export type CharacterClass =
-  'barbarian' | 'crusader' | 'demon-hunter' | 'monk' | 'necromancer' | 'witch-doctor' | 'wizard';
+  | 'barbarian'
+  | 'crusader'
+  | 'demon-hunter'
+  | 'monk'
+  | 'necromancer'
+  | 'witch-doctor'
+  | 'wizard';
 
 export interface CharacterClassResponse {
   femaleName: string;

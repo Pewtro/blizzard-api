@@ -4,7 +4,7 @@ import { defineConfig } from 'eslint/config';
 
 export default defineConfig(
   {
-    ignores: ['**/coverage/**', '**/dist/**', '**/node_modules/**', '**/build/**', '**/docs/**', '!.prettierrc.js'],
+    ignores: ['**/coverage/**', '**/dist/**', '**/node_modules/**', '**/build/**', '**/docs/**'],
   },
   {
     languageOptions: {

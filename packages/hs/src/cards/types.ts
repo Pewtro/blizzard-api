@@ -73,7 +73,14 @@ interface BaseSearchParameters {
   rarity?: string;
   set?: string;
   sort?:
-    'attack:asc' | 'attack:desc' | 'health:asc' | 'health:desc' | 'name:asc' | 'name:desc' | 'tier:asc' | 'tier:desc';
+    | 'attack:asc'
+    | 'attack:desc'
+    | 'health:asc'
+    | 'health:desc'
+    | 'name:asc'
+    | 'name:desc'
+    | 'tier:asc'
+    | 'tier:desc';
   spellSchool?: string;
   textFilter?: string;
   type?: string;

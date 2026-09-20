@@ -37,7 +37,19 @@ export interface RealmIndexResponse extends ResponseBase {
 }
 
 export type RealmLocales =
-  'deDE' | 'enGB' | 'enUS' | 'esES' | 'esMX' | 'frFR' | 'itIT' | 'koKR' | 'ptBR' | 'ptPT' | 'ruRU' | 'zhCN' | 'zhTW';
+  | 'deDE'
+  | 'enGB'
+  | 'enUS'
+  | 'esES'
+  | 'esMX'
+  | 'frFR'
+  | 'itIT'
+  | 'koKR'
+  | 'ptBR'
+  | 'ptPT'
+  | 'ruRU'
+  | 'zhCN'
+  | 'zhTW';
 
 /**
  * The response for a realm.

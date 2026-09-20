@@ -1,18 +1,37 @@
 {
   "name": "@blizzard-api/core",
   "version": "4.1.2",
+  "description": "The core helpers used by all @blizzard-api/* packages.",
+  "keywords": [
+    "api",
+    "battle.net",
+    "battlenet",
+    "blizzard",
+    "bnet",
+    "classic",
+    "d3",
+    "diablo",
+    "hearthstone",
+    "hs",
+    "retail",
+    "sc2",
+    "starcraft",
+    "warcraft",
+    "world of warcraft",
+    "wow"
+  ],
   "license": "MIT",
   "author": "Putro",
-  "description": "The core helpers used by all @blizzard-api/* packages.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Pewtro/blizzard-api.git",
     "directory": "packages/core"
   },
+  "files": [
+    "dist"
+  ],
   "type": "module",
-  "engines": {
-    "node": "^22.13.0 || ^24 || ^26"
-  },
+  "sideEffects": false,
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
@@ -22,35 +41,16 @@
       "default": "./dist/index.js"
     }
   },
-  "files": [
-    "dist"
-  ],
-  "sideEffects": false,
-  "keywords": [
-    "blizzard",
-    "battlenet",
-    "battle.net",
-    "bnet",
-    "api",
-    "world of warcraft",
-    "warcraft",
-    "wow",
-    "classic",
-    "retail",
-    "starcraft",
-    "sc2",
-    "diablo",
-    "d3",
-    "hs",
-    "hearthstone"
-  ],
-  "dependencies": {},
-  "devDependencies": {},
   "scripts": {
     "build": "tsdown",
     "dev": "tsdown --watch",
     "test": "vitest run",
     "test:coverage": "pnpm test -- --coverage",
     "test:watch": "vitest watch"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "engines": {
+    "node": "^22.13.0 || ^24 || ^26"
   }
 }

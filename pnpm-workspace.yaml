@@ -10,3 +10,4 @@ allowBuilds:
 minimumReleaseAge: 4320
 minimumReleaseAgeExclude:
   - '@putstack/eslint-config-typescript'
+  - '@putstack/oxfmt-config'

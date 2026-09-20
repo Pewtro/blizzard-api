@@ -58,7 +58,7 @@ jobs:
       - name: Turbo build
         run: pnpm build
 
-      - name: Lint, Prettier, and Typecheck
+      - name: Lint, Format, and Typecheck
         run: pnpm lint:ci
 
       - name: Test packages
