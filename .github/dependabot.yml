@@ -3,10 +3,10 @@ updates:
   - package-ecosystem: 'npm'
     directory: '/'
     schedule:
-      interval: 'weekly'
-      day: 'monday'
-      time: '09:00'
-      timezone: 'UTC'
+      interval: 'daily'
+      #day: 'monday'
+      #time: '09:00'
+      #timezone: 'UTC'
     cooldown:
       default-days: 3
     open-pull-requests-limit: 10
