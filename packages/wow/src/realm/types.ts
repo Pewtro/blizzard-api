@@ -108,7 +108,7 @@ interface RealmSearchResponseItem extends KeyBase {
     id: number;
     is_tournament: boolean;
     locale: RealmLocales;
-    name: Record<Locales, string>;
+    name: Record<Locales, string | undefined>;
     region: { id: number; name: Record<Locales, string> };
     slug: string;
     timezone: RealmTimezone;

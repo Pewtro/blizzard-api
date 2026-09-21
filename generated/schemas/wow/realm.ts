@@ -70,7 +70,7 @@ const realmSearchResponseItemSchema = keyBaseSchema.extend({
     id: z.number(),
     is_tournament: z.boolean(),
     locale: realmLocalesSchema,
-    name: z.record(localesSchema, z.string()),
+    name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
     region: z.strictObject({
       id: z.number(),
       name: z.record(localesSchema, z.string()),
