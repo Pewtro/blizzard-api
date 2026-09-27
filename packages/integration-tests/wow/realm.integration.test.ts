@@ -24,15 +24,14 @@ describe('wow realm integration', async () => {
     expect(parsed.success).toBe(true);
 
     // eslint-disable-next-line sonarjs/pseudo-random
-    const randomRealm = resp!.realms[Math.random() * resp!.realms.length];
-    if (randomRealm) {
-      const realmResp = await client.sendRequest(realm(randomRealm.slug));
-      const parsedRealm = realmResponseSchema.safeParse(realmResp);
-      if (!parsedRealm.success) {
-        console.error('Realm detail validation failed:', randomRealm.slug, prettifyError(parsedRealm.error));
-      }
-      expect(parsedRealm.success).toBe(true);
+    const randomRealm = resp!.realms[Math.floor(Math.random() * resp!.realms.length)];
+    expect(randomRealm).toBeDefined();
+    const realmResp = await client.sendRequest(realm(randomRealm!.slug));
+    const parsedRealm = realmResponseSchema.safeParse(realmResp);
+    if (!parsedRealm.success) {
+      console.error('Realm detail validation failed:', randomRealm!.slug, prettifyError(parsedRealm.error));
     }
+    expect(parsedRealm.success).toBe(true);
   });
 
   test('validates realm search', async ({ expect }) => {

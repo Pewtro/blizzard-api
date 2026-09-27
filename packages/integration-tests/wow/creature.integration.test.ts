@@ -86,14 +86,13 @@ describe('wow creature integration', async () => {
     }
     expect(parsed.success).toBe(true);
 
-    const first = parsed.success ? parsed.data.creature_types[0] : undefined;
-    if (first) {
-      const detail = await client.sendRequest(creatureType(first.id));
-      const parsedDetail = creatureTypeResponseSchema.safeParse(detail);
-      if (!parsedDetail.success) {
-        console.error('Creature type detail validation failed:', first.id, prettifyError(parsedDetail.error));
-      }
-      expect(parsedDetail.success).toBe(true);
+    const first = parsed.data!.creature_types[0]!;
+    expect(first).toBeDefined();
+    const detail = await client.sendRequest(creatureType(first.id));
+    const parsedDetail = creatureTypeResponseSchema.safeParse(detail);
+    if (!parsedDetail.success) {
+      console.error('Creature type detail validation failed:', first.id, prettifyError(parsedDetail.error));
     }
+    expect(parsedDetail.success).toBe(true);
   });
 });

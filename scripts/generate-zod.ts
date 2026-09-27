@@ -52,7 +52,9 @@ function rewriteImportPaths(content: string, outputFilePath: string): string {
 
 async function run(): Promise<void> {
   // Iterate packages/* and generate for each package that has a `src` folder
-  const packageEntries = await fs.readdir(packagesDirectory, { withFileTypes: true });
+  const packageEntries = await fs.readdir(packagesDirectory, {
+    withFileTypes: true,
+  });
   for (const packageEntry of packageEntries) {
     if (!packageEntry.isDirectory()) continue;
     const packageName = packageEntry.name;
@@ -106,10 +108,8 @@ async function run(): Promise<void> {
           outPath,
         );
 
-        if (generator.errors.length > 0) {
-          for (const error of generator.errors) {
-            console.error(error);
-          }
+        for (const error of generator.errors) {
+          console.error(error);
         }
 
         await fs.writeFile(outPath, schema, 'utf8');

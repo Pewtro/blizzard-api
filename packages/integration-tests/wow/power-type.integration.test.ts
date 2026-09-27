@@ -19,14 +19,13 @@ describe('wow power type integration', async () => {
     }
     expect(parsed.success).toBe(true);
 
-    const first = parsed.success ? parsed.data.power_types[0] : undefined;
-    if (first) {
-      const type = await client.sendRequest(powerType(first.id));
-      const parsedType = powerTypeResponseSchema.safeParse(type);
-      if (!parsedType.success) {
-        console.error('Power type detail validation failed:', prettifyError(parsedType.error));
-      }
-      expect(parsedType.success).toBe(true);
+    const first = parsed.data!.power_types[0];
+    expect(first).toBeDefined();
+    const type = await client.sendRequest(powerType(first!.id));
+    const parsedType = powerTypeResponseSchema.safeParse(type);
+    if (!parsedType.success) {
+      console.error('Power type detail validation failed:', prettifyError(parsedType.error));
     }
+    expect(parsedType.success).toBe(true);
   });
 });

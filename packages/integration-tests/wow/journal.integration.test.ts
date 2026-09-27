@@ -149,14 +149,12 @@ describe('wow journal integration', async () => {
     }
     expect(parsedExp.success).toBe(true);
 
-    const instances = parsedExp.success ? parsedExp.data.instances : [];
-    if (instances.length > 0) {
-      const media = await client.sendRequest(journalInstanceMedia(instances[0]!.id));
-      const parsedMedia = journalInstanceMediaResponseSchema.safeParse(media);
-      if (!parsedMedia.success) {
-        console.error('Journal instance media validation failed:', instances[0]!.id, prettifyError(parsedMedia.error));
-      }
-      expect(parsedMedia.success).toBe(true);
+    const instances = parsedExp.data!.instances;
+    const media = await client.sendRequest(journalInstanceMedia(instances[0]!.id));
+    const parsedMedia = journalInstanceMediaResponseSchema.safeParse(media);
+    if (!parsedMedia.success) {
+      console.error('Journal instance media validation failed:', instances[0]!.id, prettifyError(parsedMedia.error));
     }
+    expect(parsedMedia.success).toBe(true);
   });
 });

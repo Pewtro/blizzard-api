@@ -91,14 +91,12 @@ describe('wow quest integration', async () => {
     }
     expect(parsedTypeIndex.success).toBe(true);
 
-    const types = parsedTypeIndex.success ? parsedTypeIndex.data.types : [];
-    if (types.length > 0) {
-      const type = await client.sendRequest(questType(types[0]!.id));
-      const parsedType = questTypeResponseSchema.safeParse(type);
-      if (!parsedType.success) {
-        console.error('Quest type detail validation failed:', types[0]!.id, prettifyError(parsedType.error));
-      }
-      expect(parsedType.success).toBe(true);
+    const types = parsedTypeIndex.data!.types;
+    const type = await client.sendRequest(questType(types[0]!.id));
+    const parsedType = questTypeResponseSchema.safeParse(type);
+    if (!parsedType.success) {
+      console.error('Quest type detail validation failed:', types[0]!.id, prettifyError(parsedType.error));
     }
+    expect(parsedType.success).toBe(true);
   });
 });

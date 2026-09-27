@@ -73,18 +73,17 @@ describe('wow modified-crafting integration', async () => {
     }
     expect(parsedSlotIndex.success).toBe(true);
 
-    const slotTypes = parsedSlotIndex.success ? parsedSlotIndex.data.slot_types : [];
-    if (slotTypes.length > 0) {
-      const slotType = await client.sendRequest(modifiedCraftingReagentSlotType(slotTypes[0]!.id));
-      const parsedSlotType = modifiedCraftingReagentSlotTypeResponseSchema.safeParse(slotType);
-      if (!parsedSlotType.success) {
-        console.error(
-          'Modified crafting reagent slot type detail validation failed:',
-          slotTypes[0]!.id,
-          prettifyError(parsedSlotType.error),
-        );
-      }
-      expect(parsedSlotType.success).toBe(true);
+    const slotTypes = parsedSlotIndex.data!.slot_types;
+    expect(slotTypes.length).toBeGreaterThan(0);
+    const slotType = await client.sendRequest(modifiedCraftingReagentSlotType(slotTypes[0]!.id));
+    const parsedSlotType = modifiedCraftingReagentSlotTypeResponseSchema.safeParse(slotType);
+    if (!parsedSlotType.success) {
+      console.error(
+        'Modified crafting reagent slot type detail validation failed:',
+        slotTypes[0]!.id,
+        prettifyError(parsedSlotType.error),
+      );
     }
+    expect(parsedSlotType.success).toBe(true);
   });
 });

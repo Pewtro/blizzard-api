@@ -89,15 +89,14 @@ describe('wow item integration', async () => {
     }
     expect(parsedSetIndex.success).toBe(true);
 
-    const first = parsedSetIndex.success ? parsedSetIndex.data.item_sets[0] : undefined;
-    if (first) {
-      const set = await client.sendRequest(itemSet(first.id));
-      const parsedSet = itemSetResponseSchema.safeParse(set);
-      if (!parsedSet.success) {
-        console.error('Item set detail validation failed:', first.id, prettifyError(parsedSet.error));
-      }
-      expect(parsedSet.success).toBe(true);
+    const first = parsedSetIndex.data!.item_sets[0]!;
+    expect(first).toBeDefined();
+    const set = await client.sendRequest(itemSet(first.id));
+    const parsedSet = itemSetResponseSchema.safeParse(set);
+    if (!parsedSet.success) {
+      console.error('Item set detail validation failed:', first.id, prettifyError(parsedSet.error));
     }
+    expect(parsedSet.success).toBe(true);
   });
 
   test('validates item search', async ({ expect }) => {

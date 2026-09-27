@@ -19,14 +19,13 @@ describe('wow heirloom integration', async () => {
     }
     expect(parsed.success).toBe(true);
 
-    const first = parsed.success ? parsed.data.heirlooms[0] : undefined;
-    if (first) {
-      const item = await client.sendRequest(heirloom(first.id));
-      const parsedItem = heirloomResponseSchema.safeParse(item);
-      if (!parsedItem.success) {
-        console.error('Heirloom detail validation failed:', first.id, prettifyError(parsedItem.error));
-      }
-      expect(parsedItem.success).toBe(true);
+    const first = parsed.data!.heirlooms[0]!;
+    expect(first).toBeDefined();
+    const item = await client.sendRequest(heirloom(first.id));
+    const parsedItem = heirloomResponseSchema.safeParse(item);
+    if (!parsedItem.success) {
+      console.error('Heirloom detail validation failed:', first.id, prettifyError(parsedItem.error));
     }
+    expect(parsedItem.success).toBe(true);
   });
 });

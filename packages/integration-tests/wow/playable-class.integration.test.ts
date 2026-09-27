@@ -29,32 +29,31 @@ describe('wow playable class integration', async () => {
     }
     expect(parsedIndex.success).toBe(true);
 
-    const first = parsedIndex.success ? parsedIndex.data.classes[0] : undefined;
-    if (first) {
-      const resp = await client.sendRequest(playableClass(first.id));
-      const parsed = playableClassResponseSchema.safeParse(resp);
-      if (!parsed.success) {
-        console.error('Playable class validation failed:', first.id, prettifyError(parsed.error));
-      }
-      expect(parsed.success).toBe(true);
-
-      const media = await client.sendRequest(playableClassMedia(first.id));
-      const parsedMedia = playableClassMediaResponseSchema.safeParse(media);
-      if (!parsedMedia.success) {
-        console.error('Playable class media validation failed:', first.id, prettifyError(parsedMedia.error));
-      }
-      expect(parsedMedia.success).toBe(true);
-
-      const pvpSlots = await client.sendRequest(pvpTalentSlots(first.id));
-      const parsedPvpSlots = pvpTalentSlotsResponseSchema.safeParse(pvpSlots);
-      if (!parsedPvpSlots.success) {
-        console.error(
-          'Playable class PvP talent slots validation failed:',
-          first.id,
-          prettifyError(parsedPvpSlots.error),
-        );
-      }
-      expect(parsedPvpSlots.success).toBe(true);
+    const first = parsedIndex.data!.classes[0]!;
+    expect(first).toBeDefined();
+    const resp = await client.sendRequest(playableClass(first.id));
+    const parsed = playableClassResponseSchema.safeParse(resp);
+    if (!parsed.success) {
+      console.error('Playable class validation failed:', first.id, prettifyError(parsed.error));
     }
+    expect(parsed.success).toBe(true);
+
+    const media = await client.sendRequest(playableClassMedia(first.id));
+    const parsedMedia = playableClassMediaResponseSchema.safeParse(media);
+    if (!parsedMedia.success) {
+      console.error('Playable class media validation failed:', first.id, prettifyError(parsedMedia.error));
+    }
+    expect(parsedMedia.success).toBe(true);
+
+    const pvpSlots = await client.sendRequest(pvpTalentSlots(first.id));
+    const parsedPvpSlots = pvpTalentSlotsResponseSchema.safeParse(pvpSlots);
+    if (!parsedPvpSlots.success) {
+      console.error(
+        'Playable class PvP talent slots validation failed:',
+        first.id,
+        prettifyError(parsedPvpSlots.error),
+      );
+    }
+    expect(parsedPvpSlots.success).toBe(true);
   });
 });
