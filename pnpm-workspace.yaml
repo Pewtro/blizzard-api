@@ -13,3 +13,16 @@ minimumReleaseAge: 4320
 minimumReleaseAgeExclude:
   - '@putstack/eslint-config-typescript'
   - '@putstack/oxfmt-config'
+
+# pnpm 12.3+ turns strict mode on whenever minimumReleaseAge is set explicitly, and strict mode
+# rejects the `pnpm update --no-save` call Dependabot makes, so every grouped npm PR would fail.
+# https://github.com/dependabot/dependabot-core/issues/16375
+minimumReleaseAgeStrict: false
+
+# The pnpm version is pinned by package.json "packageManager". With pnpm 12 it also writes pnpm's
+# own resolution into a leading YAML document of pnpm-lock.yaml; GitHub's dependency graph reads
+# only that first document, so npm dependencies vanish from it and Dependabot security alerts stop
+# `ignore` keeps the lockfile single-document. Revisit once GitHub parses multi-document lockfiles.
+# https://github.com/dependabot/dependabot-core/issues/15904
+# https://github.com/pnpm/pnpm/issues/13805
+pmOnFail: ignore

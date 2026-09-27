@@ -9,7 +9,6 @@ updates:
       timezone: 'UTC'
     cooldown:
       default-days: 3
-    open-pull-requests-limit: 10
     reviewers:
       - 'Pewtro'
     assignees:
