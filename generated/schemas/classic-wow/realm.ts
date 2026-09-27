@@ -12,21 +12,6 @@ import {
   searchResponseWithoutResultsSchema,
 } from '../core';
 
-export const realmCategorySchema = z.union([
-  z.literal('Brazil'),
-  z.literal('English'),
-  z.literal('French'),
-  z.literal('German'),
-  z.literal('Italian'),
-  z.literal('Latin America'),
-  z.literal('Oceanic'),
-  z.literal('PS'),
-  z.literal('Russian'),
-  z.literal('Spanish'),
-  z.literal('United States'),
-  z.literal('\u{D55C}\u{AD6D}'),
-]);
-
 export const realmIndexResponseSchema = responseBaseSchema.extend({
   realms: z.array(realmSchema),
 });
@@ -90,7 +75,7 @@ const realmSearchResponseItemSchema = keyBaseSchema.extend({
 });
 
 export const realmResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
-  category: realmCategorySchema,
+  category: z.string(),
   connected_realm: hrefSchema,
   is_tournament: z.boolean(),
   locale: realmLocalesSchema,

@@ -42,14 +42,12 @@ const searchRealmStatusSchema = z.strictObject({
 
 const realmTimezoneSchema = z.any();
 
-const realmCategorySchema = z.any();
-
 const realmLocalesSchema = z.any();
 
 const realmTypeCapitalizedSchema = z.any();
 
 const realmSchema = z.strictObject({
-  category: realmCategorySchema,
+  category: z.string(),
   connected_realm: hrefSchema,
   id: z.number(),
   is_tournament: z.boolean(),

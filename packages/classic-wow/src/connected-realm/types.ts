@@ -7,7 +7,7 @@ import type {
   ResponseBase,
   SearchResponseWithoutResults,
 } from '@blizzard-api/core';
-import type { RealmCategory, RealmLocales, RealmTimezone, RealmTypeCapitalized } from '../realm/types';
+import type { RealmLocales, RealmTimezone, RealmTypeCapitalized } from '../realm/types';
 
 /**
  * Connected Realm Index API response.
@@ -60,7 +60,7 @@ interface ConnectedRealmSearchResponseItem extends KeyBase {
 }
 
 interface Realm {
-  category: RealmCategory;
+  category: string;
   connected_realm: Href;
   id: number;
   is_tournament: boolean;

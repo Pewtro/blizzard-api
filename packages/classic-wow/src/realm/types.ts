@@ -11,24 +11,6 @@ import type {
 } from '@blizzard-api/core';
 
 /**
- * The category of a realm.
- * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
- */
-export type RealmCategory =
-  | 'Brazil'
-  | 'English'
-  | 'French'
-  | 'German'
-  | 'Italian'
-  | 'Latin America'
-  | 'Oceanic'
-  | 'PS'
-  | 'Russian'
-  | 'Spanish'
-  | 'United States'
-  | '한국';
-
-/**
  * The response for a realm index.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
@@ -56,7 +38,7 @@ export type RealmLocales =
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface RealmResponse extends NameId, ResponseBase {
-  category: RealmCategory;
+  category: string;
   connected_realm: Href;
   is_tournament: boolean;
   locale: RealmLocales;
