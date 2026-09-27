@@ -15,7 +15,7 @@ describe('d3 follower integration', async () => {
 
   test('fetches a follower', async ({ expect }) => {
     const followers: Array<Follower> = ['enchantress', 'scoundrel', 'templar'];
-    const followerPromises = followers.map(async (followerSlug) => await client.sendRequest(d3.follower(followerSlug)));
+    const followerPromises = followers.map(async (followerSlug) => client.sendRequest(d3.follower(followerSlug)));
     const followerResponses = await Promise.all(followerPromises);
 
     for (const followerResponse of followerResponses) {

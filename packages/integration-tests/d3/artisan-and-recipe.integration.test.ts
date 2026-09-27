@@ -15,7 +15,7 @@ describe('d3 artisan-and-recipe integration', async () => {
 
   test('fetches an artisan and recipes', async ({ expect }) => {
     const artisans: Array<Artisans> = ['blacksmith', 'jeweler', 'mystic'];
-    const artisanPromises = artisans.map(async (artisan) => await client.sendRequest(d3.artisan(artisan)));
+    const artisanPromises = artisans.map(async (artisan) => client.sendRequest(d3.artisan(artisan)));
     const artisanResponses = await Promise.all(artisanPromises);
     for (const artisanResponse of artisanResponses) {
       const parsedResponse = artisanResponseSchema.safeParse(artisanResponse);
@@ -29,9 +29,7 @@ describe('d3 artisan-and-recipe integration', async () => {
       expect(parsedResponse.success).toBe(true);
 
       const recipePromises = artisanResponse!.training.tiers.flatMap((tier) =>
-        tier?.taughtRecipes.map(
-          async (recipe) => await client.sendRequest(d3.recipe(artisanResponse!.slug, recipe.slug)),
-        ),
+        tier?.taughtRecipes.map(async (recipe) => client.sendRequest(d3.recipe(artisanResponse!.slug, recipe.slug))),
       );
       const recipeResponses = await Promise.all(recipePromises);
 

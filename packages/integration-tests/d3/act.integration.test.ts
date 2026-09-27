@@ -20,7 +20,7 @@ describe('d3 act integration', async () => {
     }
     expect(parsedResponse.success).toBe(true);
 
-    const actDetailsPromises = response!.acts.map(async (act) => await client.sendRequest(d3.act(act.number)));
+    const actDetailsPromises = response!.acts.map(async (act) => client.sendRequest(d3.act(act.number)));
     const actDetailsResponses = await Promise.all(actDetailsPromises);
 
     for (const actDetails of actDetailsResponses) {

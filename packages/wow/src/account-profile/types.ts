@@ -73,6 +73,11 @@ interface Heirloom {
   upgrade: { level: number };
 }
 
+interface InnerSlot {
+  name: string;
+  type: string;
+}
+
 interface Links {
   profile: Href;
   self: Href;
@@ -124,12 +129,7 @@ interface Quality {
 
 interface Slot {
   appearances: Array<KeyBase & { id: number }>;
-  slot: Slot;
-}
-
-interface Slot {
-  name: string;
-  type: string;
+  slot: InnerSlot;
 }
 
 interface Stats {

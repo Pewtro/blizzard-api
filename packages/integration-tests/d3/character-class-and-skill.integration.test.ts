@@ -32,9 +32,7 @@ describe('d3 character-class-and-skill integration', async () => {
       ['witch-doctor', ['big-bad-voodoo', 'firebats', 'horrify', 'piranhas']],
       ['wizard', ['arcane-orb', 'blizzard', 'disintegrate', 'energy-twister', 'hydra', 'ray-of-frost']],
     ]);
-    const classPromises = classes.map(
-      async (characterClass) => await client.sendRequest(d3.characterClass(characterClass)),
-    );
+    const classPromises = classes.map(async (characterClass) => client.sendRequest(d3.characterClass(characterClass)));
     const classResponses = await Promise.all(classPromises);
     for (const classResponse of classResponses) {
       const classResponseParsed = characterClassResponseSchema.safeParse(classResponse);
