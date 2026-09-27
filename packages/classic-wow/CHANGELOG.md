@@ -1,5 +1,11 @@
 # @blizzard-api/classic-wow
 
+## 4.1.2
+
+### Patch Changes
+
+- 101b694: Change realm category to simple string as it sometimes has locale specific categories
+
 ## 4.1.1
 
 ### Patch Changes
