@@ -1,5 +1,11 @@
 # @blizzard-api/wow
 
+## 4.1.1
+
+### Patch Changes
+
+- ea11c3f: Mark the name of a realm from a search as potentially undefined for certain locales
+
 ## 4.1.0
 
 ### Minor Changes
