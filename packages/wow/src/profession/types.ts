@@ -80,7 +80,7 @@ interface Media extends KeyBase {
 
 interface ModifiedCraftSlot {
   display_order: number;
-  slot_type: KeyBase & { id: number; name?: string };
+  slot_type: KeyBase & { id: number; name?: null | string };
 }
 
 interface Reagent {

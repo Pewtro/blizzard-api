@@ -48,7 +48,7 @@ const modifiedCraftSlotSchema = z.strictObject({
   slot_type: keyBaseSchema.and(
     z.strictObject({
       id: z.number(),
-      name: z.string().optional(),
+      name: z.string().optional().nullable(),
     }),
   ),
 });
