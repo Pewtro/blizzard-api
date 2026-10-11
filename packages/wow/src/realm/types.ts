@@ -16,6 +16,7 @@ import type {
  */
 export type RealmCategory =
   | 'Brazil'
+  | 'Development'
   | 'English'
   | 'French'
   | 'German'
@@ -26,7 +27,9 @@ export type RealmCategory =
   | 'Russian'
   | 'Spanish'
   | 'United States'
-  | '한국';
+  | '한국'
+  // TypeScript hack to allow for strings that are not in the above list, while still providing autocomplete for the known values.
+  | (string & {});
 
 /**
  * The response for a realm index.
