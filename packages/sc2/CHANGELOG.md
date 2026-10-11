@@ -1,5 +1,13 @@
 # @blizzard-api/sc2
 
+## 3.1.3
+
+### Patch Changes
+
+- 3a28939: Mark command as possibly being any string
+- Updated dependencies [c8bde40]
+  - @blizzard-api/core@4.1.3
+
 ## 3.1.2
 
 ### Patch Changes

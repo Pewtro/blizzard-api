@@ -1,5 +1,17 @@
 # @blizzard-api/hs
 
+## 3.2.0
+
+### Minor Changes
+
+- 58622e9: Add factionId as a type to the response when fetching one card
+- 4168a41: Add bannedFromSideboard, factionId, runeCost, sideboard and touristClassId fields to card search responses
+
+### Patch Changes
+
+- Updated dependencies [c8bde40]
+  - @blizzard-api/core@4.1.3
+
 ## 3.1.2
 
 ### Patch Changes

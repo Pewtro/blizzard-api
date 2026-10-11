@@ -1,6 +1,6 @@
 {
   "name": "@blizzard-api/hs",
-  "version": "3.1.2",
+  "version": "3.2.0",
   "description": "A series of helpers to interact with the Hearthstone Blizzard API",
   "keywords": [
     "api",
@@ -49,7 +49,7 @@
     "@blizzard-api/core": "workspace:*"
   },
   "peerDependencies": {
-    "@blizzard-api/core": "4.1.2"
+    "@blizzard-api/core": "4.1.3"
   },
   "engines": {
     "node": "^22.13.0 || ^24 || ^26"

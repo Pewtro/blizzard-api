@@ -1,5 +1,23 @@
 # @blizzard-api/classic-wow
 
+## 4.1.3
+
+### Patch Changes
+
+- 95c8733: Mark class and additional_power_types names as nullable
+- c2d0ce9: Update power type index to have a nullable name
+- d5e9389: Mark spell tooltip in character specializations as having nullable descriptions and spell names
+- 8951690: Mark item_classes as having a nullable name
+- c360101: Mark playable race names as nullable in playable class responses
+- 429db21: Mark creature family as having nullable names
+- 013c8af: Allow unique_equipped to be any string to account for other locales
+- 1d5609f: Mark playable_classes and racial_spells as having nullable names in the playable race response
+- ca79f1e: Mark the playable races index as having a nullable name
+- a42633d: Mark a playable race name as nullable
+- e6b7830: Mark hunter pet creature as having a nullable name
+- Updated dependencies [c8bde40]
+  - @blizzard-api/core@4.1.3
+
 ## 4.1.2
 
 ### Patch Changes

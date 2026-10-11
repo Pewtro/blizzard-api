@@ -1,5 +1,18 @@
 # @blizzard-api/wow
 
+## 4.1.2
+
+### Patch Changes
+
+- 2ea40f3: Mark realm names as being nullable
+- cb51465: Mark title index names as nullable
+- d357c00: Mark reputation faction names as nullable
+- ac424c3: Mark realm categories as Development or any string as a backup
+- c1621d1: Mark a modified crafting slot name as nullable
+- e966390: Mark modified crafting category response name as nullable
+- Updated dependencies [c8bde40]
+  - @blizzard-api/core@4.1.3
+
 ## 4.1.1
 
 ### Patch Changes
