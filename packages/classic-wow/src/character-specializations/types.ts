@@ -1,4 +1,4 @@
-import type { Character, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { Character, NameId, NameIdKey, NullishNameId, ResponseBase } from '@blizzard-api/core';
 
 export interface CharacterSpecializationsSummaryResponse extends ResponseBase {
   active_specialization?: NameIdKey;
@@ -28,10 +28,10 @@ interface SpecializationGroupItem {
 interface SpellTooltip {
   cast_time: string;
   cooldown?: string;
-  description: string;
+  description: null | string;
   power_cost?: null | string;
   range?: string;
-  spell: NameId;
+  spell: NullishNameId;
 }
 
 interface TalentElement {
