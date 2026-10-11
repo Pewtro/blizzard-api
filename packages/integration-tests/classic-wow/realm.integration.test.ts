@@ -12,7 +12,6 @@ import {
 describe('progressive classic-wow realm integration', async () => {
   const client = await createBlizzardApiClient({
     key: environment.blizzardClientId,
-    locale: 'de_DE',
     origin: 'eu',
     secret: environment.blizzardClientSecret,
   });
