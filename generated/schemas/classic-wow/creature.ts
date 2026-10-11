@@ -6,6 +6,7 @@ import {
   localesSchema,
   mediaAssetSchema,
   nameIdKeySchema,
+  nullishNameIdKeySchema,
   responseBaseSchema,
   searchResponseWithoutResultsSchema,
 } from '../core';
@@ -16,7 +17,7 @@ const displayMediaAssetSchema = z.strictObject({
 });
 
 export const creatureFamilyIndexResponseSchema = responseBaseSchema.extend({
-  creature_families: z.array(nameIdKeySchema),
+  creature_families: z.array(nullishNameIdKeySchema),
 });
 
 export const creatureFamilyMediaResponseSchema = responseBaseSchema.extend({

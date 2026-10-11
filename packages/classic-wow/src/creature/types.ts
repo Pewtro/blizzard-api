@@ -4,6 +4,7 @@ import type {
   Locales,
   MediaAsset,
   NameIdKey,
+  NullishNameIdKey,
   ResponseBase,
   SearchResponseWithoutResults,
 } from '@blizzard-api/core';
@@ -22,7 +23,7 @@ export interface CreatureDisplayMediaResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface CreatureFamilyIndexResponse extends ResponseBase {
-  creature_families: Array<NameIdKey>;
+  creature_families: Array<NullishNameIdKey>;
 }
 
 /**
