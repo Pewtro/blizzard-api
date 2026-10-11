@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # https://github.com/pnpm/action-setup/releases/tag/v6.1.0
         with:

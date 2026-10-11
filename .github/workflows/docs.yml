@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
       - name: Setup Pages
         uses: actions/configure-pages@v6
       - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # https://github.com/pnpm/action-setup/releases/tag/v6.1.0
