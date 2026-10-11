@@ -1,11 +1,11 @@
-import type { GenderName, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { GenderName, NameId, NameIdKey, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a title index.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface TitleIndexResponse extends ResponseBase {
-  titles: Array<NameIdKey>;
+  titles: Array<NullishNameIdKey>;
 }
 
 /**
