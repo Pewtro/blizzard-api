@@ -14,7 +14,7 @@ export interface ModifiedCraftingCategoryIndexResponse extends ResponseBase {
  */
 export interface ModifiedCraftingCategoryResponse extends ResponseBase {
   id: number;
-  name?: string;
+  name?: null | string;
 }
 
 /**
