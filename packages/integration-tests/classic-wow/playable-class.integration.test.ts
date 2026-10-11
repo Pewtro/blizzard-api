@@ -3,7 +3,11 @@ import { createBlizzardApiClient } from '@blizzard-api/client';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
-import { playableClassMediaResponseSchema, playableClassResponseSchema } from '../../../generated/schemas/classic-wow';
+import {
+  playableClassIndexResponseSchema,
+  playableClassMediaResponseSchema,
+  playableClassResponseSchema,
+} from '../../../generated/schemas/classic-wow';
 
 describe('classic-wow playable class integration', async () => {
   const client = await createBlizzardApiClient({
@@ -14,6 +18,11 @@ describe('classic-wow playable class integration', async () => {
 
   test('fetches playable class and media by id for classic era', async ({ expect }) => {
     const indices = await client.sendRequest(playableClassIndex('static-classic1x'));
+    const parsedIndices = playableClassIndexResponseSchema.safeParse(indices);
+    if (!parsedIndices.success) {
+      console.error('Playable class index validation failed:', prettifyError(parsedIndices.error));
+    }
+    expect(parsedIndices.success).toBe(true);
 
     const classRequests = [];
     const mediaRequests = [];
@@ -42,6 +51,11 @@ describe('classic-wow playable class integration', async () => {
   });
   test('fetches playable class and media by id for classic', async ({ expect }) => {
     const indices = await client.sendRequest(playableClassIndex('static-classic'));
+    const parsedIndices = playableClassIndexResponseSchema.safeParse(indices);
+    if (!parsedIndices.success) {
+      console.error('Playable class index validation failed:', prettifyError(parsedIndices.error));
+    }
+    expect(parsedIndices.success).toBe(true);
 
     const classRequests = [];
     const mediaRequests = [];

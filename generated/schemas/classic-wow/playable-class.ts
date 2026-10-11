@@ -7,11 +7,12 @@ import {
   mediaAssetSchema,
   nameIdKeySchema,
   nameIdSchema,
+  nullishNameIdKeySchema,
   responseBaseSchema,
 } from '../core';
 
 export const playableClassIndexResponseSchema = responseBaseSchema.extend({
-  classes: z.array(nameIdKeySchema),
+  classes: z.array(nullishNameIdKeySchema),
 });
 
 export const playableClassMediaResponseSchema = responseBaseSchema.extend({
@@ -24,7 +25,7 @@ const mediaSchema = keyBaseSchema.extend({
 });
 
 export const playableClassResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
-  additional_power_types: z.array(nameIdKeySchema).optional(),
+  additional_power_types: z.array(nullishNameIdKeySchema).optional(),
   gender_name: genderNameSchema,
   media: mediaSchema,
   playable_races: z.array(nameIdKeySchema),
