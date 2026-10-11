@@ -61,7 +61,7 @@ interface Achievements {
 
 interface Animation {
   achievementId: string;
-  command?: '/dance';
+  command?: '/dance' | (string & {});
   icon: Icon;
   id: string;
   name?: string;

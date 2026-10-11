@@ -169,7 +169,7 @@ interface ProfileSwarmLevels {
 
 interface Reward {
   achievementId?: string;
-  command?: '/dance';
+  command?: '/dance' | (string & {});
   flags: number;
   id: string;
   imageUrl: string;
