@@ -1,4 +1,4 @@
-import type { Faction, GenderName, NameId, NameIdKey, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { Faction, GenderName, NameIdKey, NullishNameId, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The playable race index response.
@@ -12,7 +12,7 @@ export interface PlayableRaceIndexResponse extends ResponseBase {
  * The playable race response.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface PlayableRaceResponse extends NameId, ResponseBase {
+export interface PlayableRaceResponse extends NullishNameId, ResponseBase {
   faction: Faction;
   gender_name: GenderName;
   is_allied_race: boolean;

@@ -4,8 +4,8 @@ import {
   factionSchema,
   genderNameSchema,
   nameIdKeySchema,
-  nameIdSchema,
   nullishNameIdKeySchema,
+  nullishNameIdSchema,
   responseBaseSchema,
 } from '../core';
 
@@ -13,7 +13,7 @@ export const playableRaceIndexResponseSchema = responseBaseSchema.extend({
   races: z.array(nullishNameIdKeySchema),
 });
 
-export const playableRaceResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
+export const playableRaceResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
   faction: factionSchema,
   gender_name: genderNameSchema,
   is_allied_race: z.boolean(),
