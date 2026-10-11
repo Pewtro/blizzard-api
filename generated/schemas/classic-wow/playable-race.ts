@@ -3,7 +3,6 @@ import { z } from 'zod';
 import {
   factionSchema,
   genderNameSchema,
-  nameIdKeySchema,
   nullishNameIdKeySchema,
   nullishNameIdSchema,
   responseBaseSchema,
@@ -18,6 +17,6 @@ export const playableRaceResponseSchema = nullishNameIdSchema.extend(responseBas
   gender_name: genderNameSchema,
   is_allied_race: z.boolean(),
   is_selectable: z.boolean(),
-  playable_classes: z.array(nameIdKeySchema),
-  racial_spells: z.array(nameIdKeySchema),
+  playable_classes: z.array(nullishNameIdKeySchema),
+  racial_spells: z.array(nullishNameIdKeySchema),
 });
