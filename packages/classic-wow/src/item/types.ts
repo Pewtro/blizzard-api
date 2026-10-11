@@ -214,7 +214,7 @@ interface PreviewItem {
   shield_block?: Armor;
   spells?: Array<Spell>;
   stats?: Array<Stat>;
-  unique_equipped?: 'Unique';
+  unique_equipped?: 'Unique' | (string & {});
   weapon?: Weapon;
 }
 
