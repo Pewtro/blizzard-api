@@ -1,5 +1,12 @@
 # @blizzard-api/client
 
+## 5.4.1
+
+### Patch Changes
+
+- Updated dependencies [c8bde40]
+  - @blizzard-api/core@4.1.3
+
 ## 5.4.0
 
 ### Minor Changes

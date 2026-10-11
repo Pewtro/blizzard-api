@@ -1,5 +1,11 @@
 # @blizzard-api/core
 
+## 4.1.3
+
+### Patch Changes
+
+- c8bde40: Mark a realm as having a nullable name
+
 ## 4.1.2
 
 ### Patch Changes

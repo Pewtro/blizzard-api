@@ -1,6 +1,6 @@
 {
   "name": "@blizzard-api/classic-wow",
-  "version": "4.1.2",
+  "version": "4.1.3",
   "description": "A series of helpers to interact with the World of Warcraft Classic Blizzard API",
   "keywords": [
     "api",
@@ -51,7 +51,7 @@
     "@blizzard-api/core": "workspace:*"
   },
   "peerDependencies": {
-    "@blizzard-api/core": "4.1.2"
+    "@blizzard-api/core": "4.1.3"
   },
   "engines": {
     "node": "^22.13.0 || ^24 || ^26"
