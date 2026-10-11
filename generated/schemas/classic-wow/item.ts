@@ -8,12 +8,13 @@ import {
   mediaAssetSchema,
   nameIdKeySchema,
   nameIdSchema,
+  nullishNameIdKeySchema,
   responseBaseSchema,
   searchResponseWithoutResultsSchema,
 } from '../core';
 
 export const itemClassIndexResponseSchema = responseBaseSchema.extend({
-  item_classes: z.array(nameIdKeySchema),
+  item_classes: z.array(nullishNameIdKeySchema),
 });
 
 export const itemClassResponseSchema = responseBaseSchema.extend({

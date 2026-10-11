@@ -6,6 +6,7 @@ import type {
   MediaAsset,
   NameId,
   NameIdKey,
+  NullishNameIdKey,
   ResponseBase,
   SearchResponseWithoutResults,
 } from '@blizzard-api/core';
@@ -15,7 +16,7 @@ import type {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface ItemClassIndexResponse extends ResponseBase {
-  item_classes: Array<NameIdKey>;
+  item_classes: Array<NullishNameIdKey>;
 }
 
 /**
