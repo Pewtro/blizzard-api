@@ -146,7 +146,7 @@ export interface NullishNameIdKey extends Omit<NameIdKey, 'name'> {
  */
 export interface Realm extends KeyBase {
   id: number;
-  name?: string;
+  name?: null | string;
   slug: string;
 }
 
