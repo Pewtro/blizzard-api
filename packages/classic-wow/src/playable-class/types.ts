@@ -3,8 +3,8 @@ import type {
   Href,
   KeyBase,
   MediaAsset,
-  NameId,
   NameIdKey,
+  NullishNameId,
   NullishNameIdKey,
   ResponseBase,
 } from '@blizzard-api/core';
@@ -30,11 +30,11 @@ export interface PlayableClassMediaResponse extends ResponseBase {
  * The response for a playable class.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft-classic/game-data-apis}
  */
-export interface PlayableClassResponse extends NameId, ResponseBase {
+export interface PlayableClassResponse extends NullishNameId, ResponseBase {
   additional_power_types?: Array<NullishNameIdKey>;
   gender_name: GenderName;
   media: Media;
-  playable_races: Array<NameIdKey>;
+  playable_races: Array<NullishNameIdKey>;
   power_type: NameIdKey;
   pvp_talent_slots: Href;
   specializations?: Array<NameIdKey>;
