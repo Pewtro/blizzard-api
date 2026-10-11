@@ -174,6 +174,7 @@ export const fetchOneCardResponseSchema = z.strictObject({
   collectible: z.number(),
   copyOfCardId: z.array(z.number()).optional(),
   cropImage: z.string().nullable(),
+  factionId: z.array(z.number()).optional(),
   flavorText: z.union([z.record(localesSchema, z.string()), z.string()]),
   health: z.number().optional(),
   id: z.number(),

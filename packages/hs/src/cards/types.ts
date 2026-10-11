@@ -38,6 +38,7 @@ export interface FetchOneCardResponse {
   collectible: number;
   copyOfCardId?: Array<number>;
   cropImage: null | string;
+  factionId?: Array<number>;
   flavorText: Record<Locales, string> | string;
   health?: number;
   id: number;
