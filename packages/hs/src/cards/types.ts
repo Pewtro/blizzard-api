@@ -103,6 +103,7 @@ interface Card {
   armor?: number;
   artistName: null | string;
   attack?: number;
+  bannedFromSideboard?: number;
   battlegrounds?: Battlegrounds;
   cardSetId: number;
   cardTypeId: number;
@@ -111,6 +112,7 @@ interface Card {
   collectible: number;
   copyOfCardId?: Array<number>;
   cropImage: null | string;
+  factionId?: Array<number>;
   flavorText: string;
   health?: number;
   id: number;
@@ -127,9 +129,17 @@ interface Card {
   name: string;
   parentId?: number;
   rarityId: null | number;
+  runeCost?: { blood: number; frost: number; unholy: number };
+  sideboard?: {
+    maxSideboardCards: number;
+    sideboardCardsCountAsMax: boolean;
+    sideboardIgnoresClass: boolean;
+    sideboardSubset: string;
+  };
   slug: string;
   spellSchoolId?: number;
   text: string;
+  touristClassId?: number;
 }
 
 interface MercenaryHero {
