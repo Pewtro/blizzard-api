@@ -98,7 +98,7 @@ const criterionSchema = z.strictObject({
 
 const rewardSchema = z.strictObject({
   achievementId: z.string().optional(),
-  command: z.literal('/dance').optional(),
+  command: z.union([z.literal('/dance'), z.string()]).optional(),
   flags: z.number(),
   id: z.string(),
   imageUrl: z.string(),

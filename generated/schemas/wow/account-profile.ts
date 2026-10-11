@@ -33,11 +33,6 @@ const toySchema = z.strictObject({
   toy: nameIdKeySchema,
 });
 
-const slotSchema = z.strictObject({
-  name: z.string(),
-  type: z.string(),
-});
-
 const positionSchema = z.strictObject({
   facing: z.number(),
   map: nameIdSchema,
@@ -71,6 +66,11 @@ const characterSchema = z.strictObject({
   realm: realmSchema,
 });
 
+const innerSlotSchema = z.strictObject({
+  name: z.string(),
+  type: z.string(),
+});
+
 const qualitySchema = z.strictObject({
   name: z.string(),
   type: z.union([z.literal('COMMON'), z.literal('POOR'), z.literal('RARE'), z.literal('UNCOMMON')]),
@@ -81,6 +81,17 @@ const statsSchema = z.strictObject({
   health: z.number(),
   power: z.number(),
   speed: z.number(),
+});
+
+const slotSchema = z.strictObject({
+  appearances: z.array(
+    keyBaseSchema.and(
+      z.strictObject({
+        id: z.number(),
+      }),
+    ),
+  ),
+  slot: innerSlotSchema,
 });
 
 const wowAccountSchema = z.strictObject({

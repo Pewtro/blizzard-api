@@ -59,7 +59,7 @@ export const nullishNameIdKeySchema = nameIdKeySchema.omit({ name: true }).exten
 
 export const realmSchema = keyBaseSchema.extend({
   id: z.number(),
-  name: z.string().optional(),
+  name: z.string().optional().nullable(),
   slug: z.string(),
 });
 

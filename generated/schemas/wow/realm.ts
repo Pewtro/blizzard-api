@@ -14,6 +14,7 @@ import {
 
 export const realmCategorySchema = z.union([
   z.literal('Brazil'),
+  z.literal('Development'),
   z.literal('English'),
   z.literal('French'),
   z.literal('German'),
@@ -25,6 +26,7 @@ export const realmCategorySchema = z.union([
   z.literal('Spanish'),
   z.literal('United States'),
   z.literal('\u{D55C}\u{AD6D}'),
+  z.string(),
 ]);
 
 export const realmIndexResponseSchema = responseBaseSchema.extend({

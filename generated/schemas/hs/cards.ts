@@ -109,6 +109,7 @@ const cardSchema = z.strictObject({
   armor: z.number().optional(),
   artistName: z.string().nullable(),
   attack: z.number().optional(),
+  bannedFromSideboard: z.number().optional(),
   battlegrounds: battlegroundsSchema.optional(),
   cardSetId: z.number(),
   cardTypeId: z.number(),
@@ -117,6 +118,7 @@ const cardSchema = z.strictObject({
   collectible: z.number(),
   copyOfCardId: z.array(z.number()).optional(),
   cropImage: z.string().nullable(),
+  factionId: z.array(z.number()).optional(),
   flavorText: z.string(),
   health: z.number().optional(),
   id: z.number(),
@@ -133,9 +135,25 @@ const cardSchema = z.strictObject({
   name: z.string(),
   parentId: z.number().optional(),
   rarityId: z.number().nullable(),
+  runeCost: z
+    .strictObject({
+      blood: z.number(),
+      frost: z.number(),
+      unholy: z.number(),
+    })
+    .optional(),
+  sideboard: z
+    .strictObject({
+      maxSideboardCards: z.number(),
+      sideboardCardsCountAsMax: z.boolean(),
+      sideboardIgnoresClass: z.boolean(),
+      sideboardSubset: z.string(),
+    })
+    .optional(),
   slug: z.string(),
   spellSchoolId: z.number().optional(),
   text: z.string(),
+  touristClassId: z.number().optional(),
 });
 
 export const cardSearchResponseSchema = z.strictObject({

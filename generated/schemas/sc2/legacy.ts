@@ -42,7 +42,7 @@ const rewardsSchema = z.strictObject({
 
 const animationSchema = z.strictObject({
   achievementId: z.string(),
-  command: z.literal('/dance').optional(),
+  command: z.union([z.literal('/dance'), z.string()]).optional(),
   icon: iconSchema,
   id: z.string(),
   name: z.string().optional(),

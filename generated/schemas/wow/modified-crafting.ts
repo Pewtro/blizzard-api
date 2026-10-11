@@ -15,7 +15,7 @@ export const modifiedCraftingCategoryIndexResponseSchema = responseBaseSchema.ex
 
 export const modifiedCraftingCategoryResponseSchema = responseBaseSchema.extend({
   id: z.number(),
-  name: z.string().optional(),
+  name: z.string().optional().nullable(),
 });
 
 export const modifiedCraftingIndexResponseSchema = responseBaseSchema.extend({

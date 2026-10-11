@@ -20,7 +20,7 @@ export const knownRaidSlugsSchema = z.union([
   z.literal('march-on-queldanas'),
   z.literal('the-dreamrift'),
   z.literal('the-voidspire'),
-  z.string().and(z.strictObject({})),
+  z.string(),
 ]);
 
 const journalInstanceSchema = keyBaseSchema.extend({
