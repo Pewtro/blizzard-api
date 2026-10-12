@@ -10,6 +10,7 @@ import {
   legacyRewards,
 } from './legacy/index';
 import { ladder, ladderSummary, metadata, profile, staticProfile } from './profile/index';
+import { starcraftRegion } from './regions';
 
 const sc2 = {
   //Account
@@ -32,6 +33,8 @@ const sc2 = {
   metadata,
   profile,
   staticProfile,
+  //Regions
+  starcraftRegion,
 };
 export default sc2;
 export { sc2 };
@@ -50,3 +53,5 @@ export type * from './legacy/types';
 //Profile
 export * from './profile/index';
 export type * from './profile/types';
+//Regions
+export * from './regions';
