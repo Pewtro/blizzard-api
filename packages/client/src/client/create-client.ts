@@ -11,6 +11,12 @@ import { validateClientOptions } from './utilities';
 const REFRESH_BUFFER_MS = 60_000;
 
 /**
+ * How long to wait before retrying after a scheduled token refresh failed, in milliseconds.
+ * A transient network failure or an invalid token should not permanently stop future refreshes.
+ */
+const REFRESH_RETRY_DELAY_MS = 60_000;
+
+/**
  * Calculate the delay (in milliseconds) to wait before refreshing a token, based on the
  * token's remaining lifetime.
  * @param lifetimeInSeconds The token's lifetime in seconds, as returned in the `expires_in`
@@ -47,8 +53,11 @@ export const createBlizzardApiClient = async (
 
   //Schedule a token refresh after the given delay, without keeping the process alive.
   const scheduleRefresh = (delayInMilliseconds: number) => {
-    const timeout = setTimeout(() => void refreshToken(), delayInMilliseconds);
     //Unref the timeout so the process can exit while a refresh is pending.
+    const timeout = setTimeout(() => {
+      //A scheduled refresh runs detached, so its rejection must be caught here.
+      void refreshToken().catch(() => scheduleRefresh(REFRESH_RETRY_DELAY_MS));
+    }, delayInMilliseconds);
     timeout.unref();
   };
 
