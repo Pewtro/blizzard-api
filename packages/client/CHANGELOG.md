@@ -1,5 +1,11 @@
 # @blizzard-api/client
 
+## 5.5.0
+
+### Minor Changes
+
+- 7c42559: Export the BlizzardApiClient class and make scheduled token refreshes resilient
+
 ## 5.4.1
 
 ### Patch Changes

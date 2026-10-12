@@ -1,5 +1,11 @@
 # @blizzard-api/sc2
 
+## 3.2.0
+
+### Minor Changes
+
+- 1a33816: Export starcraftRegion (which maps region names to their regionId) and the StarcraftRegion type from the package root
+
 ## 3.1.3
 
 ### Patch Changes
