@@ -24,16 +24,19 @@ export default defineConfig({
     // Limit the number of concurrent test runs to avoid overwhelming the blizzard API with requests that could cause 429.
     maxWorkers: '50%',
     projects: [
+      //A test file that hits the live Blizzard API must be named `*.integration.test.ts`.
+      //Unit tests must not require credentials or network access, which keeps them runnable
+      //for contributors and on pull requests from forks, where secrets are unavailable.
       {
         test: {
-          exclude: [...defaultExclude, 'packages/integration-tests'],
+          exclude: [...defaultExclude, '**/*.integration.test.ts'],
           include: ['packages/**/*.test.ts'],
           name: 'unit',
         },
       },
       {
         test: {
-          include: ['packages/integration-tests/**/*.test.ts'],
+          include: ['packages/**/*.integration.test.ts'],
           name: 'integration',
         },
       },
