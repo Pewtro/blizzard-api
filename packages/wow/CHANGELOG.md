@@ -1,5 +1,12 @@
 # @blizzard-api/wow
 
+## 4.1.3
+
+### Patch Changes
+
+- df39cf6: Fix wow.talent missing from the wow namespace object
+- de56d53: Use core exported paths for some endpoints
+
 ## 4.1.2
 
 ### Patch Changes

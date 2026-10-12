@@ -1,6 +1,6 @@
 {
   "name": "@blizzard-api/sc2",
-  "version": "3.1.3",
+  "version": "3.2.0",
   "description": "A series of helpers to interact with the Starcraft II Blizzard API",
   "keywords": [
     "api",

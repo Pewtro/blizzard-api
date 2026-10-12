@@ -1,5 +1,11 @@
 # @blizzard-api/classic-wow
 
+## 4.1.4
+
+### Patch Changes
+
+- cd42116: Use core exported paths for some endpoints
+
 ## 4.1.3
 
 ### Patch Changes
