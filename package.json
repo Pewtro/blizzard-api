@@ -40,6 +40,8 @@
     "test:ui": "vitest --ui --coverage",
     "test:watch": "vitest watch",
     "test": "vitest run",
+    "test:unit": "vitest run --project unit",
+    "test:integration": "vitest run --project integration",
     "typecheck": "tsc"
   },
   "devDependencies": {

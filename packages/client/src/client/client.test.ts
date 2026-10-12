@@ -16,7 +16,8 @@ describe('client', async () => {
     const { key, locale, origin, secret, token } = client.defaults;
 
     expect(key).toBe(environment.blizzardClientId);
-    expect(secret).toBe(environment.blizzardClientSecret);
+    //Assert on presence rather than equality so a failure never prints the secret itself.
+    expect(secret).toBeTruthy();
     expect(origin).toBe('eu');
     expect(locale).toBeDefined();
     expect(token).toBeDefined();

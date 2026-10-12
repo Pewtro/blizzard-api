@@ -22,7 +22,8 @@
     "@blizzard-api/d3": "workspace:*",
     "@blizzard-api/hs": "workspace:*",
     "@blizzard-api/sc2": "workspace:*",
-    "@blizzard-api/wow": "workspace:*"
+    "@blizzard-api/wow": "workspace:*",
+    "zod": "4.6.5"
   },
   "engines": {
     "node": "^22.13.0 || ^24 || ^26"

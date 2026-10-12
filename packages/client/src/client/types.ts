@@ -4,7 +4,7 @@ import type { Options as KyOptions } from 'ky';
 /**
  * An access token response from the Blizzard API.
  * @see https://develop.battle.net/documentation/guides/using-oauth
- * @see https://develop.battle.net/documentation/guides/using-oauth/client-credentials-flow¨
+ * @see https://develop.battle.net/documentation/guides/using-oauth/client-credentials-flow
  * @example
  * const response: AccessToken = {
  *  access_token: 'access-token',

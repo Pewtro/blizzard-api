@@ -8,13 +8,14 @@ export default defineConfig({
     coverage: {
       exclude: [
         ...defaultExclude,
-        //There's no reason to test the index files as they are just exporting what is already tested
-        '**/index.ts',
         //The generated folder is to help with tests not something to be tested itself
         'generated/**',
-        //Ignore the root files for coverage purposes
-        '*.js',
-        '*.ts',
+        //Integration tests exercise the live API and contribute no deterministic coverage
+        'packages/integration-tests/**',
+        //Ignore the root files for coverage purposes.
+        '*.{js,ts}',
+        //Test files themselves
+        '**/*.test.ts',
       ],
       provider: 'v8',
       reporter: ['html', 'lcov'],

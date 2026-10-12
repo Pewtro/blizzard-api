@@ -72,9 +72,11 @@ const client = await createBlizzardApiClient({
   origin: 'eu',
 });
 
-//Response will automatically be typed with the appropriate values
+//Response will automatically be typed with the appropriate values.
+//It resolves to `AuctionHouseCommoditiesResponse | undefined`, since some endpoints
+//legitimately return an empty body.
 const response = await client.sendRequest(wow.commodities());
 
 console.log(response);
-                ^ typeof AuctionHouseCommoditiesResponse
+                ^ typeof AuctionHouseCommoditiesResponse | undefined
 ```

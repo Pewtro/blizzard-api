@@ -60,8 +60,17 @@ jobs:
       - name: Lint, Format, and Typecheck
         run: pnpm lint:ci
 
-      - name: Test packages
-        run: pnpm test
+      - name: Test packages (unit)
+        run: pnpm test:unit
+        env:
+          VITE_BLIZZARD_BNET_ACCOUNT_ID: ${{ secrets.VITE_BLIZZARD_BNET_ACCOUNT_ID }}
+          VITE_BLIZZARD_CLIENT_ID: ${{ secrets.BLIZZARD_CLIENT_ID }}
+          VITE_BLIZZARD_CLIENT_SECRET: ${{ secrets.BLIZZARD_CLIENT_SECRET }}
+
+        # Only run integration tests on the release node version. Integration tests call the live Blizzard API.
+      - name: Test packages (integration)
+        run: pnpm test:integration
+        if: matrix.node == env.release_node
         env:
           VITE_BLIZZARD_BNET_ACCOUNT_ID: ${{ secrets.VITE_BLIZZARD_BNET_ACCOUNT_ID }}
           VITE_BLIZZARD_CLIENT_ID: ${{ secrets.BLIZZARD_CLIENT_ID }}

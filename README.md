@@ -29,13 +29,21 @@ The core package gives you access to helper functions such as `getBlizzardApi` w
 The game package will let you access paths, namespaces, parameters and more for each endpoint. This can imported like so:
 
 ```ts
-import { achievement, wow } from "@blizzard-api/wow"
+import { wow } from "@blizzard-api/wow"
+//or
+import wow from "@blizzard-api/wow"
 
 const achievement = wow.achievement(123);
-        ^ { path: string, namespace: string }
-//OR LIKE SO
-const achievement = achievement(123);
-        ^ { path: string, namespace: string }
+        ^ { path: string, namespace?: string, parameters?: Record<string, never> }
+```
+
+If you would rather not use the exported `wow` object, you can also import the endpoint helpers directly:
+
+```ts
+import { achievement } from "@blizzard-api/wow"
+
+const achievementResource = achievement(123);
+        ^ { path: string, namespace?: string, parameters?: Record<string, never> }
 ```
 
 If you additionally want to have an API client with built in helpers, you can install `@blizzard-api/client` which will let you easily connect to the API and begin consuming it.
@@ -54,11 +62,12 @@ const client = await createBlizzardApiClient({
   origin: 'eu',
 });
 
-//Response will automatically be typed with the appropriate values
+//Response will automatically be typed with the appropriate values.
+//The response can be undefined since some endpoints legitimately return an empty body.
 const response = await client.sendRequest(wow.commodities());
 
 console.log(response);
-                ^ typeof AuctionHouseCommoditiesResponse
+                ^ typeof AuctionHouseCommoditiesResponse | undefined
 ```
 
 ## Authentication

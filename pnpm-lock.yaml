@@ -146,6 +146,9 @@ importers:
       '@blizzard-api/wow':
         specifier: workspace:*
         version: link:../wow
+      zod:
+        specifier: 4.6.5
+        version: 4.6.5
 
   packages/sc2:
     devDependencies:

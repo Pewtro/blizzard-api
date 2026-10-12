@@ -13,7 +13,7 @@ coverage
 
 # build artifacts
 dist
-build 
+build
 docs
 
 # misc 

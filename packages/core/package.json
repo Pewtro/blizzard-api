@@ -48,8 +48,6 @@
     "test:coverage": "pnpm test -- --coverage",
     "test:watch": "vitest watch"
   },
-  "dependencies": {},
-  "devDependencies": {},
   "engines": {
     "node": "^22.13.0 || ^24 || ^26"
   }
