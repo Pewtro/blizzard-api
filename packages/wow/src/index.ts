@@ -160,7 +160,15 @@ import { realm, realmIndex, realmSearch } from './realm/index';
 import { region, regionIndex } from './region/index';
 import { reputationFaction, reputationFactionIndex, reputationTiers, reputationTiersIndex } from './reputations/index';
 import { spell, spellMedia, spellSearch } from './spell/index';
-import { pvpTalent, pvpTalentIndex, talentIndex, talentTree, talentTreeIndex, talentTreeNodes } from './talent/index';
+import {
+  pvpTalent,
+  pvpTalentIndex,
+  talent,
+  talentIndex,
+  talentTree,
+  talentTreeIndex,
+  talentTreeNodes,
+} from './talent/index';
 import { techTalent, techTalentIndex, techTalentMedia, techTalentTree, techTalentTreeIndex } from './tech-talent/index';
 import { title, titleIndex } from './title/index';
 import { toy, toyIndex } from './toy/index';
@@ -400,6 +408,7 @@ const wow = {
   //Talent
   pvpTalent,
   pvpTalentIndex,
+  talent,
   talentIndex,
   talentTree,
   talentTreeIndex,
