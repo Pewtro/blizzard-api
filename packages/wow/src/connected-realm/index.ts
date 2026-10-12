@@ -1,5 +1,5 @@
 import type { Resource } from '@blizzard-api/core';
-import { wowBasePath } from '@blizzard-api/core';
+import { wowBasePath, wowSearchBasePath } from '@blizzard-api/core';
 import type {
   ConnectedRealmIndexResponse,
   ConnectedRealmResponse,
@@ -44,6 +44,6 @@ export function connectedRealmSearch(
       'realms.timezone': options['realms.timezone'],
       'status.type': options['status.type'],
     },
-    path: `${wowBasePath}/search/connected-realm`,
+    path: `${wowSearchBasePath}/connected-realm`,
   };
 }

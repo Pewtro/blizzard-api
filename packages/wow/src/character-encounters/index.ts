@@ -1,7 +1,6 @@
+import { wowCharacterBasePath } from '@blizzard-api/core';
 import type { Resource } from '@blizzard-api/core';
 import type { CharacterDungeonsResponse, CharacterEncountersSummaryResponse, CharacterRaidsResponse } from './types';
-
-const bathPase = 'profile/wow/character';
 
 /**
  * @param realmSlug The slug of the realm.
@@ -11,7 +10,7 @@ const bathPase = 'profile/wow/character';
 export function characterDungeons(realmSlug: string, characterName: string): Resource<CharacterDungeonsResponse> {
   return {
     namespace: 'profile',
-    path: `${bathPase}/${realmSlug}/${characterName.toLowerCase()}/encounters/dungeons`,
+    path: `${wowCharacterBasePath}/${realmSlug}/${characterName.toLowerCase()}/encounters/dungeons`,
   };
 }
 
@@ -26,7 +25,7 @@ export function characterEncountersSummary(
 ): Resource<CharacterEncountersSummaryResponse> {
   return {
     namespace: 'profile',
-    path: `${bathPase}/${realmSlug}/${characterName.toLowerCase()}/encounters`,
+    path: `${wowCharacterBasePath}/${realmSlug}/${characterName.toLowerCase()}/encounters`,
   };
 }
 
@@ -38,6 +37,6 @@ export function characterEncountersSummary(
 export function characterRaids(realmSlug: string, characterName: string): Resource<CharacterRaidsResponse> {
   return {
     namespace: 'profile',
-    path: `${bathPase}/${realmSlug}/${characterName.toLowerCase()}/encounters/raids`,
+    path: `${wowCharacterBasePath}/${realmSlug}/${characterName.toLowerCase()}/encounters/raids`,
   };
 }
