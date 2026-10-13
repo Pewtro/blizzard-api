@@ -11,6 +11,7 @@
     "hearthstone",
     "hs"
   ],
+  "homepage": "https://github.com/Pewtro/blizzard-api/tree/main/packages/hs",
   "license": "MIT",
   "author": "Putro",
   "repository": {

@@ -11,6 +11,7 @@
     "sc2",
     "starcraft"
   ],
+  "homepage": "https://github.com/Pewtro/blizzard-api/tree/main/packages/sc2",
   "license": "MIT",
   "author": "Putro",
   "repository": {

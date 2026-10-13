@@ -20,6 +20,7 @@
     "world of warcraft",
     "wow"
   ],
+  "homepage": "https://github.com/Pewtro/blizzard-api/tree/main/packages/core",
   "license": "MIT",
   "author": "Putro",
   "repository": {

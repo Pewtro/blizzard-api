@@ -12,6 +12,7 @@
     "diablo 3",
     "diablo III"
   ],
+  "homepage": "https://github.com/Pewtro/blizzard-api/tree/main/packages/d3",
   "license": "MIT",
   "author": "Putro",
   "repository": {
