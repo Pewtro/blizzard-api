@@ -49,7 +49,7 @@
     "test:watch": "vitest watch"
   },
   "dependencies": {
-    "ky": "2.1.0"
+    "ky": "2.2.0"
   },
   "devDependencies": {
     "@blizzard-api/classic-wow": "workspace:*",
