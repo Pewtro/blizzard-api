@@ -9,7 +9,7 @@ import type {
   ValidateAccessTokenArguments,
   ValidateAccessTokenResponse,
 } from './types';
-import { validateClientOptions, withRateLimitRetry } from './utilities';
+import { clampMaxAttempts, getRetryOptions, validateClientOptions } from './utilities';
 
 /**
  * A Blizzard API client.
@@ -43,7 +43,7 @@ export class BlizzardApiClient {
     this.defaults = {
       key: options.key,
       locale: locale,
-      maxAttempts: Math.max(1, options.maxAttempts ?? 3),
+      maxAttempts: clampMaxAttempts(options.maxAttempts),
       origin: origin,
       retryOnRateLimit: options.retryOnRateLimit ?? true,
       secret: options.secret,
@@ -52,6 +52,9 @@ export class BlizzardApiClient {
     const kyOptions = {
       timeout: 15_000,
       ...options.kyOptions,
+      //Merged rather than spread on top, so that a `kyOptions.retry` override
+      //keeps the client's method and backoff defaults instead of replacing them.
+      retry: getRetryOptions(options),
     };
     this.ky = ky.create(kyOptions);
   }
@@ -73,24 +76,17 @@ export class BlizzardApiClient {
     const { key, secret } = { ...this.defaults, ...options };
     const basicAuth = Buffer.from(`${key}:${secret}`).toString('base64');
 
-    return withRateLimitRetry(
-      async () =>
-        this.ky
-          .post<AccessToken>(`https://oauth.battle.net/token`, {
-            headers: {
-              Authorization: `Basic ${basicAuth}`,
-              'Content-Type': 'application/json',
-            },
-            searchParams: {
-              grant_type: 'client_credentials',
-            },
-          })
-          .json(),
-      {
-        maxAttempts: this.defaults.maxAttempts,
-        retryOnRateLimit: this.defaults.retryOnRateLimit,
-      },
-    );
+    return this.ky
+      .post<AccessToken>(`https://oauth.battle.net/token`, {
+        headers: {
+          Authorization: `Basic ${basicAuth}`,
+          'Content-Type': 'application/json',
+        },
+        searchParams: {
+          grant_type: 'client_credentials',
+        },
+      })
+      .json();
   };
 
   /**
@@ -199,20 +195,15 @@ export class BlizzardApiClient {
       url.searchParams.set(key, String(value));
     }
 
-    const response = await withRateLimitRetry(
-      async () =>
-        this.ky.get<T>(url, {
-          ...options?.kyOptions,
-          headers: {
-            ...config.headers,
-            ...options?.kyOptions?.headers,
-          },
-        }),
-      {
-        maxAttempts: this.defaults.maxAttempts,
-        retryOnRateLimit: this.defaults.retryOnRateLimit,
+    const response = await this.ky.get<T>(url, {
+      ...options?.kyOptions,
+      headers: {
+        ...config.headers,
+        ...options?.kyOptions?.headers,
       },
-    );
+      //Set after the spread so that per request options can lower the retry limit or opt out of retrying, rather than silently falling back to the defaults.
+      retry: getRetryOptions({ ...this.defaults, ...options }),
+    });
 
     // Some endpoints return a 204 status code with no content,
     // while others return a 200 status code with an empty body.
@@ -254,20 +245,13 @@ export class BlizzardApiClient {
       throw new Error('No token has been set previously or been passed to the validateAccessToken method.');
     }
 
-    return withRateLimitRetry(
-      async () =>
-        this.ky
-          .post<ValidateAccessTokenResponse>(`https://${origin}.battle.net/oauth/check_token`, {
-            body: stringify({ token }),
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded',
-            },
-          })
-          .json(),
-      {
-        maxAttempts: this.defaults.maxAttempts,
-        retryOnRateLimit: this.defaults.retryOnRateLimit,
-      },
-    );
+    return this.ky
+      .post<ValidateAccessTokenResponse>(`https://${origin}.battle.net/oauth/check_token`, {
+        body: stringify({ token }),
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      })
+      .json();
   };
 }
