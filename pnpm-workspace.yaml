@@ -16,6 +16,8 @@ minimumReleaseAgeExclude:
 
 # deduplicates compatible dependency versions during installation
 autoDedupe: true
+lockfile:
+  includeResolutionSettings: true
 # saves available @types/* packages in devDependencies alongside registry dependencies
 saveTypes: true
 
