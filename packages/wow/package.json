@@ -1,6 +1,6 @@
 {
   "name": "@blizzard-api/wow",
-  "version": "4.1.3",
+  "version": "4.1.4",
   "description": "A series of helpers to interact with the World of Warcraft Blizzard API",
   "keywords": [
     "api",
@@ -52,7 +52,7 @@
     "@blizzard-api/core": "workspace:*"
   },
   "peerDependencies": {
-    "@blizzard-api/core": "4.1.3"
+    "@blizzard-api/core": "4.2.0"
   },
   "engines": {
     "node": "^22.13.0 || ^24 || ^26"

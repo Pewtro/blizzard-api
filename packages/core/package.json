@@ -1,6 +1,6 @@
 {
   "name": "@blizzard-api/core",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "The core helpers used by all @blizzard-api/* packages.",
   "keywords": [
     "api",
