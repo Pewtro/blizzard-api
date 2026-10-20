@@ -21,8 +21,6 @@ export default defineConfig({
       reporter: ['html', 'lcov'],
     },
     isolate: false,
-    // Limit the number of concurrent test runs to avoid overwhelming the blizzard API with requests that could cause 429.
-    maxWorkers: '50%',
     projects: [
       //A test file that hits the live Blizzard API must be named `*.integration.test.ts`.
       //Unit tests must not require credentials or network access, which keeps them runnable
@@ -37,6 +35,9 @@ export default defineConfig({
       {
         test: {
           include: ['packages/**/*.integration.test.ts'],
+          // The integration tests hit the live Blizzard API, which enforces a strict request rate
+          // limit. Running fewer files in parallel keeps the suite from running into 429 responses.
+          maxWorkers: 2,
           name: 'integration',
         },
       },
