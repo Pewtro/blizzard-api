@@ -15,6 +15,15 @@ describe('characterAchievementsSummary', () => {
       path: `${wowCharacterBasePath}/${realmSlug}/${characterName.toLowerCase()}/achievements`,
     });
   });
+
+  test('should not accept the anniversary namespace, as the API does not support it', () => {
+    const namespace = 'profile-classicann';
+
+    // @ts-expect-error the character achievements endpoints are not available in the anniversary namespace
+    const result = characterAchievementsSummary(namespace, 'some-realm', 'some-character');
+
+    expect(result).toBeDefined();
+  });
 });
 
 describe('characterAchievementStatistics', () => {
@@ -28,5 +37,14 @@ describe('characterAchievementStatistics', () => {
       namespace,
       path: `${wowCharacterBasePath}/${realmSlug}/${characterName.toLowerCase()}/achievements/statistics`,
     });
+  });
+
+  test('should not accept the anniversary namespace, as the API does not support it', () => {
+    const namespace = 'profile-classicann';
+
+    // @ts-expect-error the character achievements endpoints are not available in the anniversary namespace
+    const result = characterAchievementStatistics(namespace, 'some-realm', 'some-character');
+
+    expect(result).toBeDefined();
   });
 });

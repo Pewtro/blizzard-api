@@ -5,7 +5,7 @@ export type { CharacterProfileStatusResponse } from '../../../wow/src/character-
 export interface CharacterProfileSummaryResponse extends ResponseBase {
   achievement_points?: number;
   achievements?: Href;
-  active_spec: NameIdKey;
+  active_spec?: NameIdKey;
   active_title?: { name: string };
   appearance: Href;
   average_item_level: number;

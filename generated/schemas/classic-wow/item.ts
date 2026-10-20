@@ -96,7 +96,7 @@ const inventoryTypeNameSchema = z.strictObject({
 });
 
 const inventoryTypeNameFromSearchSchema = z.strictObject({
-  name: z.record(localesSchema, z.string()),
+  name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
   type: inventoryTypeSchema,
 });
 
@@ -112,7 +112,7 @@ const itemQualityTypeSchema = z.union([
 ]);
 
 const itemQualityFromSearchSchema = z.strictObject({
-  name: z.record(localesSchema, z.string()),
+  name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
   type: itemQualityTypeSchema,
 });
 
@@ -131,11 +131,11 @@ const itemSearchResponseItemSchema = keyBaseSchema.extend({
     is_stackable: z.boolean(),
     item_class: z.strictObject({
       id: z.number(),
-      name: z.record(localesSchema, z.string()),
+      name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
     }),
     item_subclass: z.strictObject({
       id: z.number(),
-      name: z.record(localesSchema, z.string()),
+      name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
     }),
     level: z.number(),
     max_count: z.number(),

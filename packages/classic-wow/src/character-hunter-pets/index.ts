@@ -1,4 +1,4 @@
-import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
+import type { ProfileClassicNamespaces, Resource } from '@blizzard-api/core';
 import { wowCharacterBasePath } from '@blizzard-api/core';
 import type { CharacterHunterPetsSummaryResponse } from './types';
 
@@ -10,7 +10,7 @@ import type { CharacterHunterPetsSummaryResponse } from './types';
  * @returns a summary of the character's hunter pets.
  */
 export function characterHunterPetsSummary(
-  namespace: Extract<BlizzardNamespaces, 'profile-classic1x' | 'profile-classic'>,
+  namespace: ProfileClassicNamespaces,
   realmSlug: string,
   characterName: string,
 ): Resource<CharacterHunterPetsSummaryResponse> {

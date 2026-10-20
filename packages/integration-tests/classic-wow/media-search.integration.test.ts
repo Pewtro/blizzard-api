@@ -25,5 +25,12 @@ describe('classic-wow media search integration', async () => {
       console.error('Media search validation failed:', prettifyError(parsedEraSearch.error));
     }
     expect(parsedEraSearch.success).toBe(true);
+
+    const anniversarySearch = await client.sendRequest(mediaSearch('static-classicann', { _page: 1 }));
+    const parsedAnniversarySearch = mediaSearchResponseSchema.safeParse(anniversarySearch);
+    if (!parsedAnniversarySearch.success) {
+      console.error('Media search validation failed:', prettifyError(parsedAnniversarySearch.error));
+    }
+    expect(parsedAnniversarySearch.success).toBe(true);
   });
 });

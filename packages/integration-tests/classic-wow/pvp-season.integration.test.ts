@@ -27,4 +27,20 @@ describe('classic-wow pvp season integration', async () => {
     }
     expect(parsedSeasonDetail.success).toBe(true);
   });
+  test('validates pvp season index and season details for the anniversary namespace', async ({ expect }) => {
+    const season = await client.sendRequest(pvpSeasonIndex('dynamic-classicann'));
+    const parsed = pvpSeasonIndexResponseSchema.safeParse(season);
+    if (!parsed.success) {
+      console.error('PvP season index validation failed:', prettifyError(parsed.error));
+    }
+    expect(parsed.success).toBe(true);
+
+    const seasonId = season!.current_season.id;
+    const seasonDetail = await client.sendRequest(pvpSeason('dynamic-classicann', seasonId));
+    const parsedSeasonDetail = pvpSeasonResponseSchema.safeParse(seasonDetail);
+    if (!parsedSeasonDetail.success) {
+      console.error('PVP season detail validation failed:', seasonId, prettifyError(parsedSeasonDetail.error));
+    }
+    expect(parsedSeasonDetail.success).toBe(true);
+  });
 });

@@ -1,11 +1,11 @@
 import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
-import { describe, test } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { playableClass, playableClassIndex, playableClassMedia } from './index';
 
-const namespace = 'static-classic';
+const namespaces = ['static-classic1x', 'static-classic', 'static-classicann'] as const;
 
 describe('classicPlayableClassApi', () => {
-  test('should return a playable class resource', ({ expect }) => {
+  test.each(namespaces)('should return a playable class resource in the %s namespace', (namespace) => {
     const playableClassId = 1;
 
     const resource = playableClass(namespace, playableClassId);
@@ -14,14 +14,14 @@ describe('classicPlayableClassApi', () => {
     expect(resource.path).toBe(`${wowBasePath}/playable-class/1`);
   });
 
-  test('should return a playable class index resource', ({ expect }) => {
+  test.each(namespaces)('should return a playable class index resource in the %s namespace', (namespace) => {
     const resource = playableClassIndex(namespace);
 
     expect(resource.namespace).toBe(namespace);
     expect(resource.path).toBe(`${wowBasePath}/playable-class/index`);
   });
 
-  test('should return a playable class media resource', ({ expect }) => {
+  test.each(namespaces)('should return a playable class media resource in the %s namespace', (namespace) => {
     const playableClassId = 1;
 
     const resource = playableClassMedia(namespace, playableClassId);

@@ -1,5 +1,5 @@
 import { wowBasePath, wowSearchBasePath } from '@blizzard-api/core';
-import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
+import type { DynamicClassicNamespaces, Resource } from '@blizzard-api/core';
 import type {
   ConnectedRealmIndexResponse,
   ConnectedRealmResponse,
@@ -14,7 +14,7 @@ import type {
  * @returns The connected realm. See {@link ConnectedRealmResponse}.
  */
 export function connectedRealm(
-  namespace: Extract<BlizzardNamespaces, 'dynamic-classic1x' | 'dynamic-classic'>,
+  namespace: DynamicClassicNamespaces,
   connectedRealmId: number,
 ): Resource<ConnectedRealmResponse> {
   return {
@@ -27,9 +27,7 @@ export function connectedRealm(
  * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
  * @returns The connected realm index. See {@link ConnectedRealmIndexResponse}.
  */
-export function connectedRealmIndex(
-  namespace: Extract<BlizzardNamespaces, 'dynamic-classic1x' | 'dynamic-classic'>,
-): Resource<ConnectedRealmIndexResponse> {
+export function connectedRealmIndex(namespace: DynamicClassicNamespaces): Resource<ConnectedRealmIndexResponse> {
   return {
     namespace,
     path: `${wowBasePath}/connected-realm/index`,
@@ -42,7 +40,7 @@ export function connectedRealmIndex(
  * @returns The search results. See {@link ConnectedRealmSearchResponse}.
  */
 export function connectedRealmSearch(
-  namespace: Extract<BlizzardNamespaces, 'dynamic-classic1x' | 'dynamic-classic'>,
+  namespace: DynamicClassicNamespaces,
   options: ConnectedRealmSearchParameters,
 ): Resource<ConnectedRealmSearchResponse, ConnectedRealmSearchParameters> {
   return {

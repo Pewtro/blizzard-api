@@ -1,4 +1,4 @@
-import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
+import type { ProfileClassicNamespaces, Resource } from '@blizzard-api/core';
 import { wowCharacterBasePath } from '@blizzard-api/core';
 import type { CharacterStatisticsSummaryResponse } from './types';
 
@@ -9,7 +9,7 @@ import type { CharacterStatisticsSummaryResponse } from './types';
  * @returns a statistics summary for a character.
  */
 export function characterStatisticsSummary(
-  namespace: Extract<BlizzardNamespaces, 'profile-classic1x' | 'profile-classic'>,
+  namespace: ProfileClassicNamespaces,
   realmSlug: string,
   characterName: string,
 ): Resource<CharacterStatisticsSummaryResponse> {

@@ -56,10 +56,15 @@ This package is specifically for World of Warcraft Classic, and as such, the end
 
 Because there are multiple classic flavours of the game, each endpoint will take in a namespace argument where you will be able to specify which version of the game you want to query.
 
-| Game Version                                 | Static Namespace          | Dynamic Namespace          | Profile Namespace          |
-| -------------------------------------------- | ------------------------- | -------------------------- | -------------------------- |
-| World of Warcraft Classic (Era)              | static-classic1x-{region} | dynamic-classic1x-{region} | profile-classic1x-{region} |
-| Wrath of the Lich King Classic (Progression) | static-classic-{region}   | dynamic-classic-{region}   | profile-classic-{region}   |
+| Game Version                            | Static Namespace           | Dynamic Namespace           | Profile Namespace           |
+| --------------------------------------- | -------------------------- | --------------------------- | --------------------------- |
+| World of Warcraft Classic (Era)         | static-classic1x-{region}  | dynamic-classic1x-{region}  | profile-classic1x-{region}  |
+| Mists of Pandaria Classic (Progression) | static-classic-{region}    | dynamic-classic-{region}    | profile-classic-{region}    |
+| Burning Crusade Classic (Anniversary)   | static-classicann-{region} | dynamic-classicann-{region} | profile-classicann-{region} |
+
+The `{region}` part of the namespace is appended by `@blizzard-api/client` from the origin the client was created with, so you only ever pass the namespace without it.
+
+Not every endpoint is available in every namespace. The character achievements endpoints (`characterAchievementsSummary` and `characterAchievementStatistics`) are only available in the progression namespace, as neither the classic era nor the anniversary versions expose character achievements.
 
 ## Notes on Types
 

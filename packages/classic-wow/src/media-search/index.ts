@@ -1,5 +1,5 @@
 import { wowSearchBasePath } from '@blizzard-api/core';
-import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
+import type { Resource, StaticClassicNamespaces } from '@blizzard-api/core';
 import type { MediaSearchParameters, MediaSearchResponse } from './types';
 
 /**
@@ -9,7 +9,7 @@ import type { MediaSearchParameters, MediaSearchResponse } from './types';
  * @returns The search results. See {@link MediaSearchResponse}.
  */
 export function mediaSearch(
-  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
+  namespace: StaticClassicNamespaces,
   options: MediaSearchParameters,
 ): Resource<MediaSearchResponse, MediaSearchParameters> {
   return {

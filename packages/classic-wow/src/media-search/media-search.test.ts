@@ -1,18 +1,18 @@
 import { wowSearchBasePath } from '@blizzard-api/core';
-import { describe, test } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { mediaSearch } from './index';
 
-const namespace = 'static-classic';
+const namespaces = ['static-classic1x', 'static-classic', 'static-classicann'] as const;
 
 describe('mediaSearchApi', () => {
-  test('should return the media search resource', ({ expect }) => {
+  test.each(namespaces)('should return the media search resource in the %s namespace', (namespace) => {
     const resource = mediaSearch(namespace, {});
     expect(resource.path).toBe(`${wowSearchBasePath}/media`);
     expect(resource.namespace).toBe(namespace);
     expect(resource.parameters).toEqual({});
   });
 
-  test('should return the media search resource with parameters', ({ expect }) => {
+  test.each(namespaces)('should return the media search resource with parameters in the %s namespace', (namespace) => {
     const resource = mediaSearch(namespace, {
       _page: 1,
       orderby: 'name',
@@ -27,18 +27,21 @@ describe('mediaSearchApi', () => {
     });
   });
 
-  test('should return the media search resource with parameters when orderby is an array', ({ expect }) => {
-    const resource = mediaSearch(namespace, {
-      _page: 1,
-      orderby: ['name', 'id'],
-      tags: 'tag',
-    });
-    expect(resource.path).toBe(`${wowSearchBasePath}/media`);
-    expect(resource.namespace).toBe(namespace);
-    expect(resource.parameters).toEqual({
-      _page: 1,
-      orderby: 'name,id',
-      tags: 'tag',
-    });
-  });
+  test.each(namespaces)(
+    'should return the media search resource with parameters when orderby is an array in the %s namespace',
+    (namespace) => {
+      const resource = mediaSearch(namespace, {
+        _page: 1,
+        orderby: ['name', 'id'],
+        tags: 'tag',
+      });
+      expect(resource.path).toBe(`${wowSearchBasePath}/media`);
+      expect(resource.namespace).toBe(namespace);
+      expect(resource.parameters).toEqual({
+        _page: 1,
+        orderby: 'name,id',
+        tags: 'tag',
+      });
+    },
+  );
 });

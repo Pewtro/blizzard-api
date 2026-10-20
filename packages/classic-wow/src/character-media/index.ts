@@ -1,4 +1,4 @@
-import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
+import type { ProfileClassicNamespaces, Resource } from '@blizzard-api/core';
 import { wowCharacterBasePath } from '@blizzard-api/core';
 import type { CharacterMediaSummaryResponse } from './types';
 
@@ -9,7 +9,7 @@ import type { CharacterMediaSummaryResponse } from './types';
  * @returns a summary of the media assets available for a character (such as an avatar render).
  */
 export function characterMediaSummary(
-  namespace: Extract<BlizzardNamespaces, 'profile-classic1x' | 'profile-classic'>,
+  namespace: ProfileClassicNamespaces,
   realmSlug: string,
   characterName: string,
 ): Resource<CharacterMediaSummaryResponse> {

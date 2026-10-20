@@ -1,6 +1,6 @@
 import { createBlizzardApiClient } from '@blizzard-api/client';
 import { region, regionIndex } from '@blizzard-api/wow/region';
-import { describe, test } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import { regionIndexResponseSchema, regionResponseSchema } from '../../../generated/schemas/wow';
@@ -11,7 +11,7 @@ describe('wow region integration', async () => {
     origin: 'eu',
     secret: environment.blizzardClientSecret,
   });
-  test('validates region index and region detail', async ({ expect }) => {
+  test('validates region index and region detail', async () => {
     const resp = await client.sendRequest(regionIndex());
     const parsed = regionIndexResponseSchema.safeParse(resp);
     if (!parsed.success) {
@@ -19,10 +19,13 @@ describe('wow region integration', async () => {
     }
     expect(parsed.success).toBe(true);
 
-    const regionResp = await client.sendRequest(region(3));
+    const regionId = Number(/region\/(\d+)/.exec(parsed.data!.regions[0]!.href)?.[1]);
+    expect(regionId).toBeTypeOf('number');
+
+    const regionResp = await client.sendRequest(region(regionId));
     const parsedRegion = regionResponseSchema.safeParse(regionResp);
     if (!parsedRegion.success) {
-      console.error('Region detail validation failed:', prettifyError(parsedRegion.error));
+      console.error('Region detail validation failed:', regionId, prettifyError(parsedRegion.error));
     }
     expect(parsedRegion.success).toBe(true);
   });

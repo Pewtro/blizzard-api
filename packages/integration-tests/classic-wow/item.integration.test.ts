@@ -160,4 +160,75 @@ describe('classic-wow item integration', async () => {
       expect(parsed.success).toBe(true);
     });
   });
+
+  describe('classic anniversary', () => {
+    test('validates item and item media', async ({ expect }) => {
+      const resp = await client.sendRequest(item('static-classicann', 19_019));
+      const parsed = itemResponseSchema.safeParse(resp);
+      if (!parsed.success) {
+        console.error('Item validation failed', prettifyError(parsed.error));
+      }
+      expect(parsed.success).toBe(true);
+
+      const respMedia = await client.sendRequest(itemMedia('static-classicann', 19_019));
+      const parsedMedia = itemMediaResponseSchema.safeParse(respMedia);
+      if (!parsedMedia.success) {
+        console.error('Item media validation failed:', prettifyError(parsedMedia.error));
+      }
+      expect(parsedMedia.success).toBe(true);
+    });
+    test('validates item class index and item details', async ({ expect }) => {
+      const resp = await client.sendRequest(itemClassIndex('static-classicann'));
+      const parsed = itemClassIndexResponseSchema.safeParse(resp);
+      if (!parsed.success) {
+        console.error('Item class index validation failed:', prettifyError(parsed.error));
+      }
+      expect(parsed.success).toBe(true);
+
+      // eslint-disable-next-line sonarjs/pseudo-random
+      const randomItemClassIndex = Math.floor(Math.random() * resp!.item_classes.length);
+
+      // Avoid the "WoW Token" class which has no subclasses and causes the subclass test to fail
+      const foundItemClass =
+        resp!.item_classes[randomItemClassIndex]?.id === 18
+          ? resp!.item_classes[1]
+          : resp!.item_classes[randomItemClassIndex];
+
+      expect(foundItemClass).toBeDefined();
+
+      const detail = await client.sendRequest(itemClass('static-classicann', foundItemClass!.id));
+      const parsedDetail = itemClassResponseSchema.safeParse(detail);
+      if (!parsedDetail.success) {
+        console.error('Item class detail validation failed:', foundItemClass!.id, prettifyError(parsedDetail.error));
+      }
+      expect(parsedDetail.success).toBe(true);
+
+      // eslint-disable-next-line sonarjs/pseudo-random
+      const subclassIndex = Math.floor(Math.random() * (detail!.item_subclasses?.length ?? 1));
+      const subclass = detail!.item_subclasses?.[subclassIndex] ?? { id: 1 };
+
+      const subDetail = await client.sendRequest(itemSubclass('static-classicann', foundItemClass!.id, subclass.id));
+      const parsedSubDetail = itemSubclassResponseSchema.safeParse(subDetail);
+      if (!parsedSubDetail.success) {
+        console.error(
+          'Item subclass detail validation failed:',
+          foundItemClass!.id,
+          subclass.id,
+          prettifyError(parsedSubDetail.error),
+        );
+      }
+      expect(parsedSubDetail.success).toBe(true);
+    });
+
+    test('validates item search', async ({ expect }) => {
+      const search = await client.sendRequest(
+        itemSearch('static-classicann', { _page: 1, locale: 'en_GB', name: 'Glaive' }),
+      );
+      const parsed = itemSearchResponseSchema.safeParse(search);
+      if (!parsed.success) {
+        console.error('Item search validation failed:', prettifyError(parsed.error));
+      }
+      expect(parsed.success).toBe(true);
+    });
+  });
 });

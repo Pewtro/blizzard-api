@@ -1,5 +1,5 @@
 import { wowBasePath } from '@blizzard-api/core';
-import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
+import type { Resource, StaticClassicNamespaces } from '@blizzard-api/core';
 import type { PowerTypeIndexResponse, PowerTypeResponse } from './types';
 
 /**
@@ -8,10 +8,7 @@ import type { PowerTypeIndexResponse, PowerTypeResponse } from './types';
  * @param powerTypeId The power type ID.
  * @returns The power type. See {@link PowerTypeResponse}.
  */
-export function powerType(
-  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
-  powerTypeId: number,
-): Resource<PowerTypeResponse> {
+export function powerType(namespace: StaticClassicNamespaces, powerTypeId: number): Resource<PowerTypeResponse> {
   return {
     namespace,
     path: `${wowBasePath}/power-type/${powerTypeId}`,
@@ -22,9 +19,7 @@ export function powerType(
  * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
  * @returns The power type index. See {@link PowerTypeIndexResponse}.
  */
-export function powerTypeIndex(
-  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
-): Resource<PowerTypeIndexResponse> {
+export function powerTypeIndex(namespace: StaticClassicNamespaces): Resource<PowerTypeIndexResponse> {
   return {
     namespace,
     path: `${wowBasePath}/power-type/index`,

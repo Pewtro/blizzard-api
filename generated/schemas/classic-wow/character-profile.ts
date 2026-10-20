@@ -10,7 +10,7 @@ const guildSchema = nameIdKeySchema.extend({
 export const characterProfileSummaryResponseSchema = responseBaseSchema.extend({
   achievement_points: z.number().optional(),
   achievements: hrefSchema.optional(),
-  active_spec: nameIdKeySchema,
+  active_spec: nameIdKeySchema.optional(),
   active_title: z
     .strictObject({
       name: z.string(),

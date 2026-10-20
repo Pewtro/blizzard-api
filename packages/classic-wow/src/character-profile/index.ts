@@ -1,4 +1,4 @@
-import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
+import type { ProfileClassicNamespaces, Resource } from '@blizzard-api/core';
 import { wowCharacterBasePath } from '@blizzard-api/core';
 import type { CharacterProfileStatusResponse, CharacterProfileSummaryResponse } from './types';
 
@@ -20,10 +20,10 @@ import type { CharacterProfileStatusResponse, CharacterProfileSummaryResponse } 
  * @returns the status of the character profile for a character.
  */
 export function characterProfileStatus(
-  namespace: Extract<BlizzardNamespaces, 'profile-classic1x' | 'profile-classic'>,
+  namespace: ProfileClassicNamespaces,
   realmSlug: string,
   characterName: string,
-): Resource<typeof namespace extends 'profile-classic1x' ? CharacterProfileStatusResponse : never> {
+): Resource<CharacterProfileStatusResponse> {
   return {
     namespace,
     path: `${wowCharacterBasePath}/${realmSlug}/${characterName.toLowerCase()}/status`,
@@ -38,7 +38,7 @@ export function characterProfileStatus(
  * @returns a summary of the character profile for a character.
  */
 export function characterProfileSummary(
-  namespace: Extract<BlizzardNamespaces, 'profile-classic1x' | 'profile-classic'>,
+  namespace: ProfileClassicNamespaces,
   realmSlug: string,
   characterName: string,
 ): Resource<CharacterProfileSummaryResponse> {

@@ -1,4 +1,4 @@
-import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
+import type { ProfileClassicNamespaces, Resource } from '@blizzard-api/core';
 import { wowCharacterBasePath } from '@blizzard-api/core';
 import type { CharacterSpecializationsSummaryResponse } from './types';
 
@@ -9,7 +9,7 @@ import type { CharacterSpecializationsSummaryResponse } from './types';
  * @returns a summary of a character's specializations.
  */
 export function characterSpecializationsSummary(
-  namespace: Extract<BlizzardNamespaces, 'profile-classic1x' | 'profile-classic'>,
+  namespace: ProfileClassicNamespaces,
   realmSlug: string,
   characterName: string,
 ): Resource<CharacterSpecializationsSummaryResponse> {

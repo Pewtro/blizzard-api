@@ -1,5 +1,5 @@
 import { wowBasePath } from '@blizzard-api/core';
-import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
+import type { DynamicClassicNamespaces, Resource } from '@blizzard-api/core';
 import type { AuctionHouseIndexResponse, AuctionsResponse } from './types';
 
 /**
@@ -9,7 +9,7 @@ import type { AuctionHouseIndexResponse, AuctionsResponse } from './types';
  * @returns The auction house index. See {@link AuctionHouseIndexResponse}.
  */
 export function auctionHouseIndex(
-  namespace: Extract<BlizzardNamespaces, 'dynamic-classic1x' | 'dynamic-classic'>,
+  namespace: DynamicClassicNamespaces,
   connectedRealmId: number,
 ): Resource<AuctionHouseIndexResponse> {
   return {
@@ -29,7 +29,7 @@ export function auctionHouseIndex(
  * @returns The auction house data. See {@link AuctionsResponse}.
  */
 export function auctions(
-  namespace: Extract<BlizzardNamespaces, 'dynamic-classic1x' | 'dynamic-classic'>,
+  namespace: DynamicClassicNamespaces,
   connectedRealmId: number,
   auctionHouseId: number,
 ): Resource<AuctionsResponse> {

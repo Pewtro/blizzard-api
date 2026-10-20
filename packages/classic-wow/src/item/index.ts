@@ -1,5 +1,5 @@
 import { wowBasePath, wowMediaBasePath, wowSearchBasePath } from '@blizzard-api/core';
-import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
+import type { Resource, StaticClassicNamespaces } from '@blizzard-api/core';
 import type {
   ItemClassIndexResponse,
   ItemClassResponse,
@@ -16,10 +16,7 @@ import type {
  * @param itemId The item ID.
  * @returns The item. See {@link ItemResponse}.
  */
-export function item(
-  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
-  itemId: number,
-): Resource<ItemResponse> {
+export function item(namespace: StaticClassicNamespaces, itemId: number): Resource<ItemResponse> {
   return {
     namespace,
     path: `${wowBasePath}/item/${itemId}`,
@@ -31,10 +28,7 @@ export function item(
  * @param itemClassId The item class ID.
  * @returns The item class. See {@link ItemClassResponse}.
  */
-export function itemClass(
-  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
-  itemClassId: number,
-): Resource<ItemClassResponse> {
+export function itemClass(namespace: StaticClassicNamespaces, itemClassId: number): Resource<ItemClassResponse> {
   return {
     namespace,
     path: `${wowBasePath}/item-class/${itemClassId}`,
@@ -45,9 +39,7 @@ export function itemClass(
  * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
  * @returns The item class index. See {@link ItemClassIndexResponse}.
  */
-export function itemClassIndex(
-  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
-): Resource<ItemClassIndexResponse> {
+export function itemClassIndex(namespace: StaticClassicNamespaces): Resource<ItemClassIndexResponse> {
   return {
     namespace,
     path: `${wowBasePath}/item-class/index`,
@@ -59,10 +51,7 @@ export function itemClassIndex(
  * @param itemId The item ID.
  * @returns The item media. See {@link ItemMediaResponse}.
  */
-export function itemMedia(
-  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
-  itemId: number,
-): Resource<ItemMediaResponse> {
+export function itemMedia(namespace: StaticClassicNamespaces, itemId: number): Resource<ItemMediaResponse> {
   return {
     namespace,
     path: `${wowMediaBasePath}/item/${itemId}`,
@@ -75,7 +64,7 @@ export function itemMedia(
  * @returns The search results. See {@link ItemSearchResponse}.
  */
 export function itemSearch(
-  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
+  namespace: StaticClassicNamespaces,
   options: ItemSearchParameters,
 ): Resource<ItemSearchResponse, Omit<ItemSearchParameters, 'locale' | 'name'>> {
   return {
@@ -96,7 +85,7 @@ export function itemSearch(
  * @returns The item subclass. See {@link ItemSubclassResponse}.
  */
 export function itemSubclass(
-  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
+  namespace: StaticClassicNamespaces,
   itemClassId: number,
   itemSubclassId: number,
 ): Resource<ItemSubclassResponse> {

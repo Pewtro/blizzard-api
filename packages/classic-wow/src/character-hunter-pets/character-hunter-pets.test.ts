@@ -1,25 +1,14 @@
-import type { BlizzardNamespaces } from '@blizzard-api/core';
 import { wowCharacterBasePath } from '@blizzard-api/core';
 import { describe, expect, test } from 'vitest';
 import { characterHunterPetsSummary } from './index';
 
+const namespaces = ['profile-classic1x', 'profile-classic', 'profile-classicann'] as const;
+
 describe('characterHunterPetsSummary', () => {
-  test('should return the correct resource path for profile-classic namespace', () => {
-    const namespace: Extract<BlizzardNamespaces, 'profile-classic'> = 'profile-classic';
+  test.each(namespaces)('should return the correct resource path for the %s namespace', (namespace) => {
     const realmSlug = 'some-realm';
     const characterName = 'some-character';
-    const result = characterHunterPetsSummary(namespace, realmSlug, characterName);
 
-    expect(result).toEqual({
-      namespace,
-      path: `${wowCharacterBasePath}/${realmSlug}/${characterName}/hunter-pets`,
-    });
-  });
-
-  test('should return the correct resource path for profile-classic1x namespace', () => {
-    const namespace: Extract<BlizzardNamespaces, 'profile-classic1x'> = 'profile-classic1x';
-    const realmSlug = 'another-realm';
-    const characterName = 'another-character';
     const result = characterHunterPetsSummary(namespace, realmSlug, characterName);
 
     expect(result).toEqual({

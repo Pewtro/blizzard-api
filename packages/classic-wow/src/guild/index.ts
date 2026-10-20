@@ -1,4 +1,4 @@
-import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
+import type { ProfileClassicNamespaces, Resource } from '@blizzard-api/core';
 import type {
   GuildAchievementsClassicEraResponse,
   GuildAchievementsResponse,
@@ -16,7 +16,7 @@ const basePath = '/data/wow/guild';
  * @returns a single guild by its name and realm.
  */
 export function guild(
-  namespace: Extract<BlizzardNamespaces, 'profile-classic1x' | 'profile-classic'>,
+  namespace: ProfileClassicNamespaces,
   realmSlug: string,
   nameSlug: string,
 ): Resource<GuildResponse> {
@@ -32,11 +32,13 @@ export function guild(
  * @param nameSlug The lowercase name of the guild.
  * @returns a single guild's achievements by name and realm.
  */
-export function guildAchievements<T extends Extract<BlizzardNamespaces, 'profile-classic1x' | 'profile-classic'>>(
+export function guildAchievements<T extends ProfileClassicNamespaces>(
   namespace: T,
   realmSlug: string,
   nameSlug: string,
-): Resource<T extends 'profile-classic1x' ? GuildAchievementsClassicEraResponse : GuildAchievementsResponse> {
+): Resource<
+  T extends 'profile-classic1x' | 'profile-classicann' ? GuildAchievementsClassicEraResponse : GuildAchievementsResponse
+> {
   return {
     namespace,
     path: `${basePath}/${realmSlug}/${nameSlug}/achievements`,
@@ -50,7 +52,7 @@ export function guildAchievements<T extends Extract<BlizzardNamespaces, 'profile
  * @returns a single guild's activity by name and realm.
  */
 export function guildActivity(
-  namespace: Extract<BlizzardNamespaces, 'profile-classic1x' | 'profile-classic'>,
+  namespace: ProfileClassicNamespaces,
   realmSlug: string,
   nameSlug: string,
 ): Resource<GuildActivityResponse> {
@@ -67,7 +69,7 @@ export function guildActivity(
  * @returns a single guild's roster by its name and realm.
  */
 export function guildRoster(
-  namespace: Extract<BlizzardNamespaces, 'profile-classic1x' | 'profile-classic'>,
+  namespace: ProfileClassicNamespaces,
   realmSlug: string,
   nameSlug: string,
 ): Resource<GuildRosterResponse> {

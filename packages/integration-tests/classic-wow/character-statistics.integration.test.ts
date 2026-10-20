@@ -23,4 +23,16 @@ describe('classic-wow character statistics integration', async () => {
     }
     expect(parsed.success).toBe(true);
   });
+
+  test('fetches statistics summary for a character on classic anniversary', async ({ expect }) => {
+    const realm = 'thunderstrike';
+    const character = 'kytahela';
+
+    const resp = await client.sendRequest(characterStatisticsSummary('profile-classicann', realm, character));
+    const parsed = characterStatisticsSummaryResponseSchema.safeParse(resp);
+    if (!parsed.success) {
+      console.error('Character statistics summary validation failed:', realm, character, prettifyError(parsed.error));
+    }
+    expect(parsed.success).toBe(true);
+  });
 });

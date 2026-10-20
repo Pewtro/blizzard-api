@@ -1,4 +1,4 @@
-import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
+import type { ProfileClassicNamespaces, Resource } from '@blizzard-api/core';
 import { wowCharacterBasePath } from '@blizzard-api/core';
 import type { CharacterEquipmentSummaryResponse } from './types';
 
@@ -10,7 +10,7 @@ import type { CharacterEquipmentSummaryResponse } from './types';
  * @returns The character equipment summary.
  */
 export function characterEquipmentSummary(
-  namespace: Extract<BlizzardNamespaces, 'profile-classic1x' | 'profile-classic'>,
+  namespace: ProfileClassicNamespaces,
   realmSlug: string,
   characterName: string,
 ): Resource<CharacterEquipmentSummaryResponse> {

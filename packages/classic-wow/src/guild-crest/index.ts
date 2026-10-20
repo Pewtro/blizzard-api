@@ -1,4 +1,4 @@
-import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
+import type { Resource, StaticClassicNamespaces } from '@blizzard-api/core';
 import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
 import type { GuildCrestBorderEmblemResponse, GuildCrestComponentsIndexResponse } from './types';
 
@@ -9,7 +9,7 @@ import type { GuildCrestBorderEmblemResponse, GuildCrestComponentsIndexResponse 
  * @returns The guild crest border. See {@link GuildCrestBorderEmblemResponse}.
  */
 export function guildCrestBorder(
-  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
+  namespace: StaticClassicNamespaces,
   borderId: number,
 ): Resource<GuildCrestBorderEmblemResponse> {
   return {
@@ -23,7 +23,7 @@ export function guildCrestBorder(
  * @returns The guild crest components index. See {@link GuildCrestComponentsIndexResponse}.
  */
 export function guildCrestComponentsIndex(
-  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
+  namespace: StaticClassicNamespaces,
 ): Resource<GuildCrestComponentsIndexResponse> {
   return {
     namespace,
@@ -37,7 +37,7 @@ export function guildCrestComponentsIndex(
  * @returns The guild crest emblem. See {@link GuildCrestBorderEmblemResponse}.
  */
 export function guildCrestEmblem(
-  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
+  namespace: StaticClassicNamespaces,
   emblemId: number,
 ): Resource<GuildCrestBorderEmblemResponse> {
   return {

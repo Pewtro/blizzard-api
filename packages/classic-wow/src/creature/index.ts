@@ -1,5 +1,5 @@
 import { wowBasePath, wowMediaBasePath, wowSearchBasePath } from '@blizzard-api/core';
-import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
+import type { Resource, StaticClassicNamespaces } from '@blizzard-api/core';
 import type {
   CreatureDisplayMediaResponse,
   CreatureFamilyIndexResponse,
@@ -18,10 +18,7 @@ import type {
  * @param creatureId The creature ID.
  * @returns The creature. See {@link CreatureResponse}.
  */
-export function creature(
-  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
-  creatureId: number,
-): Resource<CreatureResponse> {
+export function creature(namespace: StaticClassicNamespaces, creatureId: number): Resource<CreatureResponse> {
   return {
     namespace,
     path: `${wowBasePath}/creature/${creatureId}`,
@@ -34,7 +31,7 @@ export function creature(
  * @returns The creature display media. See {@link CreatureDisplayMediaResponse}.
  */
 export function creatureDisplayMedia(
-  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
+  namespace: StaticClassicNamespaces,
   creatureDisplayId: number,
 ): Resource<CreatureDisplayMediaResponse> {
   return {
@@ -49,7 +46,7 @@ export function creatureDisplayMedia(
  * @returns The creature family. See {@link CreatureFamilyResponse}.
  */
 export function creatureFamily(
-  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
+  namespace: StaticClassicNamespaces,
   creatureFamilyId: number,
 ): Resource<CreatureFamilyResponse> {
   return {
@@ -62,9 +59,7 @@ export function creatureFamily(
  * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
  * @returns The creature family index. See {@link CreatureFamilyIndexResponse}.
  */
-export function creatureFamilyIndex(
-  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
-): Resource<CreatureFamilyIndexResponse> {
+export function creatureFamilyIndex(namespace: StaticClassicNamespaces): Resource<CreatureFamilyIndexResponse> {
   return {
     namespace,
     path: `${wowBasePath}/creature-family/index`,
@@ -77,7 +72,7 @@ export function creatureFamilyIndex(
  * @returns The creature family media. See {@link CreatureFamilyMediaResponse}.
  */
 export function creatureFamilyMedia(
-  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
+  namespace: StaticClassicNamespaces,
   creatureFamilyId: number,
 ): Resource<CreatureFamilyMediaResponse> {
   return {
@@ -92,7 +87,7 @@ export function creatureFamilyMedia(
  * @returns The creature search results. See {@link CreatureSearchResponse}.
  */
 export function creatureSearch(
-  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
+  namespace: StaticClassicNamespaces,
   options: CreatureSearchParameters,
 ): Resource<CreatureSearchResponse, Omit<CreatureSearchParameters, 'locale' | 'name'>> {
   return {
@@ -112,7 +107,7 @@ export function creatureSearch(
  * @returns The creature type. See {@link CreatureTypeResponse}.
  */
 export function creatureType(
-  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
+  namespace: StaticClassicNamespaces,
   creatureTypeId: number,
 ): Resource<CreatureTypeResponse> {
   return {
@@ -125,9 +120,7 @@ export function creatureType(
  * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
  * @returns The creature type index. See {@link CreatureTypeIndexResponse}.
  */
-export function creatureTypeIndex(
-  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
-): Resource<CreatureTypeIndexResponse> {
+export function creatureTypeIndex(namespace: StaticClassicNamespaces): Resource<CreatureTypeIndexResponse> {
   return {
     namespace,
     path: `${wowBasePath}/creature-type/index`,

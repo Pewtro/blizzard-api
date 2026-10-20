@@ -1,23 +1,28 @@
 import { wowBasePath } from '@blizzard-api/core';
-import type { BlizzardNamespaces } from '@blizzard-api/core';
-import { describe, test } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { powerType, powerTypeIndex } from './index';
 
-const namespace: BlizzardNamespaces = 'static-classic1x';
+const namespaces = ['static-classic1x', 'static-classic', 'static-classicann'] as const;
 
 describe('powerTypeApi', () => {
-  test('powerType should return a resource object with the correct path and namespace', ({ expect }) => {
-    const powerTypeId = 123;
-    const resource = powerType(namespace, powerTypeId);
+  test.each(namespaces)(
+    'powerType should return a resource object with the correct path and namespace in the %s namespace',
+    (namespace) => {
+      const powerTypeId = 123;
+      const resource = powerType(namespace, powerTypeId);
 
-    expect(resource.path).toBe(`${wowBasePath}/power-type/${powerTypeId}`);
-    expect(resource.namespace).toBe(namespace);
-  });
+      expect(resource.path).toBe(`${wowBasePath}/power-type/${powerTypeId}`);
+      expect(resource.namespace).toBe(namespace);
+    },
+  );
 
-  test('powerTypeIndex should return a resource object with the correct path and namespace', ({ expect }) => {
-    const resource = powerTypeIndex(namespace);
+  test.each(namespaces)(
+    'powerTypeIndex should return a resource object with the correct path and namespace in the %s namespace',
+    (namespace) => {
+      const resource = powerTypeIndex(namespace);
 
-    expect(resource.path).toBe(`${wowBasePath}/power-type/index`);
-    expect(resource.namespace).toBe(namespace);
-  });
+      expect(resource.path).toBe(`${wowBasePath}/power-type/index`);
+      expect(resource.namespace).toBe(namespace);
+    },
+  );
 });

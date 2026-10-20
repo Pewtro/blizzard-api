@@ -32,3 +32,30 @@ describe('classic-wow character profile integration', async () => {
     expect(parsedStatus.success).toBe(true);
   });
 });
+
+describe('classic-wow character profile integration for classic anniversary', async () => {
+  const client = await createBlizzardApiClient({
+    key: environment.blizzardClientId,
+    origin: 'eu',
+    secret: environment.blizzardClientSecret,
+  });
+  const realm = 'thunderstrike';
+  const character = 'kytahela';
+  test('fetches profile summary', async ({ expect }) => {
+    const resp = await client.sendRequest(characterProfileSummary('profile-classicann', realm, character));
+    const parsed = characterProfileSummaryResponseSchema.safeParse(resp);
+    if (!parsed.success) {
+      console.error('Character profile summary validation failed:', realm, character, prettifyError(parsed.error));
+    }
+    expect(parsed.success).toBe(true);
+  });
+
+  test('fetches profile status', async ({ expect }) => {
+    const resp = await client.sendRequest(characterProfileStatus('profile-classicann', realm, character));
+    const parsedStatus = characterProfileStatusResponseSchema.safeParse(resp);
+    if (!parsedStatus.success) {
+      console.error('Character profile status validation failed:', realm, character, prettifyError(parsedStatus.error));
+    }
+    expect(parsedStatus.success).toBe(true);
+  });
+});

@@ -9,7 +9,7 @@ import {
   creatureType,
   creatureTypeIndex,
 } from '@blizzard-api/wow/creature';
-import { describe, test } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
@@ -30,7 +30,7 @@ describe('wow creature integration', async () => {
     secret: environment.blizzardClientSecret,
   });
 
-  test('validates creature details', async ({ expect }) => {
+  test('validates creature details', async () => {
     const resp = await client.sendRequest(creature(42_722));
     const parsed = creatureResponseSchema.safeParse(resp);
     if (!parsed.success) {
@@ -46,7 +46,7 @@ describe('wow creature integration', async () => {
     expect(parsedMedia.success).toBe(true);
   });
 
-  test('validates creature family index', async ({ expect }) => {
+  test('validates creature family index', async () => {
     const resp = await client.sendRequest(creatureFamilyIndex());
     const parsed = creatureFamilyIndexResponseSchema.safeParse(resp);
     if (!parsed.success) {
@@ -54,22 +54,23 @@ describe('wow creature integration', async () => {
     }
     expect(parsed.success).toBe(true);
 
-    const detail = await client.sendRequest(creatureFamily(1));
+    const creatureFamilyId = parsed.data!.creature_families[0]!.id;
+    const detail = await client.sendRequest(creatureFamily(creatureFamilyId));
     const parsedDetail = creatureFamilyResponseSchema.safeParse(detail);
     if (!parsedDetail.success) {
-      console.error('Creature family detail validation failed:', prettifyError(parsedDetail.error));
+      console.error('Creature family detail validation failed:', creatureFamilyId, prettifyError(parsedDetail.error));
     }
     expect(parsedDetail.success).toBe(true);
 
-    const media = await client.sendRequest(creatureFamilyMedia(1));
+    const media = await client.sendRequest(creatureFamilyMedia(creatureFamilyId));
     const parsedMedia = creatureFamilyMediaResponseSchema.safeParse(media);
     if (!parsedMedia.success) {
-      console.error('Creature family media validation failed:', prettifyError(parsedMedia.error));
+      console.error('Creature family media validation failed:', creatureFamilyId, prettifyError(parsedMedia.error));
     }
     expect(parsedMedia.success).toBe(true);
   });
 
-  test('validates creature search', async ({ expect }) => {
+  test('validates creature search', async () => {
     const search = await client.sendRequest(creatureSearch({ _page: 1, locale: 'en_GB', name: 'dragon' }));
     const parsed = creatureSearchResponseSchema.safeParse(search);
     if (!parsed.success) {
@@ -78,7 +79,7 @@ describe('wow creature integration', async () => {
     expect(parsed.success).toBe(true);
   });
 
-  test('validates creature type index', async ({ expect }) => {
+  test('validates creature type index', async () => {
     const resp = await client.sendRequest(creatureTypeIndex());
     const parsed = creatureTypeIndexResponseSchema.safeParse(resp);
     if (!parsed.success) {

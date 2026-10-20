@@ -1,5 +1,5 @@
 import { wowBasePath } from '@blizzard-api/core';
-import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
+import type { DynamicClassicNamespaces, Resource } from '@blizzard-api/core';
 import type { PvpSeasonIndexResponse, PvpSeasonResponse } from './types';
 
 /**
@@ -11,7 +11,7 @@ import type { PvpSeasonIndexResponse, PvpSeasonResponse } from './types';
  * @returns The PvP leaderboard.
  */
 export function pvpLeaderboard(
-  namespace: Extract<BlizzardNamespaces, 'dynamic-classic1x' | 'dynamic-classic'>,
+  namespace: DynamicClassicNamespaces,
   pvpRegionId: number,
   pvpSeasonId: number,
   pvpBracket: string,
@@ -29,7 +29,7 @@ export function pvpLeaderboard(
  * @returns The PvP leaderboard index.
  */
 export function pvpLeaderboardIndex(
-  namespace: Extract<BlizzardNamespaces, 'dynamic-classic1x' | 'dynamic-classic'>,
+  namespace: DynamicClassicNamespaces,
   pvpRegionId: number,
   pvpSeasonId: number,
 ): Resource<unknown> {
@@ -46,7 +46,7 @@ export function pvpLeaderboardIndex(
  * @returns The PvP season.
  */
 export function pvpRegionalSeason(
-  namespace: Extract<BlizzardNamespaces, 'dynamic-classic1x' | 'dynamic-classic'>,
+  namespace: DynamicClassicNamespaces,
   pvpRegionId: number,
   pvpSeasonId: number,
 ): Resource<unknown> {
@@ -62,7 +62,7 @@ export function pvpRegionalSeason(
  * @returns The PvP season index. See {@link PvpSeasonIndexResponse}.
  */
 export function pvpRegionalSeasonIndex(
-  namespace: Extract<BlizzardNamespaces, 'dynamic-classic1x' | 'dynamic-classic'>,
+  namespace: DynamicClassicNamespaces,
   pvpRegionId: number,
 ): Resource<PvpSeasonIndexResponse> {
   return {
@@ -75,9 +75,7 @@ export function pvpRegionalSeasonIndex(
  * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
  * @returns The PvP region index.
  */
-export function pvpRegionIndex(
-  namespace: Extract<BlizzardNamespaces, 'dynamic-classic1x' | 'dynamic-classic'>,
-): Resource<unknown> {
+export function pvpRegionIndex(namespace: DynamicClassicNamespaces): Resource<unknown> {
   return {
     namespace,
     path: `${wowBasePath}/pvp-region/index`,
@@ -91,7 +89,7 @@ export function pvpRegionIndex(
  * @returns The PvP reward index.
  */
 export function pvpRewardsIndex(
-  namespace: Extract<BlizzardNamespaces, 'dynamic-classic1x' | 'dynamic-classic'>,
+  namespace: DynamicClassicNamespaces,
   pvpRegionId: number,
   pvpSeasonId: number,
 ): Resource<unknown> {
@@ -106,10 +104,7 @@ export function pvpRewardsIndex(
  * @param pvpSeasonId The PvP season ID.
  * @returns The PvP season. See {@link PvpSeasonResponse}.
  */
-export function pvpSeason(
-  namespace: Extract<BlizzardNamespaces, 'dynamic-classic1x' | 'dynamic-classic'>,
-  pvpSeasonId: number,
-): Resource<PvpSeasonResponse> {
+export function pvpSeason(namespace: DynamicClassicNamespaces, pvpSeasonId: number): Resource<PvpSeasonResponse> {
   return {
     namespace,
     path: `${wowBasePath}/pvp-season/${pvpSeasonId}`,
@@ -120,9 +115,7 @@ export function pvpSeason(
  * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
  * @returns The PvP season index. See {@link PvpSeasonIndexResponse}.
  */
-export function pvpSeasonIndex(
-  namespace: Extract<BlizzardNamespaces, 'dynamic-classic1x' | 'dynamic-classic'>,
-): Resource<PvpSeasonIndexResponse> {
+export function pvpSeasonIndex(namespace: DynamicClassicNamespaces): Resource<PvpSeasonIndexResponse> {
   return {
     namespace,
     path: `${wowBasePath}/pvp-season/index`,

@@ -1,5 +1,5 @@
 import { wowBasePath, wowMediaBasePath } from '@blizzard-api/core';
-import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
+import type { Resource, StaticClassicNamespaces } from '@blizzard-api/core';
 import type { PlayableClassIndexResponse, PlayableClassMediaResponse, PlayableClassResponse } from './types';
 
 /**
@@ -9,7 +9,7 @@ import type { PlayableClassIndexResponse, PlayableClassMediaResponse, PlayableCl
  * @returns The playable class. See {@link PlayableClassResponse}.
  */
 export function playableClass(
-  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
+  namespace: StaticClassicNamespaces,
   playableClassId: number,
 ): Resource<PlayableClassResponse> {
   return {
@@ -22,9 +22,7 @@ export function playableClass(
  * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
  * @returns The playable class index. See {@link PlayableClassIndexResponse}.
  */
-export function playableClassIndex(
-  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
-): Resource<PlayableClassIndexResponse> {
+export function playableClassIndex(namespace: StaticClassicNamespaces): Resource<PlayableClassIndexResponse> {
   return {
     namespace,
     path: `${wowBasePath}/playable-class/index`,
@@ -37,7 +35,7 @@ export function playableClassIndex(
  * @returns The playable class media. See {@link PlayableClassMediaResponse}.
  */
 export function playableClassMedia(
-  namespace: Extract<BlizzardNamespaces, 'static-classic1x' | 'static-classic'>,
+  namespace: StaticClassicNamespaces,
   playableClassId: number,
 ): Resource<PlayableClassMediaResponse> {
   return {

@@ -3,7 +3,7 @@ import { wowCharacterBasePath } from '@blizzard-api/core';
 import type { CharacterAchievementsSummaryResponse, CharacterAchievementStatisticsResponse } from './types';
 
 /**
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}. Note: This API is not supported for classic era realms.
+ * @param namespace The namespace to use. See {@link BlizzardNamespaces}. Note: This API is not supported for classic era or anniversary realms.
  * @param realmSlug The slug of the realm.
  * @param characterName The lowercase name of the character.
  * @returns a summary of the achievements a character has completed.
@@ -20,7 +20,7 @@ export function characterAchievementsSummary(
 }
 
 /**
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}. Note: This API is not supported for classic era realms.
+ * @param namespace The namespace to use. See {@link BlizzardNamespaces}. Note: This API is not supported for classic era or anniversary realms.
  * @param realmSlug The slug of the realm.
  * @param characterName The lowercase name of the character.
  * @returns a character's statistics as they pertain to achievements.

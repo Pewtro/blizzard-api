@@ -1,6 +1,6 @@
 import { playableClass, playableClassIndex, playableClassMedia } from '@blizzard-api/classic-wow/playable-class';
 import { createBlizzardApiClient } from '@blizzard-api/client';
-import { describe, test } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import {
@@ -16,70 +16,40 @@ describe('classic-wow playable class integration', async () => {
     secret: environment.blizzardClientSecret,
   });
 
-  test('fetches playable class and media by id for classic era', async ({ expect }) => {
-    const indices = await client.sendRequest(playableClassIndex('static-classic1x'));
-    const parsedIndices = playableClassIndexResponseSchema.safeParse(indices);
-    if (!parsedIndices.success) {
-      console.error('Playable class index validation failed:', prettifyError(parsedIndices.error));
-    }
-    expect(parsedIndices.success).toBe(true);
-
-    const classRequests = [];
-    const mediaRequests = [];
-    const classIndices = indices?.classes ?? [];
-    for (const playerClass of classIndices) {
-      classRequests.push(client.sendRequest(playableClass('static-classic1x', playerClass.id)));
-      mediaRequests.push(client.sendRequest(playableClassMedia('static-classic1x', playerClass.id)));
-    }
-    const responses = await Promise.all(classRequests);
-    for (const resp of responses) {
-      const parsed = playableClassResponseSchema.safeParse(resp);
-      if (!parsed.success) {
-        console.error('Playable class validation failed:', prettifyError(parsed.error));
+  test.each(['static-classic1x', 'static-classic', 'static-classicann'] as const)(
+    'fetches playable class and media by id for %s',
+    async (namespace) => {
+      const indices = await client.sendRequest(playableClassIndex(namespace));
+      const parsedIndices = playableClassIndexResponseSchema.safeParse(indices);
+      if (!parsedIndices.success) {
+        console.error('Playable class index validation failed:', prettifyError(parsedIndices.error));
       }
-      expect(parsed.success).toBe(true);
-    }
-    const mediaResponses = await Promise.all(mediaRequests);
-    for (const mediaResp of mediaResponses) {
-      const mediaParsed = playableClassMediaResponseSchema.safeParse(mediaResp);
+      expect(parsedIndices.success).toBe(true);
 
-      if (!mediaParsed.success) {
-        console.error('Playable class media validation failed:', prettifyError(mediaParsed.error));
+      const classRequests = [];
+      const mediaRequests = [];
+      const classIndices = indices?.classes ?? [];
+      for (const playerClass of classIndices) {
+        classRequests.push(client.sendRequest(playableClass(namespace, playerClass.id)));
+        mediaRequests.push(client.sendRequest(playableClassMedia(namespace, playerClass.id)));
       }
-      expect(mediaParsed.success).toBe(true);
-    }
-  });
-  test('fetches playable class and media by id for classic', async ({ expect }) => {
-    const indices = await client.sendRequest(playableClassIndex('static-classic'));
-    const parsedIndices = playableClassIndexResponseSchema.safeParse(indices);
-    if (!parsedIndices.success) {
-      console.error('Playable class index validation failed:', prettifyError(parsedIndices.error));
-    }
-    expect(parsedIndices.success).toBe(true);
+      const responses = await Promise.all(classRequests);
+      for (const resp of responses) {
+        const parsed = playableClassResponseSchema.safeParse(resp);
+        if (!parsed.success) {
+          console.error('Playable class validation failed:', prettifyError(parsed.error));
+        }
+        expect(parsed.success).toBe(true);
+      }
+      const mediaResponses = await Promise.all(mediaRequests);
+      for (const mediaResp of mediaResponses) {
+        const mediaParsed = playableClassMediaResponseSchema.safeParse(mediaResp);
 
-    const classRequests = [];
-    const mediaRequests = [];
-    const classIndices = indices?.classes ?? [];
-    for (const playerClass of classIndices) {
-      classRequests.push(client.sendRequest(playableClass('static-classic', playerClass.id)));
-      mediaRequests.push(client.sendRequest(playableClassMedia('static-classic', playerClass.id)));
-    }
-    const responses = await Promise.all(classRequests);
-    for (const resp of responses) {
-      const parsed = playableClassResponseSchema.safeParse(resp);
-      if (!parsed.success) {
-        console.error('Playable class validation failed:', prettifyError(parsed.error));
+        if (!mediaParsed.success) {
+          console.error('Playable class media validation failed:', prettifyError(mediaParsed.error));
+        }
+        expect(mediaParsed.success).toBe(true);
       }
-      expect(parsed.success).toBe(true);
-    }
-    const mediaResponses = await Promise.all(mediaRequests);
-    for (const mediaResp of mediaResponses) {
-      const mediaParsed = playableClassMediaResponseSchema.safeParse(mediaResp);
-
-      if (!mediaParsed.success) {
-        console.error('Playable class media validation failed:', prettifyError(mediaParsed.error));
-      }
-      expect(mediaParsed.success).toBe(true);
-    }
-  });
+    },
+  );
 });

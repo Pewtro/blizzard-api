@@ -1,5 +1,5 @@
 import { wowBasePath, wowSearchBasePath } from '@blizzard-api/core';
-import type { BlizzardNamespaces, Resource } from '@blizzard-api/core';
+import type { DynamicClassicNamespaces, Resource } from '@blizzard-api/core';
 import type { RealmIndexResponse, RealmResponse, RealmSearchParameters, RealmSearchResponse } from './types';
 
 /**
@@ -8,10 +8,7 @@ import type { RealmIndexResponse, RealmResponse, RealmSearchParameters, RealmSea
  * @param realmSlug The realm slug.
  * @returns The realm. See {@link RealmResponse}.
  */
-export function realm(
-  namespace: Extract<BlizzardNamespaces, 'dynamic-classic1x' | 'dynamic-classic'>,
-  realmSlug: string,
-): Resource<RealmResponse> {
+export function realm(namespace: DynamicClassicNamespaces, realmSlug: string): Resource<RealmResponse> {
   return {
     namespace,
     path: `${wowBasePath}/realm/${realmSlug}`,
@@ -22,9 +19,7 @@ export function realm(
  * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
  * @returns The realm index. See {@link RealmIndexResponse}.
  */
-export function realmIndex(
-  namespace: Extract<BlizzardNamespaces, 'dynamic-classic1x' | 'dynamic-classic'>,
-): Resource<RealmIndexResponse> {
+export function realmIndex(namespace: DynamicClassicNamespaces): Resource<RealmIndexResponse> {
   return {
     namespace,
     path: `${wowBasePath}/realm/index`,
@@ -37,7 +32,7 @@ export function realmIndex(
  * @returns The search results. See {@link RealmSearchResponse}.
  */
 export function realmSearch(
-  namespace: Extract<BlizzardNamespaces, 'dynamic-classic1x' | 'dynamic-classic'>,
+  namespace: DynamicClassicNamespaces,
   options: RealmSearchParameters,
 ): Resource<RealmSearchResponse, RealmSearchParameters> {
   return {

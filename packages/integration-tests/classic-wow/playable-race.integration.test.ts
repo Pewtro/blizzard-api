@@ -1,6 +1,6 @@
 import { playableRace, playableRaceIndex } from '@blizzard-api/classic-wow/playable-race';
 import { createBlizzardApiClient } from '@blizzard-api/client';
-import { describe, test } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { prettifyError } from 'zod';
 import { environment } from '../../../environment';
 import { playableRaceIndexResponseSchema, playableRaceResponseSchema } from '../../../generated/schemas/classic-wow';
@@ -11,44 +11,27 @@ describe('classic-wow playable race integration', async () => {
     origin: 'eu',
     secret: environment.blizzardClientSecret,
   });
-  test('validates playable races for classic era', async ({ expect }) => {
-    const resp = await client.sendRequest(playableRaceIndex('static-classic1x'));
-    const parsed = playableRaceIndexResponseSchema.safeParse(resp);
-    if (!parsed.success) {
-      console.error('Playable race index validation failed:', prettifyError(parsed.error));
-    }
-    expect(parsed.success).toBe(true);
-
-    const requests = Array.from(resp!.races, (race) => client.sendRequest(playableRace('static-classic1x', race.id)));
-
-    const results = await Promise.all(requests);
-
-    for (const result of results) {
-      const parsedResult = playableRaceResponseSchema.safeParse(result);
-      if (!parsedResult.success) {
-        console.error('Race detail validation failed for id', result!.id, prettifyError(parsedResult.error));
+  test.each(['static-classic1x', 'static-classic', 'static-classicann'] as const)(
+    'validates playable races for %s',
+    async (namespace) => {
+      const resp = await client.sendRequest(playableRaceIndex(namespace));
+      const parsed = playableRaceIndexResponseSchema.safeParse(resp);
+      if (!parsed.success) {
+        console.error('Playable race index validation failed:', prettifyError(parsed.error));
       }
-      expect(parsedResult.success).toBe(true);
-    }
-  });
-  test('validates playable races for classic progression', async ({ expect }) => {
-    const resp = await client.sendRequest(playableRaceIndex('static-classic'));
-    const parsed = playableRaceIndexResponseSchema.safeParse(resp);
-    if (!parsed.success) {
-      console.error('Playable race index validation failed:', prettifyError(parsed.error));
-    }
-    expect(parsed.success).toBe(true);
+      expect(parsed.success).toBe(true);
 
-    const requests = Array.from(resp!.races, (race) => client.sendRequest(playableRace('static-classic', race.id)));
+      const requests = Array.from(resp!.races, (race) => client.sendRequest(playableRace(namespace, race.id)));
 
-    const results = await Promise.all(requests);
+      const results = await Promise.all(requests);
 
-    for (const result of results) {
-      const parsedResult = playableRaceResponseSchema.safeParse(result);
-      if (!parsedResult.success) {
-        console.error('Race detail validation failed for id', result!.id, prettifyError(parsedResult.error));
+      for (const result of results) {
+        const parsedResult = playableRaceResponseSchema.safeParse(result);
+        if (!parsedResult.success) {
+          console.error('Race detail validation failed for id', result!.id, prettifyError(parsedResult.error));
+        }
+        expect(parsedResult.success).toBe(true);
       }
-      expect(parsedResult.success).toBe(true);
-    }
-  });
+    },
+  );
 });

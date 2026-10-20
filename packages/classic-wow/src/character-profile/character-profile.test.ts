@@ -1,34 +1,39 @@
-import type { BlizzardNamespaces } from '@blizzard-api/core';
 import { wowCharacterBasePath } from '@blizzard-api/core';
 import { describe, expect, test } from 'vitest';
 import { characterProfileStatus, characterProfileSummary } from './index';
 
+const namespaces = ['profile-classic1x', 'profile-classic', 'profile-classicann'] as const;
+
 describe('characterProfileStatus', () => {
-  test('should return the correct resource for character profile status', () => {
-    const namespace: Extract<BlizzardNamespaces, 'profile-classic1x' | 'profile-classic'> = 'profile-classic';
-    const realmSlug = 'some-realm';
-    const characterName = 'some-character';
+  test.each(namespaces)(
+    'should return the correct resource for character profile status in the %s namespace',
+    (namespace) => {
+      const realmSlug = 'some-realm';
+      const characterName = 'some-character';
 
-    const result = characterProfileStatus(namespace, realmSlug, characterName);
+      const result = characterProfileStatus(namespace, realmSlug, characterName);
 
-    expect(result).toEqual({
-      namespace,
-      path: `${wowCharacterBasePath}/${realmSlug}/${characterName.toLowerCase()}/status`,
-    });
-  });
+      expect(result).toEqual({
+        namespace,
+        path: `${wowCharacterBasePath}/${realmSlug}/${characterName.toLowerCase()}/status`,
+      });
+    },
+  );
 });
 
 describe('characterProfileSummary', () => {
-  test('should return the correct resource for character profile summary', () => {
-    const namespace: Extract<BlizzardNamespaces, 'profile-classic1x' | 'profile-classic'> = 'profile-classic';
-    const realmSlug = 'some-realm';
-    const characterName = 'some-character';
+  test.each(namespaces)(
+    'should return the correct resource for character profile summary in the %s namespace',
+    (namespace) => {
+      const realmSlug = 'some-realm';
+      const characterName = 'some-character';
 
-    const result = characterProfileSummary(namespace, realmSlug, characterName);
+      const result = characterProfileSummary(namespace, realmSlug, characterName);
 
-    expect(result).toEqual({
-      namespace,
-      path: `${wowCharacterBasePath}/${realmSlug}/${characterName.toLowerCase()}`,
-    });
-  });
+      expect(result).toEqual({
+        namespace,
+        path: `${wowCharacterBasePath}/${realmSlug}/${characterName.toLowerCase()}`,
+      });
+    },
+  );
 });

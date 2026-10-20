@@ -22,4 +22,15 @@ describe('classic-wow character equipment integration', async () => {
     }
     expect(parsed.success).toBe(true);
   });
+  test('fetches equipment summary for a character on classic anniversary', async ({ expect }) => {
+    const realm = 'thunderstrike';
+    const character = 'kytahela';
+
+    const resp = await client.sendRequest(characterEquipmentSummary('profile-classicann', realm, character));
+    const parsed = characterEquipmentSummaryResponseSchema.safeParse(resp);
+    if (!parsed.success) {
+      console.error('Character equipment summary validation failed:', realm, character, prettifyError(parsed.error));
+    }
+    expect(parsed.success).toBe(true);
+  });
 });

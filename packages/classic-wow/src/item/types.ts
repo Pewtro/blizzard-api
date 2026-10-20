@@ -148,7 +148,7 @@ interface InventoryTypeName {
 }
 
 interface InventoryTypeNameFromSearch {
-  name: Record<Locales, string>;
+  name: Record<Locales, string | undefined>;
   type: InventoryType;
 }
 
@@ -157,7 +157,7 @@ interface ItemQuality {
   type: ItemQualityType;
 }
 interface ItemQualityFromSearch {
-  name: Record<Locales, string>;
+  name: Record<Locales, string | undefined>;
   type: ItemQualityType;
 }
 
@@ -170,8 +170,8 @@ interface ItemSearchResponseItem extends KeyBase {
     inventory_type: InventoryTypeNameFromSearch;
     is_equippable: boolean;
     is_stackable: boolean;
-    item_class: { id: number; name: Record<Locales, string> };
-    item_subclass: { id: number; name: Record<Locales, string> };
+    item_class: { id: number; name: Record<Locales, string | undefined> };
+    item_subclass: { id: number; name: Record<Locales, string | undefined> };
     level: number;
     max_count: number;
     media: { id: number };
