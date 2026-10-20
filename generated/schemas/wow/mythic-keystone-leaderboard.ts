@@ -58,7 +58,7 @@ const leadingGroupSchema = z.strictObject({
 export const mythicKeystoneLeaderboardResponseSchema = responseBaseSchema.extend({
   connected_realm: hrefSchema,
   keystone_affixes: z.array(keystoneAffixElementSchema),
-  leading_groups: z.array(leadingGroupSchema),
+  leading_groups: z.array(leadingGroupSchema).optional(),
   map: nameIdSchema,
   map_challenge_mode_id: z.number(),
   name: z.string(),

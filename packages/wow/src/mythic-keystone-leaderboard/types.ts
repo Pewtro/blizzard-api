@@ -15,7 +15,7 @@ export interface MythicKeystoneLeaderboardIndexResponse extends ResponseBase {
 export interface MythicKeystoneLeaderboardResponse extends ResponseBase {
   connected_realm: Href;
   keystone_affixes: Array<KeystoneAffixElement>;
-  leading_groups: Array<LeadingGroup>;
+  leading_groups?: Array<LeadingGroup>;
   map: NameId;
   map_challenge_mode_id: number;
   name: string;
