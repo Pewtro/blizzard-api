@@ -38,10 +38,12 @@ describe('wow creature integration', async () => {
     }
     expect(parsed.success).toBe(true);
 
-    const media = await client.sendRequest(creatureDisplayMedia(30_221));
+    // The display media uses its own id space, which the creature itself points to.
+    const creatureDisplayId = parsed.data!.creature_displays[0]!.id;
+    const media = await client.sendRequest(creatureDisplayMedia(creatureDisplayId));
     const parsedMedia = creatureDisplayMediaResponseSchema.safeParse(media);
     if (!parsedMedia.success) {
-      console.error('Creature media validation failed:', prettifyError(parsedMedia.error));
+      console.error('Creature media validation failed:', creatureDisplayId, prettifyError(parsedMedia.error));
     }
     expect(parsedMedia.success).toBe(true);
   });
