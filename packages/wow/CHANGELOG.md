@@ -1,5 +1,16 @@
 # @blizzard-api/wow
 
+## 4.1.4
+
+### Patch Changes
+
+- f9f697b: Make `leading_groups` optional on the mythic keystone leaderboard response
+
+  The Blizzard API only publishes the leading groups of a mythic keystone period once the period has ended, so the leaderboard of the period that is currently running does not contain them.
+
+- Updated dependencies [061384d]
+  - @blizzard-api/core@4.2.0
+
 ## 4.1.3
 
 ### Patch Changes
