@@ -24,9 +24,7 @@ describe('client', async () => {
   });
 
   test('should be able to authorize with the Blizzard API', async ({ expect }) => {
-    const response = await client.getAccessToken();
-
-    const { access_token, expires_in, sub, token_type } = response;
+    const { access_token, expires_in, sub, token_type } = await client.getAccessToken();
     expect(access_token).length.greaterThan(0);
     expect(token_type).toBe('bearer');
     expect(expires_in).toBeGreaterThan(0);
@@ -34,9 +32,7 @@ describe('client', async () => {
   });
 
   test('should be able to validate the access token', async ({ expect }) => {
-    const response = await client.getAccessToken();
-
-    const { access_token } = response;
+    const { access_token } = await client.getAccessToken();
     const validateResponse = await client.validateAccessToken({ token: access_token });
     expect(validateResponse.scope).toBeInstanceOf(Array);
     expect(validateResponse.account_authorities).toBeInstanceOf(Array);
@@ -97,9 +93,7 @@ describe('client', async () => {
   });
 
   test('should be able to manually refresh the token', async ({ expect }) => {
-    const response = await client.refreshAccessToken();
-
-    const { access_token, expires_in, sub, token_type } = response;
+    const { access_token, expires_in, sub, token_type } = await client.refreshAccessToken();
     expect(access_token).length.greaterThan(0);
     expect(token_type).toBe('bearer');
     expect(expires_in).toBeGreaterThan(0);
@@ -157,9 +151,7 @@ describe('client', async () => {
       false,
     );
 
-    const response = await noRefreshClient.getAccessToken();
-
-    const { access_token, expires_in, sub, token_type } = response;
+    const { access_token, expires_in, sub, token_type } = await noRefreshClient.getAccessToken();
     expect(access_token).length.greaterThan(0);
     expect(token_type).toBe('bearer');
     expect(expires_in).toBeGreaterThan(0);
@@ -167,8 +159,7 @@ describe('client', async () => {
   });
 
   test('the client can be created with a pre-existing token', async ({ expect }) => {
-    const response = await client.getAccessToken();
-    const { access_token } = response;
+    const { access_token } = await client.getAccessToken();
 
     const tokenClient = await createBlizzardApiClient({
       key: environment.blizzardClientId,

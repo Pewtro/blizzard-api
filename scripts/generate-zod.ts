@@ -70,18 +70,18 @@ async function run(): Promise<void> {
     console.log('Processing package', packageName);
 
     const allFiles = await walk(packageSource);
+    const tsFiles = allFiles.filter((f) => f.endsWith('.ts') && !f.endsWith('.test.ts') && !f.endsWith('index.ts'));
+    const typesFiles = tsFiles.filter((f) => path.basename(f) === 'types.ts');
     // For some packages, such as `core`, we want to generate from all `.ts` files (except `.test.ts`).
     // For other packages, only convert `types.ts` files.
-    const tsFiles: Array<string> = HANDLE_ALL_FILE_FOLDERS.has(packageName)
-      ? allFiles.filter((f) => f.endsWith('.ts') && !f.endsWith('.test.ts') && !f.endsWith('index.ts'))
-      : allFiles.filter((f) => path.basename(f) === 'types.ts');
+    const filesToHandle = HANDLE_ALL_FILE_FOLDERS.has(packageName) ? tsFiles : typesFiles;
 
     const packageOut = path.join(root, 'generated', 'schemas', packageName);
     // Clean package output
     await fs.rm(packageOut, { force: true, recursive: true });
     await fs.mkdir(packageOut, { recursive: true });
 
-    for (const file of tsFiles) {
+    for (const file of filesToHandle) {
       try {
         const content = await fs.readFile(file, 'utf8');
         const generator = generate({
