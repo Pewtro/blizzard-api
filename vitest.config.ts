@@ -40,7 +40,7 @@ export default defineConfig({
           include: ['packages/**/*.integration.test.ts'],
           // The integration tests hit the live Blizzard API, which enforces a strict request rate
           // limit. Running fewer files in parallel keeps the suite from running into 429 responses.
-          maxWorkers: 1,
+          maxWorkers: '50%',
           name: 'integration',
           sequence: {
             groupOrder: 1,
