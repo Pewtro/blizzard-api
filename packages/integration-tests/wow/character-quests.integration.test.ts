@@ -1,16 +1,11 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { characterCompletedQuests, characterQuests } from '@blizzard-api/wow/character-quests';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import { characterCompletedQuestsResponseSchema, characterQuestsResponseSchema } from '../../../generated/schemas/wow';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('wow character-quests integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   const realm = 'laughing-skull';
   const character = 'putro';
   test('validates character quests', async ({ expect }) => {

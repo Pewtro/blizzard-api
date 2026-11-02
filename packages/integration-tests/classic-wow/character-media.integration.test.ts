@@ -1,16 +1,11 @@
 import { characterMediaSummary } from '@blizzard-api/classic-wow/character-media';
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import { characterMediaSummaryResponseSchema } from '../../../generated/schemas/classic-wow';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('classic-wow character media integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('fetches media summary for a character', async ({ expect }) => {
     const realm = 'shekzeer';
     const character = 'putro';

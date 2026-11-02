@@ -1,16 +1,11 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { mythicRaidLeaderboard } from '@blizzard-api/wow/mythic-raid-leaderboard';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import { mythicRaidLeaderboardResponseSchema } from '../../../generated/schemas/wow/mythic-raid-leaderboard';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('wow mythic-raid-leaderboard integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('fetches a raid leaderboard for a known instance slug', async ({ expect }) => {
     const resp = await client.sendRequest(mythicRaidLeaderboard('uldir', 'alliance'));
     const parsedResp = mythicRaidLeaderboardResponseSchema.safeParse(resp);

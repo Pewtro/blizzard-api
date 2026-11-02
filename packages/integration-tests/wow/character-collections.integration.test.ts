@@ -1,4 +1,3 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import {
   characterCollectionsIndex,
   characterHeirloomsCollectionSummary,
@@ -9,7 +8,6 @@ import {
 } from '@blizzard-api/wow/character-collections';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   characterCollectionsIndexResponseSchema,
   characterHeirloomsCollectionSummaryResponseSchema,
@@ -18,13 +16,10 @@ import {
   characterToysCollectionSummaryResponseSchema,
   characterTransmogCollectionSummaryResponseSchema,
 } from '../../../generated/schemas/wow';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('wow character-collections integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   const realm = 'laughing-skull';
   const character = 'putro';
   test('validates collections indices', async ({ expect }) => {

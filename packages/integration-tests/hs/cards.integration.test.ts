@@ -1,16 +1,12 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { hs } from '@blizzard-api/hs';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import { cardSearchResponseSchema, fetchOneCardResponseSchema } from '../../../generated/schemas/hs';
+import { getIntegrationTestClient } from '../utils/client';
+import { getRandomItem } from '../utils/random';
 
 describe('hs cards integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
 
   test('fetches card search results and fetches a card from response', async ({ expect }) => {
     const response = await client.sendRequest(hs.cardSearch({ locale: 'en_GB' }));
@@ -20,8 +16,7 @@ describe('hs cards integration', async () => {
     }
     expect(parsedResponse.success).toBe(true);
 
-    // eslint-disable-next-line sonarjs/pseudo-random
-    const randomCard = response?.cards[Math.floor(Math.random() * response.cards.length)];
+    const randomCard = getRandomItem(response?.cards);
     if (!randomCard) {
       console.error('No card found from search response');
     }
@@ -66,8 +61,7 @@ describe('hs cards integration', async () => {
     }
     expect(parsedResponse.success).toBe(true);
 
-    // eslint-disable-next-line sonarjs/pseudo-random
-    const randomCard = response?.cards[Math.floor(Math.random() * response.cards.length)];
+    const randomCard = getRandomItem(response?.cards);
     if (!randomCard) {
       console.error('No card found from detailed search response');
     }
@@ -98,8 +92,7 @@ describe('hs cards integration', async () => {
     }
     expect(parsedResponse.success).toBe(true);
 
-    // eslint-disable-next-line sonarjs/pseudo-random
-    const randomCard = response?.cards[Math.floor(Math.random() * response.cards.length)];
+    const randomCard = getRandomItem(response?.cards);
     if (!randomCard) {
       console.error('No card found from battleground search response');
     }
@@ -129,8 +122,7 @@ describe('hs cards integration', async () => {
     }
     expect(parsedResponse.success).toBe(true);
 
-    // eslint-disable-next-line sonarjs/pseudo-random
-    const randomCard = response?.cards[Math.floor(Math.random() * response.cards.length)];
+    const randomCard = getRandomItem(response?.cards);
     if (!randomCard) {
       console.error('No card found from mercenaries search response');
     }

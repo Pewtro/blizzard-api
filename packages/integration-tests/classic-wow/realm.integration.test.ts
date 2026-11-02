@@ -1,20 +1,16 @@
 import { realm, realmIndex, realmSearch } from '@blizzard-api/classic-wow/realm';
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   realmIndexResponseSchema,
   realmResponseSchema,
   realmSearchResponseSchema,
 } from '../../../generated/schemas/classic-wow';
+import { getIntegrationTestClient } from '../utils/client';
+import { getRandomItem } from '../utils/random';
 
 describe('progressive classic-wow realm integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('validates realm index', async ({ expect }) => {
     const resp = await client.sendRequest(realmIndex('dynamic-classic'));
     const parsed = realmIndexResponseSchema.safeParse(resp);
@@ -23,8 +19,7 @@ describe('progressive classic-wow realm integration', async () => {
     }
     expect(parsed.success).toBe(true);
 
-    // eslint-disable-next-line sonarjs/pseudo-random
-    const randomRealm = resp!.realms[Math.floor(Math.random() * resp!.realms.length)];
+    const randomRealm = getRandomItem(resp!.realms);
     expect(randomRealm).toBeDefined();
     const realmResp = await client.sendRequest(realm('dynamic-classic', randomRealm!.slug));
     const parsedRealm = realmResponseSchema.safeParse(realmResp);
@@ -44,11 +39,7 @@ describe('progressive classic-wow realm integration', async () => {
 });
 
 describe('era classic-wow realm integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('validates realm index', async ({ expect }) => {
     const resp = await client.sendRequest(realmIndex('dynamic-classic1x'));
     const parsed = realmIndexResponseSchema.safeParse(resp);
@@ -57,8 +48,7 @@ describe('era classic-wow realm integration', async () => {
     }
     expect(parsed.success).toBe(true);
 
-    // eslint-disable-next-line sonarjs/pseudo-random
-    const randomRealm = resp!.realms[Math.floor(Math.random() * resp!.realms.length)];
+    const randomRealm = getRandomItem(resp!.realms);
     expect(randomRealm).toBeDefined();
     const realmResp = await client.sendRequest(realm('dynamic-classic1x', randomRealm!.slug));
     const parsedRealm = realmResponseSchema.safeParse(realmResp);
@@ -78,11 +68,7 @@ describe('era classic-wow realm integration', async () => {
 });
 
 describe('anniversary classic-wow realm integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('validates realm index', async ({ expect }) => {
     const resp = await client.sendRequest(realmIndex('dynamic-classicann'));
     const parsed = realmIndexResponseSchema.safeParse(resp);
@@ -91,8 +77,7 @@ describe('anniversary classic-wow realm integration', async () => {
     }
     expect(parsed.success).toBe(true);
 
-    // eslint-disable-next-line sonarjs/pseudo-random
-    const randomRealm = resp!.realms[Math.floor(Math.random() * resp!.realms.length)];
+    const randomRealm = getRandomItem(resp!.realms);
     expect(randomRealm).toBeDefined();
     const realmResp = await client.sendRequest(realm('dynamic-classicann', randomRealm!.slug));
     const parsedRealm = realmResponseSchema.safeParse(realmResp);

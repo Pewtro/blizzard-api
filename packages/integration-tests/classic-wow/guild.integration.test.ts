@@ -1,8 +1,6 @@
 import { guild, guildAchievements, guildActivity, guildRoster } from '@blizzard-api/classic-wow/guild';
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   guildAchievementsClassicEraResponseSchema,
   guildAchievementsResponseSchema,
@@ -10,14 +8,11 @@ import {
   guildResponseSchema,
   guildRosterResponseSchema,
 } from '../../../generated/schemas/classic-wow';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('classic-wow guild integration', () => {
   test('fetches guild endpoints for raid-drømmen on shekzeer', async ({ expect }) => {
-    const client = await createBlizzardApiClient({
-      key: environment.blizzardClientId,
-      origin: 'eu',
-      secret: environment.blizzardClientSecret,
-    });
+    const client = await getIntegrationTestClient();
 
     const realm = 'shekzeer';
     const guildSlug = 'raid-drømmen';
@@ -54,11 +49,7 @@ describe('classic-wow guild integration', () => {
 
 describe('classic-wow guild integration for classic anniversary', () => {
   test('fetches guild endpoints for the-legacy on thunderstrike', async ({ expect }) => {
-    const client = await createBlizzardApiClient({
-      key: environment.blizzardClientId,
-      origin: 'eu',
-      secret: environment.blizzardClientSecret,
-    });
+    const client = await getIntegrationTestClient();
 
     const realm = 'thunderstrike';
     const guildSlug = 'the-legacy';

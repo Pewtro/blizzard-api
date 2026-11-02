@@ -1,20 +1,15 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { characterDungeons, characterEncountersSummary, characterRaids } from '@blizzard-api/wow/character-encounters';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   characterDungeonsResponseSchema,
   characterEncountersSummaryResponseSchema,
   characterRaidsResponseSchema,
 } from '../../../generated/schemas/wow';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('wow character-encounters integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('validates character encounters', async ({ expect }) => {
     const realm = 'laughing-skull';
     const character = 'putro';

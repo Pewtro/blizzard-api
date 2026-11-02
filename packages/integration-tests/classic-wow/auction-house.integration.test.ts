@@ -1,22 +1,17 @@
 import { auctionHouseIndex, auctions } from '@blizzard-api/classic-wow/auction-house';
 import { connectedRealmIndex } from '@blizzard-api/classic-wow/connected-realm';
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   auctionHouseIndexResponseSchema,
   auctionsResponseSchema,
   connectedRealmIndexResponseSchema,
 } from '../../../generated/schemas/classic-wow';
+import { getIntegrationTestClient } from '../utils/client';
 
 //The auction house API is known to be flaky; skip by default.
 describe.skip('classic-wow auction house integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('fetches index and validates responses with generated schemas', async ({ expect }) => {
     // 1) Get connected realm index and validate
     const realmIndexResponse = await client.sendRequest(connectedRealmIndex('dynamic-classic1x'));

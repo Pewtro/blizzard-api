@@ -1,8 +1,6 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { pet, petAbility, petAbilityIndex, petAbilityMedia, petIndex, petMedia } from '@blizzard-api/wow/pet';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   petAbilityIndexResponseSchema,
   petAbilityMediaResponseSchema,
@@ -11,13 +9,11 @@ import {
   petMediaResponseSchema,
   petResponseSchema,
 } from '../../../generated/schemas/wow/pet';
+import { getIntegrationTestClient } from '../utils/client';
+import { getRandomSample } from '../utils/random';
 
 describe('wow pet integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('validates pet index and fetches pet detail', async ({ expect }) => {
     const index = await client.sendRequest(petIndex());
     const parsed = petIndexResponseSchema.safeParse(index);
@@ -28,12 +24,7 @@ describe('wow pet integration', async () => {
 
     // Pick up to 5 pets at random from the index to fetch details
     const pets = parsed.success ? parsed.data.pets : [];
-    const sampleSize = Math.min(5, pets.length);
-    const sampled =
-      pets.length > sampleSize
-        ? // eslint-disable-next-line sonarjs/pseudo-random
-          pets.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
-        : pets.slice(0, sampleSize);
+    const sampled = getRandomSample(pets, 5);
 
     const requests = Array.from(sampled, (t) => client.sendRequest(pet(t.id)));
     const responses = await Promise.all(requests);
@@ -55,12 +46,7 @@ describe('wow pet integration', async () => {
     expect(parsedAbilityIndex.success).toBe(true);
 
     const abilities = parsedAbilityIndex.success ? parsedAbilityIndex.data.abilities : [];
-    const sampleSize = Math.min(5, abilities.length);
-    const sampled =
-      abilities.length > sampleSize
-        ? // eslint-disable-next-line sonarjs/pseudo-random
-          abilities.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
-        : abilities.slice(0, sampleSize);
+    const sampled = getRandomSample(abilities, 5);
 
     for (const ability of sampled) {
       const detail = await client.sendRequest(petAbility(ability.id));
@@ -87,12 +73,7 @@ describe('wow pet integration', async () => {
 
     // Pick up to 5 pets at random from the index to fetch details
     const pets = petIndexResp!.pets;
-    const petSampleSize = Math.min(5, pets.length);
-    const petSampled =
-      pets.length > petSampleSize
-        ? // eslint-disable-next-line sonarjs/pseudo-random
-          pets.toSorted(() => 0.5 - Math.random()).slice(0, petSampleSize)
-        : pets.slice(0, petSampleSize);
+    const petSampled = getRandomSample(pets, 5);
 
     const requests = Array.from(petSampled, (petResp) => client.sendRequest(petMedia(petResp.id)));
     const responses = await Promise.all(requests);

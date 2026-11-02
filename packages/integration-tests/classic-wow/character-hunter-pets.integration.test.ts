@@ -1,16 +1,11 @@
 import { characterHunterPetsSummary } from '@blizzard-api/classic-wow/character-hunter-pets';
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import { characterHunterPetsSummaryResponseSchema } from '../../../generated/schemas/classic-wow';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('classic-wow character hunter pets integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
 
   test('fetches hunter pets summary for a character', async ({ expect }) => {
     const realm = 'shekzeer';

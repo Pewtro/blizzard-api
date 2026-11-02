@@ -1,20 +1,16 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { mount, mountIndex, mountSearch } from '@blizzard-api/wow/mount';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   mountIndexResponseSchema,
   mountResponseSchema,
   mountSearchResponseSchema,
 } from '../../../generated/schemas/wow/mount';
+import { getIntegrationTestClient } from '../utils/client';
+import { getRandomSample } from '../utils/random';
 
 describe('wow mount integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('validates mount index and fetches mount detail', async ({ expect }) => {
     const index = await client.sendRequest(mountIndex());
     const parsed = mountIndexResponseSchema.safeParse(index);
@@ -25,12 +21,7 @@ describe('wow mount integration', async () => {
 
     // Pick up to 5 mounts at random from the index to fetch details
     const mounts = parsed.success ? parsed.data.mounts : [];
-    const sampleSize = Math.min(5, mounts.length);
-    const sampled =
-      mounts.length > sampleSize
-        ? // eslint-disable-next-line sonarjs/pseudo-random
-          mounts.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
-        : mounts.slice(0, sampleSize);
+    const sampled = getRandomSample(mounts, 5);
 
     const requests = Array.from(sampled, (t) => client.sendRequest(mount(t.id)));
     const responses = await Promise.all(requests);

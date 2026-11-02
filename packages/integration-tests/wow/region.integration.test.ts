@@ -1,16 +1,11 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { region, regionIndex } from '@blizzard-api/wow/region';
 import { describe, expect, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import { regionIndexResponseSchema, regionResponseSchema } from '../../../generated/schemas/wow';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('wow region integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('validates region index and region detail', async () => {
     const resp = await client.sendRequest(regionIndex());
     const parsed = regionIndexResponseSchema.safeParse(resp);

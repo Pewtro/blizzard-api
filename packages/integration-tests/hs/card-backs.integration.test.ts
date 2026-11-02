@@ -1,16 +1,12 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { hs } from '@blizzard-api/hs';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import { cardBackSearchResponseSchema, singleCardBackSearchResponseSchema } from '../../../generated/schemas/hs';
+import { getIntegrationTestClient } from '../utils/client';
+import { getRandomItem } from '../utils/random';
 
 describe('hs card-backs integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
 
   test('fetches card back search results and fetches card back details from results', async ({ expect }) => {
     const response = await client.sendRequest(hs.cardBackSearch({ locale: 'en_GB' }));
@@ -20,8 +16,7 @@ describe('hs card-backs integration', async () => {
     }
     expect(parsedResponse.success).toBe(true);
 
-    // eslint-disable-next-line sonarjs/pseudo-random
-    const randomCardBack = response!.cardBacks[Math.floor(Math.random() * response!.cardBacks.length)];
+    const randomCardBack = getRandomItem(response!.cardBacks);
     const extractedCardBackSlug = randomCardBack?.slug;
     if (!extractedCardBackSlug) {
       console.error('Failed to extract card back slug from response', randomCardBack);

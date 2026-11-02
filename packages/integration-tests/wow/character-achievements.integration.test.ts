@@ -1,19 +1,14 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { characterAchievementsSummary, characterAchievementStatistics } from '@blizzard-api/wow/character-achievements';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   characterAchievementsSummaryResponseSchema,
   characterAchievementStatisticsResponseSchema,
 } from '../../../generated/schemas/wow';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('wow character-achievements integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('validates character achievements summary and statistics', async ({ expect }) => {
     const realm = 'laughing-skull';
     const character = 'putro';

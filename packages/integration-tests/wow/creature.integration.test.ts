@@ -1,4 +1,3 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import {
   creature,
   creatureDisplayMedia,
@@ -11,7 +10,6 @@ import {
 } from '@blizzard-api/wow/creature';
 import { describe, expect, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   creatureDisplayMediaResponseSchema,
   creatureFamilyIndexResponseSchema,
@@ -22,13 +20,10 @@ import {
   creatureTypeIndexResponseSchema,
   creatureTypeResponseSchema,
 } from '../../../generated/schemas/wow/creature';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('wow creature integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
 
   test('validates creature details', async () => {
     const resp = await client.sendRequest(creature(42_722));

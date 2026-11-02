@@ -1,8 +1,6 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { sc2 } from '@blizzard-api/sc2';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   ladderResponseSchema,
   ladderSummaryResponseSchema,
@@ -10,13 +8,10 @@ import {
   profileResponseSchema,
   staticProfileResponseSchema,
 } from '../../../generated/schemas/sc2';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('sc2 profile integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
 
   test('fetches ladder', async ({ expect }) => {
     const response = await client.sendRequest(sc2.ladder('eu', 1, 9_500_381, 1));

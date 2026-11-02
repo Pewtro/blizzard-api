@@ -1,17 +1,13 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { d3 } from '@blizzard-api/d3';
 import type { CharacterClass } from '@blizzard-api/d3';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import { characterClassResponseSchema, skillResponseSchema } from '../../../generated/schemas/d3';
+import { getIntegrationTestClient } from '../utils/client';
+import { getRandomItem } from '../utils/random';
 
 describe('d3 character-class-and-skill integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
 
   test('fetches a character class and an associated skill', async ({ expect }) => {
     const classes: Array<CharacterClass> = [
@@ -46,9 +42,7 @@ describe('d3 character-class-and-skill integration', async () => {
       expect(classResponseParsed.success).toBe(true);
 
       const skillSlugs = classSkillMap.get(classResponse!.slug);
-      // eslint-disable-next-line sonarjs/pseudo-random
-      const randomSkillKey = Math.floor(Math.random() * (skillSlugs?.length ?? 0));
-      const randomSkillSlug = skillSlugs?.[randomSkillKey ?? 0];
+      const randomSkillSlug = getRandomItem(skillSlugs);
       if (!randomSkillSlug) {
         console.error('No skill slugs found for character class:', classResponse?.slug);
       }

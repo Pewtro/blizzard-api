@@ -1,4 +1,3 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import {
   modifiedCraftingCategory,
   modifiedCraftingCategoryIndex,
@@ -8,7 +7,6 @@ import {
 } from '@blizzard-api/wow/modified-crafting';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   modifiedCraftingCategoryIndexResponseSchema,
   modifiedCraftingCategoryResponseSchema,
@@ -16,13 +14,11 @@ import {
   modifiedCraftingReagentSlotTypeIndexResponseSchema,
   modifiedCraftingReagentSlotTypeResponseSchema,
 } from '../../../generated/schemas/wow/modified-crafting';
+import { getIntegrationTestClient } from '../utils/client';
+import { getRandomSample } from '../utils/random';
 
 describe('wow modified-crafting integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('validates modified crafting category index and fetches detail', async ({ expect }) => {
     const index = await client.sendRequest(modifiedCraftingCategoryIndex());
     const parsed = modifiedCraftingCategoryIndexResponseSchema.safeParse(index);
@@ -33,12 +29,7 @@ describe('wow modified-crafting integration', async () => {
 
     // Pick up to 5 categories at random from the index to fetch details
     const categories = parsed.success ? parsed.data.categories : [];
-    const sampleSize = Math.min(5, categories.length);
-    const sampled =
-      categories.length > sampleSize
-        ? // eslint-disable-next-line sonarjs/pseudo-random
-          categories.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
-        : categories.slice(0, sampleSize);
+    const sampled = getRandomSample(categories, 5);
 
     const requests = Array.from(sampled, (c) => client.sendRequest(modifiedCraftingCategory(c.id)));
     const responses = await Promise.all(requests);

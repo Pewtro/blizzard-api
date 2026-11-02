@@ -1,17 +1,12 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { hs } from '@blizzard-api/hs';
 import type { AllMetadataResponse } from '@blizzard-api/hs';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import { allMetadataResponseSchema, specificMetadataResponseSchema } from '../../../generated/schemas/hs';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('hs metadata integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
 
   test('fetches all metadata and based on type', async ({ expect }) => {
     const response = await client.sendRequest(hs.allMetadata());

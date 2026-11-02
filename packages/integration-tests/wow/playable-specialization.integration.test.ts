@@ -1,4 +1,3 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import {
   playableSpecialization,
   playableSpecializationIndex,
@@ -6,19 +5,15 @@ import {
 } from '@blizzard-api/wow/playable-specialization';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   playableSpecializationIndexResponseSchema,
   playableSpecializationMediaResponseSchema,
   playableSpecializationResponseSchema,
 } from '../../../generated/schemas/wow/playable-specialization';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('wow playable-specialization integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('validates playable specialization index and fetches detail', async ({ expect }) => {
     const index = await client.sendRequest(playableSpecializationIndex());
     const parsed = playableSpecializationIndexResponseSchema.safeParse(index);

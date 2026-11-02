@@ -1,22 +1,17 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import {
   characterMythicKeystoneProfileIndex,
   characterMythicKeystoneSeasonDetails,
 } from '@blizzard-api/wow/character-mythic-keystone-profile';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   characterMythicKeystoneProfileIndexResponseSchema,
   characterMythicKeystoneSeasonDetailsResponseSchema,
 } from '../../../generated/schemas/wow';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('wow character-mythic-keystone-profile integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('validates mythic keystone profile index', async ({ expect }) => {
     const realm = 'laughing-skull';
     const character = 'putro';

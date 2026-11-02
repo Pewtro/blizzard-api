@@ -1,4 +1,3 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import {
   pvpLeaderboard,
   pvpLeaderboardIndex,
@@ -8,7 +7,6 @@ import {
 } from '@blizzard-api/wow/pvp-season';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   pvpLeaderboardIndexResponseSchema,
   pvpLeaderboardResponseSchema,
@@ -16,13 +14,10 @@ import {
   pvpSeasonIndexResponseSchema,
   pvpSeasonResponseSchema,
 } from '../../../generated/schemas/wow/pvp-season';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('wow pvp integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('validates pvp leaderboard and season indices', async ({ expect }) => {
     const season = await client.sendRequest(pvpSeasonIndex());
     const parsedSeason = pvpSeasonIndexResponseSchema.safeParse(season);

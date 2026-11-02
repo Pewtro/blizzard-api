@@ -1,16 +1,11 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { characterSoulbinds } from '@blizzard-api/wow/character-soulbinds';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import { characterSoulbindsResponseSchema } from '../../../generated/schemas/wow';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('wow character-soulbinds integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('validates character soulbinds', async ({ expect }) => {
     const realm = 'laughing-skull';
     const character = 'putro';

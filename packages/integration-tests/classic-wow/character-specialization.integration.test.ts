@@ -1,16 +1,11 @@
 import { characterSpecializationsSummary } from '@blizzard-api/classic-wow/character-specializations';
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { describe, expect, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import { characterSpecializationsSummaryResponseSchema } from '../../../generated/schemas/classic-wow';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('classic-wow character specialization integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test.each([
     { character: 'reonwar', namespace: 'profile-classic1x', realm: 'soulseeker' },
     { character: 'putro', namespace: 'profile-classic', realm: 'shekzeer' },

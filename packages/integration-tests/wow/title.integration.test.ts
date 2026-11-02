@@ -1,16 +1,12 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { title, titleIndex } from '@blizzard-api/wow/title';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import { titleIndexResponseSchema, titleResponseSchema } from '../../../generated/schemas/wow/title';
+import { getIntegrationTestClient } from '../utils/client';
+import { getRandomSample } from '../utils/random';
 
 describe('wow title integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('validates title index and fetches title detail', async ({ expect }) => {
     const index = await client.sendRequest(titleIndex());
     const parsed = titleIndexResponseSchema.safeParse(index);
@@ -21,12 +17,7 @@ describe('wow title integration', async () => {
 
     // Pick up to 5 titles at random from the index to fetch details
     const titles = parsed.success ? parsed.data.titles : [];
-    const sampleSize = Math.min(5, titles.length);
-    const sampled =
-      titles.length > sampleSize
-        ? // eslint-disable-next-line sonarjs/pseudo-random
-          titles.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
-        : titles.slice(0, sampleSize);
+    const sampled = getRandomSample(titles, 5);
 
     const requests = Array.from(sampled, (t) => client.sendRequest(title(t.id)));
     const responses = await Promise.all(requests);

@@ -1,5 +1,3 @@
-/* eslint-disable sonarjs/pseudo-random */
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import {
   decor,
   decorIndex,
@@ -16,7 +14,6 @@ import {
 } from '@blizzard-api/wow/housing-decor';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   decorIndexResponseSchema,
   decorResponseSchema,
@@ -31,13 +28,11 @@ import {
   roomResponseSchema,
   roomSearchResponseSchema,
 } from '../../../generated/schemas/wow/housing-decor';
+import { getIntegrationTestClient } from '../utils/client';
+import { getRandomSample } from '../utils/random';
 
 describe('wow housing-decor integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
 
   test('decor index + decor detail', async ({ expect }) => {
     const index = await client.sendRequest(decorIndex());
@@ -47,11 +42,7 @@ describe('wow housing-decor integration', async () => {
     }
     expect(parsedIndex.success).toBe(true);
 
-    const sampleSize = 3;
-    const sampledDecors =
-      index!.decor_items.length > sampleSize
-        ? index!.decor_items.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
-        : index!.decor_items;
+    const sampledDecors = getRandomSample(index!.decor_items, 3);
 
     const requests = Array.from(sampledDecors, (item) => client.sendRequest(decor(item.id)));
 
@@ -83,12 +74,7 @@ describe('wow housing-decor integration', async () => {
     }
     expect(parsedIndex.success).toBe(true);
 
-    const sampleSize = 3;
-
-    const sampledFixtures =
-      index!.fixtures.length > sampleSize
-        ? index!.fixtures.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
-        : index!.fixtures;
+    const sampledFixtures = getRandomSample(index!.fixtures, 3);
 
     const requests = Array.from(sampledFixtures, (item) => client.sendRequest(fixture(item.id)));
     const details = await Promise.all(requests);
@@ -119,11 +105,7 @@ describe('wow housing-decor integration', async () => {
     }
     expect(parsedIndex.success).toBe(true);
 
-    const sampleSize = 3;
-    const sampledHooks =
-      index!.fixture_hooks.length > sampleSize
-        ? index!.fixture_hooks.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
-        : index!.fixture_hooks;
+    const sampledHooks = getRandomSample(index!.fixture_hooks, 3);
 
     const requests = Array.from(sampledHooks, (item) => client.sendRequest(fixtureHook(item.id)));
 
@@ -155,11 +137,7 @@ describe('wow housing-decor integration', async () => {
     }
     expect(parsedIndex.success).toBe(true);
 
-    const sampleSize = 3;
-    const sampledRooms =
-      index!.rooms.length > sampleSize
-        ? index!.rooms.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
-        : index!.rooms;
+    const sampledRooms = getRandomSample(index!.rooms, 3);
 
     const requests = Array.from(sampledRooms, (item) => client.sendRequest(room(item.id)));
     const details = await Promise.all(requests);

@@ -1,16 +1,11 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { characterHunterPetsSummary } from '@blizzard-api/wow/character-hunter-pets';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import { characterHunterPetsSummaryResponseSchema } from '../../../generated/schemas/wow';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('wow character-hunter-pets integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('validates character hunter pets', async ({ expect }) => {
     const realm = 'laughing-skull';
     const character = 'putro';

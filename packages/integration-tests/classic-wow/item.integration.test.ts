@@ -1,8 +1,6 @@
 import { item, itemClass, itemClassIndex, itemMedia, itemSearch, itemSubclass } from '@blizzard-api/classic-wow/item';
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   itemClassIndexResponseSchema,
   itemClassResponseSchema,
@@ -11,13 +9,11 @@ import {
   itemSearchResponseSchema,
   itemSubclassResponseSchema,
 } from '../../../generated/schemas/classic-wow';
+import { getIntegrationTestClient } from '../utils/client';
+import { getRandomItem } from '../utils/random';
 
 describe('classic-wow item integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
 
   describe('classic era', () => {
     test('validates item and item media', async ({ expect }) => {
@@ -43,14 +39,9 @@ describe('classic-wow item integration', async () => {
       }
       expect(parsed.success).toBe(true);
 
-      // eslint-disable-next-line sonarjs/pseudo-random
-      const randomItemClassIndex = Math.floor(Math.random() * resp!.item_classes.length);
-
       // Avoid the "WoW Token" class which has no subclasses and causes the subclass test to fail
-      const foundItemClass =
-        resp!.item_classes[randomItemClassIndex]?.id === 18
-          ? resp!.item_classes[1]
-          : resp!.item_classes[randomItemClassIndex];
+      const randomItemClass = getRandomItem(resp!.item_classes);
+      const foundItemClass = randomItemClass?.id === 18 ? resp!.item_classes[1] : randomItemClass;
 
       expect(foundItemClass).toBeDefined();
 
@@ -61,9 +52,7 @@ describe('classic-wow item integration', async () => {
       }
       expect(parsedDetail.success).toBe(true);
 
-      // eslint-disable-next-line sonarjs/pseudo-random
-      const subclassIndex = Math.floor(Math.random() * (detail!.item_subclasses?.length ?? 1));
-      const subclass = detail!.item_subclasses?.[subclassIndex] ?? { id: 1 };
+      const subclass = getRandomItem(detail!.item_subclasses) ?? { id: 1 };
 
       const subDetail = await client.sendRequest(itemSubclass('static-classic1x', foundItemClass!.id, subclass?.id));
       const parsedSubDetail = itemSubclassResponseSchema.safeParse(subDetail);
@@ -114,14 +103,9 @@ describe('classic-wow item integration', async () => {
       }
       expect(parsed.success).toBe(true);
 
-      // eslint-disable-next-line sonarjs/pseudo-random
-      const randomItemClassIndex = Math.floor(Math.random() * resp!.item_classes.length);
-
       // Avoid the "WoW Token" class which has no subclasses and causes the subclass test to fail
-      const foundItemClass =
-        resp!.item_classes[randomItemClassIndex]?.id === 18
-          ? resp!.item_classes[1]
-          : resp!.item_classes[randomItemClassIndex];
+      const randomItemClass = getRandomItem(resp!.item_classes);
+      const foundItemClass = randomItemClass?.id === 18 ? resp!.item_classes[1] : randomItemClass;
 
       expect(foundItemClass).toBeDefined();
 
@@ -132,9 +116,7 @@ describe('classic-wow item integration', async () => {
       }
       expect(parsedDetail.success).toBe(true);
 
-      // eslint-disable-next-line sonarjs/pseudo-random
-      const subclassIndex = Math.floor(Math.random() * (detail!.item_subclasses?.length ?? 1));
-      const subclass = detail!.item_subclasses?.[subclassIndex] ?? { id: 1 };
+      const subclass = getRandomItem(detail!.item_subclasses) ?? { id: 1 };
 
       const subDetail = await client.sendRequest(itemSubclass('static-classic', foundItemClass!.id, subclass.id));
       const parsedSubDetail = itemSubclassResponseSchema.safeParse(subDetail);
@@ -185,14 +167,9 @@ describe('classic-wow item integration', async () => {
       }
       expect(parsed.success).toBe(true);
 
-      // eslint-disable-next-line sonarjs/pseudo-random
-      const randomItemClassIndex = Math.floor(Math.random() * resp!.item_classes.length);
-
       // Avoid the "WoW Token" class which has no subclasses and causes the subclass test to fail
-      const foundItemClass =
-        resp!.item_classes[randomItemClassIndex]?.id === 18
-          ? resp!.item_classes[1]
-          : resp!.item_classes[randomItemClassIndex];
+      const randomItemClass = getRandomItem(resp!.item_classes);
+      const foundItemClass = randomItemClass?.id === 18 ? resp!.item_classes[1] : randomItemClass;
 
       expect(foundItemClass).toBeDefined();
 
@@ -203,9 +180,7 @@ describe('classic-wow item integration', async () => {
       }
       expect(parsedDetail.success).toBe(true);
 
-      // eslint-disable-next-line sonarjs/pseudo-random
-      const subclassIndex = Math.floor(Math.random() * (detail!.item_subclasses?.length ?? 1));
-      const subclass = detail!.item_subclasses?.[subclassIndex] ?? { id: 1 };
+      const subclass = getRandomItem(detail!.item_subclasses) ?? { id: 1 };
 
       const subDetail = await client.sendRequest(itemSubclass('static-classicann', foundItemClass!.id, subclass.id));
       const parsedSubDetail = itemSubclassResponseSchema.safeParse(subDetail);

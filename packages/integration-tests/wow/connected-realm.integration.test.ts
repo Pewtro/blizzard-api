@@ -1,20 +1,15 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { connectedRealm, connectedRealmIndex, connectedRealmSearch } from '@blizzard-api/wow/connected-realm';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   connectedRealmIndexResponseSchema,
   connectedRealmResponseSchema,
   connectedRealmSearchResponseSchema,
 } from '../../../generated/schemas/wow';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('wow connected realm integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('validates connected realm index and by id', async ({ expect }) => {
     const resp = await client.sendRequest(connectedRealmIndex());
     const parsed = connectedRealmIndexResponseSchema.safeParse(resp);

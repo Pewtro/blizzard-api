@@ -1,16 +1,11 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { playableRace, playableRaceIndex } from '@blizzard-api/wow/playable-race';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import { playableRaceIndexResponseSchema, playableRaceResponseSchema } from '../../../generated/schemas/wow';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('wow playable race integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('validates playable races', async ({ expect }) => {
     const resp = await client.sendRequest(playableRaceIndex());
     const parsed = playableRaceIndexResponseSchema.safeParse(resp);

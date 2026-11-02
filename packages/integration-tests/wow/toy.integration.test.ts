@@ -1,16 +1,12 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { toy, toyIndex } from '@blizzard-api/wow/toy';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import { toyIndexResponseSchema, toyResponseSchema } from '../../../generated/schemas/wow/toy';
+import { getIntegrationTestClient } from '../utils/client';
+import { getRandomSample } from '../utils/random';
 
 describe('wow toy integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('validates toy index and fetches toy detail', async ({ expect }) => {
     const index = await client.sendRequest(toyIndex());
     const parsed = toyIndexResponseSchema.safeParse(index);
@@ -21,12 +17,7 @@ describe('wow toy integration', async () => {
 
     // Pick up to 5 toys at random from the index to fetch details
     const toys = parsed.success ? parsed.data.toys : [];
-    const sampleSize = Math.min(5, toys.length);
-    const sampled =
-      toys.length > sampleSize
-        ? // eslint-disable-next-line sonarjs/pseudo-random
-          toys.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
-        : toys.slice(0, sampleSize);
+    const sampled = getRandomSample(toys, 5);
 
     const requests = Array.from(sampled, (t) => client.sendRequest(toy(t.id)));
     const responses = await Promise.all(requests);

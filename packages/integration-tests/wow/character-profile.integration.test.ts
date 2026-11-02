@@ -1,19 +1,14 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { characterProfileStatus, characterProfileSummary } from '@blizzard-api/wow/character-profile';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   characterProfileStatusResponseSchema,
   characterProfileSummaryResponseSchema,
 } from '../../../generated/schemas/wow';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('wow character-profile integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('validates character profile summary and status', async ({ expect }) => {
     const realm = 'laughing-skull';
     const character = 'putro';

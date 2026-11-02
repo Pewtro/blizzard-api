@@ -1,4 +1,3 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { d3 } from '@blizzard-api/d3';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod/v4/core';
@@ -9,13 +8,11 @@ import {
   accountHeroResponseSchema,
   accountResponseSchema,
 } from '../../../generated/schemas/d3';
+import { getIntegrationTestClient } from '../utils/client';
+import { getRandomItem } from '../utils/random';
 
 describe('d3 profile integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
 
   test('fetches account profile data', async ({ expect, skip }) => {
     if (!environment.blizzardBnetAccountId) {
@@ -32,8 +29,7 @@ describe('d3 profile integration', async () => {
     const heroes = response?.heroes;
     expect(heroes).toBeDefined();
     expect(heroes?.length).toBeGreaterThan(0);
-    // eslint-disable-next-line sonarjs/pseudo-random
-    const randomHero = heroes?.[Math.floor(Math.random() * heroes.length)];
+    const randomHero = getRandomItem(heroes);
     expect(randomHero).toBeDefined();
     const heroResponse = await client.sendRequest(d3.accountHero(environment.blizzardBnetAccountId, randomHero!.id));
     const parsedHeroResponse = accountHeroResponseSchema.safeParse(heroResponse);

@@ -1,21 +1,16 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { guild, guildAchievements, guildActivity, guildRoster } from '@blizzard-api/wow/guild';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   guildAchievementsResponseSchema,
   guildActivityResponseSchema,
   guildResponseSchema,
   guildRosterResponseSchema,
 } from '../../../generated/schemas/wow/guild';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('wow guild integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('fetches guild endpoints for echoes on laughing-skull', async ({ expect }) => {
     const realm = 'laughing-skull';
     const guildSlug = 'echoes';

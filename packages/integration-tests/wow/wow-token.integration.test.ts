@@ -1,16 +1,11 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { wowToken } from '@blizzard-api/wow/wow-token';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import { wowTokenResponseSchema } from '../../../generated/schemas/wow/wow-token';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('wow wow-token integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('validates wow token response', async ({ expect }) => {
     const token = await client.sendRequest(wowToken());
     const parsed = wowTokenResponseSchema.safeParse(token);

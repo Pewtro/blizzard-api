@@ -1,4 +1,3 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import {
   conduit,
   conduitIndex,
@@ -10,7 +9,6 @@ import {
 } from '@blizzard-api/wow/covenant';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   conduitIndexResponseSchema,
   conduitResponseSchema,
@@ -20,13 +18,11 @@ import {
   soulbindIndexResponseSchema,
   soulbindResponseSchema,
 } from '../../../generated/schemas/wow/covenant';
+import { getIntegrationTestClient } from '../utils/client';
+import { getRandomSample } from '../utils/random';
 
 describe('wow covenant integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('validates covenant index and fetches details', async ({ expect }) => {
     const covIndex = await client.sendRequest(covenantIndex());
     const parsedCov = covenantIndexResponseSchema.safeParse(covIndex);
@@ -84,12 +80,7 @@ describe('wow covenant integration', async () => {
 
     // Pick up to 5 conduits at random from the index to fetch details
     const conduits = parsedConduit.success ? parsedConduit.data.conduits : [];
-    const sampleSize = Math.min(5, conduits.length);
-    const sampled =
-      conduits.length > sampleSize
-        ? // eslint-disable-next-line sonarjs/pseudo-random
-          conduits.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
-        : conduits.slice(0, sampleSize);
+    const sampled = getRandomSample(conduits, 5);
 
     const requests = Array.from(sampled, (conduitResp) => client.sendRequest(conduit(conduitResp.id)));
     const responses = await Promise.all(requests);

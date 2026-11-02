@@ -1,17 +1,12 @@
 import { characterProfileStatus, characterProfileSummary } from '@blizzard-api/classic-wow/character-profile';
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import { characterProfileSummaryResponseSchema } from '../../../generated/schemas/classic-wow';
 import { characterProfileStatusResponseSchema } from '../../../generated/schemas/wow';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('classic-wow character profile integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   const realm = 'shekzeer';
   const character = 'putro';
   test('fetches profile summary', async ({ expect }) => {
@@ -34,11 +29,7 @@ describe('classic-wow character profile integration', async () => {
 });
 
 describe('classic-wow character profile integration for classic anniversary', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   const realm = 'thunderstrike';
   const character = 'kytahela';
   test('fetches profile summary', async ({ expect }) => {

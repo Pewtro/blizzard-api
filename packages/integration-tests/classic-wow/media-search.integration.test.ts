@@ -1,16 +1,11 @@
 import { mediaSearch } from '@blizzard-api/classic-wow/media-search';
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import { mediaSearchResponseSchema } from '../../../generated/schemas/classic-wow';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('classic-wow media search integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('performs a media search and validates items', async ({ expect }) => {
     const search = await client.sendRequest(mediaSearch('static-classic', { _page: 1 }));
     const parsedSearch = mediaSearchResponseSchema.safeParse(search);

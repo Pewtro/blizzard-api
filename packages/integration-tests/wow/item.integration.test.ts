@@ -1,5 +1,3 @@
-/* eslint-disable sonarjs/pseudo-random */
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import {
   item,
   itemClass,
@@ -12,7 +10,6 @@ import {
 } from '@blizzard-api/wow/item';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   itemClassIndexResponseSchema,
   itemClassResponseSchema,
@@ -23,13 +20,11 @@ import {
   itemSetResponseSchema,
   itemSubclassResponseSchema,
 } from '../../../generated/schemas/wow/item';
+import { getIntegrationTestClient } from '../utils/client';
+import { getRandomItem } from '../utils/random';
 
 describe('wow item integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('validates item and item media', async ({ expect }) => {
     const resp = await client.sendRequest(item(19_019));
     const parsed = itemResponseSchema.safeParse(resp);
@@ -53,8 +48,7 @@ describe('wow item integration', async () => {
     }
     expect(parsed.success).toBe(true);
 
-    const randomItemClassIndex = Math.floor(Math.random() * resp!.item_classes.length);
-    const foundItemClass = resp!.item_classes[randomItemClassIndex];
+    const foundItemClass = getRandomItem(resp!.item_classes);
 
     expect(foundItemClass).toBeDefined();
 
@@ -65,8 +59,7 @@ describe('wow item integration', async () => {
     }
     expect(parsedDetail.success).toBe(true);
 
-    const subclassIndex = Math.floor(Math.random() * detail!.item_subclasses.length);
-    const subclass = detail!.item_subclasses[subclassIndex];
+    const subclass = getRandomItem(detail!.item_subclasses);
 
     const subDetail = await client.sendRequest(itemSubclass(foundItemClass!.id, subclass!.id));
     const parsedSubDetail = itemSubclassResponseSchema.safeParse(subDetail);

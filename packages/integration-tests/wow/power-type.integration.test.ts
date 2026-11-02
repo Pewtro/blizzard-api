@@ -1,16 +1,11 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { powerType, powerTypeIndex } from '@blizzard-api/wow/power-type';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import { powerTypeIndexResponseSchema, powerTypeResponseSchema } from '../../../generated/schemas/wow';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('wow power type integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('validates power type index', async ({ expect }) => {
     const resp = await client.sendRequest(powerTypeIndex());
     const parsed = powerTypeIndexResponseSchema.safeParse(resp);

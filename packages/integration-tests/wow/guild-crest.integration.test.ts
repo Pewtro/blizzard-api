@@ -1,19 +1,14 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { guildCrestBorder, guildCrestComponentsIndex, guildCrestEmblem } from '@blizzard-api/wow/guild-crest';
 import { describe, expect, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   guildCrestBorderEmblemResponseSchema,
   guildCrestComponentsIndexResponseSchema,
 } from '../../../generated/schemas/wow';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('wow guild crest integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('validates guild crest components index', async () => {
     const resp = await client.sendRequest(guildCrestComponentsIndex());
     const parsed = guildCrestComponentsIndexResponseSchema.safeParse(resp);

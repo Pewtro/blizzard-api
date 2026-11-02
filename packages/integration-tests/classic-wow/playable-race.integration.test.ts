@@ -1,16 +1,11 @@
 import { playableRace, playableRaceIndex } from '@blizzard-api/classic-wow/playable-race';
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { describe, expect, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import { playableRaceIndexResponseSchema, playableRaceResponseSchema } from '../../../generated/schemas/classic-wow';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('classic-wow playable race integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test.each(['static-classic1x', 'static-classic', 'static-classicann'] as const)(
     'validates playable races for %s',
     async (namespace) => {

@@ -1,4 +1,3 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import {
   azeriteEssence,
   azeriteEssenceIndex,
@@ -7,20 +6,17 @@ import {
 } from '@blizzard-api/wow/azerite-essence';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   azeriteEssenceIndexResponseSchema,
   azeriteEssenceMediaResponseSchema,
   azeriteEssenceResponseSchema,
   azeriteEssenceSearchResponseSchema,
 } from '../../../generated/schemas/wow/azerite-essence';
+import { getIntegrationTestClient } from '../utils/client';
+import { getRandomSample } from '../utils/random';
 
 describe('wow azerite-essence integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('validates azerite essence index and search', async ({ expect }) => {
     const index = await client.sendRequest(azeriteEssenceIndex());
     const parsedIndex = azeriteEssenceIndexResponseSchema.safeParse(index);
@@ -38,12 +34,7 @@ describe('wow azerite-essence integration', async () => {
 
     // Fetch some detail and media for a few essences from the index
     const essences = parsedIndex.success ? parsedIndex.data.azerite_essences : [];
-    const sampleSize = Math.min(5, essences.length);
-    const sampled =
-      essences.length > sampleSize
-        ? // eslint-disable-next-line sonarjs/pseudo-random
-          essences.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
-        : essences.slice(0, sampleSize);
+    const sampled = getRandomSample(essences, 5);
 
     const detailRequests = [];
     const mediaRequests = [];

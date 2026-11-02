@@ -1,20 +1,15 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { spell, spellMedia, spellSearch } from '@blizzard-api/wow/spell';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   spellMediaResponseSchema,
   spellResponseSchema,
   spellSearchResponseSchema,
 } from '../../../generated/schemas/wow/spell';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('wow spell integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('validates spell search and media responses', async ({ expect }) => {
     const spellResp = await client.sendRequest(spell(217_200));
     const parsedSpell = spellResponseSchema.safeParse(spellResp);

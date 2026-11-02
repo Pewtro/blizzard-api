@@ -1,4 +1,3 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import {
   pvpTalent,
   pvpTalentIndex,
@@ -10,7 +9,6 @@ import {
 } from '@blizzard-api/wow/talent';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   pvpTalentIndexResponseSchema,
   pvpTalentResponseSchema,
@@ -20,13 +18,11 @@ import {
   talentTreeNodesResponseSchema,
   talentTreeResponseSchema,
 } from '../../../generated/schemas/wow/talent';
+import { getIntegrationTestClient } from '../utils/client';
+import { getRandomSample } from '../utils/random';
 
 describe('wow talent integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('validates pvp talents', async ({ expect }) => {
     const pvpIndex = await client.sendRequest(pvpTalentIndex());
     const parsedPvpIndex = pvpTalentIndexResponseSchema.safeParse(pvpIndex);
@@ -36,12 +32,7 @@ describe('wow talent integration', async () => {
     expect(parsedPvpIndex.success).toBe(true);
 
     const pvpTalents = parsedPvpIndex.success ? parsedPvpIndex.data.pvp_talents : [];
-    const sampleSize = Math.min(5, pvpTalents.length);
-    const sampled =
-      pvpTalents.length > sampleSize
-        ? // eslint-disable-next-line sonarjs/pseudo-random
-          pvpTalents.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
-        : pvpTalents.slice(0, sampleSize);
+    const sampled = getRandomSample(pvpTalents, 5);
 
     const requests = Array.from(sampled, (t) => client.sendRequest(pvpTalent(t.id)));
     const responses = await Promise.all(requests);
@@ -62,12 +53,7 @@ describe('wow talent integration', async () => {
     expect(parsedTalentIndex.success).toBe(true);
 
     const talents = parsedTalentIndex.success ? parsedTalentIndex.data.talents : [];
-    const sampleSize = Math.min(5, talents.length);
-    const sampled =
-      talents.length > sampleSize
-        ? // eslint-disable-next-line sonarjs/pseudo-random
-          talents.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
-        : talents.slice(0, sampleSize);
+    const sampled = getRandomSample(talents, 5);
     const requests = Array.from(sampled, (t) => client.sendRequest(talent(t.id)));
     const responses = await Promise.all(requests);
     for (const resp of responses) {

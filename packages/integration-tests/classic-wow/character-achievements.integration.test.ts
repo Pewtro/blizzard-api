@@ -2,21 +2,16 @@ import {
   characterAchievementsSummary,
   characterAchievementStatistics,
 } from '@blizzard-api/classic-wow/character-achievements';
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   characterAchievementsSummaryResponseSchema,
   characterAchievementStatisticsResponseSchema,
 } from '../../../generated/schemas/classic-wow';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('classic-wow character achievements integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('fetches achievements summary and statistics for a character', async ({ expect }) => {
     const realm = 'shekzeer';
     const character = 'putro';

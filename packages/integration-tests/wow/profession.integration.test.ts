@@ -1,5 +1,3 @@
-/* eslint-disable sonarjs/pseudo-random */
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import {
   profession,
   professionIndex,
@@ -10,7 +8,6 @@ import {
 } from '@blizzard-api/wow/profession';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   professionIndexResponseSchema,
   professionMediaResponseSchema,
@@ -19,13 +16,11 @@ import {
   recipeMediaResponseSchema,
   recipeResponseSchema,
 } from '../../../generated/schemas/wow/profession';
+import { getIntegrationTestClient } from '../utils/client';
+import { getRandomItem } from '../utils/random';
 
 describe('wow profession integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('validates profession index and fetches profession detail', async ({ expect }) => {
     const index = await client.sendRequest(professionIndex());
     const parsedIndex = professionIndexResponseSchema.safeParse(index);
@@ -52,8 +47,7 @@ describe('wow profession integration', async () => {
     }
     expect(parsedMedia.success).toBe(true);
 
-    const skillTierId =
-      parsedProf.data?.skill_tiers[Math.floor(Math.random() * parsedProf.data?.skill_tiers.length)]?.id;
+    const skillTierId = getRandomItem(parsedProf.data?.skill_tiers)?.id;
 
     expect(skillTierId).toBeDefined();
     const tier = await client.sendRequest(professionSkillTier(first!.id, skillTierId!));
@@ -68,10 +62,9 @@ describe('wow profession integration', async () => {
     }
     expect(parsedTier.success).toBe(true);
 
-    const categoryIndex = Math.floor(Math.random() * (parsedTier.data?.categories.length ?? 1));
-    const recipeLength = parsedTier.data?.categories[categoryIndex]?.recipes.length;
-    const recipeIndex = Math.floor(Math.random() * (recipeLength ?? 1));
-    const recipeId = parsedTier.data?.categories[categoryIndex]?.recipes[recipeIndex]?.id;
+    const randomCategory = getRandomItem(parsedTier.data?.categories);
+    const randomRecipe = getRandomItem(randomCategory?.recipes);
+    const recipeId = randomRecipe?.id;
 
     expect(recipeId).toBeDefined();
 

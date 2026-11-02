@@ -1,4 +1,3 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import {
   mythicKeystoneDungeon,
   mythicKeystoneDungeonIndex,
@@ -10,7 +9,6 @@ import {
 } from '@blizzard-api/wow/mythic-keystone-dungeon';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   mythicKeystoneDungeonIndexResponseSchema,
   mythicKeystoneDungeonResponseSchema,
@@ -20,13 +18,11 @@ import {
   mythicKeystoneSeasonIndexResponseSchema,
   mythicKeystoneSeasonResponseSchema,
 } from '../../../generated/schemas/wow/mythic-keystone-dungeon';
+import { getIntegrationTestClient } from '../utils/client';
+import { getRandomSample } from '../utils/random';
 
 describe('wow mythic-keystone-dungeon integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
 
   test('validates dungeon index and details', async ({ expect }) => {
     const index = await client.sendRequest(mythicKeystoneDungeonIndex());
@@ -37,12 +33,7 @@ describe('wow mythic-keystone-dungeon integration', async () => {
     expect(parsed.success).toBe(true);
 
     const dungeons = parsed.success ? parsed.data.dungeons : [];
-    const sampleSize = Math.min(5, dungeons.length);
-    const sampled =
-      dungeons.length > sampleSize
-        ? // eslint-disable-next-line sonarjs/pseudo-random
-          dungeons.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
-        : dungeons.slice(0, sampleSize);
+    const sampled = getRandomSample(dungeons, 5);
 
     const requests = Array.from(sampled, (d) => client.sendRequest(mythicKeystoneDungeon(d.id)));
 
@@ -77,12 +68,7 @@ describe('wow mythic-keystone-dungeon integration', async () => {
     expect(parsed.success).toBe(true);
 
     const periods = parsed.success ? parsed.data.periods : [];
-    const sampleSize = Math.min(5, periods.length);
-    const sampled =
-      periods.length > sampleSize
-        ? // eslint-disable-next-line sonarjs/pseudo-random
-          periods.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
-        : periods.slice(0, sampleSize);
+    const sampled = getRandomSample(periods, 5);
 
     const requests = Array.from(sampled, (p) => client.sendRequest(mythicKeystonePeriod(p.id)));
     const responses = await Promise.all(requests);
@@ -103,12 +89,7 @@ describe('wow mythic-keystone-dungeon integration', async () => {
     expect(parsed.success).toBe(true);
 
     const seasons = parsed.success ? parsed.data.seasons : [];
-    const sampleSize = Math.min(5, seasons.length);
-    const sampled =
-      seasons.length > sampleSize
-        ? // eslint-disable-next-line sonarjs/pseudo-random
-          seasons.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
-        : seasons.slice(0, sampleSize);
+    const sampled = getRandomSample(seasons, 5);
 
     const requests = Array.from(sampled, (s) => client.sendRequest(mythicKeystoneSeason(s.id)));
 

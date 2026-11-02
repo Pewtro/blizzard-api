@@ -1,20 +1,15 @@
 import { connectedRealm, connectedRealmIndex, connectedRealmSearch } from '@blizzard-api/classic-wow/connected-realm';
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { describe, expect, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   connectedRealmIndexResponseSchema,
   connectedRealmResponseSchema,
   connectedRealmSearchResponseSchema,
 } from '../../../generated/schemas/classic-wow';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('classic-wow connected realm integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test.each(['dynamic-classic1x', 'dynamic-classic', 'dynamic-classicann'] as const)(
     'validates the connected realm index and details for %s',
     async (namespace) => {

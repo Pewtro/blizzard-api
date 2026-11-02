@@ -1,4 +1,3 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import {
   techTalent,
   techTalentIndex,
@@ -8,7 +7,6 @@ import {
 } from '@blizzard-api/wow/tech-talent';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   techTalentIndexResponseSchema,
   techTalentMediaResponseSchema,
@@ -16,13 +14,11 @@ import {
   techTalentTreeIndexResponseSchema,
   techTalentTreeResponseSchema,
 } from '../../../generated/schemas/wow/tech-talent';
+import { getIntegrationTestClient } from '../utils/client';
+import { getRandomSample } from '../utils/random';
 
 describe('wow tech-talent integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('validates tech talent index, detail, and media', async ({ expect }) => {
     const index = await client.sendRequest(techTalentIndex());
     const parsedIndex = techTalentIndexResponseSchema.safeParse(index);
@@ -32,12 +28,7 @@ describe('wow tech-talent integration', async () => {
     expect(parsedIndex.success).toBe(true);
 
     const talents = parsedIndex.success ? parsedIndex.data.talents : [];
-    const sampleSize = Math.min(5, talents.length);
-    const sampled =
-      talents.length > sampleSize
-        ? // eslint-disable-next-line sonarjs/pseudo-random
-          talents.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
-        : talents.slice(0, sampleSize);
+    const sampled = getRandomSample(talents, 5);
 
     const detailRequests = [];
     const mediaRequests = [];
@@ -73,13 +64,7 @@ describe('wow tech-talent integration', async () => {
     expect(parsedTreeIndex.success).toBe(true);
 
     const techTalentTrees = parsedTreeIndex.success ? parsedTreeIndex.data.talent_trees : [];
-    const sampleSize = Math.min(5, techTalentTrees.length);
-
-    const sampled =
-      techTalentTrees.length > sampleSize
-        ? // eslint-disable-next-line sonarjs/pseudo-random
-          techTalentTrees.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
-        : techTalentTrees.slice(0, sampleSize);
+    const sampled = getRandomSample(techTalentTrees, 5);
 
     const detailRequests = Array.from(sampled, (t) => client.sendRequest(techTalentTree(t.id)));
 

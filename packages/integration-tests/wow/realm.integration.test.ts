@@ -1,20 +1,16 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { realm, realmIndex, realmSearch } from '@blizzard-api/wow/realm';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   realmIndexResponseSchema,
   realmResponseSchema,
   realmSearchResponseSchema,
 } from '../../../generated/schemas/wow/realm';
+import { getIntegrationTestClient } from '../utils/client';
+import { getRandomItem } from '../utils/random';
 
 describe('wow realm integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('validates realm index and fetches realm detail', async ({ expect }) => {
     const resp = await client.sendRequest(realmIndex());
     const parsed = realmIndexResponseSchema.safeParse(resp);
@@ -23,8 +19,7 @@ describe('wow realm integration', async () => {
     }
     expect(parsed.success).toBe(true);
 
-    // eslint-disable-next-line sonarjs/pseudo-random
-    const randomRealm = resp!.realms[Math.floor(Math.random() * resp!.realms.length)];
+    const randomRealm = getRandomItem(resp!.realms);
     expect(randomRealm).toBeDefined();
     const realmResp = await client.sendRequest(realm(randomRealm!.slug));
     const parsedRealm = realmResponseSchema.safeParse(realmResp);

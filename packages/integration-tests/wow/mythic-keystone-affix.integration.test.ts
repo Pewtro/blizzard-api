@@ -1,4 +1,3 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import {
   mythicKeystoneAffix,
   mythicKeystoneAffixIndex,
@@ -6,19 +5,16 @@ import {
 } from '@blizzard-api/wow/mythic-keystone-affix';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   mythicKeystoneAffixIndexResponseSchema,
   mythicKeystoneAffixMediaResponseSchema,
   mythicKeystoneAffixResponseSchema,
 } from '../../../generated/schemas/wow/mythic-keystone-affix';
+import { getIntegrationTestClient } from '../utils/client';
+import { getRandomSample } from '../utils/random';
 
 describe('wow mythic-keystone-affix integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('validates index, detail and media', async ({ expect }) => {
     const index = await client.sendRequest(mythicKeystoneAffixIndex());
     const parsedIndex = mythicKeystoneAffixIndexResponseSchema.safeParse(index);
@@ -28,12 +24,7 @@ describe('wow mythic-keystone-affix integration', async () => {
     expect(parsedIndex.success).toBe(true);
 
     const affixes = parsedIndex.success ? parsedIndex.data.affixes : [];
-    const sampleSize = Math.min(5, affixes.length);
-    const sampled =
-      affixes.length > sampleSize
-        ? // eslint-disable-next-line sonarjs/pseudo-random
-          affixes.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
-        : affixes.slice(0, sampleSize);
+    const sampled = getRandomSample(affixes, 5);
 
     const detailRequests = [];
     const mediaRequests = [];

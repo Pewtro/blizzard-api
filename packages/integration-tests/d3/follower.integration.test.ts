@@ -1,17 +1,12 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { d3 } from '@blizzard-api/d3';
 import type { Follower } from '@blizzard-api/d3';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import { followerResponseSchema } from '../../../generated/schemas/d3';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('d3 follower integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
 
   test('fetches a follower', async ({ expect }) => {
     const followers: Array<Follower> = ['enchantress', 'scoundrel', 'templar'];

@@ -1,16 +1,11 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { heirloom, heirloomIndex } from '@blizzard-api/wow/heirloom';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import { heirloomIndexResponseSchema, heirloomResponseSchema } from '../../../generated/schemas/wow/heirloom';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('wow heirloom integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('validates heirloom index and fetches heirloom detail', async ({ expect }) => {
     const index = await client.sendRequest(heirloomIndex());
     const parsed = heirloomIndexResponseSchema.safeParse(index);

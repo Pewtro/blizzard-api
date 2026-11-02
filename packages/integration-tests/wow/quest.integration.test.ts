@@ -1,4 +1,3 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import {
   quest,
   questArea,
@@ -11,7 +10,6 @@ import {
 } from '@blizzard-api/wow/quest';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   questAreaIndexResponseSchema,
   questAreaResponseSchema,
@@ -22,13 +20,10 @@ import {
   questTypeIndexResponseSchema,
   questTypeResponseSchema,
 } from '../../../generated/schemas/wow/quest';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('wow quest integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('validates quest index and fetches quest detail', async ({ expect }) => {
     const index = await client.sendRequest(questIndex());
     const parsed = questIndexResponseSchema.safeParse(index);

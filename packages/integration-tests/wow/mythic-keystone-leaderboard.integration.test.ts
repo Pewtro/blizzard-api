@@ -1,5 +1,4 @@
 import type { BlizzardApiClient } from '@blizzard-api/client';
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { mythicKeystonePeriodIndex } from '@blizzard-api/wow';
 import { connectedRealmIndex } from '@blizzard-api/wow/connected-realm';
 import {
@@ -8,13 +7,21 @@ import {
 } from '@blizzard-api/wow/mythic-keystone-leaderboard';
 import { describe, expect, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   connectedRealmIndexResponseSchema,
   mythicKeystoneLeaderboardIndexResponseSchema,
   mythicKeystoneLeaderboardResponseSchema,
   mythicKeystonePeriodIndexResponseSchema,
 } from '../../../generated/schemas/wow';
+import { getIntegrationTestClient } from '../utils/client';
+
+/**
+ * Request options for the US region.
+ *
+ * The shared client defaults to the EU region, so requests against US-only endpoints need to
+ * override both the origin and the locale.
+ */
+const usRequestOptions = { locale: 'en_US', origin: 'us' } as const;
 
 /**
  * The number of connected realms to look through for a leaderboard.
@@ -31,11 +38,7 @@ interface FoundLeaderboard {
 }
 
 describe('wow mythic-keystone-leaderboard integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'us',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('fetches leaderboard index and a leaderboard for a connected realm', async () => {
     const { period, realmIds } = await getLeaderboardContext(client);
 
@@ -74,14 +77,14 @@ async function getLeaderboardContext(client: BlizzardApiClient): Promise<{
   previousPeriod: number;
   realmIds: Array<number>;
 }> {
-  const connectedRealms = await client.sendRequest(connectedRealmIndex());
+  const connectedRealms = await client.sendRequest(connectedRealmIndex(), usRequestOptions);
   const parsedConnectedRealms = connectedRealmIndexResponseSchema.safeParse(connectedRealms);
   if (!parsedConnectedRealms.success) {
     console.error('Connected realm index validation failed:', prettifyError(parsedConnectedRealms.error));
   }
   expect(parsedConnectedRealms.success).toBe(true);
 
-  const periods = await client.sendRequest(mythicKeystonePeriodIndex());
+  const periods = await client.sendRequest(mythicKeystonePeriodIndex(), usRequestOptions);
   const parsedPeriods = mythicKeystonePeriodIndexResponseSchema.safeParse(periods);
   if (!parsedPeriods.success) {
     console.error('Mythic keystone period index validation failed:', prettifyError(parsedPeriods.error));
@@ -112,7 +115,7 @@ async function findLeaderboard(
   for (const realmId of realmIds.slice(0, realmsToSearch)) {
     let index: unknown;
     try {
-      index = await client.sendRequest(mythicKeystoneLeaderboardIndex(realmId));
+      index = await client.sendRequest(mythicKeystoneLeaderboardIndex(realmId), usRequestOptions);
     } catch {
       // The connected realm does not have a mythic keystone leaderboard.
       continue;
@@ -129,7 +132,10 @@ async function findLeaderboard(
 
     for (const dungeon of parsedIndex.data.current_leaderboards) {
       try {
-        const leaderboard = await client.sendRequest(mythicKeystoneLeaderboard(realmId, dungeon.id, period));
+        const leaderboard = await client.sendRequest(
+          mythicKeystoneLeaderboard(realmId, dungeon.id, period),
+          usRequestOptions,
+        );
         const parsedLeaderboard = mythicKeystoneLeaderboardResponseSchema.safeParse(leaderboard);
         if (parsedLeaderboard.success) {
           return {

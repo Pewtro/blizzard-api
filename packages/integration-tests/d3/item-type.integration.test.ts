@@ -1,16 +1,12 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { d3 } from '@blizzard-api/d3';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import { itemTypeIndexResponseSchema, itemTypeResponseSchema } from '../../../generated/schemas/d3';
+import { getIntegrationTestClient } from '../utils/client';
+import { getRandomItem } from '../utils/random';
 
 describe('d3 item-type integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
 
   test('fetches item type indices and item details', async ({ expect }) => {
     const response = await client.sendRequest(d3.itemTypeIndex());
@@ -20,8 +16,7 @@ describe('d3 item-type integration', async () => {
     }
     expect(parsedResponse.success).toBe(true);
 
-    // eslint-disable-next-line sonarjs/pseudo-random
-    const randomItemType = response![Math.floor(Math.random() * response!.length)];
+    const randomItemType = getRandomItem(response);
     const randomItemTypeSlug = randomItemType?.path.replace('item-type/', '');
     if (!randomItemTypeSlug) {
       console.error('No item type slug found in the response for the random item type:', randomItemType);

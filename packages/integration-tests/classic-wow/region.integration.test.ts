@@ -1,16 +1,11 @@
 import { region, regionIndex } from '@blizzard-api/classic-wow/region';
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { describe, expect, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import { regionIndexResponseSchema, regionResponseSchema } from '../../../generated/schemas/classic-wow';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('classic-wow region integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
 
   test.each(['dynamic-classic1x', 'dynamic-classic', 'dynamic-classicann'] as const)(
     'validates the region index and details for %s',

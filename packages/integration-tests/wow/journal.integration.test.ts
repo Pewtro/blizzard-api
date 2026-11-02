@@ -1,4 +1,3 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import {
   journalEncounter,
   journalEncounterIndex,
@@ -11,7 +10,6 @@ import {
 } from '@blizzard-api/wow/journal';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   journalEncounterIndexResponseSchema,
   journalEncounterResponseSchema,
@@ -22,13 +20,11 @@ import {
   journalInstanceMediaResponseSchema,
   journalInstanceResponseSchema,
 } from '../../../generated/schemas/wow/journal';
+import { getIntegrationTestClient } from '../utils/client';
+import { getRandomSample } from '../utils/random';
 
 describe('wow journal integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('validates journal encounter index and details', async ({ expect }) => {
     const enc = await client.sendRequest(journalEncounterIndex());
     const parsedEnc = journalEncounterIndexResponseSchema.safeParse(enc);
@@ -39,12 +35,7 @@ describe('wow journal integration', async () => {
 
     // Pick up to 5 encounters at random from the index to fetch details
     const encounters = parsedEnc.success ? parsedEnc.data.encounters : [];
-    const sampleSize = Math.min(5, encounters.length);
-    const sampledEncounters =
-      encounters.length > sampleSize
-        ? // eslint-disable-next-line sonarjs/pseudo-random
-          encounters.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
-        : encounters.slice(0, sampleSize);
+    const sampledEncounters = getRandomSample(encounters, 5);
 
     const encounterRequests = Array.from(sampledEncounters, (encounter) =>
       client.sendRequest(journalEncounter(encounter.id)),
@@ -72,12 +63,7 @@ describe('wow journal integration', async () => {
 
     // Pick up to 5 expansions at random from the index to fetch details
     const expansions = parsedExp.success ? parsedExp.data.tiers : [];
-    const sampleSize = Math.min(5, expansions.length);
-    const sampledExpansions =
-      expansions.length > sampleSize
-        ? // eslint-disable-next-line sonarjs/pseudo-random
-          expansions.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
-        : expansions.slice(0, sampleSize);
+    const sampledExpansions = getRandomSample(expansions, 5);
 
     const expansionRequests = Array.from(sampledExpansions, (expansion) =>
       client.sendRequest(journalExpansion(expansion.id)),
@@ -106,12 +92,7 @@ describe('wow journal integration', async () => {
 
     // Pick up to 5 instances at random from the index to fetch details
     const instances = parsedExp.success ? parsedExp.data.instances : [];
-    const sampleSize = Math.min(5, instances.length);
-    const sampledInstances =
-      instances.length > sampleSize
-        ? // eslint-disable-next-line sonarjs/pseudo-random
-          instances.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
-        : instances.slice(0, sampleSize);
+    const sampledInstances = getRandomSample(instances, 5);
 
     const instanceRequests = Array.from(sampledInstances, (instance) =>
       client.sendRequest(journalInstance(instance.id)),

@@ -1,4 +1,3 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import {
   achievement,
   achievementCategory,
@@ -8,7 +7,6 @@ import {
 } from '@blizzard-api/wow/achievements';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   achievementCategoryIndexResponseSchema,
   achievementCategoryResponseSchema,
@@ -16,13 +14,11 @@ import {
   achievementMediaResponseSchema,
   achievementResponseSchema,
 } from '../../../generated/schemas/wow/achievements';
+import { getIntegrationTestClient } from '../utils/client';
+import { getRandomSample } from '../utils/random';
 
 describe('wow achievements integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('fetches achievement indices and media', async ({ expect }) => {
     const index = await client.sendRequest(achievementIndex());
     const parsed = achievementIndexResponseSchema.safeParse(index);
@@ -33,12 +29,7 @@ describe('wow achievements integration', async () => {
 
     // Pick up to 5 achievements at random from the index to fetch details
     const achievements = parsed.success ? parsed.data.achievements : [];
-    const sampleSize = Math.min(5, achievements.length);
-    const sampled =
-      achievements.length > sampleSize
-        ? // eslint-disable-next-line sonarjs/pseudo-random
-          achievements.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
-        : achievements.slice(0, sampleSize);
+    const sampled = getRandomSample(achievements, 5);
 
     const requests = Array.from(sampled, (achi) => client.sendRequest(achievement(achi.id)));
 
@@ -62,12 +53,7 @@ describe('wow achievements integration', async () => {
     expect(parsedCatIndex.success).toBe(true);
 
     const categories = parsedCatIndex.success ? parsedCatIndex.data.categories : [];
-    const sampleSize = Math.min(50, categories.length);
-    const sampledCats =
-      categories.length > sampleSize
-        ? // eslint-disable-next-line sonarjs/pseudo-random
-          categories.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
-        : categories.slice(0, sampleSize);
+    const sampledCats = getRandomSample(categories, 50);
 
     const catRequests = Array.from(sampledCats, (c) => client.sendRequest(achievementCategory(c.id)));
 

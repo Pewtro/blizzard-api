@@ -1,20 +1,15 @@
 import { playableClass, playableClassIndex, playableClassMedia } from '@blizzard-api/classic-wow/playable-class';
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { describe, expect, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   playableClassIndexResponseSchema,
   playableClassMediaResponseSchema,
   playableClassResponseSchema,
 } from '../../../generated/schemas/classic-wow';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('classic-wow playable class integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
 
   test.each(['static-classic1x', 'static-classic', 'static-classicann'] as const)(
     'fetches playable class and media by id for %s',

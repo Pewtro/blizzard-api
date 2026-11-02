@@ -1,19 +1,14 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { characterPvpBracketStatistics, characterPvpSummary } from '@blizzard-api/wow/character-pvp';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   characterPvpBracketStatisticsResponseSchema,
   characterPvpSummaryResponseSchema,
 } from '../../../generated/schemas/wow';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('wow character-pvp integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('validates character pvp summary', async ({ expect }) => {
     const realm = 'laughing-skull';
     const character = 'putro';

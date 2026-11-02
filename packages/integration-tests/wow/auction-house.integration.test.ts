@@ -1,20 +1,15 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { auctions, commodities } from '@blizzard-api/wow/auction-house';
 import { connectedRealmIndex } from '@blizzard-api/wow/connected-realm';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   auctionHouseCommoditiesResponseSchema,
   auctionHouseResponseSchema,
 } from '../../../generated/schemas/wow/auction-house';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('wow auction-house integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('validates auctions and commodities responses', async ({ expect }) => {
     const realms = await client.sendRequest(connectedRealmIndex());
     const firstConnectedRealm = realms?.connected_realms.find((cr) => cr.href);

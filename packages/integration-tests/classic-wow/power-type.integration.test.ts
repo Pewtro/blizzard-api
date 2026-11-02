@@ -1,16 +1,11 @@
 import { powerType, powerTypeIndex } from '@blizzard-api/classic-wow/power-type';
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { describe, expect, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import { powerTypeIndexResponseSchema, powerTypeResponseSchema } from '../../../generated/schemas/classic-wow';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('classic-wow power type integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test.each(['static-classic1x', 'static-classic', 'static-classicann'] as const)(
     'validates the power type index and details for %s',
     async (namespace) => {

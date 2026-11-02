@@ -1,8 +1,6 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import { sc2 } from '@blizzard-api/sc2';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   legacyAchievementsResponseSchema,
   legacyLaddersResponseSchema,
@@ -11,13 +9,10 @@ import {
   legacyRewardsResponseSchema,
   singleLegacyLadderResponseSchema,
 } from '../../../generated/schemas/sc2';
+import { getIntegrationTestClient } from '../utils/client';
 
 describe('sc2 legacy integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
 
   test('fetches legacy achievements', async ({ expect }) => {
     const response = await client.sendRequest(sc2.legacyAchievements('eu'));

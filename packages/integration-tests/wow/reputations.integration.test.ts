@@ -1,4 +1,3 @@
-import { createBlizzardApiClient } from '@blizzard-api/client';
 import {
   reputationFaction,
   reputationFactionIndex,
@@ -7,20 +6,17 @@ import {
 } from '@blizzard-api/wow/reputations';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
-import { environment } from '../../../environment';
 import {
   reputationFactionIndexResponseSchema,
   reputationFactionResponseSchema,
   reputationTiersIndexResponseSchema,
   reputationTiersResponseSchema,
 } from '../../../generated/schemas/wow/reputations';
+import { getIntegrationTestClient } from '../utils/client';
+import { getRandomSample } from '../utils/random';
 
 describe('wow reputations integration', async () => {
-  const client = await createBlizzardApiClient({
-    key: environment.blizzardClientId,
-    origin: 'eu',
-    secret: environment.blizzardClientSecret,
-  });
+  const client = await getIntegrationTestClient();
   test('validates reputation factions', async ({ expect }) => {
     const factions = await client.sendRequest(reputationFactionIndex());
     const parsedFactions = reputationFactionIndexResponseSchema.safeParse(factions);
@@ -30,12 +26,7 @@ describe('wow reputations integration', async () => {
     expect(parsedFactions.success).toBe(true);
 
     const factionItems = parsedFactions.success ? parsedFactions.data.factions : [];
-    const sampleSize = Math.min(5, factionItems.length);
-    const sampled =
-      factionItems.length > sampleSize
-        ? // eslint-disable-next-line sonarjs/pseudo-random
-          factionItems.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
-        : factionItems.slice(0, sampleSize);
+    const sampled = getRandomSample(factionItems, 5);
 
     const factionRequests = Array.from(sampled, (f) => client.sendRequest(reputationFaction(f.id)));
 
@@ -57,12 +48,7 @@ describe('wow reputations integration', async () => {
     expect(parsedTiers.success).toBe(true);
 
     const tierItems = parsedTiers.success ? parsedTiers.data.reputation_tiers : [];
-    const sampleSize = Math.min(5, tierItems.length);
-    const sampled =
-      tierItems.length > sampleSize
-        ? // eslint-disable-next-line sonarjs/pseudo-random
-          tierItems.toSorted(() => 0.5 - Math.random()).slice(0, sampleSize)
-        : tierItems.slice(0, sampleSize);
+    const sampled = getRandomSample(tierItems, 5);
 
     const tierRequests = Array.from(sampled, (t) => client.sendRequest(reputationTiers(t.id)));
     const tierResponses = await Promise.all(tierRequests);
