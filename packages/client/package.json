@@ -1,6 +1,6 @@
 {
   "name": "@blizzard-api/client",
-  "version": "5.5.2",
+  "version": "5.5.3",
   "description": "A node.js client to integrate with the blizzard battle.net api.",
   "keywords": [
     "api",
@@ -61,7 +61,7 @@
     "@blizzard-api/wow": "workspace:*"
   },
   "peerDependencies": {
-    "@blizzard-api/core": "4.2.0"
+    "@blizzard-api/core": "4.3.0"
   },
   "engines": {
     "node": "^22.13.0 || ^24 || ^26"

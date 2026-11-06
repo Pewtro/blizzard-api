@@ -1,5 +1,12 @@
 # @blizzard-api/d3
 
+## 3.1.4
+
+### Patch Changes
+
+- Updated dependencies [57c526b]
+  - @blizzard-api/core@4.3.0
+
 ## 3.1.3
 
 ### Patch Changes
