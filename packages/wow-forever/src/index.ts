@@ -1,0 +1,210 @@
+import {
+  achievement,
+  achievementCategory,
+  achievementCategoryIndex,
+  achievementIndex,
+  achievementMedia,
+} from './achievements/index';
+import {
+  creature,
+  creatureDisplayMedia,
+  creatureFamily,
+  creatureFamilyIndex,
+  creatureFamilyMedia,
+  creatureSearch,
+  creatureType,
+  creatureTypeIndex,
+} from './creature/index';
+import { guildCrestBorder, guildCrestComponentsIndex, guildCrestEmblem } from './guild-crest/index';
+import {
+  item,
+  itemClass,
+  itemClassIndex,
+  itemMedia,
+  itemSearch,
+  itemSet,
+  itemSetIndex,
+  itemSubclass,
+} from './item/index';
+import { mediaSearch } from './media-search/index';
+import { mount, mountIndex, mountSearch } from './mount/index';
+import { pet, petAbility, petAbilityIndex, petAbilityMedia, petIndex, petMedia } from './pet/index';
+import { playableClass, playableClassIndex, playableClassMedia, pvpTalentSlots } from './playable-class/index';
+import { playableRace, playableRaceIndex } from './playable-race/index';
+import {
+  playableSpecialization,
+  playableSpecializationIndex,
+  playableSpecializationMedia,
+} from './playable-specialization/index';
+import { powerType, powerTypeIndex } from './power-type/index';
+import {
+  profession,
+  professionIndex,
+  professionMedia,
+  professionSkillTier,
+  recipe,
+  recipeMedia,
+} from './profession/index';
+import { region, regionIndex } from './region/index';
+import { reputationFaction, reputationFactionIndex, reputationTiers, reputationTiersIndex } from './reputations/index';
+import { spell, spellMedia, spellSearch } from './spell/index';
+import {
+  pvpTalent,
+  pvpTalentIndex,
+  talent,
+  talentIndex,
+  talentTree,
+  talentTreeIndex,
+  talentTreeNodes,
+} from './talent/index';
+import { title, titleIndex } from './title/index';
+import { toy, toyIndex } from './toy/index';
+
+const wowForever = {
+  //Achievements
+  achievement,
+  achievementCategory,
+  achievementCategoryIndex,
+  achievementIndex,
+  achievementMedia,
+  //Creature
+  creature,
+  creatureDisplayMedia,
+  creatureFamily,
+  creatureFamilyIndex,
+  creatureFamilyMedia,
+  creatureSearch,
+  creatureType,
+  creatureTypeIndex,
+  //Guild Crest
+  guildCrestBorder,
+  guildCrestComponentsIndex,
+  guildCrestEmblem,
+  //Item
+  item,
+  itemClass,
+  itemClassIndex,
+  itemMedia,
+  itemSearch,
+  itemSet,
+  itemSetIndex,
+  itemSubclass,
+  //Media Search
+  mediaSearch,
+  //Mount
+  mount,
+  mountIndex,
+  mountSearch,
+  //Pet
+  pet,
+  petAbility,
+  petAbilityIndex,
+  petAbilityMedia,
+  petIndex,
+  petMedia,
+  //Playable Class
+  playableClass,
+  playableClassIndex,
+  playableClassMedia,
+  pvpTalentSlots,
+  //Playable Race
+  playableRace,
+  playableRaceIndex,
+  //Playable Specialization
+  playableSpecialization,
+  playableSpecializationIndex,
+  playableSpecializationMedia,
+  //Power Type
+  powerType,
+  powerTypeIndex,
+  //Profession
+  profession,
+  professionIndex,
+  professionMedia,
+  professionSkillTier,
+  recipe,
+  recipeMedia,
+  //Region
+  region,
+  regionIndex,
+  //Reputations
+  reputationFaction,
+  reputationFactionIndex,
+  reputationTiers,
+  reputationTiersIndex,
+  //Spell
+  spell,
+  spellMedia,
+  spellSearch,
+  //Talent
+  pvpTalent,
+  pvpTalentIndex,
+  talent,
+  talentIndex,
+  talentTree,
+  talentTreeIndex,
+  talentTreeNodes,
+  //Title
+  title,
+  titleIndex,
+  //Toy
+  toy,
+  toyIndex,
+};
+export default wowForever;
+export { wowForever };
+
+//Achievements
+export * from './achievements/index';
+export type * from './achievements/types';
+//Creature
+export * from './creature/index';
+export type * from './creature/types';
+//Guild Crest
+export * from './guild-crest/index';
+export type * from './guild-crest/types';
+//Item
+export * from './item/index';
+export type * from './item/types';
+//Media Search
+export * from './media-search/index';
+export type * from './media-search/types';
+//Mount
+export * from './mount/index';
+export type * from './mount/types';
+//Pet
+export * from './pet/index';
+export type * from './pet/types';
+//Playable Class
+export * from './playable-class/index';
+export type * from './playable-class/types';
+//Playable Race
+export * from './playable-race/index';
+export type * from './playable-race/types';
+//Playable Specialization
+export * from './playable-specialization/index';
+export type * from './playable-specialization/types';
+//Power Type
+export * from './power-type/index';
+export type * from './power-type/types';
+//Profession
+export * from './profession/index';
+export type * from './profession/types';
+//Region
+export * from './region/index';
+export type * from './region/types';
+//Reputations
+export * from './reputations/index';
+export type * from './reputations/types';
+//Spell
+export * from './spell/index';
+export type * from './spell/types';
+//Talent
+export * from './talent/index';
+export type * from './talent/types';
+//Title
+export * from './title/index';
+export type * from './title/types';
+//Toy
+export * from './toy/index';
+export type * from './toy/types';

@@ -23,9 +23,17 @@ export const profileClassicNamespacesSchema = z.union([
   z.literal('profile-classicann'),
 ]);
 
+export const foreverVersionsSchema = z.literal('forever');
+
+export const staticForeverNamespacesSchema = z.literal('static-forever');
+
+export const dynamicForeverNamespacesSchema = z.literal('dynamic-forever');
+
 export const blizzardNamespacesSchema = z.union([
   dynamicClassicNamespacesSchema,
+  dynamicForeverNamespacesSchema,
   namespaceTypesSchema,
   profileClassicNamespacesSchema,
   staticClassicNamespacesSchema,
+  staticForeverNamespacesSchema,
 ]);

@@ -33,10 +33,27 @@ export type DynamicClassicNamespaces = `dynamic-${ClassicVersions}`;
 export type ProfileClassicNamespaces = `profile-${ClassicVersions}`;
 
 /**
+ * The versions of World of Warcraft: Forever supported by the Blizzard API.
+ */
+export type ForeverVersions = 'forever';
+
+/**
+ * The static namespaces of World of Warcraft: Forever.
+ */
+export type StaticForeverNamespaces = 'static-forever';
+
+/**
+ * The dynamic namespaces of World of Warcraft: Forever.
+ */
+export type DynamicForeverNamespaces = 'dynamic-forever';
+
+/**
  * Every namespace supported by the Blizzard API.
  */
 export type BlizzardNamespaces =
   | DynamicClassicNamespaces
+  | DynamicForeverNamespaces
   | NamespaceTypes
   | ProfileClassicNamespaces
-  | StaticClassicNamespaces;
+  | StaticClassicNamespaces
+  | StaticForeverNamespaces;

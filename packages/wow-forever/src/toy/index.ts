@@ -1,0 +1,25 @@
+import type { Resource } from '@blizzard-api/core';
+import { wowBasePath } from '@blizzard-api/core';
+import type { ToyIndexResponse, ToyResponse } from './types';
+
+/**
+ * Get a toy by ID.
+ * @param toyId The toy ID.
+ * @returns The toy. See {@link ToyResponse}.
+ */
+export function toy(toyId: number): Resource<ToyResponse> {
+  return {
+    namespace: 'static-forever',
+    path: `${wowBasePath}/toy/${toyId}`,
+  };
+}
+/**
+ * Get a toy index.
+ * @returns The toy index. See {@link ToyIndexResponse}.
+ */
+export function toyIndex(): Resource<ToyIndexResponse> {
+  return {
+    namespace: 'static-forever',
+    path: `${wowBasePath}/toy/index`,
+  };
+}

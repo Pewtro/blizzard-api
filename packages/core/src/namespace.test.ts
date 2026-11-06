@@ -3,9 +3,12 @@ import type {
   BlizzardNamespaces,
   ClassicVersions,
   DynamicClassicNamespaces,
+  DynamicForeverNamespaces,
+  ForeverVersions,
   NamespaceTypes,
   ProfileClassicNamespaces,
   StaticClassicNamespaces,
+  StaticForeverNamespaces,
 } from './namespace';
 
 describe('BlizzardNamespaces', () => {
@@ -33,6 +36,12 @@ describe('BlizzardNamespaces', () => {
     expect(namespaces).toEqual(['dynamic-classicann', 'profile-classicann', 'static-classicann']);
   });
 
+  test('should include the forever namespaces', () => {
+    const namespaces: Array<BlizzardNamespaces> = ['dynamic-forever', 'static-forever'];
+
+    expect(namespaces).toEqual(['dynamic-forever', 'static-forever']);
+  });
+
   test('should combine every namespace type with every classic version', () => {
     const namespaces: Array<BlizzardNamespaces> = [];
 
@@ -45,6 +54,26 @@ describe('BlizzardNamespaces', () => {
     }
 
     expect(namespaces).toHaveLength(12);
+  });
+});
+
+describe('forever namespaces', () => {
+  test('should resolve the static namespace of forever', () => {
+    const namespaces: Array<StaticForeverNamespaces> = ['static-forever'];
+
+    expect(namespaces).toHaveLength(1);
+  });
+
+  test('should resolve the dynamic namespace of forever', () => {
+    const namespaces: Array<DynamicForeverNamespaces> = ['dynamic-forever'];
+
+    expect(namespaces).toHaveLength(1);
+  });
+
+  test('should only support the forever version', () => {
+    const versions: Array<ForeverVersions> = ['forever'];
+
+    expect(versions).toHaveLength(1);
   });
 });
 
