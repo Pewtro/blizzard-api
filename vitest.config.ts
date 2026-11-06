@@ -38,6 +38,7 @@ export default defineConfig({
       {
         test: {
           include: ['packages/**/*.integration.test.ts'],
+          maxWorkers: 2,
           name: 'integration',
           sequence: {
             groupOrder: 1,
