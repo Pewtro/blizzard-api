@@ -23,6 +23,7 @@
     "@blizzard-api/hs": "workspace:*",
     "@blizzard-api/sc2": "workspace:*",
     "@blizzard-api/wow": "workspace:*",
+    "@blizzard-api/wow-forever": "workspace:*",
     "zod": "4.6.7"
   },
   "engines": {

@@ -11,7 +11,7 @@ const root = process.cwd();
 const packagesDirectory = path.join(root, 'packages');
 
 // Maintain an explicit whitelist of packages to process.
-const PACKAGE_WHITELIST = new Set(['classic-wow', 'core', 'd3', 'hs', 'sc2', 'wow']);
+const PACKAGE_WHITELIST = new Set(['classic-wow', 'core', 'd3', 'hs', 'sc2', 'wow', 'wow-forever']);
 const HANDLE_ALL_FILE_FOLDERS = new Set(['core']);
 
 async function main() {

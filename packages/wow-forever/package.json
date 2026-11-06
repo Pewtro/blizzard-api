@@ -1,0 +1,60 @@
+{
+  "name": "@blizzard-api/wow-forever",
+  "version": "1.0.0",
+  "description": "A series of helpers to interact with the World of Warcraft: Forever Blizzard API",
+  "keywords": [
+    "api",
+    "battle.net",
+    "battlenet",
+    "blizzard",
+    "bnet",
+    "forever",
+    "warcraft",
+    "world of warcraft",
+    "wow"
+  ],
+  "homepage": "https://github.com/Pewtro/blizzard-api/tree/main/packages/wow-forever",
+  "license": "MIT",
+  "author": "Putro",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pewtro/blizzard-api.git",
+    "directory": "packages/wow-forever"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "@blizzard-api/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./*": {
+      "@blizzard-api/source": "./src/*/index.ts",
+      "types": "./dist/*/index.d.ts",
+      "default": "./dist/*/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "test": "vitest run",
+    "test:coverage": "pnpm test -- --coverage",
+    "test:watch": "vitest watch"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@blizzard-api/core": "workspace:*"
+  },
+  "peerDependencies": {
+    "@blizzard-api/core": "4.2.0"
+  },
+  "engines": {
+    "node": "^22.13.0 || ^24 || ^26"
+  }
+}

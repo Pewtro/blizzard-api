@@ -150,6 +150,9 @@ importers:
       '@blizzard-api/wow':
         specifier: workspace:*
         version: link:../wow
+      '@blizzard-api/wow-forever':
+        specifier: workspace:*
+        version: link:../wow-forever
       zod:
         specifier: 4.6.7
         version: 4.6.7
@@ -161,6 +164,12 @@ importers:
         version: link:../core
 
   packages/wow:
+    devDependencies:
+      '@blizzard-api/core':
+        specifier: workspace:*
+        version: link:../core
+
+  packages/wow-forever:
     devDependencies:
       '@blizzard-api/core':
         specifier: workspace:*
