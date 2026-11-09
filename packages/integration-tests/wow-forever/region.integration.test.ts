@@ -17,7 +17,7 @@ describe('wow-forever region integration', async () => {
 
     //The region id differs per origin (91 is CAMWOW North America, 93 is CAMWOW Europe),
     //so the id is taken from the href that the index links to.
-    const href = parsedIndex.success ? parsedIndex.data.regions[0]?.href : undefined;
+    const href = parsedIndex.data?.regions[0]?.href;
     if (href === undefined) return;
     const regionId = Number(/\/region\/(\d+)/.exec(href)?.[1]);
     expect(regionId).toBeGreaterThan(0);

@@ -25,8 +25,7 @@ describe('wow reputations integration', async () => {
     }
     expect(parsedFactions.success).toBe(true);
 
-    const factionItems = parsedFactions.success ? parsedFactions.data.factions : [];
-    const sampled = getRandomSample(factionItems, 5);
+    const sampled = getRandomSample(parsedFactions.data?.factions, 5);
 
     const factionRequests = Array.from(sampled, (f) => client.sendRequest(reputationFaction(f.id)));
 
@@ -47,8 +46,7 @@ describe('wow reputations integration', async () => {
     }
     expect(parsedTiers.success).toBe(true);
 
-    const tierItems = parsedTiers.success ? parsedTiers.data.reputation_tiers : [];
-    const sampled = getRandomSample(tierItems, 5);
+    const sampled = getRandomSample(parsedTiers.data?.reputation_tiers, 5);
 
     const tierRequests = Array.from(sampled, (t) => client.sendRequest(reputationTiers(t.id)));
     const tierResponses = await Promise.all(tierRequests);

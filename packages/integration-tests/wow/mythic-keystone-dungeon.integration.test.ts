@@ -32,8 +32,7 @@ describe('wow mythic-keystone-dungeon integration', async () => {
     }
     expect(parsed.success).toBe(true);
 
-    const dungeons = parsed.success ? parsed.data.dungeons : [];
-    const sampled = getRandomSample(dungeons, 5);
+    const sampled = getRandomSample(parsed.data?.dungeons, 5);
 
     const requests = Array.from(sampled, (d) => client.sendRequest(mythicKeystoneDungeon(d.id)));
 
@@ -67,8 +66,7 @@ describe('wow mythic-keystone-dungeon integration', async () => {
     }
     expect(parsed.success).toBe(true);
 
-    const periods = parsed.success ? parsed.data.periods : [];
-    const sampled = getRandomSample(periods, 5);
+    const sampled = getRandomSample(parsed.data?.periods, 5);
 
     const requests = Array.from(sampled, (p) => client.sendRequest(mythicKeystonePeriod(p.id)));
     const responses = await Promise.all(requests);
@@ -88,8 +86,7 @@ describe('wow mythic-keystone-dungeon integration', async () => {
     }
     expect(parsed.success).toBe(true);
 
-    const seasons = parsed.success ? parsed.data.seasons : [];
-    const sampled = getRandomSample(seasons, 5);
+    const sampled = getRandomSample(parsed.data?.seasons, 5);
 
     const requests = Array.from(sampled, (s) => client.sendRequest(mythicKeystoneSeason(s.id)));
 

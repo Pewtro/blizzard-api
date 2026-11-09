@@ -16,8 +16,7 @@ describe('wow-forever playable race integration', async () => {
     }
     expect(parsedIndex.success).toBe(true);
 
-    const races = parsedIndex.success ? parsedIndex.data.races : [];
-    const sampled = getRandomSample(races, 5);
+    const sampled = getRandomSample(parsedIndex.data?.races, 5);
     const responses = await Promise.all(Array.from(sampled, (race) => client.sendRequest(playableRace(race.id))));
 
     for (const response of responses) {

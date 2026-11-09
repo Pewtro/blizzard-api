@@ -28,8 +28,7 @@ describe('wow achievements integration', async () => {
     expect(parsed.success).toBe(true);
 
     // Pick up to 5 achievements at random from the index to fetch details
-    const achievements = parsed.success ? parsed.data.achievements : [];
-    const sampled = getRandomSample(achievements, 5);
+    const sampled = getRandomSample(parsed.data?.achievements, 5);
 
     const requests = Array.from(sampled, (achi) => client.sendRequest(achievement(achi.id)));
 
@@ -52,8 +51,7 @@ describe('wow achievements integration', async () => {
     }
     expect(parsedCatIndex.success).toBe(true);
 
-    const categories = parsedCatIndex.success ? parsedCatIndex.data.categories : [];
-    const sampledCats = getRandomSample(categories, 50);
+    const sampledCats = getRandomSample(parsedCatIndex.data?.categories, 50);
 
     const catRequests = Array.from(sampledCats, (c) => client.sendRequest(achievementCategory(c.id)));
 
@@ -74,8 +72,7 @@ describe('wow achievements integration', async () => {
     }
     expect(parsedIndexAgain.success).toBe(true);
 
-    const achs = parsedIndexAgain.success ? parsedIndexAgain.data.achievements : [];
-    const mediaSample = achs.slice(0, Math.min(5, achs.length));
+    const mediaSample = getRandomSample(parsedIndexAgain.data?.achievements, 5);
     const mediaRequests = Array.from(mediaSample, (a) => client.sendRequest(achievementMedia(a.id)));
     const mediaResponses = await Promise.all(mediaRequests);
     for (const m of mediaResponses) {

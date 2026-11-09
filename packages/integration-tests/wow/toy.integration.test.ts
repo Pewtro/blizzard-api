@@ -16,8 +16,7 @@ describe('wow toy integration', async () => {
     expect(parsed.success).toBe(true);
 
     // Pick up to 5 toys at random from the index to fetch details
-    const toys = parsed.success ? parsed.data.toys : [];
-    const sampled = getRandomSample(toys, 5);
+    const sampled = getRandomSample(parsed.data?.toys, 5);
 
     const requests = Array.from(sampled, (t) => client.sendRequest(toy(t.id)));
     const responses = await Promise.all(requests);

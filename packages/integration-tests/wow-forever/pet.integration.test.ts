@@ -21,8 +21,7 @@ describe('wow-forever pet integration', async () => {
     }
     expect(parsedIndex.success).toBe(true);
 
-    const pets = parsedIndex.success ? parsedIndex.data.pets : [];
-    const sampled = getRandomSample(pets, 5);
+    const sampled = getRandomSample(parsedIndex.data?.pets, 5);
 
     for (const petEntry of sampled) {
       const petResponse = await client.sendRequest(pet(petEntry.id));
@@ -42,7 +41,6 @@ describe('wow-forever pet integration', async () => {
   });
 
   test('validates the pet ability index', async ({ expect }) => {
-    //Forever currently returns an empty ability index, so this only validates the envelope.
     const index = await client.sendRequest(petAbilityIndex());
     const parsedIndex = petAbilityIndexResponseSchema.safeParse(index);
     if (!parsedIndex.success) {

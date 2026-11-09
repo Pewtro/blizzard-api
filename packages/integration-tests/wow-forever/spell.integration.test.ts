@@ -20,11 +20,7 @@ describe('wow-forever spell integration', async () => {
     }
     expect(parsedSearch.success).toBe(true);
 
-    const results = parsedSearch.success ? parsedSearch.data.results : [];
-    const sampled = getRandomSample(
-      results.map((result) => result.data.id),
-      5,
-    );
+    const sampled = getRandomSample(parsedSearch.data?.results, 5).map((result) => result.data.id);
 
     for (const spellId of sampled) {
       const spellResponse = await client.sendRequest(spell(spellId));

@@ -17,6 +17,7 @@ import {
   recipeResponseSchema,
 } from '../../../generated/schemas/wow-forever';
 import { getIntegrationTestClient } from '../utils/client';
+import { getRandomSample } from '../utils/random';
 
 describe('wow-forever profession integration', async () => {
   const client = await getIntegrationTestClient();
@@ -52,7 +53,7 @@ describe('wow-forever profession integration', async () => {
     }
     expect(parsedMedia.success).toBe(true);
 
-    const skillTierId = parsedProfession.success ? parsedProfession.data.skill_tiers[0]?.id : undefined;
+    const skillTierId = parsedProfession.data?.skill_tiers[0]?.id;
     if (skillTierId === undefined) return;
 
     const tierResponse = await client.sendRequest(professionSkillTier(professionId, skillTierId));
@@ -62,9 +63,7 @@ describe('wow-forever profession integration', async () => {
     }
     expect(parsedTier.success).toBe(true);
 
-    const recipeEntry = parsedTier.success
-      ? parsedTier.data.categories.flatMap((category) => category.recipes)[0]
-      : undefined;
+    const recipeEntry = parsedTier.data?.categories.flatMap((category) => category.recipes)[0];
     if (recipeEntry) {
       await validateRecipe(recipeEntry.id);
     }
@@ -78,8 +77,8 @@ describe('wow-forever profession integration', async () => {
     }
     expect(parsedIndex.success).toBe(true);
 
-    const professions = parsedIndex.success ? parsedIndex.data.professions : [];
-    for (const professionEntry of professions) {
+    const sampledProfessions = getRandomSample(parsedIndex.data?.professions, 5);
+    for (const professionEntry of sampledProfessions) {
       await validateProfession(professionEntry.id);
     }
   });

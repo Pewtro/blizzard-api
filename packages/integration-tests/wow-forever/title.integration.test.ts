@@ -16,8 +16,7 @@ describe('wow-forever title integration', async () => {
     }
     expect(parsedIndex.success).toBe(true);
 
-    const titles = parsedIndex.success ? parsedIndex.data.titles : [];
-    const sampled = getRandomSample(titles, 5);
+    const sampled = getRandomSample(parsedIndex.data?.titles, 5);
     const responses = await Promise.all(Array.from(sampled, (titleEntry) => client.sendRequest(title(titleEntry.id))));
 
     for (const response of responses) {

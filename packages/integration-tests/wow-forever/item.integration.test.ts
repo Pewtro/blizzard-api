@@ -34,10 +34,9 @@ describe('wow-forever item integration', async () => {
     }
     expect(parsedClassIndex.success).toBe(true);
 
-    const itemClasses = parsedClassIndex.success ? parsedClassIndex.data.item_classes : [];
-    //Forever exposes a placeholder item class with id 0 whose subclasses carry a sentinel id, so only sample real subclasses.
+    //Forever exposes a placeholder item class with id 0 whose subclasses carry a sentinel id, so only sample real classes.
     const sampledClasses = getRandomSample(
-      itemClasses.filter((itemClassEntry) => itemClassEntry.id > 0),
+      parsedClassIndex.data?.item_classes?.filter((itemClassEntry) => itemClassEntry.id > 0),
       5,
     );
 
@@ -49,9 +48,7 @@ describe('wow-forever item integration', async () => {
       }
       expect(parsedClass.success).toBe(true);
 
-      const subclass = parsedClass.success
-        ? parsedClass.data.item_subclasses?.find((entry) => entry.id > 0)
-        : undefined;
+      const subclass = parsedClass.data?.item_subclasses?.find((entry) => entry.id > 0);
       if (!subclass) continue;
 
       const subclassResponse = await client.sendRequest(itemSubclass(itemClassEntry.id, subclass.id));
@@ -76,8 +73,7 @@ describe('wow-forever item integration', async () => {
     }
     expect(parsedSetIndex.success).toBe(true);
 
-    const itemSets = parsedSetIndex.success ? parsedSetIndex.data.item_sets : [];
-    const sampledSets = getRandomSample(itemSets, 3);
+    const sampledSets = getRandomSample(parsedSetIndex.data?.item_sets, 3);
     const itemSetResponses = await Promise.all(
       Array.from(sampledSets, (itemSetEntry) => client.sendRequest(itemSet(itemSetEntry.id))),
     );
@@ -99,18 +95,12 @@ describe('wow-forever item integration', async () => {
     }
     expect(parsedSearch.success).toBe(true);
 
-    const results = parsedSearch.success ? parsedSearch.data.results : [];
-    const sampled = getRandomSample(
-      results.map((result) => result.data.id),
-      3,
-    );
+    const sampled = getRandomSample(parsedSearch.data?.results, 3).map((result) => result.data.id);
 
     for (const itemId of sampled) {
-      const itemResponse = await client.sendRequest(item(6272));
+      const itemResponse = await client.sendRequest(item(itemId));
       const parsedItem = itemResponseSchema.safeParse(itemResponse);
       if (!parsedItem.success) {
-        console.log('parsedError', parsedItem.error);
-        console.log('reagents', itemResponse?.preview_item.recipe?.reagents);
         console.error('Item validation failed for id', itemId, prettifyError(parsedItem.error));
       }
       expect(parsedItem.success).toBe(true);

@@ -37,9 +37,8 @@ describe('wow-forever talent integration', async () => {
     }
     expect(parsedIndex.success).toBe(true);
 
-    const talents = parsedIndex.success ? parsedIndex.data.talents : [];
     const sampled = getRandomSample(
-      talents.filter((talentEntry) => talentEntry.name !== null),
+      parsedIndex.data?.talents?.filter((talentEntry) => talentEntry.name !== null),
       5,
     );
     const responses = await Promise.all(
@@ -64,7 +63,7 @@ describe('wow-forever talent integration', async () => {
     expect(parsedIndex.success).toBe(true);
 
     //Index entries carry no id, so the talent tree id (and the spec id for spec trees) are taken from the href.
-    const classTree = parsedIndex.success ? getRandomSample(parsedIndex.data.class_talent_trees, 1)[0] : undefined;
+    const classTree = getRandomSample(parsedIndex.data?.class_talent_trees, 1)[0];
     if (!classTree) return;
     const { treeId } = idsFromHref(classTree.key.href);
     const nodesResponse = await client.sendRequest(talentTreeNodes(treeId));
@@ -84,7 +83,7 @@ describe('wow-forever talent integration', async () => {
     expect(parsedIndex.success).toBe(true);
 
     //Index entries carry no id, so the talent tree id (and the spec id for spec trees) are taken from the href.
-    const specTree = parsedIndex.success ? getRandomSample(parsedIndex.data.spec_talent_trees, 1)[0] : undefined;
+    const specTree = getRandomSample(parsedIndex.data?.spec_talent_trees, 1)[0];
     if (!specTree) return;
     const { specId, treeId } = idsFromHref(specTree.key.href);
     if (specId === undefined) return;

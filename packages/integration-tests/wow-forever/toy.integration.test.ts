@@ -16,8 +16,7 @@ describe('wow-forever toy integration', async () => {
     }
     expect(parsedIndex.success).toBe(true);
 
-    const toys = parsedIndex.success ? parsedIndex.data.toys : [];
-    const sampled = getRandomSample(toys, 5);
+    const sampled = getRandomSample(parsedIndex.data?.toys, 5);
     const responses = await Promise.all(Array.from(sampled, (toyEntry) => client.sendRequest(toy(toyEntry.id))));
 
     for (const response of responses) {

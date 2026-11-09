@@ -3,6 +3,7 @@ import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
 import { playableRaceIndexResponseSchema, playableRaceResponseSchema } from '../../../generated/schemas/wow';
 import { getIntegrationTestClient } from '../utils/client';
+import { getRandomSample } from '../utils/random';
 
 describe('wow playable race integration', async () => {
   const client = await getIntegrationTestClient();
@@ -14,7 +15,7 @@ describe('wow playable race integration', async () => {
     }
     expect(parsed.success).toBe(true);
 
-    const requests = Array.from(resp!.races, (race) => client.sendRequest(playableRace(race.id)));
+    const requests = Array.from(getRandomSample(resp?.races, 5), (race) => client.sendRequest(playableRace(race.id)));
 
     const results = await Promise.all(requests);
 

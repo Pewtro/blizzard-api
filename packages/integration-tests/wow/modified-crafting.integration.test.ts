@@ -28,8 +28,7 @@ describe('wow modified-crafting integration', async () => {
     expect(parsed.success).toBe(true);
 
     // Pick up to 5 categories at random from the index to fetch details
-    const categories = parsed.success ? parsed.data.categories : [];
-    const sampled = getRandomSample(categories, 5);
+    const sampled = getRandomSample(parsed.data?.categories, 5);
 
     const requests = Array.from(sampled, (c) => client.sendRequest(modifiedCraftingCategory(c.id)));
     const responses = await Promise.all(requests);

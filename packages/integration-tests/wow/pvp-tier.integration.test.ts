@@ -19,8 +19,7 @@ describe('wow pvp-tier integration', async () => {
     }
     expect(parsedIndex.success).toBe(true);
 
-    const tiers = parsedIndex.success ? parsedIndex.data.tiers : [];
-    const sampled = getRandomSample(tiers, 5);
+    const sampled = getRandomSample(parsedIndex.data?.tiers, 5);
 
     const detailRequests = [];
     const mediaRequests = [];

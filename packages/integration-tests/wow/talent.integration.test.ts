@@ -31,8 +31,7 @@ describe('wow talent integration', async () => {
     }
     expect(parsedPvpIndex.success).toBe(true);
 
-    const pvpTalents = parsedPvpIndex.success ? parsedPvpIndex.data.pvp_talents : [];
-    const sampled = getRandomSample(pvpTalents, 5);
+    const sampled = getRandomSample(parsedPvpIndex.data?.pvp_talents, 5);
 
     const requests = Array.from(sampled, (t) => client.sendRequest(pvpTalent(t.id)));
     const responses = await Promise.all(requests);
@@ -52,8 +51,7 @@ describe('wow talent integration', async () => {
     }
     expect(parsedTalentIndex.success).toBe(true);
 
-    const talents = parsedTalentIndex.success ? parsedTalentIndex.data.talents : [];
-    const sampled = getRandomSample(talents, 5);
+    const sampled = getRandomSample(parsedTalentIndex.data?.talents, 5);
     const requests = Array.from(sampled, (t) => client.sendRequest(talent(t.id)));
     const responses = await Promise.all(requests);
     for (const resp of responses) {

@@ -20,8 +20,7 @@ describe('wow-forever mount integration', async () => {
     }
     expect(parsedIndex.success).toBe(true);
 
-    const mounts = parsedIndex.success ? parsedIndex.data.mounts : [];
-    const sampled = getRandomSample(mounts, 5);
+    const sampled = getRandomSample(parsedIndex.data?.mounts, 5);
     const responses = await Promise.all(Array.from(sampled, (mountEntry) => client.sendRequest(mount(mountEntry.id))));
 
     for (const response of responses) {

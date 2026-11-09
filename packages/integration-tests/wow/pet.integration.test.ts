@@ -23,8 +23,7 @@ describe('wow pet integration', async () => {
     expect(parsed.success).toBe(true);
 
     // Pick up to 5 pets at random from the index to fetch details
-    const pets = parsed.success ? parsed.data.pets : [];
-    const sampled = getRandomSample(pets, 5);
+    const sampled = getRandomSample(parsed.data?.pets, 5);
 
     const requests = Array.from(sampled, (t) => client.sendRequest(pet(t.id)));
     const responses = await Promise.all(requests);
@@ -45,8 +44,7 @@ describe('wow pet integration', async () => {
     }
     expect(parsedAbilityIndex.success).toBe(true);
 
-    const abilities = parsedAbilityIndex.success ? parsedAbilityIndex.data.abilities : [];
-    const sampled = getRandomSample(abilities, 5);
+    const sampled = getRandomSample(parsedAbilityIndex.data?.abilities, 5);
 
     for (const ability of sampled) {
       const detail = await client.sendRequest(petAbility(ability.id));
@@ -72,8 +70,7 @@ describe('wow pet integration', async () => {
     expect(parsedPetIndex.success).toBe(true);
 
     // Pick up to 5 pets at random from the index to fetch details
-    const pets = petIndexResp!.pets;
-    const petSampled = getRandomSample(pets, 5);
+    const petSampled = getRandomSample(petIndexResp?.pets, 5);
 
     const requests = Array.from(petSampled, (petResp) => client.sendRequest(petMedia(petResp.id)));
     const responses = await Promise.all(requests);

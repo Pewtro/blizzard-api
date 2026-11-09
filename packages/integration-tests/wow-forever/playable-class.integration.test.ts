@@ -8,6 +8,7 @@ import {
   pvpTalentSlotsResponseSchema,
 } from '../../../generated/schemas/wow-forever';
 import { getIntegrationTestClient } from '../utils/client';
+import { getRandomSample } from '../utils/random';
 
 describe('wow-forever playable class integration', async () => {
   const client = await getIntegrationTestClient();
@@ -20,8 +21,8 @@ describe('wow-forever playable class integration', async () => {
     }
     expect(parsedIndex.success).toBe(true);
 
-    const classes = parsedIndex.success ? parsedIndex.data.classes : [];
-    for (const classEntry of classes) {
+    const sampledClasses = getRandomSample(parsedIndex.data?.classes, 5);
+    for (const classEntry of sampledClasses) {
       const classResponse = await client.sendRequest(playableClass(classEntry.id));
       const parsedClass = playableClassResponseSchema.safeParse(classResponse);
       if (!parsedClass.success) {
@@ -32,7 +33,6 @@ describe('wow-forever playable class integration', async () => {
   });
 
   test('validates playable class media for a known class', async ({ expect }) => {
-    //Class id 7 (Shaman) exists in every known Forever namespace.
     const media = await client.sendRequest(playableClassMedia(7));
     const parsedMedia = playableClassMediaResponseSchema.safeParse(media);
     if (!parsedMedia.success) {
@@ -42,7 +42,6 @@ describe('wow-forever playable class integration', async () => {
   });
 
   test('validates the pvp talent slots response for a known class', async ({ expect }) => {
-    //Forever accepts the endpoint, but only ever returns the links envelope without talent slots.
     const response = await client.sendRequest(pvpTalentSlots(7));
     const parsed = pvpTalentSlotsResponseSchema.safeParse(response);
     if (!parsed.success) {

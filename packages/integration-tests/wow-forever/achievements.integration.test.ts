@@ -28,8 +28,7 @@ describe('wow-forever achievements integration', async () => {
     }
     expect(parsedIndex.success).toBe(true);
 
-    const achievements = parsedIndex.success ? parsedIndex.data.achievements : [];
-    const sampled = getRandomSample(achievements, 5);
+    const sampled = getRandomSample(parsedIndex.data?.achievements, 5);
     const responses = await Promise.all(Array.from(sampled, (entry) => client.sendRequest(achievement(entry.id))));
 
     for (const response of responses) {
@@ -64,9 +63,7 @@ describe('wow-forever achievements integration', async () => {
     }
     expect(parsedCatIndex.success).toBe(true);
 
-    const categories = parsedCatIndex.success ? parsedCatIndex.data.categories : [];
-    //Forever categories vary between achievements-only, subcategory and leaf shapes, so sample broadly.
-    const sampled = getRandomSample(categories, 5);
+    const sampled = getRandomSample(parsedCatIndex.data?.categories, 5);
     const responses = await Promise.all(
       Array.from(sampled, (category) => client.sendRequest(achievementCategory(category.id))),
     );

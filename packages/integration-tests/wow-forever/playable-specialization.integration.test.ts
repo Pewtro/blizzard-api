@@ -24,8 +24,7 @@ describe('wow-forever playable specialization integration', async () => {
     }
     expect(parsedIndex.success).toBe(true);
 
-    const specializations = parsedIndex.success ? parsedIndex.data.character_specializations : [];
-    const sampled = getRandomSample(specializations, 5);
+    const sampled = getRandomSample(parsedIndex.data?.character_specializations, 5);
     const responses = await Promise.all(
       Array.from(sampled, (spec) => client.sendRequest(playableSpecialization(spec.id))),
     );
@@ -42,7 +41,7 @@ describe('wow-forever playable specialization integration', async () => {
       expect(parsedSpec.success).toBe(true);
     }
 
-    const sampledForMedia = getRandomSample(specializations, 2);
+    const sampledForMedia = getRandomSample(parsedIndex.data?.character_specializations, 2);
     const mediaResponses = await Promise.all(
       Array.from(sampledForMedia, (spec) => client.sendRequest(playableSpecializationMedia(spec.id))),
     );

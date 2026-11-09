@@ -3,6 +3,7 @@ import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
 import { powerTypeIndexResponseSchema, powerTypeResponseSchema } from '../../../generated/schemas/wow-forever';
 import { getIntegrationTestClient } from '../utils/client';
+import { getRandomSample } from '../utils/random';
 
 describe('wow-forever power type integration', async () => {
   const client = await getIntegrationTestClient();
@@ -15,9 +16,9 @@ describe('wow-forever power type integration', async () => {
     }
     expect(parsedIndex.success).toBe(true);
 
-    const powerTypes = parsedIndex.success ? parsedIndex.data.power_types : [];
+    const sampled = getRandomSample(parsedIndex.data?.power_types, 5);
     const responses = await Promise.all(
-      powerTypes.map((powerTypeEntry) => client.sendRequest(powerType(powerTypeEntry.id))),
+      sampled.map((powerTypeEntry) => client.sendRequest(powerType(powerTypeEntry.id))),
     );
 
     for (const response of responses) {

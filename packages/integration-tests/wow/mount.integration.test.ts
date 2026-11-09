@@ -20,8 +20,7 @@ describe('wow mount integration', async () => {
     expect(parsed.success).toBe(true);
 
     // Pick up to 5 mounts at random from the index to fetch details
-    const mounts = parsed.success ? parsed.data.mounts : [];
-    const sampled = getRandomSample(mounts, 5);
+    const sampled = getRandomSample(parsed.data?.mounts, 5);
 
     const requests = Array.from(sampled, (t) => client.sendRequest(mount(t.id)));
     const responses = await Promise.all(requests);

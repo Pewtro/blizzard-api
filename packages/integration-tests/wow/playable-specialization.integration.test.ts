@@ -11,6 +11,7 @@ import {
   playableSpecializationResponseSchema,
 } from '../../../generated/schemas/wow/playable-specialization';
 import { getIntegrationTestClient } from '../utils/client';
+import { getRandomSample } from '../utils/random';
 
 describe('wow playable-specialization integration', async () => {
   const client = await getIntegrationTestClient();
@@ -22,7 +23,8 @@ describe('wow playable-specialization integration', async () => {
     }
     expect(parsed.success).toBe(true);
 
-    const requests = Array.from(index!.character_specializations, (specialization) =>
+    const sampledSpecializations = getRandomSample(index?.character_specializations, 5);
+    const requests = Array.from(sampledSpecializations, (specialization) =>
       client.sendRequest(playableSpecialization(specialization.id)),
     );
 

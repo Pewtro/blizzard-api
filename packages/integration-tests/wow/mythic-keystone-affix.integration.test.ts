@@ -23,8 +23,7 @@ describe('wow mythic-keystone-affix integration', async () => {
     }
     expect(parsedIndex.success).toBe(true);
 
-    const affixes = parsedIndex.success ? parsedIndex.data.affixes : [];
-    const sampled = getRandomSample(affixes, 5);
+    const sampled = getRandomSample(parsedIndex.data?.affixes, 5);
 
     const detailRequests = [];
     const mediaRequests = [];

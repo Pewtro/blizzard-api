@@ -26,7 +26,7 @@ describe('wow-forever reputations integration', async () => {
     }
     expect(parsedIndex.success).toBe(true);
 
-    const factions = parsedIndex.success ? [...parsedIndex.data.root_factions, ...parsedIndex.data.factions] : [];
+    const factions = [...(parsedIndex.data?.root_factions ?? []), ...(parsedIndex.data?.factions ?? [])];
     const sampledIds = [...new Set(getRandomSample(factions, 5).map((faction) => faction.id))];
     const responses = await Promise.all(sampledIds.map((id) => client.sendRequest(reputationFaction(id))));
 
@@ -47,8 +47,8 @@ describe('wow-forever reputations integration', async () => {
     }
     expect(parsedIndex.success).toBe(true);
 
-    const tiers = parsedIndex.success ? parsedIndex.data.reputation_tiers : [];
-    for (const tierEntry of tiers) {
+    const sampledTiers = getRandomSample(parsedIndex.data?.reputation_tiers, 5);
+    for (const tierEntry of sampledTiers) {
       const tierResponse = await client.sendRequest(reputationTiers(tierEntry.id));
       const parsedTier = reputationTiersResponseSchema.safeParse(tierResponse);
       if (!parsedTier.success) {

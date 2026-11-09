@@ -34,8 +34,7 @@ describe('wow journal integration', async () => {
     expect(parsedEnc.success).toBe(true);
 
     // Pick up to 5 encounters at random from the index to fetch details
-    const encounters = parsedEnc.success ? parsedEnc.data.encounters : [];
-    const sampledEncounters = getRandomSample(encounters, 5);
+    const sampledEncounters = getRandomSample(parsedEnc.data?.encounters, 5);
 
     const encounterRequests = Array.from(sampledEncounters, (encounter) =>
       client.sendRequest(journalEncounter(encounter.id)),
@@ -62,8 +61,7 @@ describe('wow journal integration', async () => {
     expect(parsedExp.success).toBe(true);
 
     // Pick up to 5 expansions at random from the index to fetch details
-    const expansions = parsedExp.success ? parsedExp.data.tiers : [];
-    const sampledExpansions = getRandomSample(expansions, 5);
+    const sampledExpansions = getRandomSample(parsedExp.data?.tiers, 5);
 
     const expansionRequests = Array.from(sampledExpansions, (expansion) =>
       client.sendRequest(journalExpansion(expansion.id)),
@@ -91,8 +89,7 @@ describe('wow journal integration', async () => {
     expect(parsedExp.success).toBe(true);
 
     // Pick up to 5 instances at random from the index to fetch details
-    const instances = parsedExp.success ? parsedExp.data.instances : [];
-    const sampledInstances = getRandomSample(instances, 5);
+    const sampledInstances = getRandomSample(parsedExp.data?.instances, 5);
 
     const instanceRequests = Array.from(sampledInstances, (instance) =>
       client.sendRequest(journalInstance(instance.id)),

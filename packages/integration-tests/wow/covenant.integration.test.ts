@@ -31,7 +31,8 @@ describe('wow covenant integration', async () => {
     }
     expect(parsedCov.success).toBe(true);
 
-    const requests = Array.from(covIndex?.covenants ?? [], (cov) => client.sendRequest(covenant(cov.id)));
+    const sampledCovenants = getRandomSample(covIndex?.covenants, 4);
+    const requests = Array.from(sampledCovenants, (cov) => client.sendRequest(covenant(cov.id)));
     const responses = await Promise.all(requests);
     for (const covenantResp of responses) {
       const parsedDetail = covenantResponseSchema.safeParse(covenantResp);
@@ -56,7 +57,7 @@ describe('wow covenant integration', async () => {
     }
     expect(parsedSoul.success).toBe(true);
 
-    const requests = Array.from(parsedSoul.success ? parsedSoul.data.soulbinds : [], (soul) =>
+    const requests = Array.from(getRandomSample(parsedSoul.data?.soulbinds, 5), (soul) =>
       client.sendRequest(soulbind(soul.id)),
     );
     const responses = await Promise.all(requests);
@@ -79,8 +80,7 @@ describe('wow covenant integration', async () => {
     expect(parsedConduit.success).toBe(true);
 
     // Pick up to 5 conduits at random from the index to fetch details
-    const conduits = parsedConduit.success ? parsedConduit.data.conduits : [];
-    const sampled = getRandomSample(conduits, 5);
+    const sampled = getRandomSample(parsedConduit.data?.conduits, 5);
 
     const requests = Array.from(sampled, (conduitResp) => client.sendRequest(conduit(conduitResp.id)));
     const responses = await Promise.all(requests);

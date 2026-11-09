@@ -21,6 +21,7 @@ import {
   questTypeResponseSchema,
 } from '../../../generated/schemas/wow/quest';
 import { getIntegrationTestClient } from '../utils/client';
+import { getRandomItem } from '../utils/random';
 
 describe('wow quest integration', async () => {
   const client = await getIntegrationTestClient();
@@ -48,12 +49,12 @@ describe('wow quest integration', async () => {
     }
     expect(parsedAreaIndex.success).toBe(true);
 
-    const areas = parsedAreaIndex.success ? parsedAreaIndex.data.areas : [];
-    if (areas.length > 0) {
-      const area = await client.sendRequest(questArea(areas[0]!.id));
+    const areaEntry = getRandomItem(parsedAreaIndex.data?.areas);
+    if (areaEntry) {
+      const area = await client.sendRequest(questArea(areaEntry.id));
       const parsedArea = questAreaResponseSchema.safeParse(area);
       if (!parsedArea.success) {
-        console.error('Quest area detail validation failed:', areas[0]!.id, prettifyError(parsedArea.error));
+        console.error('Quest area detail validation failed:', areaEntry.id, prettifyError(parsedArea.error));
       }
       expect(parsedArea.success).toBe(true);
     }
@@ -65,14 +66,14 @@ describe('wow quest integration', async () => {
     }
     expect(parsedCategoryIndex.success).toBe(true);
 
-    const categories = parsedCategoryIndex.success ? parsedCategoryIndex.data.categories : [];
-    if (categories.length > 0) {
-      const category = await client.sendRequest(questCategory(categories[0]!.id));
+    const categoryEntry = getRandomItem(parsedCategoryIndex.data?.categories);
+    if (categoryEntry) {
+      const category = await client.sendRequest(questCategory(categoryEntry.id));
       const parsedCategory = questCategoryResponseSchema.safeParse(category);
       if (!parsedCategory.success) {
         console.error(
           'Quest category detail validation failed:',
-          categories[0]!.id,
+          categoryEntry.id,
           prettifyError(parsedCategory.error),
         );
       }

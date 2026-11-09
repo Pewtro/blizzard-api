@@ -16,8 +16,7 @@ describe('wow title integration', async () => {
     expect(parsed.success).toBe(true);
 
     // Pick up to 5 titles at random from the index to fetch details
-    const titles = parsed.success ? parsed.data.titles : [];
-    const sampled = getRandomSample(titles, 5);
+    const sampled = getRandomSample(parsed.data?.titles, 5);
 
     const requests = Array.from(sampled, (t) => client.sendRequest(title(t.id)));
     const responses = await Promise.all(requests);

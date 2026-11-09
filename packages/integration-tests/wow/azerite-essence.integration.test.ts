@@ -33,8 +33,7 @@ describe('wow azerite-essence integration', async () => {
     expect(parsedSearch.success).toBe(true);
 
     // Fetch some detail and media for a few essences from the index
-    const essences = parsedIndex.success ? parsedIndex.data.azerite_essences : [];
-    const sampled = getRandomSample(essences, 5);
+    const sampled = getRandomSample(parsedIndex.data?.azerite_essences, 5);
 
     const detailRequests = [];
     const mediaRequests = [];

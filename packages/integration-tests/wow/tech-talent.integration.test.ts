@@ -27,8 +27,7 @@ describe('wow tech-talent integration', async () => {
     }
     expect(parsedIndex.success).toBe(true);
 
-    const talents = parsedIndex.success ? parsedIndex.data.talents : [];
-    const sampled = getRandomSample(talents, 5);
+    const sampled = getRandomSample(parsedIndex.data?.talents, 5);
 
     const detailRequests = [];
     const mediaRequests = [];
@@ -63,8 +62,7 @@ describe('wow tech-talent integration', async () => {
     }
     expect(parsedTreeIndex.success).toBe(true);
 
-    const techTalentTrees = parsedTreeIndex.success ? parsedTreeIndex.data.talent_trees : [];
-    const sampled = getRandomSample(techTalentTrees, 5);
+    const sampled = getRandomSample(parsedTreeIndex.data?.talent_trees, 5);
 
     const detailRequests = Array.from(sampled, (t) => client.sendRequest(techTalentTree(t.id)));
 
