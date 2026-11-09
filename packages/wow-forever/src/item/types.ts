@@ -242,6 +242,7 @@ interface PreviewItem {
   item_class: NameIdKey;
   item_subclass: NameIdKey;
   level?: Durability;
+  limit_category?: string;
   media: Media;
   name: string;
   quality: ItemQuality;
@@ -268,22 +269,23 @@ interface Recipe {
 
 interface RecipeItem {
   armor?: Armor;
-  binding: {
+  binding?: {
     name: string;
     type: string;
   };
-  durability: Durability;
+  container_slots?: Durability;
+  durability?: Durability;
   inventory_type: InventoryTypeName;
   item: Media;
   item_class: NameIdKey;
   item_subclass: NameIdKey;
-  level: Durability;
+  level?: Durability;
   media: Media;
   name: string;
   quality: ItemQuality;
-  requirements: Requirements;
+  requirements?: Requirements;
   sell_price: { display_strings: RecipeItemDisplayStrings; value: number };
-  stats: Array<Stat>;
+  stats?: Array<Stat>;
   weapon?: Weapon;
 }
 

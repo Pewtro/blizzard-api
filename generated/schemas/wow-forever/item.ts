@@ -238,25 +238,28 @@ const requirementsSchema = z.strictObject({
 
 const recipeItemSchema = z.strictObject({
   armor: armorSchema.optional(),
-  binding: z.strictObject({
-    name: z.string(),
-    type: z.string(),
-  }),
-  durability: durabilitySchema,
+  binding: z
+    .strictObject({
+      name: z.string(),
+      type: z.string(),
+    })
+    .optional(),
+  container_slots: durabilitySchema.optional(),
+  durability: durabilitySchema.optional(),
   inventory_type: inventoryTypeNameSchema,
   item: mediaSchema,
   item_class: nameIdKeySchema,
   item_subclass: nameIdKeySchema,
-  level: durabilitySchema,
+  level: durabilitySchema.optional(),
   media: mediaSchema,
   name: z.string(),
   quality: itemQualitySchema,
-  requirements: requirementsSchema,
+  requirements: requirementsSchema.optional(),
   sell_price: z.strictObject({
     display_strings: recipeItemDisplayStringsSchema,
     value: z.number(),
   }),
-  stats: z.array(statSchema),
+  stats: z.array(statSchema).optional(),
   weapon: weaponSchema.optional(),
 });
 
@@ -286,6 +289,7 @@ const previewItemSchema = z.strictObject({
   item_class: nameIdKeySchema,
   item_subclass: nameIdKeySchema,
   level: durabilitySchema.optional(),
+  limit_category: z.string().optional(),
   media: mediaSchema,
   name: z.string(),
   quality: itemQualitySchema,
