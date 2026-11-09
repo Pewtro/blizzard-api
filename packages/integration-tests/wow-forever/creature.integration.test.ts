@@ -21,12 +21,12 @@ import {
   creatureTypeResponseSchema,
 } from '../../../generated/schemas/wow-forever';
 import { getIntegrationTestClient } from '../utils/client';
-import { getRandomSample } from '../utils/random';
+import { getRandomItem, getRandomSample } from '../utils/random';
 
 describe('wow-forever creature integration', async () => {
   const client = await getIntegrationTestClient();
 
-  test('validates a creature, its type and its display media', async ({ expect }) => {
+  test('validates a sampled creature type', async ({ expect }) => {
     const typeIndex = await client.sendRequest(creatureTypeIndex());
     const parsedTypeIndex = creatureTypeIndexResponseSchema.safeParse(typeIndex);
     if (!parsedTypeIndex.success) {
@@ -46,23 +46,6 @@ describe('wow-forever creature integration', async () => {
       }
       expect(parsedType.success).toBe(true);
     }
-
-    const creatureResponse = await client.sendRequest(creature(271_979));
-    const parsedCreature = creatureResponseSchema.safeParse(creatureResponse);
-    if (!parsedCreature.success) {
-      console.error('Creature validation failed:', prettifyError(parsedCreature.error));
-    }
-    expect(parsedCreature.success).toBe(true);
-
-    const creatureDisplayId = parsedCreature.data?.creature_displays[0]?.id;
-    if (creatureDisplayId === undefined) return;
-
-    const displayMedia = await client.sendRequest(creatureDisplayMedia(creatureDisplayId));
-    const parsedDisplayMedia = creatureDisplayMediaResponseSchema.safeParse(displayMedia);
-    if (!parsedDisplayMedia.success) {
-      console.error('Creature display media validation failed:', prettifyError(parsedDisplayMedia.error));
-    }
-    expect(parsedDisplayMedia.success).toBe(true);
   });
 
   test('validates the creature family index, details and media', async ({ expect }) => {
@@ -103,12 +86,34 @@ describe('wow-forever creature integration', async () => {
     }
   });
 
-  test('validates the creature search', async ({ expect }) => {
+  test('validates the creature search and a sampled creature with display media', async ({ expect }) => {
     const search = await client.sendRequest(creatureSearch({ _page: 1, locale: 'en_US', name: 'wolf' }));
     const parsedSearch = creatureSearchResponseSchema.safeParse(search);
     if (!parsedSearch.success) {
       console.error('Creature search validation failed:', prettifyError(parsedSearch.error));
     }
     expect(parsedSearch.success).toBe(true);
+
+    const searchResult = getRandomItem(parsedSearch.data?.results);
+    if (!searchResult) return;
+
+    const creatureResponse = await client.sendRequest(creature(searchResult.data.id));
+    const parsedCreature = creatureResponseSchema.safeParse(creatureResponse);
+    if (!parsedCreature.success) {
+      console.error('Creature validation failed for id', searchResult.data.id, prettifyError(parsedCreature.error));
+    }
+    expect(parsedCreature.success).toBe(true);
+
+    const creatureDisplayId =
+      parsedCreature.data?.creature_displays.find((display) => display.id)?.id ??
+      searchResult.data.creature_displays.find((display) => display.id)?.id;
+    if (!creatureDisplayId) return;
+
+    const displayMedia = await client.sendRequest(creatureDisplayMedia(creatureDisplayId));
+    const parsedDisplayMedia = creatureDisplayMediaResponseSchema.safeParse(displayMedia);
+    if (!parsedDisplayMedia.success) {
+      console.error('Creature display media validation failed:', prettifyError(parsedDisplayMedia.error));
+    }
+    expect(parsedDisplayMedia.success).toBe(true);
   });
 });

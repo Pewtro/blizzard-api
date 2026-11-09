@@ -8,7 +8,7 @@ import {
   pvpTalentSlotsResponseSchema,
 } from '../../../generated/schemas/wow-forever';
 import { getIntegrationTestClient } from '../utils/client';
-import { getRandomSample } from '../utils/random';
+import { getRandomItem, getRandomSample } from '../utils/random';
 
 describe('wow-forever playable class integration', async () => {
   const client = await getIntegrationTestClient();
@@ -32,20 +32,28 @@ describe('wow-forever playable class integration', async () => {
     }
   });
 
-  test('validates playable class media for a known class', async ({ expect }) => {
-    const media = await client.sendRequest(playableClassMedia(7));
+  test('validates playable class media and pvp talent slots for a sampled class', async ({ expect }) => {
+    const index = await client.sendRequest(playableClassIndex());
+    const parsedIndex = playableClassIndexResponseSchema.safeParse(index);
+    if (!parsedIndex.success) {
+      console.error('Playable class index validation failed:', prettifyError(parsedIndex.error));
+    }
+    expect(parsedIndex.success).toBe(true);
+
+    const classEntry = getRandomItem(parsedIndex.data?.classes);
+    if (!classEntry) return;
+
+    const media = await client.sendRequest(playableClassMedia(classEntry.id));
     const parsedMedia = playableClassMediaResponseSchema.safeParse(media);
     if (!parsedMedia.success) {
-      console.error('Playable class media validation failed:', prettifyError(parsedMedia.error));
+      console.error('Playable class media validation failed for id', classEntry.id, prettifyError(parsedMedia.error));
     }
     expect(parsedMedia.success).toBe(true);
-  });
 
-  test('validates the pvp talent slots response for a known class', async ({ expect }) => {
-    const response = await client.sendRequest(pvpTalentSlots(7));
+    const response = await client.sendRequest(pvpTalentSlots(classEntry.id));
     const parsed = pvpTalentSlotsResponseSchema.safeParse(response);
     if (!parsed.success) {
-      console.error('Pvp talent slots validation failed:', prettifyError(parsed.error));
+      console.error('Pvp talent slots validation failed for id', classEntry.id, prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
   });
