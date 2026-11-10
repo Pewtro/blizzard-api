@@ -6,7 +6,7 @@ import {
   keyBaseSchema,
   localesSchema,
   nameIdKeySchema,
-  nameIdSchema,
+  nullishNameIdSchema,
   realmSchema,
   responseBaseSchema,
   searchResponseWithoutResultsSchema,
@@ -74,7 +74,7 @@ const realmSearchResponseItemSchema = keyBaseSchema.extend({
   }),
 });
 
-export const realmResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
+export const realmResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
   category: z.string(),
   connected_realm: hrefSchema,
   is_tournament: z.boolean(),

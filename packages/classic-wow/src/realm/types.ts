@@ -3,8 +3,8 @@ import type {
   Href,
   KeyBase,
   Locales,
-  NameId,
   NameIdKey,
+  NullishNameId,
   Realm,
   ResponseBase,
   SearchResponseWithoutResults,
@@ -37,7 +37,7 @@ export type RealmLocales =
  * The response for a realm.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface RealmResponse extends NameId, ResponseBase {
+export interface RealmResponse extends NullishNameId, ResponseBase {
   category: string;
   connected_realm: Href;
   is_tournament: boolean;
