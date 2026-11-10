@@ -59,7 +59,7 @@ export interface RecipeMediaResponse extends ResponseBase {
  * The response for a recipe.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface RecipeResponse extends NameId, ResponseBase {
+export interface RecipeResponse extends NullishNameId, ResponseBase {
   alliance_crafted_item?: NameIdKey;
   crafted_item?: NameIdKey;
   crafted_quantity?: CraftedQuantity;

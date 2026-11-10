@@ -72,7 +72,7 @@ export const professionSkillTierResponseSchema = nameIdSchema.extend(responseBas
   minimum_skill_level: z.number(),
 });
 
-export const recipeResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
+export const recipeResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
   alliance_crafted_item: nameIdKeySchema.optional(),
   crafted_item: nameIdKeySchema.optional(),
   crafted_quantity: craftedQuantitySchema.optional(),
