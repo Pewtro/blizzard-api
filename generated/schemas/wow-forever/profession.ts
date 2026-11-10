@@ -6,6 +6,7 @@ import {
   nameIdKeySchema,
   nameIdSchema,
   nullishNameIdKeySchema,
+  nullishNameIdSchema,
   responseBaseSchema,
 } from '../core';
 
@@ -28,7 +29,7 @@ const typeSchema = z.strictObject({
 });
 
 const categorySchema = z.strictObject({
-  name: z.string(),
+  name: z.string().nullable(),
   recipes: z.array(nullishNameIdKeySchema),
 });
 
@@ -58,7 +59,7 @@ const reagentSchema = z.strictObject({
   reagent: nameIdKeySchema,
 });
 
-export const professionResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
+export const professionResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
   description: z.string(),
   media: mediaSchema,
   skill_tiers: z.array(nameIdKeySchema),

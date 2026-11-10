@@ -124,6 +124,6 @@ export const questResponseSchema = responseBaseSchema.extend({
   is_weekly: z.boolean().optional(),
   requirements: questRequirementsSchema,
   rewards: questRewardsSchema,
-  title: z.string(),
+  title: z.string().nullable(),
   type: nameIdKeySchema.optional(),
 });

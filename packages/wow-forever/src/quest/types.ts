@@ -60,7 +60,7 @@ export interface QuestResponse extends ResponseBase {
   is_weekly?: boolean;
   requirements: QuestRequirements;
   rewards: QuestRewards;
-  title: string;
+  title: null | string;
   type?: NameIdKey;
 }
 

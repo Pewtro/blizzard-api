@@ -1,4 +1,12 @@
-import type { KeyBase, MediaAsset, NameId, NameIdKey, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
+import type {
+  KeyBase,
+  MediaAsset,
+  NameId,
+  NameIdKey,
+  NullishNameId,
+  NullishNameIdKey,
+  ResponseBase,
+} from '@blizzard-api/core';
 
 /**
  * The response for a profession index.
@@ -21,7 +29,7 @@ export interface ProfessionMediaResponse extends ResponseBase {
  * The response for a profession.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface ProfessionResponse extends NameId, ResponseBase {
+export interface ProfessionResponse extends NullishNameId, ResponseBase {
   description: string;
   media: Media;
   skill_tiers: Array<NameIdKey>;
@@ -64,7 +72,7 @@ export interface RecipeResponse extends NameId, ResponseBase {
 }
 
 interface Category {
-  name: string;
+  name: null | string;
   recipes: Array<NullishNameIdKey>;
 }
 
