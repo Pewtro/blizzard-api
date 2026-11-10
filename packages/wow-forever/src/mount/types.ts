@@ -4,7 +4,6 @@ import type {
   Factions,
   KeyBase,
   Locales,
-  NameIdKey,
   NullishNameId,
   NullishNameIdKey,
   ResponseBase,
@@ -27,7 +26,7 @@ export interface MountResponse extends NullishNameId, ResponseBase {
   creature_displays: Array<CreatureDisplay>;
   description: null | string;
   faction?: Faction;
-  requirements?: { classes?: Array<NameIdKey>; faction?: Faction; races?: Array<NameIdKey> };
+  requirements?: { classes?: Array<NullishNameIdKey>; faction?: Faction; races?: Array<NullishNameIdKey> };
   should_exclude_if_uncollected?: boolean;
   source?: Source;
 }

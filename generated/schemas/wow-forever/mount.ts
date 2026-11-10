@@ -6,7 +6,6 @@ import {
   factionsSchema,
   keyBaseSchema,
   localesSchema,
-  nameIdKeySchema,
   nullishNameIdKeySchema,
   nullishNameIdSchema,
   responseBaseSchema,
@@ -61,9 +60,9 @@ export const mountResponseSchema = nullishNameIdSchema.extend(responseBaseSchema
   faction: factionSchema.optional(),
   requirements: z
     .strictObject({
-      classes: z.array(nameIdKeySchema).optional(),
+      classes: z.array(nullishNameIdKeySchema).optional(),
       faction: factionSchema.optional(),
-      races: z.array(nameIdKeySchema).optional(),
+      races: z.array(nullishNameIdKeySchema).optional(),
     })
     .optional(),
   should_exclude_if_uncollected: z.boolean().optional(),
