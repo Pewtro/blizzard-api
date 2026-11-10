@@ -17,10 +17,8 @@ export const itemClassIndexResponseSchema = responseBaseSchema.extend({
   item_classes: z.array(nullishNameIdKeySchema),
 });
 
-export const itemClassResponseSchema = responseBaseSchema.extend({
-  id: z.number(),
+export const itemClassResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
   item_subclasses: z.array(nullishNameIdKeySchema).optional(),
-  name: z.string(),
 });
 
 export const itemMediaResponseSchema = responseBaseSchema.extend({
@@ -41,7 +39,7 @@ export const itemSubclassResponseSchema = responseBaseSchema.extend({
   display_name: z.string().nullable(),
   hide_subclass_in_tooltips: z.boolean().optional(),
   id: z.number(),
-  item_class: nameIdKeySchema,
+  item_class: nullishNameIdKeySchema,
   verbose_name: z.string().optional(),
 });
 
