@@ -39,7 +39,7 @@ const tierSchema = z.strictObject({
 export const reputationFactionResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
   can_paragon: z.boolean().optional(),
   description: z.string().optional(),
-  factions: z.array(nameIdKeySchema).optional(),
+  factions: z.array(nullishNameIdKeySchema).optional(),
   header_shows_bar: z.boolean().optional(),
   is_header: z.boolean().optional(),
   is_renown: z.boolean().optional(),
