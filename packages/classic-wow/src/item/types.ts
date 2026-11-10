@@ -23,10 +23,8 @@ export interface ItemClassIndexResponse extends ResponseBase {
  * The response for an item class.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface ItemClassResponse extends ResponseBase {
-  id: number;
+export interface ItemClassResponse extends NullishNameId, ResponseBase {
   item_subclasses?: Array<NullishNameIdKey>;
-  name: string;
 }
 
 /**
