@@ -110,13 +110,13 @@ const questRewardsSchema = z.strictObject({
   items: questRewardItemsSchema.optional(),
   money: questMoneySchema.optional(),
   reputations: z.array(questReputationRewardSchema).optional(),
-  spell: nameIdKeySchema.optional(),
+  spell: nullishNameIdKeySchema.optional(),
   trade_skill_spell: nameIdKeySchema.optional(),
 });
 
 export const questResponseSchema = responseBaseSchema.extend({
   area: nullishNameIdKeySchema.optional(),
-  category: nameIdKeySchema.optional(),
+  category: nullishNameIdKeySchema.optional(),
   description: z.string().optional(),
   id: z.number(),
   is_daily: z.boolean().optional(),

@@ -52,7 +52,7 @@ export interface QuestIndexResponse extends ResponseBase {
  */
 export interface QuestResponse extends ResponseBase {
   area?: NullishNameIdKey;
-  category?: NameIdKey;
+  category?: NullishNameIdKey;
   description?: string;
   id: number;
   is_daily?: boolean;
@@ -155,6 +155,6 @@ interface QuestRewards {
   items?: QuestRewardItems;
   money?: QuestMoney;
   reputations?: Array<QuestReputationReward>;
-  spell?: NameIdKey;
+  spell?: NullishNameIdKey;
   trade_skill_spell?: NameIdKey;
 }
