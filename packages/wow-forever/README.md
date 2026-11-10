@@ -52,7 +52,7 @@ type PowerTypeResponse = ExtractResourceType<typeof powerType>;
 
 ## Differences to @blizzard-api/wow
 
-World of Warcraft: Forever is a separate, realmless game. It has no realm, connected realm, auction house or profile APIs, so this package only exposes the game data endpoints that Forever supports.
+World of Warcraft: Forever is a separate, realmless game. It instead has rulesets. This package supports rulesets, and using those rulesets for things like the auction house.
 
 Because Forever has a single static namespace and a single dynamic namespace, the endpoints do not take a namespace argument. The package hardcodes the namespaces, and `@blizzard-api/client` appends the origin to them.
 

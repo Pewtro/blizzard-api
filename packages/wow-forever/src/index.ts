@@ -5,6 +5,7 @@ import {
   achievementIndex,
   achievementMedia,
 } from './achievements/index';
+import { auctionHouseIndex, auctions, commodities } from './auction-house/index';
 import {
   creature,
   creatureDisplayMedia,
@@ -65,6 +66,7 @@ import {
 } from './quest/index';
 import { region, regionIndex } from './region/index';
 import { reputationFaction, reputationFactionIndex, reputationTiers, reputationTiersIndex } from './reputations/index';
+import { ruleset, rulesetIndex } from './ruleset/index';
 import { spell, spellMedia, spellSearch } from './spell/index';
 import {
   pvpTalent,
@@ -85,6 +87,10 @@ const wowForever = {
   achievementCategoryIndex,
   achievementIndex,
   achievementMedia,
+  //Auction House
+  auctionHouseIndex,
+  auctions,
+  commodities,
   //Creature
   creature,
   creatureDisplayMedia,
@@ -166,6 +172,9 @@ const wowForever = {
   reputationFactionIndex,
   reputationTiers,
   reputationTiersIndex,
+  //Ruleset
+  ruleset,
+  rulesetIndex,
   //Spell
   spell,
   spellMedia,
@@ -191,6 +200,9 @@ export { wowForever };
 //Achievements
 export * from './achievements/index';
 export type * from './achievements/types';
+//Auction House
+export * from './auction-house/index';
+export type * from './auction-house/types';
 //Creature
 export * from './creature/index';
 export type * from './creature/types';
@@ -236,6 +248,9 @@ export type * from './region/types';
 //Reputations
 export * from './reputations/index';
 export type * from './reputations/types';
+//Ruleset
+export * from './ruleset/index';
+export type * from './ruleset/types';
 //Spell
 export * from './spell/index';
 export type * from './spell/types';

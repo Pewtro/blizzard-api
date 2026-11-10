@@ -1,4 +1,5 @@
 export * from './achievements';
+export * from './auction-house';
 export * from './creature';
 export * from './guild-crest';
 export * from './item';
@@ -14,6 +15,7 @@ export * from './profession';
 export * from './quest';
 export * from './region';
 export * from './reputations';
+export * from './ruleset';
 export * from './spell';
 export * from './talent';
 export * from './title';
