@@ -7,12 +7,17 @@ import { getIntegrationTestClient } from '../utils/client';
 describe('sc2 ladder integration', { timeout: 30_000 }, async () => {
   const client = await getIntegrationTestClient();
 
-  test('fetches the grandmaster leaderboard', async ({ expect }) => {
+  test('fetches the grandmaster leaderboard', async ({ expect, skip }) => {
     const response = await client.sendRequest(sc2.grandmasterLeaderboard('eu'), {
       kyOptions: {
         timeout: 30_000,
       },
     });
+
+    if (!response) {
+      skip('No response received from the grandmaster leaderboard endpoint');
+    }
+
     const parsedResponse = grandmasterLeaderboardResponseSchema.safeParse(response);
     if (!parsedResponse.success) {
       console.error('Grandmaster Leaderboard failed', prettifyError(parsedResponse.error));

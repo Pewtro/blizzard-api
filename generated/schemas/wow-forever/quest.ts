@@ -33,6 +33,11 @@ export const questTypeIndexResponseSchema = responseBaseSchema.extend({
   types: z.array(nameIdKeySchema),
 });
 
+const questOperatorSchema = z.strictObject({
+  name: z.string(),
+  type: z.union([z.literal('AND'), z.literal('OR')]),
+});
+
 export const questTypeResponseSchema = responseBaseSchema.extend({
   id: z.number(),
   quests: z.array(nameIdKeySchema),
@@ -63,11 +68,6 @@ const questReputationRequirementSchema = z.strictObject({
 const questReputationRewardSchema = z.strictObject({
   reward: nameIdKeySchema,
   value: z.number(),
-});
-
-const questOperatorSchema = z.strictObject({
-  name: z.string(),
-  type: z.union([z.literal('AND'), z.literal('OR')]),
 });
 
 export const questConditionSchema: z.ZodType<QuestCondition> = z.lazy(() =>
