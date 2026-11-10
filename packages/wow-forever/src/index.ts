@@ -17,6 +17,14 @@ import {
 } from './creature/index';
 import { guildCrestBorder, guildCrestComponentsIndex, guildCrestEmblem } from './guild-crest/index';
 import {
+  itemAppearance,
+  itemAppearanceSearch,
+  itemAppearanceSet,
+  itemAppearanceSetIndex,
+  itemAppearanceSlot,
+  itemAppearanceSlotIndex,
+} from './item-appearance/index';
+import {
   item,
   itemClass,
   itemClassIndex,
@@ -45,6 +53,16 @@ import {
   recipe,
   recipeMedia,
 } from './profession/index';
+import {
+  quest,
+  questArea,
+  questAreaIndex,
+  questCategory,
+  questCategoryIndex,
+  questIndex,
+  questType,
+  questTypeIndex,
+} from './quest/index';
 import { region, regionIndex } from './region/index';
 import { reputationFaction, reputationFactionIndex, reputationTiers, reputationTiersIndex } from './reputations/index';
 import { spell, spellMedia, spellSearch } from './spell/index';
@@ -89,6 +107,13 @@ const wowForever = {
   itemSet,
   itemSetIndex,
   itemSubclass,
+  //Item Appearance
+  itemAppearance,
+  itemAppearanceSearch,
+  itemAppearanceSet,
+  itemAppearanceSetIndex,
+  itemAppearanceSlot,
+  itemAppearanceSlotIndex,
   //Media Search
   mediaSearch,
   //Mount
@@ -124,6 +149,15 @@ const wowForever = {
   professionSkillTier,
   recipe,
   recipeMedia,
+  //Quest
+  quest,
+  questArea,
+  questAreaIndex,
+  questCategory,
+  questCategoryIndex,
+  questIndex,
+  questType,
+  questTypeIndex,
   //Region
   region,
   regionIndex,
@@ -166,6 +200,9 @@ export type * from './guild-crest/types';
 //Item
 export * from './item/index';
 export type * from './item/types';
+//Item Appearance
+export * from './item-appearance/index';
+export type * from './item-appearance/types';
 //Media Search
 export * from './media-search/index';
 export type * from './media-search/types';
@@ -190,6 +227,9 @@ export type * from './power-type/types';
 //Profession
 export * from './profession/index';
 export type * from './profession/types';
+//Quest
+export * from './quest/index';
+export type * from './quest/types';
 //Region
 export * from './region/index';
 export type * from './region/types';
