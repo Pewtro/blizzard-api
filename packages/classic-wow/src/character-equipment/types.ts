@@ -1,4 +1,4 @@
-import type { Character, Color, KeyBase, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { Character, Color, KeyBase, NameIdKey, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
 
 export interface CharacterEquipmentSummaryResponse extends ResponseBase {
   character: Character;
@@ -37,7 +37,7 @@ interface Effect {
 }
 
 interface Enchantment {
-  display_string?: string;
+  display_string?: null | string;
   enchantment_id: number;
   enchantment_slot: EnchantmentSlot;
   source_item?: NameIdKey;
@@ -101,7 +101,7 @@ interface NameDescription {
 }
 
 interface NameType {
-  name: string;
+  name: null | string;
   type: string;
 }
 
@@ -137,7 +137,7 @@ interface Socket {
 interface Spell {
   description: string;
   display_color?: Color;
-  spell: NameIdKey;
+  spell: NullishNameIdKey;
 }
 
 interface Stat {

@@ -1,4 +1,4 @@
-import type { Faction, Gender, Href, NameIdKey, Realm, ResponseBase } from '@blizzard-api/core';
+import type { Faction, Gender, Href, NameIdKey, NullishNameIdKey, Realm, ResponseBase } from '@blizzard-api/core';
 
 export type { CharacterProfileStatusResponse } from '../../../wow/src/character-profile/types';
 
@@ -9,7 +9,7 @@ export interface CharacterProfileSummaryResponse extends ResponseBase {
   active_title?: { name: string };
   appearance: Href;
   average_item_level: number;
-  character_class: NameIdKey;
+  character_class: NullishNameIdKey;
   equipment: Href;
   equipped_item_level: number;
   experience: number;
@@ -27,7 +27,7 @@ export interface CharacterProfileSummaryResponse extends ResponseBase {
   media: Href;
   name: string;
   pvp_summary: Href;
-  race: NameIdKey;
+  race: NullishNameIdKey;
   realm: Realm;
   specializations: Href;
   statistics: Href;

@@ -4,8 +4,8 @@ import type {
   KeyBase,
   Locales,
   MediaAsset,
-  NameId,
   NameIdKey,
+  NullishNameId,
   NullishNameIdKey,
   ResponseBase,
   SearchResponseWithoutResults,
@@ -25,7 +25,7 @@ export interface ItemClassIndexResponse extends ResponseBase {
  */
 export interface ItemClassResponse extends ResponseBase {
   id: number;
-  item_subclasses?: Array<NameIdKey>;
+  item_subclasses?: Array<NullishNameIdKey>;
   name: string;
 }
 
@@ -41,7 +41,7 @@ export interface ItemMediaResponse extends ResponseBase {
  * The response for an item.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface ItemResponse extends NameId, ResponseBase {
+export interface ItemResponse extends NullishNameId, ResponseBase {
   appearances?: Array<KeyBase & { id: number }>;
   description?: string;
   inventory_type: InventoryTypeName;
@@ -83,7 +83,7 @@ export interface ItemSearchResponse extends SearchResponseWithoutResults {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface ItemSubclassResponse extends ResponseBase {
-  display_name: string;
+  display_name: null | string;
   hide_subclass_in_tooltips?: boolean;
   id: number;
   item_class: NameIdKey;
@@ -265,7 +265,7 @@ interface Stat {
   display: Display;
   is_negated?: boolean;
   type: {
-    name: string;
+    name: null | string;
     type: StatTypeCapitalized;
   };
   value: number;

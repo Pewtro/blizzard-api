@@ -82,7 +82,7 @@ export interface CreatureSearchResponse extends SearchResponseWithoutResults {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface CreatureTypeIndexResponse extends ResponseBase {
-  creature_types: Array<NameIdKey>;
+  creature_types: Array<NullishNameIdKey>;
 }
 
 /**

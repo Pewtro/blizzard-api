@@ -62,7 +62,7 @@ const creatureSearchResponseItemSchema = keyBaseSchema.extend({
 });
 
 export const creatureTypeIndexResponseSchema = responseBaseSchema.extend({
-  creature_types: z.array(nameIdKeySchema),
+  creature_types: z.array(nullishNameIdKeySchema),
 });
 
 export const creatureTypeResponseSchema = responseBaseSchema.extend({

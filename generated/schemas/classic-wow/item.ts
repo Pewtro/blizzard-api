@@ -7,8 +7,8 @@ import {
   localesSchema,
   mediaAssetSchema,
   nameIdKeySchema,
-  nameIdSchema,
   nullishNameIdKeySchema,
+  nullishNameIdSchema,
   responseBaseSchema,
   searchResponseWithoutResultsSchema,
 } from '../core';
@@ -19,7 +19,7 @@ export const itemClassIndexResponseSchema = responseBaseSchema.extend({
 
 export const itemClassResponseSchema = responseBaseSchema.extend({
   id: z.number(),
-  item_subclasses: z.array(nameIdKeySchema).optional(),
+  item_subclasses: z.array(nullishNameIdKeySchema).optional(),
   name: z.string(),
 });
 
@@ -38,7 +38,7 @@ export const itemSearchParametersSchema = baseSearchParametersSchema.extend({
 });
 
 export const itemSubclassResponseSchema = responseBaseSchema.extend({
-  display_name: z.string(),
+  display_name: z.string().nullable(),
   hide_subclass_in_tooltips: z.boolean().optional(),
   id: z.number(),
   item_class: nameIdKeySchema,
@@ -208,7 +208,7 @@ const statSchema = z.strictObject({
   display: displaySchema,
   is_negated: z.boolean().optional(),
   type: z.strictObject({
-    name: z.string(),
+    name: z.string().nullable(),
     type: statTypeCapitalizedSchema,
   }),
   value: z.number(),
@@ -288,7 +288,7 @@ const previewItemSchema = z.strictObject({
   weapon: weaponSchema.optional(),
 });
 
-export const itemResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
+export const itemResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
   appearances: z
     .array(
       keyBaseSchema.and(
