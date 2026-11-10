@@ -6,6 +6,7 @@ import {
   nameIdKeySchema,
   nameIdSchema,
   nullishNameIdKeySchema,
+  nullishNameIdSchema,
   responseBaseSchema,
 } from '../core';
 
@@ -46,7 +47,7 @@ const sourceSchema = z.strictObject({
   type: z.string(),
 });
 
-export const petAbilityResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
+export const petAbilityResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
   battle_pet_type: battlePetTypeSchema,
   cooldown: z.number().optional(),
   media: mediaSchema,
