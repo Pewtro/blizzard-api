@@ -8,17 +8,11 @@ export const titleIndexResponseSchema = responseBaseSchema.extend({
 
 const titleSourceSchema = z.strictObject({
   achievements: z.array(nameIdKeySchema).optional(),
-  quests: z.array(nameIdKeySchema).optional(),
-  type: z.union([
-    z.strictObject({
-      name: z.string(),
-      type: z.literal('ACHIEVEMENT'),
-    }),
-    z.strictObject({
-      name: z.string(),
-      type: z.literal('QUEST'),
-    }),
-  ]),
+  quests: z.array(nullishNameIdKeySchema).optional(),
+  type: z.strictObject({
+    name: z.string(),
+    type: z.union([z.literal('ACHIEVEMENT'), z.literal('QUEST')]),
+  }),
 });
 
 export const titleResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({

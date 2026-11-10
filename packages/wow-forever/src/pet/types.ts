@@ -1,4 +1,12 @@
-import type { KeyBase, MediaAsset, NameId, NameIdKey, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
+import type {
+  KeyBase,
+  MediaAsset,
+  NameId,
+  NameIdKey,
+  NullishNameId,
+  NullishNameIdKey,
+  ResponseBase,
+} from '@blizzard-api/core';
 
 /**
  * The response for a pet ability index.
@@ -49,10 +57,10 @@ export interface PetMediaResponse extends ResponseBase {
  * The response for a pet.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface PetResponse extends NameId, ResponseBase {
+export interface PetResponse extends NullishNameId, ResponseBase {
   abilities?: Array<Ability>;
   battle_pet_type: BattlePetType;
-  creature: NameIdKey;
+  creature: NullishNameIdKey;
   description: null | string;
   icon: string;
   is_alliance_only: boolean;

@@ -1,11 +1,11 @@
-import type { KeyBase, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { KeyBase, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a toy index.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface ToyIndexResponse extends ResponseBase {
-  toys: Array<NameIdKey>;
+  toys: Array<NullishNameIdKey>;
 }
 
 /**
@@ -14,7 +14,7 @@ export interface ToyIndexResponse extends ResponseBase {
  */
 export interface ToyResponse extends ResponseBase {
   id: number;
-  item: NameIdKey;
+  item: NullishNameIdKey;
   media: Media;
   should_exclude_if_uncollected?: boolean;
   source: Source;

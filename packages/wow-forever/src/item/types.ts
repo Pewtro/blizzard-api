@@ -4,8 +4,8 @@ import type {
   KeyBase,
   Locales,
   MediaAsset,
-  NameId,
   NameIdKey,
+  NullishNameId,
   NullishNameIdKey,
   ResponseBase,
   SearchResponseWithoutResults,
@@ -23,10 +23,8 @@ export interface ItemClassIndexResponse extends ResponseBase {
  * The response for an item class.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface ItemClassResponse extends ResponseBase {
-  id: number;
-  item_subclasses?: Array<NameIdKey>;
-  name: string;
+export interface ItemClassResponse extends NullishNameId, ResponseBase {
+  item_subclasses?: Array<NullishNameIdKey>;
 }
 
 /**
@@ -42,9 +40,9 @@ export interface ItemMediaResponse extends ResponseBase {
  * The response for an item.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface ItemResponse extends NameId, ResponseBase {
+export interface ItemResponse extends NullishNameId, ResponseBase {
   appearances?: Array<KeyBase & { id: number }>;
-  description?: string;
+  description?: null | string;
   inventory_type: InventoryTypeName;
   is_equippable: boolean;
   is_stackable: boolean;
@@ -85,7 +83,7 @@ export interface ItemSearchResponse extends SearchResponseWithoutResults {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface ItemSetIndexResponse extends ResponseBase {
-  item_sets: Array<NameIdKey>;
+  item_sets: Array<NullishNameIdKey>;
 }
 
 /**
@@ -95,7 +93,7 @@ export interface ItemSetIndexResponse extends ResponseBase {
 export interface ItemSetResponse extends ResponseBase {
   effects: Array<Effect>;
   id: number;
-  items: Array<NameIdKey>;
+  items: Array<NullishNameIdKey>;
   name: string;
 }
 
@@ -104,7 +102,7 @@ export interface ItemSetResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface ItemSubclassResponse extends ResponseBase {
-  display_name: string;
+  display_name: null | string;
   hide_subclass_in_tooltips?: boolean;
   id: number;
   item_class: NameIdKey;
@@ -244,7 +242,7 @@ interface PreviewItem {
   level?: Durability;
   limit_category?: string;
   media: Media;
-  name: string;
+  name: null | string;
   quality: ItemQuality;
   recipe?: Recipe;
   requirements?: Requirements;
@@ -308,8 +306,8 @@ interface RequirementsSkill {
 }
 
 interface Spell {
-  description: string;
-  spell: NameIdKey;
+  description: null | string;
+  spell: NullishNameIdKey;
 }
 
 interface Stat {

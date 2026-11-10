@@ -15,8 +15,8 @@ export interface ReputationFactionIndexResponse extends ResponseBase {
  */
 export interface ReputationFactionResponse extends NullishNameId, ResponseBase {
   can_paragon?: boolean;
-  description?: string;
-  factions?: Array<NameIdKey>;
+  description?: null | string;
+  factions?: Array<NullishNameIdKey>;
   header_shows_bar?: boolean;
   is_header?: boolean;
   is_renown?: boolean;

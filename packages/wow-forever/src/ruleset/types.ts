@@ -1,4 +1,4 @@
-import type { Href, KeyBase, NameId, ResponseBase } from '@blizzard-api/core';
+import type { Href, KeyBase, NullishNameId, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a ruleset index.
@@ -12,7 +12,7 @@ export interface RulesetIndexResponse extends ResponseBase {
  * The response for a ruleset.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface RulesetResponse extends NameId, ResponseBase {
+export interface RulesetResponse extends NullishNameId, ResponseBase {
   auctions: Href;
   status: RulesetStatus;
 }

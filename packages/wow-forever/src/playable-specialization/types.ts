@@ -2,8 +2,8 @@ import type {
   GenderName,
   KeyBase,
   MediaAsset,
-  NameId,
   NameIdKey,
+  NullishNameId,
   NullishNameIdKey,
   ResponseBase,
 } from '@blizzard-api/core';
@@ -13,7 +13,7 @@ import type {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface PlayableSpecializationIndexResponse extends ResponseBase {
-  character_specializations: Array<NameIdKey>;
+  character_specializations: Array<NullishNameIdKey>;
   pet_specializations?: Array<NameIdKey>;
 }
 
@@ -30,11 +30,11 @@ export interface PlayableSpecializationMediaResponse extends ResponseBase {
  * The response for a playable specialization.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface PlayableSpecializationResponse extends NameId, ResponseBase {
+export interface PlayableSpecializationResponse extends NullishNameId, ResponseBase {
   gender_description?: GenderName;
   hero_talent_trees?: Array<NullishNameIdKey>;
   media: Media;
-  playable_class: NameIdKey;
+  playable_class: NullishNameIdKey;
   power_type: NameIdKey;
   primary_stat_type?: PrimaryStatType;
   pvp_talents?: Array<PvpTalent>;
@@ -57,7 +57,7 @@ interface PvpTalent {
 }
 
 interface SpecTalentTree extends KeyBase {
-  name: string;
+  name: null | string;
 }
 
 interface SpellTooltip {

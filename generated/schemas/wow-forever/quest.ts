@@ -4,21 +4,21 @@ import type { QuestCondition } from '../../../packages/wow-forever/src/quest/typ
 import { factionSchema, hrefSchema, nameIdKeySchema, nullishNameIdKeySchema, responseBaseSchema } from '../core';
 
 export const questAreaIndexResponseSchema = responseBaseSchema.extend({
-  areas: z.array(nameIdKeySchema),
+  areas: z.array(nullishNameIdKeySchema),
 });
 
 export const questAreaResponseSchema = responseBaseSchema.extend({
-  area: z.string(),
+  area: z.string().nullable(),
   id: z.number(),
   quests: z.array(nullishNameIdKeySchema),
 });
 
 export const questCategoryIndexResponseSchema = responseBaseSchema.extend({
-  categories: z.array(nameIdKeySchema),
+  categories: z.array(nullishNameIdKeySchema),
 });
 
 export const questCategoryResponseSchema = responseBaseSchema.extend({
-  category: z.string(),
+  category: z.string().nullable(),
   id: z.number(),
   quests: z.array(nullishNameIdKeySchema),
 });
@@ -30,7 +30,7 @@ export const questIndexResponseSchema = responseBaseSchema.extend({
 });
 
 export const questTypeIndexResponseSchema = responseBaseSchema.extend({
-  types: z.array(nameIdKeySchema),
+  types: z.array(nullishNameIdKeySchema),
 });
 
 const questOperatorSchema = z.strictObject({
@@ -41,16 +41,16 @@ const questOperatorSchema = z.strictObject({
 export const questTypeResponseSchema = responseBaseSchema.extend({
   id: z.number(),
   quests: z.array(nullishNameIdKeySchema),
-  type: z.string(),
+  type: z.string().nullable(),
 });
 
 const questCurrencyRewardSchema = z.strictObject({
-  reward: nameIdKeySchema,
+  reward: nullishNameIdKeySchema,
   value: z.number(),
 });
 
 const questItemRewardSchema = z.strictObject({
-  item: nameIdKeySchema,
+  item: nullishNameIdKeySchema,
 });
 
 const questMoneyUnitsSchema = z.strictObject({
@@ -60,13 +60,13 @@ const questMoneyUnitsSchema = z.strictObject({
 });
 
 const questReputationRequirementSchema = z.strictObject({
-  faction: nameIdKeySchema,
+  faction: nullishNameIdKeySchema,
   max_reputation: z.number().optional(),
   min_reputation: z.number().optional(),
 });
 
 const questReputationRewardSchema = z.strictObject({
-  reward: nameIdKeySchema,
+  reward: nullishNameIdKeySchema,
   value: z.number(),
 });
 
@@ -95,12 +95,12 @@ const questMoneySchema = z.strictObject({
 });
 
 const questRequirementsSchema = z.strictObject({
-  classes: z.array(nameIdKeySchema).optional(),
+  classes: z.array(nullishNameIdKeySchema).optional(),
   faction: factionSchema.optional(),
   max_character_level: z.number().optional(),
   min_character_level: z.number().optional(),
   quests: questRequirementSchema.optional(),
-  races: z.array(nameIdKeySchema).optional(),
+  races: z.array(nullishNameIdKeySchema).optional(),
   reputations: z.array(questReputationRequirementSchema).optional(),
 });
 
@@ -115,7 +115,7 @@ const questRewardsSchema = z.strictObject({
 });
 
 export const questResponseSchema = responseBaseSchema.extend({
-  area: nameIdKeySchema.optional(),
+  area: nullishNameIdKeySchema.optional(),
   category: nameIdKeySchema.optional(),
   description: z.string().optional(),
   id: z.number(),
@@ -125,5 +125,5 @@ export const questResponseSchema = responseBaseSchema.extend({
   requirements: questRequirementsSchema,
   rewards: questRewardsSchema,
   title: z.string().nullable(),
-  type: nameIdKeySchema.optional(),
+  type: nullishNameIdKeySchema.optional(),
 });

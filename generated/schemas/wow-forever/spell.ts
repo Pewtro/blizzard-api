@@ -5,7 +5,7 @@ import {
   keyBaseSchema,
   localesSchema,
   mediaAssetSchema,
-  nameIdSchema,
+  nullishNameIdSchema,
   responseBaseSchema,
   searchResponseWithoutResultsSchema,
 } from '../core';
@@ -34,7 +34,7 @@ const spellSearchResponseItemSchema = keyBaseSchema.extend({
   }),
 });
 
-export const spellResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
+export const spellResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
   description: z.string().nullable(),
   media: mediaSchema,
 });

@@ -5,7 +5,7 @@ import type { Faction, Href, NameIdKey, NullishNameIdKey, ResponseBase } from '@
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface QuestAreaIndexResponse extends ResponseBase {
-  areas: Array<NameIdKey>;
+  areas: Array<NullishNameIdKey>;
 }
 
 /**
@@ -13,7 +13,7 @@ export interface QuestAreaIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface QuestAreaResponse extends ResponseBase {
-  area: string;
+  area: null | string;
   id: number;
   quests: Array<NullishNameIdKey>;
 }
@@ -23,7 +23,7 @@ export interface QuestAreaResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface QuestCategoryIndexResponse extends ResponseBase {
-  categories: Array<NameIdKey>;
+  categories: Array<NullishNameIdKey>;
 }
 
 /**
@@ -31,7 +31,7 @@ export interface QuestCategoryIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface QuestCategoryResponse extends ResponseBase {
-  category: string;
+  category: null | string;
   id: number;
   quests: Array<NullishNameIdKey>;
 }
@@ -51,7 +51,7 @@ export interface QuestIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface QuestResponse extends ResponseBase {
-  area?: NameIdKey;
+  area?: NullishNameIdKey;
   category?: NameIdKey;
   description?: string;
   id: number;
@@ -61,7 +61,7 @@ export interface QuestResponse extends ResponseBase {
   requirements: QuestRequirements;
   rewards: QuestRewards;
   title: null | string;
-  type?: NameIdKey;
+  type?: NullishNameIdKey;
 }
 
 /**
@@ -69,7 +69,7 @@ export interface QuestResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface QuestTypeIndexResponse extends ResponseBase {
-  types: Array<NameIdKey>;
+  types: Array<NullishNameIdKey>;
 }
 
 /**
@@ -90,16 +90,16 @@ export interface QuestCondition {
 export interface QuestTypeResponse extends ResponseBase {
   id: number;
   quests: Array<NullishNameIdKey>;
-  type: string;
+  type: null | string;
 }
 
 interface QuestCurrencyReward {
-  reward: NameIdKey;
+  reward: NullishNameIdKey;
   value: number;
 }
 
 interface QuestItemReward {
-  item: NameIdKey;
+  item: NullishNameIdKey;
 }
 
 interface QuestMoney {
@@ -119,13 +119,13 @@ interface QuestOperator {
 }
 
 interface QuestReputationRequirement {
-  faction: NameIdKey;
+  faction: NullishNameIdKey;
   max_reputation?: number;
   min_reputation?: number;
 }
 
 interface QuestReputationReward {
-  reward: NameIdKey;
+  reward: NullishNameIdKey;
   value: number;
 }
 
@@ -135,12 +135,12 @@ interface QuestRequirement {
 }
 
 interface QuestRequirements {
-  classes?: Array<NameIdKey>;
+  classes?: Array<NullishNameIdKey>;
   faction?: Faction;
   max_character_level?: number;
   min_character_level?: number;
   quests?: QuestRequirement;
-  races?: Array<NameIdKey>;
+  races?: Array<NullishNameIdKey>;
   reputations?: Array<QuestReputationRequirement>;
 }
 

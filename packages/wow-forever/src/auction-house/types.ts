@@ -1,4 +1,4 @@
-import type { Href, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { Href, NullishNameId, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for an auction house commodities endpoint.
@@ -13,18 +13,16 @@ export interface AuctionHouseCommoditiesResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface AuctionHouseIndexResponse extends ResponseBase {
-  auctions: Array<NameIdKey>;
+  auctions: Array<NullishNameIdKey>;
 }
 
 /**
  * The response for an auction house.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface AuctionHouseResponse extends ResponseBase {
+export interface AuctionHouseResponse extends NullishNameId, ResponseBase {
   auctions?: Array<AuctionHousePosting>;
   commodities: Href;
-  id: number;
-  name: string;
   ruleset: Href;
 }
 

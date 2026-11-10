@@ -2,7 +2,6 @@ import type {
   Faction,
   KeyBase,
   MediaAsset,
-  NameId,
   NameIdKey,
   NullishNameId,
   NullishNameIdKey,
@@ -24,7 +23,7 @@ export interface AchievementCategoryIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface AchievementCategoryResponse extends NullishNameId, ResponseBase {
-  achievements?: Array<NameIdKey>;
+  achievements?: Array<NullishNameIdKey>;
   aggregates_by_faction: {
     alliance: {
       points: number;
@@ -37,8 +36,8 @@ export interface AchievementCategoryResponse extends NullishNameId, ResponseBase
   };
   display_order: number;
   is_guild_category: boolean;
-  parent_category?: NameIdKey;
-  subcategories?: Array<NameIdKey>;
+  parent_category?: NullishNameIdKey;
+  subcategories?: Array<NullishNameIdKey>;
 }
 
 /**
@@ -61,7 +60,7 @@ export interface AchievementCriteria {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface AchievementIndexResponse extends ResponseBase {
-  achievements: Array<NameIdKey>;
+  achievements: Array<NullishNameIdKey>;
 }
 
 /**
@@ -77,8 +76,8 @@ export interface AchievementMediaResponse extends ResponseBase {
  * The response for an achievement.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface AchievementResponse extends NameId, ResponseBase {
-  category: NameIdKey;
+export interface AchievementResponse extends NullishNameId, ResponseBase {
+  category: NullishNameIdKey;
   criteria?: AchievementCriteria;
   description: null | string;
   display_order: number;
@@ -89,7 +88,7 @@ export interface AchievementResponse extends NameId, ResponseBase {
   points: number;
   prerequisite_achievement?: NameIdKey;
   requirements?: { faction: Faction };
-  reward_description?: string;
+  reward_description?: null | string;
   reward_item?: NameIdKey;
 }
 

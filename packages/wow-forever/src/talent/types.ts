@@ -37,8 +37,8 @@ export interface TalentIndexResponse extends ResponseBase {
 export interface TalentResponse extends ResponseBase {
   id: number;
   overrides_spell?: NameIdKey;
-  playable_class?: KeyBase & { id: number; name?: string };
-  playable_specialization?: NameIdKey;
+  playable_class?: KeyBase & { id: number; name?: null | string };
+  playable_specialization?: NullishNameIdKey;
   rank_descriptions?: Array<RankDescription>;
   spell?: NameIdKey;
 }
@@ -71,7 +71,7 @@ export interface TalentTreeResponse extends NameId, ResponseBase {
   class_talent_nodes?: Array<TalentNode>;
   hero_talent_trees?: Array<HeroTalentTree>;
   media?: KeyBase & { id?: number };
-  playable_class: NameIdKey;
+  playable_class: NullishNameIdKey;
   playable_specialization?: NameIdKey;
   restriction_lines?: Array<RestrictionLine>;
   spec_talent_nodes?: Array<TalentNode>;
@@ -131,7 +131,7 @@ interface TalentNode {
 }
 
 interface TalentTree extends KeyBase {
-  name: string;
+  name: null | string;
 }
 
 interface Tooltip {
@@ -142,7 +142,7 @@ interface Tooltip {
 interface TooltipSpellTooltip {
   cast_time: string;
   cooldown?: null | string;
-  description: string;
+  description: null | string;
   power_cost?: null | string;
   range?: null | string;
   spell: NullishNameIdKey;

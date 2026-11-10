@@ -3,7 +3,7 @@ import type {
   KeyBase,
   Locales,
   MediaAsset,
-  NameId,
+  NullishNameId,
   ResponseBase,
   SearchResponseWithoutResults,
 } from '@blizzard-api/core';
@@ -21,7 +21,7 @@ export interface SpellMediaResponse extends ResponseBase {
  * The response for a spell.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface SpellResponse extends NameId, ResponseBase {
+export interface SpellResponse extends NullishNameId, ResponseBase {
   description: null | string;
   media: Media;
 }

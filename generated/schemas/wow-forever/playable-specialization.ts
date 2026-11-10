@@ -5,13 +5,13 @@ import {
   keyBaseSchema,
   mediaAssetSchema,
   nameIdKeySchema,
-  nameIdSchema,
   nullishNameIdKeySchema,
+  nullishNameIdSchema,
   responseBaseSchema,
 } from '../core';
 
 export const playableSpecializationIndexResponseSchema = responseBaseSchema.extend({
-  character_specializations: z.array(nameIdKeySchema),
+  character_specializations: z.array(nullishNameIdKeySchema),
   pet_specializations: z.array(nameIdKeySchema).optional(),
 });
 
@@ -30,7 +30,7 @@ const primaryStatTypeSchema = z.strictObject({
 });
 
 const specTalentTreeSchema = keyBaseSchema.extend({
-  name: z.string(),
+  name: z.string().nullable(),
 });
 
 const spellTooltipSchema = z.strictObject({
@@ -46,11 +46,11 @@ const pvpTalentSchema = z.strictObject({
   talent: nameIdKeySchema,
 });
 
-export const playableSpecializationResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
+export const playableSpecializationResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
   gender_description: genderNameSchema.optional(),
   hero_talent_trees: z.array(nullishNameIdKeySchema).optional(),
   media: mediaSchema,
-  playable_class: nameIdKeySchema,
+  playable_class: nullishNameIdKeySchema,
   power_type: nameIdKeySchema,
   primary_stat_type: primaryStatTypeSchema.optional(),
   pvp_talents: z.array(pvpTalentSchema).optional(),

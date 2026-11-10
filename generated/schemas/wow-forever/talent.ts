@@ -26,7 +26,7 @@ const rankDescriptionSchema = z.strictObject({
 });
 
 const talentTreeSchema = keyBaseSchema.extend({
-  name: z.string(),
+  name: z.string().nullable(),
 });
 
 const restrictionLineSchema = z.strictObject({
@@ -54,7 +54,7 @@ const choiceOfTooltipSchema = z.strictObject({
 const tooltipSpellTooltipSchema = z.strictObject({
   cast_time: z.string(),
   cooldown: z.string().optional().nullable(),
-  description: z.string(),
+  description: z.string().nullable(),
   power_cost: z.string().optional().nullable(),
   range: z.string().optional().nullable(),
   spell: nullishNameIdKeySchema,
@@ -67,11 +67,11 @@ export const talentResponseSchema = responseBaseSchema.extend({
     .and(
       z.strictObject({
         id: z.number(),
-        name: z.string().optional(),
+        name: z.string().optional().nullable(),
       }),
     )
     .optional(),
-  playable_specialization: nameIdKeySchema.optional(),
+  playable_specialization: nullishNameIdKeySchema.optional(),
   rank_descriptions: z.array(rankDescriptionSchema).optional(),
   spell: nameIdKeySchema.optional(),
 });
@@ -133,7 +133,7 @@ export const talentTreeResponseSchema = nameIdSchema.extend(responseBaseSchema.s
       }),
     )
     .optional(),
-  playable_class: nameIdKeySchema,
+  playable_class: nullishNameIdKeySchema,
   playable_specialization: nameIdKeySchema.optional(),
   restriction_lines: z.array(restrictionLineSchema).optional(),
   spec_talent_nodes: z.array(talentNodeSchema).optional(),

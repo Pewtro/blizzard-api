@@ -30,7 +30,7 @@ export interface ProfessionMediaResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface ProfessionResponse extends NullishNameId, ResponseBase {
-  description: string;
+  description: null | string;
   media: Media;
   skill_tiers: Array<NameIdKey>;
   type: Type;
@@ -61,7 +61,7 @@ export interface RecipeMediaResponse extends ResponseBase {
  */
 export interface RecipeResponse extends NullishNameId, ResponseBase {
   alliance_crafted_item?: NameIdKey;
-  crafted_item?: NameIdKey;
+  crafted_item?: NullishNameIdKey;
   crafted_quantity?: CraftedQuantity;
   description?: null | string;
   horde_crafted_item?: NameIdKey;
@@ -93,7 +93,7 @@ interface ModifiedCraftSlot {
 
 interface Reagent {
   quantity: number;
-  reagent: NameIdKey;
+  reagent: NullishNameIdKey;
 }
 
 interface Type {

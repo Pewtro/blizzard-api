@@ -7,8 +7,8 @@ import {
   localesSchema,
   mediaAssetSchema,
   nameIdKeySchema,
-  nameIdSchema,
   nullishNameIdKeySchema,
+  nullishNameIdSchema,
   responseBaseSchema,
   searchResponseWithoutResultsSchema,
 } from '../core';
@@ -17,10 +17,8 @@ export const itemClassIndexResponseSchema = responseBaseSchema.extend({
   item_classes: z.array(nullishNameIdKeySchema),
 });
 
-export const itemClassResponseSchema = responseBaseSchema.extend({
-  id: z.number(),
-  item_subclasses: z.array(nameIdKeySchema).optional(),
-  name: z.string(),
+export const itemClassResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
+  item_subclasses: z.array(nullishNameIdKeySchema).optional(),
 });
 
 export const itemMediaResponseSchema = responseBaseSchema.extend({
@@ -38,7 +36,7 @@ export const itemSearchParametersSchema = baseSearchParametersSchema.extend({
 });
 
 export const itemSetIndexResponseSchema = responseBaseSchema.extend({
-  item_sets: z.array(nameIdKeySchema),
+  item_sets: z.array(nullishNameIdKeySchema),
 });
 
 const effectSchema = z.strictObject({
@@ -47,7 +45,7 @@ const effectSchema = z.strictObject({
 });
 
 export const itemSubclassResponseSchema = responseBaseSchema.extend({
-  display_name: z.string(),
+  display_name: z.string().nullable(),
   hide_subclass_in_tooltips: z.boolean().optional(),
   id: z.number(),
   item_class: nameIdKeySchema,
@@ -187,8 +185,8 @@ const recipeItemDisplayStringsSchema = z.strictObject({
 });
 
 const spellSchema = z.strictObject({
-  description: z.string(),
-  spell: nameIdKeySchema,
+  description: z.string().nullable(),
+  spell: nullishNameIdKeySchema,
 });
 
 const statSchema = z.strictObject({
@@ -227,7 +225,7 @@ export const itemSearchResponseSchema = searchResponseWithoutResultsSchema.exten
 export const itemSetResponseSchema = responseBaseSchema.extend({
   effects: z.array(effectSchema),
   id: z.number(),
-  items: z.array(nameIdKeySchema),
+  items: z.array(nullishNameIdKeySchema),
   name: z.string(),
 });
 
@@ -291,7 +289,7 @@ const previewItemSchema = z.strictObject({
   level: durabilitySchema.optional(),
   limit_category: z.string().optional(),
   media: mediaSchema,
-  name: z.string(),
+  name: z.string().nullable(),
   quality: itemQualitySchema,
   recipe: recipeSchema.optional(),
   requirements: requirementsSchema.optional(),
@@ -308,7 +306,7 @@ const previewItemSchema = z.strictObject({
   weapon: weaponSchema.optional(),
 });
 
-export const itemResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
+export const itemResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
   appearances: z
     .array(
       keyBaseSchema.and(
@@ -318,7 +316,7 @@ export const itemResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).
       ),
     )
     .optional(),
-  description: z.string().optional(),
+  description: z.string().optional().nullable(),
   inventory_type: inventoryTypeNameSchema,
   is_equippable: z.boolean(),
   is_stackable: z.boolean(),

@@ -6,6 +6,7 @@ import {
   nameIdKeySchema,
   nameIdSchema,
   nullishNameIdKeySchema,
+  nullishNameIdSchema,
   responseBaseSchema,
 } from '../core';
 
@@ -53,10 +54,10 @@ export const petAbilityResponseSchema = nameIdSchema.extend(responseBaseSchema.s
   rounds: z.number(),
 });
 
-export const petResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
+export const petResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
   abilities: z.array(abilitySchema).optional(),
   battle_pet_type: battlePetTypeSchema,
-  creature: nameIdKeySchema,
+  creature: nullishNameIdKeySchema,
   description: z.string().nullable(),
   icon: z.string(),
   is_alliance_only: z.boolean(),

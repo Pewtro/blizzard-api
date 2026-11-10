@@ -6,7 +6,6 @@ import {
   keyBaseSchema,
   mediaAssetSchema,
   nameIdKeySchema,
-  nameIdSchema,
   nullishNameIdKeySchema,
   nullishNameIdSchema,
   responseBaseSchema,
@@ -19,7 +18,7 @@ export const achievementCategoryIndexResponseSchema = responseBaseSchema.extend(
 });
 
 export const achievementCategoryResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
-  achievements: z.array(nameIdKeySchema).optional(),
+  achievements: z.array(nullishNameIdKeySchema).optional(),
   aggregates_by_faction: z.strictObject({
     alliance: z.strictObject({
       points: z.number(),
@@ -32,8 +31,8 @@ export const achievementCategoryResponseSchema = nullishNameIdSchema.extend(resp
   }),
   display_order: z.number(),
   is_guild_category: z.boolean(),
-  parent_category: nameIdKeySchema.optional(),
-  subcategories: z.array(nameIdKeySchema).optional(),
+  parent_category: nullishNameIdKeySchema.optional(),
+  subcategories: z.array(nullishNameIdKeySchema).optional(),
 });
 
 const operatorSchema = z.strictObject({
@@ -42,7 +41,7 @@ const operatorSchema = z.strictObject({
 });
 
 export const achievementIndexResponseSchema = responseBaseSchema.extend({
-  achievements: z.array(nameIdKeySchema),
+  achievements: z.array(nullishNameIdKeySchema),
 });
 
 export const achievementMediaResponseSchema = responseBaseSchema.extend({
@@ -64,8 +63,8 @@ export const achievementCriteriaSchema: z.ZodType<AchievementCriteria> = z.lazy(
   }),
 );
 
-export const achievementResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
-  category: nameIdKeySchema,
+export const achievementResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
+  category: nullishNameIdKeySchema,
   criteria: achievementCriteriaSchema.optional(),
   description: z.string().nullable(),
   display_order: z.number(),
@@ -84,6 +83,6 @@ export const achievementResponseSchema = nameIdSchema.extend(responseBaseSchema.
       faction: factionSchema,
     })
     .optional(),
-  reward_description: z.string().optional(),
+  reward_description: z.string().optional().nullable(),
   reward_item: nameIdKeySchema.optional(),
 });

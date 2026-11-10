@@ -56,11 +56,11 @@ const modifiedCraftSlotSchema = z.strictObject({
 
 const reagentSchema = z.strictObject({
   quantity: z.number(),
-  reagent: nameIdKeySchema,
+  reagent: nullishNameIdKeySchema,
 });
 
 export const professionResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
-  description: z.string(),
+  description: z.string().nullable(),
   media: mediaSchema,
   skill_tiers: z.array(nameIdKeySchema),
   type: typeSchema,
@@ -74,7 +74,7 @@ export const professionSkillTierResponseSchema = nameIdSchema.extend(responseBas
 
 export const recipeResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
   alliance_crafted_item: nameIdKeySchema.optional(),
-  crafted_item: nameIdKeySchema.optional(),
+  crafted_item: nullishNameIdKeySchema.optional(),
   crafted_quantity: craftedQuantitySchema.optional(),
   description: z.string().optional().nullable(),
   horde_crafted_item: nameIdKeySchema.optional(),

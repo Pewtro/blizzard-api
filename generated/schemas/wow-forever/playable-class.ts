@@ -6,12 +6,13 @@ import {
   keyBaseSchema,
   mediaAssetSchema,
   nameIdKeySchema,
-  nameIdSchema,
+  nullishNameIdKeySchema,
+  nullishNameIdSchema,
   responseBaseSchema,
 } from '../core';
 
 export const playableClassIndexResponseSchema = responseBaseSchema.extend({
-  classes: z.array(nameIdKeySchema),
+  classes: z.array(nullishNameIdKeySchema),
 });
 
 export const playableClassMediaResponseSchema = responseBaseSchema.extend({
@@ -28,14 +29,14 @@ const talentSlotSchema = z.strictObject({
   unlock_player_level: z.number(),
 });
 
-export const playableClassResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
+export const playableClassResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
   additional_power_types: z.array(nameIdKeySchema).optional(),
   gender_name: genderNameSchema,
   media: mediaSchema,
-  playable_races: z.array(nameIdKeySchema),
+  playable_races: z.array(nullishNameIdKeySchema),
   power_type: nameIdKeySchema,
   pvp_talent_slots: hrefSchema,
-  specializations: z.array(nameIdKeySchema).optional(),
+  specializations: z.array(nullishNameIdKeySchema).optional(),
 });
 
 export const pvpTalentSlotsResponseSchema = responseBaseSchema.extend({
