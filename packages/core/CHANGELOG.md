@@ -1,5 +1,11 @@
 # @blizzard-api/core
 
+## 4.3.0
+
+### Minor Changes
+
+- 57c526b: Adds a new `@blizzard-api/wow-forever` package with helpers and response types for the `World of Warcraft: Forever` API.
+
 ## 4.2.0
 
 ### Minor Changes

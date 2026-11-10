@@ -1,5 +1,12 @@
 # @blizzard-api/wow
 
+## 4.1.5
+
+### Patch Changes
+
+- Updated dependencies [57c526b]
+  - @blizzard-api/core@4.3.0
+
 ## 4.1.4
 
 ### Patch Changes
