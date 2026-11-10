@@ -15,7 +15,7 @@ export interface QuestAreaIndexResponse extends ResponseBase {
 export interface QuestAreaResponse extends ResponseBase {
   area: string;
   id: number;
-  quests: Array<NameIdKey>;
+  quests: Array<NullishNameIdKey>;
 }
 
 /**
