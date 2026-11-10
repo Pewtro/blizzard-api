@@ -1,5 +1,11 @@
 # @blizzard-api/wow-forever
 
+## 0.1.1
+
+### Patch Changes
+
+- 1c66958: Provenance release
+
 ## 0.1.0
 
 ### Minor Changes
