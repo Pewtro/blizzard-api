@@ -5,7 +5,7 @@ import type { KeyBase, MediaAsset, NameId, NameIdKey, NullishNameIdKey, Response
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface ProfessionIndexResponse extends ResponseBase {
-  professions: Array<NameIdKey>;
+  professions: Array<NullishNameIdKey>;
 }
 
 /**

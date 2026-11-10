@@ -10,7 +10,7 @@ import {
 } from '../core';
 
 export const professionIndexResponseSchema = responseBaseSchema.extend({
-  professions: z.array(nameIdKeySchema),
+  professions: z.array(nullishNameIdKeySchema),
 });
 
 export const professionMediaResponseSchema = responseBaseSchema.extend({

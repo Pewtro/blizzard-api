@@ -136,7 +136,7 @@ interface TalentTree extends KeyBase {
 
 interface Tooltip {
   spell_tooltip: TooltipSpellTooltip;
-  talent: NameIdKey;
+  talent: NullishNameIdKey;
 }
 
 interface TooltipSpellTooltip {
@@ -145,5 +145,5 @@ interface TooltipSpellTooltip {
   description: string;
   power_cost?: null | string;
   range?: null | string;
-  spell: NameIdKey;
+  spell: NullishNameIdKey;
 }

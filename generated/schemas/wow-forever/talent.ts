@@ -57,7 +57,7 @@ const tooltipSpellTooltipSchema = z.strictObject({
   description: z.string(),
   power_cost: z.string().optional().nullable(),
   range: z.string().optional().nullable(),
-  spell: nameIdKeySchema,
+  spell: nullishNameIdKeySchema,
 });
 
 export const talentResponseSchema = responseBaseSchema.extend({
@@ -84,7 +84,7 @@ export const talentTreeIndexResponseSchema = responseBaseSchema.extend({
 
 const tooltipSchema = z.strictObject({
   spell_tooltip: tooltipSpellTooltipSchema,
-  talent: nameIdKeySchema,
+  talent: nullishNameIdKeySchema,
 });
 
 const rankSchema = z.strictObject({

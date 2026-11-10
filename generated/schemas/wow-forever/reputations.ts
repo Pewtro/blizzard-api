@@ -11,7 +11,7 @@ import {
 
 export const reputationFactionIndexResponseSchema = responseBaseSchema.extend({
   factions: z.array(nullishNameIdKeySchema),
-  root_factions: z.array(nameIdKeySchema),
+  root_factions: z.array(nullishNameIdKeySchema),
 });
 
 const renownTierSchema = z.strictObject({

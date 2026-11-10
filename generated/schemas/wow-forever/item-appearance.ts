@@ -5,6 +5,7 @@ import {
   keyBaseSchema,
   localesSchema,
   nameIdKeySchema,
+  nullishNameIdKeySchema,
   responseBaseSchema,
   searchResponseWithoutResultsSchema,
 } from '../core';
@@ -82,7 +83,7 @@ export const itemAppearanceResponseSchema = responseBaseSchema.extend({
   item_class: nameIdKeySchema.optional(),
   item_display_info_id: z.number(),
   item_subclass: nameIdKeySchema.optional(),
-  items: z.array(nameIdKeySchema).optional(),
+  items: z.array(nullishNameIdKeySchema).optional(),
   media: itemAppearanceMediaSchema,
   slot: itemAppearanceSlotSchema.optional(),
 });

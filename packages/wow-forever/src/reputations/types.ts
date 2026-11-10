@@ -6,7 +6,7 @@ import type { Faction, KeyBase, NameIdKey, NullishNameId, NullishNameIdKey, Resp
  */
 export interface ReputationFactionIndexResponse extends ResponseBase {
   factions: Array<NullishNameIdKey>;
-  root_factions: Array<NameIdKey>;
+  root_factions: Array<NullishNameIdKey>;
 }
 
 /**

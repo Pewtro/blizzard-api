@@ -7,16 +7,18 @@ import {
   mediaAssetSchema,
   nameIdKeySchema,
   nameIdSchema,
+  nullishNameIdKeySchema,
+  nullishNameIdSchema,
   responseBaseSchema,
 } from '../core';
 
 export const achievementCategoryIndexResponseSchema = responseBaseSchema.extend({
-  categories: z.array(nameIdKeySchema),
+  categories: z.array(nullishNameIdKeySchema),
   guild_categories: z.array(nameIdKeySchema).optional(),
-  root_categories: z.array(nameIdKeySchema),
+  root_categories: z.array(nullishNameIdKeySchema),
 });
 
-export const achievementCategoryResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
+export const achievementCategoryResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
   achievements: z.array(nameIdKeySchema).optional(),
   aggregates_by_faction: z.strictObject({
     alliance: z.strictObject({

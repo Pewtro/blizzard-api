@@ -1,4 +1,4 @@
-import type { Faction, Href, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { Faction, Href, NameIdKey, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a quest area index.
@@ -15,7 +15,7 @@ export interface QuestAreaIndexResponse extends ResponseBase {
 export interface QuestAreaResponse extends ResponseBase {
   area: string;
   id: number;
-  quests: Array<NameIdKey>;
+  quests: Array<NullishNameIdKey>;
 }
 
 /**
@@ -33,7 +33,7 @@ export interface QuestCategoryIndexResponse extends ResponseBase {
 export interface QuestCategoryResponse extends ResponseBase {
   category: string;
   id: number;
-  quests: Array<NameIdKey>;
+  quests: Array<NullishNameIdKey>;
 }
 
 /**
@@ -89,7 +89,7 @@ export interface QuestCondition {
  */
 export interface QuestTypeResponse extends ResponseBase {
   id: number;
-  quests: Array<NameIdKey>;
+  quests: Array<NullishNameIdKey>;
   type: string;
 }
 

@@ -3,6 +3,7 @@ import type {
   KeyBase,
   Locales,
   NameIdKey,
+  NullishNameIdKey,
   ResponseBase,
   SearchResponseWithoutResults,
 } from '@blizzard-api/core';
@@ -45,7 +46,7 @@ export interface ItemAppearanceResponse extends ResponseBase {
   item_class?: NameIdKey;
   item_display_info_id: number;
   item_subclass?: NameIdKey;
-  items?: Array<NameIdKey>;
+  items?: Array<NullishNameIdKey>;
   media: ItemAppearanceMedia;
   slot?: ItemAppearanceSlot;
 }
