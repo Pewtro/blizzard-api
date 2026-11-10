@@ -55,6 +55,7 @@ export interface FetchOneCardResponse {
   name: Record<Locales, string> | string;
   parentId?: number;
   rarityId?: null | number;
+  runeCost?: { blood: number; frost: number; unholy: number };
   slug: string;
   spellSchoolId?: number;
   text: Record<Locales, string> | string;

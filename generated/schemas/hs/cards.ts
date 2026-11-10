@@ -191,6 +191,13 @@ export const fetchOneCardResponseSchema = z.strictObject({
   name: z.union([z.record(localesSchema, z.string()), z.string()]),
   parentId: z.number().optional(),
   rarityId: z.number().optional().nullable(),
+  runeCost: z
+    .strictObject({
+      blood: z.number(),
+      frost: z.number(),
+      unholy: z.number(),
+    })
+    .optional(),
   slug: z.string(),
   spellSchoolId: z.number().optional(),
   text: z.union([z.record(localesSchema, z.string()), z.string()]),
