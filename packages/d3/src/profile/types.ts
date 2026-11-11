@@ -167,7 +167,7 @@ interface Dye {
 interface Enchantress {
   items: FollowerItems;
   level: number;
-  skills: Array<unknown>;
+  skills: Array<Skill>;
   slug: string;
   stats: Stats;
 }

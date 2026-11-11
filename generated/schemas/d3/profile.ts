@@ -130,7 +130,7 @@ const statsSchema = z.strictObject({
 const enchantressSchema = z.strictObject({
   items: followerItemsSchema,
   level: z.number(),
-  skills: z.array(z.unknown()),
+  skills: z.array(skillSchema),
   slug: z.string(),
   stats: statsSchema,
 });
