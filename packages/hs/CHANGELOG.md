@@ -1,5 +1,11 @@
 # @blizzard-api/hs
 
+## 3.2.5
+
+### Patch Changes
+
+- 591d7a1: Use more types from the core package
+
 ## 3.2.4
 
 ### Patch Changes

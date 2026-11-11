@@ -1,5 +1,12 @@
 # @blizzard-api/wow
 
+## 4.2.1
+
+### Patch Changes
+
+- a272ffe: Mark mount names as nullable
+- 591d7a1: Use more types from the core package
+
 ## 4.2.0
 
 ### Minor Changes

@@ -1,5 +1,12 @@
 # @blizzard-api/d3
 
+## 3.1.7
+
+### Patch Changes
+
+- c6c9bbb: Update Enchantress skills type
+- 591d7a1: Use more types from the core package
+
 ## 3.1.6
 
 ### Patch Changes
