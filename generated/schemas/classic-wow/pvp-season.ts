@@ -7,6 +7,7 @@ import {
   nameIdKeySchema,
   nameIdSchema,
   nonNeutralFactionsSchema,
+  nullishNameIdKeySchema,
   responseBaseSchema,
 } from '../core';
 
@@ -41,7 +42,7 @@ const bracketSchema = z.strictObject({
 });
 
 const rewardSchema = z.strictObject({
-  achievement: nameIdKeySchema,
+  achievement: nullishNameIdKeySchema,
   bracket: bracketSchema,
   faction: factionSchema.optional(),
   rating_cutoff: z.number(),

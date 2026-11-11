@@ -1,4 +1,4 @@
-import type { Character, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { Character, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a character's reputations summary.
@@ -16,7 +16,7 @@ interface Paragon {
 }
 
 interface Reputation {
-  faction: NameIdKey;
+  faction: NullishNameIdKey;
   paragon?: Paragon;
   standing: Standing;
 }

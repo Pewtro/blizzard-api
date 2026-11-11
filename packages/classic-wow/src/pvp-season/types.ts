@@ -1,4 +1,13 @@
-import type { Faction, Href, KeyBase, NameId, NameIdKey, NonNeutralFactions, ResponseBase } from '@blizzard-api/core';
+import type {
+  Faction,
+  Href,
+  KeyBase,
+  NameId,
+  NameIdKey,
+  NonNeutralFactions,
+  NullishNameIdKey,
+  ResponseBase,
+} from '@blizzard-api/core';
 
 /**
  * The response for a PvP season index.
@@ -75,7 +84,7 @@ interface Realm extends KeyBase {
 }
 
 interface Reward {
-  achievement: NameIdKey;
+  achievement: NullishNameIdKey;
   bracket: Bracket;
   faction?: Faction;
   rating_cutoff: number;

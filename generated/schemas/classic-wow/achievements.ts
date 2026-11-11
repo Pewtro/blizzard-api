@@ -6,18 +6,19 @@ import {
   keyBaseSchema,
   mediaAssetSchema,
   nameIdKeySchema,
-  nameIdSchema,
+  nullishNameIdKeySchema,
+  nullishNameIdSchema,
   responseBaseSchema,
 } from '../core';
 
 export const achievementCategoryIndexResponseSchema = responseBaseSchema.extend({
-  categories: z.array(nameIdKeySchema),
+  categories: z.array(nullishNameIdKeySchema),
   guild_categories: z.array(nameIdKeySchema).optional(),
-  root_categories: z.array(nameIdKeySchema),
+  root_categories: z.array(nullishNameIdKeySchema),
 });
 
-export const achievementCategoryResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
-  achievements: z.array(nameIdKeySchema).optional(),
+export const achievementCategoryResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
+  achievements: z.array(nullishNameIdKeySchema).optional(),
   aggregates_by_faction: z.strictObject({
     alliance: z.strictObject({
       points: z.number(),
@@ -40,7 +41,7 @@ const operatorSchema = z.strictObject({
 });
 
 export const achievementIndexResponseSchema = responseBaseSchema.extend({
-  achievements: z.array(nameIdKeySchema),
+  achievements: z.array(nullishNameIdKeySchema),
 });
 
 export const achievementMediaResponseSchema = responseBaseSchema.extend({
@@ -62,8 +63,8 @@ export const achievementCriteriaSchema: z.ZodType<AchievementCriteria> = z.lazy(
   }),
 );
 
-export const achievementResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
-  category: nameIdKeySchema,
+export const achievementResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
+  category: nullishNameIdKeySchema,
   criteria: achievementCriteriaSchema.optional(),
   description: z.string().nullable(),
   display_order: z.number(),
