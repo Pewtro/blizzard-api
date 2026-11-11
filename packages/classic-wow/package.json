@@ -1,6 +1,6 @@
 {
   "name": "@blizzard-api/classic-wow",
-  "version": "4.3.0",
+  "version": "4.3.1",
   "description": "A series of helpers to interact with the World of Warcraft Classic Blizzard API",
   "keywords": [
     "api",

@@ -1,5 +1,12 @@
 # @blizzard-api/wow-forever
 
+## 0.3.1
+
+### Patch Changes
+
+- 591d7a1: Use more types from the core package
+- 73d685d: Mark a few item/quest names as nullable
+
 ## 0.3.0
 
 ### Minor Changes

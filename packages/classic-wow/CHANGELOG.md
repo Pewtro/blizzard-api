@@ -1,5 +1,12 @@
 # @blizzard-api/classic-wow
 
+## 4.3.1
+
+### Patch Changes
+
+- 57cbf6f: Mark various names as nullable
+- 591d7a1: Use more types from the core package
+
 ## 4.3.0
 
 ### Minor Changes
