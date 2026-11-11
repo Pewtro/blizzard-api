@@ -1,3 +1,4 @@
+import { accountProfileSummary, accountTransmogsCollectionSummary } from './account-profile/index';
 import {
   achievement,
   achievementCategory,
@@ -6,6 +7,29 @@ import {
   achievementMedia,
 } from './achievements/index';
 import { auctionHouseIndex, auctions, commodities } from './auction-house/index';
+import { characterAchievementsSummary, characterAchievementStatistics } from './character-achievements/index';
+import { characterAppearanceSummary } from './character-appearance/index';
+import {
+  characterCollectionsIndex,
+  characterHeirloomsCollectionSummary,
+  characterMountsCollectionSummary,
+  characterPetsCollectionSummary,
+  characterToysCollectionSummary,
+  characterTransmogCollectionSummary,
+} from './character-collections/index';
+import { characterDungeons, characterEncountersSummary, characterRaids } from './character-encounters/index';
+import { characterEquipmentSummary } from './character-equipment/index';
+import { characterHunterPetsSummary } from './character-hunter-pets/index';
+import { characterMediaSummary } from './character-media/index';
+import { characterMythicKeystoneProfileIndex } from './character-mythic-keystone-profile/index';
+import { characterProfessionsSummary } from './character-professions/index';
+import { characterProfileStatus, characterProfileSummary } from './character-profile/index';
+import { characterPvpSummary } from './character-pvp/index';
+import { characterCompletedQuests, characterQuests } from './character-quests/index';
+import { characterReputationsSummary } from './character-reputations/index';
+import { characterSpecializationsSummary } from './character-specializations/index';
+import { characterStatisticsSummary } from './character-statistics/index';
+import { characterTitlesSummary } from './character-titles/index';
 import {
   creature,
   creatureDisplayMedia,
@@ -17,6 +41,7 @@ import {
   creatureTypeIndex,
 } from './creature/index';
 import { guildCrestBorder, guildCrestComponentsIndex, guildCrestEmblem } from './guild-crest/index';
+import { guild, guildAchievements, guildActivity, guildRoster } from './guild/index';
 import {
   itemAppearance,
   itemAppearanceSearch,
@@ -81,6 +106,9 @@ import { title, titleIndex } from './title/index';
 import { toy, toyIndex } from './toy/index';
 
 const wowForever = {
+  //Account Profile
+  accountProfileSummary,
+  accountTransmogsCollectionSummary,
   //Achievements
   achievement,
   achievementCategory,
@@ -91,6 +119,48 @@ const wowForever = {
   auctionHouseIndex,
   auctions,
   commodities,
+  //Character Achievements
+  characterAchievementsSummary,
+  characterAchievementStatistics,
+  //Character Appearance
+  characterAppearanceSummary,
+  //Character Collections
+  characterCollectionsIndex,
+  characterHeirloomsCollectionSummary,
+  characterMountsCollectionSummary,
+  characterPetsCollectionSummary,
+  characterToysCollectionSummary,
+  characterTransmogCollectionSummary,
+  //Character Encounters
+  characterDungeons,
+  characterEncountersSummary,
+  characterRaids,
+  //Character Equipment
+  characterEquipmentSummary,
+  //Character Hunter Pets
+  characterHunterPetsSummary,
+  //Character Media
+  characterMediaSummary,
+  //Character Mythic Keystone Profile
+  characterMythicKeystoneProfileIndex,
+  //Character Profile
+  characterProfileStatus,
+  characterProfileSummary,
+  //Character Professions
+  characterProfessionsSummary,
+  //Character PvP
+  characterPvpSummary,
+  //Character Quests
+  characterCompletedQuests,
+  characterQuests,
+  //Character Reputations
+  characterReputationsSummary,
+  //Character Specializations
+  characterSpecializationsSummary,
+  //Character Statistics
+  characterStatisticsSummary,
+  //Character Titles
+  characterTitlesSummary,
   //Creature
   creature,
   creatureDisplayMedia,
@@ -100,6 +170,11 @@ const wowForever = {
   creatureSearch,
   creatureType,
   creatureTypeIndex,
+  //Guild
+  guild,
+  guildAchievements,
+  guildActivity,
+  guildRoster,
   //Guild Crest
   guildCrestBorder,
   guildCrestComponentsIndex,
@@ -197,15 +272,69 @@ const wowForever = {
 export default wowForever;
 export { wowForever };
 
+//Account Profile
+export * from './account-profile/index';
+export type * from './account-profile/types';
 //Achievements
 export * from './achievements/index';
 export type * from './achievements/types';
 //Auction House
 export * from './auction-house/index';
 export type * from './auction-house/types';
+//Character Achievements
+export * from './character-achievements/index';
+export type * from './character-achievements/types';
+//Character Appearance
+export * from './character-appearance/index';
+export type * from './character-appearance/types';
+//Character Collections
+export * from './character-collections/index';
+export type * from './character-collections/types';
+//Character Encounters
+export * from './character-encounters/index';
+export type * from './character-encounters/types';
+//Character Equipment
+export * from './character-equipment/index';
+export type * from './character-equipment/types';
+//Character Hunter Pets
+export * from './character-hunter-pets/index';
+export type * from './character-hunter-pets/types';
+//Character Media
+export * from './character-media/index';
+export type * from './character-media/types';
+//Character Mythic Keystone Profile
+export * from './character-mythic-keystone-profile/index';
+export type * from './character-mythic-keystone-profile/types';
+//Character Profile
+export * from './character-profile/index';
+export type * from './character-profile/types';
+//Character Professions
+export * from './character-professions/index';
+export type * from './character-professions/types';
+//Character PvP
+export * from './character-pvp/index';
+export type * from './character-pvp/types';
+//Character Quests
+export * from './character-quests/index';
+export type * from './character-quests/types';
+//Character Reputations
+export * from './character-reputations/index';
+export type * from './character-reputations/types';
+//Character Specializations
+export * from './character-specializations/index';
+export type * from './character-specializations/types';
+//Character Statistics
+export * from './character-statistics/index';
+export type * from './character-statistics/types';
+//Character Titles
+export * from './character-titles/index';
+export type * from './character-titles/types';
 //Creature
 export * from './creature/index';
 export type * from './creature/types';
+//Guild
+export * from './guild/index';
+export type * from './guild/types';
 //Guild Crest
 export * from './guild-crest/index';
 export type * from './guild-crest/types';

@@ -44,7 +44,7 @@ export interface AchievementCategoryResponse extends NullishNameId, ResponseBase
  * A criterion of an achievement.
  */
 export interface AchievementCriteria {
-  achievement?: NameIdKey;
+  achievement?: NullishNameIdKey;
   amount: number;
   child_criteria?: Array<AchievementCriteria>;
   description: null | string;

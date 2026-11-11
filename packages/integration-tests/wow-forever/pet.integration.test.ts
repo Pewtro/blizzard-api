@@ -1,8 +1,10 @@
-import { pet, petAbilityIndex, petIndex, petMedia } from '@blizzard-api/wow-forever';
+import { pet, petAbility, petAbilityIndex, petAbilityMedia, petIndex, petMedia } from '@blizzard-api/wow-forever';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
 import {
   petAbilityIndexResponseSchema,
+  petAbilityMediaResponseSchema,
+  petAbilityResponseSchema,
   petIndexResponseSchema,
   petMediaResponseSchema,
   petResponseSchema,
@@ -47,5 +49,45 @@ describe('wow-forever pet integration', async () => {
       console.error('Pet ability index validation failed:', prettifyError(parsedIndex.error));
     }
     expect(parsedIndex.success).toBe(true);
+  });
+
+  test('validates sampled pet abilities and their media', async ({ expect }) => {
+    //Forever returns an empty pet ability index, so ability IDs are sourced from the abilities on sampled pets.
+    const index = await client.sendRequest(petIndex());
+    const parsedIndex = petIndexResponseSchema.safeParse(index);
+    if (!parsedIndex.success) {
+      console.error('Pet index validation failed:', prettifyError(parsedIndex.error));
+    }
+    expect(parsedIndex.success).toBe(true);
+
+    const sampledPets = getRandomSample(parsedIndex.data?.pets, 5);
+    const petResponses = await Promise.all(Array.from(sampledPets, (petEntry) => client.sendRequest(pet(petEntry.id))));
+
+    const abilityIds = petResponses.flatMap((petResponse) => {
+      const parsedPet = petResponseSchema.safeParse(petResponse);
+      if (!parsedPet.success) {
+        console.error('Pet validation failed for id', petResponse?.id, prettifyError(parsedPet.error));
+        return [];
+      }
+      const abilities = parsedPet.data?.abilities ?? [];
+      return abilities.map((ability) => ability.ability.id);
+    });
+
+    const sampledAbilityIds = getRandomSample(abilityIds, 3);
+    for (const abilityId of sampledAbilityIds) {
+      const abilityResponse = await client.sendRequest(petAbility(abilityId));
+      const parsedAbility = petAbilityResponseSchema.safeParse(abilityResponse);
+      if (!parsedAbility.success) {
+        console.error('Pet ability validation failed for id', abilityId, prettifyError(parsedAbility.error));
+      }
+      expect(parsedAbility.success).toBe(true);
+
+      const mediaResponse = await client.sendRequest(petAbilityMedia(abilityId));
+      const parsedMedia = petAbilityMediaResponseSchema.safeParse(mediaResponse);
+      if (!parsedMedia.success) {
+        console.error('Pet ability media validation failed for id', abilityId, prettifyError(parsedMedia.error));
+      }
+      expect(parsedMedia.success).toBe(true);
+    }
   });
 });

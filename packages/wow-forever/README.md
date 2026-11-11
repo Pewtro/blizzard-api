@@ -50,15 +50,29 @@ const powerType = wowForever.powerType(123);
 type PowerTypeResponse = ExtractResourceType<typeof powerType>;
 ```
 
+## Profile APIs
+
+Forever profiles are realmless. Characters are addressed by their `{name}-{surname}` slug and guilds by their name slug. Both use the `profile-forever` namespace.
+
+```ts
+import { wowForever } from '@blizzard-api/wow-forever';
+
+const summary = wowForever.characterProfileSummary('Putrofessor', 'Putricide');
+const achievements = wowForever.characterAchievementsSummary('Putrofessor', 'Putricide');
+const roster = wowForever.guildRoster('teamraiddrømmen');
+```
+
+Account profile helpers such as `accountProfileSummary` require a user access token with the `wow.profile` scope instead of client credentials.
+
 ## Differences to @blizzard-api/wow
 
 World of Warcraft: Forever is a separate, realmless game. It instead has rulesets. This package supports rulesets, and using those rulesets for things like the auction house.
 
-Because Forever has a single static namespace and a single dynamic namespace, the endpoints do not take a namespace argument. The package hardcodes the namespaces, and `@blizzard-api/client` appends the origin to them.
+Because Forever has a single static namespace, a single dynamic namespace and a single profile namespace, the endpoints do not take a namespace argument. The package hardcodes the namespaces, and `@blizzard-api/client` appends the origin to them.
 
-| Game Version               | Static Namespace        | Dynamic Namespace        |
-| -------------------------- | ----------------------- | ------------------------ |
-| World of Warcraft: Forever | static-forever-{region} | dynamic-forever-{region} |
+| Game Version               | Static Namespace        | Dynamic Namespace        | Profile Namespace        |
+| -------------------------- | ----------------------- | ------------------------ | ------------------------ |
+| World of Warcraft: Forever | static-forever-{region} | dynamic-forever-{region} | profile-forever-{region} |
 
 The `{region}` part of the namespace is appended by `@blizzard-api/client` from the origin the client was created with, so you only ever pass the namespace without it.
 

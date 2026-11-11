@@ -51,7 +51,7 @@ export const achievementMediaResponseSchema = responseBaseSchema.extend({
 
 export const achievementCriteriaSchema: z.ZodType<AchievementCriteria> = z.lazy(() =>
   z.strictObject({
-    achievement: nameIdKeySchema.optional(),
+    achievement: nullishNameIdKeySchema.optional(),
     amount: z.number(),
     child_criteria: z.array(achievementCriteriaSchema).optional(),
     description: z.string().nullable(),
