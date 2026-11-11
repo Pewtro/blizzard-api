@@ -1,5 +1,22 @@
 # @blizzard-api/wow-forever
 
+## 0.3.0
+
+### Minor Changes
+
+- eb7a2fa: Add heirloom, journal, and account collection endpoints
+
+### Patch Changes
+
+- a040035: Share the World of Warcraft character, guild, and account profile base paths from `@blizzard-api/core`.
+
+  `wowCharacterBasePath` now includes a leading slash so it matches the other WoW base path constants. The client accepts both forms, so existing requests are unaffected.
+
+- a179c0d: Use more shared types from core
+- Updated dependencies [3cc790b]
+- Updated dependencies [a040035]
+  - @blizzard-api/core@4.5.0
+
 ## 0.2.0
 
 ### Minor Changes
