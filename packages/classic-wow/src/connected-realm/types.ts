@@ -77,7 +77,7 @@ interface RealmLockedStatus {
   is_locked_for_pct: boolean;
 }
 
-type RealmPopulationCapitalized = 'FULL' | 'HIGH' | 'LOCKED' | 'LOW' | 'MEDIUM' | 'RECOMMENDED';
+type RealmPopulationCapitalized = 'FULL' | 'HIGH' | 'LOCKED' | 'LOW' | 'MEDIUM' | 'OFFLINE' | 'RECOMMENDED';
 
 type RealmStatusCapitalized = 'DOWN' | 'UP';
 
