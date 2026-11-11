@@ -2,6 +2,7 @@
 import { z } from 'zod';
 import type { CharacterAchievementCriteria } from '../../../packages/wow-forever/src/character-achievements/types';
 import { hrefSchema, nameIdKeySchema, responseBaseSchema } from '../core';
+import { characterReferenceSchema } from './shared';
 
 export const characterAchievementCriteriaSchema: z.ZodType<CharacterAchievementCriteria> = z.lazy(() =>
   z.strictObject({
@@ -23,14 +24,6 @@ const categoryProgressSchema = z.strictObject({
   category: nameIdKeySchema,
   points: z.number(),
   quantity: z.number(),
-});
-
-const characterReferenceSchema = z.strictObject({
-  id: z.number(),
-  key: hrefSchema,
-  name: z.string(),
-  slug: z.string(),
-  surname: z.string(),
 });
 
 const recentEventSchema = z.strictObject({

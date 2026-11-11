@@ -36,6 +36,7 @@ export * from './quest';
 export * from './region';
 export * from './reputations';
 export * from './ruleset';
+export * from './shared';
 export * from './spell';
 export * from './talent';
 export * from './title';

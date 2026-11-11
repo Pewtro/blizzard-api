@@ -308,6 +308,8 @@ const wowForever = {
 export default wowForever;
 export { wowForever };
 
+//Shared
+export type * from './shared/types';
 //Account Profile
 export * from './account-profile/index';
 export type * from './account-profile/types';

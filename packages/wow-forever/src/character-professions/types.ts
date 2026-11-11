@@ -1,4 +1,5 @@
-import type { Href, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { CharacterReference } from '../shared/types';
 
 /**
  * The response for a character professions summary.
@@ -8,14 +9,6 @@ export interface CharacterProfessionsSummaryResponse extends ResponseBase {
   character: CharacterReference;
   primaries: Array<Primary>;
   secondaries: Array<Secondary>;
-}
-
-interface CharacterReference {
-  id: number;
-  key: Href;
-  name: string;
-  slug: string;
-  surname: string;
 }
 
 interface Primary {

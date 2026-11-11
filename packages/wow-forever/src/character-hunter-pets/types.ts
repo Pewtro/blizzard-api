@@ -1,4 +1,5 @@
-import type { Href, KeyBase, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { KeyBase, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { CharacterReference } from '../shared/types';
 
 /**
  * The response for a character hunter pets summary.
@@ -7,14 +8,6 @@ import type { Href, KeyBase, NameIdKey, ResponseBase } from '@blizzard-api/core'
 export interface CharacterHunterPetsSummaryResponse extends ResponseBase {
   character: CharacterReference;
   hunter_pets: Array<HunterPet>;
-}
-
-interface CharacterReference {
-  id: number;
-  key: Href;
-  name: string;
-  slug: string;
-  surname: string;
 }
 
 interface HunterPet {

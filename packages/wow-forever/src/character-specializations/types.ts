@@ -1,4 +1,5 @@
-import type { Href, NameIdKey, NullishNameId, ResponseBase } from '@blizzard-api/core';
+import type { NameIdKey, NullishNameId, ResponseBase } from '@blizzard-api/core';
+import type { CharacterReference } from '../shared/types';
 
 /**
  * The response for a character specializations summary.
@@ -7,14 +8,6 @@ import type { Href, NameIdKey, NullishNameId, ResponseBase } from '@blizzard-api
 export interface CharacterSpecializationsSummaryResponse extends ResponseBase {
   character: CharacterReference;
   specialization_groups: Array<SpecializationGroup>;
-}
-
-interface CharacterReference {
-  id: number;
-  key: Href;
-  name: string;
-  slug: string;
-  surname: string;
 }
 
 interface Specialization {

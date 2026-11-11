@@ -1,4 +1,5 @@
-import type { Href, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { CharacterReference } from '../shared/types';
 
 /**
  * The response for a character statistics summary.
@@ -69,14 +70,6 @@ export interface CharacterStatisticsSummaryResponse extends ResponseBase {
 interface BaseEffectiveStat {
   base: number;
   effective: number;
-}
-
-interface CharacterReference {
-  id: number;
-  key: Href;
-  name: string;
-  slug: string;
-  surname: string;
 }
 
 interface RatingWithValue {

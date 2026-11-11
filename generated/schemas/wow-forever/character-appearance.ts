@@ -3,35 +3,12 @@ import { z } from 'zod';
 import {
   factionSchema,
   genderSchema,
-  hrefSchema,
+  nameTypeSchema,
   nullishNameIdKeySchema,
   nullishNameIdSchema,
   responseBaseSchema,
 } from '../core';
-
-const characterReferenceSchema = z.strictObject({
-  id: z.number(),
-  key: hrefSchema,
-  name: z.string(),
-  slug: z.string(),
-  surname: z.string(),
-});
-
-const choiceSchema = z.strictObject({
-  display_order: z.number(),
-  id: z.number(),
-  name: z.string().optional().nullable(),
-});
-
-const customizationSchema = z.strictObject({
-  choice: choiceSchema,
-  option: nullishNameIdSchema,
-});
-
-const nameTypeSchema = z.strictObject({
-  name: z.string(),
-  type: z.string(),
-});
+import { characterReferenceSchema } from './shared';
 
 const itemSchema = z.strictObject({
   enchant: z.number(),
@@ -43,6 +20,17 @@ const itemSchema = z.strictObject({
   secondary_subclass: z.number().optional(),
   slot: nameTypeSchema,
   subclass: z.number().optional(),
+});
+
+const choiceSchema = z.strictObject({
+  display_order: z.number(),
+  id: z.number(),
+  name: z.string().optional().nullable(),
+});
+
+const customizationSchema = z.strictObject({
+  choice: choiceSchema,
+  option: nullishNameIdSchema,
 });
 
 export const characterAppearanceResponseSchema = responseBaseSchema.extend({

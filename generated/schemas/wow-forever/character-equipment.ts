@@ -2,29 +2,25 @@
 import { z } from 'zod';
 import {
   colorSchema,
-  hrefSchema,
-  keyBaseSchema,
+  idKeySchema,
   nameIdKeySchema,
+  nameTypeSchema,
   nullishNameIdKeySchema,
+  nullishNameTypeSchema,
   responseBaseSchema,
 } from '../core';
-
-const characterReferenceSchema = z.strictObject({
-  id: z.number(),
-  key: hrefSchema,
-  name: z.string(),
-  slug: z.string(),
-  surname: z.string(),
-});
+import { characterReferenceSchema } from './shared';
 
 const nameDescriptionSchema = z.strictObject({
   color: colorSchema,
   display_string: z.string(),
 });
 
-const nameTypeSchema = z.strictObject({
-  name: z.string(),
-  type: z.string(),
+const damageSchema = z.strictObject({
+  damage_class: nameTypeSchema,
+  display_string: z.string(),
+  max_value: z.number(),
+  min_value: z.number(),
 });
 
 const displayStringsSchema = z.strictObject({
@@ -78,13 +74,7 @@ const socketSchema = z.strictObject({
   display_color: colorSchema.optional(),
   display_string: z.string().optional(),
   item: nameIdKeySchema.optional(),
-  media: keyBaseSchema
-    .and(
-      z.strictObject({
-        id: z.number(),
-      }),
-    )
-    .optional(),
+  media: idKeySchema.optional(),
   socket_type: nameTypeSchema,
 });
 
@@ -92,6 +82,14 @@ const spellSchema = z.strictObject({
   description: z.string(),
   display_color: colorSchema.optional(),
   spell: nullishNameIdKeySchema,
+});
+
+const statSchema = z.strictObject({
+  display: nameDescriptionSchema,
+  is_equip_bonus: z.boolean().optional(),
+  is_negated: z.boolean().optional(),
+  type: nullishNameTypeSchema,
+  value: z.number(),
 });
 
 const transmogSchema = z.strictObject({
@@ -102,14 +100,15 @@ const transmogSchema = z.strictObject({
   second_item_modified_appearance_id: z.number().optional(),
 });
 
+const weaponSchema = z.strictObject({
+  attack_speed: displayStringValueSchema,
+  damage: damageSchema,
+  dps: displayStringValueSchema,
+});
+
 const itemElementSchema = z.strictObject({
   is_equipped: z.boolean().optional(),
   item: nameIdKeySchema,
-});
-
-const nullishNameTypeSchema = z.strictObject({
-  name: z.string().nullable(),
-  type: z.string(),
 });
 
 const playableClassesSchema = z.strictObject({
@@ -129,27 +128,6 @@ const setSchema = z.strictObject({
   items: z.array(itemElementSchema),
 });
 
-const statSchema = z.strictObject({
-  display: nameDescriptionSchema,
-  is_equip_bonus: z.boolean().optional(),
-  is_negated: z.boolean().optional(),
-  type: nullishNameTypeSchema,
-  value: z.number(),
-});
-
-const damageSchema = z.strictObject({
-  damage_class: nameTypeSchema,
-  display_string: z.string(),
-  max_value: z.number(),
-  min_value: z.number(),
-});
-
-const weaponSchema = z.strictObject({
-  attack_speed: displayStringValueSchema,
-  damage: damageSchema,
-  dps: displayStringValueSchema,
-});
-
 const equippedItemSchema = z.strictObject({
   armor: armorSchema.optional(),
   binding: nameTypeSchema.optional(),
@@ -160,20 +138,12 @@ const equippedItemSchema = z.strictObject({
   enchantments: z.array(enchantmentSchema).optional(),
   inventory_type: nameTypeSchema,
   is_subclass_hidden: z.boolean().optional(),
-  item: keyBaseSchema.and(
-    z.strictObject({
-      id: z.number(),
-    }),
-  ),
+  item: idKeySchema,
   item_class: nameIdKeySchema,
   item_subclass: nameIdKeySchema,
   level: displayStringValueSchema,
   limit_category: z.string().optional(),
-  media: keyBaseSchema.and(
-    z.strictObject({
-      id: z.number(),
-    }),
-  ),
+  media: idKeySchema,
   modified_appearance_id: z.number().optional(),
   modified_crafting_stat: z.array(modifiedCraftingStatSchema).optional(),
   name: z.string(),

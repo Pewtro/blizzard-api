@@ -1,4 +1,5 @@
-import type { Faction, Gender, Href, KeyBase, NameIdKey } from '@blizzard-api/core';
+import type { Faction, Gender, Href, IdKey, NameIdKey, NameType } from '@blizzard-api/core';
+import type { PetQuality, PetStats } from '../shared/types';
 
 /**
  * The response for an account profile summary.
@@ -80,39 +81,22 @@ interface Mount {
   mount: NameIdKey;
 }
 
-interface NameType {
-  name: string;
-  type: string;
-}
-
 interface Pet {
   active_slot?: number;
-  creature_display?: KeyBase & { id: number };
+  creature_display?: IdKey;
   id: number;
   is_active?: boolean;
   is_favorite?: boolean;
   level: number;
   name?: string;
-  quality: Quality;
+  quality: PetQuality;
   species: NameIdKey;
-  stats: Stats;
-}
-
-interface Quality {
-  name: string;
-  type: 'COMMON' | 'POOR' | 'RARE' | 'UNCOMMON';
+  stats: PetStats;
 }
 
 interface Slot {
-  appearances: Array<KeyBase & { id: number }>;
+  appearances: Array<IdKey>;
   slot: NameType;
-}
-
-interface Stats {
-  breed_id: number;
-  health: number;
-  power: number;
-  speed: number;
 }
 
 interface Toy {

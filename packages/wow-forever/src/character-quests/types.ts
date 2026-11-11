@@ -1,4 +1,5 @@
 import type { Href, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { CharacterReference } from '../shared/types';
 
 /**
  * The response for a character's completed quests.
@@ -17,12 +18,4 @@ export interface CharacterQuestsResponse extends ResponseBase {
   character: CharacterReference;
   completed: Href;
   in_progress: Array<NameIdKey>;
-}
-
-interface CharacterReference {
-  id: number;
-  key: Href;
-  name: string;
-  slug: string;
-  surname: string;
 }

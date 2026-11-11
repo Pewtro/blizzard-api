@@ -1,4 +1,5 @@
 import type { Href, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { CharacterReference } from '../shared/types';
 
 /**
  * The response for a character encounters summary.
@@ -25,14 +26,6 @@ export interface CharacterDungeonsResponse extends ResponseBase {
 export interface CharacterRaidsResponse extends ResponseBase {
   character: CharacterReference;
   expansions?: Array<ExpansionWithRaidInstances>;
-}
-
-interface CharacterReference {
-  id: number;
-  key: Href;
-  name: string;
-  slug: string;
-  surname: string;
 }
 
 interface DungeonDifficulties {

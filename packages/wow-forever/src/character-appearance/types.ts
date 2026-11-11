@@ -1,4 +1,5 @@
-import type { Faction, Gender, Href, NullishNameId, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { Faction, Gender, NameType, NullishNameId, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { CharacterReference } from '../shared/types';
 
 /**
  * The response for a character appearance summary.
@@ -12,14 +13,6 @@ export interface CharacterAppearanceResponse extends ResponseBase {
   items: Array<Item>;
   playable_class: NullishNameIdKey;
   playable_race: NullishNameIdKey;
-}
-
-interface CharacterReference {
-  id: number;
-  key: Href;
-  name: string;
-  slug: string;
-  surname: string;
 }
 
 interface Choice {
@@ -43,9 +36,4 @@ interface Item {
   secondary_subclass?: number;
   slot: NameType;
   subclass?: number;
-}
-
-interface NameType {
-  name: string;
-  type: string;
 }

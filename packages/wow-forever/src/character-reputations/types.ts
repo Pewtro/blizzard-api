@@ -1,4 +1,5 @@
-import type { Href, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { CharacterReference } from '../shared/types';
 
 /**
  * The response for a character reputations summary.
@@ -7,14 +8,6 @@ import type { Href, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
 export interface CharacterReputationsSummaryResponse extends ResponseBase {
   character: CharacterReference;
   reputations: Array<Reputation>;
-}
-
-interface CharacterReference {
-  id: number;
-  key: Href;
-  name: string;
-  slug: string;
-  surname: string;
 }
 
 interface Paragon {

@@ -8,6 +8,7 @@ import type {
   NullishNameIdKey,
   ResponseBase,
 } from '@blizzard-api/core';
+import type { CharacterReference } from '../shared/types';
 
 /**
  * A criterion that contributes to a guild achievement.
@@ -99,14 +100,6 @@ interface CategoryProgress {
 interface CharacterAchievement {
   achievement: NameIdKey;
   character: CharacterReference;
-}
-
-interface CharacterReference {
-  id: number;
-  key: Href;
-  name: string;
-  slug: string;
-  surname: string;
 }
 
 interface Crest {

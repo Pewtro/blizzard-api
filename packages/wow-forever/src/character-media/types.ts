@@ -1,4 +1,5 @@
-import type { Href, MediaAsset, ResponseBase } from '@blizzard-api/core';
+import type { MediaAsset, ResponseBase } from '@blizzard-api/core';
+import type { CharacterReference } from '../shared/types';
 
 /**
  * The response for a character media summary.
@@ -7,12 +8,4 @@ import type { Href, MediaAsset, ResponseBase } from '@blizzard-api/core';
 export interface CharacterMediaSummaryResponse extends ResponseBase {
   assets: Array<MediaAsset>;
   character: CharacterReference;
-}
-
-interface CharacterReference {
-  id: number;
-  key: Href;
-  name: string;
-  slug: string;
-  surname: string;
 }

@@ -1,4 +1,5 @@
-import type { Href, ResponseBase } from '@blizzard-api/core';
+import type { ResponseBase } from '@blizzard-api/core';
+import type { CharacterReference } from '../shared/types';
 
 /**
  * The response for a character PvP summary.
@@ -8,12 +9,4 @@ export interface CharacterPvpSummaryResponse extends ResponseBase {
   character: CharacterReference;
   honorable_kills: number;
   pvp_rank: number;
-}
-
-interface CharacterReference {
-  id: number;
-  key: Href;
-  name: string;
-  slug: string;
-  surname: string;
 }

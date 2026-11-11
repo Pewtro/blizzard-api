@@ -1,4 +1,5 @@
 import type { Href, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { CharacterReference } from '../shared/types';
 
 /**
  * A criterion that contributes to an achievement.
@@ -51,14 +52,6 @@ interface CategoryProgress {
   category: NameIdKey;
   points: number;
   quantity: number;
-}
-
-interface CharacterReference {
-  id: number;
-  key: Href;
-  name: string;
-  slug: string;
-  surname: string;
 }
 
 interface RecentEvent {

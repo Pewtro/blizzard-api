@@ -11,6 +11,7 @@ import {
   nullishNameIdKeySchema,
   responseBaseSchema,
 } from '../core';
+import { characterReferenceSchema } from './shared';
 
 export const guildAchievementCriteriaSchema: z.ZodType<GuildAchievementCriteria> = z.lazy(() =>
   z.strictObject({
@@ -47,17 +48,14 @@ const recentEventSchema = z.strictObject({
   timestamp: z.number(),
 });
 
+const characterAchievementSchema = z.strictObject({
+  achievement: nameIdKeySchema,
+  character: characterReferenceSchema,
+});
+
 const rgbWithIdSchema = z.strictObject({
   id: z.number(),
   rgba: colorSchema,
-});
-
-const characterReferenceSchema = z.strictObject({
-  id: z.number(),
-  key: hrefSchema,
-  name: z.string(),
-  slug: z.string(),
-  surname: z.string(),
 });
 
 const borderSchema = z.strictObject({
@@ -120,11 +118,6 @@ export const guildAchievementsResponseSchema = responseBaseSchema.extend({
 const memberSchema = z.strictObject({
   character: rosterMemberCharacterSchema,
   rank: z.number(),
-});
-
-const characterAchievementSchema = z.strictObject({
-  achievement: nameIdKeySchema,
-  character: characterReferenceSchema,
 });
 
 const modeSchema = z.strictObject({

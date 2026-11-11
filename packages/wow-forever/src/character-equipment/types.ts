@@ -1,4 +1,13 @@
-import type { Color, Href, KeyBase, NameIdKey, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
+import type {
+  Color,
+  IdKey,
+  NameIdKey,
+  NameType,
+  NullishNameIdKey,
+  NullishNameType,
+  ResponseBase,
+} from '@blizzard-api/core';
+import type { CharacterReference } from '../shared/types';
 
 /**
  * The response for a character equipment summary.
@@ -13,14 +22,6 @@ export interface CharacterEquipmentSummaryResponse extends ResponseBase {
 interface Armor {
   display: NameDescription;
   value: number;
-}
-
-interface CharacterReference {
-  id: number;
-  key: Href;
-  name: string;
-  slug: string;
-  surname: string;
 }
 
 interface Damage {
@@ -70,12 +71,12 @@ interface EquippedItem {
   enchantments?: Array<Enchantment>;
   inventory_type: NameType;
   is_subclass_hidden?: boolean;
-  item: KeyBase & { id: number };
+  item: IdKey;
   item_class: NameIdKey;
   item_subclass: NameIdKey;
   level: DisplayStringValue;
   limit_category?: string;
-  media: KeyBase & { id: number };
+  media: IdKey;
   modified_appearance_id?: number;
   modified_crafting_stat?: Array<ModifiedCraftingStat>;
   name: string;
@@ -110,16 +111,6 @@ interface NameDescription {
   display_string: string;
 }
 
-interface NameType {
-  name: string;
-  type: string;
-}
-
-interface NullishNameType {
-  name: null | string;
-  type: string;
-}
-
 interface PlayableClasses {
   display_string: string;
   links: Array<NameIdKey>;
@@ -147,7 +138,7 @@ interface Socket {
   display_color?: Color;
   display_string?: string;
   item?: NameIdKey;
-  media?: KeyBase & { id: number };
+  media?: IdKey;
   socket_type: NameType;
 }
 
