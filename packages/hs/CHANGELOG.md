@@ -1,5 +1,13 @@
 # @blizzard-api/hs
 
+## 3.2.3
+
+### Patch Changes
+
+- 4bf0d2d: Add runeCost as part of single card fetch response
+- Updated dependencies [b7659c2]
+  - @blizzard-api/core@4.4.0
+
 ## 3.2.2
 
 ### Patch Changes

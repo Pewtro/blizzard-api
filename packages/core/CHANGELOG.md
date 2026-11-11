@@ -1,5 +1,11 @@
 # @blizzard-api/core
 
+## 4.4.0
+
+### Minor Changes
+
+- b7659c2: Add the `profile-forever` namespace
+
 ## 4.3.0
 
 ### Minor Changes

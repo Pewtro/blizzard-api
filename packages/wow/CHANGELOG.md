@@ -1,5 +1,16 @@
 # @blizzard-api/wow
 
+## 4.1.6
+
+### Patch Changes
+
+- 9b25423: Mark faction names from ReputationFactionResponse as nullable
+- 7f2a568: Add OFFLINE as a realm population option
+- a23ae8c: Mark quest names from QuestAreaResponse as nullable
+- 4605cb8: Mark a pet ability name as nullish to match other locales
+- Updated dependencies [b7659c2]
+  - @blizzard-api/core@4.4.0
+
 ## 4.1.5
 
 ### Patch Changes
