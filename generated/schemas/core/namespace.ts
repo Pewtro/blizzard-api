@@ -29,11 +29,14 @@ export const staticForeverNamespacesSchema = z.literal('static-forever');
 
 export const dynamicForeverNamespacesSchema = z.literal('dynamic-forever');
 
+export const profileForeverNamespacesSchema = z.literal('profile-forever');
+
 export const blizzardNamespacesSchema = z.union([
   dynamicClassicNamespacesSchema,
   dynamicForeverNamespacesSchema,
   namespaceTypesSchema,
   profileClassicNamespacesSchema,
+  profileForeverNamespacesSchema,
   staticClassicNamespacesSchema,
   staticForeverNamespacesSchema,
 ]);

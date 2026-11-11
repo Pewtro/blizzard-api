@@ -48,6 +48,11 @@ export type StaticForeverNamespaces = 'static-forever';
 export type DynamicForeverNamespaces = 'dynamic-forever';
 
 /**
+ * The profile namespaces of World of Warcraft: Forever.
+ */
+export type ProfileForeverNamespaces = 'profile-forever';
+
+/**
  * Every namespace supported by the Blizzard API.
  */
 export type BlizzardNamespaces =
@@ -55,5 +60,6 @@ export type BlizzardNamespaces =
   | DynamicForeverNamespaces
   | NamespaceTypes
   | ProfileClassicNamespaces
+  | ProfileForeverNamespaces
   | StaticClassicNamespaces
   | StaticForeverNamespaces;
