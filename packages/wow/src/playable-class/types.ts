@@ -1,4 +1,4 @@
-import type { GenderName, Href, KeyBase, MediaAsset, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { GenderName, Href, IdKey, MediaAsset, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a playable class index.
@@ -23,7 +23,7 @@ export interface PlayableClassMediaResponse extends ResponseBase {
  */
 export interface PlayableClassResponse extends NameId, ResponseBase {
   gender_name: GenderName;
-  media: Media;
+  media: IdKey;
   playable_races: Array<NameIdKey>;
   power_type: NameIdKey;
   pvp_talent_slots: Href;
@@ -36,10 +36,6 @@ export interface PlayableClassResponse extends NameId, ResponseBase {
  */
 export interface PvpTalentSlotsResponse extends ResponseBase {
   talent_slots: Array<TalentSlot>;
-}
-
-interface Media extends KeyBase {
-  id: number;
 }
 
 interface TalentSlot {

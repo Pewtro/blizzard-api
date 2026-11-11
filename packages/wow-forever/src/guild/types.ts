@@ -3,8 +3,9 @@ import type {
   Faction,
   Factions,
   Href,
-  KeyBase,
+  IdKey,
   NameIdKey,
+  NameType,
   NullishNameIdKey,
   ResponseBase,
 } from '@blizzard-api/core';
@@ -88,7 +89,7 @@ interface ActivityElement {
 interface Border {
   color: RgbWithId;
   id: number;
-  media: KeyBase & { id: number };
+  media: IdKey;
 }
 
 interface CategoryProgress {
@@ -126,8 +127,7 @@ interface Member {
   rank: number;
 }
 
-interface Mode {
-  name: string;
+interface Mode extends NameType {
   type: ModeType;
 }
 
@@ -141,10 +141,6 @@ type ModeType =
   | 'MYTHIC'
   | 'MYTHIC_KEYSTONE'
   | 'NORMAL';
-
-interface Playable extends KeyBase {
-  id: number;
-}
 
 interface RecentEvent {
   achievement: NameIdKey;
@@ -162,8 +158,8 @@ interface RosterMemberCharacter {
   key: Href;
   level: number;
   name: string;
-  playable_class: Playable;
-  playable_race: Playable;
+  playable_class: IdKey;
+  playable_race: IdKey;
   slug: string;
   surname: string;
 }

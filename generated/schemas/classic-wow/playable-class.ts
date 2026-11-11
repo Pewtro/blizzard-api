@@ -3,7 +3,7 @@ import { z } from 'zod';
 import {
   genderNameSchema,
   hrefSchema,
-  keyBaseSchema,
+  idKeySchema,
   mediaAssetSchema,
   nameIdKeySchema,
   nullishNameIdKeySchema,
@@ -20,14 +20,10 @@ export const playableClassMediaResponseSchema = responseBaseSchema.extend({
   id: z.number(),
 });
 
-const mediaSchema = keyBaseSchema.extend({
-  id: z.number(),
-});
-
 export const playableClassResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
   additional_power_types: z.array(nullishNameIdKeySchema).optional(),
   gender_name: genderNameSchema,
-  media: mediaSchema,
+  media: idKeySchema,
   playable_races: z.array(nullishNameIdKeySchema),
   power_type: nameIdKeySchema,
   pvp_talent_slots: hrefSchema,

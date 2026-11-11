@@ -1,9 +1,11 @@
 import type {
   BaseSearchParameters,
   Color,
+  IdKey,
   KeyBase,
   Locales,
   MediaAsset,
+  NameId,
   NameIdKey,
   NullishNameId,
   NullishNameIdKey,
@@ -41,7 +43,7 @@ export interface ItemMediaResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface ItemResponse extends NullishNameId, ResponseBase {
-  appearances?: Array<KeyBase & { id: number }>;
+  appearances?: Array<IdKey>;
   description?: null | string;
   inventory_type: InventoryTypeName;
   is_equippable: boolean;
@@ -50,7 +52,7 @@ export interface ItemResponse extends NullishNameId, ResponseBase {
   item_subclass: NameIdKey;
   level: number;
   max_count: number;
-  media: Media;
+  media: IdKey;
   preview_item: PreviewItem;
   purchase_price: number;
   purchase_quantity: number;
@@ -90,11 +92,9 @@ export interface ItemSetIndexResponse extends ResponseBase {
  * The response for an item set.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface ItemSetResponse extends ResponseBase {
+export interface ItemSetResponse extends NameId, ResponseBase {
   effects: Array<Effect>;
-  id: number;
   items: Array<NullishNameIdKey>;
-  name: string;
 }
 
 /**
@@ -218,10 +218,6 @@ interface ItemSearchResponseItem extends KeyBase {
   };
 }
 
-interface Media extends KeyBase {
-  id: number;
-}
-
 interface PreviewItem {
   armor?: Armor;
   binding?: {
@@ -236,12 +232,12 @@ interface PreviewItem {
   durability?: Durability;
   inventory_type: InventoryTypeName;
   is_subclass_hidden?: boolean;
-  item: Media;
+  item: IdKey;
   item_class: NameIdKey;
   item_subclass: NameIdKey;
   level?: Durability;
   limit_category?: string;
-  media: Media;
+  media: IdKey;
   name: null | string;
   quality: ItemQuality;
   recipe?: Recipe;
@@ -274,11 +270,11 @@ interface RecipeItem {
   container_slots?: Durability;
   durability?: Durability;
   inventory_type: InventoryTypeName;
-  item: Media;
+  item: IdKey;
   item_class: NameIdKey;
   item_subclass: NameIdKey;
   level?: Durability;
-  media: Media;
+  media: IdKey;
   name: string;
   quality: ItemQuality;
   requirements?: Requirements;

@@ -1,3 +1,5 @@
+import type { NameType } from '@blizzard-api/core';
+
 export type CharacterClass =
   | 'barbarian'
   | 'crusader'
@@ -22,13 +24,11 @@ export interface SkillResponse {
   skill: Skill;
 }
 
-interface Rune {
+interface Rune extends NameType {
   description: string;
   descriptionHtml: string;
   level: number;
-  name: string;
   slug: string;
-  type: string;
 }
 
 interface Skill {

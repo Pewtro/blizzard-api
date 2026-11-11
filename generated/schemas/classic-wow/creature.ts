@@ -2,10 +2,12 @@
 import { z } from 'zod';
 import {
   baseSearchParametersSchema,
+  idKeySchema,
   keyBaseSchema,
   localesSchema,
   mediaAssetSchema,
   nameIdKeySchema,
+  nameIdSchema,
   nullishNameIdKeySchema,
   responseBaseSchema,
   searchResponseWithoutResultsSchema,
@@ -25,12 +27,16 @@ export const creatureFamilyMediaResponseSchema = responseBaseSchema.extend({
   id: z.number(),
 });
 
-const mediaSchema = keyBaseSchema.extend({
-  id: z.number(),
+export const creatureFamilyResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
+  media: idKeySchema.optional(),
+  specialization: nameIdKeySchema.optional(),
 });
 
-const creatureDisplaySchema = keyBaseSchema.extend({
-  id: z.number(),
+export const creatureResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
+  creature_displays: z.array(idKeySchema),
+  family: nameIdKeySchema,
+  is_tameable: z.boolean(),
+  type: nameIdKeySchema,
 });
 
 export const creatureSearchParametersSchema = baseSearchParametersSchema.extend({
@@ -65,30 +71,11 @@ export const creatureTypeIndexResponseSchema = responseBaseSchema.extend({
   creature_types: z.array(nullishNameIdKeySchema),
 });
 
-export const creatureTypeResponseSchema = responseBaseSchema.extend({
-  id: z.number(),
-  name: z.string(),
-});
+export const creatureTypeResponseSchema = nameIdSchema.extend(responseBaseSchema.shape);
 
 export const creatureDisplayMediaResponseSchema = responseBaseSchema.extend({
   assets: z.array(displayMediaAssetSchema),
   id: z.number(),
-});
-
-export const creatureFamilyResponseSchema = responseBaseSchema.extend({
-  id: z.number(),
-  media: mediaSchema.optional(),
-  name: z.string(),
-  specialization: nameIdKeySchema.optional(),
-});
-
-export const creatureResponseSchema = responseBaseSchema.extend({
-  creature_displays: z.array(creatureDisplaySchema),
-  family: nameIdKeySchema,
-  id: z.number(),
-  is_tameable: z.boolean(),
-  name: z.string(),
-  type: nameIdKeySchema,
 });
 
 export const creatureSearchResponseSchema = searchResponseWithoutResultsSchema.extend({

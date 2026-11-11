@@ -1,8 +1,9 @@
 import type {
   Faction,
-  KeyBase,
+  IdKey,
   MediaAsset,
   NameIdKey,
+  NameType,
   NullishNameId,
   NullishNameIdKey,
   ResponseBase,
@@ -83,7 +84,7 @@ export interface AchievementResponse extends NullishNameId, ResponseBase {
   display_order: number;
   guild_reward_items?: Array<NameIdKey>;
   is_account_wide: boolean;
-  media: KeyBase & { id: number };
+  media: IdKey;
   next_achievement?: NameIdKey;
   points: number;
   prerequisite_achievement?: NameIdKey;
@@ -92,7 +93,6 @@ export interface AchievementResponse extends NullishNameId, ResponseBase {
   reward_item?: NameIdKey;
 }
 
-interface Operator {
-  name: string;
+interface Operator extends NameType {
   type: 'AND' | 'COMPLETE_AT_LEAST';
 }

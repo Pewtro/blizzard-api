@@ -1,4 +1,4 @@
-import type { NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for an index of neighborhood maps.
@@ -12,10 +12,7 @@ export interface NeighborhoodMapIndexResponse extends ResponseBase {
  * The response for a neighborhood map.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface NeighborhoodMapResponse extends ResponseBase {
-  id: number;
-  name: string;
-}
+export interface NeighborhoodMapResponse extends NameId, ResponseBase {}
 
 /**
  * The response for a neighborhood within a neighborhood map.

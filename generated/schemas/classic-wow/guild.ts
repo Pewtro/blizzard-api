@@ -6,7 +6,7 @@ import {
   factionSchema,
   factionsSchema,
   hrefSchema,
-  keyBaseSchema,
+  idKeySchema,
   nameIdKeySchema,
   realmSchema,
   responseBaseSchema,
@@ -47,11 +47,7 @@ const childCriterumSchema = z.strictObject({
 const borderSchema = z.strictObject({
   color: rgbWithIdSchema,
   id: z.number(),
-  media: keyBaseSchema.and(
-    z.strictObject({
-      id: z.number(),
-    }),
-  ),
+  media: idKeySchema,
 });
 
 const criteriaSchema = z.strictObject({
@@ -61,17 +57,13 @@ const criteriaSchema = z.strictObject({
   is_completed: z.boolean(),
 });
 
-const playableSchema = keyBaseSchema.extend({
-  id: z.number(),
-});
-
 const rosterMemberCharacterSchema = characterSchema.extend({
   faction: z.strictObject({
     type: factionsSchema,
   }),
   level: z.number(),
-  playable_class: playableSchema,
-  playable_race: playableSchema,
+  playable_class: idKeySchema,
+  playable_race: idKeySchema,
 });
 
 export const guildAchievementsClassicEraResponseSchema = responseBaseSchema.extend({

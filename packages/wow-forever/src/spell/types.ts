@@ -1,5 +1,6 @@
 import type {
   BaseSearchParameters,
+  IdKey,
   KeyBase,
   Locales,
   MediaAsset,
@@ -23,7 +24,7 @@ export interface SpellMediaResponse extends ResponseBase {
  */
 export interface SpellResponse extends NullishNameId, ResponseBase {
   description: null | string;
-  media: Media;
+  media: IdKey;
 }
 
 /**
@@ -43,10 +44,6 @@ export interface SpellSearchParameters extends BaseSearchParameters {
  */
 export interface SpellSearchResponse extends SearchResponseWithoutResults {
   results: Array<SpellSearchResponseItem>;
-}
-
-interface Media extends KeyBase {
-  id: number;
 }
 
 interface SpellSearchResponseItem extends KeyBase {

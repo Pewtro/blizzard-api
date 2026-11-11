@@ -1,4 +1,4 @@
-import type { Character, Color, IdKey, NameIdKey, NameType, ResponseBase } from '@blizzard-api/core';
+import type { Character, Color, IdKey, NameId, NameIdKey, NameType, ResponseBase } from '@blizzard-api/core';
 
 export interface CharacterEquipmentSummaryResponse extends ResponseBase {
   character: Character;
@@ -87,11 +87,7 @@ interface ItemElement {
   item: NameIdKey;
 }
 
-interface ModifiedCraftingStat {
-  id: number;
-  name: string;
-  type: string;
-}
+interface ModifiedCraftingStat extends NameId, NameType {}
 
 interface NameDescription {
   color: Color;

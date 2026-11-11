@@ -1,4 +1,4 @@
-import type { Character, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { Character, NameIdKey, NameType, ResponseBase } from '@blizzard-api/core';
 
 export interface CharacterSoulbindsResponse extends ResponseBase {
   character: Character;
@@ -30,7 +30,6 @@ interface Trait {
   trait?: NameIdKey;
 }
 
-interface TypeClass {
-  name: string;
+interface TypeClass extends NameType {
   type: 'ENDURANCE' | 'FINESSE' | 'POTENCY';
 }

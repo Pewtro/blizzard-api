@@ -7,12 +7,10 @@ const gameModeSchema = nameIdSchema.extend({
   slug: z.string(),
 });
 
-const classSchema = z.strictObject({
+const classSchema = nameIdSchema.extend({
   alternateHeroCardIds: z.array(z.number()).optional(),
   cardId: z.number().optional(),
   heroPowerCardId: z.number().optional(),
-  id: z.number(),
-  name: z.string(),
   slug: z.string(),
 });
 

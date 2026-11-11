@@ -3,6 +3,7 @@ import { z } from 'zod';
 import {
   colorSchema,
   hrefSchema,
+  idKeySchema,
   keyBaseSchema,
   nameIdKeySchema,
   nameIdSchema,
@@ -25,10 +26,6 @@ const mythicRatingSchema = z.strictObject({
   rating: z.number(),
 });
 
-const specializationSchema = keyBaseSchema.extend({
-  id: z.number(),
-});
-
 const realmSchema = keyBaseSchema.extend({
   id: z.number(),
   slug: z.string(),
@@ -43,7 +40,7 @@ const memberSchema = z.strictObject({
     type: nonNeutralFactionsSchema,
   }),
   profile: profileSchema,
-  specialization: specializationSchema,
+  specialization: idKeySchema,
 });
 
 const leadingGroupSchema = z.strictObject({

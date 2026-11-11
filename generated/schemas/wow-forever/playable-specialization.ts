@@ -2,9 +2,11 @@
 import { z } from 'zod';
 import {
   genderNameSchema,
+  idKeySchema,
   keyBaseSchema,
   mediaAssetSchema,
   nameIdKeySchema,
+  nameTypeSchema,
   nullishNameIdKeySchema,
   nullishNameIdSchema,
   responseBaseSchema,
@@ -18,15 +20,6 @@ export const playableSpecializationIndexResponseSchema = responseBaseSchema.exte
 export const playableSpecializationMediaResponseSchema = responseBaseSchema.extend({
   assets: z.array(mediaAssetSchema),
   id: z.number(),
-});
-
-const mediaSchema = keyBaseSchema.extend({
-  id: z.number(),
-});
-
-const primaryStatTypeSchema = z.strictObject({
-  name: z.string(),
-  type: z.string(),
 });
 
 const specTalentTreeSchema = keyBaseSchema.extend({
@@ -49,11 +42,11 @@ const pvpTalentSchema = z.strictObject({
 export const playableSpecializationResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
   gender_description: genderNameSchema.optional(),
   hero_talent_trees: z.array(nullishNameIdKeySchema).optional(),
-  media: mediaSchema,
+  media: idKeySchema,
   playable_class: nullishNameIdKeySchema,
   power_type: nameIdKeySchema,
-  primary_stat_type: primaryStatTypeSchema.optional(),
+  primary_stat_type: nameTypeSchema.optional(),
   pvp_talents: z.array(pvpTalentSchema).optional(),
-  role: primaryStatTypeSchema.optional(),
+  role: nameTypeSchema.optional(),
   spec_talent_tree: specTalentTreeSchema,
 });

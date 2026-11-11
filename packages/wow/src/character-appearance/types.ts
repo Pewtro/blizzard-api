@@ -1,4 +1,4 @@
-import type { Character, Color, Faction, Gender, KeyBase, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { Character, Color, Faction, Gender, IdKey, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 export interface CharacterAppearanceResponse extends ResponseBase {
   active_spec: NameIdKey;
@@ -15,7 +15,7 @@ export interface CharacterAppearanceResponse extends ResponseBase {
 interface BorderEmblem {
   color: RGBWithId;
   id: number;
-  media: KeyBase & { id: number };
+  media: IdKey;
 }
 
 interface Choice {

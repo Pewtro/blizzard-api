@@ -1,4 +1,13 @@
-import type { Color, Href, KeyBase, NameId, NameIdKey, NonNeutralFactions, ResponseBase } from '@blizzard-api/core';
+import type {
+  Color,
+  Href,
+  IdKey,
+  KeyBase,
+  NameId,
+  NameIdKey,
+  NonNeutralFactions,
+  ResponseBase,
+} from '@blizzard-api/core';
 
 /**
  * The response for a Mythic Keystone leaderboard index.
@@ -42,7 +51,7 @@ interface LeadingGroup {
 interface Member {
   faction: { type: NonNeutralFactions };
   profile: Profile;
-  specialization: Specialization;
+  specialization: IdKey;
 }
 interface MythicRating {
   color: Color;
@@ -56,8 +65,4 @@ interface Profile extends NameId {
 interface Realm extends KeyBase {
   id: number;
   slug: string;
-}
-
-interface Specialization extends KeyBase {
-  id: number;
 }

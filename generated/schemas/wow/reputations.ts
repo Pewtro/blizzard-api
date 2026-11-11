@@ -4,6 +4,7 @@ import {
   factionSchema,
   keyBaseSchema,
   nameIdKeySchema,
+  nameIdSchema,
   nullishNameIdKeySchema,
   nullishNameIdSchema,
   responseBaseSchema,
@@ -29,11 +30,9 @@ export const reputationTiersIndexResponseSchema = responseBaseSchema.extend({
   reputation_tiers: z.array(reputationTierSchema),
 });
 
-const tierSchema = z.strictObject({
-  id: z.number(),
+const tierSchema = nameIdSchema.extend({
   max_value: z.number(),
   min_value: z.number(),
-  name: z.string(),
 });
 
 export const reputationFactionResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({

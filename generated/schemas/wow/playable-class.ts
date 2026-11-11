@@ -3,7 +3,7 @@ import { z } from 'zod';
 import {
   genderNameSchema,
   hrefSchema,
-  keyBaseSchema,
+  idKeySchema,
   mediaAssetSchema,
   nameIdKeySchema,
   nameIdSchema,
@@ -19,22 +19,18 @@ export const playableClassMediaResponseSchema = responseBaseSchema.extend({
   id: z.number(),
 });
 
-const mediaSchema = keyBaseSchema.extend({
-  id: z.number(),
+export const playableClassResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
+  gender_name: genderNameSchema,
+  media: idKeySchema,
+  playable_races: z.array(nameIdKeySchema),
+  power_type: nameIdKeySchema,
+  pvp_talent_slots: hrefSchema,
+  specializations: z.array(nameIdKeySchema),
 });
 
 const talentSlotSchema = z.strictObject({
   slot_number: z.number(),
   unlock_player_level: z.number(),
-});
-
-export const playableClassResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
-  gender_name: genderNameSchema,
-  media: mediaSchema,
-  playable_races: z.array(nameIdKeySchema),
-  power_type: nameIdKeySchema,
-  pvp_talent_slots: hrefSchema,
-  specializations: z.array(nameIdKeySchema),
 });
 
 export const pvpTalentSlotsResponseSchema = responseBaseSchema.extend({

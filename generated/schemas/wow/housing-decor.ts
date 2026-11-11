@@ -2,6 +2,7 @@
 import { z } from 'zod';
 import {
   baseSearchParametersSchema,
+  idKeySchema,
   keyBaseSchema,
   localesSchema,
   nameIdKeySchema,
@@ -48,8 +49,8 @@ export const fixtureHookResponseSchema = responseBaseSchema.extend({
   type_name: z.string(),
 });
 
-const fixtureHookSearchResponseItemSchema = keyBaseSchema.extend({
-  id: z.number(),
+export const fixtureHookSearchResponseSchema = searchResponseWithoutResultsSchema.extend({
+  results: z.array(idKeySchema),
 });
 
 export const fixtureIndexResponseSchema = responseBaseSchema.extend({
@@ -96,10 +97,6 @@ export const decorResponseSchema = responseBaseSchema.extend({
 
 export const decorSearchResponseSchema = searchResponseWithoutResultsSchema.extend({
   results: z.array(decorSearchResponseItemSchema),
-});
-
-export const fixtureHookSearchResponseSchema = searchResponseWithoutResultsSchema.extend({
-  results: z.array(fixtureHookSearchResponseItemSchema),
 });
 
 export const fixtureSearchResponseSchema = searchResponseWithoutResultsSchema.extend({

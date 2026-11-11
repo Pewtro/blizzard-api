@@ -4,7 +4,7 @@ import type {
   Faction,
   Factions,
   Href,
-  KeyBase,
+  IdKey,
   NameIdKey,
   Realm,
   ResponseBase,
@@ -63,7 +63,7 @@ interface ActivityElement {
 interface Border {
   color: RgbWithId;
   id: number;
-  media: KeyBase & { id: number };
+  media: IdKey;
 }
 
 interface CategoryProgress {
@@ -106,10 +106,6 @@ interface Member {
   rank: number;
 }
 
-interface Playable extends KeyBase {
-  id: number;
-}
-
 interface RecentEvent {
   achievement: NameIdKey;
   timestamp: number;
@@ -123,6 +119,6 @@ interface RgbWithId {
 interface RosterMemberCharacter extends Character {
   faction: { type: Factions };
   level: number;
-  playable_class: Playable;
-  playable_race: Playable;
+  playable_class: IdKey;
+  playable_race: IdKey;
 }

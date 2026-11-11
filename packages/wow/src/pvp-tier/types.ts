@@ -1,4 +1,4 @@
-import type { KeyBase, MediaAsset, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { IdKey, MediaAsset, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a PvP tier index.
@@ -25,7 +25,7 @@ export interface PvpTierResponse extends ResponseBase {
   bracket: Bracket;
   id: number;
   max_rating: number;
-  media: Media;
+  media: IdKey;
   min_rating: number;
   name: null | string;
   rating_type: number;
@@ -34,8 +34,4 @@ export interface PvpTierResponse extends ResponseBase {
 interface Bracket {
   id: number;
   type: string;
-}
-
-interface Media extends KeyBase {
-  id: number;
 }

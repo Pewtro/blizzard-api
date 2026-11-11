@@ -1,4 +1,12 @@
-import type { Faction, KeyBase, NameIdKey, NullishNameId, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
+import type {
+  Faction,
+  KeyBase,
+  NameId,
+  NameIdKey,
+  NullishNameId,
+  NullishNameIdKey,
+  ResponseBase,
+} from '@blizzard-api/core';
 
 /**
  * The response for a reputation faction index.
@@ -54,9 +62,7 @@ interface ReputationTier extends KeyBase {
   name?: string;
 }
 
-interface Tier {
-  id: number;
+interface Tier extends NameId {
   max_value: number;
   min_value: number;
-  name: string;
 }

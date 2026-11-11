@@ -1,4 +1,4 @@
-import type { Character, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { Character, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 export interface CharacterAchievementsSummaryResponse extends ResponseBase {
   achievements: Array<Achievement>;
@@ -28,9 +28,7 @@ interface Achievement {
   id: number;
 }
 
-interface Category {
-  id: number;
-  name: string;
+interface Category extends NameId {
   statistics?: Array<Statistic>;
   sub_categories?: Array<SubCategory>;
 }
@@ -54,8 +52,6 @@ interface Statistic {
   quantity: number;
 }
 
-interface SubCategory {
-  id: number;
-  name: string;
+interface SubCategory extends NameId {
   statistics: Array<Statistic>;
 }

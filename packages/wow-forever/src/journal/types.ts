@@ -3,10 +3,12 @@ import type {
   Faction,
   Factions,
   Href,
+  IdKey,
   KeyBase,
   Locales,
   NameId,
   NameIdKey,
+  NameType,
   NullishNameIdKey,
   ResponseBase,
   SearchResponseWithoutResults,
@@ -105,7 +107,7 @@ export interface JournalInstanceResponse extends NameId, ResponseBase {
   expansion?: NameIdKey;
   location?: NameId;
   map?: NameId;
-  media: Media;
+  media: IdKey;
   minimum_level?: number;
   modes?: Array<ModeElement>;
   order_index?: number;
@@ -182,12 +184,7 @@ interface JournalEncounterSearchResponseItem extends KeyBase {
   };
 }
 
-interface Media extends KeyBase {
-  id: number;
-}
-
-interface Mode {
-  name: string;
+interface Mode extends NameType {
   type: ModeType;
 }
 

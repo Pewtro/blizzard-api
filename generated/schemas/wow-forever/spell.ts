@@ -2,6 +2,7 @@
 import { z } from 'zod';
 import {
   baseSearchParametersSchema,
+  idKeySchema,
   keyBaseSchema,
   localesSchema,
   mediaAssetSchema,
@@ -15,8 +16,9 @@ export const spellMediaResponseSchema = responseBaseSchema.extend({
   id: z.number(),
 });
 
-const mediaSchema = keyBaseSchema.extend({
-  id: z.number(),
+export const spellResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
+  description: z.string().nullable(),
+  media: idKeySchema,
 });
 
 export const spellSearchParametersSchema = baseSearchParametersSchema.extend({
@@ -32,11 +34,6 @@ const spellSearchResponseItemSchema = keyBaseSchema.extend({
     }),
     name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
   }),
-});
-
-export const spellResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
-  description: z.string().nullable(),
-  media: mediaSchema,
 });
 
 export const spellSearchResponseSchema = searchResponseWithoutResultsSchema.extend({

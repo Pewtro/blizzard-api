@@ -1,5 +1,6 @@
 import type {
   BaseSearchParameters,
+  IdKey,
   KeyBase,
   Locales,
   MediaAsset,
@@ -32,7 +33,7 @@ export interface AzeriteEssenceMediaResponse extends ResponseBase {
  */
 export interface AzeriteEssenceResponse extends NameId, ResponseBase {
   allowed_specializations: Array<NameIdKey>;
-  media: Media;
+  media: IdKey;
   powers: Array<Power>;
 }
 
@@ -58,10 +59,6 @@ interface AzeriteEssenceSearchResponseItem extends KeyBase {
     allowed_specializations: Array<{ id: number; name: Record<Locales, string> }>;
     name: Record<Locales, string>;
   };
-}
-
-interface Media extends KeyBase {
-  id: number;
 }
 
 interface Power {

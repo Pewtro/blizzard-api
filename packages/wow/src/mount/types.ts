@@ -2,9 +2,11 @@ import type {
   BaseSearchParameters,
   Faction,
   Factions,
+  IdKey,
   KeyBase,
   Locales,
   NameIdKey,
+  NameType,
   NullishNameId,
   NullishNameIdKey,
   ResponseBase,
@@ -24,12 +26,12 @@ export interface MountIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface MountResponse extends NullishNameId, ResponseBase {
-  creature_displays: Array<CreatureDisplay>;
+  creature_displays: Array<IdKey>;
   description: null | string;
   faction?: Faction;
   requirements?: { classes?: Array<NameIdKey>; faction?: Faction; races?: Array<NameIdKey> };
   should_exclude_if_uncollected?: boolean;
-  source?: Source;
+  source?: NameType;
 }
 
 /**
@@ -51,10 +53,6 @@ export interface MountSearchResponse extends SearchResponseWithoutResults {
   results: Array<MountSearchResponseItem>;
 }
 
-interface CreatureDisplay extends KeyBase {
-  id: number;
-}
-
 interface MountSearchResponseItem extends KeyBase {
   data: {
     creature_displays: Array<{ id: number }>;
@@ -63,9 +61,4 @@ interface MountSearchResponseItem extends KeyBase {
     name: Record<Locales, string | undefined>;
     source: { name: Record<Locales, string>; type: string };
   };
-}
-
-interface Source {
-  name: string;
-  type: string;
 }

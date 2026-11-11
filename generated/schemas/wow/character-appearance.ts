@@ -5,7 +5,7 @@ import {
   colorSchema,
   factionSchema,
   genderSchema,
-  keyBaseSchema,
+  idKeySchema,
   nameIdKeySchema,
   nameIdSchema,
   responseBaseSchema,
@@ -45,11 +45,7 @@ const customizationSchema = z.strictObject({
 const borderEmblemSchema = z.strictObject({
   color: rgbWithIdSchema,
   id: z.number(),
-  media: keyBaseSchema.and(
-    z.strictObject({
-      id: z.number(),
-    }),
-  ),
+  media: idKeySchema,
 });
 
 const guildCrestSchema = z.strictObject({

@@ -1,5 +1,6 @@
 import type {
   BaseSearchParameters,
+  IdKey,
   KeyBase,
   Locales,
   NameId,
@@ -38,7 +39,7 @@ export interface FixtureHookResponse extends ResponseBase {
 }
 
 export interface FixtureHookSearchResponse extends SearchResponseWithoutResults {
-  results: Array<FixtureHookSearchResponseItem>;
+  results: Array<IdKey>;
 }
 
 export interface FixtureIndexResponse extends ResponseBase {
@@ -90,10 +91,6 @@ interface DecorSource {
 interface DyeSlot {
   dye_color_category: string;
   slot_index: number;
-}
-
-interface FixtureHookSearchResponseItem extends KeyBase {
-  id: number;
 }
 
 interface FixtureSearchResponseItem extends KeyBase {

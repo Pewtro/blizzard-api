@@ -6,10 +6,12 @@ import {
   factionSchema,
   factionsSchema,
   hrefSchema,
+  idKeySchema,
   keyBaseSchema,
   localesSchema,
   nameIdKeySchema,
   nameIdSchema,
+  nameTypeSchema,
   nullishNameIdKeySchema,
   responseBaseSchema,
   searchResponseWithoutResultsSchema,
@@ -46,10 +48,6 @@ export const journalInstanceIndexResponseSchema = responseBaseSchema.extend({
 const assetSchema = z.strictObject({
   key: z.string(),
   value: z.string(),
-});
-
-const mediaSchema = keyBaseSchema.extend({
-  id: z.number(),
 });
 
 const creatureDisplaySchema = z.strictObject({
@@ -145,8 +143,7 @@ const modeTypeSchema = z.union([
   z.literal('NORMAL'),
 ]);
 
-const modeSchema = z.strictObject({
-  name: z.string(),
+const modeSchema = nameTypeSchema.extend({
   type: modeTypeSchema,
 });
 
@@ -218,7 +215,7 @@ export const journalInstanceResponseSchema = nameIdSchema.extend(responseBaseSch
   expansion: nameIdKeySchema.optional(),
   location: nameIdSchema.optional(),
   map: nameIdSchema.optional(),
-  media: mediaSchema,
+  media: idKeySchema,
   minimum_level: z.number().optional(),
   modes: z.array(modeElementSchema).optional(),
   order_index: z.number().optional(),

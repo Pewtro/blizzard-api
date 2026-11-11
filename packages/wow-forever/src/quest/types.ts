@@ -1,4 +1,4 @@
-import type { Faction, Href, NameIdKey, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { Faction, Href, NameIdKey, NameType, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a quest area index.
@@ -113,8 +113,7 @@ interface QuestMoneyUnits {
   silver: number;
 }
 
-interface QuestOperator {
-  name: string;
+interface QuestOperator extends NameType {
   type: 'AND' | 'OR';
 }
 

@@ -1,4 +1,4 @@
-import type { Character, Href, IdKey, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { Character, Href, IdKey, NameIdKey, NameType, ResponseBase } from '@blizzard-api/core';
 import type { PetQuality, PetStats } from '../shared/types';
 
 export interface CharacterCollectionDecorResponse extends ResponseBase {
@@ -69,12 +69,7 @@ interface Pet {
 
 interface Slot {
   appearances: Array<IdKey>;
-  slot: SlotSlot;
-}
-
-interface SlotSlot {
-  name: string;
-  type: string;
+  slot: NameType;
 }
 
 interface Toy {

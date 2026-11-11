@@ -1,4 +1,4 @@
-import type { KeyBase, NameId, NameIdKey, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { IdKey, KeyBase, NameId, NameIdKey, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a pvp talent index.
@@ -103,7 +103,7 @@ interface ClassTalentNodeRank {
 
 interface HeroTalentTree extends NameId {
   hero_talent_nodes: Array<HeroTalentTreeNode>;
-  media: KeyBase & { id: number };
+  media: IdKey;
   playable_class: NameIdKey;
   playable_specializations: Array<NameIdKey>;
 }

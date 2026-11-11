@@ -3,6 +3,7 @@ import { z } from 'zod';
 import {
   baseSearchParametersSchema,
   colorSchema,
+  idKeySchema,
   keyBaseSchema,
   localesSchema,
   mediaAssetSchema,
@@ -23,10 +24,6 @@ export const itemClassResponseSchema = nullishNameIdSchema.extend(responseBaseSc
 
 export const itemMediaResponseSchema = responseBaseSchema.extend({
   assets: z.array(mediaAssetSchema),
-  id: z.number(),
-});
-
-const mediaSchema = keyBaseSchema.extend({
   id: z.number(),
 });
 
@@ -220,11 +217,11 @@ const recipeItemSchema = z.strictObject({
   }),
   durability: durabilitySchema,
   inventory_type: inventoryTypeNameSchema,
-  item: mediaSchema,
+  item: idKeySchema,
   item_class: nameIdKeySchema,
   item_subclass: nameIdKeySchema,
   level: durabilitySchema,
-  media: mediaSchema,
+  media: idKeySchema,
   name: z.string(),
   quality: itemQualitySchema,
   requirements: requirementsSchema,
@@ -264,11 +261,11 @@ const previewItemSchema = z.strictObject({
   durability: durabilitySchema.optional(),
   inventory_type: inventoryTypeNameSchema,
   is_subclass_hidden: z.boolean().optional(),
-  item: mediaSchema,
+  item: idKeySchema,
   item_class: nameIdKeySchema,
   item_subclass: nameIdKeySchema,
   level: durabilitySchema.optional(),
-  media: mediaSchema,
+  media: idKeySchema,
   name: z.string(),
   quality: itemQualitySchema,
   recipe: recipeSchema.optional(),
@@ -287,15 +284,7 @@ const previewItemSchema = z.strictObject({
 });
 
 export const itemResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
-  appearances: z
-    .array(
-      keyBaseSchema.and(
-        z.strictObject({
-          id: z.number(),
-        }),
-      ),
-    )
-    .optional(),
+  appearances: z.array(idKeySchema).optional(),
   description: z.string().optional(),
   inventory_type: inventoryTypeNameSchema,
   is_equippable: z.boolean(),
@@ -304,7 +293,7 @@ export const itemResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.
   item_subclass: nameIdKeySchema,
   level: z.number(),
   max_count: z.number(),
-  media: mediaSchema,
+  media: idKeySchema,
   preview_item: previewItemSchema,
   purchase_price: z.number(),
   purchase_quantity: z.number(),

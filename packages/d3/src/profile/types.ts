@@ -1,3 +1,5 @@
+import type { NameType } from '@blizzard-api/core';
+
 export interface AccountHeroFollowerItemsResponse {
   enchantress?: Record<string, FollowerItem>;
   scoundrel?: Record<string, FollowerItem>;
@@ -298,13 +300,11 @@ interface ReagentItem {
   slug: string;
 }
 
-interface Rune {
+interface Rune extends NameType {
   description: string;
   descriptionHtml: string;
   level: number;
-  name: string;
   slug: string;
-  type: string;
 }
 
 interface Scoundrel {

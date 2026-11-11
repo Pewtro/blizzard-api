@@ -1,4 +1,4 @@
-import type { KeyBase, MediaAsset, NameId, NameIdKey, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { IdKey, KeyBase, MediaAsset, NameId, NameIdKey, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a tech talent index.
@@ -23,7 +23,7 @@ export interface TechTalentMediaResponse extends ResponseBase {
 export interface TechTalentResponse extends NameId, ResponseBase {
   description?: string;
   display_order: number;
-  media: Media;
+  media: IdKey;
   prerequisite_talent?: NameIdKey;
   socket_type?: { name: string; type: 'ENDURANCE' | 'FINESSE' | 'POTENCY' };
   spell_tooltip?: SpellTooltip;
@@ -48,10 +48,6 @@ export interface TechTalentTreeResponse extends ResponseBase {
   max_tiers: number;
   playable_class?: NameIdKey;
   talents: Array<NameIdKey>;
-}
-
-interface Media extends KeyBase {
-  id: number;
 }
 
 interface SpellTooltip {

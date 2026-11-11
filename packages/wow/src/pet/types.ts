@@ -1,8 +1,9 @@
 import type {
-  KeyBase,
+  IdKey,
   MediaAsset,
   NameId,
   NameIdKey,
+  NameType,
   NullishNameId,
   NullishNameIdKey,
   ResponseBase,
@@ -32,7 +33,7 @@ export interface PetAbilityMediaResponse extends ResponseBase {
 export interface PetAbilityResponse extends NullishNameId, ResponseBase {
   battle_pet_type: BattlePetType;
   cooldown?: number;
-  media: Media;
+  media: IdKey;
   rounds: number;
 }
 
@@ -69,9 +70,9 @@ export interface PetResponse extends NameId, ResponseBase {
   is_horde_only: boolean;
   is_random_creature_display: boolean;
   is_tradable: boolean;
-  media: Media;
+  media: IdKey;
   should_exclude_if_uncollected?: boolean;
-  source?: Source;
+  source?: NameType;
 }
 
 interface Ability {
@@ -80,15 +81,4 @@ interface Ability {
   slot: number;
 }
 
-interface BattlePetType extends NameId {
-  type: string;
-}
-
-interface Media extends KeyBase {
-  id: number;
-}
-
-interface Source {
-  name: string;
-  type: string;
-}
+interface BattlePetType extends NameId, NameType {}

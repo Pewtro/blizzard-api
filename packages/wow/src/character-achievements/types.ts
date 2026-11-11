@@ -1,4 +1,4 @@
-import type { Character, Href, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { Character, Href, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 export interface CharacterAchievementCriteria {
   amount?: number;
@@ -55,8 +55,6 @@ interface Statistic {
   quantity: number;
 }
 
-interface SubCategory {
-  id: number;
-  name: string;
+interface SubCategory extends NameId {
   statistics: Array<Statistic>;
 }

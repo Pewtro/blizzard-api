@@ -1,4 +1,4 @@
-import type { KeyBase, MediaAsset, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { IdKey, MediaAsset, NameId, NameIdKey, NameType, ResponseBase } from '@blizzard-api/core';
 
 /**
  * Interface for a response from the conduit index endpoint.
@@ -17,7 +17,7 @@ export interface ConduitResponse extends ResponseBase {
   item: NameIdKey;
   name: string;
   ranks: Array<Rank>;
-  socket_type: SocketType;
+  socket_type: NameType;
 }
 
 /**
@@ -44,7 +44,7 @@ export interface CovenantResponse extends ResponseBase {
   class_abilities?: Array<ClassAbility>;
   description: string;
   id: number;
-  media?: Media;
+  media?: IdKey;
   name: string;
   renown_rewards: Array<RenownReward>;
   signature_ability?: SignatureAbility;
@@ -87,10 +87,6 @@ interface ClassAbilitySpellTooltip {
   spell: NameIdKey;
 }
 
-interface Media extends KeyBase {
-  id: number;
-}
-
 interface Rank {
   id: number;
   spell_tooltip: SpellTooltip;
@@ -113,11 +109,6 @@ interface SignatureAbilitySpellTooltip {
   description: string;
   range?: string;
   spell: NameIdKey;
-}
-
-interface SocketType {
-  name: string;
-  type: string;
 }
 
 interface SpellTooltip {

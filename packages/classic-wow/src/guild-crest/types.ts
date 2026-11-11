@@ -1,4 +1,4 @@
-import type { Color, KeyBase, ResponseBase } from '@blizzard-api/core';
+import type { Color, IdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a guild crest border or emblem.
@@ -26,7 +26,7 @@ interface Background {
 
 interface Border {
   id: number;
-  media: Media;
+  media: IdKey;
 }
 
 interface Colors {
@@ -38,7 +38,4 @@ interface Colors {
 interface GuildCrestAsset {
   key: string;
   value: string;
-}
-interface Media extends KeyBase {
-  id: number;
 }

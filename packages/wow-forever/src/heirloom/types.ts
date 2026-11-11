@@ -1,4 +1,4 @@
-import type { Color, KeyBase, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { Color, IdKey, NameIdKey, NameType, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for the heirloom index.
@@ -17,8 +17,8 @@ export interface HeirloomIndexResponse extends ResponseBase {
 export interface HeirloomResponse extends ResponseBase {
   id: number;
   item: NameIdKey;
-  media: Media;
-  source: Source;
+  media: IdKey;
+  source: NameType;
   source_description: string;
   upgrades: Array<Upgrade>;
 }
@@ -29,7 +29,7 @@ interface AttackSpeedClass {
 }
 
 interface Damage {
-  damage_class: Source;
+  damage_class: NameType;
   display_string: string;
   max_value: number;
   min_value: number;
@@ -40,10 +40,6 @@ interface Display {
   display_string: string;
 }
 
-interface Media extends KeyBase {
-  id: number;
-}
-
 interface Requirements {
   level: RequirementsLevel;
 }
@@ -52,15 +48,10 @@ interface RequirementsLevel {
   display_string: string;
 }
 
-interface Source {
-  name: string;
-  type: string;
-}
-
 interface Stat {
   display: Display;
   is_equip_bonus?: boolean;
-  type: Source;
+  type: NameType;
   value: number;
 }
 
@@ -70,17 +61,17 @@ interface Upgrade {
 }
 
 interface UpgradeItem {
-  binding: Source;
+  binding: NameType;
   bonus_list: Array<number>;
   context: number;
-  inventory_type: Source;
-  item: Media;
+  inventory_type: NameType;
+  item: IdKey;
   item_class: NameIdKey;
   item_subclass: NameIdKey;
   level: AttackSpeedClass;
-  media: Media;
+  media: IdKey;
   name: string;
-  quality: Source;
+  quality: NameType;
   requirements: Requirements;
   stats: Array<Stat>;
   upgrades: Upgrades;

@@ -1,5 +1,6 @@
 import type {
   BaseSearchParameters,
+  IdKey,
   KeyBase,
   Locales,
   NameIdKey,
@@ -47,7 +48,7 @@ export interface ItemAppearanceResponse extends ResponseBase {
   item_display_info_id: number;
   item_subclass?: NameIdKey;
   items?: Array<NullishNameIdKey>;
-  media: ItemAppearanceMedia;
+  media: IdKey;
   slot?: ItemAppearanceSlot;
 }
 
@@ -82,7 +83,7 @@ export interface ItemAppearanceSetIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface ItemAppearanceSetResponse extends ResponseBase {
-  appearances: Array<ItemAppearanceSummary>;
+  appearances: Array<IdKey>;
   id: number;
   set_name: string;
 }
@@ -100,11 +101,7 @@ export interface ItemAppearanceSlotIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface ItemAppearanceSlotResponse extends ResponseBase {
-  appearances: Array<ItemAppearanceSummary>;
-}
-
-interface ItemAppearanceMedia extends KeyBase {
-  id: number;
+  appearances: Array<IdKey>;
 }
 
 interface ItemAppearanceSearchResponseItem extends KeyBase {
@@ -121,8 +118,4 @@ interface ItemAppearanceSearchResponseItem extends KeyBase {
 interface ItemAppearanceSlot {
   name: string;
   type: ItemAppearanceSlotType;
-}
-
-interface ItemAppearanceSummary extends KeyBase {
-  id: number;
 }

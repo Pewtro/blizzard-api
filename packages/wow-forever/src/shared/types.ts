@@ -1,12 +1,9 @@
-import type { Href } from '@blizzard-api/core';
+import type { KeyBase, NameId } from '@blizzard-api/core';
 
 /**
  * The character reference returned by World of Warcraft: Forever profile endpoints.
  */
-export interface CharacterReference {
-  id: number;
-  key: Href;
-  name: string;
+export interface CharacterReference extends KeyBase, NameId {
   slug: string;
   surname: string;
 }

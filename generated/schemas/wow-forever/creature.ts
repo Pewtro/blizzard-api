@@ -2,6 +2,7 @@
 import { z } from 'zod';
 import {
   baseSearchParametersSchema,
+  idKeySchema,
   keyBaseSchema,
   localesSchema,
   mediaAssetSchema,
@@ -26,12 +27,16 @@ export const creatureFamilyMediaResponseSchema = responseBaseSchema.extend({
   id: z.number(),
 });
 
-const mediaSchema = keyBaseSchema.extend({
-  id: z.number(),
+export const creatureFamilyResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
+  media: idKeySchema.optional(),
+  specialization: nameIdKeySchema.optional(),
 });
 
-const creatureDisplaySchema = keyBaseSchema.extend({
-  id: z.number(),
+export const creatureResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
+  creature_displays: z.array(idKeySchema),
+  family: nameIdKeySchema.optional(),
+  is_tameable: z.boolean(),
+  type: nullishNameIdKeySchema,
 });
 
 export const creatureSearchParametersSchema = baseSearchParametersSchema.extend({
@@ -71,20 +76,6 @@ export const creatureTypeResponseSchema = nullishNameIdSchema.extend(responseBas
 export const creatureDisplayMediaResponseSchema = responseBaseSchema.extend({
   assets: z.array(displayMediaAssetSchema),
   id: z.number(),
-});
-
-export const creatureFamilyResponseSchema = responseBaseSchema.extend({
-  id: z.number(),
-  media: mediaSchema.optional(),
-  name: z.string().nullable(),
-  specialization: nameIdKeySchema.optional(),
-});
-
-export const creatureResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
-  creature_displays: z.array(creatureDisplaySchema),
-  family: nameIdKeySchema.optional(),
-  is_tameable: z.boolean(),
-  type: nullishNameIdKeySchema,
 });
 
 export const creatureSearchResponseSchema = searchResponseWithoutResultsSchema.extend({

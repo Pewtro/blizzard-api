@@ -3,9 +3,10 @@ import { z } from 'zod';
 import type { AchievementCriteria } from '../../../packages/wow-forever/src/achievements/types';
 import {
   factionSchema,
-  keyBaseSchema,
+  idKeySchema,
   mediaAssetSchema,
   nameIdKeySchema,
+  nameTypeSchema,
   nullishNameIdKeySchema,
   nullishNameIdSchema,
   responseBaseSchema,
@@ -35,8 +36,7 @@ export const achievementCategoryResponseSchema = nullishNameIdSchema.extend(resp
   subcategories: z.array(nullishNameIdKeySchema).optional(),
 });
 
-const operatorSchema = z.strictObject({
-  name: z.string(),
+const operatorSchema = nameTypeSchema.extend({
   type: z.union([z.literal('AND'), z.literal('COMPLETE_AT_LEAST')]),
 });
 
@@ -70,11 +70,7 @@ export const achievementResponseSchema = nullishNameIdSchema.extend(responseBase
   display_order: z.number(),
   guild_reward_items: z.array(nameIdKeySchema).optional(),
   is_account_wide: z.boolean(),
-  media: keyBaseSchema.and(
-    z.strictObject({
-      id: z.number(),
-    }),
-  ),
+  media: idKeySchema,
   next_achievement: nameIdKeySchema.optional(),
   points: z.number(),
   prerequisite_achievement: nameIdKeySchema.optional(),

@@ -1,8 +1,10 @@
 import type {
   BaseSearchParameters,
+  IdKey,
   KeyBase,
   Locales,
   MediaAsset,
+  NameId,
   NameIdKey,
   ResponseBase,
   SearchResponseWithoutResults,
@@ -38,10 +40,8 @@ export interface CreatureFamilyMediaResponse extends ResponseBase {
  * The response for a creature family.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface CreatureFamilyResponse extends ResponseBase {
-  id: number;
-  media: Media;
-  name: string;
+export interface CreatureFamilyResponse extends NameId, ResponseBase {
+  media: IdKey;
   specialization: NameIdKey;
 }
 
@@ -49,12 +49,10 @@ export interface CreatureFamilyResponse extends ResponseBase {
  * The response for a creature.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface CreatureResponse extends ResponseBase {
-  creature_displays: Array<CreatureDisplay>;
+export interface CreatureResponse extends NameId, ResponseBase {
+  creature_displays: Array<IdKey>;
   family: NameIdKey;
-  id: number;
   is_tameable: boolean;
-  name: string;
   type: NameIdKey;
 }
 
@@ -89,14 +87,7 @@ export interface CreatureTypeIndexResponse extends ResponseBase {
  * The response for a creature type.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface CreatureTypeResponse extends ResponseBase {
-  id: number;
-  name: string;
-}
-
-interface CreatureDisplay extends KeyBase {
-  id: number;
-}
+export interface CreatureTypeResponse extends NameId, ResponseBase {}
 
 interface CreatureSearchResponseItem extends KeyBase {
   data: {
@@ -112,8 +103,4 @@ interface CreatureSearchResponseItem extends KeyBase {
 interface DisplayMediaAsset {
   key: string;
   value: string;
-}
-
-interface Media extends KeyBase {
-  id: number;
 }

@@ -4,6 +4,7 @@ import {
   colorSchema,
   idKeySchema,
   nameIdKeySchema,
+  nameIdSchema,
   nameTypeSchema,
   nullishNameIdKeySchema,
   nullishNameTypeSchema,
@@ -58,11 +59,7 @@ const enchantmentSchema = z.strictObject({
   source_item: nullishNameIdKeySchema.optional(),
 });
 
-const modifiedCraftingStatSchema = z.strictObject({
-  id: z.number(),
-  name: z.string(),
-  type: z.string(),
-});
+const modifiedCraftingStatSchema = nameIdSchema.extend(nameTypeSchema.shape);
 
 const sellPriceSchema = z.strictObject({
   display_strings: displayStringsSchema,

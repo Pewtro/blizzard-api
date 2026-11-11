@@ -1,4 +1,13 @@
-import type { KeyBase, MediaAsset, NameId, NameIdKey, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
+import type {
+  IdKey,
+  KeyBase,
+  MediaAsset,
+  NameId,
+  NameIdKey,
+  NameType,
+  NullishNameIdKey,
+  ResponseBase,
+} from '@blizzard-api/core';
 
 /**
  * The response for a profession index.
@@ -23,9 +32,9 @@ export interface ProfessionMediaResponse extends ResponseBase {
  */
 export interface ProfessionResponse extends NameId, ResponseBase {
   description: string;
-  media: Media;
+  media: IdKey;
   skill_tiers: Array<NameIdKey>;
-  type: Type;
+  type: NameType;
 }
 
 /**
@@ -57,7 +66,7 @@ export interface RecipeResponse extends NameId, ResponseBase {
   crafted_quantity?: CraftedQuantity;
   description?: null | string;
   horde_crafted_item?: NameIdKey;
-  media: Media;
+  media: IdKey;
   modified_crafting_slots?: Array<ModifiedCraftSlot>;
   rank?: number;
   reagents?: Array<Reagent>;
@@ -74,10 +83,6 @@ interface CraftedQuantity {
   value?: number;
 }
 
-interface Media extends KeyBase {
-  id: number;
-}
-
 interface ModifiedCraftSlot {
   display_order: number;
   slot_type: KeyBase & { id: number; name?: null | string };
@@ -86,9 +91,4 @@ interface ModifiedCraftSlot {
 interface Reagent {
   quantity: number;
   reagent: NameIdKey;
-}
-
-interface Type {
-  name: string;
-  type: string;
 }

@@ -37,12 +37,10 @@ interface CardbackMetadataResponse extends NameId {
   slug: string;
 }
 
-interface Class {
+interface Class extends NameId {
   alternateHeroCardIds?: Array<number>;
   cardId?: number;
   heroPowerCardId?: number;
-  id: number;
-  name: string;
   slug: string;
 }
 

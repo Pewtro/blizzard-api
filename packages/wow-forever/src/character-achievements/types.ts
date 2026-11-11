@@ -1,4 +1,4 @@
-import type { Href, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { Href, NameIdKey, NullishNameId, ResponseBase } from '@blizzard-api/core';
 import type { CharacterReference } from '../shared/types';
 
 /**
@@ -67,8 +67,6 @@ interface Statistic {
   quantity: number;
 }
 
-interface SubCategory {
-  id: number;
-  name: null | string;
+interface SubCategory extends NullishNameId {
   statistics: Array<Statistic>;
 }

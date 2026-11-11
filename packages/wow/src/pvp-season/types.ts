@@ -1,4 +1,13 @@
-import type { Faction, Href, KeyBase, NameId, NameIdKey, NonNeutralFactions, ResponseBase } from '@blizzard-api/core';
+import type {
+  Faction,
+  Href,
+  IdKey,
+  KeyBase,
+  NameId,
+  NameIdKey,
+  NonNeutralFactions,
+  ResponseBase,
+} from '@blizzard-api/core';
 
 /**
  * The response for a PvP leaderboard index.
@@ -6,7 +15,7 @@ import type { Faction, Href, KeyBase, NameId, NameIdKey, NonNeutralFactions, Res
  */
 export interface PvpLeaderboardIndexResponse extends ResponseBase {
   leaderboards: Array<KeyBase & { id?: number; name: string }>;
-  season: Season;
+  season: IdKey;
 }
 
 /**
@@ -17,7 +26,7 @@ export interface PvpLeaderboardResponse extends ResponseBase {
   bracket: Bracket;
   entries: Array<Entry>;
   name: string;
-  season: Season;
+  season: IdKey;
 }
 
 /**
@@ -26,7 +35,7 @@ export interface PvpLeaderboardResponse extends ResponseBase {
  */
 export interface PvpRewardsIndexResponse extends ResponseBase {
   rewards: Array<Reward>;
-  season: Season;
+  season: IdKey;
 }
 
 /**
@@ -34,8 +43,8 @@ export interface PvpRewardsIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface PvpSeasonIndexResponse extends ResponseBase {
-  current_season: Season;
-  seasons: Array<Season>;
+  current_season: IdKey;
+  seasons: Array<IdKey>;
 }
 
 /**
@@ -66,7 +75,7 @@ interface Entry {
   rank: number;
   rating: number;
   season_match_statistics: SeasonMatchStatistics;
-  tier: Season;
+  tier: IdKey;
 }
 
 interface Realm extends KeyBase {
@@ -80,10 +89,6 @@ interface Reward {
   faction?: Faction;
   rating_cutoff: number;
   specialization?: NameIdKey;
-}
-
-interface Season extends KeyBase {
-  id: number;
 }
 
 interface SeasonMatchStatistics {

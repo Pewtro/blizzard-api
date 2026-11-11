@@ -4,8 +4,10 @@ import {
   baseSearchParametersSchema,
   factionSchema,
   factionsSchema,
+  idKeySchema,
   keyBaseSchema,
   localesSchema,
+  nameTypeSchema,
   nullishNameIdKeySchema,
   nullishNameIdSchema,
   responseBaseSchema,
@@ -16,13 +18,19 @@ export const mountIndexResponseSchema = responseBaseSchema.extend({
   mounts: z.array(nullishNameIdKeySchema),
 });
 
-const creatureDisplaySchema = keyBaseSchema.extend({
-  id: z.number(),
-});
-
-const sourceSchema = z.strictObject({
-  name: z.string(),
-  type: z.string(),
+export const mountResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
+  creature_displays: z.array(idKeySchema),
+  description: z.string().nullable(),
+  faction: factionSchema.optional(),
+  requirements: z
+    .strictObject({
+      classes: z.array(nullishNameIdKeySchema).optional(),
+      faction: factionSchema.optional(),
+      races: z.array(nullishNameIdKeySchema).optional(),
+    })
+    .optional(),
+  should_exclude_if_uncollected: z.boolean().optional(),
+  source: nameTypeSchema.optional(),
 });
 
 export const mountSearchParametersSchema = baseSearchParametersSchema.extend({
@@ -52,21 +60,6 @@ const mountSearchResponseItemSchema = keyBaseSchema.extend({
       })
       .optional(),
   }),
-});
-
-export const mountResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
-  creature_displays: z.array(creatureDisplaySchema),
-  description: z.string().nullable(),
-  faction: factionSchema.optional(),
-  requirements: z
-    .strictObject({
-      classes: z.array(nullishNameIdKeySchema).optional(),
-      faction: factionSchema.optional(),
-      races: z.array(nullishNameIdKeySchema).optional(),
-    })
-    .optional(),
-  should_exclude_if_uncollected: z.boolean().optional(),
-  source: sourceSchema.optional(),
 });
 
 export const mountSearchResponseSchema = searchResponseWithoutResultsSchema.extend({

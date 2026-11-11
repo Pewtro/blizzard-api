@@ -3,6 +3,7 @@ import { z } from 'zod';
 import {
   factionSchema,
   hrefSchema,
+  idKeySchema,
   keyBaseSchema,
   nameIdKeySchema,
   nameIdSchema,
@@ -10,8 +11,16 @@ import {
   responseBaseSchema,
 } from '../core';
 
-const seasonSchema = keyBaseSchema.extend({
-  id: z.number(),
+export const pvpLeaderboardIndexResponseSchema = responseBaseSchema.extend({
+  leaderboards: z.array(
+    keyBaseSchema.and(
+      z.strictObject({
+        id: z.number().optional(),
+        name: z.string(),
+      }),
+    ),
+  ),
+  season: idKeySchema,
 });
 
 const bracketSchema = z.strictObject({
@@ -28,8 +37,8 @@ const rewardSchema = z.strictObject({
 });
 
 export const pvpSeasonIndexResponseSchema = responseBaseSchema.extend({
-  current_season: seasonSchema,
-  seasons: z.array(seasonSchema),
+  current_season: idKeySchema,
+  seasons: z.array(idKeySchema),
 });
 
 export const pvpSeasonResponseSchema = responseBaseSchema.extend({
@@ -56,18 +65,6 @@ const seasonMatchStatisticsSchema = z.strictObject({
   won: z.number(),
 });
 
-export const pvpLeaderboardIndexResponseSchema = responseBaseSchema.extend({
-  leaderboards: z.array(
-    keyBaseSchema.and(
-      z.strictObject({
-        id: z.number().optional(),
-        name: z.string(),
-      }),
-    ),
-  ),
-  season: seasonSchema,
-});
-
 const entrySchema = z.strictObject({
   character: characterSchema,
   faction: z.strictObject({
@@ -76,17 +73,17 @@ const entrySchema = z.strictObject({
   rank: z.number(),
   rating: z.number(),
   season_match_statistics: seasonMatchStatisticsSchema,
-  tier: seasonSchema,
+  tier: idKeySchema,
 });
 
 export const pvpRewardsIndexResponseSchema = responseBaseSchema.extend({
   rewards: z.array(rewardSchema),
-  season: seasonSchema,
+  season: idKeySchema,
 });
 
 export const pvpLeaderboardResponseSchema = responseBaseSchema.extend({
   bracket: bracketSchema,
   entries: z.array(entrySchema),
   name: z.string(),
-  season: seasonSchema,
+  season: idKeySchema,
 });

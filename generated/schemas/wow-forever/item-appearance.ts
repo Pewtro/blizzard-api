@@ -2,6 +2,7 @@
 import { z } from 'zod';
 import {
   baseSearchParametersSchema,
+  idKeySchema,
   keyBaseSchema,
   localesSchema,
   nameIdKeySchema,
@@ -36,10 +37,6 @@ export const itemAppearanceSlotTypeSchema = z.union([
   z.literal('WRIST'),
 ]);
 
-const itemAppearanceMediaSchema = keyBaseSchema.extend({
-  id: z.number(),
-});
-
 const itemAppearanceSlotSchema = z.strictObject({
   name: z.string(),
   type: itemAppearanceSlotTypeSchema,
@@ -66,8 +63,10 @@ export const itemAppearanceSetIndexResponseSchema = responseBaseSchema.extend({
   appearance_sets: z.array(nameIdKeySchema),
 });
 
-const itemAppearanceSummarySchema = keyBaseSchema.extend({
+export const itemAppearanceSetResponseSchema = responseBaseSchema.extend({
+  appearances: z.array(idKeySchema),
   id: z.number(),
+  set_name: z.string(),
 });
 
 export const itemAppearanceSlotIndexResponseSchema = responseBaseSchema.extend({
@@ -75,7 +74,7 @@ export const itemAppearanceSlotIndexResponseSchema = responseBaseSchema.extend({
 });
 
 export const itemAppearanceSlotResponseSchema = responseBaseSchema.extend({
-  appearances: z.array(itemAppearanceSummarySchema),
+  appearances: z.array(idKeySchema),
 });
 
 export const itemAppearanceResponseSchema = responseBaseSchema.extend({
@@ -84,16 +83,10 @@ export const itemAppearanceResponseSchema = responseBaseSchema.extend({
   item_display_info_id: z.number(),
   item_subclass: nameIdKeySchema.optional(),
   items: z.array(nullishNameIdKeySchema).optional(),
-  media: itemAppearanceMediaSchema,
+  media: idKeySchema,
   slot: itemAppearanceSlotSchema.optional(),
 });
 
 export const itemAppearanceSearchResponseSchema = searchResponseWithoutResultsSchema.extend({
   results: z.array(itemAppearanceSearchResponseItemSchema),
-});
-
-export const itemAppearanceSetResponseSchema = responseBaseSchema.extend({
-  appearances: z.array(itemAppearanceSummarySchema),
-  id: z.number(),
-  set_name: z.string(),
 });

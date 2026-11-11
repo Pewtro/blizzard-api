@@ -2,7 +2,9 @@ import type {
   Character,
   Color,
   IdKey,
+  NameId,
   NameIdKey,
+  NameType,
   NullishNameIdKey,
   NullishNameType,
   ResponseBase,
@@ -97,11 +99,7 @@ interface ItemElement {
   item: NameIdKey;
 }
 
-interface ModifiedCraftingStat {
-  id: number;
-  name: string;
-  type: string;
-}
+interface ModifiedCraftingStat extends NameId, NameType {}
 
 interface NameDescription {
   color: Color;

@@ -1,4 +1,4 @@
-import type { Href, KeyBase, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { Href, IdKey, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a Mythic Keystone dungeon index.
@@ -34,8 +34,8 @@ export interface MythicKeystoneIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface MythicKeystonePeriodIndexResponse extends ResponseBase {
-  current_period: Period;
-  periods: Array<Period>;
+  current_period: IdKey;
+  periods: Array<IdKey>;
 }
 
 /**
@@ -53,8 +53,8 @@ export interface MythicKeystonePeriodResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface MythicKeystoneSeasonIndexResponse extends ResponseBase {
-  current_season: Period;
-  seasons: Array<Period>;
+  current_season: IdKey;
+  seasons: Array<IdKey>;
 }
 
 /**
@@ -64,7 +64,7 @@ export interface MythicKeystoneSeasonIndexResponse extends ResponseBase {
 export interface MythicKeystoneSeasonResponse extends ResponseBase {
   end_timestamp?: number;
   id: number;
-  periods: Array<Period>;
+  periods: Array<IdKey>;
   season_name: null | string;
   start_timestamp: number;
 }
@@ -72,10 +72,6 @@ export interface MythicKeystoneSeasonResponse extends ResponseBase {
 interface KeystoneUpgrade {
   qualifying_duration: number;
   upgrade_level: number;
-}
-
-interface Period extends KeyBase {
-  id: number;
 }
 
 interface Zone {

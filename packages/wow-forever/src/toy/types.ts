@@ -1,4 +1,4 @@
-import type { KeyBase, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { IdKey, NameType, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a toy index.
@@ -15,17 +15,8 @@ export interface ToyIndexResponse extends ResponseBase {
 export interface ToyResponse extends ResponseBase {
   id: number;
   item: NullishNameIdKey;
-  media: Media;
+  media: IdKey;
   should_exclude_if_uncollected?: boolean;
-  source: Source;
+  source: NameType;
   source_description?: string;
-}
-
-interface Media extends KeyBase {
-  id: number;
-}
-
-interface Source {
-  name: string;
-  type: string;
 }

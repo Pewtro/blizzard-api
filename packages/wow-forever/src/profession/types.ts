@@ -1,8 +1,10 @@
 import type {
+  IdKey,
   KeyBase,
   MediaAsset,
   NameId,
   NameIdKey,
+  NameType,
   NullishNameId,
   NullishNameIdKey,
   ResponseBase,
@@ -31,9 +33,9 @@ export interface ProfessionMediaResponse extends ResponseBase {
  */
 export interface ProfessionResponse extends NullishNameId, ResponseBase {
   description: null | string;
-  media: Media;
+  media: IdKey;
   skill_tiers: Array<NameIdKey>;
-  type: Type;
+  type: NameType;
 }
 
 /**
@@ -65,7 +67,7 @@ export interface RecipeResponse extends NullishNameId, ResponseBase {
   crafted_quantity?: CraftedQuantity;
   description?: null | string;
   horde_crafted_item?: NameIdKey;
-  media: Media;
+  media: IdKey;
   modified_crafting_slots?: Array<ModifiedCraftSlot>;
   rank?: number;
   reagents?: Array<Reagent>;
@@ -82,10 +84,6 @@ interface CraftedQuantity {
   value?: number;
 }
 
-interface Media extends KeyBase {
-  id: number;
-}
-
 interface ModifiedCraftSlot {
   display_order: number;
   slot_type: KeyBase & { id: number; name?: null | string };
@@ -94,9 +92,4 @@ interface ModifiedCraftSlot {
 interface Reagent {
   quantity: number;
   reagent: NullishNameIdKey;
-}
-
-interface Type {
-  name: string;
-  type: string;
 }

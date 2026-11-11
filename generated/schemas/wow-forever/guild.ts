@@ -6,8 +6,9 @@ import {
   factionSchema,
   factionsSchema,
   hrefSchema,
-  keyBaseSchema,
+  idKeySchema,
   nameIdKeySchema,
+  nameTypeSchema,
   nullishNameIdKeySchema,
   responseBaseSchema,
 } from '../core';
@@ -61,11 +62,21 @@ const rgbWithIdSchema = z.strictObject({
 const borderSchema = z.strictObject({
   color: rgbWithIdSchema,
   id: z.number(),
-  media: keyBaseSchema.and(
-    z.strictObject({
-      id: z.number(),
-    }),
-  ),
+  media: idKeySchema,
+});
+
+const rosterMemberCharacterSchema = z.strictObject({
+  faction: z.strictObject({
+    type: factionsSchema,
+  }),
+  id: z.number(),
+  key: hrefSchema,
+  level: z.number(),
+  name: z.string(),
+  playable_class: idKeySchema,
+  playable_race: idKeySchema,
+  slug: z.string(),
+  surname: z.string(),
 });
 
 const modeTypeSchema = z.union([
@@ -79,24 +90,6 @@ const modeTypeSchema = z.union([
   z.literal('MYTHIC_KEYSTONE'),
   z.literal('NORMAL'),
 ]);
-
-const playableSchema = keyBaseSchema.extend({
-  id: z.number(),
-});
-
-const rosterMemberCharacterSchema = z.strictObject({
-  faction: z.strictObject({
-    type: factionsSchema,
-  }),
-  id: z.number(),
-  key: hrefSchema,
-  level: z.number(),
-  name: z.string(),
-  playable_class: playableSchema,
-  playable_race: playableSchema,
-  slug: z.string(),
-  surname: z.string(),
-});
 
 const crestSchema = z.strictObject({
   background: z.strictObject({
@@ -120,8 +113,7 @@ const memberSchema = z.strictObject({
   rank: z.number(),
 });
 
-const modeSchema = z.strictObject({
-  name: z.string(),
+const modeSchema = nameTypeSchema.extend({
   type: modeTypeSchema,
 });
 

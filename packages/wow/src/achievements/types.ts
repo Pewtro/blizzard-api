@@ -1,4 +1,4 @@
-import type { Faction, KeyBase, MediaAsset, NameId, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { Faction, IdKey, MediaAsset, NameId, NameIdKey, NameType, ResponseBase } from '@blizzard-api/core';
 
 /**
  * Interface for a response from the achievement category index endpoint.
@@ -72,7 +72,7 @@ export interface AchievementResponse extends NameId, ResponseBase {
   display_order: number;
   guild_reward_items?: Array<NameIdKey>;
   is_account_wide: boolean;
-  media: KeyBase & { id: number };
+  media: IdKey;
   next_achievement?: NameIdKey;
   points: number;
   prerequisite_achievement?: NameIdKey;
@@ -80,7 +80,6 @@ export interface AchievementResponse extends NameId, ResponseBase {
   reward_description?: string;
   reward_item?: NameIdKey;
 }
-interface Operator {
-  name: string;
+interface Operator extends NameType {
   type: 'AND' | 'COMPLETE_AT_LEAST';
 }

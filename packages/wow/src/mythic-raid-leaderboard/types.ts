@@ -1,4 +1,11 @@
-import type { KeyBase, NameId, NonNeutralFactions, Origins, ResponseBase } from '@blizzard-api/core';
+import type {
+  NameId,
+  NonNeutralFactions,
+  NullishNameId,
+  NullishNameIdKey,
+  Origins,
+  ResponseBase,
+} from '@blizzard-api/core';
 
 export type KnownRaidSlugs =
   //Battle for Azeroth
@@ -34,7 +41,7 @@ export type KnownRaidSlugs =
 export interface MythicRaidLeaderboardResponse extends ResponseBase {
   criteria_type: string;
   entries: Array<Entry>;
-  journal_instance: JournalInstance;
+  journal_instance: NullishNameIdKey;
   slug: string;
 }
 
@@ -50,13 +57,6 @@ interface Guild extends NameId {
   realm: Realm;
 }
 
-interface JournalInstance extends KeyBase {
-  id: number;
-  name: null | string;
-}
-
-interface Realm {
-  id: number;
-  name: null | string;
+interface Realm extends NullishNameId {
   slug: string;
 }

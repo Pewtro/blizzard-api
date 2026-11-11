@@ -1,8 +1,10 @@
 import type {
   GenderName,
+  IdKey,
   KeyBase,
   MediaAsset,
   NameIdKey,
+  NameType,
   NullishNameId,
   NullishNameIdKey,
   ResponseBase,
@@ -33,22 +35,13 @@ export interface PlayableSpecializationMediaResponse extends ResponseBase {
 export interface PlayableSpecializationResponse extends NullishNameId, ResponseBase {
   gender_description?: GenderName;
   hero_talent_trees?: Array<NullishNameIdKey>;
-  media: Media;
+  media: IdKey;
   playable_class: NullishNameIdKey;
   power_type: NameIdKey;
-  primary_stat_type?: PrimaryStatType;
+  primary_stat_type?: NameType;
   pvp_talents?: Array<PvpTalent>;
-  role?: PrimaryStatType;
+  role?: NameType;
   spec_talent_tree: SpecTalentTree;
-}
-
-interface Media extends KeyBase {
-  id: number;
-}
-
-interface PrimaryStatType {
-  name: string;
-  type: string;
 }
 
 interface PvpTalent {

@@ -1,3 +1,5 @@
+import type { NameId } from '@blizzard-api/core';
+
 export interface DeckResponse {
   cardCount: number;
   cards: Array<Card>;
@@ -41,9 +43,7 @@ interface Card {
   text: string;
 }
 
-interface Class {
-  id: number;
-  name: string;
+interface Class extends NameId {
   slug: string;
 }
 

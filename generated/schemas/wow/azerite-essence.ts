@@ -2,6 +2,7 @@
 import { z } from 'zod';
 import {
   baseSearchParametersSchema,
+  idKeySchema,
   keyBaseSchema,
   localesSchema,
   mediaAssetSchema,
@@ -17,10 +18,6 @@ export const azeriteEssenceIndexResponseSchema = responseBaseSchema.extend({
 
 export const azeriteEssenceMediaResponseSchema = responseBaseSchema.extend({
   assets: z.array(mediaAssetSchema),
-  id: z.number(),
-});
-
-const mediaSchema = keyBaseSchema.extend({
   id: z.number(),
 });
 
@@ -49,7 +46,7 @@ const azeriteEssenceSearchResponseItemSchema = keyBaseSchema.extend({
 
 export const azeriteEssenceResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   allowed_specializations: z.array(nameIdKeySchema),
-  media: mediaSchema,
+  media: idKeySchema,
   powers: z.array(powerSchema),
 });
 

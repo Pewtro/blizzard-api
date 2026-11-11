@@ -1,13 +1,13 @@
-import type { Character, Faction, KeyBase, NameId, ResponseBase } from '@blizzard-api/core';
+import type { Character, Faction, IdKey, NameId, ResponseBase } from '@blizzard-api/core';
 
 export interface CharacterPvpBracketStatisticsResponse extends ResponseBase {
   bracket: Bracket;
   character: Character;
   faction: Faction;
   rating: number;
-  season: KeyBase & { id: number };
+  season: IdKey;
   season_match_statistics: MatchStatistics;
-  tier: KeyBase & { id: number };
+  tier: IdKey;
   weekly_match_statistics: MatchStatistics;
 }
 

@@ -1,7 +1,7 @@
 import type {
   GenderName,
   Href,
-  KeyBase,
+  IdKey,
   MediaAsset,
   NameIdKey,
   NullishNameId,
@@ -33,7 +33,7 @@ export interface PlayableClassMediaResponse extends ResponseBase {
 export interface PlayableClassResponse extends NullishNameId, ResponseBase {
   additional_power_types?: Array<NameIdKey>;
   gender_name: GenderName;
-  media: Media;
+  media: IdKey;
   playable_races: Array<NullishNameIdKey>;
   power_type: NameIdKey;
   pvp_talent_slots: Href;
@@ -46,10 +46,6 @@ export interface PlayableClassResponse extends NullishNameId, ResponseBase {
  */
 export interface PvpTalentSlotsResponse extends ResponseBase {
   talent_slots?: Array<TalentSlot>;
-}
-
-interface Media extends KeyBase {
-  id: number;
 }
 
 interface TalentSlot {
