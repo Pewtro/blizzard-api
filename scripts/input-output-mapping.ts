@@ -11,4 +11,9 @@ export const inputOutputMappings: Array<InputOutputMapping> = [
     input: '../shared/types',
     output: './shared',
   },
+  //Realm flavor types
+  {
+    input: '../realm/types',
+    output: './realm',
+  },
 ];
