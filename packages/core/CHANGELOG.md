@@ -1,5 +1,14 @@
 # @blizzard-api/core
 
+## 4.5.0
+
+### Minor Changes
+
+- 3cc790b: Add some types for use in game packages that are duplicated often
+- a040035: Share the World of Warcraft character, guild, and account profile base paths from `@blizzard-api/core`.
+
+  `wowCharacterBasePath` now includes a leading slash so it matches the other WoW base path constants. The client accepts both forms, so existing requests are unaffected.
+
 ## 4.4.0
 
 ### Minor Changes

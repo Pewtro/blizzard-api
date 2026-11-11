@@ -1,6 +1,6 @@
 {
   "name": "@blizzard-api/d3",
-  "version": "3.1.5",
+  "version": "3.1.6",
   "description": "A series of helpers to interact with the Diablo 3 Blizzard API",
   "keywords": [
     "api",
@@ -51,7 +51,7 @@
     "@blizzard-api/core": "workspace:*"
   },
   "peerDependencies": {
-    "@blizzard-api/core": "4.4.0"
+    "@blizzard-api/core": "4.5.0"
   },
   "engines": {
     "node": "^22.13.0 || ^24 || ^26"

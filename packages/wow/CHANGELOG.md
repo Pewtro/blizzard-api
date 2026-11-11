@@ -1,5 +1,22 @@
 # @blizzard-api/wow
 
+## 4.2.0
+
+### Minor Changes
+
+- 24c96ce: Add item appearance, neighborhood map, account decor collection, character decor collection, and character house endpoints.
+
+### Patch Changes
+
+- a040035: Share the World of Warcraft character, guild, and account profile base paths from `@blizzard-api/core`.
+
+  `wowCharacterBasePath` now includes a leading slash so it matches the other WoW base path constants. The client accepts both forms, so existing requests are unaffected.
+
+- e69e912: Use more shared types from core
+- Updated dependencies [3cc790b]
+- Updated dependencies [a040035]
+  - @blizzard-api/core@4.5.0
+
 ## 4.1.6
 
 ### Patch Changes

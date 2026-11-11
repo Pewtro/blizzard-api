@@ -1,5 +1,22 @@
 # @blizzard-api/classic-wow
 
+## 4.3.0
+
+### Minor Changes
+
+- e2db51a: Add achievement, auction, mythic keystone (challenge mode), playable specialization, PvP, token, character PvP bracket, and reputation endpoints.
+
+### Patch Changes
+
+- a040035: Share the World of Warcraft character, guild, and account profile base paths from `@blizzard-api/core`.
+
+  `wowCharacterBasePath` now includes a leading slash so it matches the other WoW base path constants. The client accepts both forms, so existing requests are unaffected.
+
+- 62ad232: Use more shared types from core
+- Updated dependencies [3cc790b]
+- Updated dependencies [a040035]
+  - @blizzard-api/core@4.5.0
+
 ## 4.2.2
 
 ### Patch Changes
