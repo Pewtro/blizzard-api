@@ -50,6 +50,7 @@ export * from './quest';
 export * from './realm';
 export * from './region';
 export * from './reputations';
+export * from './shared';
 export * from './spell';
 export * from './talent';
 export * from './tech-talent';

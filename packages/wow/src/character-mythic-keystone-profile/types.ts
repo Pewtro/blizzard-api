@@ -1,16 +1,16 @@
-import type { Character, Color, KeyBase, NameId, NameIdKey, Realm, ResponseBase } from '@blizzard-api/core';
+import type { Character, Color, IdKey, NameId, NameIdKey, Realm, ResponseBase } from '@blizzard-api/core';
 
 export interface CharacterMythicKeystoneProfileIndexResponse extends ResponseBase {
   character: Character;
   current_period: CurrentPeriod;
-  seasons: Array<KeyBase & { id: number }>;
+  seasons: Array<IdKey>;
 }
 
 export interface CharacterMythicKeystoneSeasonDetailsResponse extends ResponseBase {
   best_runs: Array<BestRun>;
   character: Character;
   mythic_rating: MythicRating;
-  season: KeyBase & { id: number };
+  season: IdKey;
 }
 
 interface BestRun {
@@ -25,7 +25,7 @@ interface BestRun {
 }
 
 interface CurrentPeriod {
-  period: KeyBase & { id: number };
+  period: IdKey;
 }
 
 interface Member {

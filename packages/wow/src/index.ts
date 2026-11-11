@@ -458,6 +458,8 @@ const wow = {
 export default wow;
 export { wow };
 
+//Shared
+export type * from './shared/types';
 //Account Profile
 export * from './account-profile/index';
 export type * from './account-profile/types';

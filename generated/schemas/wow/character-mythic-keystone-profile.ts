@@ -3,7 +3,7 @@ import { z } from 'zod';
 import {
   characterSchema,
   colorSchema,
-  keyBaseSchema,
+  idKeySchema,
   nameIdKeySchema,
   nameIdSchema,
   realmSchema,
@@ -11,11 +11,7 @@ import {
 } from '../core';
 
 const currentPeriodSchema = z.strictObject({
-  period: keyBaseSchema.and(
-    z.strictObject({
-      id: z.number(),
-    }),
-  ),
+  period: idKeySchema,
 });
 
 const mythicRatingSchema = z.strictObject({
@@ -37,13 +33,7 @@ const memberSchema = z.strictObject({
 export const characterMythicKeystoneProfileIndexResponseSchema = responseBaseSchema.extend({
   character: characterSchema,
   current_period: currentPeriodSchema,
-  seasons: z.array(
-    keyBaseSchema.and(
-      z.strictObject({
-        id: z.number(),
-      }),
-    ),
-  ),
+  seasons: z.array(idKeySchema),
 });
 
 const bestRunSchema = z.strictObject({
@@ -61,9 +51,5 @@ export const characterMythicKeystoneSeasonDetailsResponseSchema = responseBaseSc
   best_runs: z.array(bestRunSchema),
   character: characterSchema,
   mythic_rating: mythicRatingSchema,
-  season: keyBaseSchema.and(
-    z.strictObject({
-      id: z.number(),
-    }),
-  ),
+  season: idKeySchema,
 });

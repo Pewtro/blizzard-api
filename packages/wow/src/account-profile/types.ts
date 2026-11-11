@@ -1,4 +1,5 @@
-import type { Faction, Gender, Href, KeyBase, NameId, NameIdKey, Realm } from '@blizzard-api/core';
+import type { Faction, Gender, Href, IdKey, NameId, NameIdKey, NameType, Realm } from '@blizzard-api/core';
+import type { PetQuality, PetStats } from '../shared/types';
 
 export interface AccountCollectionsIndexResponse {
   _links: Links;
@@ -84,11 +85,6 @@ interface Heirloom {
   upgrade: { level: number };
 }
 
-interface InnerSlot {
-  name: string;
-  type: string;
-}
-
 interface Links {
   profile: Href;
   self: Href;
@@ -102,15 +98,15 @@ interface Mount {
 
 interface Pet {
   active_slot?: number;
-  creature_display?: KeyBase & { id: number };
+  creature_display?: IdKey;
   id: number;
   is_active?: boolean;
   is_favorite?: boolean;
   level: number;
   name?: string;
-  quality: Quality;
+  quality: PetQuality;
   species: NameIdKey;
-  stats: Stats;
+  stats: PetStats;
 }
 
 interface Position {
@@ -133,21 +129,9 @@ interface ProtectedStats {
   total_number_deaths: number;
 }
 
-interface Quality {
-  name: string;
-  type: 'COMMON' | 'POOR' | 'RARE' | 'UNCOMMON';
-}
-
 interface Slot {
-  appearances: Array<KeyBase & { id: number }>;
-  slot: InnerSlot;
-}
-
-interface Stats {
-  breed_id: number;
-  health: number;
-  power: number;
-  speed: number;
+  appearances: Array<IdKey>;
+  slot: NameType;
 }
 
 interface Toy {

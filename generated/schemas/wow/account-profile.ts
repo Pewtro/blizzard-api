@@ -4,11 +4,13 @@ import {
   factionSchema,
   genderSchema,
   hrefSchema,
-  keyBaseSchema,
+  idKeySchema,
   nameIdKeySchema,
   nameIdSchema,
+  nameTypeSchema,
   realmSchema,
 } from '../core';
+import { petQualitySchema, petStatsSchema } from './shared';
 
 const linksSchema = z.strictObject({
   profile: hrefSchema,
@@ -33,9 +35,27 @@ const mountSchema = z.strictObject({
   mount: nameIdKeySchema,
 });
 
+const petSchema = z.strictObject({
+  active_slot: z.number().optional(),
+  creature_display: idKeySchema.optional(),
+  id: z.number(),
+  is_active: z.boolean().optional(),
+  is_favorite: z.boolean().optional(),
+  level: z.number(),
+  name: z.string().optional(),
+  quality: petQualitySchema,
+  species: nameIdKeySchema,
+  stats: petStatsSchema,
+});
+
 const toySchema = z.strictObject({
   is_favorite: z.boolean().optional(),
   toy: nameIdKeySchema,
+});
+
+const slotSchema = z.strictObject({
+  appearances: z.array(idKeySchema),
+  slot: nameTypeSchema,
 });
 
 const positionSchema = z.strictObject({
@@ -71,34 +91,6 @@ const characterSchema = z.strictObject({
   realm: realmSchema,
 });
 
-const innerSlotSchema = z.strictObject({
-  name: z.string(),
-  type: z.string(),
-});
-
-const qualitySchema = z.strictObject({
-  name: z.string(),
-  type: z.union([z.literal('COMMON'), z.literal('POOR'), z.literal('RARE'), z.literal('UNCOMMON')]),
-});
-
-const statsSchema = z.strictObject({
-  breed_id: z.number(),
-  health: z.number(),
-  power: z.number(),
-  speed: z.number(),
-});
-
-const slotSchema = z.strictObject({
-  appearances: z.array(
-    keyBaseSchema.and(
-      z.strictObject({
-        id: z.number(),
-      }),
-    ),
-  ),
-  slot: innerSlotSchema,
-});
-
 const wowAccountSchema = z.strictObject({
   characters: z.array(characterSchema),
   id: z.number(),
@@ -129,23 +121,10 @@ export const accountMountsCollectionSummaryResponseSchema = z.strictObject({
   mounts: z.array(mountSchema),
 });
 
-const petSchema = z.strictObject({
-  active_slot: z.number().optional(),
-  creature_display: keyBaseSchema
-    .and(
-      z.strictObject({
-        id: z.number(),
-      }),
-    )
-    .optional(),
-  id: z.number(),
-  is_active: z.boolean().optional(),
-  is_favorite: z.boolean().optional(),
-  level: z.number(),
-  name: z.string().optional(),
-  quality: qualitySchema,
-  species: nameIdKeySchema,
-  stats: statsSchema,
+export const accountPetsCollectionSummaryResponseSchema = z.strictObject({
+  _links: linksSchema,
+  pets: z.array(petSchema),
+  unlocked_battle_pet_slots: z.number(),
 });
 
 export const accountProfileSummaryResponseSchema = z.strictObject({
@@ -176,10 +155,4 @@ export const protectedCharacterProfileSummaryResponseSchema = z.strictObject({
   position: positionSchema,
   protected_stats: protectedStatsSchema,
   wow_account: z.number(),
-});
-
-export const accountPetsCollectionSummaryResponseSchema = z.strictObject({
-  _links: linksSchema,
-  pets: z.array(petSchema),
-  unlocked_battle_pet_slots: z.number(),
 });

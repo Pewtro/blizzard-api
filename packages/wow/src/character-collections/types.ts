@@ -1,4 +1,5 @@
-import type { Character, Href, KeyBase, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { Character, Href, IdKey, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { PetQuality, PetStats } from '../shared/types';
 
 export interface CharacterCollectionDecorResponse extends ResponseBase {
   decor_collected: Array<DecorItem>;
@@ -55,37 +56,25 @@ interface Mount {
 
 interface Pet {
   active_slot?: number;
-  creature_display?: KeyBase & { id: number };
+  creature_display?: IdKey;
   id: number;
   is_active?: boolean;
   is_favorite?: boolean;
   level: number;
   name?: string;
-  quality: Quality;
+  quality: PetQuality;
   species: NameIdKey;
-  stats: Stats;
-}
-
-interface Quality {
-  name: string;
-  type: 'COMMON' | 'POOR' | 'RARE' | 'UNCOMMON';
+  stats: PetStats;
 }
 
 interface Slot {
-  appearances: Array<KeyBase & { id: number }>;
+  appearances: Array<IdKey>;
   slot: SlotSlot;
 }
 
 interface SlotSlot {
   name: string;
   type: string;
-}
-
-interface Stats {
-  breed_id: number;
-  health: number;
-  power: number;
-  speed: number;
 }
 
 interface Toy {

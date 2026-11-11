@@ -1,4 +1,4 @@
-import type { Character, Color, KeyBase, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { Character, Color, IdKey, NameIdKey, NameType, ResponseBase } from '@blizzard-api/core';
 
 export interface CharacterEquipmentSummaryResponse extends ResponseBase {
   character: Character;
@@ -58,12 +58,12 @@ interface EquippedItem {
   enchantments?: Array<Enchantment>;
   inventory_type: NameType;
   is_subclass_hidden?: boolean;
-  item: KeyBase & { id: number };
+  item: IdKey;
   item_class: NameIdKey;
   item_subclass: NameIdKey;
   level: DisplayStringValue;
   limit_category?: string;
-  media: KeyBase & { id: number };
+  media: IdKey;
   modified_appearance_id?: number;
   modified_crafting_stat?: Array<ModifiedCraftingStat>;
   name: string;
@@ -98,11 +98,6 @@ interface NameDescription {
   display_string: string;
 }
 
-interface NameType {
-  name: string;
-  type: string;
-}
-
 interface PlayableClasses {
   display_string: string;
   links: Array<NameIdKey>;
@@ -130,7 +125,7 @@ interface Socket {
   display_color?: Color;
   display_string?: string;
   item?: NameIdKey;
-  media?: KeyBase & { id: number };
+  media?: IdKey;
   socket_type: NameType;
 }
 
