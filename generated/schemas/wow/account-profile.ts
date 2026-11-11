@@ -16,6 +16,11 @@ const linksSchema = z.strictObject({
   user: hrefSchema,
 });
 
+const decorItemSchema = z.strictObject({
+  decor: nameIdKeySchema,
+  quantity: z.number(),
+});
+
 const heirloomSchema = z.strictObject({
   heirloom: nameIdKeySchema,
   upgrade: z.strictObject({
@@ -101,11 +106,17 @@ const wowAccountSchema = z.strictObject({
 
 export const accountCollectionsIndexResponseSchema = z.strictObject({
   _links: linksSchema,
+  decors: hrefSchema.optional(),
   heirlooms: hrefSchema,
   mounts: hrefSchema,
   pets: hrefSchema,
   toys: hrefSchema,
   transmogs: hrefSchema,
+});
+
+export const accountDecorCollectionResponseSchema = z.strictObject({
+  _links: linksSchema,
+  decor_collected: z.array(decorItemSchema),
 });
 
 export const accountHeirloomsCollectionSummaryResponseSchema = z.strictObject({

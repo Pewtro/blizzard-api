@@ -2,11 +2,17 @@ import type { Faction, Gender, Href, KeyBase, NameId, NameIdKey, Realm } from '@
 
 export interface AccountCollectionsIndexResponse {
   _links: Links;
+  decors?: Href;
   heirlooms: Href;
   mounts: Href;
   pets: Href;
   toys: Href;
   transmogs: Href;
+}
+
+export interface AccountDecorCollectionResponse {
+  _links: Links;
+  decor_collected: Array<DecorItem>;
 }
 
 export interface AccountHeirloomsCollectionSummaryResponse {
@@ -66,6 +72,11 @@ interface Character {
   playable_race: NameIdKey;
   protected_character: Href;
   realm: Realm;
+}
+
+interface DecorItem {
+  decor: NameIdKey;
+  quantity: number;
 }
 
 interface Heirloom {

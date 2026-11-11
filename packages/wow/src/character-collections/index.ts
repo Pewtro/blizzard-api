@@ -1,6 +1,7 @@
 import { wowCharacterBasePath } from '@blizzard-api/core';
 import type { Resource } from '@blizzard-api/core';
 import type {
+  CharacterCollectionDecorResponse,
   CharacterCollectionsIndexResponse,
   CharacterHeirloomsCollectionSummaryResponse,
   CharacterMountsCollectionSummaryResponse,
@@ -21,6 +22,21 @@ export function characterCollectionsIndex(
   return {
     namespace: 'profile',
     path: `${wowCharacterBasePath}/${realmSlug}/${characterName}/collections`,
+  };
+}
+
+/**
+ * @param realmSlug The slug of the realm.
+ * @param characterName The lowercase name of the character.
+ * @returns a summary of the housing decor a character has collected.
+ */
+export function characterCollectionDecor(
+  realmSlug: string,
+  characterName: string,
+): Resource<CharacterCollectionDecorResponse> {
+  return {
+    namespace: 'profile',
+    path: `${wowCharacterBasePath}/${realmSlug}/${characterName}/collections/decor`,
   };
 }
 

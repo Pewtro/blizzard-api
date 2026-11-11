@@ -1,5 +1,9 @@
 import type { Character, Href, KeyBase, NameIdKey, ResponseBase } from '@blizzard-api/core';
 
+export interface CharacterCollectionDecorResponse extends ResponseBase {
+  decor_collected: Array<DecorItem>;
+}
+
 export interface CharacterCollectionsIndexResponse extends ResponseBase {
   character: Character;
   decors: Href;
@@ -30,6 +34,11 @@ export interface CharacterToysCollectionSummaryResponse extends ResponseBase {
 export interface CharacterTransmogCollectionSummaryResponse extends ResponseBase {
   appearance_sets?: Array<NameIdKey>;
   slots?: Array<Slot>;
+}
+
+interface DecorItem {
+  decor: NameIdKey;
+  quantity: number;
 }
 
 interface Heirloom {

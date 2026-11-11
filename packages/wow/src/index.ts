@@ -1,5 +1,6 @@
 import {
   accountCollectionsIndex,
+  accountDecorCollection,
   accountHeirloomsCollectionSummary,
   accountMountsCollectionSummary,
   accountPetsCollectionSummary,
@@ -25,6 +26,7 @@ import {
 import { characterAchievementsSummary, characterAchievementStatistics } from './character-achievements/index';
 import { characterAppearanceSummary } from './character-appearance/index';
 import {
+  characterCollectionDecor,
   characterCollectionsIndex,
   characterHeirloomsCollectionSummary,
   characterMountsCollectionSummary,
@@ -34,6 +36,7 @@ import {
 } from './character-collections/index';
 import { characterDungeons, characterEncountersSummary, characterRaids } from './character-encounters/index';
 import { characterEquipmentSummary } from './character-equipment/index';
+import { characterHouse } from './character-house/index';
 import { characterHunterPetsSummary } from './character-hunter-pets/index';
 import { characterMediaSummary } from './character-media/index';
 import {
@@ -87,6 +90,14 @@ import {
   roomSearch,
 } from './housing-decor/index';
 import {
+  itemAppearance,
+  itemAppearanceSearch,
+  itemAppearanceSet,
+  itemAppearanceSetIndex,
+  itemAppearanceSlot,
+  itemAppearanceSlotIndex,
+} from './item-appearance/index';
+import {
   item,
   itemClass,
   itemClassIndex,
@@ -127,6 +138,7 @@ import {
 } from './mythic-keystone-dungeon/index';
 import { mythicKeystoneLeaderboard, mythicKeystoneLeaderboardIndex } from './mythic-keystone-leaderboard/index';
 import { mythicRaidLeaderboard } from './mythic-raid-leaderboard/index';
+import { neighborhood, neighborhoodMap, neighborhoodMaps } from './neighborhood-map/index';
 import { pet, petAbility, petAbilityIndex, petAbilityMedia, petIndex, petMedia } from './pet/index';
 import { playableClass, playableClassIndex, playableClassMedia, pvpTalentSlots } from './playable-class/index';
 import { playableRace, playableRaceIndex } from './playable-race/index';
@@ -181,6 +193,7 @@ import { wowToken } from './wow-token/index';
 const wow = {
   //Account Profile
   accountCollectionsIndex,
+  accountDecorCollection,
   accountHeirloomsCollectionSummary,
   accountMountsCollectionSummary,
   accountPetsCollectionSummary,
@@ -208,6 +221,7 @@ const wow = {
   //Character Appearance
   characterAppearanceSummary,
   //Character Collections
+  characterCollectionDecor,
   characterCollectionsIndex,
   characterHeirloomsCollectionSummary,
   characterMountsCollectionSummary,
@@ -220,6 +234,8 @@ const wow = {
   characterRaids,
   //Character Equipment
   characterEquipmentSummary,
+  //Character House
+  characterHouse,
   //Character Hunter Pets
   characterHunterPetsSummary,
   //Character Media
@@ -303,6 +319,13 @@ const wow = {
   itemSet,
   itemSetIndex,
   itemSubclass,
+  //Item Appearance
+  itemAppearance,
+  itemAppearanceSearch,
+  itemAppearanceSet,
+  itemAppearanceSetIndex,
+  itemAppearanceSlot,
+  itemAppearanceSlotIndex,
   //Journal
   journalEncounter,
   journalEncounterIndex,
@@ -341,6 +364,10 @@ const wow = {
   mythicKeystoneLeaderboardIndex,
   //Mythic Raid Leaderboard
   mythicRaidLeaderboard,
+  //Neighborhood Map
+  neighborhood,
+  neighborhoodMap,
+  neighborhoodMaps,
   //Pet
   pet,
   petAbility,
@@ -458,6 +485,9 @@ export type * from './character-encounters/types';
 //Character Equipment
 export * from './character-equipment/index';
 export type * from './character-equipment/types';
+//Character House
+export * from './character-house/index';
+export type * from './character-house/types';
 //Character Hunter Pets
 export * from './character-hunter-pets/index';
 export type * from './character-hunter-pets/types';
@@ -518,6 +548,9 @@ export type * from './housing-decor/types';
 //Item
 export * from './item/index';
 export type * from './item/types';
+//Item Appearance
+export * from './item-appearance/index';
+export type * from './item-appearance/types';
 //Journal
 export * from './journal/index';
 export type * from './journal/types';
@@ -542,6 +575,9 @@ export type * from './mythic-keystone-leaderboard/types';
 //Mythic Raid Leaderboard
 export * from './mythic-raid-leaderboard/index';
 export type * from './mythic-raid-leaderboard/types';
+//Neighborhood Map
+export * from './neighborhood-map/index';
+export type * from './neighborhood-map/types';
 //Pet
 export * from './pet/index';
 export type * from './pet/types';

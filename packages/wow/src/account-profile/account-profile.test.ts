@@ -1,6 +1,7 @@
 import { describe, expect, test } from 'vitest';
 import {
   accountCollectionsIndex,
+  accountDecorCollection,
   accountHeirloomsCollectionSummary,
   accountMountsCollectionSummary,
   accountPetsCollectionSummary,
@@ -33,6 +34,13 @@ describe('Account Profile', () => {
     const result = accountCollectionsIndex(token);
     expect(result.namespace).toBe('profile');
     expect(result.path).toBe('/profile/user/wow/collections');
+    expect(result.token).toBe(token);
+  });
+
+  test('should return account decor collection', () => {
+    const result = accountDecorCollection(token);
+    expect(result.namespace).toBe('profile');
+    expect(result.path).toBe('/profile/user/wow/collections/decor');
     expect(result.token).toBe(token);
   });
 

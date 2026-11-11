@@ -1,3 +1,4 @@
+import { characterHouse } from '@blizzard-api/wow/character-house';
 import { characterProfileStatus, characterProfileSummary } from '@blizzard-api/wow/character-profile';
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
@@ -26,5 +27,11 @@ describe('wow character-profile integration', async () => {
       console.error('Character profile status validation failed:', prettifyError(parsedStatus.error));
     }
     expect(parsedStatus.success).toBe(true);
+  });
+
+  test('confirms the currently disabled character house endpoint returns 404', async ({ expect }) => {
+    await expect(client.sendRequest(characterHouse('laughing-skull', 'putro', 1))).rejects.toMatchObject({
+      response: { status: 404 },
+    });
   });
 });

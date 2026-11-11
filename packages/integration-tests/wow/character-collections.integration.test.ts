@@ -1,4 +1,5 @@
 import {
+  characterCollectionDecor,
   characterCollectionsIndex,
   characterHeirloomsCollectionSummary,
   characterMountsCollectionSummary,
@@ -9,6 +10,7 @@ import {
 import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
 import {
+  characterCollectionDecorResponseSchema,
   characterCollectionsIndexResponseSchema,
   characterHeirloomsCollectionSummaryResponseSchema,
   characterMountsCollectionSummaryResponseSchema,
@@ -29,6 +31,15 @@ describe('wow character-collections integration', async () => {
       console.error('Character collections index validation failed:', prettifyError(parsedIndex.error));
     }
     expect(parsedIndex.success).toBe(true);
+  });
+
+  test('validates decor collection summary', async ({ expect }) => {
+    const decor = await client.sendRequest(characterCollectionDecor(realm, character));
+    const parsedDecor = characterCollectionDecorResponseSchema.safeParse(decor);
+    if (!parsedDecor.success) {
+      console.error('Character decor collection validation failed:', prettifyError(parsedDecor.error));
+    }
+    expect(parsedDecor.success).toBe(true);
   });
 
   test('validates heirlooms collection summary', async ({ expect }) => {

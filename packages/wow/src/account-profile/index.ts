@@ -2,6 +2,7 @@ import { wowAccountProfileBasePath } from '@blizzard-api/core';
 import type { ProtectedResource } from '@blizzard-api/core';
 import type {
   AccountCollectionsIndexResponse,
+  AccountDecorCollectionResponse,
   AccountHeirloomsCollectionSummaryResponse,
   AccountMountsCollectionSummaryResponse,
   AccountPetsCollectionSummaryResponse,
@@ -20,6 +21,19 @@ export function accountCollectionsIndex(token: string): ProtectedResource<Accoun
   return {
     namespace: 'profile',
     path: `${wowAccountProfileBasePath}/collections`,
+    token,
+  };
+}
+
+/**
+ * Because this endpoint provides data about the current logged-in user's World of Warcraft account, it requires an access token with the wow.profile scope acquired via the Authorization Code Flow. See {@link https://develop.battle.net/documentation/guides/using-oauth/authorization-code-flow}
+ * @param token The OAuth 2.0 access token to use for authentication.
+ * @returns the housing decor an account has collected.
+ */
+export function accountDecorCollection(token: string): ProtectedResource<AccountDecorCollectionResponse> {
+  return {
+    namespace: 'profile',
+    path: `${wowAccountProfileBasePath}/collections/decor`,
     token,
   };
 }

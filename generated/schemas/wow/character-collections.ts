@@ -2,6 +2,11 @@
 import { z } from 'zod';
 import { characterSchema, hrefSchema, keyBaseSchema, nameIdKeySchema, responseBaseSchema } from '../core';
 
+const decorItemSchema = z.strictObject({
+  decor: nameIdKeySchema,
+  quantity: z.number(),
+});
+
 export const characterCollectionsIndexResponseSchema = responseBaseSchema.extend({
   character: characterSchema,
   decors: hrefSchema,
@@ -46,6 +51,10 @@ const statsSchema = z.strictObject({
 const slotSlotSchema = z.strictObject({
   name: z.string(),
   type: z.string(),
+});
+
+export const characterCollectionDecorResponseSchema = responseBaseSchema.extend({
+  decor_collected: z.array(decorItemSchema),
 });
 
 export const characterHeirloomsCollectionSummaryResponseSchema = responseBaseSchema.extend({

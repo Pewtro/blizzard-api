@@ -1,5 +1,6 @@
 import { describe, expect, test } from 'vitest';
 import {
+  characterCollectionDecor,
   characterCollectionsIndex,
   characterHeirloomsCollectionSummary,
   characterMountsCollectionSummary,
@@ -19,6 +20,17 @@ describe('Character Collections', () => {
     };
 
     const resource = characterCollectionsIndex(realmSlug, characterName);
+
+    expect(resource).toEqual(expectedResource);
+  });
+
+  test('should generate the correct protected resource for characterCollectionDecor', () => {
+    const expectedResource = {
+      namespace: 'profile',
+      path: '/profile/wow/character/realm-slug/character-name/collections/decor',
+    };
+
+    const resource = characterCollectionDecor(realmSlug, characterName);
 
     expect(resource).toEqual(expectedResource);
   });
