@@ -31,6 +31,13 @@ const realmLockedStatusSchema = z.strictObject({
 
 const realmStatusCapitalizedSchema = z.union([z.literal('DOWN'), z.literal('UP')]);
 
+const auctionHouseTimeLeftSchema = z.union([
+  z.literal('LONG'),
+  z.literal('MEDIUM'),
+  z.literal('SHORT'),
+  z.literal('VERY_LONG'),
+]);
+
 const searchRealmPopulationSchema = z.strictObject({
   name: z.record(localesSchema, z.string()),
   type: realmPopulationCapitalizedSchema,
@@ -61,6 +68,31 @@ const realmSchema = z.strictObject({
     name: z.string(),
     type: realmTypeCapitalizedSchema,
   }),
+});
+
+const auctionHousePostingSchema = z.strictObject({
+  bid: z.number().optional(),
+  buyout: z.number().optional(),
+  id: z.number(),
+  item: z.strictObject({
+    bonus_lists: z.array(z.number()).optional(),
+    context: z.number().optional(),
+    id: z.number(),
+    modifiers: z
+      .array(
+        z.strictObject({
+          type: z.number(),
+          value: z.number(),
+        }),
+      )
+      .optional(),
+    pet_breed_id: z.number().optional(),
+    pet_level: z.number().optional(),
+    pet_quality_id: z.number().optional(),
+    pet_species_id: z.number().optional(),
+  }),
+  quantity: z.number(),
+  time_left: auctionHouseTimeLeftSchema,
 });
 
 export const connectedRealmSearchParametersSchema = baseSearchParametersSchema.extend({
@@ -101,6 +133,12 @@ export const connectedRealmResponseSchema = responseBaseSchema.extend({
     name: z.string(),
     type: realmStatusCapitalizedSchema,
   }),
+});
+
+export const connectedRealmAuctionsResponseSchema = responseBaseSchema.extend({
+  auctions: z.array(auctionHousePostingSchema),
+  commodities: hrefSchema,
+  connected_realm: hrefSchema,
 });
 
 const connectedRealmSearchResponseItemSchema = keyBaseSchema.extend({

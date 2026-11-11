@@ -1,7 +1,13 @@
-import { connectedRealm, connectedRealmIndex, connectedRealmSearch } from '@blizzard-api/classic-wow/connected-realm';
+import {
+  connectedRealm,
+  connectedRealmAuctions,
+  connectedRealmIndex,
+  connectedRealmSearch,
+} from '@blizzard-api/classic-wow/connected-realm';
 import { describe, expect, test } from 'vitest';
 import { prettifyError } from 'zod';
 import {
+  connectedRealmAuctionsResponseSchema,
   connectedRealmIndexResponseSchema,
   connectedRealmResponseSchema,
   connectedRealmSearchResponseSchema,
@@ -42,4 +48,27 @@ describe('classic-wow connected realm integration', async () => {
       expect(parsedSearch.success).toBe(true);
     },
   );
+
+  test('validates connected realm auctions for progression Classic', async () => {
+    const index = await client.sendRequest(connectedRealmIndex('dynamic-classic'));
+    const parsedIndex = connectedRealmIndexResponseSchema.safeParse(index);
+    if (!parsedIndex.success) {
+      console.error('Connected realm index validation failed:', prettifyError(parsedIndex.error));
+    }
+    expect(parsedIndex.success).toBe(true);
+
+    const connectedRealmId = Number(/connected-realm\/(\d+)/.exec(parsedIndex.data!.connected_realms[0]!.href)?.[1]);
+    expect(connectedRealmId).toBeTypeOf('number');
+
+    const auctions = await client.sendRequest(connectedRealmAuctions('dynamic-classic', connectedRealmId));
+    const parsedAuctions = connectedRealmAuctionsResponseSchema.safeParse(auctions);
+    if (!parsedAuctions.success) {
+      console.error(
+        'Connected realm auctions validation failed:',
+        connectedRealmId,
+        prettifyError(parsedAuctions.error),
+      );
+    }
+    expect(parsedAuctions.success).toBe(true);
+  });
 });

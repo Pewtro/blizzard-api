@@ -1,6 +1,12 @@
 import { wowBasePath } from '@blizzard-api/core';
 import type { DynamicClassicNamespaces, Resource } from '@blizzard-api/core';
-import type { PvpSeasonIndexResponse, PvpSeasonResponse } from './types';
+import type {
+  PvpLeaderboardIndexResponse,
+  PvpLeaderboardResponse,
+  PvpRewardsIndexResponse,
+  PvpSeasonIndexResponse,
+  PvpSeasonResponse,
+} from './types';
 
 /**
  * Get a PvP leaderboard by PvP season ID and bracket.
@@ -19,6 +25,60 @@ export function pvpLeaderboard(
   return {
     namespace,
     path: `${wowBasePath}/pvp-region/${pvpRegionId}/pvp-season/${pvpSeasonId}/pvp-leaderboard/${pvpBracket}`,
+  };
+}
+/**
+ * Get a PvP season leaderboard by PvP season ID and bracket.
+ *
+ * Only available for the `classic` (progression) namespace. Classic responses omit `entries` when the
+ * bracket is empty.
+ * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param pvpSeasonId The PvP season ID.
+ * @param pvpBracket The PvP bracket (for example `2v2`, `3v3`, or `rbg`).
+ * @returns The PvP season leaderboard. See {@link PvpLeaderboardResponse}.
+ */
+export function pvpSeasonLeaderboard(
+  namespace: Extract<DynamicClassicNamespaces, 'dynamic-classic'>,
+  pvpSeasonId: number,
+  pvpBracket: string,
+): Resource<PvpLeaderboardResponse> {
+  return {
+    namespace,
+    path: `${wowBasePath}/pvp-season/${pvpSeasonId}/pvp-leaderboard/${pvpBracket}`,
+  };
+}
+/**
+ * Returns an index of PvP leaderboards for a PvP season.
+ *
+ * Only available for the `classic` (progression) namespace.
+ * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param pvpSeasonId The PvP season ID.
+ * @returns The PvP season leaderboard index. See {@link PvpLeaderboardIndexResponse}.
+ */
+export function pvpSeasonLeaderboards(
+  namespace: Extract<DynamicClassicNamespaces, 'dynamic-classic'>,
+  pvpSeasonId: number,
+): Resource<PvpLeaderboardIndexResponse> {
+  return {
+    namespace,
+    path: `${wowBasePath}/pvp-season/${pvpSeasonId}/pvp-leaderboard/index`,
+  };
+}
+/**
+ * Returns an index of PvP rewards for a PvP season.
+ *
+ * Only available for the `classic` (progression) namespace.
+ * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param pvpSeasonId The PvP season ID.
+ * @returns The PvP season rewards index. See {@link PvpRewardsIndexResponse}.
+ */
+export function pvpSeasonRewards(
+  namespace: Extract<DynamicClassicNamespaces, 'dynamic-classic'>,
+  pvpSeasonId: number,
+): Resource<PvpRewardsIndexResponse> {
+  return {
+    namespace,
+    path: `${wowBasePath}/pvp-season/${pvpSeasonId}/pvp-reward/index`,
   };
 }
 /**

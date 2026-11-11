@@ -1,4 +1,4 @@
-import type { Href, KeyBase, ResponseBase } from '@blizzard-api/core';
+import type { Faction, Href, KeyBase, NameId, NameIdKey, NonNeutralFactions, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a PvP season index.
@@ -22,6 +22,72 @@ export interface PvpSeasonResponse extends ResponseBase {
   season_start_timestamp: number;
 }
 
+/**
+ * The response for a PvP leaderboard index.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
+export interface PvpLeaderboardIndexResponse extends ResponseBase {
+  leaderboards: Array<KeyBase & { id?: number; name: string }>;
+  season: Season;
+}
+
+/**
+ * The response for a PvP leaderboard.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
+export interface PvpLeaderboardResponse extends ResponseBase {
+  bracket: Bracket;
+  entries?: Array<Entry>;
+  name: string;
+  season: Season;
+}
+
+/**
+ * The response for a PvP rewards index.
+ * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
+ */
+export interface PvpRewardsIndexResponse extends ResponseBase {
+  rewards: Array<Reward>;
+  season: Season;
+}
+
+interface Bracket {
+  id: number;
+  type: string;
+}
+
+interface Character extends NameId {
+  realm: Realm;
+}
+
+interface Entry {
+  character: Character;
+  faction: { type: NonNeutralFactions };
+  rank: number;
+  rating: number;
+  season_match_statistics: SeasonMatchStatistics;
+  tier: Season;
+}
+
+interface Realm extends KeyBase {
+  id: number;
+  slug: string;
+}
+
+interface Reward {
+  achievement: NameIdKey;
+  bracket: Bracket;
+  faction?: Faction;
+  rating_cutoff: number;
+  specialization?: NameIdKey;
+}
+
 interface Season extends KeyBase {
   id: number;
+}
+
+interface SeasonMatchStatistics {
+  lost: number;
+  played: number;
+  won: number;
 }

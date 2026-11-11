@@ -9,6 +9,9 @@ import {
   pvpRewardsIndex,
   pvpSeason,
   pvpSeasonIndex,
+  pvpSeasonLeaderboard,
+  pvpSeasonLeaderboards,
+  pvpSeasonRewards,
 } from './index';
 
 const namespaces = ['dynamic-classic1x', 'dynamic-classic', 'dynamic-classicann'] as const;
@@ -25,6 +28,28 @@ describe('classicPvpSeasonApi', () => {
     const result = pvpSeason(namespace, pvpSeasonId);
     expect(result.namespace).toBe(namespace);
     expect(result.path).toBe(`${wowBasePath}/pvp-season/${pvpSeasonId}`);
+  });
+
+  test('should return the PvP season leaderboards for the classic namespace', () => {
+    const pvpSeasonId = 123;
+    const result = pvpSeasonLeaderboards('dynamic-classic', pvpSeasonId);
+    expect(result.namespace).toBe('dynamic-classic');
+    expect(result.path).toBe(`${wowBasePath}/pvp-season/${pvpSeasonId}/pvp-leaderboard/index`);
+  });
+
+  test('should return a PvP season leaderboard for the classic namespace', () => {
+    const pvpSeasonId = 123;
+    const pvpBracket = '2v2';
+    const result = pvpSeasonLeaderboard('dynamic-classic', pvpSeasonId, pvpBracket);
+    expect(result.namespace).toBe('dynamic-classic');
+    expect(result.path).toBe(`${wowBasePath}/pvp-season/${pvpSeasonId}/pvp-leaderboard/${pvpBracket}`);
+  });
+
+  test('should return the PvP season rewards for the classic namespace', () => {
+    const pvpSeasonId = 123;
+    const result = pvpSeasonRewards('dynamic-classic', pvpSeasonId);
+    expect(result.namespace).toBe('dynamic-classic');
+    expect(result.path).toBe(`${wowBasePath}/pvp-season/${pvpSeasonId}/pvp-reward/index`);
   });
 
   test.each(namespaces)('should return the PvP region index in the %s namespace', (namespace) => {

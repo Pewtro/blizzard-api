@@ -31,6 +31,16 @@ export interface ConnectedRealmResponse extends ResponseBase {
   status: { name: string; type: RealmStatusCapitalized };
 }
 /**
+ * Connected Realm Auctions API response.
+ * @see https://develop.battle.net/documentation/world-of-warcraft/game-data-apis
+ */
+export interface ConnectedRealmAuctionsResponse extends ResponseBase {
+  auctions: Array<AuctionHousePosting>;
+  commodities: Href;
+  connected_realm: Href;
+}
+
+/**
  * Connected Realm Search API parameters.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/guides/search}
@@ -48,6 +58,26 @@ export interface ConnectedRealmSearchParameters extends BaseSearchParameters {
 export interface ConnectedRealmSearchResponse extends SearchResponseWithoutResults {
   results: Array<ConnectedRealmSearchResponseItem>;
 }
+
+interface AuctionHousePosting {
+  bid?: number;
+  buyout?: number;
+  id: number;
+  item: {
+    bonus_lists?: Array<number>;
+    context?: number;
+    id: number;
+    modifiers?: Array<{ type: number; value: number }>;
+    pet_breed_id?: number;
+    pet_level?: number;
+    pet_quality_id?: number;
+    pet_species_id?: number;
+  };
+  quantity: number;
+  time_left: AuctionHouseTimeLeft;
+}
+
+type AuctionHouseTimeLeft = 'LONG' | 'MEDIUM' | 'SHORT' | 'VERY_LONG';
 
 interface ConnectedRealmSearchResponseItem extends KeyBase {
   data: {

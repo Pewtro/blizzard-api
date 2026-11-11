@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { connectedRealm, connectedRealmIndex, connectedRealmSearch } from './index';
+import { connectedRealm, connectedRealmAuctions, connectedRealmIndex, connectedRealmSearch } from './index';
 
 const namespaces = ['dynamic-classic1x', 'dynamic-classic', 'dynamic-classicann'] as const;
 
@@ -20,6 +20,14 @@ describe('classicConnectedRealmApi', () => {
     expect(result).toBeDefined();
     expect(result.path).toBe(`/data/wow/connected-realm/${connectedRealmId}`);
     expect(result.namespace).toBe(namespace);
+  });
+
+  test('connectedRealmAuctions should return the correct resource path in the classic namespace', () => {
+    const connectedRealmId = 123;
+    const result = connectedRealmAuctions('dynamic-classic', connectedRealmId);
+    expect(result).toBeDefined();
+    expect(result.path).toBe(`/data/wow/connected-realm/${connectedRealmId}/auctions`);
+    expect(result.namespace).toBe('dynamic-classic');
   });
 
   test.each(namespaces)(

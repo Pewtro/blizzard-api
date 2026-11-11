@@ -1,6 +1,7 @@
 import { wowBasePath, wowSearchBasePath } from '@blizzard-api/core';
 import type { DynamicClassicNamespaces, Resource } from '@blizzard-api/core';
 import type {
+  ConnectedRealmAuctionsResponse,
   ConnectedRealmIndexResponse,
   ConnectedRealmResponse,
   ConnectedRealmSearchParameters,
@@ -20,6 +21,23 @@ export function connectedRealm(
   return {
     namespace,
     path: `${wowBasePath}/connected-realm/${connectedRealmId}`,
+  };
+}
+/**
+ * Returns all active auctions for a connected realm.
+ *
+ * Only available for the `classic` (progression) namespace.
+ * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param connectedRealmId The connected realm ID.
+ * @returns The connected realm auctions. See {@link ConnectedRealmAuctionsResponse}.
+ */
+export function connectedRealmAuctions(
+  namespace: Extract<DynamicClassicNamespaces, 'dynamic-classic'>,
+  connectedRealmId: number,
+): Resource<ConnectedRealmAuctionsResponse> {
+  return {
+    namespace,
+    path: `${wowBasePath}/connected-realm/${connectedRealmId}/auctions`,
   };
 }
 /**

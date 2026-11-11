@@ -1,12 +1,26 @@
+import {
+  achievement,
+  achievementCategory,
+  achievementCategoryIndex,
+  achievementIndex,
+  achievementMedia,
+} from './achievements/index';
 import { auctionHouseIndex, auctions } from './auction-house/index';
 import { characterAchievementsSummary, characterAchievementStatistics } from './character-achievements/index';
 import { characterEquipmentSummary } from './character-equipment/index';
 import { characterHunterPetsSummary } from './character-hunter-pets/index';
 import { characterMediaSummary } from './character-media/index';
 import { characterProfileStatus, characterProfileSummary } from './character-profile/index';
+import { characterPvpBracketStatistics } from './character-pvp/index';
+import { characterReputationsSummary } from './character-reputations/index';
 import { characterSpecializationsSummary } from './character-specializations/index';
 import { characterStatisticsSummary } from './character-statistics/index';
-import { connectedRealm, connectedRealmIndex, connectedRealmSearch } from './connected-realm/index';
+import {
+  connectedRealm,
+  connectedRealmAuctions,
+  connectedRealmIndex,
+  connectedRealmSearch,
+} from './connected-realm/index';
 import {
   creature,
   creatureDisplayMedia,
@@ -21,8 +35,20 @@ import { guildCrestBorder, guildCrestComponentsIndex, guildCrestEmblem } from '.
 import { guild, guildAchievements, guildActivity, guildRoster } from './guild/index';
 import { item, itemClass, itemClassIndex, itemMedia, itemSearch, itemSubclass } from './item/index';
 import { mediaSearch } from './media-search/index';
+import {
+  mythicKeystonePeriod,
+  mythicKeystonePeriodIndex,
+  mythicKeystoneSeason,
+  mythicKeystoneSeasonIndex,
+} from './mythic-keystone-dungeon/index';
+import { mythicKeystoneLeaderboard, mythicKeystoneLeaderboardIndex } from './mythic-keystone-leaderboard/index';
 import { playableClass, playableClassIndex, playableClassMedia } from './playable-class/index';
 import { playableRace, playableRaceIndex } from './playable-race/index';
+import {
+  playableSpecialization,
+  playableSpecializationIndex,
+  playableSpecializationMedia,
+} from './playable-specialization/index';
 import { powerType, powerTypeIndex } from './power-type/index';
 import {
   pvpLeaderboard,
@@ -33,11 +59,21 @@ import {
   pvpRewardsIndex,
   pvpSeason,
   pvpSeasonIndex,
+  pvpSeasonLeaderboard,
+  pvpSeasonLeaderboards,
+  pvpSeasonRewards,
 } from './pvp-season/index';
 import { realm, realmIndex, realmSearch } from './realm/index';
 import { region, regionIndex } from './region/index';
+import { wowToken } from './wow-token/index';
 
 const classicWow = {
+  //Achievements
+  achievement,
+  achievementCategory,
+  achievementCategoryIndex,
+  achievementIndex,
+  achievementMedia,
   //Auction House
   auctionHouseIndex,
   auctions,
@@ -53,12 +89,17 @@ const classicWow = {
   //Character Profile
   characterProfileStatus,
   characterProfileSummary,
+  //Character PvP
+  characterPvpBracketStatistics,
+  //Character Reputations
+  characterReputationsSummary,
   //Character Specialization
   characterSpecializationsSummary,
   //Character Statistics
   characterStatisticsSummary,
   //Connected Realm
   connectedRealm,
+  connectedRealmAuctions,
   connectedRealmIndex,
   connectedRealmSearch,
   //Creature
@@ -88,6 +129,14 @@ const classicWow = {
   itemSubclass,
   //Media Search
   mediaSearch,
+  //Mythic Keystone Dungeon
+  mythicKeystonePeriod,
+  mythicKeystonePeriodIndex,
+  mythicKeystoneSeason,
+  mythicKeystoneSeasonIndex,
+  //Mythic Keystone Leaderboard
+  mythicKeystoneLeaderboard,
+  mythicKeystoneLeaderboardIndex,
   //Playable Class
   playableClass,
   playableClassIndex,
@@ -95,6 +144,10 @@ const classicWow = {
   //Playable Race
   playableRace,
   playableRaceIndex,
+  //Playable Specialization
+  playableSpecialization,
+  playableSpecializationIndex,
+  playableSpecializationMedia,
   //Power Type
   powerType,
   powerTypeIndex,
@@ -107,6 +160,9 @@ const classicWow = {
   pvpRewardsIndex,
   pvpSeason,
   pvpSeasonIndex,
+  pvpSeasonLeaderboard,
+  pvpSeasonLeaderboards,
+  pvpSeasonRewards,
   //Realm
   realm,
   realmIndex,
@@ -114,10 +170,15 @@ const classicWow = {
   //Region
   region,
   regionIndex,
+  //WoW Token
+  wowToken,
 };
 export default classicWow;
 export { classicWow };
 
+//Achievements
+export * from './achievements/index';
+export type * from './achievements/types';
 //Auction House
 export * from './auction-house/index';
 export type * from './auction-house/types';
@@ -136,6 +197,12 @@ export type * from './character-media/types';
 //Character Profile
 export * from './character-profile/index';
 export type * from './character-profile/types';
+//Character PvP
+export * from './character-pvp/index';
+export type * from './character-pvp/types';
+//Character Reputations
+export * from './character-reputations/index';
+export type * from './character-reputations/types';
 //Character Specialization
 export * from './character-specializations/index';
 export type * from './character-specializations/types';
@@ -160,12 +227,21 @@ export type * from './item/types';
 //Media Search
 export * from './media-search/index';
 export type * from './media-search/types';
+//Mythic Keystone Dungeon
+export * from './mythic-keystone-dungeon/index';
+export type * from './mythic-keystone-dungeon/types';
+//Mythic Keystone Leaderboard
+export * from './mythic-keystone-leaderboard/index';
+export type * from './mythic-keystone-leaderboard/types';
 //Playable Class
 export * from './playable-class/index';
 export type * from './playable-class/types';
 //Playable Race
 export * from './playable-race/index';
 export type * from './playable-race/types';
+//Playable Specialization
+export * from './playable-specialization/index';
+export type * from './playable-specialization/types';
 //Power Type
 export * from './power-type/index';
 export type * from './power-type/types';
@@ -178,3 +254,6 @@ export type * from './realm/types';
 //Region
 export * from './region/index';
 export type * from './region/types';
+//WoW Token
+export * from './wow-token/index';
+export type * from './wow-token/types';
