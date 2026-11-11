@@ -75,7 +75,7 @@ export const questConditionSchema: z.ZodType<QuestCondition> = z.lazy(() =>
     conditions: z.array(questConditionSchema).optional(),
     must_be_incomplete: z.boolean().optional(),
     operator: questOperatorSchema.optional(),
-    target: nameIdKeySchema.optional(),
+    target: nullishNameIdKeySchema.optional(),
   }),
 );
 

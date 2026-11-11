@@ -302,7 +302,7 @@ interface Requirements {
 interface RequirementsSkill {
   display_string: string;
   level: number;
-  profession: NameIdKey;
+  profession: NullishNameIdKey;
 }
 
 interface Spell {

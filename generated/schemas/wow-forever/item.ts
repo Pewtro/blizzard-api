@@ -215,7 +215,7 @@ const previewItemReagentSchema = z.strictObject({
 const requirementsSkillSchema = z.strictObject({
   display_string: z.string(),
   level: z.number(),
-  profession: nameIdKeySchema,
+  profession: nullishNameIdKeySchema,
 });
 
 export const itemSearchResponseSchema = searchResponseWithoutResultsSchema.extend({

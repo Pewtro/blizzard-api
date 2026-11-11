@@ -80,7 +80,7 @@ export interface QuestCondition {
   conditions?: Array<QuestCondition>;
   must_be_incomplete?: boolean;
   operator?: QuestOperator;
-  target?: NameIdKey;
+  target?: NullishNameIdKey;
 }
 
 /**
