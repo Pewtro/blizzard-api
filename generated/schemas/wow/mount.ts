@@ -8,6 +8,7 @@ import {
   localesSchema,
   nameIdKeySchema,
   nullishNameIdKeySchema,
+  nullishNameIdSchema,
   responseBaseSchema,
   searchResponseWithoutResultsSchema,
 } from '../core';
@@ -52,12 +53,10 @@ const mountSearchResponseItemSchema = keyBaseSchema.extend({
   }),
 });
 
-export const mountResponseSchema = responseBaseSchema.extend({
+export const mountResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
   creature_displays: z.array(creatureDisplaySchema),
   description: z.string().nullable(),
   faction: factionSchema.optional(),
-  id: z.number(),
-  name: z.string(),
   requirements: z
     .strictObject({
       classes: z.array(nameIdKeySchema).optional(),

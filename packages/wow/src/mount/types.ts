@@ -5,6 +5,7 @@ import type {
   KeyBase,
   Locales,
   NameIdKey,
+  NullishNameId,
   NullishNameIdKey,
   ResponseBase,
   SearchResponseWithoutResults,
@@ -22,12 +23,10 @@ export interface MountIndexResponse extends ResponseBase {
  * The response for a mount.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface MountResponse extends ResponseBase {
+export interface MountResponse extends NullishNameId, ResponseBase {
   creature_displays: Array<CreatureDisplay>;
   description: null | string;
   faction?: Faction;
-  id: number;
-  name: string;
   requirements?: { classes?: Array<NameIdKey>; faction?: Faction; races?: Array<NameIdKey> };
   should_exclude_if_uncollected?: boolean;
   source?: Source;
