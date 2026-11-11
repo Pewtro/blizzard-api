@@ -9,6 +9,7 @@ import {
   responseBaseSchema,
   searchResponseWithoutResultsSchema,
 } from '../core';
+import { realmLocalesSchema, realmTimezoneSchema, realmTypeCapitalizedSchema } from './realm';
 
 export const connectedRealmIndexResponseSchema = responseBaseSchema.extend({
   connected_realms: z.array(hrefSchema),
@@ -29,31 +30,6 @@ const realmLockedStatusSchema = z.strictObject({
   is_locked_for_pct: z.boolean(),
 });
 
-const realmStatusCapitalizedSchema = z.union([z.literal('DOWN'), z.literal('UP')]);
-
-const auctionHouseTimeLeftSchema = z.union([
-  z.literal('LONG'),
-  z.literal('MEDIUM'),
-  z.literal('SHORT'),
-  z.literal('VERY_LONG'),
-]);
-
-const searchRealmPopulationSchema = z.strictObject({
-  name: z.record(localesSchema, z.string()),
-  type: realmPopulationCapitalizedSchema,
-});
-
-const searchRealmStatusSchema = z.strictObject({
-  name: z.record(localesSchema, z.string()),
-  type: realmStatusCapitalizedSchema,
-});
-
-const realmTimezoneSchema = z.any();
-
-const realmLocalesSchema = z.any();
-
-const realmTypeCapitalizedSchema = z.any();
-
 const realmSchema = z.strictObject({
   category: z.string(),
   connected_realm: hrefSchema,
@@ -67,6 +43,65 @@ const realmSchema = z.strictObject({
   type: z.strictObject({
     name: z.string(),
     type: realmTypeCapitalizedSchema,
+  }),
+});
+
+const realmStatusCapitalizedSchema = z.union([z.literal('DOWN'), z.literal('UP')]);
+
+export const connectedRealmSearchParametersSchema = baseSearchParametersSchema.extend({
+  'realms.timezone': realmTimezoneSchema.optional(),
+  'status.type': realmStatusCapitalizedSchema.optional(),
+});
+
+const auctionHouseTimeLeftSchema = z.union([
+  z.literal('LONG'),
+  z.literal('MEDIUM'),
+  z.literal('SHORT'),
+  z.literal('VERY_LONG'),
+]);
+
+const searchRealmPopulationSchema = z.strictObject({
+  name: z.record(localesSchema, z.string()),
+  type: realmPopulationCapitalizedSchema,
+});
+
+const searchRealmSchema = z.strictObject({
+  category: z.record(localesSchema, z.string()),
+  id: z.number(),
+  is_tournament: z.boolean(),
+  locale: realmLocalesSchema,
+  name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
+  region: z.strictObject({
+    id: z.number(),
+    name: z.record(localesSchema, z.string()),
+  }),
+  slug: z.string(),
+  timezone: realmTimezoneSchema,
+  type: z.strictObject({
+    name: z.record(localesSchema, z.string()),
+    type: realmTypeCapitalizedSchema,
+  }),
+});
+
+const searchRealmStatusSchema = z.strictObject({
+  name: z.record(localesSchema, z.string()),
+  type: realmStatusCapitalizedSchema,
+});
+
+export const connectedRealmResponseSchema = responseBaseSchema.extend({
+  auctions: hrefSchema,
+  has_queue: z.boolean(),
+  id: z.number(),
+  population: z.strictObject({
+    name: z.string(),
+    type: realmPopulationCapitalizedSchema,
+  }),
+  pvp_season: hrefSchema.optional(),
+  realm_locked_status: realmLockedStatusSchema.optional(),
+  realms: z.array(realmSchema),
+  status: z.strictObject({
+    name: z.string(),
+    type: realmStatusCapitalizedSchema,
   }),
 });
 
@@ -95,52 +130,6 @@ const auctionHousePostingSchema = z.strictObject({
   time_left: auctionHouseTimeLeftSchema,
 });
 
-export const connectedRealmSearchParametersSchema = baseSearchParametersSchema.extend({
-  'realms.timezone': realmTimezoneSchema.optional(),
-  'status.type': realmStatusCapitalizedSchema.optional(),
-});
-
-const searchRealmSchema = z.strictObject({
-  category: z.record(localesSchema, z.string()),
-  id: z.number(),
-  is_tournament: z.boolean(),
-  locale: realmLocalesSchema,
-  name: z.record(localesSchema, z.union([z.string(), z.undefined()])),
-  region: z.strictObject({
-    id: z.number(),
-    name: z.record(localesSchema, z.string()),
-  }),
-  slug: z.string(),
-  timezone: realmTimezoneSchema,
-  type: z.strictObject({
-    name: z.record(localesSchema, z.string()),
-    type: realmTypeCapitalizedSchema,
-  }),
-});
-
-export const connectedRealmResponseSchema = responseBaseSchema.extend({
-  auctions: hrefSchema,
-  has_queue: z.boolean(),
-  id: z.number(),
-  population: z.strictObject({
-    name: z.string(),
-    type: realmPopulationCapitalizedSchema,
-  }),
-  pvp_season: hrefSchema.optional(),
-  realm_locked_status: realmLockedStatusSchema.optional(),
-  realms: z.array(realmSchema),
-  status: z.strictObject({
-    name: z.string(),
-    type: realmStatusCapitalizedSchema,
-  }),
-});
-
-export const connectedRealmAuctionsResponseSchema = responseBaseSchema.extend({
-  auctions: z.array(auctionHousePostingSchema),
-  commodities: hrefSchema,
-  connected_realm: hrefSchema,
-});
-
 const connectedRealmSearchResponseItemSchema = keyBaseSchema.extend({
   data: z.strictObject({
     has_queue: z.boolean(),
@@ -149,6 +138,12 @@ const connectedRealmSearchResponseItemSchema = keyBaseSchema.extend({
     realms: z.array(searchRealmSchema),
     status: searchRealmStatusSchema,
   }),
+});
+
+export const connectedRealmAuctionsResponseSchema = responseBaseSchema.extend({
+  auctions: z.array(auctionHousePostingSchema),
+  commodities: hrefSchema,
+  connected_realm: hrefSchema,
 });
 
 export const connectedRealmSearchResponseSchema = searchResponseWithoutResultsSchema.extend({

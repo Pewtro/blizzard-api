@@ -9,6 +9,7 @@ import {
   responseBaseSchema,
   searchResponseWithoutResultsSchema,
 } from '../core';
+import { realmCategorySchema, realmLocalesSchema, realmTimezoneSchema, realmTypeCapitalizedSchema } from './realm';
 
 export const connectedRealmIndexResponseSchema = responseBaseSchema.extend({
   connected_realms: z.array(hrefSchema),
@@ -28,26 +29,6 @@ const realmLockedStatusSchema = z.strictObject({
   is_locked_for_pct: z.boolean(),
 });
 
-const realmStatusCapitalizedSchema = z.union([z.literal('DOWN'), z.literal('UP')]);
-
-const searchRealmPopulationSchema = z.strictObject({
-  name: z.record(localesSchema, z.string()),
-  type: realmPopulationCapitalizedSchema,
-});
-
-const searchRealmStatusSchema = z.strictObject({
-  name: z.record(localesSchema, z.string()),
-  type: realmStatusCapitalizedSchema,
-});
-
-const realmTimezoneSchema = z.any();
-
-const realmCategorySchema = z.any();
-
-const realmLocalesSchema = z.any();
-
-const realmTypeCapitalizedSchema = z.any();
-
 const realmSchema = z.strictObject({
   category: realmCategorySchema,
   connected_realm: hrefSchema,
@@ -64,9 +45,16 @@ const realmSchema = z.strictObject({
   }),
 });
 
+const realmStatusCapitalizedSchema = z.union([z.literal('DOWN'), z.literal('UP')]);
+
 export const connectedRealmSearchParametersSchema = baseSearchParametersSchema.extend({
   'realms.timezone': realmTimezoneSchema.optional(),
   'status.type': realmStatusCapitalizedSchema.optional(),
+});
+
+const searchRealmPopulationSchema = z.strictObject({
+  name: z.record(localesSchema, z.string()),
+  type: realmPopulationCapitalizedSchema,
 });
 
 const searchRealmSchema = z.strictObject({
@@ -85,6 +73,11 @@ const searchRealmSchema = z.strictObject({
     name: z.record(localesSchema, z.string()),
     type: realmTypeCapitalizedSchema,
   }),
+});
+
+const searchRealmStatusSchema = z.strictObject({
+  name: z.record(localesSchema, z.string()),
+  type: realmStatusCapitalizedSchema,
 });
 
 export const connectedRealmResponseSchema = responseBaseSchema.extend({
