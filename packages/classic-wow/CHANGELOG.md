@@ -1,5 +1,17 @@
 # @blizzard-api/classic-wow
 
+## 4.2.2
+
+### Patch Changes
+
+- df0d278: Mark item_class in ItemSubClassResponse as nullable
+- bf9fbf2: Mark name in ItemClassResponse as nullable
+- a834d7d: Mark a series of name as nullable
+- 9f63aed: Add OFFLINE as a realm population option
+- f83e8db: Mark a realm name as nullable
+- Updated dependencies [b7659c2]
+  - @blizzard-api/core@4.4.0
+
 ## 4.2.1
 
 ### Patch Changes
