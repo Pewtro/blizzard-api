@@ -3,9 +3,10 @@ import { z } from 'zod';
 import {
   characterSchema,
   colorSchema,
-  keyBaseSchema,
+  idKeySchema,
   nameIdKeySchema,
   nullishNameIdKeySchema,
+  nullishNameTypeSchema,
   responseBaseSchema,
 } from '../core';
 
@@ -14,9 +15,11 @@ const nameDescriptionSchema = z.strictObject({
   display_string: z.string(),
 });
 
-const nameTypeSchema = z.strictObject({
-  name: z.string().nullable(),
-  type: z.string(),
+const damageSchema = z.strictObject({
+  damage_class: nullishNameTypeSchema,
+  display_string: z.string(),
+  max_value: z.number(),
+  min_value: z.number(),
 });
 
 const displayStringsSchema = z.strictObject({
@@ -74,12 +77,8 @@ const sellPriceSchema = z.strictObject({
 const socketSchema = z.strictObject({
   display_string: z.string(),
   item: nameIdKeySchema,
-  media: keyBaseSchema.and(
-    z.strictObject({
-      id: z.number(),
-    }),
-  ),
-  socket_type: nameTypeSchema,
+  media: idKeySchema,
+  socket_type: nullishNameTypeSchema,
 });
 
 const spellSchema = z.strictObject({
@@ -92,7 +91,7 @@ const statSchema = z.strictObject({
   display: nameDescriptionSchema,
   is_equip_bonus: z.boolean().optional(),
   is_negated: z.boolean().optional(),
-  type: nameTypeSchema,
+  type: nullishNameTypeSchema,
   value: z.number(),
 });
 
@@ -100,6 +99,12 @@ const transmogSchema = z.strictObject({
   display_string: z.string(),
   item: nameIdKeySchema,
   item_modified_appearance_id: z.number(),
+});
+
+const weaponSchema = z.strictObject({
+  attack_speed: displayStringValueSchema,
+  damage: damageSchema,
+  dps: displayStringValueSchema,
 });
 
 const itemElementSchema = z.strictObject({
@@ -124,53 +129,32 @@ const setSchema = z.strictObject({
   items: z.array(itemElementSchema).optional(),
 });
 
-const damageSchema = z.strictObject({
-  damage_class: nameTypeSchema,
-  display_string: z.string(),
-  max_value: z.number(),
-  min_value: z.number(),
-});
-
-const weaponSchema = z.strictObject({
-  attack_speed: displayStringValueSchema,
-  damage: damageSchema,
-  dps: displayStringValueSchema,
-});
-
 const equippedItemSchema = z.strictObject({
   armor: armorSchema.optional(),
-  binding: nameTypeSchema,
+  binding: nullishNameTypeSchema,
   bonus_list: z.array(z.number()).optional(),
   context: z.number().optional(),
   description: z.string().optional(),
   durability: displayStringValueSchema.optional(),
   enchantments: z.array(enchantmentSchema).optional(),
-  inventory_type: nameTypeSchema,
+  inventory_type: nullishNameTypeSchema,
   is_subclass_hidden: z.boolean().optional(),
-  item: keyBaseSchema.and(
-    z.strictObject({
-      id: z.number(),
-    }),
-  ),
+  item: idKeySchema,
   item_class: nameIdKeySchema,
   item_subclass: nameIdKeySchema,
   level: displayStringValueSchema.optional(),
   limit_category: z.string().optional(),
-  media: keyBaseSchema.and(
-    z.strictObject({
-      id: z.number(),
-    }),
-  ),
+  media: idKeySchema,
   modified_appearance_id: z.number().optional(),
   modified_crafting_stat: z.array(modifiedCraftingStatSchema).optional(),
   name: z.string(),
   name_description: nameDescriptionSchema.optional(),
-  quality: nameTypeSchema,
+  quality: nullishNameTypeSchema,
   quantity: z.number(),
   requirements: requirementsSchema.optional(),
   sell_price: sellPriceSchema.optional(),
   set: setSchema.optional(),
-  slot: nameTypeSchema,
+  slot: nullishNameTypeSchema,
   sockets: z.array(socketSchema).optional(),
   spells: z.array(spellSchema).optional(),
   stats: z.array(statSchema).optional(),

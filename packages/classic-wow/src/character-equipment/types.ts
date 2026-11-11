@@ -1,4 +1,12 @@
-import type { Character, Color, KeyBase, NameIdKey, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
+import type {
+  Character,
+  Color,
+  IdKey,
+  NameIdKey,
+  NullishNameIdKey,
+  NullishNameType,
+  ResponseBase,
+} from '@blizzard-api/core';
 
 export interface CharacterEquipmentSummaryResponse extends ResponseBase {
   character: Character;
@@ -12,7 +20,7 @@ interface Armor {
 }
 
 interface Damage {
-  damage_class: NameType;
+  damage_class: NullishNameType;
   display_string: string;
   max_value: number;
   min_value: number;
@@ -51,30 +59,30 @@ interface EnchantmentSlot {
 
 interface EquippedItem {
   armor?: Armor;
-  binding: NameType;
+  binding: NullishNameType;
   bonus_list?: Array<number>;
   context?: number;
   description?: string;
   durability?: DisplayStringValue;
   enchantments?: Array<Enchantment>;
-  inventory_type: NameType;
+  inventory_type: NullishNameType;
   is_subclass_hidden?: boolean;
-  item: KeyBase & { id: number };
+  item: IdKey;
   item_class: NameIdKey;
   item_subclass: NameIdKey;
   level?: DisplayStringValue;
   limit_category?: string;
-  media: KeyBase & { id: number };
+  media: IdKey;
   modified_appearance_id?: number;
   modified_crafting_stat?: Array<ModifiedCraftingStat>;
   name: string;
   name_description?: NameDescription;
-  quality: NameType;
+  quality: NullishNameType;
   quantity: number;
   requirements?: Requirements;
   sell_price?: SellPrice;
   set?: Set;
-  slot: NameType;
+  slot: NullishNameType;
   sockets?: Array<Socket>;
   spells?: Array<Spell>;
   stats?: Array<Stat>;
@@ -98,11 +106,6 @@ interface ModifiedCraftingStat {
 interface NameDescription {
   color: Color;
   display_string: string;
-}
-
-interface NameType {
-  name: null | string;
-  type: string;
 }
 
 interface PlayableClasses {
@@ -130,8 +133,8 @@ interface Set {
 interface Socket {
   display_string: string;
   item: NameIdKey;
-  media: KeyBase & { id: number };
-  socket_type: NameType;
+  media: IdKey;
+  socket_type: NullishNameType;
 }
 
 interface Spell {
@@ -144,7 +147,7 @@ interface Stat {
   display: NameDescription;
   is_equip_bonus?: boolean;
   is_negated?: boolean;
-  type: NameType;
+  type: NullishNameType;
   value: number;
 }
 
