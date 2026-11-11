@@ -1,7 +1,6 @@
+import { wowCharacterBasePath } from '@blizzard-api/core';
 import type { Resource } from '@blizzard-api/core';
 import type { CharacterDungeonsResponse, CharacterEncountersSummaryResponse, CharacterRaidsResponse } from './types';
-
-const basePath = '/profile/wow/character';
 
 /**
  * Get a summary of a character's encounters.
@@ -15,7 +14,7 @@ export function characterEncountersSummary(
 ): Resource<CharacterEncountersSummaryResponse> {
   return {
     namespace: 'profile-forever',
-    path: `${basePath}/${characterSlug(name, surname)}/encounters`,
+    path: `${wowCharacterBasePath}/${characterSlug(name, surname)}/encounters`,
   };
 }
 
@@ -28,7 +27,7 @@ export function characterEncountersSummary(
 export function characterDungeons(name: string, surname: string): Resource<CharacterDungeonsResponse> {
   return {
     namespace: 'profile-forever',
-    path: `${basePath}/${characterSlug(name, surname)}/encounters/dungeons`,
+    path: `${wowCharacterBasePath}/${characterSlug(name, surname)}/encounters/dungeons`,
   };
 }
 
@@ -41,7 +40,7 @@ export function characterDungeons(name: string, surname: string): Resource<Chara
 export function characterRaids(name: string, surname: string): Resource<CharacterRaidsResponse> {
   return {
     namespace: 'profile-forever',
-    path: `${basePath}/${characterSlug(name, surname)}/encounters/raids`,
+    path: `${wowCharacterBasePath}/${characterSlug(name, surname)}/encounters/raids`,
   };
 }
 

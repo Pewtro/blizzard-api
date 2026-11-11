@@ -1,7 +1,6 @@
+import { wowCharacterBasePath } from '@blizzard-api/core';
 import type { Resource } from '@blizzard-api/core';
 import type { CharacterAchievementsSummaryResponse, CharacterAchievementStatisticsResponse } from './types';
-
-const basePath = '/profile/wow/character';
 
 /**
  * Get a summary of the achievements a character has completed.
@@ -15,7 +14,7 @@ export function characterAchievementsSummary(
 ): Resource<CharacterAchievementsSummaryResponse> {
   return {
     namespace: 'profile-forever',
-    path: `${basePath}/${characterSlug(name, surname)}/achievements`,
+    path: `${wowCharacterBasePath}/${characterSlug(name, surname)}/achievements`,
   };
 }
 
@@ -31,7 +30,7 @@ export function characterAchievementStatistics(
 ): Resource<CharacterAchievementStatisticsResponse> {
   return {
     namespace: 'profile-forever',
-    path: `${basePath}/${characterSlug(name, surname)}/achievements/statistics`,
+    path: `${wowCharacterBasePath}/${characterSlug(name, surname)}/achievements/statistics`,
   };
 }
 

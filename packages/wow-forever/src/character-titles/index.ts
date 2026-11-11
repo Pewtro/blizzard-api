@@ -1,7 +1,6 @@
+import { wowCharacterBasePath } from '@blizzard-api/core';
 import type { Resource } from '@blizzard-api/core';
 import type { CharacterTitlesSummaryResponse } from './types';
-
-const basePath = '/profile/wow/character';
 
 /**
  * Get a summary of the titles a character has obtained.
@@ -12,7 +11,7 @@ const basePath = '/profile/wow/character';
 export function characterTitlesSummary(name: string, surname: string): Resource<CharacterTitlesSummaryResponse> {
   return {
     namespace: 'profile-forever',
-    path: `${basePath}/${characterSlug(name, surname)}/titles`,
+    path: `${wowCharacterBasePath}/${characterSlug(name, surname)}/titles`,
   };
 }
 

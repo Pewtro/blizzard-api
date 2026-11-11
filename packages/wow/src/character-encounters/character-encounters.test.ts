@@ -10,7 +10,7 @@ describe('Character Encounters', () => {
 
     expect(result).toEqual({
       namespace: 'profile',
-      path: 'profile/wow/character/realm/character/encounters',
+      path: '/profile/wow/character/realm/character/encounters',
     });
   });
   test('should return the correct ProtectedResource object for character dungeons', () => {
@@ -21,7 +21,7 @@ describe('Character Encounters', () => {
 
     expect(result).toEqual({
       namespace: 'profile',
-      path: 'profile/wow/character/realm/character/encounters/dungeons',
+      path: '/profile/wow/character/realm/character/encounters/dungeons',
     });
   });
 
@@ -33,7 +33,7 @@ describe('Character Encounters', () => {
 
     expect(result).toEqual({
       namespace: 'profile',
-      path: 'profile/wow/character/realm/character/encounters/raids',
+      path: '/profile/wow/character/realm/character/encounters/raids',
     });
   });
 });

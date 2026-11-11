@@ -1,7 +1,6 @@
+import { wowCharacterBasePath } from '@blizzard-api/core';
 import type { Resource } from '@blizzard-api/core';
 import type { CharacterProfessionsSummaryResponse } from './types';
-
-const basePath = '/profile/wow/character';
 
 /**
  * Get a summary of the professions of a character.
@@ -15,7 +14,7 @@ export function characterProfessionsSummary(
 ): Resource<CharacterProfessionsSummaryResponse> {
   return {
     namespace: 'profile-forever',
-    path: `${basePath}/${characterSlug(name, surname)}/professions`,
+    path: `${wowCharacterBasePath}/${characterSlug(name, surname)}/professions`,
   };
 }
 

@@ -1,7 +1,6 @@
+import { wowCharacterBasePath } from '@blizzard-api/core';
 import type { Resource } from '@blizzard-api/core';
 import type { CharacterHunterPetsSummaryResponse } from './types';
-
-const basePath = '/profile/wow/character';
 
 /**
  * Get a summary of the hunter pets of a character.
@@ -15,7 +14,7 @@ export function characterHunterPetsSummary(
 ): Resource<CharacterHunterPetsSummaryResponse> {
   return {
     namespace: 'profile-forever',
-    path: `${basePath}/${characterSlug(name, surname)}/hunter-pets`,
+    path: `${wowCharacterBasePath}/${characterSlug(name, surname)}/hunter-pets`,
   };
 }
 

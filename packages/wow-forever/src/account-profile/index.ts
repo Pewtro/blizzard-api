@@ -1,7 +1,6 @@
+import { wowAccountProfileBasePath } from '@blizzard-api/core';
 import type { ProtectedResource } from '@blizzard-api/core';
 import type { AccountProfileSummaryResponse, AccountTransmogsCollectionSummaryResponse } from './types';
-
-const basePath = '/profile/user/wow';
 
 /**
  * Get a profile summary for the authenticated account.
@@ -12,7 +11,7 @@ const basePath = '/profile/user/wow';
 export function accountProfileSummary(token: string): ProtectedResource<AccountProfileSummaryResponse> {
   return {
     namespace: 'profile-forever',
-    path: basePath,
+    path: wowAccountProfileBasePath,
     token,
   };
 }
@@ -28,7 +27,7 @@ export function accountTransmogsCollectionSummary(
 ): ProtectedResource<AccountTransmogsCollectionSummaryResponse> {
   return {
     namespace: 'profile-forever',
-    path: `${basePath}/collections/transmogs`,
+    path: `${wowAccountProfileBasePath}/collections/transmogs`,
     token,
   };
 }

@@ -1,3 +1,4 @@
+import { wowAccountProfileBasePath } from '@blizzard-api/core';
 import type { ProtectedResource } from '@blizzard-api/core';
 import type {
   AccountCollectionsIndexResponse,
@@ -10,8 +11,6 @@ import type {
   ProtectedCharacterProfileSummaryResponse,
 } from './types';
 
-const accountProfileBase = '/profile/user/wow';
-
 /**
  * Because this endpoint provides data about the current logged-in user's World of Warcraft account, it requires an access token with the wow.profile scope acquired via the Authorization Code Flow. See {@link https://develop.battle.net/documentation/guides/using-oauth/authorization-code-flow}
  * @param token The OAuth 2.0 access token to use for authentication.
@@ -20,7 +19,7 @@ const accountProfileBase = '/profile/user/wow';
 export function accountCollectionsIndex(token: string): ProtectedResource<AccountCollectionsIndexResponse> {
   return {
     namespace: 'profile',
-    path: `${accountProfileBase}/collections`,
+    path: `${wowAccountProfileBasePath}/collections`,
     token,
   };
 }
@@ -35,7 +34,7 @@ export function accountHeirloomsCollectionSummary(
 ): ProtectedResource<AccountHeirloomsCollectionSummaryResponse> {
   return {
     namespace: 'profile',
-    path: `${accountProfileBase}/collections/heirlooms`,
+    path: `${wowAccountProfileBasePath}/collections/heirlooms`,
     token,
   };
 }
@@ -50,7 +49,7 @@ export function accountMountsCollectionSummary(
 ): ProtectedResource<AccountMountsCollectionSummaryResponse> {
   return {
     namespace: 'profile',
-    path: `${accountProfileBase}/collections/mounts`,
+    path: `${wowAccountProfileBasePath}/collections/mounts`,
     token,
   };
 }
@@ -63,7 +62,7 @@ export function accountMountsCollectionSummary(
 export function accountPetsCollectionSummary(token: string): ProtectedResource<AccountPetsCollectionSummaryResponse> {
   return {
     namespace: 'profile',
-    path: `${accountProfileBase}/collections/pets`,
+    path: `${wowAccountProfileBasePath}/collections/pets`,
     token,
   };
 }
@@ -76,7 +75,7 @@ export function accountPetsCollectionSummary(token: string): ProtectedResource<A
 export function accountProfileSummary(token: string): ProtectedResource<AccountProfileSummaryResponse> {
   return {
     namespace: 'profile',
-    path: accountProfileBase,
+    path: wowAccountProfileBasePath,
     token,
   };
 }
@@ -89,7 +88,7 @@ export function accountProfileSummary(token: string): ProtectedResource<AccountP
 export function accountToysCollectionSummary(token: string): ProtectedResource<AccountToysCollectionSummaryResponse> {
   return {
     namespace: 'profile',
-    path: `${accountProfileBase}/collections/toys`,
+    path: `${wowAccountProfileBasePath}/collections/toys`,
     token,
   };
 }
@@ -104,7 +103,7 @@ export function accountTransmogsCollectionSummary(
 ): ProtectedResource<AccountTransmogsCollectionSummaryResponse> {
   return {
     namespace: 'profile',
-    path: `${accountProfileBase}/collections/transmogs`,
+    path: `${wowAccountProfileBasePath}/collections/transmogs`,
     token,
   };
 }
@@ -123,7 +122,7 @@ export function protectedCharacterProfileSummary(
 ): ProtectedResource<ProtectedCharacterProfileSummaryResponse> {
   return {
     namespace: 'profile',
-    path: `${accountProfileBase}/protected-character/${realmId}-${characterId}`,
+    path: `${wowAccountProfileBasePath}/protected-character/${realmId}-${characterId}`,
     token,
   };
 }

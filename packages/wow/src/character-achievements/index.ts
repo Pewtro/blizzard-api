@@ -1,7 +1,6 @@
+import { wowCharacterBasePath } from '@blizzard-api/core';
 import type { Resource } from '@blizzard-api/core';
 import type { CharacterAchievementsSummaryResponse, CharacterAchievementStatisticsResponse } from './types';
-
-const basePath = '/profile/wow/character';
 
 /**
  * @param realmSlug The slug of the realm.
@@ -14,7 +13,7 @@ export function characterAchievementsSummary(
 ): Resource<CharacterAchievementsSummaryResponse> {
   return {
     namespace: 'profile',
-    path: `${basePath}/${realmSlug}/${characterName.toLowerCase()}/achievements`,
+    path: `${wowCharacterBasePath}/${realmSlug}/${characterName.toLowerCase()}/achievements`,
   };
 }
 
@@ -29,6 +28,6 @@ export function characterAchievementStatistics(
 ): Resource<CharacterAchievementStatisticsResponse> {
   return {
     namespace: 'profile',
-    path: `${basePath}/${realmSlug}/${characterName.toLowerCase()}/achievements/statistics`,
+    path: `${wowCharacterBasePath}/${realmSlug}/${characterName.toLowerCase()}/achievements/statistics`,
   };
 }

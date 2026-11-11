@@ -1,7 +1,6 @@
+import { wowCharacterBasePath } from '@blizzard-api/core';
 import type { Resource } from '@blizzard-api/core';
 import type { CharacterAppearanceResponse } from './types';
-
-const basePath = '/profile/wow/character';
 
 /**
  * Get a summary of a character's appearance settings.
@@ -12,7 +11,7 @@ const basePath = '/profile/wow/character';
 export function characterAppearanceSummary(name: string, surname: string): Resource<CharacterAppearanceResponse> {
   return {
     namespace: 'profile-forever',
-    path: `${basePath}/${characterSlug(name, surname)}/appearance`,
+    path: `${wowCharacterBasePath}/${characterSlug(name, surname)}/appearance`,
   };
 }
 

@@ -20,9 +20,19 @@ export const d3GameDataBasePath = `data/d3`;
 export const wowBasePath = '/data/wow';
 
 /**
- * The base request path for the character API for Classic World of Warcraft.
+ * The base request path for character APIs in World of Warcraft.
  */
-export const wowCharacterBasePath = 'profile/wow/character';
+export const wowCharacterBasePath = '/profile/wow/character';
+
+/**
+ * The base request path for account profile APIs in World of Warcraft.
+ */
+export const wowAccountProfileBasePath = '/profile/user/wow';
+
+/**
+ * The base request path for guild APIs in World of Warcraft.
+ */
+export const wowGuildBasePath = `${wowBasePath}/guild` as const;
 
 /**
  * The base request path for media in the Blizzard API for world of warcraft.

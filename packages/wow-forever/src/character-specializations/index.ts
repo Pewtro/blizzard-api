@@ -1,7 +1,6 @@
+import { wowCharacterBasePath } from '@blizzard-api/core';
 import type { Resource } from '@blizzard-api/core';
 import type { CharacterSpecializationsSummaryResponse } from './types';
-
-const basePath = '/profile/wow/character';
 
 /**
  * Get a summary of a character's specializations.
@@ -15,7 +14,7 @@ export function characterSpecializationsSummary(
 ): Resource<CharacterSpecializationsSummaryResponse> {
   return {
     namespace: 'profile-forever',
-    path: `${basePath}/${characterSlug(name, surname)}/specializations`,
+    path: `${wowCharacterBasePath}/${characterSlug(name, surname)}/specializations`,
   };
 }
 

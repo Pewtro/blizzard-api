@@ -1,7 +1,6 @@
+import { wowCharacterBasePath } from '@blizzard-api/core';
 import type { Resource } from '@blizzard-api/core';
 import type { CharacterEquipmentSummaryResponse } from './types';
-
-const basePath = '/profile/wow/character';
 
 /**
  * Get a summary of the items equipped by a character.
@@ -12,7 +11,7 @@ const basePath = '/profile/wow/character';
 export function characterEquipmentSummary(name: string, surname: string): Resource<CharacterEquipmentSummaryResponse> {
   return {
     namespace: 'profile-forever',
-    path: `${basePath}/${characterSlug(name, surname)}/equipment`,
+    path: `${wowCharacterBasePath}/${characterSlug(name, surname)}/equipment`,
   };
 }
 

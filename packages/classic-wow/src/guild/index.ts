@@ -1,3 +1,4 @@
+import { wowGuildBasePath } from '@blizzard-api/core';
 import type { ProfileClassicNamespaces, Resource } from '@blizzard-api/core';
 import type {
   GuildAchievementsClassicEraResponse,
@@ -6,8 +7,6 @@ import type {
   GuildResponse,
   GuildRosterResponse,
 } from './types';
-
-const basePath = '/data/wow/guild';
 
 /**
  * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
@@ -22,7 +21,7 @@ export function guild(
 ): Resource<GuildResponse> {
   return {
     namespace,
-    path: `${basePath}/${realmSlug}/${nameSlug}`,
+    path: `${wowGuildBasePath}/${realmSlug}/${nameSlug}`,
   };
 }
 
@@ -41,7 +40,7 @@ export function guildAchievements<T extends ProfileClassicNamespaces>(
 > {
   return {
     namespace,
-    path: `${basePath}/${realmSlug}/${nameSlug}/achievements`,
+    path: `${wowGuildBasePath}/${realmSlug}/${nameSlug}/achievements`,
   };
 }
 
@@ -58,7 +57,7 @@ export function guildActivity(
 ): Resource<GuildActivityResponse> {
   return {
     namespace,
-    path: `${basePath}/${realmSlug}/${nameSlug}/activity`,
+    path: `${wowGuildBasePath}/${realmSlug}/${nameSlug}/activity`,
   };
 }
 
@@ -75,6 +74,6 @@ export function guildRoster(
 ): Resource<GuildRosterResponse> {
   return {
     namespace,
-    path: `${basePath}/${realmSlug}/${nameSlug}/roster`,
+    path: `${wowGuildBasePath}/${realmSlug}/${nameSlug}/roster`,
   };
 }

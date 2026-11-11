@@ -1,7 +1,6 @@
+import { wowCharacterBasePath } from '@blizzard-api/core';
 import type { Resource } from '@blizzard-api/core';
 import type { CharacterStatisticsSummaryResponse } from './types';
-
-const basePath = '/profile/wow/character';
 
 /**
  * Get a statistics summary for a character.
@@ -15,7 +14,7 @@ export function characterStatisticsSummary(
 ): Resource<CharacterStatisticsSummaryResponse> {
   return {
     namespace: 'profile-forever',
-    path: `${basePath}/${characterSlug(name, surname)}/statistics`,
+    path: `${wowCharacterBasePath}/${characterSlug(name, surname)}/statistics`,
   };
 }
 

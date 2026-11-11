@@ -1,7 +1,6 @@
+import { wowCharacterBasePath } from '@blizzard-api/core';
 import type { Resource } from '@blizzard-api/core';
 import type { CharacterProfileStatusResponse, CharacterProfileSummaryResponse } from './types';
-
-const basePath = '/profile/wow/character';
 
 /**
  * Get the profile status and unique ID of a character.
@@ -12,7 +11,7 @@ const basePath = '/profile/wow/character';
 export function characterProfileStatus(name: string, surname: string): Resource<CharacterProfileStatusResponse> {
   return {
     namespace: 'profile-forever',
-    path: `${basePath}/${characterSlug(name, surname)}/status`,
+    path: `${wowCharacterBasePath}/${characterSlug(name, surname)}/status`,
   };
 }
 
@@ -25,7 +24,7 @@ export function characterProfileStatus(name: string, surname: string): Resource<
 export function characterProfileSummary(name: string, surname: string): Resource<CharacterProfileSummaryResponse> {
   return {
     namespace: 'profile-forever',
-    path: `${basePath}/${characterSlug(name, surname)}`,
+    path: `${wowCharacterBasePath}/${characterSlug(name, surname)}`,
   };
 }
 

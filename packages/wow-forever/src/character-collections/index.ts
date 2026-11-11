@@ -1,3 +1,4 @@
+import { wowCharacterBasePath } from '@blizzard-api/core';
 import type { Resource } from '@blizzard-api/core';
 import type {
   CharacterCollectionsIndexResponse,
@@ -8,8 +9,6 @@ import type {
   CharacterTransmogCollectionSummaryResponse,
 } from './types';
 
-const basePath = '/profile/wow/character';
-
 /**
  * Get an index of collection types for a character.
  * @param name The character's first name.
@@ -19,7 +18,7 @@ const basePath = '/profile/wow/character';
 export function characterCollectionsIndex(name: string, surname: string): Resource<CharacterCollectionsIndexResponse> {
   return {
     namespace: 'profile-forever',
-    path: `${basePath}/${characterSlug(name, surname)}/collections`,
+    path: `${wowCharacterBasePath}/${characterSlug(name, surname)}/collections`,
   };
 }
 
@@ -35,7 +34,7 @@ export function characterHeirloomsCollectionSummary(
 ): Resource<CharacterHeirloomsCollectionSummaryResponse> {
   return {
     namespace: 'profile-forever',
-    path: `${basePath}/${characterSlug(name, surname)}/collections/heirlooms`,
+    path: `${wowCharacterBasePath}/${characterSlug(name, surname)}/collections/heirlooms`,
   };
 }
 
@@ -51,7 +50,7 @@ export function characterMountsCollectionSummary(
 ): Resource<CharacterMountsCollectionSummaryResponse> {
   return {
     namespace: 'profile-forever',
-    path: `${basePath}/${characterSlug(name, surname)}/collections/mounts`,
+    path: `${wowCharacterBasePath}/${characterSlug(name, surname)}/collections/mounts`,
   };
 }
 
@@ -67,7 +66,7 @@ export function characterPetsCollectionSummary(
 ): Resource<CharacterPetsCollectionSummaryResponse> {
   return {
     namespace: 'profile-forever',
-    path: `${basePath}/${characterSlug(name, surname)}/collections/pets`,
+    path: `${wowCharacterBasePath}/${characterSlug(name, surname)}/collections/pets`,
   };
 }
 
@@ -83,7 +82,7 @@ export function characterToysCollectionSummary(
 ): Resource<CharacterToysCollectionSummaryResponse> {
   return {
     namespace: 'profile-forever',
-    path: `${basePath}/${characterSlug(name, surname)}/collections/toys`,
+    path: `${wowCharacterBasePath}/${characterSlug(name, surname)}/collections/toys`,
   };
 }
 
@@ -99,7 +98,7 @@ export function characterTransmogCollectionSummary(
 ): Resource<CharacterTransmogCollectionSummaryResponse> {
   return {
     namespace: 'profile-forever',
-    path: `${basePath}/${characterSlug(name, surname)}/collections/transmogs`,
+    path: `${wowCharacterBasePath}/${characterSlug(name, surname)}/collections/transmogs`,
   };
 }
 

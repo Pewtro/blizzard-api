@@ -1,7 +1,6 @@
+import { wowCharacterBasePath } from '@blizzard-api/core';
 import type { Resource } from '@blizzard-api/core';
 import type { CharacterReputationsSummaryResponse } from './types';
-
-const basePath = '/profile/wow/character';
 
 /**
  * Get a summary of a character's reputations.
@@ -15,7 +14,7 @@ export function characterReputationsSummary(
 ): Resource<CharacterReputationsSummaryResponse> {
   return {
     namespace: 'profile-forever',
-    path: `${basePath}/${characterSlug(name, surname)}/reputations`,
+    path: `${wowCharacterBasePath}/${characterSlug(name, surname)}/reputations`,
   };
 }
 

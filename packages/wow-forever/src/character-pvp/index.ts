@@ -1,7 +1,6 @@
+import { wowCharacterBasePath } from '@blizzard-api/core';
 import type { Resource } from '@blizzard-api/core';
 import type { CharacterPvpSummaryResponse } from './types';
-
-const basePath = '/profile/wow/character';
 
 /**
  * Get a PvP summary for a character.
@@ -12,7 +11,7 @@ const basePath = '/profile/wow/character';
 export function characterPvpSummary(name: string, surname: string): Resource<CharacterPvpSummaryResponse> {
   return {
     namespace: 'profile-forever',
-    path: `${basePath}/${characterSlug(name, surname)}/pvp-summary`,
+    path: `${wowCharacterBasePath}/${characterSlug(name, surname)}/pvp-summary`,
   };
 }
 

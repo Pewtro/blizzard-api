@@ -1,7 +1,6 @@
+import { wowCharacterBasePath } from '@blizzard-api/core';
 import type { Resource } from '@blizzard-api/core';
 import type { CharacterCompletedQuestsResponse, CharacterQuestsResponse } from './types';
-
-const basePath = '/profile/wow/character';
 
 /**
  * Get a character's active quests and a link to the character's completed quests.
@@ -12,7 +11,7 @@ const basePath = '/profile/wow/character';
 export function characterQuests(name: string, surname: string): Resource<CharacterQuestsResponse> {
   return {
     namespace: 'profile-forever',
-    path: `${basePath}/${characterSlug(name, surname)}/quests`,
+    path: `${wowCharacterBasePath}/${characterSlug(name, surname)}/quests`,
   };
 }
 
@@ -25,7 +24,7 @@ export function characterQuests(name: string, surname: string): Resource<Charact
 export function characterCompletedQuests(name: string, surname: string): Resource<CharacterCompletedQuestsResponse> {
   return {
     namespace: 'profile-forever',
-    path: `${basePath}/${characterSlug(name, surname)}/quests/completed`,
+    path: `${wowCharacterBasePath}/${characterSlug(name, surname)}/quests/completed`,
   };
 }
 

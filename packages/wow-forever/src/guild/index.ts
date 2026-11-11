@@ -1,7 +1,6 @@
+import { wowGuildBasePath } from '@blizzard-api/core';
 import type { Resource } from '@blizzard-api/core';
 import type { GuildAchievementsResponse, GuildActivityResponse, GuildResponse, GuildRosterResponse } from './types';
-
-const basePath = '/data/wow/guild';
 
 /**
  * Get a guild by its name slug.
@@ -11,7 +10,7 @@ const basePath = '/data/wow/guild';
 export function guild(nameSlug: string): Resource<GuildResponse> {
   return {
     namespace: 'profile-forever',
-    path: `${basePath}/${nameSlug}`,
+    path: `${wowGuildBasePath}/${nameSlug}`,
   };
 }
 
@@ -23,7 +22,7 @@ export function guild(nameSlug: string): Resource<GuildResponse> {
 export function guildAchievements(nameSlug: string): Resource<GuildAchievementsResponse> {
   return {
     namespace: 'profile-forever',
-    path: `${basePath}/${nameSlug}/achievements`,
+    path: `${wowGuildBasePath}/${nameSlug}/achievements`,
   };
 }
 
@@ -35,7 +34,7 @@ export function guildAchievements(nameSlug: string): Resource<GuildAchievementsR
 export function guildActivity(nameSlug: string): Resource<GuildActivityResponse> {
   return {
     namespace: 'profile-forever',
-    path: `${basePath}/${nameSlug}/activity`,
+    path: `${wowGuildBasePath}/${nameSlug}/activity`,
   };
 }
 
@@ -47,6 +46,6 @@ export function guildActivity(nameSlug: string): Resource<GuildActivityResponse>
 export function guildRoster(nameSlug: string): Resource<GuildRosterResponse> {
   return {
     namespace: 'profile-forever',
-    path: `${basePath}/${nameSlug}/roster`,
+    path: `${wowGuildBasePath}/${nameSlug}/roster`,
   };
 }

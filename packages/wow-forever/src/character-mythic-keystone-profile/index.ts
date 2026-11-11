@@ -1,7 +1,6 @@
+import { wowCharacterBasePath } from '@blizzard-api/core';
 import type { Resource } from '@blizzard-api/core';
 import type { CharacterMythicKeystoneProfileIndexResponse } from './types';
-
-const basePath = '/profile/wow/character';
 
 /**
  * Get the Mythic Keystone profile index for a character.
@@ -15,7 +14,7 @@ export function characterMythicKeystoneProfileIndex(
 ): Resource<CharacterMythicKeystoneProfileIndexResponse> {
   return {
     namespace: 'profile-forever',
-    path: `${basePath}/${characterSlug(name, surname)}/mythic-keystone-profile`,
+    path: `${wowCharacterBasePath}/${characterSlug(name, surname)}/mythic-keystone-profile`,
   };
 }
 
