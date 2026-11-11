@@ -19,6 +19,7 @@ const realmPopulationCapitalizedSchema = z.union([
   z.literal('HIGH'),
   z.literal('LOW'),
   z.literal('MEDIUM'),
+  z.literal('OFFLINE'),
   z.literal('RECOMMENDED'),
 ]);
 
