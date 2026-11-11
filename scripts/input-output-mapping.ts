@@ -6,4 +6,9 @@ export const inputOutputMappings: Array<InputOutputMapping> = [
     input: '@blizzard-api/core',
     output: '../core',
   },
+  //Shared package types
+  {
+    input: '../shared/types',
+    output: './shared',
+  },
 ];
