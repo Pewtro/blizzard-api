@@ -121,6 +121,13 @@ export interface KeyBase {
 }
 
 /**
+ * Base record interface containing key.href and id properties that often appear together in Blizzard API responses.
+ */
+export interface IdKey extends KeyBase {
+  id: number;
+}
+
+/**
  * The media asset associated with a character or entity in World of Warcraft.
  */
 export interface MediaAsset {
@@ -143,9 +150,21 @@ export interface NullishNameId {
 }
 
 /**
+ * Base record interface containing name and type properties that often appear together in Blizzard API responses.
+ */
+export interface NameType {
+  name: string;
+  type: string;
+}
+
+export interface NullishNameType extends Omit<NameType, 'name'> {
+  name: null | string;
+}
+
+/**
  * Base record containing both {@link KeyBase} and {@link NameId} interfaces.
  */
-export interface NameIdKey extends KeyBase, NameId {}
+export interface NameIdKey extends IdKey, NameId {}
 
 export interface NullishNameIdKey extends Omit<NameIdKey, 'name'> {
   name: null | string;

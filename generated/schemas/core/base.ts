@@ -35,6 +35,10 @@ export const keyBaseSchema = z.strictObject({
   key: hrefSchema,
 });
 
+export const idKeySchema = keyBaseSchema.extend({
+  id: z.number(),
+});
+
 export const mediaAssetSchema = z.strictObject({
   file_data_id: z.number().optional(),
   key: z.string(),
@@ -51,7 +55,16 @@ export const nullishNameIdSchema = z.strictObject({
   name: z.string().nullable(),
 });
 
-export const nameIdKeySchema = keyBaseSchema.extend(nameIdSchema.shape);
+export const nameTypeSchema = z.strictObject({
+  name: z.string(),
+  type: z.string(),
+});
+
+export const nullishNameTypeSchema = nameTypeSchema.omit({ name: true }).extend({
+  name: z.string().nullable(),
+});
+
+export const nameIdKeySchema = idKeySchema.extend(nameIdSchema.shape);
 
 export const nullishNameIdKeySchema = nameIdKeySchema.omit({ name: true }).extend({
   name: z.string().nullable(),
