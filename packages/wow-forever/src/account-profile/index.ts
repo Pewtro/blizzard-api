@@ -1,6 +1,74 @@
 import { wowAccountProfileBasePath } from '@blizzard-api/core';
 import type { ProtectedResource } from '@blizzard-api/core';
-import type { AccountProfileSummaryResponse, AccountTransmogsCollectionSummaryResponse } from './types';
+import type {
+  AccountCollectionsIndexResponse,
+  AccountHeirloomsCollectionSummaryResponse,
+  AccountMountsCollectionSummaryResponse,
+  AccountPetsCollectionSummaryResponse,
+  AccountProfileSummaryResponse,
+  AccountToysCollectionSummaryResponse,
+  AccountTransmogsCollectionSummaryResponse,
+} from './types';
+
+/**
+ * Get an index of collection types for the authenticated account.
+ * Requires a user access token with the `wow.profile` scope.
+ * @param token The user access token.
+ * @returns The account collections index. See {@link AccountCollectionsIndexResponse}.
+ */
+export function accountCollectionsIndex(token: string): ProtectedResource<AccountCollectionsIndexResponse> {
+  return {
+    namespace: 'profile-forever',
+    path: `${wowAccountProfileBasePath}/collections`,
+    token,
+  };
+}
+
+/**
+ * Get the heirlooms collected by the authenticated account.
+ * Requires a user access token with the `wow.profile` scope.
+ * @param token The user access token.
+ * @returns The account's heirlooms. See {@link AccountHeirloomsCollectionSummaryResponse}.
+ */
+export function accountHeirloomsCollectionSummary(
+  token: string,
+): ProtectedResource<AccountHeirloomsCollectionSummaryResponse> {
+  return {
+    namespace: 'profile-forever',
+    path: `${wowAccountProfileBasePath}/collections/heirlooms`,
+    token,
+  };
+}
+
+/**
+ * Get the mounts collected by the authenticated account.
+ * Requires a user access token with the `wow.profile` scope.
+ * @param token The user access token.
+ * @returns The account's mounts. See {@link AccountMountsCollectionSummaryResponse}.
+ */
+export function accountMountsCollectionSummary(
+  token: string,
+): ProtectedResource<AccountMountsCollectionSummaryResponse> {
+  return {
+    namespace: 'profile-forever',
+    path: `${wowAccountProfileBasePath}/collections/mounts`,
+    token,
+  };
+}
+
+/**
+ * Get the battle pets collected by the authenticated account.
+ * Requires a user access token with the `wow.profile` scope.
+ * @param token The user access token.
+ * @returns The account's battle pets. See {@link AccountPetsCollectionSummaryResponse}.
+ */
+export function accountPetsCollectionSummary(token: string): ProtectedResource<AccountPetsCollectionSummaryResponse> {
+  return {
+    namespace: 'profile-forever',
+    path: `${wowAccountProfileBasePath}/collections/pets`,
+    token,
+  };
+}
 
 /**
  * Get a profile summary for the authenticated account.
@@ -12,6 +80,20 @@ export function accountProfileSummary(token: string): ProtectedResource<AccountP
   return {
     namespace: 'profile-forever',
     path: wowAccountProfileBasePath,
+    token,
+  };
+}
+
+/**
+ * Get the toys collected by the authenticated account.
+ * Requires a user access token with the `wow.profile` scope.
+ * @param token The user access token.
+ * @returns The account's toys. See {@link AccountToysCollectionSummaryResponse}.
+ */
+export function accountToysCollectionSummary(token: string): ProtectedResource<AccountToysCollectionSummaryResponse> {
+  return {
+    namespace: 'profile-forever',
+    path: `${wowAccountProfileBasePath}/collections/toys`,
     token,
   };
 }

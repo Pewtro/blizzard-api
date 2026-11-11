@@ -1,0 +1,106 @@
+import type { Resource } from '@blizzard-api/core';
+import { wowBasePath, wowMediaBasePath, wowSearchBasePath } from '@blizzard-api/core';
+import type {
+  JournalEncounterIndexResponse,
+  JournalEncounterResponse,
+  JournalEncounterSearchParameters,
+  JournalEncounterSearchResponse,
+  JournalExpansionIndexResponse,
+  JournalExpansionResponse,
+  JournalInstanceIndexResponse,
+  JournalInstanceMediaResponse,
+  JournalInstanceResponse,
+} from './types';
+
+/**
+ * Get a journal encounter by ID.
+ * @param journalEncounterId The journal encounter ID.
+ * @returns The journal encounter. See {@link JournalEncounterResponse}.
+ */
+export function journalEncounter(journalEncounterId: number): Resource<JournalEncounterResponse> {
+  return {
+    namespace: 'static-forever',
+    path: `${wowBasePath}/journal-encounter/${journalEncounterId}`,
+  };
+}
+/**
+ * Get the journal encounter index.
+ * @returns The journal encounter index. See {@link JournalEncounterIndexResponse}.
+ */
+export function journalEncounterIndex(): Resource<JournalEncounterIndexResponse> {
+  return {
+    namespace: 'static-forever',
+    path: `${wowBasePath}/journal-encounter/index`,
+  };
+}
+/**
+ * Search for journal encounters.
+ * @param options The search parameters. See {@link JournalEncounterSearchParameters}.
+ * @returns The search results. See {@link JournalEncounterSearchResponse}.
+ */
+export function journalEncounterSearch(
+  options: JournalEncounterSearchParameters,
+): Resource<JournalEncounterSearchResponse, Omit<JournalEncounterSearchParameters, 'instanceName' | 'locale'>> {
+  return {
+    namespace: 'static-forever',
+    parameters: {
+      _page: options._page,
+      [`instance.name.${options.locale}`]: options.instanceName,
+      orderby: Array.isArray(options.orderby) ? options.orderby.join(',') : options.orderby,
+    },
+    path: `${wowSearchBasePath}/journal-encounter`,
+  };
+}
+/**
+ * Get a journal expansion by ID.
+ * @param journalExpansionId The journal expansion ID.
+ * @returns The journal expansion. See {@link JournalExpansionResponse}.
+ */
+export function journalExpansion(journalExpansionId: number): Resource<JournalExpansionResponse> {
+  return {
+    namespace: 'static-forever',
+    path: `${wowBasePath}/journal-expansion/${journalExpansionId}`,
+  };
+}
+/**
+ * Get the journal expansion index.
+ * @returns The journal expansion index. See {@link JournalExpansionIndexResponse}.
+ */
+export function journalExpansionIndex(): Resource<JournalExpansionIndexResponse> {
+  return {
+    namespace: 'static-forever',
+    path: `${wowBasePath}/journal-expansion/index`,
+  };
+}
+/**
+ * Get a journal instance by ID.
+ * @param journalInstanceId The journal instance ID.
+ * @returns The journal instance. See {@link JournalInstanceResponse}.
+ */
+export function journalInstance(journalInstanceId: number): Resource<JournalInstanceResponse> {
+  return {
+    namespace: 'static-forever',
+    path: `${wowBasePath}/journal-instance/${journalInstanceId}`,
+  };
+}
+/**
+ * Get the journal instance index.
+ * @returns The journal instance index. See {@link JournalInstanceIndexResponse}.
+ */
+export function journalInstanceIndex(): Resource<JournalInstanceIndexResponse> {
+  return {
+    namespace: 'static-forever',
+    path: `${wowBasePath}/journal-instance/index`,
+  };
+}
+/**
+ * Get journal instance media by ID.
+ * @param journalInstanceId The journal instance ID.
+ * @returns The journal instance media. See {@link JournalInstanceMediaResponse}.
+ */
+export function journalInstanceMedia(journalInstanceId: number): Resource<JournalInstanceMediaResponse> {
+  return {
+    namespace: 'static-forever',
+    path: `${wowMediaBasePath}/journal-instance/${journalInstanceId}`,
+  };
+}

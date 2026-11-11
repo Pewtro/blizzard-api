@@ -8,6 +8,23 @@ const linksSchema = z.strictObject({
   user: hrefSchema,
 });
 
+const heirloomSchema = z.strictObject({
+  heirloom: nameIdKeySchema,
+  upgrade: z.strictObject({
+    level: z.number(),
+  }),
+});
+
+const mountSchema = z.strictObject({
+  is_favorite: z.boolean().optional(),
+  mount: nameIdKeySchema,
+});
+
+const toySchema = z.strictObject({
+  is_favorite: z.boolean().optional(),
+  toy: nameIdKeySchema,
+});
+
 const accountCharacterSchema = z.strictObject({
   character: hrefSchema,
   faction: factionSchema,
@@ -26,6 +43,18 @@ const nameTypeSchema = z.strictObject({
   type: z.string(),
 });
 
+const qualitySchema = z.strictObject({
+  name: z.string(),
+  type: z.union([z.literal('COMMON'), z.literal('POOR'), z.literal('RARE'), z.literal('UNCOMMON')]),
+});
+
+const statsSchema = z.strictObject({
+  breed_id: z.number(),
+  health: z.number(),
+  power: z.number(),
+  speed: z.number(),
+});
+
 const slotSchema = z.strictObject({
   appearances: z.array(
     keyBaseSchema.and(
@@ -42,6 +71,44 @@ const wowAccountSchema = z.strictObject({
   id: z.number(),
 });
 
+export const accountCollectionsIndexResponseSchema = z.strictObject({
+  _links: linksSchema,
+  heirlooms: hrefSchema,
+  mounts: hrefSchema,
+  pets: hrefSchema,
+  toys: hrefSchema,
+  transmogs: hrefSchema,
+});
+
+export const accountHeirloomsCollectionSummaryResponseSchema = z.strictObject({
+  _links: linksSchema,
+  heirlooms: z.array(heirloomSchema).optional(),
+});
+
+export const accountMountsCollectionSummaryResponseSchema = z.strictObject({
+  _links: linksSchema,
+  mounts: z.array(mountSchema),
+});
+
+const petSchema = z.strictObject({
+  active_slot: z.number().optional(),
+  creature_display: keyBaseSchema
+    .and(
+      z.strictObject({
+        id: z.number(),
+      }),
+    )
+    .optional(),
+  id: z.number(),
+  is_active: z.boolean().optional(),
+  is_favorite: z.boolean().optional(),
+  level: z.number(),
+  name: z.string().optional(),
+  quality: qualitySchema,
+  species: nameIdKeySchema,
+  stats: statsSchema,
+});
+
 export const accountProfileSummaryResponseSchema = z.strictObject({
   _links: linksSchema,
   collections: hrefSchema,
@@ -49,8 +116,19 @@ export const accountProfileSummaryResponseSchema = z.strictObject({
   wow_accounts: z.array(wowAccountSchema).optional(),
 });
 
+export const accountToysCollectionSummaryResponseSchema = z.strictObject({
+  _links: linksSchema,
+  toys: z.array(toySchema),
+});
+
 export const accountTransmogsCollectionSummaryResponseSchema = z.strictObject({
   _links: linksSchema,
   appearance_sets: z.array(nameIdKeySchema).optional(),
   slots: z.array(slotSchema),
+});
+
+export const accountPetsCollectionSummaryResponseSchema = z.strictObject({
+  _links: linksSchema,
+  pets: z.array(petSchema),
+  unlocked_battle_pet_slots: z.number(),
 });

@@ -1,4 +1,12 @@
-import { accountProfileSummary, accountTransmogsCollectionSummary } from './account-profile/index';
+import {
+  accountCollectionsIndex,
+  accountHeirloomsCollectionSummary,
+  accountMountsCollectionSummary,
+  accountPetsCollectionSummary,
+  accountProfileSummary,
+  accountToysCollectionSummary,
+  accountTransmogsCollectionSummary,
+} from './account-profile/index';
 import {
   achievement,
   achievementCategory,
@@ -42,6 +50,7 @@ import {
 } from './creature/index';
 import { guildCrestBorder, guildCrestComponentsIndex, guildCrestEmblem } from './guild-crest/index';
 import { guild, guildAchievements, guildActivity, guildRoster } from './guild/index';
+import { heirloom, heirloomIndex } from './heirloom/index';
 import {
   itemAppearance,
   itemAppearanceSearch,
@@ -60,6 +69,16 @@ import {
   itemSetIndex,
   itemSubclass,
 } from './item/index';
+import {
+  journalEncounter,
+  journalEncounterIndex,
+  journalEncounterSearch,
+  journalExpansion,
+  journalExpansionIndex,
+  journalInstance,
+  journalInstanceIndex,
+  journalInstanceMedia,
+} from './journal/index';
 import { mediaSearch } from './media-search/index';
 import { mount, mountIndex, mountSearch } from './mount/index';
 import { pet, petAbility, petAbilityIndex, petAbilityMedia, petIndex, petMedia } from './pet/index';
@@ -107,7 +126,12 @@ import { toy, toyIndex } from './toy/index';
 
 const wowForever = {
   //Account Profile
+  accountCollectionsIndex,
+  accountHeirloomsCollectionSummary,
+  accountMountsCollectionSummary,
+  accountPetsCollectionSummary,
   accountProfileSummary,
+  accountToysCollectionSummary,
   accountTransmogsCollectionSummary,
   //Achievements
   achievement,
@@ -179,6 +203,9 @@ const wowForever = {
   guildCrestBorder,
   guildCrestComponentsIndex,
   guildCrestEmblem,
+  //Heirloom
+  heirloom,
+  heirloomIndex,
   //Item
   item,
   itemClass,
@@ -195,6 +222,15 @@ const wowForever = {
   itemAppearanceSetIndex,
   itemAppearanceSlot,
   itemAppearanceSlotIndex,
+  //Journal
+  journalEncounter,
+  journalEncounterIndex,
+  journalEncounterSearch,
+  journalExpansion,
+  journalExpansionIndex,
+  journalInstance,
+  journalInstanceIndex,
+  journalInstanceMedia,
   //Media Search
   mediaSearch,
   //Mount
@@ -338,12 +374,18 @@ export type * from './guild/types';
 //Guild Crest
 export * from './guild-crest/index';
 export type * from './guild-crest/types';
+//Heirloom
+export * from './heirloom/index';
+export type * from './heirloom/types';
 //Item
 export * from './item/index';
 export type * from './item/types';
 //Item Appearance
 export * from './item-appearance/index';
 export type * from './item-appearance/types';
+//Journal
+export * from './journal/index';
+export type * from './journal/types';
 //Media Search
 export * from './media-search/index';
 export type * from './media-search/types';

@@ -4,6 +4,31 @@ import type { Faction, Gender, Href, KeyBase, NameIdKey } from '@blizzard-api/co
  * The response for an account profile summary.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
+export interface AccountCollectionsIndexResponse {
+  _links: Links;
+  heirlooms: Href;
+  mounts: Href;
+  pets: Href;
+  toys: Href;
+  transmogs: Href;
+}
+
+export interface AccountHeirloomsCollectionSummaryResponse {
+  _links: Links;
+  heirlooms?: Array<Heirloom>;
+}
+
+export interface AccountMountsCollectionSummaryResponse {
+  _links: Links;
+  mounts: Array<Mount>;
+}
+
+export interface AccountPetsCollectionSummaryResponse {
+  _links: Links;
+  pets: Array<Pet>;
+  unlocked_battle_pet_slots: number;
+}
+
 export interface AccountProfileSummaryResponse {
   _links: Links;
   collections: Href;
@@ -15,6 +40,11 @@ export interface AccountProfileSummaryResponse {
  * The response for an account transmog collection.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
+export interface AccountToysCollectionSummaryResponse {
+  _links: Links;
+  toys: Array<Toy>;
+}
+
 export interface AccountTransmogsCollectionSummaryResponse {
   _links: Links;
   appearance_sets?: Array<NameIdKey>;
@@ -34,10 +64,20 @@ interface AccountCharacter {
   surname: string;
 }
 
+interface Heirloom {
+  heirloom: NameIdKey;
+  upgrade: { level: number };
+}
+
 interface Links {
   profile: Href;
   self: Href;
   user: Href;
+}
+
+interface Mount {
+  is_favorite?: boolean;
+  mount: NameIdKey;
 }
 
 interface NameType {
@@ -45,9 +85,39 @@ interface NameType {
   type: string;
 }
 
+interface Pet {
+  active_slot?: number;
+  creature_display?: KeyBase & { id: number };
+  id: number;
+  is_active?: boolean;
+  is_favorite?: boolean;
+  level: number;
+  name?: string;
+  quality: Quality;
+  species: NameIdKey;
+  stats: Stats;
+}
+
+interface Quality {
+  name: string;
+  type: 'COMMON' | 'POOR' | 'RARE' | 'UNCOMMON';
+}
+
 interface Slot {
   appearances: Array<KeyBase & { id: number }>;
   slot: NameType;
+}
+
+interface Stats {
+  breed_id: number;
+  health: number;
+  power: number;
+  speed: number;
+}
+
+interface Toy {
+  is_favorite?: boolean;
+  toy: NameIdKey;
 }
 
 interface WowAccount {
