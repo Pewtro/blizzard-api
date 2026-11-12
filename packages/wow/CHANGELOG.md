@@ -1,5 +1,15 @@
 # @blizzard-api/wow
 
+## 4.2.2
+
+### Patch Changes
+
+- 777846e: Mark quest category name as nullable
+- 972f552: Allow protected profile endpoint helpers to omit a resource token when using a user-scoped client.
+- Updated dependencies [5fec0a6]
+- Updated dependencies [972f552]
+  - @blizzard-api/core@4.5.1
+
 ## 4.2.1
 
 ### Patch Changes
