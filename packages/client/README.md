@@ -87,7 +87,16 @@ const response = await client.sendRequest(wow.commodities(), {
 
 `sendRequest` resolves to `undefined` for endpoints that return `204 No Content` or an empty body.
 
-Protected resources, such as `wow.accountProfileSummary(userToken)`, use the user token attached to the resource for that request. Obtain user tokens through Blizzard's [authorization code flow](https://develop.battle.net/documentation/guides/using-oauth/authorization-code-flow); this token takes precedence over the client's default token.
+## User-scoped requests
+
+Obtain a user access token with the `wow.profile` scope through Blizzard's [authorization code flow](https://develop.battle.net/documentation/guides/using-oauth/authorization-code-flow). Use `withUserToken` to create an isolated client for that token:
+
+```ts
+const userClient = client.withUserToken(userAccessToken);
+const profile = await userClient.sendRequest(wow.accountProfileSummary());
+```
+
+The scoped client uses that token by default and does not change the original client's application token. The library does not acquire or refresh user tokens; your application is responsible for their lifecycle. Existing calls that pass a token directly to a protected resource, such as `wow.accountProfileSummary(userAccessToken)`, remain supported and override the scoped/default token for that request.
 
 ## API
 
@@ -102,6 +111,7 @@ The client returned by `createBlizzardApiClient` (an instance of `BlizzardApiCli
 | `validateAccessToken(options?)`        | Validate an access token against Blizzard's OAuth endpoint.                                       |
 | `setAccessToken(token)`                | Manually set the access token used for subsequent requests.                                       |
 | `cancelTokenRefresh()`                 | Cancel the automatic token refresh timer.                                                         |
+| `withUserToken(token)`                 | Create a separate client that uses a user access token by default.                                |
 | `getRequestUrl(resource, options?)`    | Build the request URL for a resource without sending it.                                          |
 | `getRequestConfig(resource, options?)` | Build the headers and search params for a resource without sending it.                            |
 

@@ -144,6 +144,29 @@ describe('client retries', () => {
     expect(config.headers.Authorization).toBe('Bearer user-token');
   });
 
+  test('should create an isolated client scoped to a user token', () => {
+    const client = createClient(vitest.fn());
+    const userClient = client.withUserToken('user-token');
+    const protectedResource: Resource<{ id: number }, object, true> = { path: 'profile' };
+
+    expect(userClient.getRequestConfig(protectedResource).headers.Authorization).toBe('Bearer user-token');
+    expect(client.getRequestConfig({ path: 'public' }).headers.Authorization).toBe('Bearer access');
+  });
+
+  test('should allow a per-request token override on a user-scoped client', () => {
+    const client = createClient(vitest.fn()).withUserToken('user-token');
+
+    const config = client.getRequestConfig({ path: 'test' }, { token: 'request-token' });
+
+    expect(config.headers.Authorization).toBe('Bearer request-token');
+  });
+
+  test('should reject an empty user token', () => {
+    const client = createClient(vitest.fn());
+
+    expect(() => client.withUserToken('')).toThrow('A user access token is required.');
+  });
+
   test('should not retry a non rate limit error', async () => {
     const { attempts, fetchMock } = createFetch(404);
     const client = createClient(fetchMock, { maxAttempts: 3 });

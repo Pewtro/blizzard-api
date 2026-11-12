@@ -49,6 +49,8 @@ export class BlizzardApiClient {
 
   private ky;
 
+  private userToken?: string;
+
   constructor(options: ClientOptions) {
     validateClientOptions(options);
 
@@ -126,7 +128,8 @@ export class BlizzardApiClient {
     searchParams: Record<string, unknown> & { locale: ReturnType<typeof getBlizzardApi>['locale'] };
   } {
     const config = { ...this.defaults, ...options };
-    const token = 'token' in resource && typeof resource.token === 'string' ? resource.token : config.token;
+    const resourceToken = 'token' in resource && typeof resource.token === 'string' ? resource.token : undefined;
+    const token = resourceToken ?? options?.token ?? this.userToken ?? config.token;
     if (!token) {
       throw new Error('No token has been set for this client.');
     }
@@ -278,4 +281,23 @@ export class BlizzardApiClient {
       })
       .json();
   };
+
+  /**
+   * Create a client that uses a user access token for requests without changing this client's token.
+   * @param token The user access token, typically acquired through Blizzard's authorization code flow.
+   * @returns A client scoped to the supplied user token.
+   */
+  public withUserToken(token: string): BlizzardApiClient {
+    if (!token) {
+      throw new Error('A user access token is required.');
+    }
+
+    const client = new BlizzardApiClient({
+      ...this.defaults,
+      kyOptions: this.defaultKyOptions,
+    });
+    client.userToken = token;
+
+    return client;
+  }
 }
