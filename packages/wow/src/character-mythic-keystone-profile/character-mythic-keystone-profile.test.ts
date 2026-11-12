@@ -2,7 +2,7 @@ import { describe, expect, test } from 'vitest';
 import { characterMythicKeystoneProfileIndex, characterMythicKeystoneSeasonDetails } from './index';
 
 describe('Character Mythic Keystone Profile', () => {
-  test('should return the correct ProtectedResource object for characterMythicKeystoneProfileIndex', () => {
+  test('should return the correct resource object for characterMythicKeystoneProfileIndex', () => {
     const realmSlug = 'realm';
     const characterName = 'character';
 
@@ -14,7 +14,7 @@ describe('Character Mythic Keystone Profile', () => {
     });
   });
 
-  test('should return the correct ProtectedResource object for characterMythicKeystoneSeasonDetails', () => {
+  test('should return the correct resource object for characterMythicKeystoneSeasonDetails', () => {
     const realmSlug = 'realm';
     const characterName = 'character';
     const seasonId = 123;

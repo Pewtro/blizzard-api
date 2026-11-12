@@ -45,7 +45,7 @@ const createFetch = (status: number) => {
   return { attempts: () => attempts, fetchMock };
 };
 
-describe('client retries', () => {
+describe('client request behavior', () => {
   test.each([1, 2, 3, 5])('should make exactly %i attempts when rate limited', async (maxAttempts) => {
     const { attempts, fetchMock } = createFetch(429);
     const client = createClient(fetchMock, { maxAttempts });

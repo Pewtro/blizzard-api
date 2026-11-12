@@ -2,7 +2,7 @@ import { describe, expect, test } from 'vitest';
 import { characterProfessionsSummary } from './index';
 
 describe('characterProfessionsSummary', () => {
-  test('should return the correct ProtectedResource object', () => {
+  test('should return the correct resource object', () => {
     const realmSlug = 'test-realm';
     const characterName = 'test-character';
 

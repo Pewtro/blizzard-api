@@ -64,7 +64,7 @@ describe('client', async () => {
     expect(testFunction).toHaveBeenCalledTimes(1);
   });
 
-  test('should be able to get an accurate url without prefixing the path with a backslash', ({ expect }) => {
+  test('should join the hostname and path with a single slash', ({ expect }) => {
     const resource: Resource<{ name: 'test' }> = {
       path: 'test',
     };
@@ -88,7 +88,7 @@ describe('client', async () => {
     expect(config.searchParams.locale).toBeDefined();
   });
 
-  test("validateAccessToken should throw an error if the access token isn't valid", async ({ expect }) => {
+  test('validateAccessToken should reject when no token is provided', async ({ expect }) => {
     await expect(() => client.validateAccessToken({ token: undefined })).rejects.toThrow();
   });
 

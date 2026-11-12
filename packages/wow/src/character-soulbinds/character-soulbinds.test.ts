@@ -2,7 +2,7 @@ import { describe, expect, test } from 'vitest';
 import { characterSoulbinds } from './index';
 
 describe('characterSoulbinds', () => {
-  test('returns the correct ProtectedResource object', () => {
+  test('returns the correct resource object', () => {
     const realmSlug = 'example-realm';
     const characterName = 'example-character';
 

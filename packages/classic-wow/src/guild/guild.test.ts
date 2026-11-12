@@ -49,7 +49,7 @@ describe('guild API functions', () => {
  */
 describe('guildAchievements response types', () => {
   describe('classic era namespace', () => {
-    test('should return a GuildAchievementsClassicEraResponse', () => {
+    test('should infer GuildAchievementsClassicEraResponse for this namespace', () => {
       const result = guildAchievements('profile-classic1x', realmSlug, nameSlug);
 
       expect(result.namespace).toBe('profile-classic1x');
@@ -59,7 +59,7 @@ describe('guildAchievements response types', () => {
   });
 
   describe('classic progression namespace', () => {
-    test('should return a GuildAchievementsResponse', () => {
+    test('should infer GuildAchievementsResponse for this namespace', () => {
       const result = guildAchievements('profile-classic', realmSlug, nameSlug);
 
       expect(result.namespace).toBe('profile-classic');
@@ -69,7 +69,7 @@ describe('guildAchievements response types', () => {
   });
 
   describe('classic anniversary namespace', () => {
-    test('should return a GuildAchievementsClassicEraResponse', () => {
+    test('should infer GuildAchievementsClassicEraResponse for this namespace', () => {
       const result = guildAchievements('profile-classicann', realmSlug, nameSlug);
 
       expect(result.namespace).toBe('profile-classicann');

@@ -2,7 +2,7 @@ import { describe, expect, test } from 'vitest';
 import { characterProfileStatus, characterProfileSummary } from './index';
 
 describe('characterProfileSummary', () => {
-  test('should return the correct protected resource object', () => {
+  test('should return the correct resource object', () => {
     const realmSlug = 'example-realm';
     const characterName = 'example-character';
 
@@ -16,7 +16,7 @@ describe('characterProfileSummary', () => {
 });
 
 describe('characterProfileStatus', () => {
-  test('should return the correct protected resource object', () => {
+  test('should return the correct resource object', () => {
     const realmSlug = 'example-realm';
     const characterName = 'example-character';
 

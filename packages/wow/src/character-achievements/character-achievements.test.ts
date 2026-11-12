@@ -2,7 +2,7 @@ import { describe, expect, test } from 'vitest';
 import { characterAchievementsSummary, characterAchievementStatistics } from './index';
 
 describe('characterAchievementsSummary', () => {
-  test('should return the correct ProtectedResource object', () => {
+  test('should return the correct resource object', () => {
     const realmSlug = 'realm';
     const characterName = 'character';
 
@@ -16,7 +16,7 @@ describe('characterAchievementsSummary', () => {
 });
 
 describe('characterAchievementStatistics', () => {
-  test('should return the correct ProtectedResource object', () => {
+  test('should return the correct resource object', () => {
     const realmSlug = 'realm';
     const characterName = 'character';
 

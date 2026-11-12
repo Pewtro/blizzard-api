@@ -12,7 +12,7 @@ import {
 import { getIntegrationTestClient } from '../utils/client';
 import { getRandomItem } from '../utils/random';
 
-describe('d3 follower integration', async () => {
+describe('d3 game data integration', async () => {
   const client = await getIntegrationTestClient();
 
   test('fetches a season index with leaderboard data', async ({ expect }) => {
