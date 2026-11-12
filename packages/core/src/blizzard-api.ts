@@ -6,8 +6,8 @@ import type { Locales, Origins } from './locales';
 const _regionLocaleMap = {
   cn: ['zh_CN'],
   eu: ['en_GB', 'es_ES', 'fr_FR', 'ru_RU', 'de_DE', 'it_IT'],
-  kr: ['ko_KR', 'en_GB', 'en_US'],
-  tw: ['zh_TW', 'en_GB', 'en_US'],
+  kr: ['ko_KR'],
+  tw: ['zh_TW'],
   us: ['en_US', 'es_MX', 'pt_BR'],
 } as const satisfies Record<Origins, Array<Locales>>;
 
@@ -79,6 +79,10 @@ export function getBlizzardApi<T extends Origins>(
   origin: T,
   locale?: (typeof _regionLocaleMap)[typeof origin][number],
 ): BlizzardApi<typeof origin> {
+  if (locale !== undefined && !(_regionLocaleMap[origin] as ReadonlyArray<Locales>).includes(locale)) {
+    throw new RangeError(`Locale "${locale}" is not supported for the "${origin}" Blizzard API region.`);
+  }
+
   const endpoint = endpoints[origin];
 
   return {
