@@ -79,10 +79,6 @@ export function getBlizzardApi<T extends Origins>(
   origin: T,
   locale?: (typeof _regionLocaleMap)[typeof origin][number],
 ): BlizzardApi<typeof origin> {
-  if (locale !== undefined && !(_regionLocaleMap[origin] as ReadonlyArray<Locales>).includes(locale)) {
-    throw new RangeError(`Locale "${locale}" is not supported for the "${origin}" Blizzard API region.`);
-  }
-
   const endpoint = endpoints[origin];
 
   return {
