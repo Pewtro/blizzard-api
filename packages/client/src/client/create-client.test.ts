@@ -2,13 +2,14 @@ import { beforeEach, describe, test, vi } from 'vitest';
 
 interface ScheduledTimer {
   callback: () => void;
+  cleared: boolean;
   delay: number;
   unref: ReturnType<typeof vi.fn>;
 }
 
 const { refreshAccessToken, scheduled, setAccessToken, validateAccessToken } = vi.hoisted(() => ({
   refreshAccessToken: vi.fn(),
-  scheduled: [] as Array<{ callback: () => void; delay: number; unref: ReturnType<typeof vi.fn> }>,
+  scheduled: [] as Array<ScheduledTimer>,
   setAccessToken: vi.fn(),
   validateAccessToken: vi.fn(),
 }));
@@ -17,8 +18,11 @@ const { refreshAccessToken, scheduled, setAccessToken, validateAccessToken } = v
 //fake timers do not reach it. Mocking the module lets the tests observe and fire the
 //scheduled refreshes directly, without waiting on real or faked time.
 vi.mock('node:timers', () => ({
+  clearTimeout: (timer: ScheduledTimer) => {
+    timer.cleared = true;
+  },
   setTimeout: (callback: () => void, delay: number) => {
-    const timer: ScheduledTimer = { callback, delay, unref: vi.fn() };
+    const timer: ScheduledTimer = { callback, cleared: false, delay, unref: vi.fn() };
     scheduled.push(timer);
     return timer;
   },
@@ -26,9 +30,17 @@ vi.mock('node:timers', () => ({
 
 vi.mock('./client', () => ({
   BlizzardApiClient: class {
+    public cancelHandler: (() => void) | undefined;
     public refreshAccessToken = refreshAccessToken;
     public setAccessToken = setAccessToken;
     public validateAccessToken = validateAccessToken;
+
+    public cancelTokenRefresh() {
+      this.cancelHandler?.();
+    }
+  },
+  setTokenRefreshCancellationHandler: (client: { cancelHandler?: () => void }, handler: () => void) => {
+    client.cancelHandler = handler;
   },
 }));
 
@@ -53,7 +65,10 @@ const settle = (): Promise<void> => {
  * @returns A promise that resolves once the callback has been invoked and settled.
  */
 const fire = async (index: number) => {
-  scheduled[index]?.callback();
+  const timer = scheduled[index];
+  if (timer && !timer.cleared) {
+    timer.callback();
+  }
   await settle();
 };
 
@@ -100,6 +115,17 @@ describe('createBlizzardApiClient', () => {
     await createBlizzardApiClient(options);
 
     expect(scheduled[0]?.unref).toHaveBeenCalledTimes(1);
+  });
+
+  test('should cancel the scheduled token refresh', async ({ expect }) => {
+    const client = await createBlizzardApiClient(options);
+
+    client.cancelTokenRefresh();
+    await fire(0);
+
+    expect(scheduled[0]?.cleared).toBe(true);
+    expect(refreshAccessToken).toHaveBeenCalledTimes(1);
+    expect(scheduled).toHaveLength(1);
   });
 
   test('should refresh immediately when a supplied token is already inside the buffer', async ({ expect }) => {

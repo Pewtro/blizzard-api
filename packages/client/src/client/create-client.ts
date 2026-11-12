@@ -1,6 +1,6 @@
 //We have to explicitly import setTimeout because of https://github.com/electron/electron/issues/21162#issuecomment-554792447
-import { setTimeout } from 'node:timers';
-import { BlizzardApiClient } from './client';
+import { clearTimeout, setTimeout } from 'node:timers';
+import { BlizzardApiClient, setTokenRefreshCancellationHandler } from './client';
 import type { AccessToken, ClientOptions } from './types';
 import { validateClientOptions } from './utilities';
 
@@ -50,15 +50,36 @@ export const createBlizzardApiClient = async (
   validateClientOptions(options);
 
   const client = new BlizzardApiClient(options);
+  let refreshTimeout: ReturnType<typeof setTimeout> | undefined;
+  let isRefreshCancelled = false;
+
+  setTokenRefreshCancellationHandler(client, () => {
+    isRefreshCancelled = true;
+    if (!refreshTimeout) {
+      return;
+    }
+
+    clearTimeout(refreshTimeout);
+    refreshTimeout = undefined;
+  });
 
   //Schedule a token refresh after the given delay, without keeping the process alive.
   const scheduleRefresh = (delayInMilliseconds: number) => {
+    if (isRefreshCancelled) {
+      return;
+    }
+
+    if (refreshTimeout) {
+      clearTimeout(refreshTimeout);
+    }
+
     //Unref the timeout so the process can exit while a refresh is pending.
-    const timeout = setTimeout(() => {
+    refreshTimeout = setTimeout(() => {
+      refreshTimeout = undefined;
       //A scheduled refresh runs detached, so its rejection must be caught here.
       void refreshToken().catch(() => scheduleRefresh(REFRESH_RETRY_DELAY_MS));
     }, delayInMilliseconds);
-    timeout.unref();
+    refreshTimeout.unref();
   };
 
   const refreshToken = async () => {
@@ -66,6 +87,10 @@ export const createBlizzardApiClient = async (
 
     if (typeof onTokenRefresh === 'function') {
       onTokenRefresh(response);
+    }
+
+    if (isRefreshCancelled) {
+      return;
     }
 
     scheduleRefresh(getRefreshDelayFromLifetime(response.expires_in));

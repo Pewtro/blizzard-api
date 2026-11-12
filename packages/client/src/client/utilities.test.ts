@@ -36,14 +36,19 @@ describe('getRetryOptions', () => {
     expect(getRetryOptions(base)).toMatchObject({ jitter: true });
   });
 
-  test('should disable retrying entirely when retryOnRateLimit is false', () => {
-    expect(getRetryOptions({ ...base, maxAttempts: 5, retryOnRateLimit: false })).toMatchObject({ limit: 0 });
+  test('should only disable rate-limit retries when retryOnRateLimit is false', () => {
+    const retry = getRetryOptions({ ...base, maxAttempts: 5, retryOnRateLimit: false });
+
+    expect(retry.limit).toBe(4);
+    expect(retry.statusCodes).not.toContain(429);
+    expect(retry.statusCodes).toContain(500);
   });
 
   test('should let retryOnRateLimit false override kyOptions.retry', () => {
-    expect(getRetryOptions({ ...base, kyOptions: { retry: 5 }, retryOnRateLimit: false })).toMatchObject({
-      limit: 0,
-    });
+    const retry = getRetryOptions({ ...base, kyOptions: { retry: 5 }, retryOnRateLimit: false });
+
+    expect(retry.limit).toBe(5);
+    expect(retry.statusCodes).not.toContain(429);
   });
 
   test('should merge kyOptions.retry per key instead of replacing the defaults', () => {
@@ -56,6 +61,10 @@ describe('getRetryOptions', () => {
     const retry = getRetryOptions({ ...base, kyOptions: { retry: 5 } });
 
     expect(retry).toMatchObject({ limit: 5, methods: ['get', 'post'] });
+  });
+
+  test('should preserve kyOptions.retry false', () => {
+    expect(getRetryOptions({ ...base, kyOptions: { retry: false } })).toMatchObject({ limit: 0 });
   });
 
   test('should let an explicit kyOptions retry limit win over maxAttempts', () => {

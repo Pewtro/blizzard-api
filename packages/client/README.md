@@ -50,6 +50,8 @@ console.log(response);
 | `token`     | `string`    | No       | A pre-existing access token. If supplied it is validated and reused when still valid.               |
 | `kyOptions` | `KyOptions` | No       | Options forwarded to the underlying [`ky`](https://github.com/sindresorhus/ky) instance.            |
 
+`retryOnRateLimit: false` disables retries for HTTP 429 responses while leaving retries for other transient errors enabled.
+
 ### Automatic token refresh
 
 `createBlizzardApiClient` takes an optional second argument, `onTokenRefresh`, that controls how access tokens are managed:
@@ -65,6 +67,8 @@ const client = await createBlizzardApiClient({ key, secret, origin: 'eu' }, (tok
 ```
 
 If a `token` is provided in the options, it is validated first. A still-valid token is reused and a refresh is scheduled for when it nears expiry; an expired or invalid token is refreshed immediately. Refresh timers are `unref`'d, so they never keep your process alive.
+
+Call `client.cancelTokenRefresh()` to cancel the scheduled refresh, for example during a graceful shutdown.
 
 ## Sending requests
 
@@ -83,6 +87,8 @@ const response = await client.sendRequest(wow.commodities(), {
 
 `sendRequest` resolves to `undefined` for endpoints that return `204 No Content` or an empty body.
 
+Protected resources, such as `wow.accountProfileSummary(userToken)`, use the user token attached to the resource for that request. Obtain user tokens through Blizzard's [authorization code flow](https://develop.battle.net/documentation/guides/using-oauth/authorization-code-flow); this token takes precedence over the client's default token.
+
 ## API
 
 The client returned by `createBlizzardApiClient` (an instance of `BlizzardApiClient`) exposes:
@@ -95,6 +101,7 @@ The client returned by `createBlizzardApiClient` (an instance of `BlizzardApiCli
 | `refreshAccessToken(options?)`         | Request a new access token and store it on the client.                                            |
 | `validateAccessToken(options?)`        | Validate an access token against Blizzard's OAuth endpoint.                                       |
 | `setAccessToken(token)`                | Manually set the access token used for subsequent requests.                                       |
+| `cancelTokenRefresh()`                 | Cancel the automatic token refresh timer.                                                         |
 | `getRequestUrl(resource, options?)`    | Build the request URL for a resource without sending it.                                          |
 | `getRequestConfig(resource, options?)` | Build the headers and search params for a resource without sending it.                            |
 

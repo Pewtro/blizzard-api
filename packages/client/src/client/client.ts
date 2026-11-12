@@ -11,6 +11,17 @@ import type {
 } from './types';
 import { clampMaxAttempts, getRetryOptions, validateClientOptions } from './utilities';
 
+const tokenRefreshCancellationHandlers = new WeakMap<object, () => void>();
+
+/**
+ * Register the automatic token refresh cancellation handler for a client.
+ * @param client The client to associate with the cancellation handler.
+ * @param handler The callback that cancels the scheduled refresh.
+ */
+export const setTokenRefreshCancellationHandler = (client: object, handler: () => void): void => {
+  tokenRefreshCancellationHandlers.set(client, handler);
+};
+
 /**
  * A Blizzard API client.
  * @classdesc A client to interact with the Blizzard API.
@@ -34,6 +45,8 @@ export class BlizzardApiClient {
     token?: string;
   };
 
+  private readonly defaultKyOptions: ClientOptions['kyOptions'];
+
   private ky;
 
   constructor(options: ClientOptions) {
@@ -49,6 +62,7 @@ export class BlizzardApiClient {
       secret: options.secret,
       token: options.token,
     };
+    this.defaultKyOptions = options.kyOptions;
     const kyOptions = {
       timeout: 15_000,
       ...options.kyOptions,
@@ -57,6 +71,11 @@ export class BlizzardApiClient {
       retry: getRetryOptions(options),
     };
     this.ky = ky.create(kyOptions);
+  }
+
+  /** Cancel the automatic token refresh scheduled by `createBlizzardApiClient`. */
+  public cancelTokenRefresh(): void {
+    tokenRefreshCancellationHandlers.get(this)?.();
   }
 
   /**
@@ -107,7 +126,8 @@ export class BlizzardApiClient {
     searchParams: Record<string, unknown> & { locale: ReturnType<typeof getBlizzardApi>['locale'] };
   } {
     const config = { ...this.defaults, ...options };
-    if (!config.token) {
+    const token = 'token' in resource && typeof resource.token === 'string' ? resource.token : config.token;
+    if (!token) {
       throw new Error('No token has been set for this client.');
     }
 
@@ -131,7 +151,7 @@ export class BlizzardApiClient {
     return {
       headers: {
         ...namespace,
-        Authorization: `Bearer ${config.token}`,
+        Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
       },
       searchParams: {
@@ -202,7 +222,11 @@ export class BlizzardApiClient {
         ...options?.kyOptions?.headers,
       },
       //Set after the spread so that per request options can lower the retry limit or opt out of retrying, rather than silently falling back to the defaults.
-      retry: getRetryOptions({ ...this.defaults, ...options }),
+      retry: getRetryOptions({
+        ...this.defaults,
+        ...options,
+        kyOptions: { ...this.defaultKyOptions, ...options?.kyOptions },
+      }),
     });
 
     // Some endpoints return a 204 status code with no content,

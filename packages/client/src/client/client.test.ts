@@ -1,3 +1,4 @@
+import type { Resource } from '@blizzard-api/core';
 import { describe, expect, test, vitest } from 'vitest';
 import { BlizzardApiClient } from './client';
 import type { ClientOptions } from './types';
@@ -53,7 +54,7 @@ describe('client retries', () => {
     expect(attempts()).toBe(maxAttempts);
   });
 
-  test('should not retry at all when retryOnRateLimit is false', async () => {
+  test('should not retry a rate limit when retryOnRateLimit is false', async () => {
     const { attempts, fetchMock } = createFetch(429);
     const client = createClient(fetchMock, { maxAttempts: 5, retryOnRateLimit: false });
 
@@ -117,11 +118,55 @@ describe('client retries', () => {
     expect(attempts()).toBe(1);
   });
 
+  test('should continue retrying server errors when retryOnRateLimit is false', async () => {
+    const { attempts, fetchMock } = createFetch(500);
+    const client = createClient(fetchMock, { maxAttempts: 3, retryOnRateLimit: false });
+
+    await expect(client.sendRequest({ path: 'test' })).rejects.toMatchObject({ response: { status: 500 } });
+    expect(attempts()).toBe(3);
+  });
+
+  test('should use a protected resource token instead of the client token', () => {
+    const client = createClient(vitest.fn());
+
+    const resource: Resource<{ id: number }, object, true> = { path: 'test', token: 'user-token' };
+    const config = client.getRequestConfig(resource);
+
+    expect(config.headers.Authorization).toBe('Bearer user-token');
+  });
+
+  test('should allow a protected resource token when the client has no token', () => {
+    const client = new BlizzardApiClient({ key: 'key', origin: 'eu', secret: 'secret' });
+
+    const resource: Resource<{ id: number }, object, true> = { path: 'test', token: 'user-token' };
+    const config = client.getRequestConfig(resource);
+
+    expect(config.headers.Authorization).toBe('Bearer user-token');
+  });
+
   test('should not retry a non rate limit error', async () => {
     const { attempts, fetchMock } = createFetch(404);
     const client = createClient(fetchMock, { maxAttempts: 3 });
 
     await expect(client.sendRequest({ path: 'test' })).rejects.toMatchObject({ response: { status: 404 } });
+    expect(attempts()).toBe(1);
+  });
+
+  test('should not retry when kyOptions.retry is false on the client', async () => {
+    const { attempts, fetchMock } = createFetch(500);
+    const client = createClient(fetchMock, { kyOptions: { retry: false }, maxAttempts: 5 });
+
+    await expect(client.sendRequest({ path: 'test' })).rejects.toMatchObject({ response: { status: 500 } });
+    expect(attempts()).toBe(1);
+  });
+
+  test('should not retry when kyOptions.retry is false for a request', async () => {
+    const { attempts, fetchMock } = createFetch(500);
+    const client = createClient(fetchMock, { maxAttempts: 5 });
+
+    await expect(client.sendRequest({ path: 'test' }, { kyOptions: { retry: false } })).rejects.toMatchObject({
+      response: { status: 500 },
+    });
     expect(attempts()).toBe(1);
   });
 });

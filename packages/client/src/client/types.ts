@@ -1,5 +1,10 @@
 import type { Locales, Origins } from '@blizzard-api/core';
-import type { Options as KyOptions } from 'ky';
+import type { Options as KyOptionsFromKy } from 'ky';
+
+/** Ky options with the familiar `retry: false` shorthand supported by this client. */
+export type KyOptions = Omit<KyOptionsFromKy, 'retry'> & {
+  retry?: false | KyOptionsFromKy['retry'];
+};
 
 /**
  * An access token response from the Blizzard API.
