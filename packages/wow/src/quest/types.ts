@@ -33,7 +33,7 @@ export interface QuestCategoryIndexResponse extends ResponseBase {
 export interface QuestCategoryResponse extends ResponseBase {
   category: string;
   id: number;
-  quests: Array<NameIdKey>;
+  quests: Array<NullishNameIdKey>;
 }
 
 /**

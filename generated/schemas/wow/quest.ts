@@ -19,7 +19,7 @@ export const questCategoryIndexResponseSchema = responseBaseSchema.extend({
 export const questCategoryResponseSchema = responseBaseSchema.extend({
   category: z.string(),
   id: z.number(),
-  quests: z.array(nameIdKeySchema),
+  quests: z.array(nullishNameIdKeySchema),
 });
 
 export const questIndexResponseSchema = responseBaseSchema.extend({
