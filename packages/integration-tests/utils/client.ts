@@ -1,8 +1,25 @@
 import type { BlizzardApiClient } from '@blizzard-api/client';
 import { createBlizzardApiClient } from '@blizzard-api/client';
+import type { Locales } from '@blizzard-api/core';
 import { environment } from '../../../environment';
+import { getRandomItem } from './random';
 
 const clientKey = Symbol.for('@blizzard-api/integration-tests/client');
+const localesMap: Record<Locales, boolean> = {
+  de_DE: true,
+  en_GB: true,
+  en_US: true,
+  es_ES: true,
+  es_MX: true,
+  fr_FR: true,
+  it_IT: true,
+  ko_KR: true,
+  pt_BR: true,
+  ru_RU: true,
+  zh_CN: true,
+  zh_TW: true,
+};
+const locales = Object.keys(localesMap) as Array<Locales>;
 
 /**
  * Get the Blizzard API client shared by every integration test.
@@ -21,6 +38,7 @@ export const getIntegrationTestClient = async (): Promise<BlizzardApiClient> => 
 
   globalWithIntegrationTestClient[clientKey] ??= createBlizzardApiClient({
     key: environment.blizzardClientId,
+    locale: getRandomItem(locales),
     origin: 'eu',
     secret: environment.blizzardClientSecret,
   });
