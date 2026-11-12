@@ -23,6 +23,13 @@ describe('Account Profile', () => {
     expect(result.token).toBe(token);
   });
 
+  test('should allow the token to come from a user-scoped client', () => {
+    const result = accountProfileSummary();
+
+    expect(result.path).toBe('/profile/user/wow');
+    expect(result.token).toBeUndefined();
+  });
+
   test('should return protected character profile summary', () => {
     const result = protectedCharacterProfileSummary(realmId, characterId, token);
     expect(result.namespace).toBe('profile');

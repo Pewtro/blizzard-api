@@ -32,6 +32,14 @@ describe('accountProfileApi', () => {
     expect(resource.token).toBe('token');
   });
 
+  test('accountProfileSummary should allow the token to come from a user-scoped client', () => {
+    const resource = accountProfileSummary();
+
+    expect(resource.path).toBe('/profile/user/wow');
+    expect(resource.namespace).toBe('profile-forever');
+    expect(resource.token).toBeUndefined();
+  });
+
   test('accountTransmogsCollectionSummary should return a resource object with the correct path, namespace and token', () => {
     const resource = accountTransmogsCollectionSummary('token');
 

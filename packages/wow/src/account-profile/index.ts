@@ -14,10 +14,10 @@ import type {
 
 /**
  * Because this endpoint provides data about the current logged-in user's World of Warcraft account, it requires an access token with the wow.profile scope acquired via the Authorization Code Flow. See {@link https://develop.battle.net/documentation/guides/using-oauth/authorization-code-flow}
- * @param token The OAuth 2.0 access token to use for authentication.
+ * @param token Optional OAuth 2.0 access token; alternatively, scope the client with `withUserToken`.
  * @returns an index of collection types for an account.
  */
-export function accountCollectionsIndex(token: string): ProtectedResource<AccountCollectionsIndexResponse> {
+export function accountCollectionsIndex(token?: string): ProtectedResource<AccountCollectionsIndexResponse> {
   return {
     namespace: 'profile',
     path: `${wowAccountProfileBasePath}/collections`,
@@ -27,10 +27,10 @@ export function accountCollectionsIndex(token: string): ProtectedResource<Accoun
 
 /**
  * Because this endpoint provides data about the current logged-in user's World of Warcraft account, it requires an access token with the wow.profile scope acquired via the Authorization Code Flow. See {@link https://develop.battle.net/documentation/guides/using-oauth/authorization-code-flow}
- * @param token The OAuth 2.0 access token to use for authentication.
+ * @param token Optional OAuth 2.0 access token; alternatively, scope the client with `withUserToken`.
  * @returns the housing decor an account has collected.
  */
-export function accountDecorCollection(token: string): ProtectedResource<AccountDecorCollectionResponse> {
+export function accountDecorCollection(token?: string): ProtectedResource<AccountDecorCollectionResponse> {
   return {
     namespace: 'profile',
     path: `${wowAccountProfileBasePath}/collections/decor`,
@@ -40,11 +40,11 @@ export function accountDecorCollection(token: string): ProtectedResource<Account
 
 /**
  * Because this endpoint provides data about the current logged-in user's World of Warcraft account, it requires an access token with the wow.profile scope acquired via the Authorization Code Flow. See {@link https://develop.battle.net/documentation/guides/using-oauth/authorization-code-flow}
- * @param token The OAuth 2.0 access token to use for authentication.
+ * @param token Optional OAuth 2.0 access token; alternatively, scope the client with `withUserToken`.
  * @returns a summary of the heirlooms an account has obtained.
  */
 export function accountHeirloomsCollectionSummary(
-  token: string,
+  token?: string,
 ): ProtectedResource<AccountHeirloomsCollectionSummaryResponse> {
   return {
     namespace: 'profile',
@@ -55,11 +55,11 @@ export function accountHeirloomsCollectionSummary(
 
 /**
  * Because this endpoint provides data about the current logged-in user's World of Warcraft account, it requires an access token with the wow.profile scope acquired via the Authorization Code Flow. See {@link https://develop.battle.net/documentation/guides/using-oauth/authorization-code-flow}
- * @param token The OAuth 2.0 access token to use for authentication.
+ * @param token Optional OAuth 2.0 access token; alternatively, scope the client with `withUserToken`.
  * @returns a summary of the mounts an account has obtained.
  */
 export function accountMountsCollectionSummary(
-  token: string,
+  token?: string,
 ): ProtectedResource<AccountMountsCollectionSummaryResponse> {
   return {
     namespace: 'profile',
@@ -70,10 +70,10 @@ export function accountMountsCollectionSummary(
 
 /**
  * Because this endpoint provides data about the current logged-in user's World of Warcraft account, it requires an access token with the wow.profile scope acquired via the Authorization Code Flow. See {@link https://develop.battle.net/documentation/guides/using-oauth/authorization-code-flow}
- * @param token The OAuth 2.0 access token to use for authentication.
+ * @param token Optional OAuth 2.0 access token; alternatively, scope the client with `withUserToken`.
  * @returns a summary of the battle pets an account has obtained.
  */
-export function accountPetsCollectionSummary(token: string): ProtectedResource<AccountPetsCollectionSummaryResponse> {
+export function accountPetsCollectionSummary(token?: string): ProtectedResource<AccountPetsCollectionSummaryResponse> {
   return {
     namespace: 'profile',
     path: `${wowAccountProfileBasePath}/collections/pets`,
@@ -83,10 +83,10 @@ export function accountPetsCollectionSummary(token: string): ProtectedResource<A
 
 /**
  * Because this endpoint provides data about the current logged-in user's World of Warcraft account, it requires an access token with the wow.profile scope acquired via the Authorization Code Flow. See {@link https://develop.battle.net/documentation/guides/using-oauth/authorization-code-flow}
- * @param token The OAuth 2.0 access token to use for authentication.
+ * @param token Optional OAuth 2.0 access token; alternatively, scope the client with `withUserToken`.
  * @returns a profile summary for an account.
  */
-export function accountProfileSummary(token: string): ProtectedResource<AccountProfileSummaryResponse> {
+export function accountProfileSummary(token?: string): ProtectedResource<AccountProfileSummaryResponse> {
   return {
     namespace: 'profile',
     path: wowAccountProfileBasePath,
@@ -96,10 +96,10 @@ export function accountProfileSummary(token: string): ProtectedResource<AccountP
 
 /**
  * Because this endpoint provides data about the current logged-in user's World of Warcraft account, it requires an access token with the wow.profile scope acquired via the Authorization Code Flow. See {@link https://develop.battle.net/documentation/guides/using-oauth/authorization-code-flow}
- * @param token The OAuth 2.0 access token to use for authentication.
+ * @param token Optional OAuth 2.0 access token; alternatively, scope the client with `withUserToken`.
  * @returns a summary of the toys an account has obtained.
  */
-export function accountToysCollectionSummary(token: string): ProtectedResource<AccountToysCollectionSummaryResponse> {
+export function accountToysCollectionSummary(token?: string): ProtectedResource<AccountToysCollectionSummaryResponse> {
   return {
     namespace: 'profile',
     path: `${wowAccountProfileBasePath}/collections/toys`,
@@ -109,11 +109,11 @@ export function accountToysCollectionSummary(token: string): ProtectedResource<A
 
 /**
  * Because this endpoint provides data about the current logged-in user's World of Warcraft account, it requires an access token with the wow.profile scope acquired via the Authorization Code Flow. See {@link https://develop.battle.net/documentation/guides/using-oauth/authorization-code-flow}
- * @param token The OAuth 2.0 access token to use for authentication.
+ * @param token Optional OAuth 2.0 access token; alternatively, scope the client with `withUserToken`.
  * @returns a summary of the transmog unlocks an account has obtained.
  */
 export function accountTransmogsCollectionSummary(
-  token: string,
+  token?: string,
 ): ProtectedResource<AccountTransmogsCollectionSummaryResponse> {
   return {
     namespace: 'profile',

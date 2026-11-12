@@ -11,7 +11,7 @@ export type ExtractResourceType<Type> =
   Type extends Resource<infer R, infer _SearchOptions, infer _Protected> ? R : never;
 
 /**
- * Represents a resource that requires a token to be requested
+ * Represents a resource that requires a user token, either on the resource or on the client
  * @param Response The response type of the resource
  * @param SearchOptions The search options that can be passed to the resource
  */
@@ -31,7 +31,7 @@ export type Resource<
   Response,
   SearchOptions extends object = Record<string, unknown>,
   IsProtectedResource extends boolean = false,
-> = (IsProtectedResource extends true ? { token: string } : unknown) & {
+> = (IsProtectedResource extends true ? { token?: string } : unknown) & {
   /**
    * The response type of the resource
    * @internal
