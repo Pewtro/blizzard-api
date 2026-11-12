@@ -1,5 +1,12 @@
 # @blizzard-api/core
 
+## 4.5.1
+
+### Patch Changes
+
+- 5fec0a6: Align supported locale options with locales that return usable localized data.
+- 972f552: Allow protected profile endpoint helpers to omit a resource token when using a user-scoped client.
+
 ## 4.5.0
 
 ### Minor Changes

@@ -1,5 +1,19 @@
 # @blizzard-api/client
 
+## 5.5.6
+
+### Patch Changes
+
+- fae8e70: Respect an explicit `kyOptions.retry: false` setting.
+- 041cded: Add `withUserToken` to create a client scoped to a user access token.
+- 3a82222: Use the region-appropriate OAuth host and token-check endpoint for China.
+- fae8e70: Use the access token on protected resources when sending requests.
+- fae8e70: Add a method to cancel automatic token refresh.
+- fae8e70: Keep retrying transient errors when rate-limit retries are disabled.
+- Updated dependencies [5fec0a6]
+- Updated dependencies [972f552]
+  - @blizzard-api/core@4.5.1
+
 ## 5.5.5
 
 ### Patch Changes
