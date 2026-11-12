@@ -45,6 +45,21 @@ const createFetch = (status: number) => {
   return { attempts: () => attempts, fetchMock };
 };
 
+/**
+ * Create a fetch mock that records request URLs and returns a successful JSON response.
+ * @param body The response body to return.
+ * @returns The mocked fetch function and recorded request URLs.
+ */
+const createUrlRecordingFetch = (body: unknown) => {
+  const urls: Array<string> = [];
+  const fetchMock = vitest.fn((input: Request | string | URL) => {
+    urls.push(input instanceof Request ? input.url : input.toString());
+    return Promise.resolve(Response.json(body));
+  });
+
+  return { fetchMock, urls };
+};
+
 describe('client request behavior', () => {
   test.each([1, 2, 3, 5])('should make exactly %i attempts when rate limited', async (maxAttempts) => {
     const { attempts, fetchMock } = createFetch(429);
@@ -191,5 +206,50 @@ describe('client request behavior', () => {
       response: { status: 500 },
     });
     expect(attempts()).toBe(1);
+  });
+});
+
+describe('OAuth endpoint selection', () => {
+  test.each([
+    { expectedHost: 'oauth.battle.net', origin: 'eu' as const },
+    { expectedHost: 'oauth.battlenet.com.cn', origin: 'cn' as const },
+  ])('getAccessToken uses the $origin OAuth host', async ({ expectedHost, origin }) => {
+    const { fetchMock, urls } = createUrlRecordingFetch({
+      access_token: 'access',
+      expires_in: 3600,
+      token_type: 'bearer',
+    });
+    const client = createClient(fetchMock, { origin });
+
+    await client.getAccessToken();
+
+    expect(new URL(urls[0]!).origin).toBe(`https://${expectedHost}`);
+    expect(new URL(urls[0]!).pathname).toBe('/token');
+  });
+
+  test('getAccessToken honors a per-call origin override', async () => {
+    const { fetchMock, urls } = createUrlRecordingFetch({
+      access_token: 'access',
+      expires_in: 3600,
+      token_type: 'bearer',
+    });
+    const client = createClient(fetchMock, { origin: 'eu' });
+
+    await client.getAccessToken({ origin: 'cn' });
+
+    expect(new URL(urls[0]!).origin).toBe('https://oauth.battlenet.com.cn');
+  });
+
+  test.each([
+    { expectedHost: 'oauth.battle.net', origin: 'eu' as const },
+    { expectedHost: 'oauth.battlenet.com.cn', origin: 'cn' as const },
+  ])('validateAccessToken uses the $origin OAuth host', async ({ expectedHost, origin }) => {
+    const { fetchMock, urls } = createUrlRecordingFetch({ client_id: 'key' });
+    const client = createClient(fetchMock, { origin });
+
+    await client.validateAccessToken({ token: 'access' });
+
+    expect(new URL(urls[0]!).origin).toBe(`https://${expectedHost}`);
+    expect(new URL(urls[0]!).pathname).toBe('/check_token');
   });
 });

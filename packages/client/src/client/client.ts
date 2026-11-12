@@ -14,6 +14,14 @@ import { clampMaxAttempts, getRetryOptions, validateClientOptions } from './util
 const tokenRefreshCancellationHandlers = new WeakMap<object, () => void>();
 
 /**
+ * Get the OAuth host for a Blizzard region.
+ * @param origin The region of the Blizzard API.
+ * @returns The OAuth host for the region.
+ */
+const getOAuthHost = (origin: Origins): string =>
+  origin === 'cn' ? 'https://oauth.battlenet.com.cn' : 'https://oauth.battle.net';
+
+/**
  * Register the automatic token refresh cancellation handler for a client.
  * @param client The client to associate with the cancellation handler.
  * @param handler The callback that cancels the scheduled refresh.
@@ -94,11 +102,11 @@ export class BlizzardApiClient {
    * // => 'client-id'
    */
   public getAccessToken = async (options?: AccessTokenRequestArguments): Promise<AccessToken> => {
-    const { key, secret } = { ...this.defaults, ...options };
+    const { key, origin, secret } = { ...this.defaults, ...options };
     const basicAuth = Buffer.from(`${key}:${secret}`).toString('base64');
 
     return this.ky
-      .post<AccessToken>(`https://oauth.battle.net/token`, {
+      .post<AccessToken>(`${getOAuthHost(origin)}/token`, {
         headers: {
           Authorization: `Basic ${basicAuth}`,
           'Content-Type': 'application/json',
@@ -273,7 +281,7 @@ export class BlizzardApiClient {
     }
 
     return this.ky
-      .post<ValidateAccessTokenResponse>(`https://${origin}.battle.net/oauth/check_token`, {
+      .post<ValidateAccessTokenResponse>(`${getOAuthHost(origin)}/check_token`, {
         body: stringify({ token }),
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
