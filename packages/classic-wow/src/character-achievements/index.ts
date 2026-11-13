@@ -15,7 +15,7 @@ export function characterAchievementsSummary(
 ): Resource<CharacterAchievementsSummaryResponse> {
   return {
     namespace,
-    path: `${wowCharacterBasePath}/${realmSlug}/${characterName.toLowerCase()}/achievements`,
+    path: `${wowCharacterBasePath}/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName.toLowerCase())}/achievements`,
   };
 }
 
@@ -32,6 +32,6 @@ export function characterAchievementStatistics(
 ): Resource<CharacterAchievementStatisticsResponse> {
   return {
     namespace,
-    path: `${wowCharacterBasePath}/${realmSlug}/${characterName.toLowerCase()}/achievements/statistics`,
+    path: `${wowCharacterBasePath}/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName.toLowerCase())}/achievements/statistics`,
   };
 }

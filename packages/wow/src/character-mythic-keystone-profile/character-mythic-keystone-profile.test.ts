@@ -10,7 +10,7 @@ describe('Character Mythic Keystone Profile', () => {
 
     expect(result).toEqual({
       namespace: 'profile',
-      path: `/profile/wow/character/${realmSlug}/${characterName}/mythic-keystone-profile`,
+      path: `/profile/wow/character/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName)}/mythic-keystone-profile`,
     });
   });
 
@@ -23,7 +23,7 @@ describe('Character Mythic Keystone Profile', () => {
 
     expect(result).toEqual({
       namespace: 'profile',
-      path: `/profile/wow/character/${realmSlug}/${characterName}/mythic-keystone-profile/season/${seasonId}`,
+      path: `/profile/wow/character/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName)}/mythic-keystone-profile/season/${encodeURIComponent(seasonId)}`,
     });
   });
 });

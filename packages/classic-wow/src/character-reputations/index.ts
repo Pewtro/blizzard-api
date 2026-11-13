@@ -19,6 +19,6 @@ export function characterReputationsSummary(
 ): Resource<CharacterReputationsSummaryResponse> {
   return {
     namespace,
-    path: `${wowCharacterBasePath}/${realmSlug}/${characterName.toLowerCase()}/reputations`,
+    path: `${wowCharacterBasePath}/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName.toLowerCase())}/reputations`,
   };
 }

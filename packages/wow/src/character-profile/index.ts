@@ -23,7 +23,7 @@ export function characterProfileStatus(
 ): Resource<CharacterProfileStatusResponse> {
   return {
     namespace: 'profile',
-    path: `/profile/wow/character/${realmSlug}/${characterName.toLowerCase()}/status`,
+    path: `/profile/wow/character/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName.toLowerCase())}/status`,
   };
 }
 
@@ -39,6 +39,6 @@ export function characterProfileSummary(
 ): Resource<CharacterProfileSummaryResponse> {
   return {
     namespace: 'profile',
-    path: `/profile/wow/character/${realmSlug}/${characterName.toLowerCase()}`,
+    path: `/profile/wow/character/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName.toLowerCase())}`,
   };
 }

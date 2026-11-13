@@ -20,7 +20,7 @@ describe('metadata', () => {
       test(`should return the correct resource path for specific metadata type: ${type}`, () => {
         const result: Resource<SpecificMetadataResponse> = specificMetadata(type);
         expect(result).toEqual({
-          path: `hearthstone/metadata/${type}`,
+          path: `hearthstone/metadata/${encodeURIComponent(type)}`,
         });
       });
     }

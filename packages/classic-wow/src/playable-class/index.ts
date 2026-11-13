@@ -14,7 +14,7 @@ export function playableClass(
 ): Resource<PlayableClassResponse> {
   return {
     namespace,
-    path: `${wowBasePath}/playable-class/${playableClassId}`,
+    path: `${wowBasePath}/playable-class/${encodeURIComponent(playableClassId)}`,
   };
 }
 /**
@@ -40,6 +40,6 @@ export function playableClassMedia(
 ): Resource<PlayableClassMediaResponse> {
   return {
     namespace,
-    path: `${wowMediaBasePath}/playable-class/${playableClassId}`,
+    path: `${wowMediaBasePath}/playable-class/${encodeURIComponent(playableClassId)}`,
   };
 }

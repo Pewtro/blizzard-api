@@ -21,7 +21,7 @@ import type {
 export function creature(namespace: StaticClassicNamespaces, creatureId: number): Resource<CreatureResponse> {
   return {
     namespace,
-    path: `${wowBasePath}/creature/${creatureId}`,
+    path: `${wowBasePath}/creature/${encodeURIComponent(creatureId)}`,
   };
 }
 /**
@@ -36,7 +36,7 @@ export function creatureDisplayMedia(
 ): Resource<CreatureDisplayMediaResponse> {
   return {
     namespace,
-    path: `${wowMediaBasePath}/creature-display/${creatureDisplayId}`,
+    path: `${wowMediaBasePath}/creature-display/${encodeURIComponent(creatureDisplayId)}`,
   };
 }
 /**
@@ -51,7 +51,7 @@ export function creatureFamily(
 ): Resource<CreatureFamilyResponse> {
   return {
     namespace,
-    path: `${wowBasePath}/creature-family/${creatureFamilyId}`,
+    path: `${wowBasePath}/creature-family/${encodeURIComponent(creatureFamilyId)}`,
   };
 }
 /**
@@ -77,7 +77,7 @@ export function creatureFamilyMedia(
 ): Resource<CreatureFamilyMediaResponse> {
   return {
     namespace,
-    path: `${wowMediaBasePath}/creature-family/${creatureFamilyId}`,
+    path: `${wowMediaBasePath}/creature-family/${encodeURIComponent(creatureFamilyId)}`,
   };
 }
 /**
@@ -112,7 +112,7 @@ export function creatureType(
 ): Resource<CreatureTypeResponse> {
   return {
     namespace,
-    path: `${wowBasePath}/creature-type/${creatureTypeId}`,
+    path: `${wowBasePath}/creature-type/${encodeURIComponent(creatureTypeId)}`,
   };
 }
 /**

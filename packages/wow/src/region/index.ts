@@ -10,7 +10,7 @@ import type { RegionIndexResponse, RegionResponse } from './types';
 export function region(regionId: number): Resource<RegionResponse> {
   return {
     namespace: 'dynamic',
-    path: `${wowBasePath}/region/${regionId}`,
+    path: `${wowBasePath}/region/${encodeURIComponent(regionId)}`,
   };
 }
 /**

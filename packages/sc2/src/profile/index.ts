@@ -24,7 +24,7 @@ export function ladder(
   ladderId: number,
 ): Resource<LadderResponse> {
   return {
-    path: `/sc2/profile/${starcraftRegion[regionId]}/${realmId}/${profileId}/ladder/${ladderId}`,
+    path: `/sc2/profile/${encodeURIComponent(starcraftRegion[regionId])}/${encodeURIComponent(realmId)}/${encodeURIComponent(profileId)}/ladder/${encodeURIComponent(ladderId)}`,
   };
 }
 
@@ -41,7 +41,7 @@ export function ladderSummary(
   profileId: number,
 ): Resource<LadderSummaryResponse> {
   return {
-    path: `/sc2/profile/${starcraftRegion[regionId]}/${realmId}/${profileId}/ladder/summary`,
+    path: `/sc2/profile/${encodeURIComponent(starcraftRegion[regionId])}/${encodeURIComponent(realmId)}/${encodeURIComponent(profileId)}/ladder/summary`,
   };
 }
 
@@ -54,7 +54,7 @@ export function ladderSummary(
  */
 export function metadata(regionId: StarcraftRegion, realmId: 1 | 2, profileId: number): Resource<MetadataResponse> {
   return {
-    path: `/sc2/metadata/profile/${starcraftRegion[regionId]}/${realmId}/${profileId}`,
+    path: `/sc2/metadata/profile/${encodeURIComponent(starcraftRegion[regionId])}/${encodeURIComponent(realmId)}/${encodeURIComponent(profileId)}`,
   };
 }
 
@@ -67,7 +67,7 @@ export function metadata(regionId: StarcraftRegion, realmId: 1 | 2, profileId: n
  */
 export function profile(regionId: StarcraftRegion, realmId: 1 | 2, profileId: number): Resource<ProfileResponse> {
   return {
-    path: `/sc2/profile/${starcraftRegion[regionId]}/${realmId}/${profileId}`,
+    path: `/sc2/profile/${encodeURIComponent(starcraftRegion[regionId])}/${encodeURIComponent(realmId)}/${encodeURIComponent(profileId)}`,
   };
 }
 
@@ -78,6 +78,6 @@ export function profile(regionId: StarcraftRegion, realmId: 1 | 2, profileId: nu
  */
 export function staticProfile(regionId: StarcraftRegion): Resource<StaticProfileResponse> {
   return {
-    path: `/sc2/static/profile/${starcraftRegion[regionId]}`,
+    path: `/sc2/static/profile/${encodeURIComponent(starcraftRegion[regionId])}`,
   };
 }

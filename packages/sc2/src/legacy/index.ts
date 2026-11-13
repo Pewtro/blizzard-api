@@ -16,7 +16,7 @@ import type {
  */
 export function legacyAchievements(regionId: StarcraftRegion): Resource<LegacyAchievementsResponse> {
   return {
-    path: `/sc2/legacy/data/achievements/${starcraftRegion[regionId]}`,
+    path: `/sc2/legacy/data/achievements/${encodeURIComponent(starcraftRegion[regionId])}`,
   };
 }
 
@@ -28,7 +28,7 @@ export function legacyAchievements(regionId: StarcraftRegion): Resource<LegacyAc
  */
 export function legacyLadder(regionId: StarcraftRegion, ladderId: number): Resource<LegacyLaddersResponse> {
   return {
-    path: `/sc2/legacy/ladder/${starcraftRegion[regionId]}/${ladderId}`,
+    path: `/sc2/legacy/ladder/${encodeURIComponent(starcraftRegion[regionId])}/${encodeURIComponent(ladderId)}`,
   };
 }
 
@@ -45,7 +45,7 @@ export function legacyLadders(
   profileId: number,
 ): Resource<LegacyLaddersResponse> {
   return {
-    path: `/sc2/legacy/profile/${starcraftRegion[regionId]}/${realmId}/${profileId}/ladders`,
+    path: `/sc2/legacy/profile/${encodeURIComponent(starcraftRegion[regionId])}/${encodeURIComponent(realmId)}/${encodeURIComponent(profileId)}/ladders`,
   };
 }
 
@@ -62,7 +62,7 @@ export function legacyMatchHistory(
   profileId: number,
 ): Resource<LegacyMatchHistoryResponse> {
   return {
-    path: `/sc2/legacy/profile/${starcraftRegion[regionId]}/${realmId}/${profileId}/matches`,
+    path: `/sc2/legacy/profile/${encodeURIComponent(starcraftRegion[regionId])}/${encodeURIComponent(realmId)}/${encodeURIComponent(profileId)}/matches`,
   };
 }
 
@@ -79,7 +79,7 @@ export function legacyProfile(
   profileId: number,
 ): Resource<LegacyProfileResponse> {
   return {
-    path: `/sc2/legacy/profile/${starcraftRegion[regionId]}/${realmId}/${profileId}`,
+    path: `/sc2/legacy/profile/${encodeURIComponent(starcraftRegion[regionId])}/${encodeURIComponent(realmId)}/${encodeURIComponent(profileId)}`,
   };
 }
 
@@ -90,6 +90,6 @@ export function legacyProfile(
  */
 export function legacyRewards(regionId: StarcraftRegion): Resource<LegacyRewardsResponse> {
   return {
-    path: `/sc2/legacy/data/rewards/${starcraftRegion[regionId]}`,
+    path: `/sc2/legacy/data/rewards/${encodeURIComponent(starcraftRegion[regionId])}`,
   };
 }

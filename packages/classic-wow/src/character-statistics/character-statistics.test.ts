@@ -13,7 +13,7 @@ describe('characterStatisticsSummary', () => {
 
     expect(result).toEqual({
       namespace,
-      path: `${wowCharacterBasePath}/${realmSlug}/${characterName}/statistics`,
+      path: `${wowCharacterBasePath}/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName)}/statistics`,
     });
   });
 });

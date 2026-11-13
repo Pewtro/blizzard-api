@@ -20,7 +20,7 @@ import type {
 export function journalEncounter(journalEncounterId: number): Resource<JournalEncounterResponse> {
   return {
     namespace: 'static-forever',
-    path: `${wowBasePath}/journal-encounter/${journalEncounterId}`,
+    path: `${wowBasePath}/journal-encounter/${encodeURIComponent(journalEncounterId)}`,
   };
 }
 /**
@@ -59,7 +59,7 @@ export function journalEncounterSearch(
 export function journalExpansion(journalExpansionId: number): Resource<JournalExpansionResponse> {
   return {
     namespace: 'static-forever',
-    path: `${wowBasePath}/journal-expansion/${journalExpansionId}`,
+    path: `${wowBasePath}/journal-expansion/${encodeURIComponent(journalExpansionId)}`,
   };
 }
 /**
@@ -80,7 +80,7 @@ export function journalExpansionIndex(): Resource<JournalExpansionIndexResponse>
 export function journalInstance(journalInstanceId: number): Resource<JournalInstanceResponse> {
   return {
     namespace: 'static-forever',
-    path: `${wowBasePath}/journal-instance/${journalInstanceId}`,
+    path: `${wowBasePath}/journal-instance/${encodeURIComponent(journalInstanceId)}`,
   };
 }
 /**
@@ -101,6 +101,6 @@ export function journalInstanceIndex(): Resource<JournalInstanceIndexResponse> {
 export function journalInstanceMedia(journalInstanceId: number): Resource<JournalInstanceMediaResponse> {
   return {
     namespace: 'static-forever',
-    path: `${wowMediaBasePath}/journal-instance/${journalInstanceId}`,
+    path: `${wowMediaBasePath}/journal-instance/${encodeURIComponent(journalInstanceId)}`,
   };
 }

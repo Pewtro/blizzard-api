@@ -10,7 +10,7 @@ import type { CharacterDungeonsResponse, CharacterEncountersSummaryResponse, Cha
 export function characterDungeons(realmSlug: string, characterName: string): Resource<CharacterDungeonsResponse> {
   return {
     namespace: 'profile',
-    path: `${wowCharacterBasePath}/${realmSlug}/${characterName.toLowerCase()}/encounters/dungeons`,
+    path: `${wowCharacterBasePath}/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName.toLowerCase())}/encounters/dungeons`,
   };
 }
 
@@ -25,7 +25,7 @@ export function characterEncountersSummary(
 ): Resource<CharacterEncountersSummaryResponse> {
   return {
     namespace: 'profile',
-    path: `${wowCharacterBasePath}/${realmSlug}/${characterName.toLowerCase()}/encounters`,
+    path: `${wowCharacterBasePath}/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName.toLowerCase())}/encounters`,
   };
 }
 
@@ -37,6 +37,6 @@ export function characterEncountersSummary(
 export function characterRaids(realmSlug: string, characterName: string): Resource<CharacterRaidsResponse> {
   return {
     namespace: 'profile',
-    path: `${wowCharacterBasePath}/${realmSlug}/${characterName.toLowerCase()}/encounters/raids`,
+    path: `${wowCharacterBasePath}/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName.toLowerCase())}/encounters/raids`,
   };
 }

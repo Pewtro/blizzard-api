@@ -10,7 +10,7 @@ import type { RealmIndexResponse, RealmResponse, RealmSearchParameters, RealmSea
 export function realm(realmSlug: string): Resource<RealmResponse> {
   return {
     namespace: 'dynamic',
-    path: `${wowBasePath}/realm/${realmSlug}`,
+    path: `${wowBasePath}/realm/${encodeURIComponent(realmSlug)}`,
   };
 }
 /**

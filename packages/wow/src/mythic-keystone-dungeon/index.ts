@@ -18,7 +18,7 @@ import type {
 export function mythicKeystoneDungeon(mythicKeystoneDungeonId: number): Resource<MythicKeystoneDungeonResponse> {
   return {
     namespace: 'dynamic',
-    path: `${wowBasePath}/mythic-keystone/dungeon/${mythicKeystoneDungeonId}`,
+    path: `${wowBasePath}/mythic-keystone/dungeon/${encodeURIComponent(mythicKeystoneDungeonId)}`,
   };
 }
 /**
@@ -49,7 +49,7 @@ export function mythicKeystoneIndex(): Resource<MythicKeystoneIndexResponse> {
 export function mythicKeystonePeriod(mythicKeystonePeriodId: number): Resource<MythicKeystonePeriodResponse> {
   return {
     namespace: 'dynamic',
-    path: `${wowBasePath}/mythic-keystone/period/${mythicKeystonePeriodId}`,
+    path: `${wowBasePath}/mythic-keystone/period/${encodeURIComponent(mythicKeystonePeriodId)}`,
   };
 }
 /**
@@ -70,7 +70,7 @@ export function mythicKeystonePeriodIndex(): Resource<MythicKeystonePeriodIndexR
 export function mythicKeystoneSeason(mythicKeystoneSeasonId: number): Resource<MythicKeystoneSeasonResponse> {
   return {
     namespace: 'dynamic',
-    path: `${wowBasePath}/mythic-keystone/season/${mythicKeystoneSeasonId}`,
+    path: `${wowBasePath}/mythic-keystone/season/${encodeURIComponent(mythicKeystoneSeasonId)}`,
   };
 }
 /**

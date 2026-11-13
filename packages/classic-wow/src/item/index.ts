@@ -19,7 +19,7 @@ import type {
 export function item(namespace: StaticClassicNamespaces, itemId: number): Resource<ItemResponse> {
   return {
     namespace,
-    path: `${wowBasePath}/item/${itemId}`,
+    path: `${wowBasePath}/item/${encodeURIComponent(itemId)}`,
   };
 }
 /**
@@ -31,7 +31,7 @@ export function item(namespace: StaticClassicNamespaces, itemId: number): Resour
 export function itemClass(namespace: StaticClassicNamespaces, itemClassId: number): Resource<ItemClassResponse> {
   return {
     namespace,
-    path: `${wowBasePath}/item-class/${itemClassId}`,
+    path: `${wowBasePath}/item-class/${encodeURIComponent(itemClassId)}`,
   };
 }
 /**
@@ -54,7 +54,7 @@ export function itemClassIndex(namespace: StaticClassicNamespaces): Resource<Ite
 export function itemMedia(namespace: StaticClassicNamespaces, itemId: number): Resource<ItemMediaResponse> {
   return {
     namespace,
-    path: `${wowMediaBasePath}/item/${itemId}`,
+    path: `${wowMediaBasePath}/item/${encodeURIComponent(itemId)}`,
   };
 }
 /**
@@ -91,6 +91,6 @@ export function itemSubclass(
 ): Resource<ItemSubclassResponse> {
   return {
     namespace,
-    path: `${wowBasePath}/item-class/${itemClassId}/item-subclass/${itemSubclassId}`,
+    path: `${wowBasePath}/item-class/${encodeURIComponent(itemClassId)}/item-subclass/${encodeURIComponent(itemSubclassId)}`,
   };
 }

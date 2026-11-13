@@ -20,7 +20,7 @@ export function playableSpecialization(
 ): Resource<PlayableSpecializationResponse> {
   return {
     namespace,
-    path: `${wowBasePath}/playable-specialization/${specializationId}`,
+    path: `${wowBasePath}/playable-specialization/${encodeURIComponent(specializationId)}`,
   };
 }
 /**
@@ -52,6 +52,6 @@ export function playableSpecializationMedia(
 ): Resource<PlayableSpecializationMediaResponse> {
   return {
     namespace,
-    path: `${wowMediaBasePath}/playable-specialization/${specializationId}`,
+    path: `${wowMediaBasePath}/playable-specialization/${encodeURIComponent(specializationId)}`,
   };
 }

@@ -19,7 +19,7 @@ describe('characterSpecializationsSummary', () => {
 
     expect(result).toEqual({
       namespace,
-      path: `${wowCharacterBasePath}/${realmSlug}/${characterName}/specializations`,
+      path: `${wowCharacterBasePath}/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName)}/specializations`,
     });
   });
 });

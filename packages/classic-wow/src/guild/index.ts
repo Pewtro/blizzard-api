@@ -21,7 +21,7 @@ export function guild(
 ): Resource<GuildResponse> {
   return {
     namespace,
-    path: `${wowGuildBasePath}/${realmSlug}/${nameSlug}`,
+    path: `${wowGuildBasePath}/${encodeURIComponent(realmSlug)}/${encodeURIComponent(nameSlug)}`,
   };
 }
 
@@ -40,7 +40,7 @@ export function guildAchievements<T extends ProfileClassicNamespaces>(
 > {
   return {
     namespace,
-    path: `${wowGuildBasePath}/${realmSlug}/${nameSlug}/achievements`,
+    path: `${wowGuildBasePath}/${encodeURIComponent(realmSlug)}/${encodeURIComponent(nameSlug)}/achievements`,
   };
 }
 
@@ -57,7 +57,7 @@ export function guildActivity(
 ): Resource<GuildActivityResponse> {
   return {
     namespace,
-    path: `${wowGuildBasePath}/${realmSlug}/${nameSlug}/activity`,
+    path: `${wowGuildBasePath}/${encodeURIComponent(realmSlug)}/${encodeURIComponent(nameSlug)}/activity`,
   };
 }
 
@@ -74,6 +74,6 @@ export function guildRoster(
 ): Resource<GuildRosterResponse> {
   return {
     namespace,
-    path: `${wowGuildBasePath}/${realmSlug}/${nameSlug}/roster`,
+    path: `${wowGuildBasePath}/${encodeURIComponent(realmSlug)}/${encodeURIComponent(nameSlug)}/roster`,
   };
 }

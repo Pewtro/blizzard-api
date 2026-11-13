@@ -136,7 +136,7 @@ export function protectedCharacterProfileSummary(
 ): ProtectedResource<ProtectedCharacterProfileSummaryResponse> {
   return {
     namespace: 'profile',
-    path: `${wowAccountProfileBasePath}/protected-character/${realmId}-${characterId}`,
+    path: `${wowAccountProfileBasePath}/protected-character/${encodeURIComponent(realmId)}-${encodeURIComponent(characterId)}`,
     token,
   };
 }

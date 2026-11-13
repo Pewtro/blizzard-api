@@ -15,7 +15,7 @@ export function characterMythicKeystoneProfileIndex(
 ): Resource<CharacterMythicKeystoneProfileIndexResponse> {
   return {
     namespace: 'profile',
-    path: `/profile/wow/character/${realmSlug}/${characterName}/mythic-keystone-profile`,
+    path: `/profile/wow/character/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName)}/mythic-keystone-profile`,
   };
 }
 
@@ -34,6 +34,6 @@ export function characterMythicKeystoneSeasonDetails(
 ): Resource<CharacterMythicKeystoneSeasonDetailsResponse> {
   return {
     namespace: 'profile',
-    path: `/profile/wow/character/${realmSlug}/${characterName}/mythic-keystone-profile/season/${seasonId}`,
+    path: `/profile/wow/character/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName)}/mythic-keystone-profile/season/${encodeURIComponent(seasonId)}`,
   };
 }

@@ -9,7 +9,7 @@ import type { ActIndexResponse, ActResponse } from './types';
  */
 export function act(actId: number): Resource<ActResponse> {
   return {
-    path: `${d3BasePath}/act/${actId}`,
+    path: `${d3BasePath}/act/${encodeURIComponent(actId)}`,
   };
 }
 

@@ -14,7 +14,7 @@ export function characterPvpBracketStatistics(
 ): Resource<CharacterPvpBracketStatisticsResponse> {
   return {
     namespace: 'profile',
-    path: `/profile/wow/character/${realmSlug}/${characterName.toLowerCase()}/pvp-bracket/${bracketId}`,
+    path: `/profile/wow/character/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName.toLowerCase())}/pvp-bracket/${encodeURIComponent(bracketId)}`,
   };
 }
 
@@ -26,6 +26,6 @@ export function characterPvpBracketStatistics(
 export function characterPvpSummary(realmSlug: string, characterName: string): Resource<CharacterPvpSummaryResponse> {
   return {
     namespace: 'profile',
-    path: `/profile/wow/character/${realmSlug}/${characterName.toLowerCase()}/pvp-summary`,
+    path: `/profile/wow/character/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName.toLowerCase())}/pvp-summary`,
   };
 }

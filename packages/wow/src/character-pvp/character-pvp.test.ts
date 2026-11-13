@@ -9,7 +9,7 @@ describe('character pvp', () => {
 
     const expectedResource = {
       namespace: 'profile',
-      path: `/profile/wow/character/${realmSlug}/${characterName.toLowerCase()}/pvp-bracket/${bracketId}`,
+      path: `/profile/wow/character/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName.toLowerCase())}/pvp-bracket/${encodeURIComponent(bracketId)}`,
     };
 
     const result = characterPvpBracketStatistics(realmSlug, characterName, bracketId);

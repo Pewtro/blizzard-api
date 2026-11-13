@@ -20,7 +20,7 @@ export function connectedRealm(
 ): Resource<ConnectedRealmResponse> {
   return {
     namespace,
-    path: `${wowBasePath}/connected-realm/${connectedRealmId}`,
+    path: `${wowBasePath}/connected-realm/${encodeURIComponent(connectedRealmId)}`,
   };
 }
 /**
@@ -37,7 +37,7 @@ export function connectedRealmAuctions(
 ): Resource<ConnectedRealmAuctionsResponse> {
   return {
     namespace,
-    path: `${wowBasePath}/connected-realm/${connectedRealmId}/auctions`,
+    path: `${wowBasePath}/connected-realm/${encodeURIComponent(connectedRealmId)}/auctions`,
   };
 }
 /**

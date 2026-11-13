@@ -13,7 +13,7 @@ describe('characterHunterPetsSummary', () => {
 
     expect(result).toEqual({
       namespace,
-      path: `${wowCharacterBasePath}/${realmSlug}/${characterName}/hunter-pets`,
+      path: `${wowCharacterBasePath}/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName)}/hunter-pets`,
     });
   });
 });

@@ -12,7 +12,7 @@ describe('characterAchievementsSummary', () => {
 
     expect(result).toEqual({
       namespace,
-      path: `${wowCharacterBasePath}/${realmSlug}/${characterName.toLowerCase()}/achievements`,
+      path: `${wowCharacterBasePath}/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName.toLowerCase())}/achievements`,
     });
   });
 
@@ -35,7 +35,7 @@ describe('characterAchievementStatistics', () => {
 
     expect(result).toEqual({
       namespace,
-      path: `${wowCharacterBasePath}/${realmSlug}/${characterName.toLowerCase()}/achievements/statistics`,
+      path: `${wowCharacterBasePath}/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName.toLowerCase())}/achievements/statistics`,
     });
   });
 

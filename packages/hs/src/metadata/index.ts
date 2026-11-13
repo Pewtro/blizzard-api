@@ -18,6 +18,6 @@ export function allMetadata(): Resource<AllMetadataResponse> {
  */
 export function specificMetadata(type: keyof AllMetadataResponse): Resource<SpecificMetadataResponse> {
   return {
-    path: `hearthstone/metadata/${type}`,
+    path: `hearthstone/metadata/${encodeURIComponent(type)}`,
   };
 }

@@ -18,7 +18,7 @@ export function modifiedCraftingCategory(
 ): Resource<ModifiedCraftingCategoryResponse> {
   return {
     namespace: 'static',
-    path: `${wowBasePath}/modified-crafting/category/${modifiedCraftingCategoryId}`,
+    path: `${wowBasePath}/modified-crafting/category/${encodeURIComponent(modifiedCraftingCategoryId)}`,
   };
 }
 /**
@@ -51,7 +51,7 @@ export function modifiedCraftingReagentSlotType(
 ): Resource<ModifiedCraftingReagentSlotTypeResponse> {
   return {
     namespace: 'static',
-    path: `${wowBasePath}/modified-crafting/reagent-slot-type/${modifiedCraftingReagentSlotTypeId}`,
+    path: `${wowBasePath}/modified-crafting/reagent-slot-type/${encodeURIComponent(modifiedCraftingReagentSlotTypeId)}`,
   };
 }
 /**

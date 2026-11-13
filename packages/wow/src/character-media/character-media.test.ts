@@ -8,7 +8,7 @@ describe('characterMediaSummary', () => {
 
     const expectedResource = {
       namespace: 'profile',
-      path: `/profile/wow/character/${realmSlug}/${characterName}/character-media`,
+      path: `/profile/wow/character/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName)}/character-media`,
     };
 
     const result = characterMediaSummary(realmSlug, characterName);

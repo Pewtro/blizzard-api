@@ -10,7 +10,7 @@ import type { PlayableRaceIndexResponse, PlayableRaceResponse } from './types';
 export function playableRace(playableRaceId: number): Resource<PlayableRaceResponse> {
   return {
     namespace: 'static-forever',
-    path: `${wowBasePath}/playable-race/${playableRaceId}`,
+    path: `${wowBasePath}/playable-race/${encodeURIComponent(playableRaceId)}`,
   };
 }
 /**

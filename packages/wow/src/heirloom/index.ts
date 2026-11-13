@@ -10,7 +10,7 @@ import type { HeirloomIndexResponse, HeirloomResponse } from './types';
 export function heirloom(heirloomId: number): Resource<HeirloomResponse> {
   return {
     namespace: 'static',
-    path: `${wowBasePath}/heirloom/${heirloomId}`,
+    path: `${wowBasePath}/heirloom/${encodeURIComponent(heirloomId)}`,
   };
 }
 /**

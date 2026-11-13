@@ -10,7 +10,7 @@ describe('characterProfileSummary', () => {
 
     expect(result).toEqual({
       namespace: 'profile',
-      path: `/profile/wow/character/${realmSlug}/${characterName.toLowerCase()}`,
+      path: `/profile/wow/character/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName.toLowerCase())}`,
     });
   });
 });
@@ -24,7 +24,7 @@ describe('characterProfileStatus', () => {
 
     expect(result).toEqual({
       namespace: 'profile',
-      path: `/profile/wow/character/${realmSlug}/${characterName.toLowerCase()}/status`,
+      path: `/profile/wow/character/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName.toLowerCase())}/status`,
     });
   });
 });

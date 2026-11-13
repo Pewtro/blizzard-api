@@ -10,7 +10,7 @@ import type { PvpTierIndexResponse, PvpTierMediaResponse, PvpTierResponse } from
 export function pvpTier(pvpTierId: number): Resource<PvpTierResponse> {
   return {
     namespace: 'static',
-    path: `${wowBasePath}/pvp-tier/${pvpTierId}`,
+    path: `${wowBasePath}/pvp-tier/${encodeURIComponent(pvpTierId)}`,
   };
 }
 /**
@@ -31,6 +31,6 @@ export function pvpTierIndex(): Resource<PvpTierIndexResponse> {
 export function pvpTierMedia(pvpTierId: number): Resource<PvpTierMediaResponse> {
   return {
     namespace: 'static',
-    path: `${wowMediaBasePath}/pvp-tier/${pvpTierId}`,
+    path: `${wowMediaBasePath}/pvp-tier/${encodeURIComponent(pvpTierId)}`,
   };
 }

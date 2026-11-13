@@ -12,6 +12,6 @@ export function characterMediaSummary(
 ): Resource<CharacterMediaSummaryResponse> {
   return {
     namespace: 'profile',
-    path: `/profile/wow/character/${realmSlug}/${characterName}/character-media`,
+    path: `/profile/wow/character/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName)}/character-media`,
   };
 }

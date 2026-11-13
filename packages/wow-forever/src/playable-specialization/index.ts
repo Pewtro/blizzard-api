@@ -14,7 +14,7 @@ import type {
 export function playableSpecialization(specializationId: number): Resource<PlayableSpecializationResponse> {
   return {
     namespace: 'static-forever',
-    path: `${wowBasePath}/playable-specialization/${specializationId}`,
+    path: `${wowBasePath}/playable-specialization/${encodeURIComponent(specializationId)}`,
   };
 }
 /**
@@ -35,6 +35,6 @@ export function playableSpecializationIndex(): Resource<PlayableSpecializationIn
 export function playableSpecializationMedia(specializationId: number): Resource<PlayableSpecializationMediaResponse> {
   return {
     namespace: 'static-forever',
-    path: `${wowMediaBasePath}/playable-specialization/${specializationId}`,
+    path: `${wowMediaBasePath}/playable-specialization/${encodeURIComponent(specializationId)}`,
   };
 }

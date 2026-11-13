@@ -12,7 +12,7 @@ describe('guild API functions', () => {
     const result = guild(namespace, realmSlug, nameSlug);
     expect(result).toEqual({
       namespace,
-      path: `/data/wow/guild/${realmSlug}/${nameSlug}`,
+      path: `/data/wow/guild/${encodeURIComponent(realmSlug)}/${encodeURIComponent(nameSlug)}`,
     });
   });
 
@@ -20,7 +20,7 @@ describe('guild API functions', () => {
     const result = guildAchievements(namespace, realmSlug, nameSlug);
     expect(result).toEqual({
       namespace,
-      path: `/data/wow/guild/${realmSlug}/${nameSlug}/achievements`,
+      path: `/data/wow/guild/${encodeURIComponent(realmSlug)}/${encodeURIComponent(nameSlug)}/achievements`,
     });
   });
 
@@ -28,7 +28,7 @@ describe('guild API functions', () => {
     const result = guildActivity(namespace, realmSlug, nameSlug);
     expect(result).toEqual({
       namespace,
-      path: `/data/wow/guild/${realmSlug}/${nameSlug}/activity`,
+      path: `/data/wow/guild/${encodeURIComponent(realmSlug)}/${encodeURIComponent(nameSlug)}/activity`,
     });
   });
 
@@ -36,7 +36,7 @@ describe('guild API functions', () => {
     const result = guildRoster(namespace, realmSlug, nameSlug);
     expect(result).toEqual({
       namespace,
-      path: `/data/wow/guild/${realmSlug}/${nameSlug}/roster`,
+      path: `/data/wow/guild/${encodeURIComponent(realmSlug)}/${encodeURIComponent(nameSlug)}/roster`,
     });
   });
 });

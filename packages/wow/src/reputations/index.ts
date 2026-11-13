@@ -15,7 +15,7 @@ import type {
 export function reputationFaction(reputationFactionId: number): Resource<ReputationFactionResponse> {
   return {
     namespace: 'static',
-    path: `${wowBasePath}/reputation-faction/${reputationFactionId}`,
+    path: `${wowBasePath}/reputation-faction/${encodeURIComponent(reputationFactionId)}`,
   };
 }
 /**
@@ -36,7 +36,7 @@ export function reputationFactionIndex(): Resource<ReputationFactionIndexRespons
 export function reputationTiers(reputationTiersId: number): Resource<ReputationTiersResponse> {
   return {
     namespace: 'static',
-    path: `${wowBasePath}/reputation-tiers/${reputationTiersId}`,
+    path: `${wowBasePath}/reputation-tiers/${encodeURIComponent(reputationTiersId)}`,
   };
 }
 /**

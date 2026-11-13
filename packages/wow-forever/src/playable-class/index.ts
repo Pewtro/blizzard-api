@@ -15,7 +15,7 @@ import type {
 export function playableClass(playableClassId: number): Resource<PlayableClassResponse> {
   return {
     namespace: 'static-forever',
-    path: `${wowBasePath}/playable-class/${playableClassId}`,
+    path: `${wowBasePath}/playable-class/${encodeURIComponent(playableClassId)}`,
   };
 }
 /**
@@ -36,7 +36,7 @@ export function playableClassIndex(): Resource<PlayableClassIndexResponse> {
 export function playableClassMedia(playableClassId: number): Resource<PlayableClassMediaResponse> {
   return {
     namespace: 'static-forever',
-    path: `${wowMediaBasePath}/playable-class/${playableClassId}`,
+    path: `${wowMediaBasePath}/playable-class/${encodeURIComponent(playableClassId)}`,
   };
 }
 /**
@@ -47,6 +47,6 @@ export function playableClassMedia(playableClassId: number): Resource<PlayableCl
 export function pvpTalentSlots(playableClassId: number): Resource<PvpTalentSlotsResponse> {
   return {
     namespace: 'static-forever',
-    path: `${wowBasePath}/playable-class/${playableClassId}/pvp-talent-slots`,
+    path: `${wowBasePath}/playable-class/${encodeURIComponent(playableClassId)}/pvp-talent-slots`,
   };
 }

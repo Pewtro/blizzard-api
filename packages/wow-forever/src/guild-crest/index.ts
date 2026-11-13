@@ -10,7 +10,7 @@ import type { GuildCrestBorderEmblemResponse, GuildCrestComponentsIndexResponse 
 export function guildCrestBorder(borderId: number): Resource<GuildCrestBorderEmblemResponse> {
   return {
     namespace: 'static-forever',
-    path: `${wowMediaBasePath}/guild-crest/border/${borderId}`,
+    path: `${wowMediaBasePath}/guild-crest/border/${encodeURIComponent(borderId)}`,
   };
 }
 /**
@@ -31,6 +31,6 @@ export function guildCrestComponentsIndex(): Resource<GuildCrestComponentsIndexR
 export function guildCrestEmblem(emblemId: number): Resource<GuildCrestBorderEmblemResponse> {
   return {
     namespace: 'static-forever',
-    path: `${wowMediaBasePath}/guild-crest/emblem/${emblemId}`,
+    path: `${wowMediaBasePath}/guild-crest/emblem/${encodeURIComponent(emblemId)}`,
   };
 }

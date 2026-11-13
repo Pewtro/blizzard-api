@@ -11,7 +11,7 @@ import type { RealmIndexResponse, RealmResponse, RealmSearchParameters, RealmSea
 export function realm(namespace: DynamicClassicNamespaces, realmSlug: string): Resource<RealmResponse> {
   return {
     namespace,
-    path: `${wowBasePath}/realm/${realmSlug}`,
+    path: `${wowBasePath}/realm/${encodeURIComponent(realmSlug)}`,
   };
 }
 /**

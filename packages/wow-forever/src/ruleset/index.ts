@@ -10,7 +10,7 @@ import type { RulesetIndexResponse, RulesetResponse } from './types';
 export function ruleset(rulesetId: number): Resource<RulesetResponse> {
   return {
     namespace: 'dynamic-forever',
-    path: `${wowBasePath}/ruleset/${rulesetId}`,
+    path: `${wowBasePath}/ruleset/${encodeURIComponent(rulesetId)}`,
   };
 }
 /**

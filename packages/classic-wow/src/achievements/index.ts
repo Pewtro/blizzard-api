@@ -19,7 +19,7 @@ import type {
 export function achievement(namespace: StaticClassicNamespaces, achievementId: number): Resource<AchievementResponse> {
   return {
     namespace,
-    path: `${wowBasePath}/achievement/${achievementId}`,
+    path: `${wowBasePath}/achievement/${encodeURIComponent(achievementId)}`,
   };
 }
 /**
@@ -49,7 +49,7 @@ export function achievementCategory(
 ): Resource<AchievementCategoryResponse> {
   return {
     namespace,
-    path: `${wowBasePath}/achievement-category/${achievementCategoryId}`,
+    path: `${wowBasePath}/achievement-category/${encodeURIComponent(achievementCategoryId)}`,
   };
 }
 /**
@@ -82,6 +82,6 @@ export function achievementMedia(
 ): Resource<AchievementMediaResponse> {
   return {
     namespace,
-    path: `${wowMediaBasePath}/achievement/${achievementId}`,
+    path: `${wowMediaBasePath}/achievement/${encodeURIComponent(achievementId)}`,
   };
 }

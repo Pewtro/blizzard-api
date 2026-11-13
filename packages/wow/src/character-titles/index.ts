@@ -12,6 +12,6 @@ export function characterTitlesSummary(
 ): Resource<CharacterTitlesSummaryResponse> {
   return {
     namespace: 'profile',
-    path: `/profile/wow/character/${realmSlug}/${characterName}/titles`,
+    path: `/profile/wow/character/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName)}/titles`,
   };
 }

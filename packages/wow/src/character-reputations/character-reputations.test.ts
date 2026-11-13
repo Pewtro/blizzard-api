@@ -8,7 +8,7 @@ describe('characterReputationsSummary', () => {
 
     const expectedResource = {
       namespace: 'profile',
-      path: `/profile/wow/character/${realmSlug}/${characterName}/reputations`,
+      path: `/profile/wow/character/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName)}/reputations`,
     };
 
     const result = characterReputationsSummary(realmSlug, characterName);

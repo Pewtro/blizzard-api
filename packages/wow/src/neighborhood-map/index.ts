@@ -21,7 +21,7 @@ export function neighborhoodMaps(): Resource<NeighborhoodMapIndexResponse> {
 export function neighborhoodMap(neighborhoodMapId: number): Resource<NeighborhoodMapResponse> {
   return {
     namespace: 'dynamic',
-    path: `${wowBasePath}/neighborhood-map/${neighborhoodMapId}`,
+    path: `${wowBasePath}/neighborhood-map/${encodeURIComponent(neighborhoodMapId)}`,
   };
 }
 
@@ -34,6 +34,6 @@ export function neighborhoodMap(neighborhoodMapId: number): Resource<Neighborhoo
 export function neighborhood(neighborhoodMapId: number, neighborhoodId: number): Resource<NeighborhoodResponse> {
   return {
     namespace: 'dynamic',
-    path: `${wowBasePath}/neighborhood-map/${neighborhoodMapId}/neighborhood/${neighborhoodId}`,
+    path: `${wowBasePath}/neighborhood-map/${encodeURIComponent(neighborhoodMapId)}/neighborhood/${encodeURIComponent(neighborhoodId)}`,
   };
 }

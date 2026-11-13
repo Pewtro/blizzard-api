@@ -9,6 +9,6 @@ import type { Follower, FollowerResponse } from './types';
  */
 export function follower(followerSlug: Follower): Resource<FollowerResponse> {
   return {
-    path: `${d3BasePath}/follower/${followerSlug}`,
+    path: `${d3BasePath}/follower/${encodeURIComponent(followerSlug)}`,
   };
 }

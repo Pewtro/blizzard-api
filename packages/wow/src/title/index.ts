@@ -10,7 +10,7 @@ import type { TitleIndexResponse, TitleResponse } from './types';
 export function title(titleId: number): Resource<TitleResponse> {
   return {
     namespace: 'static',
-    path: `${wowBasePath}/title/${titleId}`,
+    path: `${wowBasePath}/title/${encodeURIComponent(titleId)}`,
   };
 }
 /**

@@ -14,7 +14,7 @@ export function guildCrestBorder(
 ): Resource<GuildCrestBorderEmblemResponse> {
   return {
     namespace,
-    path: `${wowMediaBasePath}/guild-crest/border/${borderId}`,
+    path: `${wowMediaBasePath}/guild-crest/border/${encodeURIComponent(borderId)}`,
   };
 }
 /**
@@ -42,6 +42,6 @@ export function guildCrestEmblem(
 ): Resource<GuildCrestBorderEmblemResponse> {
   return {
     namespace,
-    path: `${wowMediaBasePath}/guild-crest/emblem/${emblemId}`,
+    path: `${wowMediaBasePath}/guild-crest/emblem/${encodeURIComponent(emblemId)}`,
   };
 }

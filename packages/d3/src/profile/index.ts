@@ -26,7 +26,7 @@ export function account(battleTag: string): Resource<AccountResponse> {
  */
 export function accountHero(battleTag: string, heroId: number): Resource<AccountHeroResponse> {
   return {
-    path: `${d3ProfileBasePath}/${encodeURIComponent(battleTag)}/hero/${heroId}`,
+    path: `${d3ProfileBasePath}/${encodeURIComponent(battleTag)}/hero/${encodeURIComponent(heroId)}`,
   };
 }
 
@@ -41,7 +41,7 @@ export function accountHeroFollowerItems(
   heroId: number,
 ): Resource<AccountHeroFollowerItemsResponse> {
   return {
-    path: `${d3ProfileBasePath}/${encodeURIComponent(battleTag)}/hero/${heroId}/follower-items`,
+    path: `${d3ProfileBasePath}/${encodeURIComponent(battleTag)}/hero/${encodeURIComponent(heroId)}/follower-items`,
   };
 }
 
@@ -53,6 +53,6 @@ export function accountHeroFollowerItems(
  */
 export function accountHeroItems(battleTag: string, heroId: number): Resource<AccountHeroItemsResponse> {
   return {
-    path: `${d3ProfileBasePath}/${encodeURIComponent(battleTag)}/hero/${heroId}/items`,
+    path: `${d3ProfileBasePath}/${encodeURIComponent(battleTag)}/hero/${encodeURIComponent(heroId)}/items`,
   };
 }

@@ -14,7 +14,7 @@ import type {
 export function mythicKeystoneAffix(mythicKeystoneAffixId: number): Resource<MythicKeystoneAffixResponse> {
   return {
     namespace: 'static',
-    path: `${wowBasePath}/keystone-affix/${mythicKeystoneAffixId}`,
+    path: `${wowBasePath}/keystone-affix/${encodeURIComponent(mythicKeystoneAffixId)}`,
   };
 }
 /**
@@ -35,6 +35,6 @@ export function mythicKeystoneAffixIndex(): Resource<MythicKeystoneAffixIndexRes
 export function mythicKeystoneAffixMedia(mythicKeystoneAffixId: number): Resource<MythicKeystoneAffixMediaResponse> {
   return {
     namespace: 'static',
-    path: `${wowMediaBasePath}/keystone-affix/${mythicKeystoneAffixId}`,
+    path: `${wowMediaBasePath}/keystone-affix/${encodeURIComponent(mythicKeystoneAffixId)}`,
   };
 }

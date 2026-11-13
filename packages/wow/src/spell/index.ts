@@ -10,7 +10,7 @@ import type { SpellMediaResponse, SpellResponse, SpellSearchParameters, SpellSea
 export function spell(spellId: number): Resource<SpellResponse> {
   return {
     namespace: 'static',
-    path: `${wowBasePath}/spell/${spellId}`,
+    path: `${wowBasePath}/spell/${encodeURIComponent(spellId)}`,
   };
 }
 /**
@@ -21,7 +21,7 @@ export function spell(spellId: number): Resource<SpellResponse> {
 export function spellMedia(spellId: number): Resource<SpellMediaResponse> {
   return {
     namespace: 'static',
-    path: `${wowMediaBasePath}/spell/${spellId}`,
+    path: `${wowMediaBasePath}/spell/${encodeURIComponent(spellId)}`,
   };
 }
 /**

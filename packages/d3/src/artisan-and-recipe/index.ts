@@ -9,7 +9,7 @@ import type { ArtisanResponse, Artisans, RecipeResponse } from './types';
  */
 export function artisan(artisanSlug: Artisans): Resource<ArtisanResponse> {
   return {
-    path: `${d3BasePath}/artisan/${artisanSlug}`,
+    path: `${d3BasePath}/artisan/${encodeURIComponent(artisanSlug)}`,
   };
 }
 
@@ -21,6 +21,6 @@ export function artisan(artisanSlug: Artisans): Resource<ArtisanResponse> {
  */
 export function recipe(artisanSlug: Artisans, recipeSlug: string): Resource<RecipeResponse> {
   return {
-    path: `${d3BasePath}/artisan/${artisanSlug}/recipe/${recipeSlug}`,
+    path: `${d3BasePath}/artisan/${encodeURIComponent(artisanSlug)}/recipe/${encodeURIComponent(recipeSlug)}`,
   };
 }

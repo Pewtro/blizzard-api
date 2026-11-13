@@ -12,6 +12,6 @@ export function characterEquipmentSummary(
 ): Resource<CharacterEquipmentSummaryResponse> {
   return {
     namespace: 'profile',
-    path: `/profile/wow/character/${realmSlug}/${characterName.toLowerCase()}/equipment`,
+    path: `/profile/wow/character/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName.toLowerCase())}/equipment`,
   };
 }

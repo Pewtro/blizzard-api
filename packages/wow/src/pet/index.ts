@@ -17,7 +17,7 @@ import type {
 export function pet(petId: number): Resource<PetResponse> {
   return {
     namespace: 'static',
-    path: `${wowBasePath}/pet/${petId}`,
+    path: `${wowBasePath}/pet/${encodeURIComponent(petId)}`,
   };
 }
 /**
@@ -28,7 +28,7 @@ export function pet(petId: number): Resource<PetResponse> {
 export function petAbility(petAbilityId: number): Resource<PetAbilityResponse> {
   return {
     namespace: 'static',
-    path: `${wowBasePath}/pet-ability/${petAbilityId}`,
+    path: `${wowBasePath}/pet-ability/${encodeURIComponent(petAbilityId)}`,
   };
 }
 /**
@@ -49,7 +49,7 @@ export function petAbilityIndex(): Resource<PetAbilityIndexResponse> {
 export function petAbilityMedia(petAbilityId: number): Resource<PetAbilityMediaResponse> {
   return {
     namespace: 'static',
-    path: `${wowMediaBasePath}/pet-ability/${petAbilityId}`,
+    path: `${wowMediaBasePath}/pet-ability/${encodeURIComponent(petAbilityId)}`,
   };
 }
 /**
@@ -70,6 +70,6 @@ export function petIndex(): Resource<PetIndexResponse> {
 export function petMedia(petId: number): Resource<PetMediaResponse> {
   return {
     namespace: 'static',
-    path: `${wowMediaBasePath}/pet/${petId}`,
+    path: `${wowMediaBasePath}/pet/${encodeURIComponent(petId)}`,
   };
 }

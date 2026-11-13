@@ -23,7 +23,7 @@ describe('fetchOneCardBack', () => {
 
     expect(result).toEqual({
       parameters: { locale },
-      path: `hearthstone/cardbacks/${id}`,
+      path: `hearthstone/cardbacks/${encodeURIComponent(id)}`,
     });
   });
 
@@ -33,7 +33,7 @@ describe('fetchOneCardBack', () => {
 
     expect(result).toEqual({
       parameters: { locale: undefined },
-      path: `hearthstone/cardbacks/${id}`,
+      path: `hearthstone/cardbacks/${encodeURIComponent(id)}`,
     });
   });
 });

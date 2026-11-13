@@ -39,5 +39,8 @@ export type Resource<
   _responseType?: Response;
   namespace?: BlizzardNamespaces;
   parameters?: SearchOptions;
+  /**
+   * The request path. Dynamic path segments should be encoded with `encodeURIComponent`.
+   */
   path: string;
 };

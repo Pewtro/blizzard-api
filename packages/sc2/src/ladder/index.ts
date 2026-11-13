@@ -10,7 +10,7 @@ import type { GrandmasterLeaderboardResponse, SeasonResponse } from './types';
  */
 export function grandmasterLeaderboard(regionId: StarcraftRegion): Resource<GrandmasterLeaderboardResponse> {
   return {
-    path: `/sc2/ladder/grandmaster/${starcraftRegion[regionId]}`,
+    path: `/sc2/ladder/grandmaster/${encodeURIComponent(starcraftRegion[regionId])}`,
   };
 }
 
@@ -21,6 +21,6 @@ export function grandmasterLeaderboard(regionId: StarcraftRegion): Resource<Gran
  */
 export function season(regionId: StarcraftRegion): Resource<SeasonResponse> {
   return {
-    path: `/sc2/ladder/season/${starcraftRegion[regionId]}`,
+    path: `/sc2/ladder/season/${encodeURIComponent(starcraftRegion[regionId])}`,
   };
 }

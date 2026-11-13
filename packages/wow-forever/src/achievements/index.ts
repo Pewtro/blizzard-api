@@ -19,7 +19,7 @@ const achievementCategoryBase = `${wowBasePath}/achievement-category`;
 export function achievement(achievementId: number): Resource<AchievementResponse> {
   return {
     namespace: 'static-forever',
-    path: `${achievementBase}/${achievementId}`,
+    path: `${achievementBase}/${encodeURIComponent(achievementId)}`,
   };
 }
 /**
@@ -30,7 +30,7 @@ export function achievement(achievementId: number): Resource<AchievementResponse
 export function achievementCategory(achievementCategoryId: number): Resource<AchievementCategoryResponse> {
   return {
     namespace: 'static-forever',
-    path: `${achievementCategoryBase}/${achievementCategoryId}`,
+    path: `${achievementCategoryBase}/${encodeURIComponent(achievementCategoryId)}`,
   };
 }
 /**
@@ -59,5 +59,5 @@ export function achievementIndex(): Resource<AchievementIndexResponse> {
  * @returns The achievement media. See {@link AchievementMediaResponse}.
  */
 export function achievementMedia(achievementId: number): Resource<AchievementMediaResponse> {
-  return { namespace: 'static-forever', path: `${wowMediaBasePath}/achievement/${achievementId}` };
+  return { namespace: 'static-forever', path: `${wowMediaBasePath}/achievement/${encodeURIComponent(achievementId)}` };
 }

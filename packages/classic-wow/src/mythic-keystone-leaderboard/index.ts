@@ -20,7 +20,7 @@ export function mythicKeystoneLeaderboard(
 ): Resource<MythicKeystoneLeaderboardResponse> {
   return {
     namespace,
-    path: `${wowBasePath}/connected-realm/${connectedRealmId}/mythic-leaderboard/${dungeonId}/period/${period}`,
+    path: `${wowBasePath}/connected-realm/${encodeURIComponent(connectedRealmId)}/mythic-leaderboard/${encodeURIComponent(dungeonId)}/period/${encodeURIComponent(period)}`,
   };
 }
 /**
@@ -37,6 +37,6 @@ export function mythicKeystoneLeaderboardIndex(
 ): Resource<MythicKeystoneLeaderboardIndexResponse> {
   return {
     namespace,
-    path: `${wowBasePath}/connected-realm/${connectedRealmId}/mythic-leaderboard/index`,
+    path: `${wowBasePath}/connected-realm/${encodeURIComponent(connectedRealmId)}/mythic-leaderboard/index`,
   };
 }

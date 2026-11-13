@@ -10,7 +10,7 @@ import type { AuctionHouseCommoditiesResponse, AuctionHouseIndexResponse, Auctio
 export function auctionHouseIndex(rulesetId: number): Resource<AuctionHouseIndexResponse> {
   return {
     namespace: 'dynamic-forever',
-    path: `${wowBasePath}/ruleset/${rulesetId}/auctions/index`,
+    path: `${wowBasePath}/ruleset/${encodeURIComponent(rulesetId)}/auctions/index`,
   };
 }
 /**
@@ -22,7 +22,7 @@ export function auctionHouseIndex(rulesetId: number): Resource<AuctionHouseIndex
 export function auctions(rulesetId: number, auctionHouseId: number): Resource<AuctionHouseResponse> {
   return {
     namespace: 'dynamic-forever',
-    path: `${wowBasePath}/ruleset/${rulesetId}/auctions/${auctionHouseId}`,
+    path: `${wowBasePath}/ruleset/${encodeURIComponent(rulesetId)}/auctions/${encodeURIComponent(auctionHouseId)}`,
   };
 }
 /**
@@ -34,6 +34,6 @@ export function auctions(rulesetId: number, auctionHouseId: number): Resource<Au
 export function commodities(rulesetId: number, auctionHouseId: number): Resource<AuctionHouseCommoditiesResponse> {
   return {
     namespace: 'dynamic-forever',
-    path: `${wowBasePath}/ruleset/${rulesetId}/auctions/${auctionHouseId}/commodities`,
+    path: `${wowBasePath}/ruleset/${encodeURIComponent(rulesetId)}/auctions/${encodeURIComponent(auctionHouseId)}/commodities`,
   };
 }

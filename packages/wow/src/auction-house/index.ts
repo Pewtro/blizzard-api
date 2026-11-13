@@ -10,7 +10,7 @@ import type { AuctionHouseCommoditiesResponse, AuctionHouseResponse } from './ty
 export function auctions(connectedRealmId: number): Resource<AuctionHouseResponse> {
   return {
     namespace: 'dynamic',
-    path: `${wowBasePath}/connected-realm/${connectedRealmId}/auctions`,
+    path: `${wowBasePath}/connected-realm/${encodeURIComponent(connectedRealmId)}/auctions`,
   };
 }
 /**

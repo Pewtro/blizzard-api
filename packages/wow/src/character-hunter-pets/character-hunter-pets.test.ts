@@ -8,7 +8,7 @@ describe('characterHunterPetsSummary', () => {
 
     const expectedResource = {
       namespace: 'profile',
-      path: `/profile/wow/character/${realmSlug}/${characterName}/hunter-pets`,
+      path: `/profile/wow/character/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName)}/hunter-pets`,
     };
 
     const result = characterHunterPetsSummary(realmSlug, characterName);

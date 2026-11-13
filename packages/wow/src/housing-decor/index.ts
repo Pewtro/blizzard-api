@@ -36,7 +36,7 @@ export function decorIndex(): Resource<DecorIndexResponse> {
 export function decor(decorId: number): Resource<DecorResponse> {
   return {
     namespace: 'static',
-    path: `${wowBasePath}/decor/${decorId}`,
+    path: `${wowBasePath}/decor/${encodeURIComponent(decorId)}`,
   };
 }
 
@@ -78,7 +78,7 @@ export function fixtureIndex(): Resource<FixtureIndexResponse> {
 export function fixture(fixtureId: number): Resource<FixtureResponse> {
   return {
     namespace: 'static',
-    path: `${wowBasePath}/fixture/${fixtureId}`,
+    path: `${wowBasePath}/fixture/${encodeURIComponent(fixtureId)}`,
   };
 }
 
@@ -120,7 +120,7 @@ export function fixtureHookIndex(): Resource<FixtureHookIndexResponse> {
 export function fixtureHook(fixtureHookId: number): Resource<FixtureHookResponse> {
   return {
     namespace: 'static',
-    path: `${wowBasePath}/fixture-hook/${fixtureHookId}`,
+    path: `${wowBasePath}/fixture-hook/${encodeURIComponent(fixtureHookId)}`,
   };
 }
 
@@ -162,7 +162,7 @@ export function roomIndex(): Resource<RoomIndexReponse> {
 export function room(roomId: number): Resource<RoomResponse> {
   return {
     namespace: 'static',
-    path: `${wowBasePath}/room/${roomId}`,
+    path: `${wowBasePath}/room/${encodeURIComponent(roomId)}`,
   };
 }
 

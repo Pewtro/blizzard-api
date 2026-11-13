@@ -14,7 +14,7 @@ export function auctionHouseIndex(
 ): Resource<AuctionHouseIndexResponse> {
   return {
     namespace,
-    path: `${wowBasePath}/connected-realm/${connectedRealmId}/auctions/index`,
+    path: `${wowBasePath}/connected-realm/${encodeURIComponent(connectedRealmId)}/auctions/index`,
   };
 }
 /**
@@ -35,6 +35,6 @@ export function auctions(
 ): Resource<AuctionsResponse> {
   return {
     namespace,
-    path: `${wowBasePath}/connected-realm/${connectedRealmId}/auctions/${auctionHouseId}`,
+    path: `${wowBasePath}/connected-realm/${encodeURIComponent(connectedRealmId)}/auctions/${encodeURIComponent(auctionHouseId)}`,
   };
 }

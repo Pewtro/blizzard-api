@@ -13,7 +13,7 @@ describe('characterEquipmentSummary', () => {
 
     expect(result).toEqual({
       namespace,
-      path: `${wowCharacterBasePath}/${realmSlug}/${characterName}/equipment`,
+      path: `${wowCharacterBasePath}/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName)}/equipment`,
     });
   });
 });

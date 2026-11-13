@@ -20,7 +20,7 @@ import type {
 export function item(itemId: number): Resource<ItemResponse> {
   return {
     namespace: 'static',
-    path: `${wowBasePath}/item/${itemId}`,
+    path: `${wowBasePath}/item/${encodeURIComponent(itemId)}`,
   };
 }
 /**
@@ -31,7 +31,7 @@ export function item(itemId: number): Resource<ItemResponse> {
 export function itemClass(itemClassId: number): Resource<ItemClassResponse> {
   return {
     namespace: 'static',
-    path: `${wowBasePath}/item-class/${itemClassId}`,
+    path: `${wowBasePath}/item-class/${encodeURIComponent(itemClassId)}`,
   };
 }
 /**
@@ -52,7 +52,7 @@ export function itemClassIndex(): Resource<ItemClassIndexResponse> {
 export function itemMedia(itemId: number): Resource<ItemMediaResponse> {
   return {
     namespace: 'static',
-    path: `${wowMediaBasePath}/item/${itemId}`,
+    path: `${wowMediaBasePath}/item/${encodeURIComponent(itemId)}`,
   };
 }
 /**
@@ -81,7 +81,7 @@ export function itemSearch(
 export function itemSet(itemSetId: number): Resource<ItemSetResponse> {
   return {
     namespace: 'static',
-    path: `${wowBasePath}/item-set/${itemSetId}`,
+    path: `${wowBasePath}/item-set/${encodeURIComponent(itemSetId)}`,
   };
 }
 /**
@@ -103,6 +103,6 @@ export function itemSetIndex(): Resource<ItemSetIndexResponse> {
 export function itemSubclass(itemClassId: number, itemSubclassId: number): Resource<ItemSubclassResponse> {
   return {
     namespace: 'static',
-    path: `${wowBasePath}/item-class/${itemClassId}/item-subclass/${itemSubclassId}`,
+    path: `${wowBasePath}/item-class/${encodeURIComponent(itemClassId)}/item-subclass/${encodeURIComponent(itemSubclassId)}`,
   };
 }

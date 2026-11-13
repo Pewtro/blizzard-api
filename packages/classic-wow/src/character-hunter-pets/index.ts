@@ -16,6 +16,6 @@ export function characterHunterPetsSummary(
 ): Resource<CharacterHunterPetsSummaryResponse> {
   return {
     namespace,
-    path: `${wowCharacterBasePath}/${realmSlug}/${characterName}/hunter-pets`,
+    path: `${wowCharacterBasePath}/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName)}/hunter-pets`,
   };
 }

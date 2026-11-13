@@ -16,7 +16,7 @@ import type {
 export function techTalent(techTalentId: number): Resource<TechTalentResponse> {
   return {
     namespace: 'static',
-    path: `${wowBasePath}/tech-talent/${techTalentId}`,
+    path: `${wowBasePath}/tech-talent/${encodeURIComponent(techTalentId)}`,
   };
 }
 /**
@@ -37,7 +37,7 @@ export function techTalentIndex(): Resource<TechTalentIndexResponse> {
 export function techTalentMedia(techTalentId: number): Resource<TechTalentMediaResponse> {
   return {
     namespace: 'static',
-    path: `${wowMediaBasePath}/tech-talent/${techTalentId}`,
+    path: `${wowMediaBasePath}/tech-talent/${encodeURIComponent(techTalentId)}`,
   };
 }
 /**
@@ -48,7 +48,7 @@ export function techTalentMedia(techTalentId: number): Resource<TechTalentMediaR
 export function techTalentTree(techTalentTreeId: number): Resource<TechTalentTreeResponse> {
   return {
     namespace: 'static',
-    path: `${wowBasePath}/tech-talent-tree/${techTalentTreeId}`,
+    path: `${wowBasePath}/tech-talent-tree/${encodeURIComponent(techTalentTreeId)}`,
   };
 }
 /**

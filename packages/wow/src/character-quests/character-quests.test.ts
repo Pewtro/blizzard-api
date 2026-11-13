@@ -10,7 +10,7 @@ describe('characterQuests', () => {
 
     expect(result).toEqual({
       namespace: 'profile',
-      path: `/profile/wow/character/${realmSlug}/${characterName}/quests`,
+      path: `/profile/wow/character/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName)}/quests`,
     });
   });
 });
@@ -24,7 +24,7 @@ describe('characterCompletedQuests', () => {
 
     expect(result).toEqual({
       namespace: 'profile',
-      path: `/profile/wow/character/${realmSlug}/${characterName}/quests/completed`,
+      path: `/profile/wow/character/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName)}/quests/completed`,
     });
   });
 });

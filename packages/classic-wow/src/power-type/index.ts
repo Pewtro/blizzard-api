@@ -11,7 +11,7 @@ import type { PowerTypeIndexResponse, PowerTypeResponse } from './types';
 export function powerType(namespace: StaticClassicNamespaces, powerTypeId: number): Resource<PowerTypeResponse> {
   return {
     namespace,
-    path: `${wowBasePath}/power-type/${powerTypeId}`,
+    path: `${wowBasePath}/power-type/${encodeURIComponent(powerTypeId)}`,
   };
 }
 /**

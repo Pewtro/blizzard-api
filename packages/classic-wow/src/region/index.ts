@@ -11,7 +11,7 @@ import type { RegionIndexResponse, RegionResponse } from './types';
 export function region(namespace: DynamicClassicNamespaces, regionId: number): Resource<RegionResponse> {
   return {
     namespace,
-    path: `${wowBasePath}/region/${regionId}`,
+    path: `${wowBasePath}/region/${encodeURIComponent(regionId)}`,
   };
 }
 /**

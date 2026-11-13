@@ -17,7 +17,7 @@ import type {
 export function profession(professionId: number): Resource<ProfessionResponse> {
   return {
     namespace: 'static',
-    path: `${wowBasePath}/profession/${professionId}`,
+    path: `${wowBasePath}/profession/${encodeURIComponent(professionId)}`,
   };
 }
 /**
@@ -38,7 +38,7 @@ export function professionIndex(): Resource<ProfessionIndexResponse> {
 export function professionMedia(professionId: number): Resource<ProfessionMediaResponse> {
   return {
     namespace: 'static',
-    path: `${wowMediaBasePath}/profession/${professionId}`,
+    path: `${wowMediaBasePath}/profession/${encodeURIComponent(professionId)}`,
   };
 }
 /**
@@ -50,7 +50,7 @@ export function professionMedia(professionId: number): Resource<ProfessionMediaR
 export function professionSkillTier(professionId: number, skillTierId: number): Resource<ProfessionSkillTierResponse> {
   return {
     namespace: 'static',
-    path: `${wowBasePath}/profession/${professionId}/skill-tier/${skillTierId}`,
+    path: `${wowBasePath}/profession/${encodeURIComponent(professionId)}/skill-tier/${encodeURIComponent(skillTierId)}`,
   };
 }
 /**
@@ -61,7 +61,7 @@ export function professionSkillTier(professionId: number, skillTierId: number): 
 export function recipe(recipeId: number): Resource<RecipeResponse> {
   return {
     namespace: 'static',
-    path: `${wowBasePath}/recipe/${recipeId}`,
+    path: `${wowBasePath}/recipe/${encodeURIComponent(recipeId)}`,
   };
 }
 /**
@@ -72,6 +72,6 @@ export function recipe(recipeId: number): Resource<RecipeResponse> {
 export function recipeMedia(recipeId: number): Resource<RecipeMediaResponse> {
   return {
     namespace: 'static',
-    path: `${wowMediaBasePath}/recipe/${recipeId}`,
+    path: `${wowMediaBasePath}/recipe/${encodeURIComponent(recipeId)}`,
   };
 }

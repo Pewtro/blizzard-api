@@ -10,7 +10,7 @@ import type { GuildAchievementsResponse, GuildActivityResponse, GuildResponse, G
 export function guild(realmSlug: string, nameSlug: string): Resource<GuildResponse> {
   return {
     namespace: 'profile',
-    path: `${wowGuildBasePath}/${realmSlug}/${nameSlug}`,
+    path: `${wowGuildBasePath}/${encodeURIComponent(realmSlug)}/${encodeURIComponent(nameSlug)}`,
   };
 }
 
@@ -22,7 +22,7 @@ export function guild(realmSlug: string, nameSlug: string): Resource<GuildRespon
 export function guildAchievements(realmSlug: string, nameSlug: string): Resource<GuildAchievementsResponse> {
   return {
     namespace: 'profile',
-    path: `${wowGuildBasePath}/${realmSlug}/${nameSlug}/achievements`,
+    path: `${wowGuildBasePath}/${encodeURIComponent(realmSlug)}/${encodeURIComponent(nameSlug)}/achievements`,
   };
 }
 
@@ -34,7 +34,7 @@ export function guildAchievements(realmSlug: string, nameSlug: string): Resource
 export function guildActivity(realmSlug: string, nameSlug: string): Resource<GuildActivityResponse> {
   return {
     namespace: 'profile',
-    path: `${wowGuildBasePath}/${realmSlug}/${nameSlug}/activity`,
+    path: `${wowGuildBasePath}/${encodeURIComponent(realmSlug)}/${encodeURIComponent(nameSlug)}/activity`,
   };
 }
 
@@ -46,6 +46,6 @@ export function guildActivity(realmSlug: string, nameSlug: string): Resource<Gui
 export function guildRoster(realmSlug: string, nameSlug: string): Resource<GuildRosterResponse> {
   return {
     namespace: 'profile',
-    path: `${wowGuildBasePath}/${realmSlug}/${nameSlug}/roster`,
+    path: `${wowGuildBasePath}/${encodeURIComponent(realmSlug)}/${encodeURIComponent(nameSlug)}/roster`,
   };
 }

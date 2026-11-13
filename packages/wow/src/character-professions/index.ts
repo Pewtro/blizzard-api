@@ -12,6 +12,6 @@ export function characterProfessionsSummary(
 ): Resource<CharacterProfessionsSummaryResponse> {
   return {
     namespace: 'profile',
-    path: `/profile/wow/character/${realmSlug}/${characterName.toLowerCase()}/professions`,
+    path: `/profile/wow/character/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName.toLowerCase())}/professions`,
   };
 }

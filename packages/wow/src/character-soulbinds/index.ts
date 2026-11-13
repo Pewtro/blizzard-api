@@ -9,6 +9,6 @@ import type { CharacterSoulbindsResponse } from './types';
 export function characterSoulbinds(realmSlug: string, characterName: string): Resource<CharacterSoulbindsResponse> {
   return {
     namespace: 'profile',
-    path: `/profile/wow/character/${realmSlug}/${characterName.toLowerCase()}/soulbinds`,
+    path: `/profile/wow/character/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName.toLowerCase())}/soulbinds`,
   };
 }

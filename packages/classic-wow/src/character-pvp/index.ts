@@ -20,6 +20,6 @@ export function characterPvpBracketStatistics(
 ): Resource<CharacterPvpBracketStatisticsResponse> {
   return {
     namespace,
-    path: `${wowCharacterBasePath}/${realmSlug}/${characterName.toLowerCase()}/pvp-bracket/${pvpBracket}`,
+    path: `${wowCharacterBasePath}/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName.toLowerCase())}/pvp-bracket/${encodeURIComponent(pvpBracket)}`,
   };
 }

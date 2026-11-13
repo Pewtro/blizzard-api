@@ -21,7 +21,7 @@ export function characterCollectionsIndex(
 ): Resource<CharacterCollectionsIndexResponse> {
   return {
     namespace: 'profile',
-    path: `${wowCharacterBasePath}/${realmSlug}/${characterName}/collections`,
+    path: `${wowCharacterBasePath}/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName)}/collections`,
   };
 }
 
@@ -36,7 +36,7 @@ export function characterCollectionDecor(
 ): Resource<CharacterCollectionDecorResponse> {
   return {
     namespace: 'profile',
-    path: `${wowCharacterBasePath}/${realmSlug}/${characterName}/collections/decor`,
+    path: `${wowCharacterBasePath}/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName)}/collections/decor`,
   };
 }
 
@@ -51,7 +51,7 @@ export function characterHeirloomsCollectionSummary(
 ): Resource<CharacterHeirloomsCollectionSummaryResponse> {
   return {
     namespace: 'profile',
-    path: `${wowCharacterBasePath}/${realmSlug}/${characterName}/collections/heirlooms`,
+    path: `${wowCharacterBasePath}/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName)}/collections/heirlooms`,
   };
 }
 
@@ -66,7 +66,7 @@ export function characterMountsCollectionSummary(
 ): Resource<CharacterMountsCollectionSummaryResponse> {
   return {
     namespace: 'profile',
-    path: `${wowCharacterBasePath}/${realmSlug}/${characterName}/collections/mounts`,
+    path: `${wowCharacterBasePath}/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName)}/collections/mounts`,
   };
 }
 
@@ -81,7 +81,7 @@ export function characterPetsCollectionSummary(
 ): Resource<CharacterPetsCollectionSummaryResponse> {
   return {
     namespace: 'profile',
-    path: `${wowCharacterBasePath}/${realmSlug}/${characterName}/collections/pets`,
+    path: `${wowCharacterBasePath}/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName)}/collections/pets`,
   };
 }
 
@@ -96,7 +96,7 @@ export function characterToysCollectionSummary(
 ): Resource<CharacterToysCollectionSummaryResponse> {
   return {
     namespace: 'profile',
-    path: `${wowCharacterBasePath}/${realmSlug}/${characterName}/collections/toys`,
+    path: `${wowCharacterBasePath}/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName)}/collections/toys`,
   };
 }
 
@@ -111,6 +111,6 @@ export function characterTransmogCollectionSummary(
 ): Resource<CharacterTransmogCollectionSummaryResponse> {
   return {
     namespace: 'profile',
-    path: `${wowCharacterBasePath}/${realmSlug}/${characterName}/collections/transmogs`,
+    path: `${wowCharacterBasePath}/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName)}/collections/transmogs`,
   };
 }

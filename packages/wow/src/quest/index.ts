@@ -19,7 +19,7 @@ import type {
 export function quest(questId: number): Resource<QuestResponse> {
   return {
     namespace: 'static',
-    path: `${wowBasePath}/quest/${questId}`,
+    path: `${wowBasePath}/quest/${encodeURIComponent(questId)}`,
   };
 }
 /**
@@ -30,7 +30,7 @@ export function quest(questId: number): Resource<QuestResponse> {
 export function questArea(questAreaId: number): Resource<QuestAreaResponse> {
   return {
     namespace: 'static',
-    path: `${wowBasePath}/quest/area/${questAreaId}`,
+    path: `${wowBasePath}/quest/area/${encodeURIComponent(questAreaId)}`,
   };
 }
 /**
@@ -51,7 +51,7 @@ export function questAreaIndex(): Resource<QuestAreaIndexResponse> {
 export function questCategory(questCategoryId: number): Resource<QuestCategoryResponse> {
   return {
     namespace: 'static',
-    path: `${wowBasePath}/quest/category/${questCategoryId}`,
+    path: `${wowBasePath}/quest/category/${encodeURIComponent(questCategoryId)}`,
   };
 }
 /**
@@ -82,7 +82,7 @@ export function questIndex(): Resource<QuestIndexResponse> {
 export function questType(questTypeId: number): Resource<QuestTypeResponse> {
   return {
     namespace: 'static',
-    path: `${wowBasePath}/quest/type/${questTypeId}`,
+    path: `${wowBasePath}/quest/type/${encodeURIComponent(questTypeId)}`,
   };
 }
 /**

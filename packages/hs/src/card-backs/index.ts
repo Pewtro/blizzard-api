@@ -27,6 +27,6 @@ export function fetchOneCardBack(
 ): Resource<SingleCardBackSearchResponse, { locale?: Locales }> {
   return {
     parameters: { locale },
-    path: `hearthstone/cardbacks/${id}`,
+    path: `hearthstone/cardbacks/${encodeURIComponent(id)}`,
   };
 }

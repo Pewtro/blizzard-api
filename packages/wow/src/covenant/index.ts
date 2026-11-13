@@ -18,7 +18,7 @@ import type {
 export function conduit(conduitId: number): Resource<ConduitResponse> {
   return {
     namespace: 'static',
-    path: `${wowBasePath}/covenant/conduit/${conduitId}`,
+    path: `${wowBasePath}/covenant/conduit/${encodeURIComponent(conduitId)}`,
   };
 }
 /**
@@ -39,7 +39,7 @@ export function conduitIndex(): Resource<ConduitIndexResponse> {
 export function covenant(covenantId: number): Resource<CovenantResponse> {
   return {
     namespace: 'static',
-    path: `${wowBasePath}/covenant/${covenantId}`,
+    path: `${wowBasePath}/covenant/${encodeURIComponent(covenantId)}`,
   };
 }
 /**
@@ -60,7 +60,7 @@ export function covenantIndex(): Resource<CovenantIndexResponse> {
 export function covenantMedia(covenantId: number): Resource<CovenantMediaResponse> {
   return {
     namespace: 'static',
-    path: `${wowMediaBasePath}/covenant/${covenantId}`,
+    path: `${wowMediaBasePath}/covenant/${encodeURIComponent(covenantId)}`,
   };
 }
 /**
@@ -71,7 +71,7 @@ export function covenantMedia(covenantId: number): Resource<CovenantMediaRespons
 export function soulbind(soulbindId: number): Resource<SoulbindResponse> {
   return {
     namespace: 'static',
-    path: `${wowBasePath}/covenant/soulbind/${soulbindId}`,
+    path: `${wowBasePath}/covenant/soulbind/${encodeURIComponent(soulbindId)}`,
   };
 }
 /**

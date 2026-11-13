@@ -10,7 +10,7 @@ import type { MountIndexResponse, MountResponse, MountSearchParameters, MountSea
 export function mount(mountId: number): Resource<MountResponse> {
   return {
     namespace: 'static',
-    path: `${wowBasePath}/mount/${mountId}`,
+    path: `${wowBasePath}/mount/${encodeURIComponent(mountId)}`,
   };
 }
 /**

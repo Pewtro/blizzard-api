@@ -20,6 +20,6 @@ export function characterHouse(
 ): Resource<CharacterHouseResponse> {
   return {
     namespace: 'profile',
-    path: `${wowCharacterBasePath}/${realmSlug}/${characterName.toLowerCase()}/house/house-${houseNumber}`,
+    path: `${wowCharacterBasePath}/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName.toLowerCase())}/house/house-${encodeURIComponent(houseNumber)}`,
   };
 }

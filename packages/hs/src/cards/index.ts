@@ -88,6 +88,6 @@ export function fetchOneCard(
   const { gameMode = 'constructed', locale } = options ?? {};
   return {
     parameters: { gameMode, locale },
-    path: `hearthstone/cards/${id}`,
+    path: `hearthstone/cards/${encodeURIComponent(id)}`,
   };
 }

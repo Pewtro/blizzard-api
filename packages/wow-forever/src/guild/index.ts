@@ -10,7 +10,7 @@ import type { GuildAchievementsResponse, GuildActivityResponse, GuildResponse, G
 export function guild(nameSlug: string): Resource<GuildResponse> {
   return {
     namespace: 'profile-forever',
-    path: `${wowGuildBasePath}/${nameSlug}`,
+    path: `${wowGuildBasePath}/${encodeURIComponent(nameSlug)}`,
   };
 }
 
@@ -22,7 +22,7 @@ export function guild(nameSlug: string): Resource<GuildResponse> {
 export function guildAchievements(nameSlug: string): Resource<GuildAchievementsResponse> {
   return {
     namespace: 'profile-forever',
-    path: `${wowGuildBasePath}/${nameSlug}/achievements`,
+    path: `${wowGuildBasePath}/${encodeURIComponent(nameSlug)}/achievements`,
   };
 }
 
@@ -34,7 +34,7 @@ export function guildAchievements(nameSlug: string): Resource<GuildAchievementsR
 export function guildActivity(nameSlug: string): Resource<GuildActivityResponse> {
   return {
     namespace: 'profile-forever',
-    path: `${wowGuildBasePath}/${nameSlug}/activity`,
+    path: `${wowGuildBasePath}/${encodeURIComponent(nameSlug)}/activity`,
   };
 }
 
@@ -46,6 +46,6 @@ export function guildActivity(nameSlug: string): Resource<GuildActivityResponse>
 export function guildRoster(nameSlug: string): Resource<GuildRosterResponse> {
   return {
     namespace: 'profile-forever',
-    path: `${wowGuildBasePath}/${nameSlug}/roster`,
+    path: `${wowGuildBasePath}/${encodeURIComponent(nameSlug)}/roster`,
   };
 }

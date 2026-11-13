@@ -9,6 +9,6 @@ import type { ItemResponse } from './types';
  */
 export function item(itemSlugAndId: string): Resource<ItemResponse> {
   return {
-    path: `${d3BasePath}/item/${itemSlugAndId}`,
+    path: `${d3BasePath}/item/${encodeURIComponent(itemSlugAndId)}`,
   };
 }

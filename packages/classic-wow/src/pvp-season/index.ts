@@ -24,7 +24,7 @@ export function pvpLeaderboard(
 ): Resource<unknown> {
   return {
     namespace,
-    path: `${wowBasePath}/pvp-region/${pvpRegionId}/pvp-season/${pvpSeasonId}/pvp-leaderboard/${pvpBracket}`,
+    path: `${wowBasePath}/pvp-region/${encodeURIComponent(pvpRegionId)}/pvp-season/${encodeURIComponent(pvpSeasonId)}/pvp-leaderboard/${encodeURIComponent(pvpBracket)}`,
   };
 }
 /**
@@ -44,7 +44,7 @@ export function pvpSeasonLeaderboard(
 ): Resource<PvpLeaderboardResponse> {
   return {
     namespace,
-    path: `${wowBasePath}/pvp-season/${pvpSeasonId}/pvp-leaderboard/${pvpBracket}`,
+    path: `${wowBasePath}/pvp-season/${encodeURIComponent(pvpSeasonId)}/pvp-leaderboard/${encodeURIComponent(pvpBracket)}`,
   };
 }
 /**
@@ -61,7 +61,7 @@ export function pvpSeasonLeaderboards(
 ): Resource<PvpLeaderboardIndexResponse> {
   return {
     namespace,
-    path: `${wowBasePath}/pvp-season/${pvpSeasonId}/pvp-leaderboard/index`,
+    path: `${wowBasePath}/pvp-season/${encodeURIComponent(pvpSeasonId)}/pvp-leaderboard/index`,
   };
 }
 /**
@@ -78,7 +78,7 @@ export function pvpSeasonRewards(
 ): Resource<PvpRewardsIndexResponse> {
   return {
     namespace,
-    path: `${wowBasePath}/pvp-season/${pvpSeasonId}/pvp-reward/index`,
+    path: `${wowBasePath}/pvp-season/${encodeURIComponent(pvpSeasonId)}/pvp-reward/index`,
   };
 }
 /**
@@ -95,7 +95,7 @@ export function pvpLeaderboardIndex(
 ): Resource<unknown> {
   return {
     namespace,
-    path: `${wowBasePath}/pvp-region/${pvpRegionId}/pvp-season/${pvpSeasonId}/pvp-leaderboard/index`,
+    path: `${wowBasePath}/pvp-region/${encodeURIComponent(pvpRegionId)}/pvp-season/${encodeURIComponent(pvpSeasonId)}/pvp-leaderboard/index`,
   };
 }
 /**
@@ -112,7 +112,7 @@ export function pvpRegionalSeason(
 ): Resource<unknown> {
   return {
     namespace,
-    path: `${wowBasePath}/pvp-region/${pvpRegionId}/pvp-season/${pvpSeasonId}`,
+    path: `${wowBasePath}/pvp-region/${encodeURIComponent(pvpRegionId)}/pvp-season/${encodeURIComponent(pvpSeasonId)}`,
   };
 }
 /**
@@ -127,7 +127,7 @@ export function pvpRegionalSeasonIndex(
 ): Resource<PvpSeasonIndexResponse> {
   return {
     namespace,
-    path: `${wowBasePath}/pvp-region/${pvpRegionId}/pvp-season/index`,
+    path: `${wowBasePath}/pvp-region/${encodeURIComponent(pvpRegionId)}/pvp-season/index`,
   };
 }
 /**
@@ -155,7 +155,7 @@ export function pvpRewardsIndex(
 ): Resource<unknown> {
   return {
     namespace,
-    path: `${wowBasePath}/pvp-region/${pvpRegionId}/pvp-season/${pvpSeasonId}/pvp-reward/index`,
+    path: `${wowBasePath}/pvp-region/${encodeURIComponent(pvpRegionId)}/pvp-season/${encodeURIComponent(pvpSeasonId)}/pvp-reward/index`,
   };
 }
 /**
@@ -167,7 +167,7 @@ export function pvpRewardsIndex(
 export function pvpSeason(namespace: DynamicClassicNamespaces, pvpSeasonId: number): Resource<PvpSeasonResponse> {
   return {
     namespace,
-    path: `${wowBasePath}/pvp-season/${pvpSeasonId}`,
+    path: `${wowBasePath}/pvp-season/${encodeURIComponent(pvpSeasonId)}`,
   };
 }
 /**

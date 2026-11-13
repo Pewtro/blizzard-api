@@ -21,7 +21,7 @@ export function mythicKeystonePeriod(
 ): Resource<MythicKeystonePeriodResponse> {
   return {
     namespace,
-    path: `${wowBasePath}/mythic-keystone/period/${mythicKeystonePeriodId}`,
+    path: `${wowBasePath}/mythic-keystone/period/${encodeURIComponent(mythicKeystonePeriodId)}`,
   };
 }
 /**
@@ -53,7 +53,7 @@ export function mythicKeystoneSeason(
 ): Resource<MythicKeystoneSeasonResponse> {
   return {
     namespace,
-    path: `${wowBasePath}/mythic-keystone/season/${mythicKeystoneSeasonId}`,
+    path: `${wowBasePath}/mythic-keystone/season/${encodeURIComponent(mythicKeystoneSeasonId)}`,
   };
 }
 /**

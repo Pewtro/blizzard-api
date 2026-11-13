@@ -15,7 +15,7 @@ import type {
 export function connectedRealm(connectedRealmId: number): Resource<ConnectedRealmResponse> {
   return {
     namespace: 'dynamic',
-    path: `${wowBasePath}/connected-realm/${connectedRealmId}`,
+    path: `${wowBasePath}/connected-realm/${encodeURIComponent(connectedRealmId)}`,
   };
 }
 /**

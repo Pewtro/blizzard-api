@@ -12,7 +12,7 @@ export function characterCompletedQuests(
 ): Resource<CharacterCompletedQuestsResponse> {
   return {
     namespace: 'profile',
-    path: `/profile/wow/character/${realmSlug}/${characterName}/quests/completed`,
+    path: `/profile/wow/character/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName)}/quests/completed`,
   };
 }
 
@@ -24,6 +24,6 @@ export function characterCompletedQuests(
 export function characterQuests(realmSlug: string, characterName: string): Resource<CharacterQuestsResponse> {
   return {
     namespace: 'profile',
-    path: `/profile/wow/character/${realmSlug}/${characterName}/quests`,
+    path: `/profile/wow/character/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName)}/quests`,
   };
 }

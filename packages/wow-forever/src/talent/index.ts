@@ -18,7 +18,7 @@ import type {
 export function pvpTalent(pvpTalentId: number): Resource<PvpTalentResponse> {
   return {
     namespace: 'static-forever',
-    path: `${wowBasePath}/pvp-talent/${pvpTalentId}`,
+    path: `${wowBasePath}/pvp-talent/${encodeURIComponent(pvpTalentId)}`,
   };
 }
 /**
@@ -39,7 +39,7 @@ export function pvpTalentIndex(): Resource<PvpTalentIndexResponse> {
 export function talent(talentId: number): Resource<TalentResponse> {
   return {
     namespace: 'static-forever',
-    path: `${wowBasePath}/talent/${talentId}`,
+    path: `${wowBasePath}/talent/${encodeURIComponent(talentId)}`,
   };
 }
 /**
@@ -61,7 +61,7 @@ export function talentIndex(): Resource<TalentIndexResponse> {
 export function talentTree(talentTreeId: number, specId: number): Resource<TalentTreeResponse> {
   return {
     namespace: 'static-forever',
-    path: `${wowBasePath}/talent-tree/${talentTreeId}/playable-specialization/${specId}`,
+    path: `${wowBasePath}/talent-tree/${encodeURIComponent(talentTreeId)}/playable-specialization/${encodeURIComponent(specId)}`,
   };
 }
 /**
@@ -82,6 +82,6 @@ export function talentTreeIndex(): Resource<TalentTreeIndexResponse> {
 export function talentTreeNodes(talentTreeId: number): Resource<TalentTreeNodesResponse> {
   return {
     namespace: 'static-forever',
-    path: `${wowBasePath}/talent-tree/${talentTreeId}`,
+    path: `${wowBasePath}/talent-tree/${encodeURIComponent(talentTreeId)}`,
   };
 }

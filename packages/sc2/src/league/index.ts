@@ -47,6 +47,6 @@ export function getLeagueData(
   leagueId: StarcraftLeagueId,
 ): Resource<LeagueDataResponse> {
   return {
-    path: `/data/sc2/league/${seasonId}/${starcraftLeagueQueue[queueId]}/${starcraftLeagueTeam[teamType]}/${starcraftLeagueId[leagueId]}`,
+    path: `/data/sc2/league/${encodeURIComponent(seasonId)}/${encodeURIComponent(starcraftLeagueQueue[queueId])}/${encodeURIComponent(starcraftLeagueTeam[teamType])}/${encodeURIComponent(starcraftLeagueId[leagueId])}`,
   };
 }

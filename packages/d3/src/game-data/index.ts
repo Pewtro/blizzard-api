@@ -16,7 +16,7 @@ import type {
  */
 export function era(id: number): Resource<EraResponse> {
   return {
-    path: `${d3GameDataBasePath}/era/${id}`,
+    path: `${d3GameDataBasePath}/era/${encodeURIComponent(id)}`,
   };
 }
 
@@ -38,7 +38,7 @@ export function eraIndex(): Resource<EraIndexResponse> {
  */
 export function eraLeaderboard(id: number, leaderboard: string): Resource<EraLeaderboardResponse> {
   return {
-    path: `${d3GameDataBasePath}/era/${id}/leaderboard/${leaderboard}`,
+    path: `${d3GameDataBasePath}/era/${encodeURIComponent(id)}/leaderboard/${encodeURIComponent(leaderboard)}`,
   };
 }
 
@@ -49,7 +49,7 @@ export function eraLeaderboard(id: number, leaderboard: string): Resource<EraLea
  */
 export function season(id: number): Resource<SeasonResponse> {
   return {
-    path: `${d3GameDataBasePath}/season/${id}`,
+    path: `${d3GameDataBasePath}/season/${encodeURIComponent(id)}`,
   };
 }
 
@@ -71,6 +71,6 @@ export function seasonIndex(): Resource<SeasonIndexResponse> {
  */
 export function seasonLeaderboard(id: number, leaderboard: string): Resource<SeasonLeaderboardResponse> {
   return {
-    path: `${d3GameDataBasePath}/season/${id}/leaderboard/${leaderboard}`,
+    path: `${d3GameDataBasePath}/season/${encodeURIComponent(id)}/leaderboard/${encodeURIComponent(leaderboard)}`,
   };
 }

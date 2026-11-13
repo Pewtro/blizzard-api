@@ -14,7 +14,7 @@ export function playableRace(
 ): Resource<PlayableRaceResponse> {
   return {
     namespace,
-    path: `${wowBasePath}/playable-race/${playableRaceId}`,
+    path: `${wowBasePath}/playable-race/${encodeURIComponent(playableRaceId)}`,
   };
 }
 /**

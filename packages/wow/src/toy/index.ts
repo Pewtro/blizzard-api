@@ -10,7 +10,7 @@ import type { ToyIndexResponse, ToyResponse } from './types';
 export function toy(toyId: number): Resource<ToyResponse> {
   return {
     namespace: 'static',
-    path: `${wowBasePath}/toy/${toyId}`,
+    path: `${wowBasePath}/toy/${encodeURIComponent(toyId)}`,
   };
 }
 /**

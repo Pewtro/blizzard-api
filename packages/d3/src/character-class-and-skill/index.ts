@@ -9,7 +9,7 @@ import type { CharacterClass, CharacterClassResponse, SkillResponse } from './ty
  */
 export function characterClass(characterClassSlug: CharacterClass): Resource<CharacterClassResponse> {
   return {
-    path: `${d3BasePath}/hero/${characterClassSlug}`,
+    path: `${d3BasePath}/hero/${encodeURIComponent(characterClassSlug)}`,
   };
 }
 
@@ -21,6 +21,6 @@ export function characterClass(characterClassSlug: CharacterClass): Resource<Cha
  */
 export function skill(characterClassSlug: CharacterClass, skillSlug: string): Resource<SkillResponse> {
   return {
-    path: `${d3BasePath}/hero/${characterClassSlug}/skill/${skillSlug}`,
+    path: `${d3BasePath}/hero/${encodeURIComponent(characterClassSlug)}/skill/${encodeURIComponent(skillSlug)}`,
   };
 }

@@ -19,7 +19,7 @@ import type {
 export function itemAppearance(appearanceId: number): Resource<ItemAppearanceResponse> {
   return {
     namespace: 'static-forever',
-    path: `${wowBasePath}/item-appearance/${appearanceId}`,
+    path: `${wowBasePath}/item-appearance/${encodeURIComponent(appearanceId)}`,
   };
 }
 /**
@@ -48,7 +48,7 @@ export function itemAppearanceSearch(
 export function itemAppearanceSet(appearanceSetId: number): Resource<ItemAppearanceSetResponse> {
   return {
     namespace: 'static-forever',
-    path: `${wowBasePath}/item-appearance/set/${appearanceSetId}`,
+    path: `${wowBasePath}/item-appearance/set/${encodeURIComponent(appearanceSetId)}`,
   };
 }
 /**
@@ -69,7 +69,7 @@ export function itemAppearanceSetIndex(): Resource<ItemAppearanceSetIndexRespons
 export function itemAppearanceSlot(slotType: ItemAppearanceSlotType): Resource<ItemAppearanceSlotResponse> {
   return {
     namespace: 'static-forever',
-    path: `${wowBasePath}/item-appearance/slot/${slotType}`,
+    path: `${wowBasePath}/item-appearance/slot/${encodeURIComponent(slotType)}`,
   };
 }
 /**

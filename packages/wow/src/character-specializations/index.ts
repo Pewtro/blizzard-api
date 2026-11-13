@@ -12,6 +12,6 @@ export function characterSpecializationsSummary(
 ): Resource<CharacterSpecializationsSummaryResponse> {
   return {
     namespace: 'profile',
-    path: `/profile/wow/character/${realmSlug}/${characterName}/specializations`,
+    path: `/profile/wow/character/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName)}/specializations`,
   };
 }

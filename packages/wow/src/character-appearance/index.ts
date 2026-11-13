@@ -12,6 +12,6 @@ export function characterAppearanceSummary(
 ): Resource<CharacterAppearanceResponse> {
   return {
     namespace: 'profile',
-    path: `/profile/wow/character/${realmSlug}/${characterName.toLowerCase()}/appearance`,
+    path: `/profile/wow/character/${encodeURIComponent(realmSlug)}/${encodeURIComponent(characterName.toLowerCase())}/appearance`,
   };
 }

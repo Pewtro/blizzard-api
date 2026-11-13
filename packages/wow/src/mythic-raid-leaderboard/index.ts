@@ -14,6 +14,6 @@ export function mythicRaidLeaderboard(
 ): Resource<MythicRaidLeaderboardResponse> {
   return {
     namespace: 'dynamic',
-    path: `${wowBasePath}/leaderboard/hall-of-fame/${raid}/${faction}`,
+    path: `${wowBasePath}/leaderboard/hall-of-fame/${encodeURIComponent(raid)}/${encodeURIComponent(faction)}`,
   };
 }

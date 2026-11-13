@@ -16,7 +16,7 @@ import type {
 export function azeriteEssence(azeriteEssenceId: number): Resource<AzeriteEssenceResponse> {
   return {
     namespace: 'static',
-    path: `${wowBasePath}/azerite-essence/${azeriteEssenceId}`,
+    path: `${wowBasePath}/azerite-essence/${encodeURIComponent(azeriteEssenceId)}`,
   };
 }
 /**
@@ -35,7 +35,7 @@ export function azeriteEssenceIndex(): Resource<AzeriteEssenceIndexResponse> {
  * @returns The azerite essence media. See {@link AzeriteEssenceMediaResponse}.
  */
 export function azeriteEssenceMedia(azeriteEssenceId: number): Resource<AzeriteEssenceMediaResponse> {
-  return { namespace: 'static', path: `${wowMediaBasePath}/azerite-essence/${azeriteEssenceId}` };
+  return { namespace: 'static', path: `${wowMediaBasePath}/azerite-essence/${encodeURIComponent(azeriteEssenceId)}` };
 }
 /**
  * Search for azerite essences.
