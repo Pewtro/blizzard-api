@@ -17,6 +17,7 @@ export interface CharacterProfileSummaryResponse extends NameId, ResponseBase {
   achievement_points: number;
   achievements: Href;
   achievements_statistics: Href;
+  active_title?: ActiveTitle;
   appearance: Href;
   average_item_level: number;
   character_class: NullishNameIdKey;
@@ -45,6 +46,10 @@ export interface CharacterProfileSummaryResponse extends NameId, ResponseBase {
   statistics: Href;
   surname: string;
   titles: Href;
+}
+
+interface ActiveTitle extends NameIdKey {
+  display_string: string;
 }
 
 interface Guild extends NameIdKey {

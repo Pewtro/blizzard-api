@@ -15,6 +15,10 @@ export const characterProfileStatusResponseSchema = responseBaseSchema.extend({
   is_valid: z.boolean(),
 });
 
+const activeTitleSchema = nameIdKeySchema.extend({
+  display_string: z.string(),
+});
+
 const guildSchema = nameIdKeySchema.extend({
   faction: factionSchema,
   slug: z.string(),
@@ -24,6 +28,7 @@ export const characterProfileSummaryResponseSchema = nameIdSchema.extend(respons
   achievement_points: z.number(),
   achievements: hrefSchema,
   achievements_statistics: hrefSchema,
+  active_title: activeTitleSchema.optional(),
   appearance: hrefSchema,
   average_item_level: z.number(),
   character_class: nullishNameIdKeySchema,
