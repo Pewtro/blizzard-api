@@ -10,7 +10,7 @@ import type {
 
 /**
  * Get a PvP leaderboard by PvP season ID and bracket.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link DynamicClassicNamespaces}.
  * @param pvpRegionId The PvP region ID.
  * @param pvpSeasonId The PvP season ID.
  * @param pvpBracket The PvP bracket.
@@ -32,7 +32,7 @@ export function pvpLeaderboard(
  *
  * Only available for the `classic` (progression) namespace. Classic responses omit `entries` when the
  * bracket is empty.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link DynamicClassicNamespaces}.
  * @param pvpSeasonId The PvP season ID.
  * @param pvpBracket The PvP bracket (for example `2v2`, `3v3`, or `rbg`).
  * @returns The PvP season leaderboard. See {@link PvpLeaderboardResponse}.
@@ -51,7 +51,7 @@ export function pvpSeasonLeaderboard(
  * Returns an index of PvP leaderboards for a PvP season.
  *
  * Only available for the `classic` (progression) namespace.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link DynamicClassicNamespaces}.
  * @param pvpSeasonId The PvP season ID.
  * @returns The PvP season leaderboard index. See {@link PvpLeaderboardIndexResponse}.
  */
@@ -68,7 +68,7 @@ export function pvpSeasonLeaderboards(
  * Returns an index of PvP rewards for a PvP season.
  *
  * Only available for the `classic` (progression) namespace.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link DynamicClassicNamespaces}.
  * @param pvpSeasonId The PvP season ID.
  * @returns The PvP season rewards index. See {@link PvpRewardsIndexResponse}.
  */
@@ -83,7 +83,7 @@ export function pvpSeasonRewards(
 }
 /**
  * Returns an index of PvP leaderboards for a PvP season in a given PvP region.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link DynamicClassicNamespaces}.
  * @param pvpRegionId The PvP region ID.
  * @param pvpSeasonId The PvP season ID.
  * @returns The PvP leaderboard index.
@@ -100,7 +100,7 @@ export function pvpLeaderboardIndex(
 }
 /**
  * Returns a PvP season by region ID and season ID.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link DynamicClassicNamespaces}.
  * @param pvpRegionId The PvP region ID.
  * @param pvpSeasonId The PvP season ID.
  * @returns The PvP season.
@@ -117,7 +117,7 @@ export function pvpRegionalSeason(
 }
 /**
  * Returns an index of PvP Seasons in a PvP region.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link DynamicClassicNamespaces}.
  * @param pvpRegionId The PvP region ID.
  * @returns The PvP season index. See {@link PvpSeasonIndexResponse}.
  */
@@ -132,7 +132,7 @@ export function pvpRegionalSeasonIndex(
 }
 /**
  * Returns an index of PvP Regions.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link DynamicClassicNamespaces}.
  * @returns The PvP region index.
  */
 export function pvpRegionIndex(namespace: DynamicClassicNamespaces): Resource<unknown> {
@@ -143,7 +143,7 @@ export function pvpRegionIndex(namespace: DynamicClassicNamespaces): Resource<un
 }
 /**
  * Returns an index of PvP rewards for a PvP season in a given PvP region.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link DynamicClassicNamespaces}.
  * @param pvpRegionId The PvP region ID.
  * @param pvpSeasonId The PvP season ID.
  * @returns The PvP reward index.
@@ -160,7 +160,7 @@ export function pvpRewardsIndex(
 }
 /**
  * Get a PvP season by ID.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link DynamicClassicNamespaces}.
  * @param pvpSeasonId The PvP season ID.
  * @returns The PvP season. See {@link PvpSeasonResponse}.
  */
@@ -172,7 +172,7 @@ export function pvpSeason(namespace: DynamicClassicNamespaces, pvpSeasonId: numb
 }
 /**
  * Get a PvP season index.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link DynamicClassicNamespaces}.
  * @returns The PvP season index. See {@link PvpSeasonIndexResponse}.
  */
 export function pvpSeasonIndex(namespace: DynamicClassicNamespaces): Resource<PvpSeasonIndexResponse> {

@@ -3,7 +3,7 @@ import { wowCharacterBasePath } from '@blizzard-api/core';
 import type { CharacterSpecializationsSummaryResponse } from './types';
 
 /**
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link ProfileClassicNamespaces}.
  * @param realmSlug The slug of the realm.
  * @param characterName The lowercase name of the character.
  * @returns a summary of a character's specializations.

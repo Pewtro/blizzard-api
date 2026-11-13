@@ -4,7 +4,7 @@ import type { PowerTypeIndexResponse, PowerTypeResponse } from './types';
 
 /**
  * Get a power type by ID.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link StaticClassicNamespaces}.
  * @param powerTypeId The power type ID.
  * @returns The power type. See {@link PowerTypeResponse}.
  */
@@ -16,7 +16,7 @@ export function powerType(namespace: StaticClassicNamespaces, powerTypeId: numbe
 }
 /**
  * Get a power type index.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link StaticClassicNamespaces}.
  * @returns The power type index. See {@link PowerTypeIndexResponse}.
  */
 export function powerTypeIndex(namespace: StaticClassicNamespaces): Resource<PowerTypeIndexResponse> {

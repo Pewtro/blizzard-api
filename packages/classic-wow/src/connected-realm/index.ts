@@ -10,7 +10,7 @@ import type {
 
 /**
  * Returns a connected realm by ID.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link DynamicClassicNamespaces}.
  * @param connectedRealmId The connected realm ID.
  * @returns The connected realm. See {@link ConnectedRealmResponse}.
  */
@@ -27,7 +27,7 @@ export function connectedRealm(
  * Returns all active auctions for a connected realm.
  *
  * Only available for the `classic` (progression) namespace.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link DynamicClassicNamespaces}.
  * @param connectedRealmId The connected realm ID.
  * @returns The connected realm auctions. See {@link ConnectedRealmAuctionsResponse}.
  */
@@ -42,7 +42,7 @@ export function connectedRealmAuctions(
 }
 /**
  * Returns an index of connected realms.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link DynamicClassicNamespaces}.
  * @returns The connected realm index. See {@link ConnectedRealmIndexResponse}.
  */
 export function connectedRealmIndex(namespace: DynamicClassicNamespaces): Resource<ConnectedRealmIndexResponse> {
@@ -53,7 +53,7 @@ export function connectedRealmIndex(namespace: DynamicClassicNamespaces): Resour
 }
 /**
  * Performs a search of connected realms.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link DynamicClassicNamespaces}.
  * @param options The search parameters. See {@link ConnectedRealmSearchParameters}.
  * @returns The search results. See {@link ConnectedRealmSearchResponse}.
  */

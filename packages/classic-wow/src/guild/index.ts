@@ -9,7 +9,7 @@ import type {
 } from './types';
 
 /**
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link ProfileClassicNamespaces}.
  * @param realmSlug The slug of the realm.
  * @param nameSlug The lowercase name of the guild.
  * @returns a single guild by its name and realm.
@@ -26,7 +26,7 @@ export function guild(
 }
 
 /**
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link ProfileClassicNamespaces}.
  * @param realmSlug The slug of the realm.
  * @param nameSlug The lowercase name of the guild.
  * @returns a single guild's achievements by name and realm.
@@ -45,7 +45,7 @@ export function guildAchievements<T extends ProfileClassicNamespaces>(
 }
 
 /**
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link ProfileClassicNamespaces}.
  * @param realmSlug The slug of the realm.
  * @param nameSlug The lowercase name of the guild.
  * @returns a single guild's activity by name and realm.
@@ -62,7 +62,7 @@ export function guildActivity(
 }
 
 /**
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link ProfileClassicNamespaces}.
  * @param realmSlug The slug of the realm.
  * @param nameSlug The lowercase name of the guild.
  * @returns a single guild's roster by its name and realm.

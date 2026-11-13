@@ -14,7 +14,7 @@ import type {
 
 /**
  * Returns a creature by ID.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link StaticClassicNamespaces}.
  * @param creatureId The creature ID.
  * @returns The creature. See {@link CreatureResponse}.
  */
@@ -26,7 +26,7 @@ export function creature(namespace: StaticClassicNamespaces, creatureId: number)
 }
 /**
  * Returns media for a creature display by ID.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link StaticClassicNamespaces}.
  * @param creatureDisplayId The creature display ID.
  * @returns The creature display media. See {@link CreatureDisplayMediaResponse}.
  */
@@ -41,7 +41,7 @@ export function creatureDisplayMedia(
 }
 /**
  * Returns a creature family by ID.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link StaticClassicNamespaces}.
  * @param creatureFamilyId The creature family ID.
  * @returns The creature family. See {@link CreatureFamilyResponse}.
  */
@@ -56,7 +56,7 @@ export function creatureFamily(
 }
 /**
  * Returns an index of creature families.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link StaticClassicNamespaces}.
  * @returns The creature family index. See {@link CreatureFamilyIndexResponse}.
  */
 export function creatureFamilyIndex(namespace: StaticClassicNamespaces): Resource<CreatureFamilyIndexResponse> {
@@ -67,7 +67,7 @@ export function creatureFamilyIndex(namespace: StaticClassicNamespaces): Resourc
 }
 /**
  * Returns media for a creature family by ID.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link StaticClassicNamespaces}.
  * @param creatureFamilyId The creature family ID.
  * @returns The creature family media. See {@link CreatureFamilyMediaResponse}.
  */
@@ -82,7 +82,7 @@ export function creatureFamilyMedia(
 }
 /**
  * Performs a search of creatures.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link StaticClassicNamespaces}.
  * @param options The creature search parameters. See {@link CreatureSearchParameters}.
  * @returns The creature search results. See {@link CreatureSearchResponse}.
  */
@@ -102,7 +102,7 @@ export function creatureSearch(
 }
 /**
  * Returns a creature type by ID.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link StaticClassicNamespaces}.
  * @param creatureTypeId The creature type ID.
  * @returns The creature type. See {@link CreatureTypeResponse}.
  */
@@ -117,7 +117,7 @@ export function creatureType(
 }
 /**
  * Returns an index of creature types.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link StaticClassicNamespaces}.
  * @returns The creature type index. See {@link CreatureTypeIndexResponse}.
  */
 export function creatureTypeIndex(namespace: StaticClassicNamespaces): Resource<CreatureTypeIndexResponse> {

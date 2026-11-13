@@ -10,7 +10,7 @@ import type {
  * Get a playable specialization by ID.
  *
  * Only available for the `classic` (progression) namespace.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link StaticClassicNamespaces}.
  * @param specializationId The playable specialization ID.
  * @returns The playable specialization. See {@link PlayableSpecializationResponse}.
  */
@@ -27,7 +27,7 @@ export function playableSpecialization(
  * Get the playable specialization index.
  *
  * Only available for the `classic` (progression) namespace.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link StaticClassicNamespaces}.
  * @returns The playable specialization index. See {@link PlayableSpecializationIndexResponse}.
  */
 export function playableSpecializationIndex(
@@ -42,7 +42,7 @@ export function playableSpecializationIndex(
  * Get playable specialization media by ID.
  *
  * Only available for the `classic` (progression) namespace.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link StaticClassicNamespaces}.
  * @param specializationId The playable specialization ID.
  * @returns The playable specialization media. See {@link PlayableSpecializationMediaResponse}.
  */

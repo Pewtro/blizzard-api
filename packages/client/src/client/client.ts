@@ -32,7 +32,6 @@ export const setTokenRefreshCancellationHandler = (client: object, handler: () =
 
 /**
  * A Blizzard API client.
- * @classdesc A client to interact with the Blizzard API.
  * @example
  * const client = new BlizzardApiClient({
  *  key: 'client',

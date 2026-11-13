@@ -11,7 +11,7 @@ import type {
  * Get a Mythic Keystone period by ID.
  *
  * Only available for the `classic` (progression) namespace.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link DynamicClassicNamespaces}.
  * @param mythicKeystonePeriodId The Mythic Keystone period ID.
  * @returns The Mythic Keystone period. See {@link MythicKeystonePeriodResponse}.
  */
@@ -28,7 +28,7 @@ export function mythicKeystonePeriod(
  * Get the Mythic Keystone period index.
  *
  * Only available for the `classic` (progression) namespace.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link DynamicClassicNamespaces}.
  * @returns The Mythic Keystone period index. See {@link MythicKeystonePeriodIndexResponse}.
  */
 export function mythicKeystonePeriodIndex(
@@ -43,7 +43,7 @@ export function mythicKeystonePeriodIndex(
  * Get a Mythic Keystone season by ID.
  *
  * Only available for the `classic` (progression) namespace.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link DynamicClassicNamespaces}.
  * @param mythicKeystoneSeasonId The Mythic Keystone season ID.
  * @returns The Mythic Keystone season. See {@link MythicKeystoneSeasonResponse}.
  */
@@ -60,7 +60,7 @@ export function mythicKeystoneSeason(
  * Get the Mythic Keystone season index.
  *
  * Only available for the `classic` (progression) namespace.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link DynamicClassicNamespaces}.
  * @returns The Mythic Keystone season index. See {@link MythicKeystoneSeasonIndexResponse}.
  */
 export function mythicKeystoneSeasonIndex(

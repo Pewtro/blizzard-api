@@ -4,7 +4,7 @@ import type { CharacterEquipmentSummaryResponse } from './types';
 
 /**
  * Returns a summary of the items equipped by a character.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link ProfileClassicNamespaces}.
  * @param realmSlug The realm slug.
  * @param characterName The character name.
  * @returns The character equipment summary.

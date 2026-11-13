@@ -12,7 +12,7 @@ import type {
 
 /**
  * Get an item by ID.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link StaticClassicNamespaces}.
  * @param itemId The item ID.
  * @returns The item. See {@link ItemResponse}.
  */
@@ -24,7 +24,7 @@ export function item(namespace: StaticClassicNamespaces, itemId: number): Resour
 }
 /**
  * Get an item class by ID.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link StaticClassicNamespaces}.
  * @param itemClassId The item class ID.
  * @returns The item class. See {@link ItemClassResponse}.
  */
@@ -36,7 +36,7 @@ export function itemClass(namespace: StaticClassicNamespaces, itemClassId: numbe
 }
 /**
  * Get an item class index.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link StaticClassicNamespaces}.
  * @returns The item class index. See {@link ItemClassIndexResponse}.
  */
 export function itemClassIndex(namespace: StaticClassicNamespaces): Resource<ItemClassIndexResponse> {
@@ -47,7 +47,7 @@ export function itemClassIndex(namespace: StaticClassicNamespaces): Resource<Ite
 }
 /**
  * Get item media by ID.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link StaticClassicNamespaces}.
  * @param itemId The item ID.
  * @returns The item media. See {@link ItemMediaResponse}.
  */
@@ -59,7 +59,7 @@ export function itemMedia(namespace: StaticClassicNamespaces, itemId: number): R
 }
 /**
  * Search for items.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link StaticClassicNamespaces}.
  * @param options The search parameters. See {@link ItemSearchParameters}.
  * @returns The search results. See {@link ItemSearchResponse}.
  */
@@ -79,7 +79,7 @@ export function itemSearch(
 }
 /**
  * Get an item subclass by ID.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link StaticClassicNamespaces}.
  * @param itemClassId The item class ID.
  * @param itemSubclassId The item subclass ID.
  * @returns The item subclass. See {@link ItemSubclassResponse}.

@@ -12,7 +12,7 @@ import type {
  * Get an achievement by ID.
  *
  * Supported by all Classic namespaces: `classic1x`, `classicann`, and `classic`.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link StaticClassicNamespaces}.
  * @param achievementId The achievement ID.
  * @returns The achievement. See {@link AchievementResponse}.
  */
@@ -26,7 +26,7 @@ export function achievement(namespace: StaticClassicNamespaces, achievementId: n
  * Get the achievement index.
  *
  * Supported by all Classic namespaces: `classic1x`, `classicann`, and `classic`.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link StaticClassicNamespaces}.
  * @returns The achievement index. See {@link AchievementIndexResponse}.
  */
 export function achievementIndex(namespace: StaticClassicNamespaces): Resource<AchievementIndexResponse> {
@@ -39,7 +39,7 @@ export function achievementIndex(namespace: StaticClassicNamespaces): Resource<A
  * Get an achievement category by ID.
  *
  * Supported by all Classic namespaces: `classic1x`, `classicann`, and `classic`.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link StaticClassicNamespaces}.
  * @param achievementCategoryId The achievement category ID.
  * @returns The achievement category. See {@link AchievementCategoryResponse}.
  */
@@ -57,7 +57,7 @@ export function achievementCategory(
  *
  * Supported by all Classic namespaces: `classic1x`, `classicann`, and `classic`.
  * `classic1x` responses omit `guild_categories`.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link StaticClassicNamespaces}.
  * @returns The achievement category index. See {@link AchievementCategoryIndexResponse}.
  */
 export function achievementCategoryIndex(
@@ -72,7 +72,7 @@ export function achievementCategoryIndex(
  * Get achievement media by ID.
  *
  * Supported by all Classic namespaces: `classic1x`, `classicann`, and `classic`.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link StaticClassicNamespaces}.
  * @param achievementId The achievement ID.
  * @returns The achievement media. See {@link AchievementMediaResponse}.
  */

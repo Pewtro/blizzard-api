@@ -4,7 +4,7 @@ import type { PlayableRaceIndexResponse, PlayableRaceResponse } from './types';
 
 /**
  * Get a playable race by ID.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link StaticClassicNamespaces}.
  * @param playableRaceId The playable race ID.
  * @returns The playable race. See {@link PlayableRaceResponse}.
  */
@@ -19,7 +19,7 @@ export function playableRace(
 }
 /**
  * Get a playable race index.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link StaticClassicNamespaces}.
  * @returns The playable race index. See {@link PlayableRaceIndexResponse}.
  */
 export function playableRaceIndex(namespace: StaticClassicNamespaces): Resource<PlayableRaceIndexResponse> {

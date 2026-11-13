@@ -4,7 +4,7 @@ import type { GuildCrestBorderEmblemResponse, GuildCrestComponentsIndexResponse 
 
 /**
  * Returns media for a guild crest border by ID.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link StaticClassicNamespaces}.
  * @param borderId The guild crest border ID.
  * @returns The guild crest border. See {@link GuildCrestBorderEmblemResponse}.
  */
@@ -19,7 +19,7 @@ export function guildCrestBorder(
 }
 /**
  * Returns an index of guild crest media.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link StaticClassicNamespaces}.
  * @returns The guild crest components index. See {@link GuildCrestComponentsIndexResponse}.
  */
 export function guildCrestComponentsIndex(
@@ -32,7 +32,7 @@ export function guildCrestComponentsIndex(
 }
 /**
  * Returns media for a guild crest emblem by ID.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link StaticClassicNamespaces}.
  * @param emblemId The guild crest emblem ID.
  * @returns The guild crest emblem. See {@link GuildCrestBorderEmblemResponse}.
  */

@@ -6,7 +6,7 @@ import type { MythicKeystoneLeaderboardIndexResponse, MythicKeystoneLeaderboardR
  * Get a Mythic Keystone leaderboard by connected realm ID, dungeon ID, and period.
  *
  * Only available for the `classic` (progression) namespace.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link DynamicClassicNamespaces}.
  * @param connectedRealmId The connected realm ID.
  * @param dungeonId The dungeon ID.
  * @param period The period ID.
@@ -27,7 +27,7 @@ export function mythicKeystoneLeaderboard(
  * Get a Mythic Keystone leaderboard index by connected realm ID.
  *
  * Only available for the `classic` (progression) namespace.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link DynamicClassicNamespaces}.
  * @param connectedRealmId The connected realm ID.
  * @returns The Mythic Keystone leaderboard index. See {@link MythicKeystoneLeaderboardIndexResponse}.
  */

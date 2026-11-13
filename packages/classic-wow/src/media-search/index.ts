@@ -4,7 +4,7 @@ import type { MediaSearchParameters, MediaSearchResponse } from './types';
 
 /**
  * Search for media.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link StaticClassicNamespaces}.
  * @param options The search parameters. See {@link MediaSearchParameters}.
  * @returns The search results. See {@link MediaSearchResponse}.
  */

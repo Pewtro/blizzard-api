@@ -4,7 +4,7 @@ import type { PlayableClassIndexResponse, PlayableClassMediaResponse, PlayableCl
 
 /**
  * Get a playable class by ID.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link StaticClassicNamespaces}.
  * @param playableClassId The playable class ID.
  * @returns The playable class. See {@link PlayableClassResponse}.
  */
@@ -19,7 +19,7 @@ export function playableClass(
 }
 /**
  * Get a playable class index.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link StaticClassicNamespaces}.
  * @returns The playable class index. See {@link PlayableClassIndexResponse}.
  */
 export function playableClassIndex(namespace: StaticClassicNamespaces): Resource<PlayableClassIndexResponse> {
@@ -30,7 +30,7 @@ export function playableClassIndex(namespace: StaticClassicNamespaces): Resource
 }
 /**
  * Get playable class media by ID.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link StaticClassicNamespaces}.
  * @param playableClassId The playable class ID.
  * @returns The playable class media. See {@link PlayableClassMediaResponse}.
  */

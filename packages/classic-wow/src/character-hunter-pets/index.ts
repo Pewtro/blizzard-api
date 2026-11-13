@@ -4,7 +4,7 @@ import type { CharacterHunterPetsSummaryResponse } from './types';
 
 /**
  * If the character is a hunter, returns a summary of the character's hunter pets. Otherwise, returns an HTTP 404 Not Found error.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link ProfileClassicNamespaces}.
  * @param realmSlug The slug of the realm.
  * @param characterName The lowercase name of the character.
  * @returns a summary of the character's hunter pets.

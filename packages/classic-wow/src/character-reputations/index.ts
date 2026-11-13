@@ -7,7 +7,7 @@ import type { CharacterReputationsSummaryResponse } from './types';
  *
  * Currently supported in the `profile-classicann` namespace. The `classic1x` and `classic` namespaces return 404 for
  * valid character profiles.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link ProfileClassicNamespaces}.
  * @param realmSlug The slug of the realm.
  * @param characterName The lowercase name of the character.
  * @returns The character's reputations summary. See {@link CharacterReputationsSummaryResponse}.

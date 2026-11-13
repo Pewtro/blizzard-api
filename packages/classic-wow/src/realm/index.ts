@@ -4,7 +4,7 @@ import type { RealmIndexResponse, RealmResponse, RealmSearchParameters, RealmSea
 
 /**
  * Get a realm by slug.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link DynamicClassicNamespaces}.
  * @param realmSlug The realm slug.
  * @returns The realm. See {@link RealmResponse}.
  */
@@ -16,7 +16,7 @@ export function realm(namespace: DynamicClassicNamespaces, realmSlug: string): R
 }
 /**
  * Get a realm index.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link DynamicClassicNamespaces}.
  * @returns The realm index. See {@link RealmIndexResponse}.
  */
 export function realmIndex(namespace: DynamicClassicNamespaces): Resource<RealmIndexResponse> {
@@ -27,7 +27,7 @@ export function realmIndex(namespace: DynamicClassicNamespaces): Resource<RealmI
 }
 /**
  * Search for realms.
- * @param namespace The namespace to use. See {@link BlizzardNamespaces}.
+ * @param namespace The namespace to use. See {@link DynamicClassicNamespaces}.
  * @param options The search parameters. See {@link RealmSearchParameters}.
  * @returns The search results. See {@link RealmSearchResponse}.
  */
