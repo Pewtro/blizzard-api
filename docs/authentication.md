@@ -1,7 +1,12 @@
 # Authentication
 
-The Blizzard Battle.net API uses OAuth 2.0. This library supports both the
-client-credentials flow (application tokens) and user access tokens.
+The Blizzard Battle.net API uses OAuth 2.0. This library manages application
+tokens with the client-credentials flow and can send requests using an existing
+user access token. It does not implement the user login, redirect, or
+authorization-code exchange; your application must obtain that token.
+
+Keep your client secret on a server. The client package uses Node.js APIs and
+must not be bundled into browser code.
 
 ## Client credentials
 
@@ -22,8 +27,21 @@ handle tokens yourself via `getAccessToken` / `setAccessToken`.
 ## User-scoped requests
 
 Some endpoints (profile data) require a user access token with the `wow.profile`
-scope, obtained through Blizzard's authorization code flow. Use `withUserToken`
-to create an isolated client for that token:
+scope. Obtain it through Blizzard's authorization-code flow. At a high level:
+
+1. Register an exact redirect URI in your Blizzard API application's settings.
+2. Redirect the user to Blizzard's authorization endpoint with your `client_id`,
+   that `redirect_uri`, `response_type=code`, `scope=wow.profile`, and a
+   cryptographically random `state` value. Store the state in the user's session.
+3. In your server-side callback, verify the returned `state`, then exchange the
+   authorization `code` at Blizzard's token endpoint using your client ID,
+   client secret, and the same redirect URI. Follow Blizzard's
+   [OAuth guide](https://develop.battle.net/documentation/guides/using-oauth)
+   for the current endpoint and request details.
+4. Keep the resulting user access token server-side and pass it to this library.
+
+For example, once your server has obtained `userAccessToken`, use
+`withUserToken` to create an isolated client for it:
 
 ```ts
 const userClient = client.withUserToken(userAccessToken);

@@ -31,6 +31,11 @@ const response = await client.sendRequest(wow.achievement(123));
 `sendRequest` resolves to `undefined` for endpoints that return `204 No Content`
 or an empty body, so always account for `undefined`.
 
+The response type is inferred at compile time; the client does not validate the
+JSON payload against that type at runtime. Blizzard's response can still differ
+from the declared type, so validate the payload yourself if runtime guarantees
+are important to your application.
+
 ## Per-request overrides
 
 Any `ClientOptions` field can be overridden per request, including `kyOptions`
@@ -47,7 +52,8 @@ const response = await client.sendRequest(wow.commodities(), {
 
 By default the client retries transient errors and HTTP 429 responses. Set
 `retryOnRateLimit: false` to disable retries for 429 while keeping retries for
-other transient errors. `maxAttempts` controls the retry count.
+other transient errors. `maxAttempts` is the total number of attempts, including
+the initial request (so `1` disables retries).
 
 ## Tokens
 
