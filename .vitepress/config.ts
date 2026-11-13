@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress';
 
 export default defineConfig({
+  base: '/blizzard-api/',
   description: 'Helpers for the Blizzard Battle.net API',
   srcDir: 'docs',
   themeConfig: {
