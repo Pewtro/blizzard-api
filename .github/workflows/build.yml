@@ -1,8 +1,6 @@
 name: CI
 permissions:
-  contents: write
-  id-token: write
-  pull-requests: write
+  contents: read
 
 on:
   schedule:
@@ -26,7 +24,7 @@ jobs:
         # Test against multiple node versions
         # Any currently maintained version, e.g. whether they are current, active or maintenance should be included
         node: [22.x, 24.x, 26.x]
-    name: Build, Test & Release
+    name: Build & Test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -57,6 +55,10 @@ jobs:
       - name: Turbo build
         run: pnpm build
 
+      - name: Build documentation
+        run: pnpm docs:build
+        if: matrix.node == env.release_node
+
       - name: Lint, Format, and Typecheck
         run: pnpm lint:ci
 
@@ -73,9 +75,37 @@ jobs:
           VITE_BLIZZARD_CLIENT_ID: ${{ secrets.BLIZZARD_CLIENT_ID }}
           VITE_BLIZZARD_CLIENT_SECRET: ${{ secrets.BLIZZARD_CLIENT_SECRET }}
 
-      # Only release with the version set in release_node and on a push to main
-      - if: ${{ matrix.node == env.release_node && github.ref == 'refs/heads/main' && github.repository == 'pewtro/blizzard-api' }}
-        name: Create Release Pull Request or Publish to npm
+  release:
+    name: Release
+    needs: build
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && github.repository == 'pewtro/blizzard-api' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+      pull-requests: write
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v7
+
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # https://github.com/pnpm/action-setup/releases/tag/v6.1.1
+        with:
+          version: 12.18.0
+
+      - name: Setup Node.js ${{ env.release_node }}
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.release_node }}
+          cache: 'pnpm'
+          registry-url: https://registry.npmjs.org
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Turbo build
+        run: pnpm build
+
+      - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@ae32849d5ba541f9ae29e40e22a623bc13562f51 # https://github.com/changesets/action/releases/tag/v2.1.2
         with:
