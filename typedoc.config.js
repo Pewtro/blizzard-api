@@ -1,22 +1,16 @@
 /* eslint-disable jsdoc/check-tag-names */
 /** @type {Partial<import("typedoc").TypeDocOptions>} */
 const config = {
+  entryFileName: 'index',
   entryPoints: ['packages/*'],
   entryPointStrategy: 'packages',
   exclude: 'packages/integration-tests',
-  navigation: {
-    includeGroups: true,
-  },
-  out: 'docs-build',
+  out: 'docs/api',
   packageOptions: {
     entryPoints: ['src/index.ts'],
     includeVersion: true,
   },
-  plugin: ['typedoc-github-theme'],
-  projectDocuments: ['docs/**/*.md'],
-  readme: 'README.md',
-  searchInDocuments: true,
-  theme: 'typedoc-github-theme',
+  plugin: ['typedoc-plugin-markdown'],
+  readme: 'none',
 };
-
 export default config;

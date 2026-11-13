@@ -3,7 +3,7 @@
     /* Basic Options */
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "target": "ES2025",
+    "target": "ESNext",
     "resolveJsonModule": true,
     "moduleDetection": "force",
     "isolatedModules": true,
@@ -43,5 +43,5 @@
     //"composite": true,
     //"declarationMap": true,
   },
-  "include": ["*.*ts", "*.*js", "packages/**/*", "scripts/*", "generated/**/*"]
+  "include": ["*.*ts", "*.*js", ".vitepress/*.ts", "packages/**/*", "scripts/*", "generated/**/*"]
 }

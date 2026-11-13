@@ -43,12 +43,14 @@ jobs:
         run: pnpm install
       - name: Build
         run: pnpm build
-      - name: Build static files
-        run: pnpm build:docs
+      - name: Generate API docs (Markdown)
+        run: pnpm docs:build:md
+      - name: Build site
+        run: pnpm docs:build:site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
         with:
-          path: 'docs-build/'
+          path: '.vitepress/dist/'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5

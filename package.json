@@ -25,7 +25,10 @@
   "repository": "https://github.com/Pewtro/blizzard-api",
   "type": "module",
   "scripts": {
-    "build:docs": "typedoc",
+    "docs:build": "npm-run-all -l docs:build:md docs:build:site",
+    "docs:build:md": "typedoc",
+    "docs:build:site": "vitepress build",
+    "docs:preview": "vitepress preview",
     "build": "turbo build",
     "generate:zod": "tsx ./scripts/generate-zod.ts",
     "generate": "npm-run-all -l generate:zod \"lint:fix ./generated\" \"oxfmt:write ./generated\"",
@@ -63,9 +66,10 @@
     "tsx": "4.23.15",
     "turbo": "2.11.10",
     "typedoc": "0.28.20",
-    "typedoc-github-theme": "0.4.0",
+    "typedoc-plugin-markdown": "4.14.1",
     "typescript": "6.0.3",
     "typescript-eslint": "8.72.1",
+    "vitepress": "1.6.4",
     "vitest": "5.1.0",
     "zod": "4.6.7"
   },

@@ -14,7 +14,9 @@ coverage
 # build artifacts
 dist
 build
-docs-build
+docs/api
+.vitepress/dist
+.vitepress/cache
 
 # misc 
 .DS_Store
