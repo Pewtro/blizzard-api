@@ -7,11 +7,15 @@ const config = {
   navigation: {
     includeGroups: true,
   },
+  out: 'docs-build',
   packageOptions: {
     entryPoints: ['src/index.ts'],
     includeVersion: true,
   },
   plugin: ['typedoc-github-theme'],
+  projectDocuments: ['docs/**/*.md'],
+  readme: 'README.md',
+  searchInDocuments: true,
   theme: 'typedoc-github-theme',
 };
 
