@@ -58,7 +58,7 @@ export interface PetMediaResponse extends ResponseBase {
  * The response for a pet.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface PetResponse extends NameId, ResponseBase {
+export interface PetResponse extends NullishNameId, ResponseBase {
   abilities?: Array<Ability>;
   battle_pet_type: BattlePetType;
   creature: NameIdKey;

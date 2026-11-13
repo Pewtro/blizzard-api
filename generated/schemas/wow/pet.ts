@@ -44,7 +44,7 @@ export const petAbilityResponseSchema = nullishNameIdSchema.extend(responseBaseS
   rounds: z.number(),
 });
 
-export const petResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
+export const petResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
   abilities: z.array(abilitySchema).optional(),
   battle_pet_type: battlePetTypeSchema,
   creature: nameIdKeySchema,
