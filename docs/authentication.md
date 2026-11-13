@@ -5,8 +5,10 @@ tokens with the client-credentials flow and can send requests using an existing
 user access token. It does not implement the user login, redirect, or
 authorization-code exchange; your application must obtain that token.
 
-Keep your client secret on a server. The client package uses Node.js APIs and
-must not be bundled into browser code.
+Keep your client secret on a server. `@blizzard-api/client` is intended for
+Node.js server-side use: it requires the confidential client secret and uses
+Node.js APIs, so it must not be bundled into browser code. A browser app should
+call your backend, which can make requests to Blizzard.
 
 ## Client credentials
 

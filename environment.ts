@@ -7,7 +7,7 @@ const environmentSchema = z.object({
 });
 
 export const environment = environmentSchema.parse({
-  blizzardBnetAccountId: process.env.VITE_BLIZZARD_BNET_ACCOUNT_ID,
-  blizzardClientId: process.env.VITE_BLIZZARD_CLIENT_ID,
-  blizzardClientSecret: process.env.VITE_BLIZZARD_CLIENT_SECRET,
+  blizzardBnetAccountId: process.env.BLIZZARD_BNET_ACCOUNT_ID,
+  blizzardClientId: process.env.BLIZZARD_CLIENT_ID,
+  blizzardClientSecret: process.env.BLIZZARD_CLIENT_SECRET,
 });

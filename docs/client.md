@@ -3,6 +3,13 @@
 `@blizzard-api/client` wraps the generated resource objects in a typed HTTP client
 built on top of [`ky`](https://github.com/sindresorhus/ky).
 
+::: warning Server-side only
+This package is intended for Node.js server-side use. It requires a confidential
+Blizzard client secret and uses Node.js APIs, so it is not suitable for browser
+bundles. For a browser app, call your own backend and keep Blizzard credentials
+there.
+:::
+
 ## Creating a client
 
 ```ts

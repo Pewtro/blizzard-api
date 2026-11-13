@@ -71,9 +71,9 @@ jobs:
         run: pnpm test:integration
         if: matrix.node == env.release_node
         env:
-          VITE_BLIZZARD_BNET_ACCOUNT_ID: ${{ secrets.VITE_BLIZZARD_BNET_ACCOUNT_ID }}
-          VITE_BLIZZARD_CLIENT_ID: ${{ secrets.BLIZZARD_CLIENT_ID }}
-          VITE_BLIZZARD_CLIENT_SECRET: ${{ secrets.BLIZZARD_CLIENT_SECRET }}
+          BLIZZARD_BNET_ACCOUNT_ID: ${{ secrets.BLIZZARD_BNET_ACCOUNT_ID }}
+          BLIZZARD_CLIENT_ID: ${{ secrets.BLIZZARD_CLIENT_ID }}
+          BLIZZARD_CLIENT_SECRET: ${{ secrets.BLIZZARD_CLIENT_SECRET }}
 
   release:
     name: Release

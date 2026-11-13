@@ -49,6 +49,8 @@ const achievementResource = achievement(123);
 
 If you additionally want to have an API client with built in helpers, you can install `@blizzard-api/client` which will let you easily connect to the API and begin consuming it.
 
+> **Server-side only:** `@blizzard-api/client` requires your confidential Blizzard client secret and uses Node.js APIs. Do not bundle it into browser code. For browser apps, make requests through your own backend and keep Blizzard credentials there.
+
 ```sh
 npm i @blizzard-api/client
 ```
