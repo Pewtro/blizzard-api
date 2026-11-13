@@ -84,7 +84,7 @@ export const talentResponseSchema = responseBaseSchema.extend({
     .optional(),
   playable_specialization: nameIdKeySchema.optional(),
   rank_descriptions: z.array(rankDescriptionSchema).optional(),
-  spell: nameIdKeySchema.optional(),
+  spell: nullishNameIdKeySchema.optional(),
 });
 
 export const talentTreeIndexResponseSchema = responseBaseSchema.extend({

@@ -40,7 +40,7 @@ export interface TalentResponse extends ResponseBase {
   playable_class?: KeyBase & { id: number; name?: string };
   playable_specialization?: NameIdKey;
   rank_descriptions?: Array<RankDescription>;
-  spell?: NameIdKey;
+  spell?: NullishNameIdKey;
 }
 
 /**
