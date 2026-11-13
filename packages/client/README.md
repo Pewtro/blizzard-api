@@ -9,6 +9,7 @@ Currently available packages are:
 - `@blizzard-api/hs`
 - `@blizzard-api/sc2`
 - `@blizzard-api/wow`
+- `@blizzard-api/wow-forever`
 
 ## Installation
 
@@ -25,8 +26,8 @@ import createBlizzardApiClient from '@blizzard-api/client';
 import { wow } from '@blizzard-api/wow';
 
 const client = await createBlizzardApiClient({
-  key: 'environment.blizzardClientId',
-  secret: 'environment.blizzardClientSecret',
+  key: process.env.BLIZZARD_CLIENT_ID!,
+  secret: process.env.BLIZZARD_CLIENT_SECRET!,
   origin: 'eu',
 });
 
@@ -34,7 +35,7 @@ const client = await createBlizzardApiClient({
 const response = await client.sendRequest(wow.commodities());
 
 console.log(response);
-                ^ typeof AuctionHouseCommoditiesResponse
+                ^ typeof AuctionHouseCommoditiesResponse | undefined
 ```
 
 ## Client options

@@ -1,6 +1,6 @@
 # @blizzard-api/hs
 
-This package aims to make it easier for you to integrate with the Blizzard Battle.net API, specifically for Diablo 3.
+This package aims to make it easier for you to integrate with the Blizzard Battle.net API, specifically for Hearthstone.
 
 ## Installation
 
@@ -17,7 +17,7 @@ import { hs } from "@blizzard-api/hs"
 //or
 import hs from "@blizzard-api/hs"
 
-const season = hs.allMetadata(123);
+const metadata = hs.allMetadata();
         ^ Resource<AllMetadataResponse>
 ```
 
@@ -26,7 +26,7 @@ If you don't want to use the exported hs object, you can also access the functio
 ```ts
 import { allMetadata } from "@blizzard-api/hs"
 
-const seasonI = season(123);
+const metadataI = allMetadata();
         ^ Resource<AllMetadataResponse>
 ```
 
@@ -35,7 +35,7 @@ const seasonI = season(123);
 If you need the response types, they are also exported with "Response" appended, so to get the response type from the above code, you can import it like this:
 
 ```ts
-import type { SeasonResponse } from '@blizzard-api/hs';
+import type { AllMetadataResponse } from '@blizzard-api/hs';
 ```
 
 If you simply want to use the existing object, you can use the helper, `ExtractResourceType`, from `@blizzard-api/core` like so:
@@ -62,8 +62,8 @@ import { createBlizzardApiClient } from '@blizzard-api/client';
 import { hs } from '@blizzard-api/hs';
 
 const client = await createBlizzardApiClient({
-  key: 'environment.blizzardClientId',
-  secret: 'environment.blizzardClientSecret',
+  key: process.env.BLIZZARD_CLIENT_ID!,
+  secret: process.env.BLIZZARD_CLIENT_SECRET!,
   origin: 'eu',
 });
 
@@ -71,5 +71,5 @@ const client = await createBlizzardApiClient({
 const response = await client.sendRequest(hs.allMetadata());
 
 console.log(response);
-                ^ typeof AllMetadataResponse
+                ^ typeof AllMetadataResponse | undefined
 ```

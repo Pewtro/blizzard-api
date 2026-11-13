@@ -79,14 +79,14 @@ import { createBlizzardApiClient } from '@blizzard-api/client';
 import { classicWow } from '@blizzard-api/classic-wow';
 
 const client = await createBlizzardApiClient({
-  key: 'environment.blizzardClientId',
-  secret: 'environment.blizzardClientSecret',
+  key: process.env.BLIZZARD_CLIENT_ID!,
+  secret: process.env.BLIZZARD_CLIENT_SECRET!,
   origin: 'eu',
 });
 
 //Response will automatically be typed with the appropriate values
-const response = await client.sendRequest(classicWow.commodities());
+const response = await client.sendRequest(classicWow.powerType("static-classic", 123));
 
 console.log(response);
-                ^ typeof AuctionHouseCommoditiesResponse
+                ^ typeof PowerTypeResponse | undefined
 ```

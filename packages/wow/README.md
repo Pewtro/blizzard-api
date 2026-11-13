@@ -67,8 +67,8 @@ import { createBlizzardApiClient } from '@blizzard-api/client';
 import { wow } from '@blizzard-api/wow';
 
 const client = await createBlizzardApiClient({
-  key: 'environment.blizzardClientId',
-  secret: 'environment.blizzardClientSecret',
+  key: process.env.BLIZZARD_CLIENT_ID!,
+  secret: process.env.BLIZZARD_CLIENT_SECRET!,
   origin: 'eu',
 });
 

@@ -17,16 +17,16 @@ import { d3 } from "@blizzard-api/d3"
 //or
 import d3 from "@blizzard-api/d3"
 
-const achievement = d3.achievement(123);
+const act = d3.act(1);
         ^ { path: string, namespace?: string, parameters?: Record<string, never> }
 ```
 
 If you don't want to use the exported d3 object, you can also access the functions directly:
 
 ```ts
-import { achievement } from "@blizzard-api/d3"
+import { act } from "@blizzard-api/d3"
 
-const achi = achievement(123);
+const achi = act(1);
         ^ { path: string, namespace?: string, parameters?: Record<string, never> }
 ```
 
@@ -35,7 +35,7 @@ const achi = achievement(123);
 If you need the response types, they are also exported with "Response" appended, so to get the response type from the above code, you can import it like this:
 
 ```ts
-import type { AchievementResponse } from '@blizzard-api/d3';
+import type { ActResponse } from '@blizzard-api/d3';
 ```
 
 If you simply want to use the existing object, you can use the helper, `ExtractResourceType`, from `@blizzard-api/core` like so:
@@ -43,10 +43,10 @@ If you simply want to use the existing object, you can use the helper, `ExtractR
 ```ts
 import { d3 } from "@blizzard-api/d3"
 
-const achievement = d3.achievement(123);
+const act = d3.act(1);
         ^ { path: string, namespace?: string, parameters?: Record<string, never> }
 
-type AchievementResponse = ExtractResourceType<typeof achievement>;
+type ActResponse = ExtractResourceType<typeof act>;
 ```
 
 ## Notes on Types
@@ -62,14 +62,14 @@ import { createBlizzardApiClient } from '@blizzard-api/client';
 import { d3 } from '@blizzard-api/d3';
 
 const client = await createBlizzardApiClient({
-  key: 'environment.blizzardClientId',
-  secret: 'environment.blizzardClientSecret',
+  key: process.env.BLIZZARD_CLIENT_ID!,
+  secret: process.env.BLIZZARD_CLIENT_SECRET!,
   origin: 'eu',
 });
 
 //Response will automatically be typed with the appropriate values
-const response = await client.sendRequest(d3.commodities());
+const response = await client.sendRequest(d3.act(1));
 
 console.log(response);
-                ^ typeof AuctionHouseCommoditiesResponse
+                ^ typeof ActResponse | undefined
 ```

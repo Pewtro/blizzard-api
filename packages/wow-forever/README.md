@@ -89,8 +89,8 @@ import { createBlizzardApiClient } from '@blizzard-api/client';
 import { wowForever } from '@blizzard-api/wow-forever';
 
 const client = await createBlizzardApiClient({
-  key: 'environment.blizzardClientId',
-  secret: 'environment.blizzardClientSecret',
+  key: process.env.BLIZZARD_CLIENT_ID!,
+  secret: process.env.BLIZZARD_CLIENT_SECRET!,
   origin: 'eu',
 });
 
@@ -98,5 +98,5 @@ const client = await createBlizzardApiClient({
 const response = await client.sendRequest(wowForever.mount(123));
 
 console.log(response);
-                ^ typeof MountResponse
+                ^ typeof MountResponse | undefined
 ```

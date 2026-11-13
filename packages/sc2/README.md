@@ -1,6 +1,6 @@
 # @blizzard-api/sc2
 
-This package aims to make it easier for you to integrate with the Blizzard Battle.net API, specifically for Diablo 3.
+This package aims to make it easier for you to integrate with the Blizzard Battle.net API, specifically for StarCraft II.
 
 ## Installation
 
@@ -17,7 +17,7 @@ import { sc2 } from "@blizzard-api/sc2"
 //or
 import sc2 from "@blizzard-api/sc2"
 
-const season = sc2.season(123);
+const season = sc2.season("eu");
         ^ { endDate: string; number: number; seasonId: number; startDate: string; year: number; }
 ```
 
@@ -26,7 +26,7 @@ If you don't want to use the exported sc2 object, you can also access the functi
 ```ts
 import { season } from "@blizzard-api/sc2"
 
-const seasonI = season(123);
+const seasonI = season("eu");
         ^ { endDate: string; number: number; seasonId: number; startDate: string; year: number; }
 ```
 
@@ -62,8 +62,8 @@ import { createBlizzardApiClient } from '@blizzard-api/client';
 import { sc2 } from '@blizzard-api/sc2';
 
 const client = await createBlizzardApiClient({
-  key: 'environment.blizzardClientId',
-  secret: 'environment.blizzardClientSecret',
+  key: process.env.BLIZZARD_CLIENT_ID!,
+  secret: process.env.BLIZZARD_CLIENT_SECRET!,
   origin: 'eu',
 });
 
@@ -71,5 +71,5 @@ const client = await createBlizzardApiClient({
 const response = await client.sendRequest(sc2.season("eu"));
 
 console.log(response);
-                ^ typeof SeasonResponse
+                ^ typeof SeasonResponse | undefined
 ```
