@@ -13,7 +13,7 @@ export interface QuestAreaIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface QuestAreaResponse extends ResponseBase {
-  area: string;
+  area: null | string;
   id: number;
   quests: Array<NullishNameIdKey>;
 }

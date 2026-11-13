@@ -7,7 +7,7 @@ export const questAreaIndexResponseSchema = responseBaseSchema.extend({
 });
 
 export const questAreaResponseSchema = responseBaseSchema.extend({
-  area: z.string(),
+  area: z.string().nullable(),
   id: z.number(),
   quests: z.array(nullishNameIdKeySchema),
 });
