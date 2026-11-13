@@ -1,5 +1,14 @@
 # @blizzard-api/wow
 
+## 4.2.3
+
+### Patch Changes
+
+- f614251: Mark area as nullable for quest areas
+- 688edf6: Encode path parameters in endpoint helpers
+- Updated dependencies [7f3ed8d]
+  - @blizzard-api/core@4.5.2
+
 ## 4.2.2
 
 ### Patch Changes

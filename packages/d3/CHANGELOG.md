@@ -1,5 +1,13 @@
 # @blizzard-api/d3
 
+## 3.1.9
+
+### Patch Changes
+
+- 688edf6: Encode path parameters in endpoint helpers
+- Updated dependencies [7f3ed8d]
+  - @blizzard-api/core@4.5.2
+
 ## 3.1.8
 
 ### Patch Changes

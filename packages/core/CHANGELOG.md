@@ -1,5 +1,11 @@
 # @blizzard-api/core
 
+## 4.5.2
+
+### Patch Changes
+
+- 7f3ed8d: Don't throw on unsupported locales for the client
+
 ## 4.5.1
 
 ### Patch Changes

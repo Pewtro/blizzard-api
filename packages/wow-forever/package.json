@@ -1,6 +1,6 @@
 {
   "name": "@blizzard-api/wow-forever",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "A series of helpers to interact with the World of Warcraft: Forever Blizzard API",
   "keywords": [
     "api",
@@ -52,7 +52,7 @@
     "@blizzard-api/core": "workspace:*"
   },
   "peerDependencies": {
-    "@blizzard-api/core": "4.5.1"
+    "@blizzard-api/core": "4.5.2"
   },
   "engines": {
     "node": "^22.13.0 || ^24 || ^26"
