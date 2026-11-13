@@ -8,9 +8,10 @@ const config = {
   out: 'docs/api',
   packageOptions: {
     entryPoints: ['src/index.ts'],
+    excludeExternals: true,
     includeVersion: true,
   },
-  plugin: ['typedoc-plugin-markdown'],
+  plugin: ['typedoc-plugin-markdown', 'typedoc-plugin-missing-exports'],
   readme: 'none',
 };
 export default config;
