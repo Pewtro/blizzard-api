@@ -1,5 +1,11 @@
 # @blizzard-api/sc2
 
+## 3.2.7
+
+### Patch Changes
+
+- 651b13a: Update readme
+
 ## 3.2.6
 
 ### Patch Changes

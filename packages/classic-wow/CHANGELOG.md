@@ -1,5 +1,12 @@
 # @blizzard-api/classic-wow
 
+## 4.3.4
+
+### Patch Changes
+
+- cedf886: Correct jsdoc namespace links
+- 651b13a: Update readme
+
 ## 4.3.3
 
 ### Patch Changes
