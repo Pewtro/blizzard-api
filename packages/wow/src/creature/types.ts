@@ -42,7 +42,7 @@ export interface CreatureFamilyMediaResponse extends ResponseBase {
  */
 export interface CreatureFamilyResponse extends NameId, ResponseBase {
   media: IdKey;
-  specialization: NameIdKey;
+  specialization?: NameIdKey;
 }
 
 /**

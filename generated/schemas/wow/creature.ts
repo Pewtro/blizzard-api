@@ -28,7 +28,7 @@ export const creatureFamilyMediaResponseSchema = responseBaseSchema.extend({
 
 export const creatureFamilyResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   media: idKeySchema,
-  specialization: nameIdKeySchema,
+  specialization: nameIdKeySchema.optional(),
 });
 
 export const creatureResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
