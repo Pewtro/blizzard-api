@@ -20,6 +20,7 @@ export const playableClassMediaResponseSchema = responseBaseSchema.extend({
 });
 
 export const playableClassResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
+  additional_power_types: z.array(nameIdKeySchema).optional(),
   gender_name: genderNameSchema,
   media: idKeySchema,
   playable_races: z.array(nameIdKeySchema),

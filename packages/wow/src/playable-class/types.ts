@@ -22,6 +22,7 @@ export interface PlayableClassMediaResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface PlayableClassResponse extends NameId, ResponseBase {
+  additional_power_types?: Array<NameIdKey>;
   gender_name: GenderName;
   media: IdKey;
   playable_races: Array<NameIdKey>;

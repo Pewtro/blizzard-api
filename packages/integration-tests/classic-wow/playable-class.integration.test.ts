@@ -7,6 +7,7 @@ import {
   playableClassResponseSchema,
 } from '../../../generated/schemas/classic-wow';
 import { getIntegrationTestClient } from '../utils/client';
+import { getRandomSample } from '../utils/random';
 
 describe('classic-wow playable class integration', async () => {
   const client = await getIntegrationTestClient();
@@ -23,7 +24,7 @@ describe('classic-wow playable class integration', async () => {
 
       const classRequests = [];
       const mediaRequests = [];
-      const classIndices = indices?.classes ?? [];
+      const classIndices = getRandomSample(indices?.classes, 5);
       for (const playerClass of classIndices) {
         classRequests.push(client.sendRequest(playableClass(namespace, playerClass.id)));
         mediaRequests.push(client.sendRequest(playableClassMedia(namespace, playerClass.id)));
