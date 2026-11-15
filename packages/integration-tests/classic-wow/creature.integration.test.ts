@@ -66,6 +66,9 @@ describe('classic-wow creature integration', async () => {
     }
     expect(parsedFamily.success).toBe(true);
 
+    if (!family?.media) {
+      return;
+    }
     const media = await client.sendRequest(creatureFamilyMedia(namespace, creatureFamilyId));
     const parsedMedia = creatureFamilyMediaResponseSchema.safeParse(media);
     if (!parsedMedia.success) {
