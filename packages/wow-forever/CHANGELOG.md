@@ -1,5 +1,12 @@
 # @blizzard-api/wow-forever
 
+## 0.3.4
+
+### Patch Changes
+
+- 5cda67a: Add active_title to characterProfileSummary response
+- 651b13a: Update readme
+
 ## 0.3.3
 
 ### Patch Changes

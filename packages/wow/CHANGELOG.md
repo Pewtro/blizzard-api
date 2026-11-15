@@ -1,5 +1,13 @@
 # @blizzard-api/wow
 
+## 4.2.4
+
+### Patch Changes
+
+- fc32cef: Mark pet names as nullable
+- 530186f: Mark talent names as nullable
+- 651b13a: Update readme
+
 ## 4.2.3
 
 ### Patch Changes

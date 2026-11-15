@@ -1,6 +1,6 @@
 {
   "name": "@blizzard-api/hs",
-  "version": "3.2.7",
+  "version": "3.2.8",
   "description": "A series of helpers to interact with the Hearthstone Blizzard API",
   "keywords": [
     "api",

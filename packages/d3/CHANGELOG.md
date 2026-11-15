@@ -1,5 +1,11 @@
 # @blizzard-api/d3
 
+## 3.1.10
+
+### Patch Changes
+
+- 651b13a: Update readme
+
 ## 3.1.9
 
 ### Patch Changes

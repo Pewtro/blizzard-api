@@ -1,5 +1,12 @@
 # @blizzard-api/client
 
+## 5.5.8
+
+### Patch Changes
+
+- cedf886: Correct jsdoc namespace links
+- 651b13a: Update readme
+
 ## 5.5.7
 
 ### Patch Changes

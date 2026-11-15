@@ -1,6 +1,6 @@
 {
   "name": "@blizzard-api/wow-forever",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "A series of helpers to interact with the World of Warcraft: Forever Blizzard API",
   "keywords": [
     "api",
