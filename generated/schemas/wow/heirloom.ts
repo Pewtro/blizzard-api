@@ -65,7 +65,7 @@ const upgradeItemSchema = z.strictObject({
   requirements: requirementsSchema,
   stats: z.array(statSchema),
   upgrades: upgradesSchema,
-  weapon: weaponSchema,
+  weapon: weaponSchema.optional(),
 });
 
 const upgradeSchema = z.strictObject({

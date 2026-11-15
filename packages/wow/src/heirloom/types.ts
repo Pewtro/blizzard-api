@@ -73,7 +73,7 @@ interface UpgradeItem {
   requirements: Requirements;
   stats: Array<Stat>;
   upgrades: Upgrades;
-  weapon: Weapon;
+  weapon?: Weapon;
 }
 
 interface Upgrades {
