@@ -38,7 +38,7 @@ export interface AchievementCategoryResponse extends NullishNameId, ResponseBase
   display_order: number;
   is_guild_category: boolean;
   parent_category?: NameIdKey;
-  subcategories?: Array<NameIdKey>;
+  subcategories?: Array<NullishNameIdKey>;
 }
 
 export interface AchievementCriteria {

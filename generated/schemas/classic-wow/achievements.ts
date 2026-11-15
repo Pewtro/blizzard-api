@@ -33,7 +33,7 @@ export const achievementCategoryResponseSchema = nullishNameIdSchema.extend(resp
   display_order: z.number(),
   is_guild_category: z.boolean(),
   parent_category: nameIdKeySchema.optional(),
-  subcategories: z.array(nameIdKeySchema).optional(),
+  subcategories: z.array(nullishNameIdKeySchema).optional(),
 });
 
 const operatorSchema = nameTypeSchema.extend({
