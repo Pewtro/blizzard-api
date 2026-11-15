@@ -9,6 +9,7 @@ import {
   nameIdKeySchema,
   nameIdSchema,
   nullishNameIdKeySchema,
+  nullishNameIdSchema,
   responseBaseSchema,
   searchResponseWithoutResultsSchema,
 } from '../core';
@@ -27,7 +28,7 @@ export const creatureFamilyMediaResponseSchema = responseBaseSchema.extend({
   id: z.number(),
 });
 
-export const creatureFamilyResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
+export const creatureFamilyResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
   media: idKeySchema.optional(),
   specialization: nameIdKeySchema.optional(),
 });

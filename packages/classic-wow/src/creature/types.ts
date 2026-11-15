@@ -6,6 +6,7 @@ import type {
   MediaAsset,
   NameId,
   NameIdKey,
+  NullishNameId,
   NullishNameIdKey,
   ResponseBase,
   SearchResponseWithoutResults,
@@ -41,7 +42,7 @@ export interface CreatureFamilyMediaResponse extends ResponseBase {
  * The response for a creature family.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface CreatureFamilyResponse extends NameId, ResponseBase {
+export interface CreatureFamilyResponse extends NullishNameId, ResponseBase {
   media?: IdKey;
   specialization?: NameIdKey;
 }
