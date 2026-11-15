@@ -35,7 +35,7 @@ export interface ConnectedRealmResponse extends ResponseBase {
  * @see https://develop.battle.net/documentation/world-of-warcraft/game-data-apis
  */
 export interface ConnectedRealmAuctionsResponse extends ResponseBase {
-  auctions: Array<AuctionHousePosting>;
+  auctions?: Array<AuctionHousePosting>;
   commodities: Href;
   connected_realm: Href;
 }

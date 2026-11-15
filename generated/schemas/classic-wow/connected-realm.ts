@@ -141,7 +141,7 @@ const connectedRealmSearchResponseItemSchema = keyBaseSchema.extend({
 });
 
 export const connectedRealmAuctionsResponseSchema = responseBaseSchema.extend({
-  auctions: z.array(auctionHousePostingSchema),
+  auctions: z.array(auctionHousePostingSchema).optional(),
   commodities: hrefSchema,
   connected_realm: hrefSchema,
 });
