@@ -17,7 +17,7 @@ export interface HeirloomResponse extends ResponseBase {
   item: NameIdKey;
   media: IdKey;
   source: NameType;
-  source_description: string;
+  source_description?: string;
   upgrades: Array<Upgrade>;
 }
 

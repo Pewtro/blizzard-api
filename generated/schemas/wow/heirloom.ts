@@ -78,6 +78,6 @@ export const heirloomResponseSchema = responseBaseSchema.extend({
   item: nameIdKeySchema,
   media: idKeySchema,
   source: nameTypeSchema,
-  source_description: z.string(),
+  source_description: z.string().optional(),
   upgrades: z.array(upgradeSchema),
 });
