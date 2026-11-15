@@ -15,7 +15,7 @@ import {
   modifiedCraftingReagentSlotTypeResponseSchema,
 } from '../../../generated/schemas/wow/modified-crafting';
 import { getIntegrationTestClient } from '../utils/client';
-import { getRandomSample } from '../utils/random';
+import { getRandomItem, getRandomSample } from '../utils/random';
 
 describe('wow modified-crafting integration', async () => {
   const client = await getIntegrationTestClient();
@@ -65,12 +65,13 @@ describe('wow modified-crafting integration', async () => {
 
     const slotTypes = parsedSlotIndex.data!.slot_types;
     expect(slotTypes.length).toBeGreaterThan(0);
-    const slotType = await client.sendRequest(modifiedCraftingReagentSlotType(slotTypes[0]!.id));
+    const slotTypeId = getRandomItem(slotTypes)!.id;
+    const slotType = await client.sendRequest(modifiedCraftingReagentSlotType(slotTypeId));
     const parsedSlotType = modifiedCraftingReagentSlotTypeResponseSchema.safeParse(slotType);
     if (!parsedSlotType.success) {
       console.error(
         'Modified crafting reagent slot type detail validation failed:',
-        slotTypes[0]!.id,
+        slotTypeId,
         prettifyError(parsedSlotType.error),
       );
     }

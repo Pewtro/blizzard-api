@@ -3,6 +3,7 @@ import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
 import { regionIndexResponseSchema, regionResponseSchema } from '../../../generated/schemas/wow-forever';
 import { getIntegrationTestClient } from '../utils/client';
+import { getRandomItem } from '../utils/random';
 
 describe('wow-forever region integration', async () => {
   const client = await getIntegrationTestClient();
@@ -17,7 +18,7 @@ describe('wow-forever region integration', async () => {
 
     //The region id differs per origin (91 is CAMWOW North America, 93 is CAMWOW Europe),
     //so the id is taken from the href that the index links to.
-    const href = parsedIndex.data?.regions[0]?.href;
+    const href = getRandomItem(parsedIndex.data?.regions)?.href;
     if (href === undefined) return;
     const regionId = Number(/\/region\/(\d+)/.exec(href)?.[1]);
     expect(regionId).toBeGreaterThan(0);

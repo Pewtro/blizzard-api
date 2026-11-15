@@ -6,6 +6,7 @@ import {
   guildCrestComponentsIndexResponseSchema,
 } from '../../../generated/schemas/wow-forever';
 import { getIntegrationTestClient } from '../utils/client';
+import { getRandomItem } from '../utils/random';
 
 describe('wow-forever guild crest integration', async () => {
   const client = await getIntegrationTestClient();
@@ -27,7 +28,7 @@ describe('wow-forever guild crest integration', async () => {
     }
     expect(parsedIndex.success).toBe(true);
 
-    const borderId = parsedIndex.data!.borders[0]!.id;
+    const borderId = getRandomItem(parsedIndex.data!.borders)!.id;
     const resp = await client.sendRequest(guildCrestBorder(borderId));
     const parsed = guildCrestBorderEmblemResponseSchema.safeParse(resp);
     if (!parsed.success) {
@@ -44,7 +45,7 @@ describe('wow-forever guild crest integration', async () => {
     }
     expect(parsedIndex.success).toBe(true);
 
-    const emblemId = parsedIndex.data!.emblems[0]!.id;
+    const emblemId = getRandomItem(parsedIndex.data!.emblems)!.id;
     const resp = await client.sendRequest(guildCrestEmblem(emblemId));
     const parsed = guildCrestBorderEmblemResponseSchema.safeParse(resp);
     if (!parsed.success) {

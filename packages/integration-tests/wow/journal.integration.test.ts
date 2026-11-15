@@ -21,7 +21,7 @@ import {
   journalInstanceResponseSchema,
 } from '../../../generated/schemas/wow/journal';
 import { getIntegrationTestClient } from '../utils/client';
-import { getRandomSample } from '../utils/random';
+import { getRandomItem, getRandomSample } from '../utils/random';
 
 describe('wow journal integration', async () => {
   const client = await getIntegrationTestClient();
@@ -127,11 +127,11 @@ describe('wow journal integration', async () => {
     }
     expect(parsedExp.success).toBe(true);
 
-    const instances = parsedExp.data!.instances;
-    const media = await client.sendRequest(journalInstanceMedia(instances[0]!.id));
+    const instance = getRandomItem(parsedExp.data!.instances)!;
+    const media = await client.sendRequest(journalInstanceMedia(instance.id));
     const parsedMedia = journalInstanceMediaResponseSchema.safeParse(media);
     if (!parsedMedia.success) {
-      console.error('Journal instance media validation failed:', instances[0]!.id, prettifyError(parsedMedia.error));
+      console.error('Journal instance media validation failed:', instance.id, prettifyError(parsedMedia.error));
     }
     expect(parsedMedia.success).toBe(true);
   });

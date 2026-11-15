@@ -9,6 +9,7 @@ import {
   pvpSeasonIndexResponseSchema,
 } from '../../../generated/schemas/classic-wow';
 import { getIntegrationTestClient } from '../utils/client';
+import { getRandomItem } from '../utils/random';
 
 describe('classic-wow character-pvp integration', async () => {
   const client = await getIntegrationTestClient();
@@ -41,7 +42,7 @@ describe('classic-wow character-pvp integration', async () => {
     }
     expect(parsedLeaderboard.success).toBe(true);
 
-    const character = parsedLeaderboard.data!.entries?.[0]?.character;
+    const character = getRandomItem(parsedLeaderboard.data!.entries)?.character;
     expect(character).toBeDefined();
     if (!character) return;
 

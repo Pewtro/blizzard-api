@@ -21,6 +21,7 @@ import {
   creatureTypeResponseSchema,
 } from '../../../generated/schemas/classic-wow';
 import { getIntegrationTestClient } from '../utils/client';
+import { getRandomItem } from '../utils/random';
 
 const namespaces = ['static-classic1x', 'static-classic', 'static-classicann'] as const;
 
@@ -36,7 +37,7 @@ describe('classic-wow creature integration', async () => {
     expect(parsed.success).toBe(true);
 
     // The display media uses its own id space, which the creature itself points to.
-    const creatureDisplayId = parsed.data!.creature_displays[0]!.id;
+    const creatureDisplayId = getRandomItem(parsed.data!.creature_displays)!.id;
     const respMedia = await client.sendRequest(creatureDisplayMedia(namespace, creatureDisplayId));
     const parsedMedia = creatureDisplayMediaResponseSchema.safeParse(respMedia);
     if (!parsedMedia.success) {
@@ -53,7 +54,7 @@ describe('classic-wow creature integration', async () => {
     }
     expect(parsed.success).toBe(true);
 
-    const creatureFamilyId = parsed.data!.creature_families[0]!.id;
+    const creatureFamilyId = getRandomItem(parsed.data!.creature_families)!.id;
     const family = await client.sendRequest(creatureFamily(namespace, creatureFamilyId));
     const parsedFamily = creatureFamilyResponseSchema.safeParse(family);
     if (!parsedFamily.success) {
@@ -81,7 +82,7 @@ describe('classic-wow creature integration', async () => {
     }
     expect(parsed.success).toBe(true);
 
-    const creatureTypeId = parsed.data!.creature_types[0]!.id;
+    const creatureTypeId = getRandomItem(parsed.data!.creature_types)!.id;
     const type = await client.sendRequest(creatureType(namespace, creatureTypeId));
     const parsedType = creatureTypeResponseSchema.safeParse(type);
     if (!parsedType.success) {

@@ -3,6 +3,7 @@ import { describe, expect, test } from 'vitest';
 import { prettifyError } from 'zod';
 import { regionIndexResponseSchema, regionResponseSchema } from '../../../generated/schemas/wow';
 import { getIntegrationTestClient } from '../utils/client';
+import { getRandomItem } from '../utils/random';
 
 describe('wow region integration', async () => {
   const client = await getIntegrationTestClient();
@@ -14,7 +15,8 @@ describe('wow region integration', async () => {
     }
     expect(parsed.success).toBe(true);
 
-    const regionId = Number(/region\/(\d+)/.exec(parsed.data!.regions[0]!.href)?.[1]);
+    const regionEntry = getRandomItem(parsed.data!.regions)!;
+    const regionId = Number(/region\/(\d+)/.exec(regionEntry.href)?.[1]);
     expect(regionId).toBeTypeOf('number');
 
     const regionResp = await client.sendRequest(region(regionId));

@@ -21,7 +21,7 @@ import {
   itemSubclassResponseSchema,
 } from '../../../generated/schemas/wow-forever';
 import { getIntegrationTestClient } from '../utils/client';
-import { getRandomSample } from '../utils/random';
+import { getRandomItem, getRandomSample } from '../utils/random';
 
 describe('wow-forever item integration', async () => {
   const client = await getIntegrationTestClient();
@@ -48,7 +48,7 @@ describe('wow-forever item integration', async () => {
       }
       expect(parsedClass.success).toBe(true);
 
-      const subclass = parsedClass.data?.item_subclasses?.find((entry) => entry.id > 0);
+      const subclass = getRandomItem(parsedClass.data?.item_subclasses?.filter((entry) => entry.id > 0));
       if (!subclass) continue;
 
       const subclassResponse = await client.sendRequest(itemSubclass(itemClassEntry.id, subclass.id));

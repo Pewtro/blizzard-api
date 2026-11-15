@@ -6,6 +6,7 @@ import {
   guildCrestComponentsIndexResponseSchema,
 } from '../../../generated/schemas/classic-wow';
 import { getIntegrationTestClient } from '../utils/client';
+import { getRandomItem } from '../utils/random';
 
 describe('classic-wow guild crest integration', async () => {
   const client = await getIntegrationTestClient();
@@ -19,7 +20,7 @@ describe('classic-wow guild crest integration', async () => {
       }
       expect(parsedIndex.success).toBe(true);
 
-      const borderId = parsedIndex.data!.borders[0]!.id;
+      const borderId = getRandomItem(parsedIndex.data!.borders)!.id;
       const border = await client.sendRequest(guildCrestBorder(namespace, borderId));
       const parsedBorder = guildCrestBorderEmblemResponseSchema.safeParse(border);
       if (!parsedBorder.success) {
@@ -27,7 +28,7 @@ describe('classic-wow guild crest integration', async () => {
       }
       expect(parsedBorder.success).toBe(true);
 
-      const emblemId = parsedIndex.data!.emblems[0]!.id;
+      const emblemId = getRandomItem(parsedIndex.data!.emblems)!.id;
       const emblem = await client.sendRequest(guildCrestEmblem(namespace, emblemId));
       const parsedEmblem = guildCrestBorderEmblemResponseSchema.safeParse(emblem);
       if (!parsedEmblem.success) {

@@ -3,6 +3,7 @@ import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
 import { powerTypeIndexResponseSchema, powerTypeResponseSchema } from '../../../generated/schemas/wow';
 import { getIntegrationTestClient } from '../utils/client';
+import { getRandomItem } from '../utils/random';
 
 describe('wow power type integration', async () => {
   const client = await getIntegrationTestClient();
@@ -14,9 +15,9 @@ describe('wow power type integration', async () => {
     }
     expect(parsed.success).toBe(true);
 
-    const first = parsed.data!.power_types[0];
-    expect(first).toBeDefined();
-    const type = await client.sendRequest(powerType(first!.id));
+    const powerTypeEntry = getRandomItem(parsed.data!.power_types);
+    expect(powerTypeEntry).toBeDefined();
+    const type = await client.sendRequest(powerType(powerTypeEntry!.id));
     const parsedType = powerTypeResponseSchema.safeParse(type);
     if (!parsedType.success) {
       console.error('Power type detail validation failed:', prettifyError(parsedType.error));

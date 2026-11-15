@@ -21,6 +21,7 @@ import {
   creatureTypeResponseSchema,
 } from '../../../generated/schemas/wow/creature';
 import { getIntegrationTestClient } from '../utils/client';
+import { getRandomItem } from '../utils/random';
 
 describe('wow creature integration', async () => {
   const client = await getIntegrationTestClient();
@@ -34,7 +35,7 @@ describe('wow creature integration', async () => {
     expect(parsed.success).toBe(true);
 
     // The display media uses its own id space, which the creature itself points to.
-    const creatureDisplayId = parsed.data!.creature_displays[0]!.id;
+    const creatureDisplayId = getRandomItem(parsed.data!.creature_displays)!.id;
     const media = await client.sendRequest(creatureDisplayMedia(creatureDisplayId));
     const parsedMedia = creatureDisplayMediaResponseSchema.safeParse(media);
     if (!parsedMedia.success) {
@@ -51,7 +52,7 @@ describe('wow creature integration', async () => {
     }
     expect(parsed.success).toBe(true);
 
-    const creatureFamilyId = parsed.data!.creature_families[0]!.id;
+    const creatureFamilyId = getRandomItem(parsed.data!.creature_families)!.id;
     const detail = await client.sendRequest(creatureFamily(creatureFamilyId));
     const parsedDetail = creatureFamilyResponseSchema.safeParse(detail);
     if (!parsedDetail.success) {
@@ -84,12 +85,12 @@ describe('wow creature integration', async () => {
     }
     expect(parsed.success).toBe(true);
 
-    const first = parsed.data!.creature_types[0]!;
-    expect(first).toBeDefined();
-    const detail = await client.sendRequest(creatureType(first.id));
+    const type = getRandomItem(parsed.data!.creature_types)!;
+    expect(type).toBeDefined();
+    const detail = await client.sendRequest(creatureType(type.id));
     const parsedDetail = creatureTypeResponseSchema.safeParse(detail);
     if (!parsedDetail.success) {
-      console.error('Creature type detail validation failed:', first.id, prettifyError(parsedDetail.error));
+      console.error('Creature type detail validation failed:', type.id, prettifyError(parsedDetail.error));
     }
     expect(parsedDetail.success).toBe(true);
   });

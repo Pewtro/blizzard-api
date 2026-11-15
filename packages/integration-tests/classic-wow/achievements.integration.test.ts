@@ -15,6 +15,7 @@ import {
   achievementResponseSchema,
 } from '../../../generated/schemas/classic-wow';
 import { getIntegrationTestClient } from '../utils/client';
+import { getRandomItem } from '../utils/random';
 
 const namespaces = ['static-classic1x', 'static-classic', 'static-classicann'] as const;
 
@@ -42,8 +43,8 @@ describe('classic-wow achievements integration', async () => {
     expect(parsedIndex.success).toBe(true);
     expect(parsedCategoryIndex.success).toBe(true);
 
-    const achievementId = parsedIndex.data!.achievements[0]?.id;
-    const categoryId = parsedCategoryIndex.data!.categories[0]?.id;
+    const achievementId = getRandomItem(parsedIndex.data!.achievements)?.id;
+    const categoryId = getRandomItem(parsedCategoryIndex.data!.categories)?.id;
     expect(achievementId).toBeTypeOf('number');
     expect(categoryId).toBeTypeOf('number');
     if (achievementId === undefined || categoryId === undefined) return;

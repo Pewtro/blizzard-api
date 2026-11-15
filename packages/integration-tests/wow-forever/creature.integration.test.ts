@@ -105,8 +105,8 @@ describe('wow-forever creature integration', async () => {
     expect(parsedCreature.success).toBe(true);
 
     const creatureDisplayId =
-      parsedCreature.data?.creature_displays.find((display) => display.id)?.id ??
-      searchResult.data.creature_displays.find((display) => display.id)?.id;
+      getRandomItem(parsedCreature.data?.creature_displays.filter((display) => display.id))?.id ??
+      getRandomItem(searchResult.data.creature_displays.filter((display) => display.id))?.id;
     if (!creatureDisplayId) return;
 
     const displayMedia = await client.sendRequest(creatureDisplayMedia(creatureDisplayId));

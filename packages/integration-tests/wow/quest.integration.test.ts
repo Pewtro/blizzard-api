@@ -87,11 +87,11 @@ describe('wow quest integration', async () => {
     }
     expect(parsedTypeIndex.success).toBe(true);
 
-    const types = parsedTypeIndex.data!.types;
-    const type = await client.sendRequest(questType(types[0]!.id));
+    const typeEntry = getRandomItem(parsedTypeIndex.data!.types)!;
+    const type = await client.sendRequest(questType(typeEntry.id));
     const parsedType = questTypeResponseSchema.safeParse(type);
     if (!parsedType.success) {
-      console.error('Quest type detail validation failed:', types[0]!.id, prettifyError(parsedType.error));
+      console.error('Quest type detail validation failed:', typeEntry.id, prettifyError(parsedType.error));
     }
     expect(parsedType.success).toBe(true);
   });

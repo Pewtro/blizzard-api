@@ -7,16 +7,17 @@ import {
   auctionHouseResponseSchema,
 } from '../../../generated/schemas/wow/auction-house';
 import { getIntegrationTestClient } from '../utils/client';
+import { getRandomItem } from '../utils/random';
 
 describe('wow auction-house integration', async () => {
   const client = await getIntegrationTestClient();
   test('validates auctions and commodities responses', async ({ expect }) => {
     const realms = await client.sendRequest(connectedRealmIndex());
-    const firstConnectedRealm = realms?.connected_realms.find((cr) => cr.href);
-    if (!firstConnectedRealm) {
+    const connectedRealm = getRandomItem(realms?.connected_realms.filter((cr) => cr.href));
+    if (!connectedRealm) {
       throw new Error('No connected realms found for testing auction house');
     }
-    const realmId = firstConnectedRealm.href.split('/').at(-1)?.split('?', 1)[0];
+    const realmId = connectedRealm.href.split('/').at(-1)?.split('?', 1)[0];
     if (!realmId) {
       throw new Error('No realm ID found for testing auction house');
     }

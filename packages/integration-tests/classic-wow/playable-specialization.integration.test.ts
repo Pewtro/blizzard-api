@@ -11,6 +11,7 @@ import {
   playableSpecializationResponseSchema,
 } from '../../../generated/schemas/classic-wow';
 import { getIntegrationTestClient } from '../utils/client';
+import { getRandomItem } from '../utils/random';
 
 describe('classic-wow playable-specialization integration', async () => {
   const client = await getIntegrationTestClient();
@@ -24,7 +25,7 @@ describe('classic-wow playable-specialization integration', async () => {
     }
     expect(parsedIndex.success).toBe(true);
 
-    const specialization = parsedIndex.data!.character_specializations[0];
+    const specialization = getRandomItem(parsedIndex.data!.character_specializations);
     expect(specialization).toBeDefined();
     if (!specialization) return;
 

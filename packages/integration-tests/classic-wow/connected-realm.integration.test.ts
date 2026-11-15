@@ -13,6 +13,7 @@ import {
   connectedRealmSearchResponseSchema,
 } from '../../../generated/schemas/classic-wow';
 import { getIntegrationTestClient } from '../utils/client';
+import { getRandomItem } from '../utils/random';
 
 describe('classic-wow connected realm integration', async () => {
   const client = await getIntegrationTestClient();
@@ -26,7 +27,8 @@ describe('classic-wow connected realm integration', async () => {
       }
       expect(parsedIndex.success).toBe(true);
 
-      const connectedRealmId = Number(/connected-realm\/(\d+)/.exec(parsedIndex.data!.connected_realms[0]!.href)?.[1]);
+      const connectedRealmEntry = getRandomItem(parsedIndex.data!.connected_realms)!;
+      const connectedRealmId = Number(/connected-realm\/(\d+)/.exec(connectedRealmEntry.href)?.[1]);
       expect(connectedRealmId).toBeTypeOf('number');
 
       const realm = await client.sendRequest(connectedRealm(namespace, connectedRealmId));
@@ -57,7 +59,8 @@ describe('classic-wow connected realm integration', async () => {
     }
     expect(parsedIndex.success).toBe(true);
 
-    const connectedRealmId = Number(/connected-realm\/(\d+)/.exec(parsedIndex.data!.connected_realms[0]!.href)?.[1]);
+    const connectedRealmEntry = getRandomItem(parsedIndex.data!.connected_realms)!;
+    const connectedRealmId = Number(/connected-realm\/(\d+)/.exec(connectedRealmEntry.href)?.[1]);
     expect(connectedRealmId).toBeTypeOf('number');
 
     const auctions = await client.sendRequest(connectedRealmAuctions('dynamic-classic', connectedRealmId));

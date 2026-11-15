@@ -15,6 +15,7 @@ import {
   pvpSeasonResponseSchema,
 } from '../../../generated/schemas/classic-wow';
 import { getIntegrationTestClient } from '../utils/client';
+import { getRandomItem } from '../utils/random';
 
 describe('classic-wow pvp season integration', async () => {
   const client = await getIntegrationTestClient();
@@ -75,7 +76,7 @@ describe('classic-wow pvp season integration', async () => {
     expect(parsedLeaderboardIndex.success).toBe(true);
     expect(parsedRewards.success).toBe(true);
 
-    const bracket = parsedLeaderboardIndex.data!.leaderboards[0]?.name;
+    const bracket = getRandomItem(parsedLeaderboardIndex.data!.leaderboards)?.name;
     expect(bracket).toBeDefined();
     if (!bracket) return;
 

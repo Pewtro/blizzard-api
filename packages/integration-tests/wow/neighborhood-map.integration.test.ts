@@ -7,6 +7,7 @@ import {
   neighborhoodResponseSchema,
 } from '../../../generated/schemas/wow';
 import { getIntegrationTestClient } from '../utils/client';
+import { getRandomItem } from '../utils/random';
 
 describe('wow neighborhood-map integration', async () => {
   const client = await getIntegrationTestClient();
@@ -19,7 +20,7 @@ describe('wow neighborhood-map integration', async () => {
     }
     expect(parsedIndex.success).toBe(true);
 
-    const map = parsedIndex.data!.maps[0];
+    const map = getRandomItem(parsedIndex.data!.maps);
     expect(map).toBeDefined();
     if (!map) return;
 

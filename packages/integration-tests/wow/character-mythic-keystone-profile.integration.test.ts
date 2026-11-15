@@ -9,6 +9,7 @@ import {
   characterMythicKeystoneSeasonDetailsResponseSchema,
 } from '../../../generated/schemas/wow';
 import { getIntegrationTestClient } from '../utils/client';
+import { getRandomItem } from '../utils/random';
 
 describe('wow character-mythic-keystone-profile integration', async () => {
   const client = await getIntegrationTestClient();
@@ -34,7 +35,7 @@ describe('wow character-mythic-keystone-profile integration', async () => {
     }
     expect(parsedIndex.success).toBe(true);
 
-    const seasonId = index?.seasons.at(0)?.id;
+    const seasonId = getRandomItem(parsedIndex.data?.seasons)?.id;
     const details = await client.sendRequest(characterMythicKeystoneSeasonDetails(realm, character, seasonId!));
     const parsedDetails = characterMythicKeystoneSeasonDetailsResponseSchema.safeParse(details);
     if (!parsedDetails.success) {

@@ -21,7 +21,7 @@ import {
   journalInstanceResponseSchema,
 } from '../../../generated/schemas/wow-forever';
 import { getIntegrationTestClient } from '../utils/client';
-import { getRandomSample } from '../utils/random';
+import { getRandomItem, getRandomSample } from '../utils/random';
 
 describe('wow-forever journal integration', async () => {
   const client = await getIntegrationTestClient();
@@ -96,16 +96,12 @@ describe('wow-forever journal integration', async () => {
       expect(parsed.success).toBe(true);
     }
 
-    const firstInstance = parsedIndex.data!.instances?.[0];
-    if (!firstInstance) return;
-    const mediaResponse = await client.sendRequest(journalInstanceMedia(firstInstance.id));
+    const instance = getRandomItem(parsedIndex.data!.instances);
+    if (!instance) return;
+    const mediaResponse = await client.sendRequest(journalInstanceMedia(instance.id));
     const parsedMedia = journalInstanceMediaResponseSchema.safeParse(mediaResponse);
     if (!parsedMedia.success) {
-      console.error(
-        'Forever journal instance media validation failed:',
-        firstInstance.id,
-        prettifyError(parsedMedia.error),
-      );
+      console.error('Forever journal instance media validation failed:', instance.id, prettifyError(parsedMedia.error));
     }
     expect(parsedMedia.success).toBe(true);
   });

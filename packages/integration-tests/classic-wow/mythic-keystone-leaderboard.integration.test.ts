@@ -14,6 +14,7 @@ import {
   mythicKeystonePeriodIndexResponseSchema,
 } from '../../../generated/schemas/classic-wow';
 import { getIntegrationTestClient } from '../utils/client';
+import { getRandomItem } from '../utils/random';
 
 const connectedRealmsToSearch = 10;
 const usRequestOptions = { locale: 'en_US', origin: 'us' } as const;
@@ -81,7 +82,7 @@ async function isLeaderboardAvailable(
       continue;
     }
 
-    const dungeonId = parsedIndex.data.current_leaderboards?.[0]?.id;
+    const dungeonId = getRandomItem(parsedIndex.data.current_leaderboards)?.id;
     if (dungeonId === undefined) continue;
 
     try {

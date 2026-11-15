@@ -25,14 +25,14 @@ describe('wow playable class integration', async () => {
     }
     expect(parsedIndex.success).toBe(true);
 
-    const randomClasses = getRandomSample(index?.classes, 5);
-    expect(randomClasses).toBeDefined();
+    const randomClasses = getRandomSample(parsedIndex.data?.classes, 5);
+    expect(randomClasses.length).toBeGreaterThan(0);
 
     for (const randomClass of randomClasses) {
       if (!randomClass) {
         throw new Error('No playable classes found in the index.');
       }
-      const resp = await client.sendRequest(playableClass(5));
+      const resp = await client.sendRequest(playableClass(randomClass.id));
       const parsed = playableClassResponseSchema.safeParse(resp);
       if (!parsed.success) {
         console.error('Playable class validation failed:', randomClass.id, prettifyError(parsed.error));

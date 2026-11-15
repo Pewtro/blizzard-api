@@ -3,6 +3,7 @@ import { describe, test } from 'vitest';
 import { prettifyError } from 'zod';
 import { heirloomIndexResponseSchema, heirloomResponseSchema } from '../../../generated/schemas/wow-forever';
 import { getIntegrationTestClient } from '../utils/client';
+import { getRandomItem } from '../utils/random';
 
 describe('wow-forever heirloom integration', async () => {
   const client = await getIntegrationTestClient();
@@ -15,7 +16,7 @@ describe('wow-forever heirloom integration', async () => {
     }
     expect(parsedIndex.success).toBe(true);
 
-    const heirloomEntry = parsedIndex.data!.heirlooms?.[0];
+    const heirloomEntry = getRandomItem(parsedIndex.data!.heirlooms);
     // Forever currently returns an empty heirloom index, so there is no detail ID to request.
     if (!heirloomEntry) return;
 

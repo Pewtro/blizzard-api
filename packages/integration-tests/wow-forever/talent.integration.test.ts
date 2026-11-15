@@ -17,7 +17,7 @@ import {
   talentTreeResponseSchema,
 } from '../../../generated/schemas/wow-forever';
 import { getIntegrationTestClient } from '../utils/client';
-import { getRandomSample } from '../utils/random';
+import { getRandomItem, getRandomSample } from '../utils/random';
 
 const idsFromHref = (href: string): { specId?: number; treeId: number } => {
   const match = /\/talent-tree\/(\d+)(?:\/playable-specialization\/(\d+))?/.exec(href);
@@ -63,7 +63,7 @@ describe('wow-forever talent integration', async () => {
     expect(parsedIndex.success).toBe(true);
 
     //Index entries carry no id, so the talent tree id (and the spec id for spec trees) are taken from the href.
-    const classTree = getRandomSample(parsedIndex.data?.class_talent_trees, 1)[0];
+    const classTree = getRandomItem(parsedIndex.data?.class_talent_trees);
     if (!classTree) return;
     const { treeId } = idsFromHref(classTree.key.href);
     const nodesResponse = await client.sendRequest(talentTreeNodes(treeId));
@@ -83,7 +83,7 @@ describe('wow-forever talent integration', async () => {
     expect(parsedIndex.success).toBe(true);
 
     //Index entries carry no id, so the talent tree id (and the spec id for spec trees) are taken from the href.
-    const specTree = getRandomSample(parsedIndex.data?.spec_talent_trees, 1)[0];
+    const specTree = getRandomItem(parsedIndex.data?.spec_talent_trees);
     if (!specTree) return;
     const { specId, treeId } = idsFromHref(specTree.key.href);
     if (specId === undefined) return;

@@ -7,6 +7,7 @@ import {
   connectedRealmSearchResponseSchema,
 } from '../../../generated/schemas/wow';
 import { getIntegrationTestClient } from '../utils/client';
+import { getRandomItem } from '../utils/random';
 
 describe('wow connected realm integration', async () => {
   const client = await getIntegrationTestClient();
@@ -17,11 +18,8 @@ describe('wow connected realm integration', async () => {
       console.error('Connected realm index validation failed:', prettifyError(parsed.error));
     }
     expect(parsed.success).toBe(true);
-    const id = resp!.connected_realms
-      .find((realm) => realm.href)
-      ?.href.split('/')
-      .pop()
-      ?.split('?', 1)[0];
+    const connectedRealmEntry = getRandomItem(resp!.connected_realms.filter((realm) => realm.href));
+    const id = connectedRealmEntry?.href.split('/').pop()?.split('?', 1)[0];
     if (!id) {
       throw new Error('No connected realms found in index response');
     }

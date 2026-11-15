@@ -40,8 +40,7 @@ describe('classic-wow item integration', async () => {
       expect(parsed.success).toBe(true);
 
       // Avoid the "WoW Token" class which has no subclasses and causes the subclass test to fail
-      const randomItemClass = getRandomItem(resp!.item_classes);
-      const foundItemClass = randomItemClass?.id === 18 ? resp!.item_classes[1] : randomItemClass;
+      const foundItemClass = getRandomItem(parsed.data!.item_classes.filter((entry) => entry.id !== 18));
 
       expect(foundItemClass).toBeDefined();
 
@@ -104,8 +103,7 @@ describe('classic-wow item integration', async () => {
       expect(parsed.success).toBe(true);
 
       // Avoid the "WoW Token" class which has no subclasses and causes the subclass test to fail
-      const randomItemClass = getRandomItem(resp!.item_classes);
-      const foundItemClass = randomItemClass?.id === 18 ? resp!.item_classes[1] : randomItemClass;
+      const foundItemClass = getRandomItem(parsed.data!.item_classes.filter((entry) => entry.id !== 18));
 
       expect(foundItemClass).toBeDefined();
 
@@ -168,8 +166,7 @@ describe('classic-wow item integration', async () => {
       expect(parsed.success).toBe(true);
 
       // Avoid the "WoW Token" class which has no subclasses and causes the subclass test to fail
-      const randomItemClass = getRandomItem(resp!.item_classes);
-      const foundItemClass = randomItemClass?.id === 18 ? resp!.item_classes[1] : randomItemClass;
+      const foundItemClass = getRandomItem(parsed.data!.item_classes.filter((entry) => entry.id !== 18));
 
       expect(foundItemClass).toBeDefined();
 

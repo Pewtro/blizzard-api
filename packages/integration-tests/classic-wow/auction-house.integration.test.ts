@@ -8,6 +8,7 @@ import {
   connectedRealmIndexResponseSchema,
 } from '../../../generated/schemas/classic-wow';
 import { getIntegrationTestClient } from '../utils/client';
+import { getRandomItem } from '../utils/random';
 
 //The auction house API is known to be flaky; skip by default.
 describe.skip('classic-wow auction house integration', async () => {
@@ -21,11 +22,11 @@ describe.skip('classic-wow auction house integration', async () => {
     }
     expect(parsedRealmIndex.success).toBe(true);
 
-    const firstRealm = realmIndexResponse?.connected_realms?.[0];
-    expect(firstRealm).toBeDefined();
+    const randomRealm = getRandomItem(realmIndexResponse?.connected_realms);
+    expect(randomRealm).toBeDefined();
 
     // Extract connected realm id from the href (e.g. /data/wow/connected-realm/123)
-    const href = firstRealm?.href;
+    const href = randomRealm?.href;
     const match = /connected-realm\/(\d+)/.exec(href ?? '');
     expect(match).toBeTruthy();
     const connectedRealmId = Number(match?.[1]);
@@ -42,10 +43,10 @@ describe.skip('classic-wow auction house integration', async () => {
     }
     expect(parsedAuctionIndex.success).toBe(true);
 
-    const firstAuctionHouse = auctionIndexResponse?.auctions?.[0];
-    expect(firstAuctionHouse).toBeDefined();
+    const randomAuctionHouse = getRandomItem(auctionIndexResponse?.auctions);
+    expect(randomAuctionHouse).toBeDefined();
 
-    const auctionHouseId = firstAuctionHouse?.id;
+    const auctionHouseId = randomAuctionHouse?.id;
     expect(auctionHouseId).toBeGreaterThan(0);
 
     // 3) Fetch auctions for that auction house and validate (may be large)

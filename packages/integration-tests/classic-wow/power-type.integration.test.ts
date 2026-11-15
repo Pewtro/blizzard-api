@@ -3,6 +3,7 @@ import { describe, expect, test } from 'vitest';
 import { prettifyError } from 'zod';
 import { powerTypeIndexResponseSchema, powerTypeResponseSchema } from '../../../generated/schemas/classic-wow';
 import { getIntegrationTestClient } from '../utils/client';
+import { getRandomItem } from '../utils/random';
 
 describe('classic-wow power type integration', async () => {
   const client = await getIntegrationTestClient();
@@ -16,7 +17,7 @@ describe('classic-wow power type integration', async () => {
       }
       expect(parsedIndex.success).toBe(true);
 
-      const powerTypeId = parsedIndex.data!.power_types[0]!.id;
+      const powerTypeId = getRandomItem(parsedIndex.data!.power_types)!.id;
       const resp = await client.sendRequest(powerType(namespace, powerTypeId));
       const parsed = powerTypeResponseSchema.safeParse(resp);
       if (!parsed.success) {

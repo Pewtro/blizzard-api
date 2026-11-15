@@ -29,33 +29,33 @@ describe('wow profession integration', async () => {
     }
     expect(parsedIndex.success).toBe(true);
 
-    const first = parsedIndex.data?.professions[0];
+    const professionEntry = getRandomItem(parsedIndex.data?.professions);
 
-    expect(first).toBeDefined();
+    expect(professionEntry).toBeDefined();
 
-    const prof = await client.sendRequest(profession(first!.id));
+    const prof = await client.sendRequest(profession(professionEntry!.id));
     const parsedProf = professionResponseSchema.safeParse(prof);
     if (!parsedProf.success) {
-      console.error('Profession detail validation failed:', first!.id, prettifyError(parsedProf.error));
+      console.error('Profession detail validation failed:', professionEntry!.id, prettifyError(parsedProf.error));
     }
     expect(parsedProf.success).toBe(true);
 
-    const media = await client.sendRequest(professionMedia(first!.id));
+    const media = await client.sendRequest(professionMedia(professionEntry!.id));
     const parsedMedia = professionMediaResponseSchema.safeParse(media);
     if (!parsedMedia.success) {
-      console.error('Profession media validation failed:', first!.id, prettifyError(parsedMedia.error));
+      console.error('Profession media validation failed:', professionEntry!.id, prettifyError(parsedMedia.error));
     }
     expect(parsedMedia.success).toBe(true);
 
     const skillTierId = getRandomItem(parsedProf.data?.skill_tiers)?.id;
 
     expect(skillTierId).toBeDefined();
-    const tier = await client.sendRequest(professionSkillTier(first!.id, skillTierId!));
+    const tier = await client.sendRequest(professionSkillTier(professionEntry!.id, skillTierId!));
     const parsedTier = professionSkillTierResponseSchema.safeParse(tier);
     if (!parsedTier.success) {
       console.error(
         'Profession skill tier detail validation failed:',
-        first!.id,
+        professionEntry!.id,
         skillTierId!,
         prettifyError(parsedTier.error),
       );
