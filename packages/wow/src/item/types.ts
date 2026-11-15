@@ -92,6 +92,7 @@ export interface ItemSetIndexResponse extends ResponseBase {
  */
 export interface ItemSetResponse extends NameId, ResponseBase {
   effects: Array<Effect>;
+  is_effect_active?: boolean;
   items: Array<NameIdKey>;
 }
 

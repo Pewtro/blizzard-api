@@ -209,6 +209,7 @@ export const itemSearchResponseSchema = searchResponseWithoutResultsSchema.exten
 
 export const itemSetResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   effects: z.array(effectSchema),
+  is_effect_active: z.boolean().optional(),
   items: z.array(nameIdKeySchema),
 });
 
