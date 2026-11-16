@@ -6,6 +6,7 @@ import {
   nameIdKeySchema,
   nameIdSchema,
   nullishNameIdKeySchema,
+  nullishNameIdSchema,
   responseBaseSchema,
 } from '../core';
 
@@ -126,7 +127,7 @@ export const talentTreeNodesResponseSchema = responseBaseSchema.extend({
   talent_nodes: z.array(talentNodeSchema),
 });
 
-export const talentTreeResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
+export const talentTreeResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
   class_talent_nodes: z.array(talentNodeSchema).optional(),
   hero_talent_trees: z.array(heroTalentTreeSchema).optional(),
   media: keyBaseSchema
@@ -137,7 +138,7 @@ export const talentTreeResponseSchema = nameIdSchema.extend(responseBaseSchema.s
     )
     .optional(),
   playable_class: nullishNameIdKeySchema,
-  playable_specialization: nameIdKeySchema.optional(),
+  playable_specialization: nullishNameIdKeySchema.optional(),
   restriction_lines: z.array(restrictionLineSchema).optional(),
   spec_talent_nodes: z.array(talentNodeSchema).optional(),
 });

@@ -1,4 +1,12 @@
-import type { IdKey, KeyBase, NameId, NameIdKey, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
+import type {
+  IdKey,
+  KeyBase,
+  NameId,
+  NameIdKey,
+  NullishNameId,
+  NullishNameIdKey,
+  ResponseBase,
+} from '@blizzard-api/core';
 
 /**
  * The response for a pvp talent index.
@@ -67,12 +75,12 @@ export interface TalentTreeNodesResponse extends ResponseBase {
  * The response for a specialization talent tree.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface TalentTreeResponse extends NameId, ResponseBase {
+export interface TalentTreeResponse extends NullishNameId, ResponseBase {
   class_talent_nodes?: Array<TalentNode>;
   hero_talent_trees?: Array<HeroTalentTree>;
   media?: KeyBase & { id?: number };
   playable_class: NullishNameIdKey;
-  playable_specialization?: NameIdKey;
+  playable_specialization?: NullishNameIdKey;
   restriction_lines?: Array<RestrictionLine>;
   spec_talent_nodes?: Array<TalentNode>;
 }
