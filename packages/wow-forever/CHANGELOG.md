@@ -1,5 +1,11 @@
 # @blizzard-api/wow-forever
 
+## 0.3.5
+
+### Patch Changes
+
+- 0547909: Mark talent tree name and playable_specialization name as nullable
+
 ## 0.3.4
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @blizzard-api/classic-wow
 
+## 4.3.6
+
+### Patch Changes
+
+- 1e31801: Mark achievement category parent_category nullable
+
 ## 4.3.5
 
 ### Patch Changes
