@@ -39,7 +39,7 @@ export interface ModifiedCraftingReagentSlotTypeIndexResponse extends ResponseBa
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface ModifiedCraftingReagentSlotTypeResponse extends ResponseBase {
-  compatible_categories: Array<IdKey & { name?: string }>;
+  compatible_categories: Array<IdKey & { name?: null | string }>;
   description: string;
   id: number;
 }

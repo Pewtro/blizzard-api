@@ -32,7 +32,7 @@ export const modifiedCraftingReagentSlotTypeResponseSchema = responseBaseSchema.
   compatible_categories: z.array(
     idKeySchema.and(
       z.strictObject({
-        name: z.string().optional(),
+        name: z.string().optional().nullable(),
       }),
     ),
   ),
