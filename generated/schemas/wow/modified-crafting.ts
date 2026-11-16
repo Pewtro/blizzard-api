@@ -36,7 +36,7 @@ export const modifiedCraftingReagentSlotTypeResponseSchema = responseBaseSchema.
       }),
     ),
   ),
-  description: z.string(),
+  description: z.string().nullable(),
   id: z.number(),
 });
 

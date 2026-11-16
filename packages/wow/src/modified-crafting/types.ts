@@ -40,7 +40,7 @@ export interface ModifiedCraftingReagentSlotTypeIndexResponse extends ResponseBa
  */
 export interface ModifiedCraftingReagentSlotTypeResponse extends ResponseBase {
   compatible_categories: Array<IdKey & { name?: null | string }>;
-  description: string;
+  description: null | string;
   id: number;
 }
 
