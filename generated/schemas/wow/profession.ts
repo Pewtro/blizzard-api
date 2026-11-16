@@ -59,7 +59,7 @@ const reagentSchema = z.strictObject({
 });
 
 export const professionSkillTierResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
-  categories: z.array(categorySchema),
+  categories: z.array(categorySchema).optional(),
   maximum_skill_level: z.number(),
   minimum_skill_level: z.number(),
 });

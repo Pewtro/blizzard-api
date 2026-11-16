@@ -42,7 +42,7 @@ export interface ProfessionResponse extends NameId, ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface ProfessionSkillTierResponse extends NameId, ResponseBase {
-  categories: Array<Category>;
+  categories?: Array<Category>;
   maximum_skill_level: number;
   minimum_skill_level: number;
 }
