@@ -100,6 +100,7 @@ const upgradeItemSchema = z.strictObject({
   item_class: nameIdKeySchema,
   item_subclass: nameIdKeySchema,
   level: attackSpeedClassSchema,
+  limit_category: z.string().optional(),
   media: idKeySchema,
   name: z.string(),
   name_description: displaySchema.optional(),

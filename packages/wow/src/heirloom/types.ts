@@ -104,6 +104,7 @@ interface UpgradeItem {
   item_class: NameIdKey;
   item_subclass: NameIdKey;
   level: AttackSpeedClass;
+  limit_category?: string;
   media: IdKey;
   name: string;
   name_description?: Display;
