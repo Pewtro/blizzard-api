@@ -1,5 +1,12 @@
 # @blizzard-api/wow
 
+## 4.2.7
+
+### Patch Changes
+
+- b01d530: Make modified crafting reagent descriptions nullable
+- 21e0005: Mark quest type quests as having nullable names
+
 ## 4.2.6
 
 ### Patch Changes
