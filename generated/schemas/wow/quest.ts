@@ -34,7 +34,7 @@ export const questTypeIndexResponseSchema = responseBaseSchema.extend({
 
 export const questTypeResponseSchema = responseBaseSchema.extend({
   id: z.number(),
-  quests: z.array(nameIdKeySchema),
+  quests: z.array(nullishNameIdKeySchema),
   type: z.string(),
 });
 

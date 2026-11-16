@@ -74,7 +74,7 @@ export interface QuestTypeIndexResponse extends ResponseBase {
  */
 export interface QuestTypeResponse extends ResponseBase {
   id: number;
-  quests: Array<NameIdKey>;
+  quests: Array<NullishNameIdKey>;
   type: string;
 }
 
