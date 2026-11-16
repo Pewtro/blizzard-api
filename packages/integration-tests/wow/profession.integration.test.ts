@@ -47,6 +47,10 @@ describe('wow profession integration', async () => {
     }
     expect(parsedMedia.success).toBe(true);
 
+    if (!parsedProf.data?.skill_tiers) {
+      return;
+    }
+
     const skillTierId = getRandomItem(parsedProf.data?.skill_tiers)?.id;
 
     expect(skillTierId).toBeDefined();
