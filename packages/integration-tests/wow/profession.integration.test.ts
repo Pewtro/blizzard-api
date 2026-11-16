@@ -68,18 +68,22 @@ describe('wow profession integration', async () => {
 
     const randomCategory = getRandomItem(parsedTier.data?.categories);
     const randomRecipe = getRandomItem(randomCategory?.recipes);
-    const recipeId = randomRecipe?.id;
+
+    if (!randomRecipe) {
+      return;
+    }
+    const recipeId = randomRecipe.id;
 
     expect(recipeId).toBeDefined();
 
-    const recipeResp = await client.sendRequest(recipe(recipeId!));
+    const recipeResp = await client.sendRequest(recipe(recipeId));
     const parsedRecipe = recipeResponseSchema.safeParse(recipeResp);
     if (!parsedRecipe.success) {
       console.error('Recipe detail validation failed:', recipeId, prettifyError(parsedRecipe.error));
     }
     expect(parsedRecipe.success).toBe(true);
 
-    const recipeMediaResp = await client.sendRequest(recipeMedia(recipeId!));
+    const recipeMediaResp = await client.sendRequest(recipeMedia(recipeId));
     const parsedRecipeMedia = recipeMediaResponseSchema.safeParse(recipeMediaResp);
     if (!parsedRecipeMedia.success) {
       console.error('Recipe media validation failed:', recipeId, prettifyError(parsedRecipeMedia.error));
