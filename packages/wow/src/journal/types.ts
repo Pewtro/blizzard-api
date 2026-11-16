@@ -9,6 +9,7 @@ import type {
   NameId,
   NameIdKey,
   NameType,
+  NullishNameId,
   NullishNameIdKey,
   ResponseBase,
   SearchResponseWithoutResults,
@@ -26,10 +27,10 @@ export interface JournalEncounterIndexResponse extends ResponseBase {
  * The response for a journal encounter.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface JournalEncounterResponse extends NameId, ResponseBase {
+export interface JournalEncounterResponse extends NullishNameId, ResponseBase {
   category: Category;
   creatures?: Array<Creature>;
-  description?: string;
+  description?: null | string;
   faction?: Faction;
   instance: KeyBase & { id: number; name?: string };
   items?: Array<Item>;

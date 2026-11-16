@@ -13,6 +13,7 @@ import {
   nameIdSchema,
   nameTypeSchema,
   nullishNameIdKeySchema,
+  nullishNameIdSchema,
   responseBaseSchema,
   searchResponseWithoutResultsSchema,
 } from '../core';
@@ -147,10 +148,10 @@ const modeSchema = nameTypeSchema.extend({
   type: modeTypeSchema,
 });
 
-export const journalEncounterResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
+export const journalEncounterResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
   category: categorySchema,
   creatures: z.array(creatureSchema).optional(),
-  description: z.string().optional(),
+  description: z.string().optional().nullable(),
   faction: factionSchema.optional(),
   instance: keyBaseSchema.and(
     z.strictObject({
