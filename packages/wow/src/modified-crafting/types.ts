@@ -1,4 +1,4 @@
-import type { Href, KeyBase, NameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { Href, IdKey, KeyBase, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a modified crafting category index.
@@ -39,7 +39,7 @@ export interface ModifiedCraftingReagentSlotTypeIndexResponse extends ResponseBa
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface ModifiedCraftingReagentSlotTypeResponse extends ResponseBase {
-  compatible_categories: Array<NameIdKey>;
+  compatible_categories: Array<IdKey & { name?: string }>;
   description: string;
   id: number;
 }
