@@ -41,7 +41,7 @@ export interface CreatureFamilyMediaResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface CreatureFamilyResponse extends NameId, ResponseBase {
-  media: IdKey;
+  media?: IdKey;
   specialization?: NameIdKey;
 }
 
