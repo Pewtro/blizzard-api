@@ -1,5 +1,12 @@
 # @blizzard-api/wow
 
+## 4.2.6
+
+### Patch Changes
+
+- 783d07d: Mark compatible_categories name as nullable
+- 2597504: Add limit_category to heirloom response
+
 ## 4.2.5
 
 ### Patch Changes
