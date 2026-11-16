@@ -32,7 +32,7 @@ export const achievementCategoryResponseSchema = nullishNameIdSchema.extend(resp
   }),
   display_order: z.number(),
   is_guild_category: z.boolean(),
-  parent_category: nameIdKeySchema.optional(),
+  parent_category: nullishNameIdKeySchema.optional(),
   subcategories: z.array(nullishNameIdKeySchema).optional(),
 });
 
