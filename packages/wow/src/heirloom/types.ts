@@ -21,6 +21,11 @@ export interface HeirloomResponse extends ResponseBase {
   upgrades: Array<Upgrade>;
 }
 
+interface Armor {
+  display: Display;
+  value: number;
+}
+
 interface AttackSpeedClass {
   display_string: string;
   value: number;
@@ -38,6 +43,19 @@ interface Display {
   display_string: string;
 }
 
+interface Effect {
+  display_string: string;
+  is_active?: boolean;
+  required_count: number;
+}
+
+interface ItemSet {
+  display_string: string;
+  effects: Array<Effect>;
+  item_set: NameIdKey;
+  items: Array<{ item: NameIdKey }>;
+}
+
 interface Requirements {
   level: RequirementsLevel;
 }
@@ -49,6 +67,7 @@ interface RequirementsLevel {
 interface Stat {
   display: Display;
   is_equip_bonus?: boolean;
+  is_negated?: boolean;
   type: NameType;
   value: number;
 }
@@ -59,10 +78,13 @@ interface Upgrade {
 }
 
 interface UpgradeItem {
+  armor?: Armor;
   binding: NameType;
-  bonus_list: Array<number>;
-  context: number;
+  bonus_list?: Array<number>;
+  context?: number;
+  description?: string;
   inventory_type: NameType;
+  is_subclass_hidden?: boolean;
   item: IdKey;
   item_class: NameIdKey;
   item_subclass: NameIdKey;
@@ -71,6 +93,7 @@ interface UpgradeItem {
   name: string;
   quality: NameType;
   requirements: Requirements;
+  set?: ItemSet;
   stats: Array<Stat>;
   upgrades: Upgrades;
   weapon?: Weapon;

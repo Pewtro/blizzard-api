@@ -6,6 +6,11 @@ export const heirloomIndexResponseSchema = responseBaseSchema.extend({
   heirlooms: z.array(nameIdKeySchema),
 });
 
+const displaySchema = z.strictObject({
+  color: colorSchema,
+  display_string: z.string(),
+});
+
 const attackSpeedClassSchema = z.strictObject({
   display_string: z.string(),
   value: z.number(),
@@ -18,9 +23,21 @@ const damageSchema = z.strictObject({
   min_value: z.number(),
 });
 
-const displaySchema = z.strictObject({
-  color: colorSchema,
+const effectSchema = z.strictObject({
   display_string: z.string(),
+  is_active: z.boolean().optional(),
+  required_count: z.number(),
+});
+
+const itemSetSchema = z.strictObject({
+  display_string: z.string(),
+  effects: z.array(effectSchema),
+  item_set: nameIdKeySchema,
+  items: z.array(
+    z.strictObject({
+      item: nameIdKeySchema,
+    }),
+  ),
 });
 
 const requirementsLevelSchema = z.strictObject({
@@ -30,7 +47,13 @@ const requirementsLevelSchema = z.strictObject({
 const statSchema = z.strictObject({
   display: displaySchema,
   is_equip_bonus: z.boolean().optional(),
+  is_negated: z.boolean().optional(),
   type: nameTypeSchema,
+  value: z.number(),
+});
+
+const armorSchema = z.strictObject({
+  display: displaySchema,
   value: z.number(),
 });
 
@@ -51,10 +74,13 @@ const weaponSchema = z.strictObject({
 });
 
 const upgradeItemSchema = z.strictObject({
+  armor: armorSchema.optional(),
   binding: nameTypeSchema,
-  bonus_list: z.array(z.number()),
-  context: z.number(),
+  bonus_list: z.array(z.number()).optional(),
+  context: z.number().optional(),
+  description: z.string().optional(),
   inventory_type: nameTypeSchema,
+  is_subclass_hidden: z.boolean().optional(),
   item: idKeySchema,
   item_class: nameIdKeySchema,
   item_subclass: nameIdKeySchema,
@@ -63,6 +89,7 @@ const upgradeItemSchema = z.strictObject({
   name: z.string(),
   quality: nameTypeSchema,
   requirements: requirementsSchema,
+  set: itemSetSchema.optional(),
   stats: z.array(statSchema),
   upgrades: upgradesSchema,
   weapon: weaponSchema.optional(),
