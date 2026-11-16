@@ -1,4 +1,4 @@
-import type { Color, IdKey, NameIdKey, NameType, ResponseBase } from '@blizzard-api/core';
+import type { Color, Faction, IdKey, NameIdKey, NameType, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for the heirloom index.
@@ -49,6 +49,11 @@ interface Effect {
   required_count: number;
 }
 
+interface FactionRequirement {
+  display_string: string;
+  value: Faction;
+}
+
 interface ItemSet {
   display_string: string;
   effects: Array<Effect>;
@@ -56,12 +61,22 @@ interface ItemSet {
   items: Array<{ item: NameIdKey }>;
 }
 
+interface ItemSpell {
+  description: string;
+  spell: NameIdKey;
+}
+
 interface Requirements {
+  faction?: FactionRequirement;
   level: RequirementsLevel;
 }
 
 interface RequirementsLevel {
   display_string: string;
+}
+
+interface Socket {
+  socket_type: NameType;
 }
 
 interface Stat {
@@ -91,10 +106,16 @@ interface UpgradeItem {
   level: AttackSpeedClass;
   media: IdKey;
   name: string;
+  name_description?: Display;
   quality: NameType;
   requirements: Requirements;
   set?: ItemSet;
+  shield_block?: Armor;
+  socket_bonus?: string;
+  sockets?: Array<Socket>;
+  spells?: Array<ItemSpell>;
   stats: Array<Stat>;
+  unique_equipped?: string;
   upgrades: Upgrades;
   weapon?: Weapon;
 }
