@@ -1,5 +1,22 @@
 # @blizzard-api/wow
 
+## 4.2.5
+
+### Patch Changes
+
+- f08b170: Update heirloom response with a bunch of new optional values
+- e73f00c: Add additional_power_types as an optional field to Playable Class responses
+- edb8894: Mark skill_tiers for professions as optional
+- 4c44bbe: Mark creature family specialization as optional
+- f013ad0: Mark weapon for heirlooms as optional
+- b4cbfa3: Mark source_description as optional in heirloom response
+- bafe069: Add optional is_effect_active to item set response
+- 8e750e5: Add various types to the heirloom response
+- 10b43df: Mark name and description as nullable for journal encounter
+- b537e0c: Mark media from creature family as optional
+- edddbb8: Mark compatible_categories name as optional
+- 02ed5a1: Mark categories for profession skill tiers as optional
+
 ## 4.2.4
 
 ### Patch Changes
