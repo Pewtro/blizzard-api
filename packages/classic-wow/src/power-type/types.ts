@@ -1,4 +1,4 @@
-import type { NameId, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { NullishNameId, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a power type index.
@@ -12,4 +12,4 @@ export interface PowerTypeIndexResponse extends ResponseBase {
  * The response for a power type.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
-export interface PowerTypeResponse extends NameId, ResponseBase {}
+export interface PowerTypeResponse extends NullishNameId, ResponseBase {}
