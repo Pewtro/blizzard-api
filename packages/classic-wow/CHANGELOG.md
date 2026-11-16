@@ -1,5 +1,14 @@
 # @blizzard-api/classic-wow
 
+## 4.3.5
+
+### Patch Changes
+
+- 39c9a8e: Mark power type name as nullable
+- d809cdd: Mark auction as optional for the connect realm auctions
+- a229f4c: Mark creature family name as nullable
+- e924fa6: Mark achievement category subcategory names nullable
+
 ## 4.3.4
 
 ### Patch Changes
