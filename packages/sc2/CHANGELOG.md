@@ -1,5 +1,12 @@
 # @blizzard-api/sc2
 
+## 3.2.8
+
+### Patch Changes
+
+- 0b514c3: Add types for the current season for legacy ladder response
+- b9bf5e2: Update ladder response
+
 ## 3.2.7
 
 ### Patch Changes
