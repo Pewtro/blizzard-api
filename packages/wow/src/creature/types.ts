@@ -51,7 +51,7 @@ export interface CreatureFamilyResponse extends NameId, ResponseBase {
  */
 export interface CreatureResponse extends NameId, ResponseBase {
   creature_displays: Array<IdKey>;
-  family: NameIdKey;
+  family?: NameIdKey;
   is_tameable: boolean;
   type: NameIdKey;
 }

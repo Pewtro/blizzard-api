@@ -33,7 +33,7 @@ export const creatureFamilyResponseSchema = nameIdSchema.extend(responseBaseSche
 
 export const creatureResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   creature_displays: z.array(idKeySchema),
-  family: nameIdKeySchema,
+  family: nameIdKeySchema.optional(),
   is_tameable: z.boolean(),
   type: nameIdKeySchema,
 });
