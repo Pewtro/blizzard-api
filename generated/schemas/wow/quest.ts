@@ -10,6 +10,10 @@ import {
   responseBaseSchema,
 } from '../core';
 
+const questOperatorSchema = nameTypeSchema.extend({
+  type: z.union([z.literal('AND'), z.literal('OR')]),
+});
+
 export const questAreaIndexResponseSchema = responseBaseSchema.extend({
   areas: z.array(nullishNameIdKeySchema),
 });
@@ -38,10 +42,6 @@ export const questIndexResponseSchema = responseBaseSchema.extend({
 
 export const questTypeIndexResponseSchema = responseBaseSchema.extend({
   types: z.array(nameIdKeySchema),
-});
-
-const questOperatorSchema = nameTypeSchema.extend({
-  type: z.union([z.literal('AND'), z.literal('OR')]),
 });
 
 export const questTypeResponseSchema = responseBaseSchema.extend({

@@ -1,5 +1,12 @@
 import type { Faction, Href, NameIdKey, NameType, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
 
+export interface QuestCondition {
+  conditions?: Array<QuestCondition>;
+  must_be_incomplete?: boolean;
+  operator?: QuestOperator;
+  target?: NullishNameIdKey;
+}
+
 /**
  * The response for a quest area index.
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
@@ -88,13 +95,6 @@ interface CurrencyReward {
 interface Money {
   units: Units;
   value: number;
-}
-
-interface QuestCondition {
-  conditions?: Array<QuestCondition>;
-  must_be_incomplete?: boolean;
-  operator?: QuestOperator;
-  target?: NullishNameIdKey;
 }
 
 interface QuestOperator extends NameType {
