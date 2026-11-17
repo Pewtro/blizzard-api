@@ -4,7 +4,7 @@ export interface LegacyAchievementsResponse {
 }
 
 export interface LegacyLaddersResponse {
-  currentSeason: Array<unknown>;
+  currentSeason: Array<LegacySeason>;
   previousSeason: Array<LegacySeason>;
   showcasePlacement: Array<unknown>;
 }
@@ -152,7 +152,7 @@ interface LegacySeasonLadder {
   losses: number;
   matchMakingQueue: string;
   rank: number;
-  showcase: false;
+  showcase: boolean;
   wins: number;
 }
 

@@ -97,7 +97,7 @@ const legacySeasonLadderSchema = z.strictObject({
   losses: z.number(),
   matchMakingQueue: z.string(),
   rank: z.number(),
-  showcase: z.literal(false),
+  showcase: z.boolean(),
   wins: z.number(),
 });
 
@@ -181,7 +181,7 @@ export const legacyAchievementsResponseSchema = z.strictObject({
 });
 
 export const legacyLaddersResponseSchema = z.strictObject({
-  currentSeason: z.array(z.unknown()),
+  currentSeason: z.array(legacySeasonSchema),
   previousSeason: z.array(legacySeasonSchema),
   showcasePlacement: z.array(z.unknown()),
 });
