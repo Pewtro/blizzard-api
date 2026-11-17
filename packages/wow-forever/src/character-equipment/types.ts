@@ -51,7 +51,7 @@ interface Effect {
 }
 
 interface Enchantment {
-  display_string: string;
+  display_string: null | string;
   enchantment_id: number;
   enchantment_slot: EnchantmentSlot;
   source_item?: NullishNameIdKey;
@@ -116,6 +116,7 @@ interface PlayableClasses {
 interface Requirements {
   level?: DisplayStringValue;
   playable_classes?: PlayableClasses;
+  skill?: SkillRequirement;
 }
 
 interface SellPrice {
@@ -128,6 +129,12 @@ interface Set {
   effects: Array<Effect>;
   item_set: NameIdKey;
   items: Array<ItemElement>;
+}
+
+interface SkillRequirement {
+  display_string: string;
+  level: number;
+  profession: NameIdKey;
 }
 
 interface Socket {

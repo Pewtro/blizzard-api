@@ -53,7 +53,7 @@ const armorSchema = z.strictObject({
 });
 
 const enchantmentSchema = z.strictObject({
-  display_string: z.string(),
+  display_string: z.string().nullable(),
   enchantment_id: z.number(),
   enchantment_slot: enchantmentSlotSchema,
   source_item: nullishNameIdKeySchema.optional(),
@@ -113,9 +113,10 @@ const playableClassesSchema = z.strictObject({
   links: z.array(nullishNameIdKeySchema),
 });
 
-const requirementsSchema = z.strictObject({
-  level: displayStringValueSchema.optional(),
-  playable_classes: playableClassesSchema.optional(),
+const skillRequirementSchema = z.strictObject({
+  display_string: z.string(),
+  level: z.number(),
+  profession: nameIdKeySchema,
 });
 
 const setSchema = z.strictObject({
@@ -123,6 +124,12 @@ const setSchema = z.strictObject({
   effects: z.array(effectSchema),
   item_set: nameIdKeySchema,
   items: z.array(itemElementSchema),
+});
+
+const requirementsSchema = z.strictObject({
+  level: displayStringValueSchema.optional(),
+  playable_classes: playableClassesSchema.optional(),
+  skill: skillRequirementSchema.optional(),
 });
 
 const equippedItemSchema = z.strictObject({
