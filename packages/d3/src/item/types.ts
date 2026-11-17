@@ -1,16 +1,18 @@
 export interface Attributes {
-  other: Array<unknown>;
+  other: Array<Primary>;
   primary: Array<Primary>;
   secondary: Array<Primary>;
 }
 
 export interface ItemResponse {
   accountBound: boolean;
+  armor?: string;
+  armorHtml?: string;
   attributes: Attributes;
   color: string;
-  damage: string;
-  damageHtml: string;
-  dps: string;
+  damage?: string;
+  damageHtml?: string;
+  dps?: string;
   flavorText: string;
   flavorTextHtml: string;
   icon: string;
@@ -20,7 +22,11 @@ export interface ItemResponse {
   randomAffixes: Array<RandomAffix>;
   requiredLevel: number;
   seasonRequiredToDrop: number;
-  setItems: Array<unknown>;
+  setDescription?: string;
+  setDescriptionHtml?: string;
+  setItems: Array<string>;
+  setName?: string;
+  setNameHtml?: string;
   slots: Array<string>;
   slug: string;
   stackSizeMax: number;

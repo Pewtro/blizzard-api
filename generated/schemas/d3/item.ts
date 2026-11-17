@@ -7,7 +7,7 @@ export const primarySchema = z.strictObject({
 });
 
 export const attributesSchema = z.strictObject({
-  other: z.array(z.unknown()),
+  other: z.array(primarySchema),
   primary: z.array(primarySchema),
   secondary: z.array(primarySchema),
 });
@@ -23,11 +23,13 @@ export const typeSchema = z.strictObject({
 
 export const itemResponseSchema = z.strictObject({
   accountBound: z.boolean(),
+  armor: z.string().optional(),
+  armorHtml: z.string().optional(),
   attributes: attributesSchema,
   color: z.string(),
-  damage: z.string(),
-  damageHtml: z.string(),
-  dps: z.string(),
+  damage: z.string().optional(),
+  damageHtml: z.string().optional(),
+  dps: z.string().optional(),
   flavorText: z.string(),
   flavorTextHtml: z.string(),
   icon: z.string(),
@@ -37,7 +39,11 @@ export const itemResponseSchema = z.strictObject({
   randomAffixes: z.array(randomAffixSchema),
   requiredLevel: z.number(),
   seasonRequiredToDrop: z.number(),
-  setItems: z.array(z.unknown()),
+  setDescription: z.string().optional(),
+  setDescriptionHtml: z.string().optional(),
+  setItems: z.array(z.string()),
+  setName: z.string().optional(),
+  setNameHtml: z.string().optional(),
   slots: z.array(z.string()),
   slug: z.string(),
   stackSizeMax: z.number(),
