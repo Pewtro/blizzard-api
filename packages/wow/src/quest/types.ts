@@ -52,12 +52,14 @@ export interface QuestIndexResponse extends ResponseBase {
  */
 export interface QuestResponse extends ResponseBase {
   area?: NameIdKey;
-  category: NameIdKey;
-  description: string;
+  category?: NameIdKey;
+  description?: string;
   id: number;
+  is_daily?: boolean;
   requirements: Requirements;
   rewards: Rewards;
   title: string;
+  type?: NameIdKey;
 }
 
 /**
@@ -78,9 +80,26 @@ export interface QuestTypeResponse extends ResponseBase {
   type: string;
 }
 
+interface CurrencyReward {
+  reward: NameIdKey;
+  value: number;
+}
+
 interface Money {
   units: Units;
   value: number;
+}
+
+interface QuestRewardIndividualItem {
+  item: NameIdKey;
+  requirements?: {
+    playable_specializations?: Array<NameIdKey>;
+  };
+}
+
+interface QuestRewardItems {
+  choice_of?: Array<QuestRewardIndividualItem>;
+  items?: Array<QuestRewardIndividualItem>;
 }
 
 interface Reputation {
@@ -94,16 +113,21 @@ interface ReputationRequirement {
 }
 
 interface Requirements {
-  faction: Faction;
+  classes?: Array<NameIdKey>;
+  faction?: Faction;
   max_character_level: number;
   min_character_level: number;
-  reputations: Array<ReputationRequirement>;
+  races?: Array<NameIdKey>;
+  reputations?: Array<ReputationRequirement>;
 }
 
 interface Rewards {
-  experience: number;
-  money: Money;
-  reputations: Array<Reputation>;
+  currency?: Array<CurrencyReward>;
+  experience?: number;
+  items?: QuestRewardItems;
+  money?: Money;
+  reputations?: Array<Reputation>;
+  spell?: NameIdKey;
 }
 
 interface Units {

@@ -38,10 +38,29 @@ export const questTypeResponseSchema = responseBaseSchema.extend({
   type: z.string(),
 });
 
+const currencyRewardSchema = z.strictObject({
+  reward: nameIdKeySchema,
+  value: z.number(),
+});
+
 const unitsSchema = z.strictObject({
   copper: z.number(),
   gold: z.number(),
   silver: z.number(),
+});
+
+const questRewardIndividualItemSchema = z.strictObject({
+  item: nameIdKeySchema,
+  requirements: z
+    .strictObject({
+      playable_specializations: z.array(nameIdKeySchema).optional(),
+    })
+    .optional(),
+});
+
+const questRewardItemsSchema = z.strictObject({
+  choice_of: z.array(questRewardIndividualItemSchema).optional(),
+  items: z.array(questRewardIndividualItemSchema).optional(),
 });
 
 const reputationSchema = z.strictObject({
@@ -55,10 +74,12 @@ const reputationRequirementSchema = z.strictObject({
 });
 
 const requirementsSchema = z.strictObject({
-  faction: factionSchema,
+  classes: z.array(nameIdKeySchema).optional(),
+  faction: factionSchema.optional(),
   max_character_level: z.number(),
   min_character_level: z.number(),
-  reputations: z.array(reputationRequirementSchema),
+  races: z.array(nameIdKeySchema).optional(),
+  reputations: z.array(reputationRequirementSchema).optional(),
 });
 
 const moneySchema = z.strictObject({
@@ -67,17 +88,22 @@ const moneySchema = z.strictObject({
 });
 
 const rewardsSchema = z.strictObject({
-  experience: z.number(),
-  money: moneySchema,
-  reputations: z.array(reputationSchema),
+  currency: z.array(currencyRewardSchema).optional(),
+  experience: z.number().optional(),
+  items: questRewardItemsSchema.optional(),
+  money: moneySchema.optional(),
+  reputations: z.array(reputationSchema).optional(),
+  spell: nameIdKeySchema.optional(),
 });
 
 export const questResponseSchema = responseBaseSchema.extend({
   area: nameIdKeySchema.optional(),
-  category: nameIdKeySchema,
-  description: z.string(),
+  category: nameIdKeySchema.optional(),
+  description: z.string().optional(),
   id: z.number(),
+  is_daily: z.boolean().optional(),
   requirements: requirementsSchema,
   rewards: rewardsSchema,
   title: z.string(),
+  type: nameIdKeySchema.optional(),
 });
