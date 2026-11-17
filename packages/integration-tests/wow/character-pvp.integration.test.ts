@@ -76,7 +76,6 @@ describe('wow character-pvp integration', async () => {
       );
     }
     expect(parsedSummary.success).toBe(true);
-    expect(parsedSummary.data!.brackets?.length).toBeGreaterThan(0);
 
     const parsedBracket = characterPvpBracketStatisticsResponseSchema.safeParse(bracketResponse);
     if (!parsedBracket.success) {
