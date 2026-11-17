@@ -55,7 +55,11 @@ export const playableSpecializationResponseSchema = nameIdSchema.extend(response
   hero_talent_trees: z.array(nullishNameIdKeySchema).optional(),
   media: idKeySchema,
   playable_class: nameIdKeySchema,
-  power_type: nameIdKeySchema,
+  power_type: idKeySchema.and(
+    z.strictObject({
+      name: z.string().optional(),
+    }),
+  ),
   primary_stat_type: nameTypeSchema,
   pvp_talents: z.array(pvpTalentSchema).optional(),
   role: nameTypeSchema,

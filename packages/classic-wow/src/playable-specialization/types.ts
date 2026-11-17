@@ -37,7 +37,7 @@ export interface PlayableSpecializationResponse extends NameId, ResponseBase {
   hero_talent_trees?: Array<NullishNameIdKey>;
   media: IdKey;
   playable_class: NameIdKey;
-  power_type: NameIdKey;
+  power_type: IdKey & { name?: string };
   primary_stat_type: NameType;
   pvp_talents?: Array<PvpTalent>;
   role: NameType;
