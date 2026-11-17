@@ -22,7 +22,9 @@ export const professionMediaResponseSchema = responseBaseSchema.extend({
 
 export const professionResponseSchema = nameIdSchema.extend(responseBaseSchema.shape).extend({
   description: z.string(),
+  maximum_skill_level: z.number().optional(),
   media: idKeySchema,
+  minimum_skill_level: z.number().optional(),
   skill_tiers: z.array(nameIdKeySchema).optional(),
   type: nameTypeSchema,
 });

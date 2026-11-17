@@ -32,7 +32,9 @@ export interface ProfessionMediaResponse extends ResponseBase {
  */
 export interface ProfessionResponse extends NameId, ResponseBase {
   description: string;
+  maximum_skill_level?: number;
   media: IdKey;
+  minimum_skill_level?: number;
   skill_tiers?: Array<NameIdKey>;
   type: NameType;
 }
