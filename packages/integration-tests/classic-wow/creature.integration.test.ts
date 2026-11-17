@@ -29,7 +29,25 @@ describe('classic-wow creature integration', async () => {
   const client = await getIntegrationTestClient();
 
   test.each(namespaces)('validates the creature and its display media for %s', async (namespace) => {
-    const resp = await client.sendRequest(creature(namespace, 30));
+    const searchResponse = await client.sendRequest(
+      creatureSearch(namespace, { _page: 1, locale: 'en_GB', name: 'wolf' }),
+    );
+    const parsedSearch = creatureSearchResponseSchema.safeParse(searchResponse);
+    if (!parsedSearch.success) {
+      console.error('Creature search validation failed:', prettifyError(parsedSearch.error));
+    }
+    expect(parsedSearch.success).toBe(true);
+
+    const creatureEntry = getRandomItem(
+      parsedSearch.data!.results.filter(
+        (result) =>
+          result.data.creature_displays.length > 0 && typeof result.data.name[client.defaults.locale] === 'string',
+      ),
+    );
+    expect(creatureEntry).toBeDefined();
+    if (!creatureEntry) return;
+
+    const resp = await client.sendRequest(creature(namespace, creatureEntry.data.id));
     const parsed = creatureResponseSchema.safeParse(resp);
     if (!parsed.success) {
       console.error('Creature validation failed', prettifyError(parsed.error));
