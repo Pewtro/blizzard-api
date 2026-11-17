@@ -1,4 +1,4 @@
-import type { Faction, Href, NameIdKey, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { Faction, Href, NameIdKey, NameType, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a quest area index.
@@ -90,6 +90,22 @@ interface Money {
   value: number;
 }
 
+interface QuestCondition {
+  conditions?: Array<QuestCondition>;
+  must_be_incomplete?: boolean;
+  operator?: QuestOperator;
+  target?: NullishNameIdKey;
+}
+
+interface QuestOperator extends NameType {
+  type: 'AND' | 'OR';
+}
+
+interface QuestRequirement {
+  conditions: Array<QuestCondition>;
+  operator: QuestOperator;
+}
+
 interface QuestRewardIndividualItem {
   item: NameIdKey;
   requirements?: {
@@ -117,6 +133,7 @@ interface Requirements {
   faction?: Faction;
   max_character_level: number;
   min_character_level: number;
+  quests?: QuestRequirement;
   races?: Array<NameIdKey>;
   reputations?: Array<ReputationRequirement>;
 }
