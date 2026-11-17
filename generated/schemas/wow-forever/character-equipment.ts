@@ -110,7 +110,7 @@ const itemElementSchema = z.strictObject({
 
 const playableClassesSchema = z.strictObject({
   display_string: z.string(),
-  links: z.array(nameIdKeySchema),
+  links: z.array(nullishNameIdKeySchema),
 });
 
 const requirementsSchema = z.strictObject({
@@ -143,7 +143,7 @@ const equippedItemSchema = z.strictObject({
   media: idKeySchema,
   modified_appearance_id: z.number().optional(),
   modified_crafting_stat: z.array(modifiedCraftingStatSchema).optional(),
-  name: z.string(),
+  name: z.string().nullable(),
   name_description: nameDescriptionSchema.optional(),
   quality: nameTypeSchema,
   quantity: z.number(),

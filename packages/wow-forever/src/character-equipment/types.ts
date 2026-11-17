@@ -80,7 +80,7 @@ interface EquippedItem {
   media: IdKey;
   modified_appearance_id?: number;
   modified_crafting_stat?: Array<ModifiedCraftingStat>;
-  name: string;
+  name: null | string;
   name_description?: NameDescription;
   quality: NameType;
   quantity: number;
@@ -110,7 +110,7 @@ interface NameDescription {
 
 interface PlayableClasses {
   display_string: string;
-  links: Array<NameIdKey>;
+  links: Array<NullishNameIdKey>;
 }
 
 interface Requirements {
