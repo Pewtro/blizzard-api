@@ -136,6 +136,7 @@ export const questResponseSchema = responseBaseSchema.extend({
   description: z.string().optional(),
   id: z.number(),
   is_daily: z.boolean().optional(),
+  is_repeatable: z.boolean().optional(),
   is_weekly: z.boolean().optional(),
   requirements: requirementsSchema,
   rewards: rewardsSchema,

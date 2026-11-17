@@ -63,6 +63,7 @@ export interface QuestResponse extends ResponseBase {
   description?: string;
   id: number;
   is_daily?: boolean;
+  is_repeatable?: boolean;
   is_weekly?: boolean;
   requirements: Requirements;
   rewards: Rewards;
