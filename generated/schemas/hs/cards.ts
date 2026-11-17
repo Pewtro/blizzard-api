@@ -167,6 +167,7 @@ export const fetchOneCardResponseSchema = z.strictObject({
   armor: z.number().optional(),
   artistName: z.string().nullable(),
   attack: z.number().optional(),
+  bannedFromSideboard: z.number().optional(),
   cardSetId: z.number(),
   cardTypeId: z.number(),
   childIds: z.array(z.number()).optional(),
@@ -201,4 +202,5 @@ export const fetchOneCardResponseSchema = z.strictObject({
   slug: z.string(),
   spellSchoolId: z.number().optional(),
   text: z.union([z.record(localesSchema, z.string()), z.string()]),
+  touristClassId: z.number().optional(),
 });

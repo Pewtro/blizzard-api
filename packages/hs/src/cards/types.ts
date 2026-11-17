@@ -31,6 +31,7 @@ export interface FetchOneCardResponse {
   armor?: number;
   artistName: null | string;
   attack?: number;
+  bannedFromSideboard?: number;
   cardSetId: number;
   cardTypeId: number;
   childIds?: Array<number>;
@@ -59,6 +60,7 @@ export interface FetchOneCardResponse {
   slug: string;
   spellSchoolId?: number;
   text: Record<Locales, string> | string;
+  touristClassId?: number;
 }
 
 export type GameMode = 'arena' | 'battlegrounds' | 'classic' | 'constructed' | 'duels' | 'mercenaries' | 'standard';
