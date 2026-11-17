@@ -1,13 +1,16 @@
 export interface LadderResponse {
-  allLadderMemberships: Array<unknown>;
-  ladderTeams: Array<unknown>;
-  ranksAndPools: Array<unknown>;
+  allLadderMemberships: Array<LadderMembership>;
+  currentLadderMembership?: CurrentLadderMembership;
+  ladderTeams: Array<ProfileLadderTeam>;
+  league?: string;
+  localizedDivision?: string;
+  ranksAndPools: Array<RankAndPool>;
 }
 
 export interface LadderSummaryResponse {
-  allLadderMemberships: Array<unknown>;
+  allLadderMemberships: Array<LadderMembership>;
   placementMatches: Array<unknown>;
-  showCaseEntries: Array<unknown>;
+  showCaseEntries: Array<ShowcaseEntry>;
 }
 
 export interface MetadataResponse {
@@ -74,6 +77,19 @@ interface Criterion {
   uiOrderHint: number;
 }
 
+interface CurrentLadderMembership {
+  ladderId: string;
+  localizedGameMode: string;
+}
+
+type FavoriteRace = 'protoss' | 'random' | 'terran' | 'zerg';
+
+interface LadderMembership {
+  ladderId: string;
+  localizedGameMode: string;
+  rank: number;
+}
+
 interface ProfileCampaigns {
   difficultyCompleted: {
     'heart-of-the-swarm': string;
@@ -129,6 +145,23 @@ interface ProfileEarnedRewards {
   selected: boolean;
 }
 
+interface ProfileLadderTeam {
+  joinTimestamp: number;
+  losses: number;
+  mmr?: number;
+  points: number;
+  previousRank: number;
+  teamMembers: Array<{
+    clanTag?: string;
+    displayName: string;
+    favoriteRace?: FavoriteRace;
+    id: string;
+    realm: number;
+    region: number;
+  }>;
+  wins: number;
+}
+
 interface ProfileSeasonSnapshot {
   '1v1': SeasonSnapshot;
   '2v2': SeasonSnapshot;
@@ -167,6 +200,12 @@ interface ProfileSwarmLevels {
   zerg: ProfileSwarmLevelByRace;
 }
 
+interface RankAndPool {
+  bonusPool: number;
+  mmr: number;
+  rank: number;
+}
+
 interface Reward {
   achievementId?: string;
   command?: '/dance' | (string & {});
@@ -184,4 +223,22 @@ interface SeasonSnapshot {
   rank: number;
   totalGames: number;
   totalWins: number;
+}
+
+interface ShowcaseEntry {
+  ladderId: string;
+  leagueName: string;
+  localizedDivisionName: string;
+  losses: number;
+  rank: number;
+  team: {
+    localizedGameMode: string;
+    members: Array<{
+      favoriteRace: FavoriteRace;
+      name: string;
+      playerId: string;
+      region: number;
+    }>;
+  };
+  wins: number;
 }

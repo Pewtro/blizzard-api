@@ -14,7 +14,15 @@ describe('sc2 profile integration', async () => {
   const client = await getIntegrationTestClient();
 
   test('fetches ladder', async ({ expect }) => {
-    const response = await client.sendRequest(sc2.ladder('eu', 1, 9_500_381, 1));
+    const summary = await client.sendRequest(sc2.ladderSummary('eu', 1, 9_500_381));
+    const parsedSummary = ladderSummaryResponseSchema.safeParse(summary);
+    if (!parsedSummary.success) {
+      console.error('Ladder Summary failed', prettifyError(parsedSummary.error));
+    }
+    expect(parsedSummary.success).toBe(true);
+
+    const ladderId = Number(parsedSummary.data!.allLadderMemberships[0]?.ladderId ?? 1);
+    const response = await client.sendRequest(sc2.ladder('eu', 1, 9_500_381, ladderId));
     const parsedResponse = ladderResponseSchema.safeParse(response);
     if (!parsedResponse.success) {
       console.error('Ladder failed', prettifyError(parsedResponse.error));
