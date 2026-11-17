@@ -1,5 +1,12 @@
 # @blizzard-api/classic-wow
 
+## 4.3.7
+
+### Patch Changes
+
+- b2165d1: Mark verbose_name for item sub class as nullable
+- 7706465: Mark power_type name for playable specializations as optional
+
 ## 4.3.6
 
 ### Patch Changes

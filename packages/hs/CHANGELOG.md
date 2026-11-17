@@ -1,5 +1,11 @@
 # @blizzard-api/hs
 
+## 3.2.9
+
+### Patch Changes
+
+- 1b75d53: Add bannedFromSideboard and touristClassId as optional responses for fetching one card
+
 ## 3.2.8
 
 ### Patch Changes

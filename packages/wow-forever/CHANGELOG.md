@@ -1,5 +1,13 @@
 # @blizzard-api/wow-forever
 
+## 0.3.6
+
+### Patch Changes
+
+- 7fa0b6a: Mark name on equipped item nullable
+- 7fa0b6a: Mark link names as nullable for playable classes
+- 4e749ba: Mark verbose_name from item subclass as nullable
+
 ## 0.3.5
 
 ### Patch Changes
