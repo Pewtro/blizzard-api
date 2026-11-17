@@ -7,17 +7,11 @@ import {
   spellSearchResponseSchema,
 } from '../../../generated/schemas/wow/spell';
 import { getIntegrationTestClient } from '../utils/client';
+import { getRandomItem } from '../utils/random';
 
 describe('wow spell integration', async () => {
   const client = await getIntegrationTestClient();
   test('validates spell search and media responses', async ({ expect }) => {
-    const spellResp = await client.sendRequest(spell(217_200));
-    const parsedSpell = spellResponseSchema.safeParse(spellResp);
-    if (!parsedSpell.success) {
-      console.error('Spell detail validation failed:', prettifyError(parsedSpell.error));
-    }
-    expect(parsedSpell.success).toBe(true);
-
     const search = await client.sendRequest(spellSearch({ locale: 'en_GB', name: 'Barbed' }));
     const parsedSearch = spellSearchResponseSchema.safeParse(search);
     if (!parsedSearch.success) {
@@ -25,10 +19,21 @@ describe('wow spell integration', async () => {
     }
     expect(parsedSearch.success).toBe(true);
 
-    const media = await client.sendRequest(spellMedia(1_264_781));
+    const result = getRandomItem(parsedSearch.data!.results);
+    expect(result).toBeDefined();
+    if (!result) return;
+
+    const spellResp = await client.sendRequest(spell(result.data.id));
+    const parsedSpell = spellResponseSchema.safeParse(spellResp);
+    if (!parsedSpell.success) {
+      console.error('Spell detail validation failed:', result.data.id, prettifyError(parsedSpell.error));
+    }
+    expect(parsedSpell.success).toBe(true);
+
+    const media = await client.sendRequest(spellMedia(result.data.media.id));
     const parsedMedia = spellMediaResponseSchema.safeParse(media);
     if (!parsedMedia.success) {
-      console.error('Spell media validation failed:', prettifyError(parsedMedia.error));
+      console.error('Spell media validation failed:', result.data.media.id, prettifyError(parsedMedia.error));
     }
     expect(parsedMedia.success).toBe(true);
   });

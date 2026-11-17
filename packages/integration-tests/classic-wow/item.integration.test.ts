@@ -17,17 +17,30 @@ describe('classic-wow item integration', async () => {
 
   describe('classic era', () => {
     test('validates item and item media', async ({ expect }) => {
-      const resp = await client.sendRequest(item('static-classic1x', 19_019));
+      const search = await client.sendRequest(
+        itemSearch('static-classic1x', { _page: 1, locale: 'en_GB', name: 'Thunderfury' }),
+      );
+      const parsedSearch = itemSearchResponseSchema.safeParse(search);
+      if (!parsedSearch.success) {
+        console.error('Item search validation failed:', prettifyError(parsedSearch.error));
+      }
+      expect(parsedSearch.success).toBe(true);
+
+      const itemEntry = getRandomItem(parsedSearch.data!.results.filter((result) => result.data.item_class.id === 2));
+      expect(itemEntry).toBeDefined();
+      if (!itemEntry) return;
+
+      const resp = await client.sendRequest(item('static-classic1x', itemEntry.data.id));
       const parsed = itemResponseSchema.safeParse(resp);
       if (!parsed.success) {
-        console.error('Item validation failed', prettifyError(parsed.error));
+        console.error('Item validation failed', itemEntry.data.id, prettifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
 
-      const respMedia = await client.sendRequest(itemMedia('static-classic1x', 19_019));
+      const respMedia = await client.sendRequest(itemMedia('static-classic1x', itemEntry.data.id));
       const parsedMedia = itemMediaResponseSchema.safeParse(respMedia);
       if (!parsedMedia.success) {
-        console.error('Item media validation failed', prettifyError(parsedMedia.error));
+        console.error('Item media validation failed', itemEntry.data.id, prettifyError(parsedMedia.error));
       }
       expect(parsedMedia.success).toBe(true);
     });
@@ -80,17 +93,30 @@ describe('classic-wow item integration', async () => {
 
   describe('classic progression', () => {
     test('validates item and item media', async ({ expect }) => {
-      const resp = await client.sendRequest(item('static-classic', 19_019));
+      const search = await client.sendRequest(
+        itemSearch('static-classic', { _page: 1, locale: 'en_GB', name: 'Thunderfury' }),
+      );
+      const parsedSearch = itemSearchResponseSchema.safeParse(search);
+      if (!parsedSearch.success) {
+        console.error('Item search validation failed:', prettifyError(parsedSearch.error));
+      }
+      expect(parsedSearch.success).toBe(true);
+
+      const itemEntry = getRandomItem(parsedSearch.data!.results.filter((result) => result.data.item_class.id === 2));
+      expect(itemEntry).toBeDefined();
+      if (!itemEntry) return;
+
+      const resp = await client.sendRequest(item('static-classic', itemEntry.data.id));
       const parsed = itemResponseSchema.safeParse(resp);
       if (!parsed.success) {
-        console.error('Item validation failed', prettifyError(parsed.error));
+        console.error('Item validation failed', itemEntry.data.id, prettifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
 
-      const respMedia = await client.sendRequest(itemMedia('static-classic', 19_019));
+      const respMedia = await client.sendRequest(itemMedia('static-classic', itemEntry.data.id));
       const parsedMedia = itemMediaResponseSchema.safeParse(respMedia);
       if (!parsedMedia.success) {
-        console.error('Item media validation failed', prettifyError(parsedMedia.error));
+        console.error('Item media validation failed', itemEntry.data.id, prettifyError(parsedMedia.error));
       }
       expect(parsedMedia.success).toBe(true);
     });
@@ -143,17 +169,30 @@ describe('classic-wow item integration', async () => {
 
   describe('classic anniversary', () => {
     test('validates item and item media', async ({ expect }) => {
-      const resp = await client.sendRequest(item('static-classicann', 19_019));
+      const search = await client.sendRequest(
+        itemSearch('static-classicann', { _page: 1, locale: 'en_GB', name: 'Thunderfury' }),
+      );
+      const parsedSearch = itemSearchResponseSchema.safeParse(search);
+      if (!parsedSearch.success) {
+        console.error('Item search validation failed:', prettifyError(parsedSearch.error));
+      }
+      expect(parsedSearch.success).toBe(true);
+
+      const itemEntry = getRandomItem(parsedSearch.data!.results.filter((result) => result.data.item_class.id === 2));
+      expect(itemEntry).toBeDefined();
+      if (!itemEntry) return;
+
+      const resp = await client.sendRequest(item('static-classicann', itemEntry.data.id));
       const parsed = itemResponseSchema.safeParse(resp);
       if (!parsed.success) {
-        console.error('Item validation failed', prettifyError(parsed.error));
+        console.error('Item validation failed', itemEntry.data.id, prettifyError(parsed.error));
       }
       expect(parsed.success).toBe(true);
 
-      const respMedia = await client.sendRequest(itemMedia('static-classicann', 19_019));
+      const respMedia = await client.sendRequest(itemMedia('static-classicann', itemEntry.data.id));
       const parsedMedia = itemMediaResponseSchema.safeParse(respMedia);
       if (!parsedMedia.success) {
-        console.error('Item media validation failed:', prettifyError(parsedMedia.error));
+        console.error('Item media validation failed:', itemEntry.data.id, prettifyError(parsedMedia.error));
       }
       expect(parsedMedia.success).toBe(true);
     });

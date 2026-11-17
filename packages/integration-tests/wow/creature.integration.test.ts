@@ -21,13 +21,31 @@ import {
   creatureTypeResponseSchema,
 } from '../../../generated/schemas/wow/creature';
 import { getIntegrationTestClient } from '../utils/client';
-import { getRandomItem } from '../utils/random';
+import { getRandomItem, getRandomSample } from '../utils/random';
 
 describe('wow creature integration', async () => {
   const client = await getIntegrationTestClient();
 
   test('validates creature details', async () => {
-    const resp = await client.sendRequest(creature(42_722));
+    const search = await client.sendRequest(creatureSearch({ _page: 1, locale: 'en_GB', name: 'dragon' }));
+    const parsedSearch = creatureSearchResponseSchema.safeParse(search);
+    if (!parsedSearch.success) {
+      console.error('Creature search validation failed:', prettifyError(parsedSearch.error));
+    }
+    expect(parsedSearch.success).toBe(true);
+
+    const candidates = getRandomSample(
+      parsedSearch.data!.results.filter(
+        (result) =>
+          result.data.creature_displays.length > 0 && typeof result.data.name[client.defaults.locale] === 'string',
+      ),
+      10,
+    );
+    expect(candidates.length).toBeGreaterThan(0);
+    if (candidates.length === 0) return;
+
+    const creatureEntry = getRandomItem(candidates)!;
+    const resp = await client.sendRequest(creature(creatureEntry.data.id));
     const parsed = creatureResponseSchema.safeParse(resp);
     if (!parsed.success) {
       console.error('Creature detail validation failed:', prettifyError(parsed.error));
