@@ -1,4 +1,4 @@
-import type { Character, Faction, IdKey, NameId, ResponseBase } from '@blizzard-api/core';
+import type { Character, Faction, Href, IdKey, NameId, ResponseBase } from '@blizzard-api/core';
 
 export interface CharacterPvpBracketStatisticsResponse extends ResponseBase {
   bracket: Bracket;
@@ -12,10 +12,11 @@ export interface CharacterPvpBracketStatisticsResponse extends ResponseBase {
 }
 
 export interface CharacterPvpSummaryResponse extends ResponseBase {
+  brackets?: Array<Href>;
   character: Character;
   honor_level: number;
   honorable_kills: number;
-  pvp_map_statistics: Array<PvpMapStatistic>;
+  pvp_map_statistics?: Array<PvpMapStatistic>;
 }
 
 interface Bracket {
