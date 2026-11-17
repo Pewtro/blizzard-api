@@ -1,5 +1,12 @@
 # @blizzard-api/wow
 
+## 4.2.9
+
+### Patch Changes
+
+- 4b253f4: Add is_weekly to quest response
+- f86c2f4: Add quests as a possible requirement for quests in the quest response
+
 ## 4.2.8
 
 ### Patch Changes

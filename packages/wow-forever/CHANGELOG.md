@@ -1,5 +1,11 @@
 # @blizzard-api/wow-forever
 
+## 0.3.7
+
+### Patch Changes
+
+- 65e97b3: Add skill requirements as optional property for items
+
 ## 0.3.6
 
 ### Patch Changes
