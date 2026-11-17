@@ -1,5 +1,11 @@
 # @blizzard-api/d3
 
+## 3.1.11
+
+### Patch Changes
+
+- 03315f8: Update item response
+
 ## 3.1.10
 
 ### Patch Changes

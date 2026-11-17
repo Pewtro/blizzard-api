@@ -1,5 +1,16 @@
 # @blizzard-api/wow
 
+## 4.2.8
+
+### Patch Changes
+
+- 8639e6a: Significantly update quest response
+- 4da07f7: Add minimum_skill_level and maximum_skill_level to profession response
+- 94f5b95: Add brackets response to character pvp summary
+- 1a18db4: Mark creature and abilities as having nullable names
+- 780606f: Mark family optional for Creature responses
+- 94f5b95: Mark pvp_map_statistics as optional for pvp character summary
+
 ## 4.2.7
 
 ### Patch Changes
