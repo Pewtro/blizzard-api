@@ -2,7 +2,6 @@ import type {
   IdKey,
   MediaAsset,
   NameId,
-  NameIdKey,
   NameType,
   NullishNameId,
   NullishNameIdKey,
@@ -61,7 +60,7 @@ export interface PetMediaResponse extends ResponseBase {
 export interface PetResponse extends NullishNameId, ResponseBase {
   abilities?: Array<Ability>;
   battle_pet_type: BattlePetType;
-  creature: NameIdKey;
+  creature: NullishNameIdKey;
   description: null | string;
   icon: string;
   is_alliance_only: boolean;
@@ -76,7 +75,7 @@ export interface PetResponse extends NullishNameId, ResponseBase {
 }
 
 interface Ability {
-  ability: NameIdKey;
+  ability: NullishNameIdKey;
   required_level: number;
   slot: number;
 }

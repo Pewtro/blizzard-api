@@ -3,7 +3,6 @@ import { z } from 'zod';
 import {
   idKeySchema,
   mediaAssetSchema,
-  nameIdKeySchema,
   nameIdSchema,
   nameTypeSchema,
   nullishNameIdKeySchema,
@@ -32,7 +31,7 @@ export const petMediaResponseSchema = responseBaseSchema.extend({
 });
 
 const abilitySchema = z.strictObject({
-  ability: nameIdKeySchema,
+  ability: nullishNameIdKeySchema,
   required_level: z.number(),
   slot: z.number(),
 });
@@ -47,7 +46,7 @@ export const petAbilityResponseSchema = nullishNameIdSchema.extend(responseBaseS
 export const petResponseSchema = nullishNameIdSchema.extend(responseBaseSchema.shape).extend({
   abilities: z.array(abilitySchema).optional(),
   battle_pet_type: battlePetTypeSchema,
-  creature: nameIdKeySchema,
+  creature: nullishNameIdKeySchema,
   description: z.string().nullable(),
   icon: z.string(),
   is_alliance_only: z.boolean(),
