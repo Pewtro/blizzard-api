@@ -5,6 +5,7 @@ import {
   factionSchema,
   hrefSchema,
   nameIdKeySchema,
+  nameIdSchema,
   nameTypeSchema,
   nullishNameIdKeySchema,
   responseBaseSchema,
@@ -117,6 +118,12 @@ const requirementsSchema = z.strictObject({
 const rewardsSchema = z.strictObject({
   currency: z.array(currencyRewardSchema).optional(),
   experience: z.number().optional(),
+  follower: z
+    .strictObject({
+      alliance: nameIdSchema,
+      horde: nameIdSchema,
+    })
+    .optional(),
   items: questRewardItemsSchema.optional(),
   money: moneySchema.optional(),
   reputations: z.array(reputationSchema).optional(),

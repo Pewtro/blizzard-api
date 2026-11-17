@@ -1,4 +1,4 @@
-import type { Faction, Href, NameIdKey, NameType, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { Faction, Href, NameId, NameIdKey, NameType, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
 
 export interface QuestCondition {
   conditions?: Array<QuestCondition>;
@@ -142,6 +142,10 @@ interface Requirements {
 interface Rewards {
   currency?: Array<CurrencyReward>;
   experience?: number;
+  follower?: {
+    alliance: NameId;
+    horde: NameId;
+  };
   items?: QuestRewardItems;
   money?: Money;
   reputations?: Array<Reputation>;
