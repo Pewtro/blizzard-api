@@ -37,7 +37,7 @@ export const itemSubclassResponseSchema = responseBaseSchema.extend({
   hide_subclass_in_tooltips: z.boolean().optional(),
   id: z.number(),
   item_class: nullishNameIdKeySchema,
-  verbose_name: z.string().optional(),
+  verbose_name: z.string().optional().nullable(),
 });
 
 const displaySchema = z.strictObject({

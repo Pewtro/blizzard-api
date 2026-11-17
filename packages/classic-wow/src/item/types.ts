@@ -86,7 +86,7 @@ export interface ItemSubclassResponse extends ResponseBase {
   hide_subclass_in_tooltips?: boolean;
   id: number;
   item_class: NullishNameIdKey;
-  verbose_name?: string;
+  verbose_name?: null | string;
 }
 
 interface Armor {
