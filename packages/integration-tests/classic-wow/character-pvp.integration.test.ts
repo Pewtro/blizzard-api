@@ -9,7 +9,7 @@ import {
   pvpSeasonIndexResponseSchema,
 } from '../../../generated/schemas/classic-wow';
 import { getIntegrationTestClient } from '../utils/client';
-import { getRandomItem } from '../utils/random';
+import { getRandomSample } from '../utils/random';
 
 describe('classic-wow character-pvp integration', async () => {
   const client = await getIntegrationTestClient();
@@ -42,13 +42,26 @@ describe('classic-wow character-pvp integration', async () => {
     }
     expect(parsedLeaderboard.success).toBe(true);
 
-    const character = getRandomItem(parsedLeaderboard.data!.entries)?.character;
-    expect(character).toBeDefined();
-    if (!character) return;
+    const candidates = getRandomSample(parsedLeaderboard.data!.entries, 10);
+    expect(candidates.length).toBeGreaterThan(0);
+    if (candidates.length === 0) return;
 
-    const bracketResponse = await client.sendRequest(
-      characterPvpBracketStatistics('profile-classic', character.realm.slug, character.name, bracket.name),
-    );
+    let bracketResponse: unknown;
+    for (const { character } of candidates) {
+      try {
+        bracketResponse = await client.sendRequest(
+          characterPvpBracketStatistics('profile-classic', character.realm.slug, character.name, bracket.name),
+        );
+        break;
+      } catch (error) {
+        const status = (error as { response?: { status?: number } }).response?.status;
+        if (status !== 404) throw error;
+      }
+    }
+
+    expect(bracketResponse).toBeDefined();
+    if (bracketResponse === undefined) return;
+
     const parsedBracket = characterPvpBracketStatisticsResponseSchema.safeParse(bracketResponse);
     if (!parsedBracket.success) {
       console.error('Classic character PvP bracket validation failed:', prettifyError(parsedBracket.error));
