@@ -1,5 +1,13 @@
 # @blizzard-api/wow
 
+## 4.2.10
+
+### Patch Changes
+
+- 31293bb: Add follower response to quest rewards
+- 68796e5: Add is_repeatable to quest response
+- e8623a9: Mark title in quest response nullable
+
 ## 4.2.9
 
 ### Patch Changes
