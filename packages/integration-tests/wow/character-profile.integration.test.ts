@@ -13,7 +13,7 @@ import { getRandomSample } from '../utils/random';
 
 describe('wow character-profile integration', async () => {
   const client = await getIntegrationTestClient();
-  test('validates profile summaries for five random members of echoes on laughing-skull', async ({ expect }) => {
+  test('validates profile summaries for random guild members', async ({ expect }) => {
     const roster = await client.sendRequest(guildRoster('laughing-skull', 'echoes'));
     const parsedRoster = guildRosterResponseSchema.safeParse(roster);
     if (!parsedRoster.success) {
