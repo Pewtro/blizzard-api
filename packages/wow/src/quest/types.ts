@@ -127,7 +127,8 @@ interface Reputation {
 
 interface ReputationRequirement {
   faction: NameIdKey;
-  min_reputation: number;
+  max_reputation?: number;
+  min_reputation?: number;
 }
 
 interface Requirements {

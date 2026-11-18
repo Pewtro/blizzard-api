@@ -92,7 +92,8 @@ const reputationSchema = z.strictObject({
 
 const reputationRequirementSchema = z.strictObject({
   faction: nameIdKeySchema,
-  min_reputation: z.number(),
+  max_reputation: z.number().optional(),
+  min_reputation: z.number().optional(),
 });
 
 const questRequirementSchema = z.strictObject({
