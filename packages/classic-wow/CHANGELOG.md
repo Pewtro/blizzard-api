@@ -1,5 +1,11 @@
 # @blizzard-api/classic-wow
 
+## 4.3.8
+
+### Patch Changes
+
+- ac9c646: Mark reward_description from achievements as nullable
+
 ## 4.3.7
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # @blizzard-api/wow
 
+## 4.2.11
+
+### Patch Changes
+
+- 6ed70fb: Mark some character profile properties optional
+- f119979: Add/update max_reputation/min_reputation as optional number values to quest requirements
+
 ## 4.2.10
 
 ### Patch Changes
