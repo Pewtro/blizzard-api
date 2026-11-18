@@ -79,6 +79,6 @@ export const achievementResponseSchema = nullishNameIdSchema.extend(responseBase
       faction: factionSchema,
     })
     .optional(),
-  reward_description: z.string().optional(),
+  reward_description: z.string().optional().nullable(),
   reward_item: nameIdKeySchema.optional(),
 });

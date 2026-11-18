@@ -86,7 +86,7 @@ export interface AchievementResponse extends NullishNameId, ResponseBase {
   points: number;
   prerequisite_achievement?: NameIdKey;
   requirements?: { faction: Faction };
-  reward_description?: string;
+  reward_description?: null | string;
   reward_item?: NameIdKey;
 }
 
