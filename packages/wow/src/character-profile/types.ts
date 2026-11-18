@@ -9,13 +9,13 @@ export interface CharacterProfileSummaryResponse extends ResponseBase {
   achievement_points: number;
   achievements: Href;
   achievements_statistics: Href;
-  active_spec: NameIdKey;
+  active_spec?: NameIdKey;
   active_title?: NameIdKey & { display_string: string };
   appearance: Href;
   average_item_level: number;
   character_class: NameIdKey;
   collections: Href;
-  covenant_progress: CovenantProgress;
+  covenant_progress?: CovenantProgress;
   encounters: Href;
   equipment: Href;
   equipped_item_level: number;
@@ -24,9 +24,9 @@ export interface CharacterProfileSummaryResponse extends ResponseBase {
   gender: Gender;
   guild?: Guild;
   houses?: Array<Href>;
-  hunter_pets: Href;
+  hunter_pets?: Href;
   id: number;
-  is_remix: boolean;
+  is_remix?: boolean;
   last_login_timestamp: number;
   level: number;
   media: Href;

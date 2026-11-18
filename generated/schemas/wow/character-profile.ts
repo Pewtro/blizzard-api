@@ -22,7 +22,7 @@ export const characterProfileSummaryResponseSchema = responseBaseSchema.extend({
   achievement_points: z.number(),
   achievements: hrefSchema,
   achievements_statistics: hrefSchema,
-  active_spec: nameIdKeySchema,
+  active_spec: nameIdKeySchema.optional(),
   active_title: nameIdKeySchema
     .and(
       z.strictObject({
@@ -34,7 +34,7 @@ export const characterProfileSummaryResponseSchema = responseBaseSchema.extend({
   average_item_level: z.number(),
   character_class: nameIdKeySchema,
   collections: hrefSchema,
-  covenant_progress: covenantProgressSchema,
+  covenant_progress: covenantProgressSchema.optional(),
   encounters: hrefSchema,
   equipment: hrefSchema,
   equipped_item_level: z.number(),
@@ -43,9 +43,9 @@ export const characterProfileSummaryResponseSchema = responseBaseSchema.extend({
   gender: genderSchema,
   guild: guildSchema.optional(),
   houses: z.array(hrefSchema).optional(),
-  hunter_pets: hrefSchema,
+  hunter_pets: hrefSchema.optional(),
   id: z.number(),
-  is_remix: z.boolean(),
+  is_remix: z.boolean().optional(),
   last_login_timestamp: z.number(),
   level: z.number(),
   media: hrefSchema,
