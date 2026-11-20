@@ -32,7 +32,7 @@ jobs:
 
       - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # https://github.com/pnpm/action-setup/releases/tag/v6.1.1
         with:
-          version: 12.18.0
+          version: 12.21.0
 
       - name: Cache turbo build setup
         uses: actions/cache@v6
@@ -90,7 +90,7 @@ jobs:
 
       - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # https://github.com/pnpm/action-setup/releases/tag/v6.1.1
         with:
-          version: 12.18.0
+          version: 12.21.0
 
       - name: Setup Node.js ${{ env.release_node }}
         uses: actions/setup-node@v7
