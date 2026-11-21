@@ -62,7 +62,7 @@ export const characterAppearanceResponseSchema = responseBaseSchema.extend({
   customizations: z.array(customizationSchema),
   faction: factionSchema,
   gender: genderSchema,
-  guild_crest: guildCrestSchema,
+  guild_crest: guildCrestSchema.optional(),
   items: z.array(itemSchema),
   playable_class: nameIdKeySchema,
   playable_race: nameIdKeySchema,

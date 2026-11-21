@@ -6,7 +6,7 @@ export interface CharacterAppearanceResponse extends ResponseBase {
   customizations: Array<Customization>;
   faction: Faction;
   gender: Gender;
-  guild_crest: GuildCrest;
+  guild_crest?: GuildCrest;
   items: Array<Item>;
   playable_class: NameIdKey;
   playable_race: NameIdKey;
