@@ -1,5 +1,13 @@
 # @blizzard-api/wow
 
+## 4.2.12
+
+### Patch Changes
+
+- f989eac: Mark activities as optional for guild activity
+- 375b7bb: Mark guild_crest as an optional entry in character appearance
+- 55d8ab3: Add honor as an optional quest reward
+
 ## 4.2.11
 
 ### Patch Changes

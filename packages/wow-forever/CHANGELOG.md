@@ -1,5 +1,11 @@
 # @blizzard-api/wow-forever
 
+## 0.3.8
+
+### Patch Changes
+
+- 33ba0ab: Add guild_crest as an optional entry in character appearance
+
 ## 0.3.7
 
 ### Patch Changes
