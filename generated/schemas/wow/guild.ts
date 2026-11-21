@@ -145,6 +145,6 @@ export const guildRosterResponseSchema = responseBaseSchema.extend({
 });
 
 export const guildActivityResponseSchema = responseBaseSchema.extend({
-  activities: z.array(activityElementSchema),
+  activities: z.array(activityElementSchema).optional(),
   guild: guildSchema,
 });

@@ -20,7 +20,7 @@ export interface GuildAchievementsResponse extends ResponseBase {
 }
 
 export interface GuildActivityResponse extends ResponseBase {
-  activities: Array<ActivityElement>;
+  activities?: Array<ActivityElement>;
   guild: Guild;
 }
 
