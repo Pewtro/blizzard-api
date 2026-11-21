@@ -125,6 +125,7 @@ const rewardsSchema = z.strictObject({
       horde: nameIdSchema,
     })
     .optional(),
+  honor: z.number().optional(),
   items: questRewardItemsSchema.optional(),
   money: moneySchema.optional(),
   reputations: z.array(reputationSchema).optional(),

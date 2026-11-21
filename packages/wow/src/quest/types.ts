@@ -148,6 +148,7 @@ interface Rewards {
     alliance: NameId;
     horde: NameId;
   };
+  honor?: number;
   items?: QuestRewardItems;
   money?: Money;
   reputations?: Array<Reputation>;
