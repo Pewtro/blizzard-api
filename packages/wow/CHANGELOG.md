@@ -1,5 +1,11 @@
 # @blizzard-api/wow
 
+## 4.2.13
+
+### Patch Changes
+
+- 58feba5: Mark hunter pets as having nullable names
+
 ## 4.2.12
 
 ### Patch Changes
