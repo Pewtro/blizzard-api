@@ -8,7 +8,7 @@ const hunterPetSchema = z.strictObject({
   is_active: z.boolean().optional(),
   is_summoned: z.boolean().optional(),
   level: z.number(),
-  name: z.string(),
+  name: z.string().nullable(),
   slot: z.number(),
 });
 

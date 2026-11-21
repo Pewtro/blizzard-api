@@ -11,6 +11,6 @@ interface HunterPet {
   is_active?: boolean;
   is_summoned?: boolean;
   level: number;
-  name: string;
+  name: null | string;
   slot: number;
 }
