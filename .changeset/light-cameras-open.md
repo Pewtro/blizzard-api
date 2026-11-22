@@ -3,4 +3,4 @@
 '@blizzard-api/wow-forever': patch
 ---
 
-Mark hunter pets as having nullable names
+Mark hunter pets as having nullable names for the creature
