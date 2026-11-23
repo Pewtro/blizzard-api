@@ -1,5 +1,11 @@
 # @blizzard-api/wow-forever
 
+## 0.3.9
+
+### Patch Changes
+
+- 58feba5: Mark hunter pets as having nullable names for the creature
+
 ## 0.3.8
 
 ### Patch Changes
