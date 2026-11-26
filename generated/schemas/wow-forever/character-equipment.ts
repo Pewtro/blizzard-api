@@ -145,7 +145,6 @@ const equippedItemSchema = z.strictObject({
   item: idKeySchema,
   item_class: nameIdKeySchema,
   item_subclass: nameIdKeySchema,
-  level: displayStringValueSchema,
   limit_category: z.string().optional(),
   media: idKeySchema,
   modified_appearance_id: z.number().optional(),

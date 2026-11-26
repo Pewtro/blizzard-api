@@ -75,7 +75,6 @@ interface EquippedItem {
   item: IdKey;
   item_class: NameIdKey;
   item_subclass: NameIdKey;
-  level: DisplayStringValue;
   limit_category?: string;
   media: IdKey;
   modified_appearance_id?: number;
