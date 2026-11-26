@@ -23,7 +23,6 @@ export interface CharacterProfileSummaryResponse extends NameId, ResponseBase {
   collections: Href;
   encounters: Href;
   equipment: Href;
-  equipped_item_level: number;
   experience: number;
   faction: Faction;
   gender: Gender;

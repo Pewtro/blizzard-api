@@ -34,7 +34,6 @@ export const characterProfileSummaryResponseSchema = nameIdSchema.extend(respons
   collections: hrefSchema,
   encounters: hrefSchema,
   equipment: hrefSchema,
-  equipped_item_level: z.number(),
   experience: z.number(),
   faction: factionSchema,
   gender: genderSchema,
