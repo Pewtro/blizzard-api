@@ -19,7 +19,6 @@ export interface CharacterProfileSummaryResponse extends NameId, ResponseBase {
   achievements_statistics: Href;
   active_title?: ActiveTitle;
   appearance: Href;
-  average_item_level: number;
   character_class: NullishNameIdKey;
   collections: Href;
   encounters: Href;
@@ -32,7 +31,6 @@ export interface CharacterProfileSummaryResponse extends NameId, ResponseBase {
   hunter_pets?: Href;
   is_remix: boolean;
   last_login_timestamp: number;
-  level: number;
   media: Href;
   mythic_keystone_profile: Href;
   name_search: string;
