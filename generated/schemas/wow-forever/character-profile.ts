@@ -41,6 +41,7 @@ export const characterProfileSummaryResponseSchema = nameIdSchema.extend(respons
   hunter_pets: hrefSchema.optional(),
   is_remix: z.boolean(),
   last_login_timestamp: z.number(),
+  level: z.number(),
   media: hrefSchema,
   mythic_keystone_profile: hrefSchema,
   name_search: z.string(),

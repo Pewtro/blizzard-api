@@ -30,6 +30,7 @@ export interface CharacterProfileSummaryResponse extends NameId, ResponseBase {
   hunter_pets?: Href;
   is_remix: boolean;
   last_login_timestamp: number;
+  level: number;
   media: Href;
   mythic_keystone_profile: Href;
   name_search: string;
