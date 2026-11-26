@@ -2,4 +2,4 @@
 '@blizzard-api/wow-forever': patch
 ---
 
-Remove equipped_item_level from character profile response
+Mark equipped_item_level as optional for character profile response

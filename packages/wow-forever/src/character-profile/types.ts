@@ -19,10 +19,12 @@ export interface CharacterProfileSummaryResponse extends NameId, ResponseBase {
   achievements_statistics: Href;
   active_title?: ActiveTitle;
   appearance: Href;
+  average_item_level?: number;
   character_class: NullishNameIdKey;
   collections: Href;
   encounters: Href;
   equipment: Href;
+  equipped_item_level?: number;
   experience: number;
   faction: Faction;
   gender: Gender;
