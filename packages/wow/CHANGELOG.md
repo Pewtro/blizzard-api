@@ -1,5 +1,11 @@
 # @blizzard-api/wow
 
+## 4.2.14
+
+### Patch Changes
+
+- 450e886: Mark an area name as nullable
+
 ## 4.2.13
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # @blizzard-api/wow-forever
 
+## 0.3.10
+
+### Patch Changes
+
+- a052377: Add level to character profile summary
+- f6a1515: Mark average_item_level as optional for character profiles and remove level from items
+- 7049e65: Remove level object from equipped items
+- 2905706: Mark equipped_item_level as optional for character profile response
+
 ## 0.3.9
 
 ### Patch Changes
