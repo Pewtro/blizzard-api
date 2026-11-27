@@ -58,7 +58,7 @@ export interface QuestIndexResponse extends ResponseBase {
  * @see {@link https://develop.battle.net/documentation/world-of-warcraft/game-data-apis}
  */
 export interface QuestResponse extends ResponseBase {
-  area?: NameIdKey;
+  area?: NullishNameIdKey;
   category?: NameIdKey;
   description?: string;
   id: number;

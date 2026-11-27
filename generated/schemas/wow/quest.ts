@@ -133,7 +133,7 @@ const rewardsSchema = z.strictObject({
 });
 
 export const questResponseSchema = responseBaseSchema.extend({
-  area: nameIdKeySchema.optional(),
+  area: nullishNameIdKeySchema.optional(),
   category: nameIdKeySchema.optional(),
   description: z.string().optional(),
   id: z.number(),
