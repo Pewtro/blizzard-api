@@ -1,4 +1,4 @@
-import type { Faction, Href, NameIdKey, NameType, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
+import type { Faction, Href, NameType, NullishNameIdKey, ResponseBase } from '@blizzard-api/core';
 
 /**
  * The response for a quest area index.
@@ -155,5 +155,5 @@ interface QuestRewards {
   money?: QuestMoney;
   reputations?: Array<QuestReputationReward>;
   spell?: NullishNameIdKey;
-  trade_skill_spell?: NameIdKey;
+  trade_skill_spell?: NullishNameIdKey;
 }
