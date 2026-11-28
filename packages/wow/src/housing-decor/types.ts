@@ -19,7 +19,7 @@ export interface DecorResponse extends ResponseBase {
   default_collection_count?: number;
   dye_slots?: Array<DyeSlot>;
   id: number;
-  items: NameIdKey;
+  items?: NameIdKey;
   name: string;
   source?: Array<DecorSource>;
 }

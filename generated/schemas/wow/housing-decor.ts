@@ -90,7 +90,7 @@ export const decorResponseSchema = responseBaseSchema.extend({
   default_collection_count: z.number().optional(),
   dye_slots: z.array(dyeSlotSchema).optional(),
   id: z.number(),
-  items: nameIdKeySchema,
+  items: nameIdKeySchema.optional(),
   name: z.string(),
   source: z.array(decorSourceSchema).optional(),
 });
