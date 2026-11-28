@@ -1,5 +1,11 @@
 # @blizzard-api/wow-forever
 
+## 0.3.11
+
+### Patch Changes
+
+- 4a71e62: Mark trade_skill_spell name in quest rewards nullable
+
 ## 0.3.10
 
 ### Patch Changes

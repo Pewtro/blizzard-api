@@ -1,5 +1,12 @@
 # @blizzard-api/wow
 
+## 4.2.15
+
+### Patch Changes
+
+- 504c225: Add trade_skill_spell as a possible quest reward
+- d6d8d19: Mark decor items as optional
+
 ## 4.2.14
 
 ### Patch Changes
