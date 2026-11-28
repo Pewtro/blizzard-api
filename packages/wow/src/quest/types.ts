@@ -153,6 +153,7 @@ interface Rewards {
   money?: Money;
   reputations?: Array<Reputation>;
   spell?: NameIdKey;
+  trade_skill_spell?: NullishNameIdKey;
 }
 
 interface Units {

@@ -130,6 +130,7 @@ const rewardsSchema = z.strictObject({
   money: moneySchema.optional(),
   reputations: z.array(reputationSchema).optional(),
   spell: nameIdKeySchema.optional(),
+  trade_skill_spell: nullishNameIdKeySchema.optional(),
 });
 
 export const questResponseSchema = responseBaseSchema.extend({
